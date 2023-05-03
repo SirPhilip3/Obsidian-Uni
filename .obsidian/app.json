@@ -1,0 +1,13 @@
+{
+  "spellcheckLanguages": [
+    "it",
+    "en"
+  ],
+  "alwaysUpdateLinks": true,
+  "readableLineLength": true,
+  "livePreview": true,
+  "showFrontmatter": false,
+  "showLineNumber": false,
+  "spellcheck": false,
+  "autoConvertHtml": true
+}
