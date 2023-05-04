@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
                 "mode": "source",
                 "source": false
               }
@@ -107,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "byCreatedTimeReverse",
@@ -124,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -147,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md"
+                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md"
               }
             }
           },
@@ -178,11 +178,12 @@
       "obsidian-file-info-plugin:File Info Panel": false
     }
   },
-  "active": "a38a898b14fffd07",
+  "active": "be7ec06ab1af37c1",
   "lastOpenFiles": [
+    "Architettura degli Elaboratori/lw.md",
+    "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
     "Nuovo Documento di testo.txt",
     "Programmazione e Laboratorio/Esercitazioni/STL.md",
-    "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
     "Architettura degli Elaboratori/MIPS.md",
     "Architettura degli Elaboratori/Gerarchia di memoria.md",
     "Architettura degli Elaboratori/add.md",
@@ -225,7 +226,6 @@
     "Programmazione e Laboratorio/Tutorati",
     "Programmazione e Laboratorio/Lezioni",
     "Laboratorio PeL",
-    "Untitled.canvas",
-    "To Do"
+    "Untitled.canvas"
   ]
 }
