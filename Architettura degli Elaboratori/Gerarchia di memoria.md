@@ -140,7 +140,7 @@ Tag = block address / # cache blocks
 
 ##### Valid bit
 
-Utilizzato per identificare un blocco con informazioni valide ( allo startup la cache è inizializzata a caso però ogni blocco è comunque decodificabile, solo quando inseriamo un valore in un blocco diventa  un'informazione valida )
+Utilizzato per identificare un blocco con informazioni valide (allo startup la cache è inizializzata a caso però ogni blocco è comunque decodificabile, solo quando inseriamo un valore in un blocco diventa  un'informazione valida)
 
 ##### Dimensione ottimale blocco
 

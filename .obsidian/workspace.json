@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Git.md",
+                "file": "Architettura degli Elaboratori/MIPS.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Git.md",
+                "file": "Architettura degli Elaboratori/MIPS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "byCreatedTimeReverse",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Git.md",
+                "file": "Architettura degli Elaboratori/MIPS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/Git.md"
+                "file": "Architettura degli Elaboratori/MIPS.md"
               }
             }
           },
@@ -167,6 +167,10 @@
   },
   "active": "d8e40ca4ff72208d",
   "lastOpenFiles": [
+    "Architettura degli Elaboratori/Gerarchia di memoria.md",
+    "Architettura degli Elaboratori/add.md",
+    "Architettura degli Elaboratori/Assembly.md",
+    "Programmazione e Laboratorio/Esercitazioni/Git.md",
     "Nuovo Immagine bitmap.bmp",
     "Programmazione e Laboratorio/Esercitazioni/Calculator.md",
     "Programmazione e Laboratorio/Esercitazioni/2023-04-17.md",
@@ -178,7 +182,6 @@
     "Untitled.md",
     "Resources/Immagine 2023-05-02 151852.png",
     "Resources/Immagine 2023-05-02 150420.png",
-    "Architettura degli Elaboratori/Assembly.md",
     "Programmazione e Laboratorio/Esercitazioni/STL.md",
     "Programmazione e Laboratorio/Esercitazioni/Iterators.md",
     "Programmazione e Laboratorio/Esercitazioni/Templates.md",
@@ -188,7 +191,6 @@
     "Resources/Immagine 2023-04-27 125931.png",
     "To Do.md",
     "Resources/Immagine 2023-04-27 121418.png",
-    "Resources/Immagine 2023-04-27 121723.png",
     "Programmazione e Laboratorio/Esercitazioni/2023-03-30.md",
     "Programmazione e Laboratorio/Lezioni/Introduzione.md",
     "Programmazione e Laboratorio/Lezioni/Input Output.md",
@@ -201,8 +203,6 @@
     "Programmazione e Laboratorio/Lezioni/2023-03-22.md",
     "Programmazione e Laboratorio/Lezioni/2023-04-12.md",
     "Untitled 1.md",
-    "To do.md",
-    "Programmazione e Laboratorio/Esercitazioni/Streams.md",
     "calc1.cpp",
     "Untitled",
     "Architettura degli Elaboratori",

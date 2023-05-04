@@ -344,7 +344,6 @@ Cambiamento del flusso delle istruzioni a causa della CPU
 	+ Page fault
 	+ TLB miss
 
-
 #### **Interruzioni**
 
 Cambiamento del flusso delle istruzioni per causa esterna ( **IO** )
