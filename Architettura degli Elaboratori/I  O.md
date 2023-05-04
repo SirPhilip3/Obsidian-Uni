@@ -72,3 +72,5 @@ Sistema moderno che consente di ridurre i conflitti nell'accesso al **bus** in m
 + _Southbridge_ connesso alla CPU trmite un **bus** chiamato **DMI ( Direct Media Interface )** basato sullo standard PCIe  
 
 ![[Immagine 2023-05-02 153347.png]]
+
+
