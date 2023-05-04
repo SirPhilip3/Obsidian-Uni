@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Progetto.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
                 "mode": "source",
                 "source": false
               }
@@ -91,8 +91,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200.51103591918945,
-    "collapsed": true
+    "width": 200.51103591918945
   },
   "right": {
     "id": "f73d9124235c5b98",
@@ -108,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Progetto.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "byCreatedTimeReverse",
@@ -125,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Progetto.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -148,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Progetto.md"
+                "file": "Programmazione e Laboratorio/Esercitazioni/Progetto.md"
               }
             }
           },
@@ -179,10 +178,11 @@
       "obsidian-file-info-plugin:File Info Panel": false
     }
   },
-  "active": "be7ec06ab1af37c1",
+  "active": "a38a898b14fffd07",
   "lastOpenFiles": [
+    "Nuovo Documento di testo.txt",
     "Programmazione e Laboratorio/Esercitazioni/STL.md",
-    "Progetto.md",
+    "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
     "Architettura degli Elaboratori/MIPS.md",
     "Architettura degli Elaboratori/Gerarchia di memoria.md",
     "Architettura degli Elaboratori/add.md",
@@ -216,7 +216,6 @@
     "Programmazione e Laboratorio/Lezioni/Strutture di controllo.md",
     "Programmazione e Laboratorio/Lezioni/2023-03-15.md",
     "Programmazione e Laboratorio/Lezioni/2023-03-22.md",
-    "Programmazione e Laboratorio/Lezioni/2023-04-12.md",
     "calc1.cpp",
     "Untitled",
     "Architettura degli Elaboratori",
