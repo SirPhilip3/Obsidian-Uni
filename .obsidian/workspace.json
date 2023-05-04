@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/g++.md",
                 "mode": "source",
                 "source": false
               }
@@ -107,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/g++.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "byCreatedTimeReverse",
@@ -124,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/g++.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -147,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programmazione e Laboratorio/Esercitazioni/CFG's.md"
+                "file": "Programmazione e Laboratorio/Esercitazioni/g++.md"
               }
             }
           },
@@ -180,6 +180,7 @@
   },
   "active": "be7ec06ab1af37c1",
   "lastOpenFiles": [
+    "Programmazione e Laboratorio/Esercitazioni/CFG's.md",
     "Architettura degli Elaboratori/lw.md",
     "Programmazione e Laboratorio/Esercitazioni/Progetto.md",
     "Nuovo Documento di testo.txt",
@@ -216,7 +217,6 @@
     "Programmazione e Laboratorio/Lezioni/Output flushing and Endline.md",
     "Programmazione e Laboratorio/Lezioni/Strutture di controllo.md",
     "Programmazione e Laboratorio/Lezioni/2023-03-15.md",
-    "Programmazione e Laboratorio/Lezioni/2023-03-22.md",
     "calc1.cpp",
     "Untitled",
     "Architettura degli Elaboratori",

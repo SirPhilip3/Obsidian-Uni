@@ -1,1 +1,7 @@
-.obsidian\
+.obsidian/*
+
+
+.obsidian/workspace/*
+
+
+.obsidian/plugins/*
