@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Architettura degli Elaboratori/MIPS.md",
+                "file": "Programmazione e Laboratorio/Esercitazioni/STL.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "be7ec06ab1af37c1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Progetto.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -78,7 +91,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200.51103591918945
+    "width": 200.51103591918945,
+    "collapsed": true
   },
   "right": {
     "id": "f73d9124235c5b98",
@@ -94,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Architettura degli Elaboratori/MIPS.md",
+                "file": "Progetto.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "byCreatedTimeReverse",
@@ -111,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Architettura degli Elaboratori/MIPS.md",
+                "file": "Progetto.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -134,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Architettura degli Elaboratori/MIPS.md"
+                "file": "Progetto.md"
               }
             }
           },
@@ -165,8 +179,11 @@
       "obsidian-file-info-plugin:File Info Panel": false
     }
   },
-  "active": "d8e40ca4ff72208d",
+  "active": "be7ec06ab1af37c1",
   "lastOpenFiles": [
+    "Programmazione e Laboratorio/Esercitazioni/STL.md",
+    "Progetto.md",
+    "Architettura degli Elaboratori/MIPS.md",
     "Architettura degli Elaboratori/Gerarchia di memoria.md",
     "Architettura degli Elaboratori/add.md",
     "Architettura degli Elaboratori/Assembly.md",
@@ -179,10 +196,8 @@
     "Resources/Immagine 2023-05-02 153249.png",
     "Resources/Immagine 2023-05-02 152220.png",
     "Resources/Immagine 2023-05-02 152049.png",
-    "Untitled.md",
     "Resources/Immagine 2023-05-02 151852.png",
     "Resources/Immagine 2023-05-02 150420.png",
-    "Programmazione e Laboratorio/Esercitazioni/STL.md",
     "Programmazione e Laboratorio/Esercitazioni/Iterators.md",
     "Programmazione e Laboratorio/Esercitazioni/Templates.md",
     "Programmazione e Laboratorio/Esercitazioni/Copy of temporary objects.md",
@@ -202,7 +217,6 @@
     "Programmazione e Laboratorio/Lezioni/2023-03-15.md",
     "Programmazione e Laboratorio/Lezioni/2023-03-22.md",
     "Programmazione e Laboratorio/Lezioni/2023-04-12.md",
-    "Untitled 1.md",
     "calc1.cpp",
     "Untitled",
     "Architettura degli Elaboratori",
