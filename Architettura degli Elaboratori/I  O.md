@@ -137,3 +137,115 @@ I richiedenti sono posti in catena in funzione della loro priorità
 
 + Centralizzato ma con linee multiple di richiesta / rilascio
 + Completamente distribuito ( es: Ethernet )
+
+## Gestione IO
+
+Un'operazione di **IO** è un trasferimeto dati che può avvenire 
++ Da un dispositivo alla memoria ( Input )
++ Dalla memoria al dispositivo ( Output )
+
+Per effettuare questi trasferimenti occorre comunicare con il **controller** di ciascun dispositivo. Attraverso il controller è possibile dare comandi al dispositivo, leggere il suo stato e scrivere / leggere dati
+
+### Controller
+
+In genere un **controller** contiene dei registri tra cui :
++ **Command** register : utilizzato per inviare comandi al controller
++ **Status** register : utilizzato per conoscere cosa sta facendo il device o se è in stato di errore
++ **Data Write** register : utilizzato per il trasferimento di dati vero il device
++ **Data Read** register : utilizzato per trasferire dati dal device alla memoria
+
+![[Immagine 2023-05-04 132825.png]]
+
+#### Comunicare con il controller 
+
+##### Memory mapped (IO)
+
++ I registri del dispositivo sono viste come locazioni di memoria speciali ( mappate in memoria )
++ La CPU legge e scrive quei registri attraverso normali load e store agli indirizzi di memoria mappati
++ **MMU** ( **Memory Managment Unit** ) indirizza le richieste di load e store al dispositivo anziche alla RAM
+
+##### Istruzioni speciali
+
++ L'ISA della CPU comprende delle istruzioni speciali per leggere i registri di determinati **controller** ( discontinued )
+
+#### Operazione di IO
+
++ Verificare lo stato del dispositivo
++ Dare dei comandi 
++ Scrivere / leggere i dati presenti nei registri dati
+
+La CPU può essere o no coinvolta in queste operazioni a seconda della tecnica di **IO** che vogliamo utilizzare , la scelta di una tecnica dipende dalle caratteristiche del dispositivo
+
+##### Polling ( Programmed IO )
+
+Caratteristiche :
++ La CPU è sempre coinvolto in tutti i singoli trasferimenti
++ La CPU controlla periodicamente ( _sonda_ ) lo stato del dispositivo per determinare se ha bisogno di trasferire dei dati
++ Se vi sono dati disponibili , la CPU legge dal registro _data read_ i dati e li scrive nella RAM ( o in un registro della CPU ) per utilizzi futuri. 
+
+_Il controllo del dispositivo è affidato interamente alla CPU_
+
+```mermaid
+flowchart TD
+	id1[Invio comando di lettura] --> id2[Legge stato] 
+	id2 --> id3{controlla stato}
+	id3 -->|non pronto|id2
+	id3 -->|error|Exit
+	id3 --> id4[Leggi dati]
+	id4 --> id5{Finito?} 
+	id5 -->|No|id1
+	id5 -->|Si|Exit_
+
+```
+
+**Vantaggi**
++ Utile nelle applicazioni real-time perchè l'overhead di controllo del dispositivo è maggiormente predicibile
++ Utile se la frequenza di trasferimento è molto alta, quindi il controllo del registro di sstato da spesso esito positivo 
+**Svantaggi**
++ La CPU spreca molto tempo per verificare se ci sono dati disponibili , la maggior parte delle volte da esito negativo poichè la CPU è molto più veloce dei dispositivi di **IO**
++ La CPU spreca tempo per traferire dati dal dispositivo alla RAM
+
+##### Interrupt-driven IO
+
+Il dispositivo utilizza le interruzioni per segnalare alla CPU degli eventi , come la presenza di nuovi dati da leggere nel registro _data read_ 
+
+La gestione delle interruzione viene gestita dalla CPU che salta ad un certo indirizzo di memoria contenente l'**interrupt handler** che : 
++ Salva lo stato del programma attualmente in esecuzione
++ Individua quale dispositivo ha generato l'iterruzione e ci comunica
+
+```mermaid
+flowchart TD
+	id1[Invio comando di lettura] 
+	id2[Legge stato]-->id3{Controlla stato}
+	id3-->|Pronto|id4[Leggi dato]
+	id3-->|Errorw|Exit
+	id4-->id5{Finito}
+	id5-->|No|id1
+	id5-->|Si|Exit_
+```
+
+**Vantaggi**
++ Utile se il dispositivo comunica raramente o ad intervalli temporali non predicibili , la CPU può eseguire altre operazioni nel mentre aspetta che il dispositivo diventi pronto
++ Non è necessario specificare la frequenza di **polling**
+**Svantaggi**
++ L'overhead per la gestione dell'interruzione è più alto di quello del **polling** perchè la pipeline va svuotata , occorre salvare lo stato del processo attualmente in esecuzione etc..
++ Diventa dispendioso se il dispositivo comunica frequentemente
+
+Negli esempi fino ad ora l'accesso alla memoria viene effettuato esclusivamente dalla CPU
+**Vantaggi**
++ Hardware più semplice
+**Svantaggi**
++ Rallentamento dell'esecuzione dei programmi se si devono trasferire molti dati
+
+Soluzione :
+
+#### Direct Memory Access ( DMA )
+
+Il trasferimento dati tra dispositivo e memoria avviene grazie ad un controllore esterno alla CPU chiamato controller **DMA**
+
++ CPU si limita a fronire al **DMA** infromazioni su quanti dati leggere / scrivere e gli indirizzi coinvolti
++ Il trasferimento avviene senza l'intervento della CPU
++ Al termine del trasferimento la CPU viene notificata attraverso un interrupt
+
+![[Immagine 2023-05-04 143623.png]]
+
