@@ -66,11 +66,11 @@ Texe = 200 ps
 
 Texe = 100 ps
 
-Per aumentare le prestazioni bisogna fare in modo che le **Unità Funzionali** vengano svolte tutte contemporaneamete ma su istruzioni sucessive ( **Instruction Level Parallelism** ) in questo modo ogni singol istruzione viene svolta nello stesso periodo di tempo rispetto alla CPU a singolo ciclo ma viene aumetato il **throughput**
+Per aumentare le prestazioni bisogna fare in modo che le **Unità Funzionali** vengano svolte tutte contemporaneamete ma su istruzioni sucessive ( **Instruction Level Parallelism** ) in questo modo ogni singola istruzione viene svolta nello stesso periodo di tempo rispetto alla CPU a singolo ciclo ma viene aumetato il **throughput**
 
 ![[Immagine 2023-03-08 184159.png]]
 
-Per fare ciò basta inmpostare il clock a seconda dello stadio più lento ossia: 200 ps, mente nella CPU a singolo ciclo 1 operazione veniva svolta interamente in 1 ciclo di clock, che deve essere impostato secondo l'istruzione più lunga ossia una lw o 800 ps anche se altre istruzioni impiegano meno tempo come la Branch ( 500 ps ). 
+Per fare ciò basta impostare il clock a seconda dello **stadio** più lento ossia: 200 ps, mente nella CPU a singolo ciclo 1 operazione veniva svolta interamente in 1 ciclo di clock, che deve essere impostato secondo l'**istruzione** più lunga ossia una lw o 800 ps anche se altre istruzioni impiegano meno tempo come la Branch ( 500 ps ). 
 Perciò nella CPU a singolo ciclo di fatto completiamo una istruzione ogni 800 ps mentre nella CPU con pipeline un'istruzione viene completata ogni 200 ps
 
 Esempio:
@@ -86,7 +86,7 @@ Pipeline: 1400 ps
 Speedup: $2400/1400=1.7$
 
 La prima **lw** è più lenta rispetto a quella effettuata dalla CPU a singlo ciclo ( 1000 ps vs 800 ps) sucessivamente però con il riempimento della pipeline il risultato delle **lw** verrà salvato nei registri ogni 200 ps. Calcolando lo speedup ideale 
-$$\lim_{x\to\infty} \frac{800n}{1000+200n} = 4 $$
+$$\lim_{x\to\infty} \frac{800\cdot n}{1000+200\cdot n} = 4 $$
 Dove n sono il numero di **lw** , 800n poichè la cpu a singolo ciclo impiega 800 ps per ogni istruzione, 1000 + 200n poichè nella pipeline vi è un overhead (costo) iniziale , infatti perchè la pipeline sia efficente si deve avere un numero di istruzioni maggiori rispetto agli stadi della pipeline, in questo caso 1000 ps corrispondono alla prima operaziona che se presa singolarmente è più lenta rispetto alla cpu a singolo ciclo , sucessivamente però, per ogni ciclo di clock 200 ps viene fatta uscire dalla pipeline un'istruzione: aumento del **troughput**
 
 Lo speedup è quindi , teoricamente , equivalente al numero di stadi di una pipeline.
@@ -177,7 +177,7 @@ Un esempio di **Strucural Hazard** nel caso del MIPS sarebbe stato l'utilizzo di
 
 ### Data Hazards
 
-Nascono quando un'istruzione dipende dal risultato di un'istruzione precedenteche si trova ancora all'interno della pipeline
+Nascono quando un'istruzione dipende dal risultato di un'istruzione precedente che si trova ancora all'interno della pipeline
 
 Esempio
 ```armasm
@@ -204,7 +204,7 @@ Esempio: ( con register file non ottimizato )
 
 ![[Immagine 2023-03-13 082341.png]]
 
-Lo stadio **ID** propaga 3 nop all'intero della pipeline, il controllo delle dipendenze tra registri avviene attraverso l'**Hazard detection unit** che propaga i segnali di controllo per codificare una nop e il **PC** non viene aggiornato in modo tale da ri-eseguire le stesse istruzioni nei cicli sucessivi.
+Lo stadio **ID** propaga 3 **nop** all'intero della pipeline, il controllo delle dipendenze tra registri avviene attraverso l'**Hazard detection unit** che propaga i segnali di controllo per codificare una nop e il **PC** non viene aggiornato in modo tale da ri-eseguire le stesse istruzioni nei cicli sucessivi.
 
 Questo controllo può essere svolto anche dal compilatore aggiungendo delle istruzioni nop o istruzioni che non comportino dipendenze tra 2 istruzioni che provocano **RAW** 
 
@@ -258,7 +258,7 @@ Poichè leggere i registri non causa il cambiamento di una varaibile ciò non cr
 
 ### Control Hazards 
 
-Avvengono quando una istruzione di salto ( **beq**/**bne**/**slt** ), infatti bisogna attendere che le istruzioni di branch abbiano calcolato l'indirizzo di salto e aggiornato il **PC** , pre fare il fetch dell'istruzione corretta 
+Avvengono quando avviene una istruzione di salto ( **beq**/**bne**/**slt** ), infatti bisogna attendere che le istruzioni di branch abbiano calcolato l'indirizzo di salto e aggiornato il **PC** , per fare il fetch dell'istruzione corretta 
 
 Soluzioni:
 
@@ -274,7 +274,7 @@ Soluzioni:
 anticipiamo il calcolo del **PC** e il confronto dei registri della **beq** 
 Invece di usare l'**ALU** usiamo un circuito specializzato:
 ![[Immagine 2023-03-13 130814.png]]
-In questo caso il controllo per la branch avviene nello stadio **ID** ciò comporta che solo  l'istruzione sucessiva è entrata nella pipeline, in **MIPS** questa istruzione viene sempre eseguita
+In questo caso il controllo per la branch avviene nello stadio **ID** ciò comporta che solo l'istruzione sucessiva è entrata nella pipeline, in **MIPS** questa istruzione viene sempre eseguita
 Le istruzioni che vengono sempre eseguite dopo una branch viene chaimato **delay slot**, questo aumenta all'aumentare delle dimensioni della pipeline, e può essere riempito con una nop o con delle altre istruzioni  
 
 Questo crea problemi con il **forwarding** in quanto necessito dei valori corretti dei registri da confrontare già nel 2 stadio ( **ID** ), il **forwarding** può solo copiare valori verso **EXE** non **ID** per questo necessitiamo di inserire delle nop 
@@ -331,7 +331,7 @@ Necessita di 2 predizione sbagliate per cambiare stato in not-taken
 Pattern:      111110111110111110....
 Prediction: 111111111111111111....
 
-É comunque necessario la presenza di un'**Hazard detection unit** nello stadio **ID** , per individuare eventuali errori che possono essere commenssi dal **Branch predictor**
+É comunque necessario la presenza di un'**Hazard detection unit** nello stadio **ID** , per individuare eventuali errori che possono essere commessi dal **Branch predictor**
 
 ### Eccezioni e Interruzioni ( Interrupts )
 
@@ -369,7 +369,7 @@ Bisogna:
 + Eccezioni Aritmetiche rilevate nello stadio **EXE**, quindi anche lo stadio **EXE** deve poter mettere in stallo la CPU
 
 Problems:
-+ Esssendo che nella pipeline vengono svolte più istruzioni contemporanemente potrebbero verificarsi più **eccezioni contemporaneamente** ( nello stesso ciclo di clock ), è necessario quindi implementare un sistema di **gestione delle priorità delle eccezioni**
++ Essendo che nella pipeline vengono svolte più istruzioni contemporanemente potrebbero verificarsi più **eccezioni contemporaneamente** ( nello stesso ciclo di clock ), è necessario quindi implementare un sistema di **gestione delle priorità delle eccezioni**
 + **Interrupt** non sono dovute a istruzioni specifiche ma dall'**IO**
 + Eccezioni posso verificarsi nell'**handler delle eccezioni**
 ---
@@ -434,7 +434,7 @@ sub $s1, $s2, $s3
 
 $s1 scritto sia da add che da sub
 
-Non è possibile cambiare l'ordine delle operazioni ma è sufficiente solgere la add e sub contemporaneamete e svolgere la stadio **WB** in-order
+Non è possibile cambiare l'ordine delle operazioni ma è sufficiente svolgere la add e sub contemporaneamente e svolgere la stadio **WB** in-order
 
 #### WAR
 
@@ -445,4 +445,4 @@ sub $s1, $s2, $s1
 
 $s1 scritto dalla sub dopo essere stato letto dalla add
 
-Non è possibile cambiare l'ordine delle operazioni ma è sufficiente solgere la add e sub contemporaneamete e svolgere la stadio **WB** in-order
+Non è possibile cambiare l'ordine delle operazioni ma è sufficiente solgere la add e sub contemporaneamente e svolgere la stadio **WB** in-order
