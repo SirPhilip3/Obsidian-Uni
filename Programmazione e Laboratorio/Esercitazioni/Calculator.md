@@ -10,7 +10,7 @@ Read three varibles from `std::cin` :
 int evaluate(){
 
 	int lval, rval = 0;
-	char op = '0';[[CFG's]]
+	char op = '0';
     
     std::cin >> lval >> op >> rval;
     

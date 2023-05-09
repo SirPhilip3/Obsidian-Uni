@@ -56,26 +56,142 @@ The **container** manages the storage space for its elements and provides funcio
 	+ unordered_multiset
 	+ unordered_map
 	+ unordered_multimap
-sdwq
+
 ### Sequential
+
+Data is stored in a sequential way
+
+---
+Random access : fast
+other operations : slow
 
 #### [`std::array`](https://cplusplus.com/reference/array/array/)
 
+`template <typename T, size_t N> class array;`
+
+Array are fixed-size sequenced containers , they hold a specific number of elements ordered in a linear sequence. It's a _wrapper_ for an ordinary array
+
 #### [`std::vector`](https://cplusplus.com/reference/vector/vector/)
+
+`template <typename T, class Alloc = allocator<T>> class vector`
+
+Vectors are like arrays but theyr size can change dynamically , with their storage in memory handled automatically by the container
 
 #### [`std::deque`](https://cplusplus.com/reference/deque/deque)
 
+`template <typename T, class Alloc = allocator<T>> class deque`
+
+**Deque** is a Double Ended queue : they are vectors that can be expanded in both directions
+
+--- 
+Random access : slow
+other operations : fast
+
 #### [`std::forward_list`](https://cplusplus.com/reference/forward_list/forward_list/?kw=forward_list+)
+
+`template <typename T, class Alloc = allocator<T>> class forward_list`
+
+They are implemented as _singly-linked list_ , storage space is fragmented , the order of the sequente of objects is implemented via pointers : each element has a pointer to the next element in the sequence 
 
 #### [`std::list`](https://cplusplus.com/reference/list/list/)
 
+`template <typename T, class Alloc = allocator<T>> class list`
+
+List containers implemented using _doubly-linked list_
+
 ### Adaptors
+
+They are wrapper for other data structures to give them a specific set of functions to access theyr elements
+
+Here i can use as data structures to be conained : _vector, deque, list_
 
 #### [`std::stack`](https://cplusplus.com/reference/stack/stack/)
 
+`template <typename T, class container = deque<T>> class stack`
+
+LIFO ( Last In First Out ) policy
+push/pop are fast becuase they are always performed on the same side
+
 #### [`std::queue`](https://cplusplus.com/reference/queue/queue)
 
+`template <typename T, class container = deque<T>> class queue
+
+FIFO ( First In First Out ) policy
+push/pop are fast becuase they are always performed on the same side
+
 #### [`std::priority_queue`](https://cplusplus.com/reference/queue/priority_queue/?kw=priority_queue+)
+
+Custom policy ( the standard policy is to use less , so the smaller object is at the bottom of the queue, the bigger object is extracted first from the queue ) 
+push/pop moderatly fast
+
+Example : 
+
+```c++
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <functional>
+
+temprate <typename T>
+struct even_comparator{
+	bool operator()(T const& x, T const& y){ // need to compare 2 element
+		// return true if a before b  
+		if(x%2==0){
+			if(y%2==0) return x<y;
+			return true;
+		}
+		if(y%2==1) return x<y;
+		return false;
+	}
+}
+
+
+template <typename PriorityQueue>
+void print(PriorityQueue& pq, int N) {
+	for (int i = 0; i < N; ++i){
+		std::cout<<pq.top()<<" ";
+		pq.pop();
+	
+	}
+}
+
+int main(){
+	int vec[]= {0, 23, 1, 4, 12, 5, 8, 11};
+	int N = sizeof(vec) / sizeof(int);
+	std::cout<< "N: "<< N<< std::endl;
+	{
+		std::priority_queue<int> pq(std::begin(vec), std::end(vec));
+		print(pq, N);
+	}
+	{
+		std::priority_queue<int, std::vector<int>, std::greter<int> >
+			custom_pq1;
+		custom_pq1 pq(std::begin(vec), std::end(vec));
+		print(pq, N);
+	}
+	{
+		 std::priority_queue<int, std::vector<int>, even_comparator<int> >
+			custom_pq2;
+		custom_pq1 pq(std::begin(vec), std::end(vec));
+		print(pq, N);	
+	}
+	return 0;
+}
+
+```
+
+Instead of declaring a new class `even_comparator`  with only a function ( it describes how the elements need to be sorted ) we ca declare it inside the declaration of `priority_queue` with an anonymous function with this declaration :
+```c++
+std::priority_queue<int, std::vector<int>, 
+						[](T const& x, T const& y){ 
+							if(x%2==0){
+								if(y%2==0) return x<y;
+								return true;
+							}
+							if(y%2==1) return x<y;
+							return false;
+						} >
+```
 
 ### Associative
 
@@ -83,37 +199,72 @@ sdwq
 
 #### [`std::map`](https://cplusplus.com/reference/map/map)
 
+Based on **Binary search tree** ( balanced )
+
+Insert / delete : moderatly fast
+range queries : fast
+
 #### [`std::unordered_set`](https://cplusplus.com/reference/unordered_set/unordered_set/?kw=unordered_set)
 
 #### [`std::unordered_map`](https://cplusplus.com/reference/unordered_map/unordered_map/?kw=unordered_map+)
 
+Based on [hash table](https://en.wikipedia.org/wiki/Hash_table#:~:text=A%20hash%20table%20uses%20a,the%20corresponding%20value%20is%20stored)
+Insert / delete : fast
+range queries : not supported
+
 ## Algorithms
+
+[`#include <algorithm>`](https://cplusplus.com/reference/algorithm/) 
+
+Example :
 
 #### [`std::sort`](https://cplusplus.com/reference/algorithm/sort/?kw=sort)
 
-std::find deve avere definito operator== 
+```c++
+#include <iostream>
+#include <vector>
+#include <functional> // used for lexicographical_compare
 
-sequenziali in modo continuo in memoria ( modellano una sequenza )
+struct employee{
+	employee(std::string const& n , float s) : name(n) , salary(s) {} // default contructor
+	void print(){
+		std::cout<< name << salary <<"\n";
+	}
 
-deque std::vector sia push back che push front
+	std::string name;
+	float salary;
+}
 
-stoull string to unsigned long long  argv[0] nome programma
+int main(){
+	int n=0;
+	std::cin>>n;
 
-priority queue 
-ordinamento custom
+	std::vector<employee> employees;
+	employees.reserve(n);
 
-tipo elementi class T
+	std::string name;
+	float salary;
+	for(int i=0; i<n, ++i){
+		std::cin>>name;
+		std::cin>>salary;
 
-class compare per custom ordinamento
-default std::less
-elementi sono estratti dal back del container che è il top della priority queue top = last in
-se non specifichi parametri allora da maggiore a minore 
+		employee e(name , salary);
+		employees.push_back(e);
+	}
 
-con std:: greater dal più piccolo a maggiore
+	std::sort(employees.begin(), employees.end(), 
+				[](employee const& x, employee const& y) { // custom sorting
+					return x.salary >= y.salary; // in ordine di salario crescente
+				}
+	);
 
-per custom comparator
-una calssecustom con una funzione bool operator()
-devo dire quando x deve essere considerato minore di y
-x deve venire prima ritorna true altrimenti torna false
+	for(auto const& e: employees) e.print();
+	return 0;
+}
 
-[] funzione anonima 
+```
+
+
+Appunti :
+
+argv[0] nome programma , il dato da  terminale in argv[1]
