@@ -29,10 +29,8 @@ T(){
 		read value = read second di pair
 		read Dictionary o List o El() ( se nessuna delle 2 ) a seconda se ci sono {} o []
 		// value è un json
-
 		read EL();
 	}
-
 
 }
 
@@ -59,3 +57,4 @@ El(){
 }
 
 ```
+

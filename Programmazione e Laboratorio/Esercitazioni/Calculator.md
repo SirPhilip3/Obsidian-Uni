@@ -176,7 +176,6 @@ Feature :
 2. parse the next token
 3. if token is '+' or '-' we are in case E+P or E-P otherwise discard the token and return because we already parsed p
 
-
 ```c++
 double E(std::vector<token> const& tokens, int& i) {
 	double res = P(tokens, i); // parse next product
