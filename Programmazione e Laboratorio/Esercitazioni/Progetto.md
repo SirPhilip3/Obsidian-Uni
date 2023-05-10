@@ -3,7 +3,7 @@
 
 Lista -> [ T ] | null
 T -> string | double | bool | Lista | Dictionary | null
-Dictionary -> { key (string) : T } | null
+Dictionary -> { key (string) : T } | null 
 
 ```cpp
 json& lista(){
