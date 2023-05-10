@@ -1,3 +1,6 @@
+
+## CFG
+
 Lista -> [ T ] | null
 T -> string | double | bool | Lista | Dictionary | null
 Dictionary -> { key (string) : T } | null
@@ -58,3 +61,30 @@ El(){
 
 ```
 
+## Data structure
+
+Non posso usare vector
+
+include
+```c++
+#include <iostream>
+#include <string>
+#include <limits>
+
+struct El{
+
+	double number;
+	bool boo;
+	std::string s;  
+	std::pair<std::string, >
+}
+
+struct json::impl{
+
+std::vector<struct>
+
+
+
+}
+
+```
