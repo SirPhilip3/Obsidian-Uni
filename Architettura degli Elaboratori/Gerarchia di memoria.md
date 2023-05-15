@@ -74,7 +74,7 @@ I programmi accedono ad una porzione di memoria piccola rispetto allo spazio di 
 
 Tipi di località:
 + **Località temporale**: Quando si fa riferimento ad un dato c'è la tendenza a far riferimento allo stesso dato dopo un breve periodo di tempo ( cicli )
-+ **Località spaziale**: Quando si fa riferimento ad un certo dato c'è la tendenza a far riferimento aad altri dati che hanno un indirizzo vicino al corrente ( accesso agli elementi di un array
++ **Località spaziale**: Quando si fa riferimento ad un certo dato c'è la tendenza a far riferimento ad altri dati che hanno un indirizzo vicino al corrente ( accesso agli elementi di un array
 
 I dati sono sempre copiati tra 2 livelli adiacenti alla volta, i livelli sottostanti contengono sempre una copia dei dati dei livelli superiori
 

@@ -6,3 +6,4 @@
 - [ ] fare inglese
 - [ ] appunti calcolo 2
 - [ ] Realizzare un calcolatore di espressioni in notazione polacca postfissa
+

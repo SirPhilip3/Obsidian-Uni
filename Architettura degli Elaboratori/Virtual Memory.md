@@ -7,9 +7,9 @@ Perchè:
 I programmi sono compilati ripetto ad uno spazio di indirizzamento virtuale,
 il Sistema Operativo e la CPU effettuano la traduzione tra indirizzo virtuale e fisico
 
-La CPU lavora su indirizzi virtuali mentre la memorai viene acceduta da indirizzi fisici
+La CPU lavora su indirizzi virtuali mentre la memoria viene acceduta da indirizzi fisici
 
-**Pagine** ( Blocchi di memoria ) sono mappati da indirizzi virtuali ad inidrizzi fisici, una **Pagina** può essere assente nella **RAM** erisiedere invece sul disco
+**Pagine** ( Blocchi di memoria ) sono mappati da indirizzi virtuali ad inidrizzi fisici, una **Pagina** può essere assente nella **RAM** e risiedere invece sul disco
 
 La pagina fisica può essere condivisa tra più inidirizzi virtuali diversi, in questo modo diversi programmi possono condividere degli spazi di memoria
 
@@ -45,7 +45,7 @@ Aggiunta di un bit di validità per determinare se la **page table** è in memor
 ![[Immagine 2023-04-01 144834.png]]
 
 Se una pagina non è presente in **RAM** ma solo sul disco si verifica **page fault**:
-+ **MIss penalty enorme** : necessaria ridurre il più possibile in numero di **page faults** 
++ **Miss penalty enorme** : necessario ridurre il più possibile in numero di **page faults** 
 
 Gestione **page faults**:
 + mapping tra pagine virtuali e fisiche **completamente associativo** 
