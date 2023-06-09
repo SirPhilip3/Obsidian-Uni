@@ -210,9 +210,46 @@ con pimpl
 
 Qui ci sono dei problemi poichè dobbiamo chiederci se vogliamo inserire l'elemento prima o dopo l'elemento trovato o l'index, questo cambia l'implementazione dell'insert
 
+Devo fermarmi al node precedente all'index che devo inserire
+
+```c++
+void list_int::insert(int index, int item) {
+    if (index < 0) {
+        // Invalid index
+        return;
+    }
+
+    NodePtr node = new Node;
+    node->Item = item;
+
+    if (index == 0) {
+        // Insert at the head
+        node->Next = Head;
+        Head = node;
+    } else {
+        // Insert at a non-zero index
+        NodePtr current = Head;
+        for (int i = 0; i < index - 1; i++) {
+            if (current == nullptr) {
+                // Index out of range
+                delete node;
+                return;
+            }
+            current = current->Next;
+        }
+        node->Next = current->Next;
+        current->Next = node;
+    }
+}
+```
+
 ### Remove a head
 
+Se ho il pointer alla head devo cambiare anche il pointer head 
+
 ### Remove a tail
+
+Se ho il pointer alla tail devo cabiare anche il pointer tail
 
 ### Remove a index
 
@@ -241,7 +278,10 @@ void list_int::print(){
 	}
 }
 ```
+
 ## Doubly linked list
+
+è una singly linked list in cui ogni nodo oltre a next ha anche un puntatore a prev
 
 ## Vector e Array
 
