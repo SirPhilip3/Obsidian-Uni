@@ -243,15 +243,127 @@ void list_int::insert(int index, int item) {
 }
 ```
 
+### Insert if element found
+
+Inserisci dopo dell'elemento da trovare
+```c++
+void list_int::insertAfter(int toFind, int toInsert) {
+    Pcell current = head;
+    while (current != nullptr) {
+        if (current->info == toFind) {
+            Pcell newNode = new cell;
+            newNode->info = toInsert;
+            newNode->next = current->next;
+            current->next = newNode;
+            return;
+        }
+        current = current->next;
+    }
+}
+```
+
+
+Inserisci prima dell'elemento da trovare
+```c++
+void list_int::insertBefore(int toFind, int toInsert) {
+    if (h == nullptr) return;
+
+    if (h->info == toFind) {
+        h = new cell;
+        h->info = toIinsert;
+        h->next = nullptr;
+        return;
+    }
+
+    Pcell current = h;
+    while (current->next != nullptr) {
+        if (current->next->info == toFind) {
+	        Pcell tmp = current->next;
+            current->next = new cell;
+            current->next->info = toInsert;
+            current->next->next = tmp; 
+            return;
+        }
+        current = current->next;
+    }
+}
+```
+
+
 ### Remove a head
 
 Se ho il pointer alla head devo cambiare anche il pointer head 
+```c++
+void list_int::remove_head(){
+
+
+}
+```
 
 ### Remove a tail
 
 Se ho il pointer alla tail devo cabiare anche il pointer tail
+```c++
+void list_int::remove_tail(){
 
-### Remove a index
+
+}
+```
+
+### Remove index
+
+```c++
+void removeAt(int pos) {
+    if (h == nullptr || pos < 0) return;
+
+    if (pos == 0) {
+        Node* temp = h;
+        h = h->next;
+        delete temp;
+        return;
+    }
+
+    Node* current = h;
+    int currentPos = 0;
+    while (current->next != nullptr && currentPos < pos - 1) {
+        current = current->next;
+        currentPos++;
+    }
+
+    if (current->next != nullptr) {
+        Node* temp = current->next;
+        current->next = current->next->next;
+        delete temp;
+    }
+}
+```
+
+
+### Remove if element found
+
+```cpp
+void list_int::remove(int toRemove) {
+    if (h == nullptr) return;
+
+    if (h->info == toRemove) {
+        Pcell temp = h;
+        h = h->next;
+        delete temp;
+        return;
+    }
+
+    Pcell current = h;
+    while (current->next != nullptr) {
+        if (current->next->info == toRemove) {
+            Pcell temp = current->next;
+            current->next = current->next->next;
+            delete temp;
+            return;
+        }
+        current = current->next;
+    }
+}
+```
 
 ### Print 
 
