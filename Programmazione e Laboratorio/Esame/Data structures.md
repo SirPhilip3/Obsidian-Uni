@@ -395,6 +395,223 @@ void list_int::print(){
 
 è una singly linked list in cui ogni nodo oltre a next ha anche un puntatore a prev
 
+### Costruttore
+
+```c++
+list_DL::list_DL(){
+
+	head = nullptr;
+	tail = nullptr;
+
+}
+```
+
+### Destructor e Copy constructor 
+
+Stessi rispetto alla singly linked list
+
+### Append
+
+```c++
+void listDL::append(int e){
+	Pcell nuova = new cell;
+	nuova->info = e;
+	nuova->next = nullptr;
+	nuova->prev = tail;
+
+	if(tail!=nullptr){
+		tail->next = nuova;
+	}else{
+		head = nuova;
+	}
+	tail = nuova;
+}
+```
+
+### Prepend
+
+```c++
+void listDL::append(int e){
+	Pcell nuova = new cell;
+	nuova->info = e;
+	nuova->next = head;
+	nuova->prev = nullptr;
+
+	if(head!=nullptr){
+		head->prev = nuova;
+	}else{
+		tail = nuova;
+	}
+	head = nuova;
+}
+```
+
+### Inserimento
+
+Inserisci prima di un elemento
+
+```cpp
+void list_int::insertAfter(int toFind, int toInsert) {
+    Pcell current = head;
+    while (current != nullptr) {
+        if (current->info == toFind) {
+            Pcell newNode = new cell;
+		    newNode->info = toInsert;
+		    newNode->next = current->next;
+		    newNode->prev = current;
+            if (current->next != nullptr) {
+                current->next->prev = newNode;
+            } else {
+                tail = newNode;
+            }
+            current->next = newNode;
+            return;
+        }
+        current = current->next;
+    }
+}
+```
+
+Inserimento dopo un elemento
+
+```cpp
+void list_int::insertBefore(int toFind, int toInsert) {
+    if (head == nullptr) return;
+
+    if (head->info == toFind) { // se lo devo mettere all'inizio
+        head = new cell;
+        head->info = toInsert;
+        head->prev = nullptr;
+        head->next = head->next;
+        head->next->prev = head;
+        return;
+    }
+
+    Pcell current = head;
+    while (current->next != nullptr) {
+        if (current->next->info == toFind) {
+            Pcell newNode = new cell;
+            newNode->info = toInsert;
+            newNode->prev = current;
+            newNode->next = current->next;
+            current->next->prev = newNode;
+            current->next = newNode;
+            return;
+        }
+        current = current->next;
+    }
+}
+```
+
+Inserimento a Index
+
+```cpp
+void insertAt(int index, int value) {
+    if (index < 0) return;
+
+    if (index == 0) {
+        Pcell newNode = new cell;
+        newNode->info = value;
+        newNode->prev = nullptr;
+        newNode->next = head;
+        
+        if (head != nullptr) {
+            head->prev = newNode;
+        } else {
+            tail = newNode;
+        }
+        head = newNode;
+        return;
+    }
+
+    Pcell current = head;
+    int currentIndex = 0;
+    while (current != nullptr && currentIndex < index - 1) {
+        current = current->next;
+        currentIndex++;
+    }
+
+    if (current != nullptr) {
+        Pcell newNode = new cell;
+        newNode->info = value;
+        newNode->prev = current;
+        newNode->next = current->next;
+        
+        if (current->next != nullptr) {
+            current->next->prev = newNode;
+        } else {
+            tail = newNode;
+        }
+        current->next = newNode;
+    }
+}
+```
+
+### Remove a found element
+
+```cpp
+void list_int::remove(int toRemove) {
+    if (head == nullptr) return;
+
+    if (head->info == toRemove) {
+        Pcell temp = head;
+        head = head->next;
+        if (head != nullptr) {
+            head->prev = nullptr;
+        } else {
+            tail = nullptr;
+        }
+        delete temp;
+        return;
+    }
+
+    Pcell current = head;
+    while (current->next != nullptr) {
+        if (current->next->info == toRemove) {
+            Pcell temp = current->next; 
+            current->next = current->next->next; 
+            if (current->next != nullptr) { 
+                current->next->prev = current; 
+            } else { 
+                tail = current; 
+            } 
+            delete temp; 
+            return; 
+        } 
+        current = current->next; 
+    } 
+} 
+```
+
+### Remove at index
+
+```c++
+void ListDL::remove(int pos){
+    if (pos < 0) return;
+    
+    pcella pc = head;
+    while(pc != nullptr && pos>0){
+        pc = pc->next;
+        pos--;
+    }
+    
+    if(pc != nullptr) {// here we need to delete pc
+        if(pc->prev == nullptr) // pc is the head
+            head = pc->next;
+        else //we have a cell before pc
+            pc->prev->next = pc->next;
+        if(pc->next == nullptr) // pc is the tail
+            tail = pc->prev;
+        else // we have a cell after pc
+            pc->next->prev = pc->prev;
+
+        delete pc;
+    }
+}
+```
+
+## Liste circolari
+
 ## Vector e Array
 
 Sono utili quando lo scopo principale del programma è quello di immagazzinare i dati e modificarli ma non l'inserimento di ulteriori dati
