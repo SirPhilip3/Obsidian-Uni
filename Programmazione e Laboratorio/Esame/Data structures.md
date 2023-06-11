@@ -667,8 +667,49 @@ int decide(ListCirc l){ // 0 vuota 1 circolare 2 lineare vuota non so decidere s
 
 ### Lista con cappio ( parziale lineare parziale circolare )
 
+Come si fa a determinare la presenza di una chiusura all'interno di una lista
+
+1 metodo uso 3 pointer
+1. Pointer a il primo elemento della lista (starter)
+2. pointer al secondo elemento della lista (ender)
+3. pointer all'inizio della lista
+
+Inizialmente muovo i 2 pointer di 1 entrambi e faccio partire il pointer dall'inzio della lsita se incontra prima il pointer starter rispetto a ender allora non è circolare se invece incontra prima ender allora è circolare es :
+
+
+```c++
+bool ha_cappio(ListCirc l){
+    ListCirc A, T, G;
+    if(l!=nullptr){
+        // lista 1 cella chiusa su se stesso funziona anche se è una lista completamente circolare
+        T = l;
+        A = l->next;
+        bool found = false;
+        while (A!=nullptr&&!found)
+        {
+            G = l;
+            while (G!=A&&G!=T)
+            {
+                G=G->next;
+            }
+            if (G == A) found = true;
+            A = A->next;
+            T = T->next;
+        }
+        return found;
+    }
+    else
+        return true;
+}
+```
+
+Questo metodo comporta una complessità molto alta un metodo alterantivo è il seguente
+
+![[Image-4-1-522x1024.png]]
 
 ## Lista con vector
+
+Per sviluppare delle liste con i vector è necessario sviluppare una codifica adeguata
 
 ## Vector e Array
 
