@@ -612,6 +612,64 @@ void ListDL::remove(int pos){
 
 ## Liste circolari
 
+### Append e Prepend
+
+Aggiungo sempre come se fosse un'insert sul primo elemento a cui punto poichè non esiste una testa o una coda
+
+```c++
+void insert(ListCirc& l, int e){
+    ListCirc new_cell = new cella;
+    new_cell->info = e;
+    if(l!=nullptr){
+        new_cell->next = l->next;
+        l->next = new_cell;
+    }else{
+        l->next = new_cell;
+        l = new_cell;
+    }
+}
+```
+
+### Print
+
+Per stampare una lista circolare siccome non sappiamo quando incontreremo la fine mettiamo un "paletto" al primo elemento della lista che ci viene passato e iteriamo lungo la sita fino a ritrovare quel nodo
+
+```c++
+void print(ListCirc l){
+    ListCirc start=l;
+    if(l){
+        do{
+            std::cout<<l->info;
+            l=l->next;
+        }while (l!=start);
+    }
+}
+```
+
+### Capire se si tratta di una lista circolare o no
+
+Per capire se si tratta di una lista circolare o no uso lo stesso metodo della stampa :
+se incontro un nullptr come next pointer allora è lineare se invece incontro il paletto allora è circolare se invece è vuota non posso decidere
+
+```c++
+int decide(ListCirc l){ // 0 vuota 1 circolare 2 lineare vuota non so decidere se circolare o lineare
+    if(l==nullptr) return 0;
+    else {
+        ListCirc pc = l; 
+        do{
+            l=l->next;
+        }while(l!=nullptr&&l!=pc);
+        if(l==nullptr) return 2;
+        else return 1;
+    }
+}
+```
+
+### Lista con cappio ( parziale lineare parziale circolare )
+
+
+## Lista con vector
+
 ## Vector e Array
 
 Sono utili quando lo scopo principale del programma è quello di immagazzinare i dati e modificarli ma non l'inserimento di ulteriori dati
