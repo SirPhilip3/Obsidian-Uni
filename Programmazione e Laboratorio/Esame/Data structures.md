@@ -431,7 +431,7 @@ void listDL::append(int e){
 ### Prepend
 
 ```c++
-void listDL::append(int e){
+void listDL::prepend(int e){
 	Pcell nuova = new cell;
 	nuova->info = e;
 	nuova->next = head;
