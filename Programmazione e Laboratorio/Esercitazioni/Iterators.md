@@ -97,12 +97,10 @@ template<typename val>
 struct list{
 
 	struct iterator{
-
 		using iterator_category = std::forward_iterator_tag;
 		using value_type = val;
 		using pointer = val*;
 		using reference = val&;
-
 	}
 	
 }
