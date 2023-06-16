@@ -29,3 +29,4 @@ const ListDL& ListDL::operator=(const ListDL& l) {
 
 Ci permette di rubare degli spazi di memoria se questi sono rvalue temporanei ossia oggetti toranti dai una funzione
 
+

@@ -149,7 +149,7 @@ void list_int::append(int e){
 		head = node;
 	}else{ // altrimenti devo scorrere tutta la lista fino alla fine e mettere il nuovo nodo alla fine 
 		Pcell pc = head;
-		while (pc!=nullptr){
+		while (pc->next!=nullptr){
 			pc = pc->next;
 		}
 		pc->next = node;
@@ -459,6 +459,7 @@ void list_int::insertAfter(int toFind, int toInsert) {
 		    newNode->info = toInsert;
 		    newNode->next = current->next;
 		    newNode->prev = current;
+		    
             if (current->next != nullptr) {
                 current->next->prev = newNode;
             } else {
@@ -494,6 +495,7 @@ void list_int::insertBefore(int toFind, int toInsert) {
             newNode->info = toInsert;
             newNode->prev = current;
             newNode->next = current->next;
+            
             current->next->prev = newNode;
             current->next = newNode;
             return;
@@ -556,11 +558,13 @@ void list_int::remove(int toRemove) {
     if (head->info == toRemove) {
         Pcell temp = head;
         head = head->next;
+        
         if (head != nullptr) {
             head->prev = nullptr;
         } else {
             tail = nullptr;
         }
+        
         delete temp;
         return;
     }
@@ -570,11 +574,13 @@ void list_int::remove(int toRemove) {
         if (current->next->info == toRemove) {
             Pcell temp = current->next; 
             current->next = current->next->next; 
+            
             if (current->next != nullptr) { 
                 current->next->prev = current; 
             } else { 
                 tail = current; 
             } 
+            
             delete temp; 
             return; 
         } 
@@ -655,7 +661,7 @@ se incontro un nullptr come next pointer allora è lineare se invece incontro il
 int decide(ListCirc l){ // 0 vuota 1 circolare 2 lineare vuota non so decidere se circolare o lineare
     if(l==nullptr) return 0;
     else {
-        ListCirc pc = l; 
+        ListCirc pc = l;
         do{
             l=l->next;
         }while(l!=nullptr&&l!=pc);
