@@ -86,7 +86,6 @@ list_int::~list_int(){
 		}
 
 	delete pimpl;
-
 }
 ```
 
@@ -115,7 +114,6 @@ list_int::list_int(const list_int& s){
 		append(pc->info);
 		pc=pc->next;
 	}
-
 }
 ```
 
