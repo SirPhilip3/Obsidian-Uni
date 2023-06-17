@@ -419,6 +419,8 @@ Stessi rispetto alla singly linked list
 
 ### Append
 
+![[DLL_add_end123.png]]
+
 ```c++
 void listDL::append(int e){
 	Pcell nuova = new cell;
@@ -437,6 +439,8 @@ void listDL::append(int e){
 
 ### Prepend
 
+![[DLL_add_front13.png]]
+
 ```c++
 void listDL::prepend(int e){
 	Pcell nuova = new cell;
@@ -454,6 +458,8 @@ void listDL::prepend(int e){
 ```
 
 ### Inserimento
+
+![[DLL_add_middle1.png]]
 
 Inserisci prima di un elemento
 
