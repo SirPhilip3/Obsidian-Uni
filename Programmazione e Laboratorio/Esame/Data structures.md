@@ -489,11 +489,13 @@ void list_int::insertBefore(int toFind, int toInsert) {
     if (head == nullptr) return;
 
     if (head->info == toFind) { // se lo devo mettere all'inizio
-        head = new cell;
-        head->info = toInsert;
-        head->prev = nullptr;
-        head->next = head->next;
-        head->next->prev = head;
+        Pcell newNode = new cell;
+        newNode->info = toFind;
+        newNode->next = head;
+        newNode->prev = nullptr;
+        head->prev = newNode;
+        head=newNode;
+        
         return;
     }
 
