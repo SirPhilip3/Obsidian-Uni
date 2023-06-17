@@ -108,6 +108,8 @@ senza pimpl
 ```c++
 list_int::list_int(const list_int& s){
 
+	head = nullptr;
+
 	cell* pc = s.head;
 	while(pc!=nullptr){
 		append(pc->info);
@@ -147,12 +149,18 @@ void list_int::append(int e){
 
 	if(head==nullptr){//se la lista è vuota la testa della lista diventa il nuovo nodo
 		head = node;
+		//tail = node;
 	}else{ // altrimenti devo scorrere tutta la lista fino alla fine e mettere il nuovo nodo alla fine 
 		Pcell pc = head;
 		while (pc->next!=nullptr){
 			pc = pc->next;
 		}
 		pc->next = node;
+		/*
+		con tail
+		tail->next = node;
+		tail = node;
+		*/
 	}
 }
 ```
@@ -269,19 +277,20 @@ void list_int::insertBefore(int toFind, int toInsert) {
     if (h == nullptr) return;
 
     if (h->info == toFind) {
-        h = new cell;
-        h->info = toIinsert;
-        h->next = nullptr;
+	    Pcell newNode = new cell; 
+	    newNode->info = toInsert;
+	    newNode->next = h;
+	    h = newNode;
         return;
     }
 
     Pcell current = h;
     while (current->next != nullptr) {
         if (current->next->info == toFind) {
-	        Pcell tmp = current->next;
-            current->next = new cell;
-            current->next->info = toInsert;
-            current->next->next = tmp; 
+		    Pcell newNode = new cell;
+			newNode->info = toInsert; 
+			newNode->next = current->next; 
+			current->next = newNode;
             return;
         }
         current = current->next;
