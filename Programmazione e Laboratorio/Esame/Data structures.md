@@ -485,7 +485,7 @@ void list_int::insertAfter(int toFind, int toInsert) {
     }
 }
 ```
-m
+
 Inserimento dopo un elemento
 
 ```cpp
