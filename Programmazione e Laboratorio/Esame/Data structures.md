@@ -485,7 +485,7 @@ void list_int::insertAfter(int toFind, int toInsert) {
     }
 }
 ```
-
+m
 Inserimento dopo un elemento
 
 ```cpp
@@ -497,6 +497,7 @@ void list_int::insertBefore(int toFind, int toInsert) {
         newNode->info = toFind;
         newNode->next = head;
         newNode->prev = nullptr;
+        
         head->prev = newNode;
         head=newNode;
         
