@@ -146,14 +146,18 @@ void list_int::append(int e){
 	node->next = nullptr;
 
 	if(head==nullptr){//se la lista è vuota la testa della lista diventa il nuovo nodo
+	
 		head = node;
+		
 		//tail = node;
 	}else{ // altrimenti devo scorrere tutta la lista fino alla fine e mettere il nuovo nodo alla fine 
+	
 		Pcell pc = head;
 		while (pc->next!=nullptr){
 			pc = pc->next;
 		}
 		pc->next = node;
+		
 		/*
 		con tail
 		tail->next = node;

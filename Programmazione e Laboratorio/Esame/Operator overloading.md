@@ -22,8 +22,8 @@ const ListDL& ListDL::operator=(const ListDL& l) {
         }
     }
     return *this;
-
-}```
+}
+```
 
 ### move semantics
 
