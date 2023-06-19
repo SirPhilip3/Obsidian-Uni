@@ -99,6 +99,7 @@ list_int list2;
 list2.append(324);
 
 list2 = list1; // copy assignment operator called
+// non copy constructor
 ```
 
 non chiama il copy constructor ma il copy assignment operator che deve eliminare i dati precedentemente presenti nella lista iniziale
@@ -281,6 +282,7 @@ void list_int::insertBefore(int toFind, int toInsert) {
     if (h->info == toFind) {
 	    Pcell newNode = new cell; 
 	    newNode->info = toInsert;
+	    
 	    newNode->next = h;
 	    h = newNode;
         return;
@@ -291,6 +293,7 @@ void list_int::insertBefore(int toFind, int toInsert) {
         if (current->next->info == toFind) {
 		    Pcell newNode = new cell;
 			newNode->info = toInsert; 
+			
 			newNode->next = current->next; 
 			current->next = newNode;
             return;
@@ -357,6 +360,7 @@ void list_int::remove(int toRemove) {
     if (h == nullptr) return;
 
     if (h->info == toRemove) {
+    
         Pcell temp = h;
         h = h->next;
         delete temp;
@@ -366,6 +370,7 @@ void list_int::remove(int toRemove) {
     Pcell current = h;
     while (current->next != nullptr) {
         if (current->next->info == toRemove) {
+        
             Pcell temp = current->next;
             current->next = current->next->next;
             delete temp;
@@ -474,6 +479,7 @@ void list_int::insertAfter(int toFind, int toInsert) {
         if (current->info == toFind) {
             Pcell newNode = new cell;
 		    newNode->info = toInsert;
+		    
 		    newNode->next = current->next;
 		    newNode->prev = current;
 		    
@@ -499,11 +505,12 @@ void list_int::insertBefore(int toFind, int toInsert) {
     if (head->info == toFind) { // se lo devo mettere all'inizio
         Pcell newNode = new cell;
         newNode->info = toFind;
+        
         newNode->next = head;
         newNode->prev = nullptr;
         
         head->prev = newNode;
-        head=newNode;
+        head = newNode;
         
         return;
     }
@@ -513,6 +520,7 @@ void list_int::insertBefore(int toFind, int toInsert) {
         if (current->next->info == toFind) {
             Pcell newNode = new cell;
             newNode->info = toInsert;
+            
             newNode->prev = current;
             newNode->next = current->next;
             
