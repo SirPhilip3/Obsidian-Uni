@@ -264,6 +264,7 @@ void list_int::insertAfter(int toFind, int toInsert) {
         if (current->info == toFind) {
             Pcell newNode = new cell;
             newNode->info = toInsert;
+            
             newNode->next = current->next;
             current->next = newNode;
             return;
