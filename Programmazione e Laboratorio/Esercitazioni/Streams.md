@@ -54,7 +54,7 @@ int main(){
 ## Stream states
 
 + **good()** : operation succeeded 
-+ **eof()** : we hit thw end of an input
++ **eof()** : we hit the end of an input
 + **fail()** : something unexpected happened ( looked for a digit and found a char )
 + **bad()** : something unexpected and serious happened ( e.g. disk error )
 

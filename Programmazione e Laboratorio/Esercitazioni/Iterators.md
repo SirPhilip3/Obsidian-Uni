@@ -66,8 +66,8 @@ std::fill(l.begin(), l.edn(), 3.14); // fills from beginning to end l with 3.14
 
 ## Iterator types
 
-+ **Input** iterator : it can scan the container ( in forward direction ) only once and cannot modif the element it points to
-+ **Output** iterator : it can scan the container ( in forward direction ) only once and cannot read the element it points to
++ **Input** iterator : it can scan the container ( in forward direction ) only once and cannot modify the element it points to
++ **Output** iterator : it can scan the container ( in forward direction ) only once and cannot read the element it points to but you can modify it
 + **Forward** iterator : it can scan the container forward as many times as we want and can read/write the element it points to
 + **Bidirectional** iterator : same as previous one but it can scan in both forward and backward direction
 + **Random access** iterator : same as previous one but can also jump to a middle position ( access not necessarily sequential )
