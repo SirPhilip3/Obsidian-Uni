@@ -356,22 +356,23 @@ void removeAt(int pos) {
 
 ### Remove if element found
 
-```cpp
+```c++
 void list_int::remove(int toRemove) {
     if (h == nullptr) return;
 
     if (h->info == toRemove) {
-    
+	    
         Pcell temp = h;
         h = h->next;
         delete temp;
         return;
+		
     }
 
     Pcell current = h;
     while (current->next != nullptr) {
         if (current->next->info == toRemove) {
-        
+	        
             Pcell temp = current->next;
             current->next = current->next->next;
             delete temp;
@@ -435,6 +436,7 @@ Stessi rispetto alla singly linked list
 void listDL::append(int e){
 	Pcell nuova = new cell;
 	nuova->info = e;
+	
 	nuova->next = nullptr;
 	nuova->prev = tail;
 
@@ -655,6 +657,7 @@ Aggiungo sempre come se fosse un'insert sul primo elemento a cui punto poichè n
 void insert(ListCirc& l, int e){
     ListCirc new_cell = new cella;
     new_cell->info = e;
+    
     if(l!=nullptr){
         new_cell->next = l->next;
         l->next = new_cell;
@@ -662,6 +665,7 @@ void insert(ListCirc& l, int e){
         l->next = new_cell;
         l = new_cell;
     }
+    
 }
 ```
 
