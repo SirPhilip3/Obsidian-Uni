@@ -750,3 +750,111 @@ Per sviluppare delle liste con i vector è necessario sviluppare una codifica ad
 
 Sono utili quando lo scopo principale del programma è quello di immagazzinare i dati e modificarli ma non l'inserimento di ulteriori dati
 
+## Queue
+
+```c++
+class queue{
+	public :
+	queue();
+	~queue();
+	void enqueue();
+	void dequeue();
+	int front();
+	
+	private :
+	struct node{
+		int n;
+		node* next;
+	}
+
+	typedef node* Pnode;
+
+	Pnode Head;
+	Pnode Tail;
+}
+
+queue::queue(){
+	Head = nullptr;
+	Tail = nullptr;
+}
+
+queue::~queue(){
+
+	while(head!=nullptr){
+		Pnode tmp = head;
+		head = head->next;
+		delete(head);
+	}
+
+}
+
+void queue::enqueue(){
+
+	
+
+}
+
+
+void queue::dequeue(){
+
+}
+
+int queue::front(){
+	return Head->n;
+}
+```
+
+### Queue senza class
+
+
+## Stack
+
+```c++
+class stack{
+	public :
+	stack();
+	~stack();
+	void push();
+	void pop();
+	int top();
+	
+	private :
+	struct node{
+		int n;
+		node* next;
+	}
+
+	typedef node* Pnode;
+
+	Pnode Head;
+	Pnode Tail;
+}
+
+stack::stack(){
+	Head = nullptr;
+	Tail = nullptr;
+}
+
+stack::~stack(){
+
+	while(head!=nullptr){
+		Pnode tmp = head;
+		head = head->next;
+		delete(head);
+	}
+
+}
+
+void stack::push(){
+
+}
+
+
+void stack::pop(){
+
+}
+
+int stack::top(){
+	return Head->n;
+}
+```
