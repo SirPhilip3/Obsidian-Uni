@@ -38,3 +38,7 @@ void(int *a, int *b){
 ### Pimpl
 
 Il paradigma Pimpl è utilizzato per nascondere l'implementazione della classe all'utilizzatore finale 
+
+Separa l'intefaccia da l'implementazione 
+
+Pointer to implementation

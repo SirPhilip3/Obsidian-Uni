@@ -809,6 +809,8 @@ int queue::front(){
 
 ## Stack
 
+Last in First Out
+
 ```c++
 class stack{
 	public :
@@ -845,7 +847,7 @@ stack::~stack(){
 
 }
 
-void stack::push(){
+void stack::push(){ // aggiungo all'inizio prepend
 
 }
 
