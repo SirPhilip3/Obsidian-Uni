@@ -19,6 +19,8 @@ Formali : quelli dichiarati da una funzione
 
 Il passagio per copia chiama il copy constructor per creare un oggetto temporaneo copia del parametro effettivo
 
+Passaggio per riferimento è quando la funzione ha come parametri formali delle reference in questo caso viene passato l'address della variabile che passiamo come parametro effettivo
+
 ### Funzione con reference in C
 
 ```c++
@@ -48,7 +50,9 @@ Pointer to implementation
 
 
 ## Pointers
-
+/ * operatore dereference usato per ricavare un valore da un address 
+per dichiarare un pointer int * p 
+Per ricavare un address di una variabile devo usare & umpersand
 
 ## Constructors / destructors
 
@@ -157,4 +161,21 @@ void clear() {
     }
 ```
 
-## Opertor overloading
+## Operator overloading
+
+Quando ridefinisco il comportamento per operatori standard come operator =
+
+**copy assignment operator**
+
+Quando faccio
+
+```c++
+	int a, b;
+	a = b
+```
+
+chaimato operator= che deve prima eliminare tutti gli elementi persenti nell'oggetto a sinistra dell'assegnamento e fare deep copy come nel copy constructor per copiare b in a 
+
+## operator+=
+
+devo fare append della lista a destra nella lista a sinistra

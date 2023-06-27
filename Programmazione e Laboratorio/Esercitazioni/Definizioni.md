@@ -5,7 +5,7 @@ Un tipo di dato (o semplicemente tipo) è un insieme di valori sul quale sono de
 Un oggetto è una regione di memoria alla quale è associato un tipo
 
 **Variabile**  
-Un oggetto al quale è associate un nome
+Un oggetto al quale è associato un nome
 
 **Dichiarazione**  
 Una dichiarazione è un'istruzione che introduce un nuovo nome.  
