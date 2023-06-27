@@ -752,6 +752,8 @@ Sono utili quando lo scopo principale del programma è quello di immagazzinare i
 
 ## Queue
 
+First in Fist Out
+
 ```c++
 class queue{
 	public :
@@ -769,13 +771,11 @@ class queue{
 
 	typedef node* Pnode;
 
-	Pnode Head;
-	Pnode Tail;
+	Pnode head;
 }
 
 queue::queue(){
-	Head = nullptr;
-	Tail = nullptr;
+	head = nullptr;
 }
 
 queue::~queue(){
@@ -783,24 +783,48 @@ queue::~queue(){
 	while(head!=nullptr){
 		Pnode tmp = head;
 		head = head->next;
-		delete(head);
+		delete tmp;
 	}
 
 }
 
-void queue::enqueue(){
+void queue::enqueue(int k){//aggiungo all'inizio prepend
 
+	Pnode n = new node;
+	n->info = k;
+	n->next = head;
+	head = n;
+
+}
+
+
+void queue::dequeue(){// tolgo tail
+
+	if(head==nullptr) return;
+
+	Pnode current = head; 
+	Pnode prev = nullptr;
+	 
+	while (current->next != nullptr) { 
+		prev = current; 
+		current = current->next; 
+	} if (prev != nullptr) {
+		prev->next = nullptr; 
+	} else {
+		head = nullptr; 
+	} 
 	
+	delete current;
 
 }
 
+int queue::front(){ // devo ritornare elemento che è rimasto di più nella queue
+	Pnode tmp = head;
+	while(tmp->next!=nullptr){
+		tmp=tmp->next;
+	}
 
-void queue::dequeue(){
-
-}
-
-int queue::front(){
-	return Head->n;
+	return tmp->n;
 }
 ```
 
@@ -822,19 +846,17 @@ class stack{
 	
 	private :
 	struct node{
-		int n;
+		int info;
 		node* next;
 	}
 
 	typedef node* Pnode;
 
-	Pnode Head;
-	Pnode Tail;
+	Pnode head;
 }
 
 stack::stack(){
-	Head = nullptr;
-	Tail = nullptr;
+	head = nullptr;
 }
 
 stack::~stack(){
@@ -847,16 +869,28 @@ stack::~stack(){
 
 }
 
-void stack::push(){ // aggiungo all'inizio prepend
+void stack::push(int k){ // aggiungo all'inizio prepend
+
+	Pnode  = new node;
+	n->info = k;
+	n->next = head;
+	head = n;
 
 }
 
 
-void stack::pop(){
+void stack::pop(){ // tolgo primo elemento
+
+	if(head==nullptr) return;
+	
+	Pnode tmp = head;
+	head = head->next;
+	delete(tmp);
 
 }
 
-int stack::top(){
-	return Head->n;
+int stack::top(){ // ritorno head
+	if(head!=nullptr) return head->info;
+	else cout<<"è vuoto";
 }
 ```

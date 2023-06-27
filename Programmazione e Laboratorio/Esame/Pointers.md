@@ -6,6 +6,9 @@ hanno una posizione in memoria
 Un Rvalue è un valore che può stare solo a destra di un'espressione
 sono valori temporanei
 
+Argomento del **copy constructor** è lvalue
+argometo **move constructor** è rvalue reference
+
 ### Parametri effetivi , Parametri Formali
 
 Effettivi : valori passati alla funzione quando viene chiamata 
@@ -42,3 +45,116 @@ Il paradigma Pimpl è utilizzato per nascondere l'implementazione della classe a
 Separa l'intefaccia da l'implementazione 
 
 Pointer to implementation
+
+
+## Pointers
+
+
+## Constructors / destructors
+
+Standard **constructor** only does shallow copy = copia i pointes non i dati
+
+**Copy constructor** 
+
+Copiare il valore a destra rhs a sinistra 
+l'elemento iniziale non è stato ancora costruito quindi devo costruirlo
+
+Example :
+```c++
+// dentro la classe
+
+List(List const& rhs);
+
+// implementazione
+
+List::List(List const& rhs){
+    
+    Pnode pc=rhs.head;
+    while(pc!=nullptr){//non ottimmizato complessità quadratica
+        append(pc->info);
+        pc=pc->next;
+    }
+
+}
+
+```
+
+**Move semantics**
+
+viene utilizzata quando posso "rubare" della memoria
+
+Chiamata solo se trovo un rvalue a cui posso ricavare l'address cioè avere una rvalue refence
+
+**move constructor**
+
+```c++
+int_array(int_array&& rhs) : m_data(rhs.m_data), m_size(rhs.m_size){
+	rhs.m_data = nullptr;
+	rhs.m_size = 0;
+}
+```
+
+Per una lista
+
+```c++
+ list(list&& other) {
+        head = other.head;
+        tail = other.tail;
+        
+        other.head = nullptr;
+        other.tail = nullptr;   
+    }
+```
+
+Usando il move assignment operator
+```c++
+int_array(int_array&& rhs){
+	*this = std::move(rhs);
+}
+```
+
+**move assignment operator**
+```c++
+int_array& operator=(int_array&& rhs){
+	m_data=rhs.m_data;
+	m_size=rhs.m_size;
+	rhs.m_data= nullptr;
+	rhs.m_size= 0;
+	return *this;
+}
+```
+
+Per una lista 
+```c++
+list& operator=(list&& other) {
+        if (this != &other) {
+            // Release resources held by this object
+            clear();
+
+            // Transfer resources from other object
+            head = other.head;
+            tail = other.tail;
+
+            // Leave other object in a valid but unspecified state
+            other.head = nullptr;
+            other.tail = nullptr;
+        }
+        return *this;
+    }
+```
+
+Con clear 
+```c++
+void clear() {
+        Node* current = head;
+        while (current != nullptr) {
+            Node* next = current->next;
+            delete current;
+            current = next;
+        }
+        head = nullptr;
+        tail = nullptr;
+    }
+```
+
+## Opertor overloading
