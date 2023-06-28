@@ -72,7 +72,9 @@ List(List const& rhs);
 // implementazione
 
 List::List(List const& rhs){
-    
+
+	head= null;
+
     Pnode pc=rhs.head;
     while(pc!=nullptr){//non ottimmizato complessità quadratica
         append(pc->info);

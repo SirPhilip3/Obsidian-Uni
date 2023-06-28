@@ -120,7 +120,7 @@ list_int::list_int(const list_int& s){
 
 con pimpl
 ```c++
-list_int::list_int(const list_int& s){
+list_int::list_int(const list_int& s){>
 
 	pimpl = new impl;
 	pimpl->head = nullptr;
@@ -758,6 +758,8 @@ Sono utili quando lo scopo principale del programma è quello di immagazzinare i
 
 First in Fist Out
 
+FIFO
+
 ```c++
 class queue{
 	public :
@@ -838,6 +840,8 @@ int queue::front(){ // devo ritornare elemento che è rimasto di più nella queu
 ## Stack
 
 Last in First Out
+
+LIFO
 
 ```c++
 class stack{

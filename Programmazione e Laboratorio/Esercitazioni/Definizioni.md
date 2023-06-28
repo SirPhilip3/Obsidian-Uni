@@ -18,3 +18,6 @@ Una dichiarazione è anche una definizione quando specifica completamente il nom
 
 **Conversione implicita di tipo**
 Si ha quando in un assegnamento o inizializzazione, l'espressione ha un tipo diverso, ma compatible, con il lvalue. In C, e in C++, tutti i tipi numerici sono fra loro compatibili. Quindi se assegniamo ad una variabile di tipo double un valore di tipo int, abbiamo una conversione di tipo implicita. Nel caso in cui questa conversione di tipo porti a perdita di informazione si parla di **narrowing**. Per esempio, abbiamo narrowing se assegno ad una variabile int un valore double.
+
+
+
