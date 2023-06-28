@@ -21,3 +21,4 @@ Si ha quando in un assegnamento o inizializzazione, l'espressione ha un tipo div
 
 
 
+Data una lista dividaila tra l'n ele pari e n ele dispri
