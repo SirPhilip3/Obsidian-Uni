@@ -30,5 +30,11 @@ process possono essere :
 + user ( app )
 + kernel ( OS )
 
+Macchina estesa : nasconde dettagli e operazioni che devono essere eseguite
+ - se avvengono dei malfunzionamenti l'utente non può svolgere nessuna diagnostica
+ - in generale vantaggio perchè l'utente non necessita di sapere , rende indipendente le applicazioni dai dettagli 
 
+Gestore di risorse rispetto a spazio e tempo ( dipende dal processo )
+
+multiprogrammazione : gestione dei job a differenza di utilizzo hw ( cpu , memoria , perifercihe )
 
