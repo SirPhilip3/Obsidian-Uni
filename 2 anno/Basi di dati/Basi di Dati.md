@@ -7,7 +7,7 @@ Sistema per la :
 + Archiviazione 
 + Elaborazione
 + Distribuzione 
-delle infromazioni necessarie alle attività dell'azienda
+delle informazioni necessarie alle attività dell'azienda
 
 ![[Immagine 2023-09-19 130447.png]]
 ## Sistema Informatico
@@ -44,7 +44,34 @@ Difficoltà :
 			+ **Database auto-descrittivi** : I programmi applicativi non sono tenuti a conoscere la struttura della base infromativa in quanto lo schema della struttura del **DB** è parte del **DB** stesso, e a questa struttura i programmi applicativi possono accedere
 
 + **'80** : Servizi infromati per la pianificazione strategica
+	+ Supporto alla direzione
+	+ Data Warehouse, Data Mining
 
+## Sistemi informatici operativi
+
+Attività strutturate e ripetitive ( calcolo paghe, emissione fatture , magazzino )
+
+Elaborazioni su DB : **OLTP** ( **On-Line Transaction Processing** ) 
+Operazioni svolte da processi operativi : 
++ Predefinite , semplici
++ Coinvolge pochi dati
++ Dati in dettaglio , aggiornati
+
+## Sistemi informatici direzionali
+
+Necessari per la direzione medio-alta dell'azienda
++ **analisi storiche**
++ **produzione di rapporti di sintesi** ( con differenti livelli di dettaglio )
+
+DB operativi inadatti poichè :
++ lo svolgimento di operazioni complesse e su grandi quantità di dati rallenterebbero le funzioni operative
+
+Per questo si utilizzano **Data Warehouse** che lavorano su : 
++ dati storici
++ dati di sintesi
++ dati aggregati
+
+Supporto ai processi decisionali , di controllo sulle prestazioni aziendali
 
 GIS : 
 - dati vettoriali
