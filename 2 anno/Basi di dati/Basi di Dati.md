@@ -1,4 +1,4 @@
-# 18/11/2023
+# 18/09/2023
 
 ## Sistema Informativo
 
@@ -73,10 +73,17 @@ Per questo si utilizzano **Data Warehouse** che lavorano su :
 
 Supporto ai processi decisionali , di controllo sulle prestazioni aziendali
 
+Elaborazioni su **DW** : **OLAP** ( **On-Line Analytical Processing** )
++ Operazioni complesse e casuali
++ Operazioni su grandi quantità di dati
++ Dati solo in lettura
++ Dati aggregati, storici, anche non attuali
+
+![[Pasted image 20230920155522.png]]
 
 
 
-
+---
 
 GIS : 
 - dati vettoriali
