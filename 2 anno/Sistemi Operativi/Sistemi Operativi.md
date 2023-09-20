@@ -26,18 +26,45 @@ Caratteristiche principali :
 + Memorie estremamente limitate ( decine di numeri )
 
 Limiti : 
-+ scarsa affidabilità
-+ chi gestiva la macchina era anche colui che la programmava
-+ complessità d'uso
-+ lentezza
++ Scarsa affidabilità
++ Chi gestiva la macchina era anche colui che la programmava
++ Complessità d'uso
++ Lentezza
 
 #### 2° generazione ( 1955 - 1965 ) 
 
 Caratteristiche principali : 
-+ **Monoprogrammazione** : esecuzione di un job ( unità di esecuzione, programma o insieme di programmi ) alla volta
++ **Monoprogrammazione** : esecuzione di un *job* ( unità di esecuzione, programma o insieme di programmi ) alla volta
++ Uso di linguaggi ad alto livello : Fortran, Assembly
++ Programmazione attraverso schede perforate
++ Separazione tra programmatore e operatori
++ Semplici **S.O.** 
+	+ *Single-stream batch-processing* o *Sistemi operativi batch*
+		+ I programmi e i dati venivano caricati in sequenza su un nastro
+		+ Spostati sul computer e eseguiti a lotti ( *Batch* )
+		+ Ouput stampato su nastro 
+		
+![[Immagine 2023-09-20 173300.png]]
 
++ Utilizzo del **JCL** ( *Job Control Language* ) per lanciare batch o sottoprocessi example :
+
+![[Pasted image 20230920175249.png]]
+
++ Esempio di utilizzo della memoria per un sistema batch
+
+![[Pasted image 20230920175351.png]]
 #### 3° generazione ( 1965 - 1980 )
 
+Caratteristiche principali :
++ **Sistemi operativi batch**
++ **Multiprogrammazione** : 
+	+ Più job in esecuzione *contemporanea*, 1 solo job può essere svolto per unità di tempo dalla CPU, quando un job richiede l'utilizzo dell' I/O, delle memorie o viene stoppato alla CPU viene assegnato un ulteriore job
++ Utilizzo di *circuiti integrati*
++ Utilizzo di linguaggi ad alto livello ( C )
++ Editor testuali e grafici
++ **CPU** scheduling
++ **SPOOL** ( *Simultaneous Pheripherials Operation On-Line* ) 
+	+ utilizzato per
 #### 4° generazione ( 1980 - present )
 
 #### 5° generazione ( 1990 - present )
