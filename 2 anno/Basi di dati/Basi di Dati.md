@@ -73,6 +73,11 @@ Per questo si utilizzano **Data Warehouse** che lavorano su :
 
 Supporto ai processi decisionali , di controllo sulle prestazioni aziendali
 
+
+
+
+
+
 GIS : 
 - dati vettoriali
 - rasterized
