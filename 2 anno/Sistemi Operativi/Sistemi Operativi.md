@@ -62,10 +62,43 @@ Caratteristiche principali :
 + Utilizzo di *circuiti integrati*
 + Utilizzo di linguaggi ad alto livello ( C )
 + Editor testuali e grafici
-+ **CPU** scheduling
++ **CPU** scheduling ( scheduling dei processi per ottimizzarne il tempo di esecuzione )
 + **SPOOL** ( *Simultaneous Pheripherials Operation On-Line* ) 
-	+ utilizzato per
+	+ Esecuzione di job parallela ad operazioni di I/O
++ Memory partitions ( dovuta alla *multiprogrammazione* )
+
+![[Pasted image 20230921130856.png]]
+
++ Sistemi **Timesharing**
+	+ Variante della *multiprogrammazione* per supportare utenti multiplici
+	+ Il tempo di *CPU* è diviso in *quanti di tempo*
+		+ Alla fine di ogni *quanto* il job viene interroto e il prossimo *quanto* viene assegnato al prossimo job ( con più utenti diminuisce il tempo di risposta poichè ogni utente deve aspettare meno per l'esecuzione di un job )
+		+ Frequenti *cambi di contesto* : richiedono tempo 
+		+ Introduzione della **Memoria virtuale** per gestire in sicurezza i vari job ( nessun job dovrebbe accedere alla memoria di un altro job )
++ Sistemi **real-time** 
+	+ Hanno una deadline entro la quale un processo deve essere terminato ( differenti algoritmi di *scheduling* )
+	+ 2 tipologie di sistemi *real-time*
+		+ **Hard real time** : la deadline è fissa , senza alcun margine 
+		+ **Soft real time** : la deadline ha un delta dinamico entro il quale può essere termianto il job
+
+Un sistema *timesharing* può anche essere *multiprogrammato*
+
+Sviluppo dei protocolli **TCP/IP** ( *Transmission Control Protocol/Internet Protocol* )
+
 #### 4° generazione ( 1980 - present )
+
+Sviluppo del modello di elaborazione *Cliente/Servente* ( *Client/Server* ) 
+
+Sviluppo del **Multithreading** : esecuzione di più istruzioni contemporaneamente ed in modo indipendente
+
+Sviluppo di sistemi *Distribuiti* : Vari computer collegati ad una rete che cooperano per un obbiettivo comune 
+
+Sviluppo di sistemi *Paralleli* : sistema costituito da un insieme di unità di elaborazione , condivione di risiorse tra di loro  
+
+Utilizzo della teconologia a **oggetti** per sviluppare i sistemi operativi ( *Sistemi operativi orientati agli oggetti* , **OOOS** ) , consente modularità facilmente mantenibili e estensibili
+
+Creazione del preogetto **GNU** : 
++ Open source operating systems : *Linux* , *Apache Web server*
 
 #### 5° generazione ( 1990 - present )
 
