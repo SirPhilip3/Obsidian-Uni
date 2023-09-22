@@ -83,6 +83,7 @@ Elaborazioni su **DW** : **OLAP** ( **On-Line Analytical Processing** )
 
 
 
+
 ---
 
 GIS : 
@@ -122,9 +123,22 @@ DW con operazioni OLAP
 
 ---
 
-## 22/09/2023
+# 22/09/2023
 
-**DBMS**
+## DBMS
+
+In generale : una qualsiasi raccolta di dati permanenti gestiti tramite un elaboratore elettronico
+
+_Definizione_ : Una **Base di Dati** è una raccolta di *dati* permanenti , gestiti da un elaboratore elettronico , suddivisi in 2 tipologie :
++ **Metadati** : Definiscono lo schema della **B.D.** ( schema è creato prima dell'inserimento dei dati ) e descrivono :
+	+ Struttura dei dati
+	+ Operazioni eseguibili sui dati
+	+ Restrizioni sui valori ammissibili ( **Vincoli di Integrità** )
+	+ Autorizzazioni per utenti 
+	I *Metadati* / lo schema dei dati è indipendente dalle applicazioni che usano la base di dati
++ **Dati** : rappresentazioni di certi fatti conformi alle definizioni dello schema ,  
+
+
 
 raccolta di dati permanenti : 
 + metadati ( struttura dati + operations + vincoli di integrità ( valori accetabili ) ) 
