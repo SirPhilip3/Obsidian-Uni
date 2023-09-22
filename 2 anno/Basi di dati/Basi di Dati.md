@@ -268,6 +268,7 @@ Data security
 			+ durability ( persistenza )
 			+ isolation : anche se le transazioni vengono esuite contemporaneamente effetto complessivo come se fosse un esecuzione seriale
 	+ malfunzionamentni hw e sw
-	
-	 + isolation 
-		      
+		+ fallimento transazione 
+		+ fallimento di sistema
+		+ disastri
+	 ripristino copia di sicurezza e journal : riesecuzione di transazioni che sono avvenute dopo copia di sicurezza tramite journal  
