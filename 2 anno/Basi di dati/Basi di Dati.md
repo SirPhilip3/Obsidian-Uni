@@ -120,4 +120,154 @@ DW astrazione di DB operazionali (dati aggregati)
 
 DW con operazioni OLAP 
 
+---
 
+## 22/09/2023
+
+**DBMS**
+
+raccolta di dati permanenti : 
++ metadati ( struttura dati + operations + vincoli di integrità ( valori accetabili ) ) 
+	+ autorizzazioni per utenti ( sola lettura etcc )
+	+ schema creato prima dell'inserimento dati , indipendenti dalle app
++ Dati : fatti conformi ai metadati :::
+	+ Insiemi omogenei
+	+ definite relazioni tra insiemi ( relazioni descritte nello schema )
+	+ modello di dati : meccanismi di astrazione che definiscono struttura dei dati, vincoli
+		+ modello ad oggeti
+		+ modello relazionale
+			+ modello caratteristiche / proprietà:
+				+ espressività ( rapressentazione ( modellazione ) naturale e diretto dei dati )
+				+ facilità d'uso 
+				+ realizzabilità : implementazione semplice ed efficente
+	+ dati sono molti e permanenti : gestione in memoria secondaria , non legati a applicazioni 
+	+ possono essere utilizzati contempporanemente : accessi concorrenti non devono creare malfunzionamenti
+	+ protezione dei dati : malfunzionamenti etcc
+	+ accedibili tramite transazioni ( o tutte a buon fine altrimenti rollback ) 
+
+DBMS : è un sistema centralizzato o distribuito che offre opportuni linguaggi/strumenti per : 
++ definire lo schema della BD (va definito prima di creare dati) -
+	+ definito usando il modello dei dati adottato dal DBMS - 
+	+ interrogabile con le stesse modalità previste per i dati;
++ scegliere le strutture dati per la memorizzazione dei dati ( cartelle , file hash, utilizzo di struuture che favoriscono la riceraca )
++ memorizzare i dati rispettando i vincoli definiti nello schema; 
++ recuperare e modificare i dati interattivamente (linguaggio di interrogazione o query language) o da programmi
+
+Utenti e programmi accedono ai dati solo tramite il DBMS 
+
+DBMS modello realzionale ( tabella ) più diffuso
+tabella : insieme di record con tipi elementari
+
+![[Pasted image 20230922090622.png]]
+
+Matricola : definito un vincolo : vincolo di *chiave primaria* :
+	non possono esistere 2 elementi che hanno lo stesso valore nel campo matricola , matricola individua in modo univoco uno studente
+
+CREATE DATABASE database vuoto
+
+Definizione schema
+
+NOT NULL vincolo di integrità
+
+![[Pasted image 20230922090934.png]]
+
+Primary key può essere costituita da più attributi ( insieme minimale )
+solo materia ci sono più studenti che fanno lo stesso esame , singolarmente non sono chiavi
+
+Superkey : insieme di attribuit che individuano un elemento in modo univoco ma non in modo minimale
+
+Aspetto estensionale : valori della tabella
+
+Posso mettere in proveesami solo valori che esistono in studenti, non ho modo di collegare uno studente 
+
+Vincolo di foreing key : controllo se chiave presente in tabella studenti
+
+Query : 
+
+![[Pasted image 20230922092004.png]]
+
+tutti gli studenti con voto 30 in basi di dati
+
+Funizioni : 
++ DDL ( data definition language )
++ DML ( linguaggio per uso dei dati )
++ controllo dei dati
++ admin panel
++ strumenti per lo sviluppo di applicazioni
+
+DDL
+
+DB deve essere indipendente da app
+
+livelli di astrazione : 
++ livello fisico : come i dati sono immagazzinati in memoria secondaria
++ livello logico : descrizione schema base de dati
++ livello di vista logica : come vengono visti da diversi utenti ( moltepli e differenti )
+
+livello logico : solo struttura non come vengono memorizzati ( fisicamente )
+
+```sql
+
+CREATE TABLE Studenti(Matricola int, Nome char(20), Login char(8), AnnoNascita int, Reddito real)
+
+CREATE TABLE Corsi(IdeC char(8), Titoli char(20), Credito int)
+
+CREATE TABLE Esami(Mtricola int, IdeC char(8), Voto int)
+
+```
+
+livello fisico : 
+
+come vanno realizzati in memoria
+
+organizzazione seriale : nessun ordinamento
+organizzazione sequenziale con index 
+
+```sql
+CREATE INDEX Indice ON Studenti(Matricola); 
+```
+
+accedo temite index per indirizzare la ricerca
+
+vista logica
+
+es fornire solo il numero di studenti che sostengono un esame non chi lo ha svolto
+
+tabella virtuale : ogni volta ricalcolata con query , infCorsi non immagazzinata in memoria
+conta quanti studenti hanno svolto un esame
+
+Indipendenza fisica : app indipendente dall'organizzazione fisica dei dati
+indipendenza logica : app indipendente dallo schema logica della base di dati
+	Bisogna creare una nuova vista in modo che ci sia la stessa visione precedente, tabella virtuale
+
+Linguaggi per uso dei dati 
+a.c.
+tipi di utenti : 
++ utenti delle applicazioni only gui
++ utenti non programmatori
+	+ accedere ai dati 
+	+ linguaggi di interrogazione
++ programmatori 
+	+ SQL embedded , all'interno di linguaggi convenzinali con sql ( execsql )
+	+ linguaggio convenzionale + librerie
+	+ Linguaggi integrati
+
+Data security
+
++ Integrità
+	+ mantenimento vincoli di integrità
++ Sicurezza
+	+ protezione da usi non autorizzati
+	+ limitazione delle operazioni esaguibili
+	+ protezione delle privacy : k-anonimity posso svelare un dato solo se esistono k-1 di questi dati, se k troppo piccolo rischio di deanonimmizzazione
++ Protezione : 
+	+ interferenza da accesso concorrente
+		+ soluzione attraverso la *transazione* proprietà A.C.I.D.
+			+ Atomicità
+			+ consistenza 
+			+ durability ( persistenza )
+			+ isolation : anche se le transazioni vengono esuite contemporaneamente effetto complessivo come se fosse un esecuzione seriale
+	+ malfunzionamentni hw e sw
+	
+	 + isolation 
+		      
