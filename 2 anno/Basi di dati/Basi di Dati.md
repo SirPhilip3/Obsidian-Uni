@@ -125,7 +125,7 @@ DW con operazioni OLAP
 
 # 22/09/2023
 
-## DBMS
+## Base di Dati
 
 In generale : una qualsiasi raccolta di dati permanenti gestiti tramite un elaboratore elettronico
 
@@ -136,54 +136,75 @@ _Definizione_ : Una **Base di Dati** è una raccolta di *dati* permanenti , gest
 	+ Restrizioni sui valori ammissibili ( **Vincoli di Integrità** )
 	+ Autorizzazioni per utenti 
 	I *Metadati* / lo schema dei dati è indipendente dalle applicazioni che usano la base di dati
-+ **Dati** : rappresentazioni di certi fatti conformi alle definizioni dello schema ,  
++ **Dati** : rappresentazioni di certi fatti conformi alle definizioni dello schema ( *metadati* ) , caratteristiche :
+	+ Organizzati in *insiemi omogenei*  
+	+ Vi sono *relazioni* tra insiemi ( descritte nei *metadati* )
+	+ Struttura dei dati : **modello dei dati** :
+		+ ad **oggetti**
+		+ **relazionale**
+	+ Sono *permanenti* e *molti* ( non possono essere gestiti in memoria primaria )
+	+ Possono essere utilizzati **contemporanemente** 
+	+ Sono **protetti** da : 
+		+ accessi non autorizzati 
+		+ corruzioni dovuti a malfunzionamenti hardware e software
+	+ Sono accedibili tramite **transazioni** : unità di lavoro atomiche che non possono avere effetti parziali ( rollback in caso di fail )
 
+**Modello di dati relazionale** :
+Meccanismi di astrazione per definire una base di dati , associando operatori e vincoli di integrità
 
+Caratteristiche :
++ *espressività* : rappresentazione naturale e diretta di ciò che si sta modellando
++ *facilità d'uso* 
++ *realizzabilità* : i meccanismi del modello di astrazione e i relativi operatori per la manipolazione dei dati devono essere realizzabili in modo efficiente su di un elaboratore 
+## DBMS ( Data Base Management System )
 
-raccolta di dati permanenti : 
-+ metadati ( struttura dati + operations + vincoli di integrità ( valori accetabili ) ) 
-	+ autorizzazioni per utenti ( sola lettura etcc )
-	+ schema creato prima dell'inserimento dati , indipendenti dalle app
-+ Dati : fatti conformi ai metadati :::
-	+ Insiemi omogenei
-	+ definite relazioni tra insiemi ( relazioni descritte nello schema )
-	+ modello di dati : meccanismi di astrazione che definiscono struttura dei dati, vincoli
-		+ modello ad oggeti
-		+ modello relazionale
-			+ modello caratteristiche / proprietà:
-				+ espressività ( rapressentazione ( modellazione ) naturale e diretto dei dati )
-				+ facilità d'uso 
-				+ realizzabilità : implementazione semplice ed efficente
-	+ dati sono molti e permanenti : gestione in memoria secondaria , non legati a applicazioni 
-	+ possono essere utilizzati contempporanemente : accessi concorrenti non devono creare malfunzionamenti
-	+ protezione dei dati : malfunzionamenti etcc
-	+ accedibili tramite transazioni ( o tutte a buon fine altrimenti rollback ) 
+Un **DBMS** è un sistema centralizzato o distribuito che offre opportuni linguaggi / strumenti per :
++ **definire** lo *schema* della BD
+	+ definizione tramite il *modello di dati* usato dal *DBMS*
++ sciegliere le *strutture dati* per memorizzare i dati ( cartelle , file hash , strutture che favoriscano la ricerca )
++ *memorizzare* i dati rispettando i vincoli definiti nello schema
++ recuperare e *modificare* i dati interattivamente ( tramite linguaggi di query ) o da programmi
 
-DBMS : è un sistema centralizzato o distribuito che offre opportuni linguaggi/strumenti per : 
-+ definire lo schema della BD (va definito prima di creare dati) -
-	+ definito usando il modello dei dati adottato dal DBMS - 
-	+ interrogabile con le stesse modalità previste per i dati;
-+ scegliere le strutture dati per la memorizzazione dei dati ( cartelle , file hash, utilizzo di struuture che favoriscono la riceraca )
-+ memorizzare i dati rispettando i vincoli definiti nello schema; 
-+ recuperare e modificare i dati interattivamente (linguaggio di interrogazione o query language) o da programmi
+![[Pasted image 20230923161257.png]]
 
-Utenti e programmi accedono ai dati solo tramite il DBMS 
+Esempio di **DBMS Relazionale**
 
-DBMS modello realzionale ( tabella ) più diffuso
-tabella : insieme di record con tipi elementari
+Meccanismo di astrazione fondamentale è la **relazione** ( **tabella** ) : insieme di record con campi di tipo elementare
 
-![[Pasted image 20230922090622.png]]
+|Nome|*Matricola*|Città|AnnoNascita|
+|--|--|--|--|
+|Verdi|71523|Padova|1987|
+|Rossi|76366|Dolo|1988|
+|Zeri|71347|Venezia|1988|
+*Studenti*
 
-Matricola : definito un vincolo : vincolo di *chiave primaria* :
-	non possono esistere 2 elementi che hanno lo stesso valore nel campo matricola , matricola individua in modo univoco uno studente
+*Matricola* è la **primary key** (vincolo di *chiave primaria* ) della tabella ( dovrebbe essere sottolineata )
+	Non possono esistere 2 elementi che hanno la stesso valore nel campo *matricola* , questa individua in modo univoco uno studente
 
-CREATE DATABASE database vuoto
+Creare un database vuoto :
+```sql
+CREATE DATABASE EsempioEsami
+```
 
-Definizione schema
+Definirne lo schema :
+```sql
+CREATE TABLE Studenti (
+		Nome char(8),
+		Matricola int NOT NULL, /* NOT NULL vincolo di integrità */
+		Città char(10),
+		AnnoNascita int,
+		PRIMARY KEY (Matricola)  );
 
-NOT NULL vincolo di integrità
+CREATE TABLE ProveEsami (
+		Materia char(5),
+		Matricola int,
+		Data char(6),
+		Voto int,
+		Lode char(1),
+		PRIMARY KEY (Materia,Matricola)  );
+```
 
-![[Pasted image 20230922090934.png]]
+La **primary key** può essere costituita da più attributi ( comunque deve essere un insieme *minimale* di attributi che indentificano univocamente una riga del  )
 
 Primary key può essere costituita da più attributi ( insieme minimale )
 solo materia ci sono più studenti che fanno lo stesso esame , singolarmente non sono chiavi
