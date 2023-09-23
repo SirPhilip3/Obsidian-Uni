@@ -81,48 +81,7 @@ Elaborazioni su **DW** : **OLAP** ( **On-Line Analytical Processing** )
 
 ![[Pasted image 20230920155522.png]]
 
-
-
-
 ---
-
-GIS : 
-- dati vettoriali
-- rasterized
-
-Sistemi di supporto alle decisioni
-
-Dato vs Informazione
-+ dato mancanza di elaborazione
-
-interpretoando dati ottengo informazioni
-
-DBMS
-+ canale sicuro per accedere alle basi di dati
-
-OLTP
-+ sequenza di operazioni elementari i cui effetti devono essere rimossi se una transizione è erronea, come se transizione non eseguita
-+ stato consistente = base di dati con dati corretti
-
-basi di dati operazionali solo db recenti 
-
-usare contineuamente le basi di dati operzioali studio di dati storici
-
-data wearhouse contiene dati storici
-
-misura ciò voglio rappresentare 
-
-aggregazione di dati a seconda del dettaglio che voglio raggiungere , 
-data warehouse alimentato da basi di dati operazionali e basi di dati esterni -> aggergazione dei dati in DB operazionali (EstrazioneTLoading)
-
-gerarchie relazionali
-
-DW astrazione di DB operazionali (dati aggregati)
-
-DW con operazioni OLAP 
-
----
-
 # 22/09/2023
 
 ## Base di Dati
@@ -204,43 +163,62 @@ CREATE TABLE ProveEsami (
 		PRIMARY KEY (Materia,Matricola)  );
 ```
 
-La **primary key** può essere costituita da più attributi ( comunque deve essere un insieme *minimale* di attributi che indentificano univocamente una riga del  )
+La **primary key** può essere costituita da più attributi ( comunque deve essere un insieme *minimale* di attributi che indentificano univocamente una riga della tabella , altrimenti viene detta *Super key* )
+	
+Esempio : 
+Se la *primary key* fosse solo *Matricola* allora uno studente non potrebbe fare più di un esame , se fosse solo *Materia* solo uno studente potrebbe fare quell'esame
 
-Primary key può essere costituita da più attributi ( insieme minimale )
-solo materia ci sono più studenti che fanno lo stesso esame , singolarmente non sono chiavi
+|*Materia*|*Matricola*|Data|Voto|Lode|
+|--|--|--|--|--|
+|CN|71523|08.07.06|27|N|
+|FIS|76366|08.07.07|26|N|
+|BD|71523|28.12.06|20|S|
+*ProveEsami*
 
-Superkey : insieme di attribuit che individuano un elemento in modo univoco ma non in modo minimale
+Vincolo di **Foreing key** ( *Matricola* è una *foreing key* poichè fa riferimento alla tabella *Studenti* ) : 
+	se volessi inserire in *ProveEsami* una matricola non presente in studenti non posso poichè non ho modo di collegare a quella matricola uno studente dalla tabella *Studenti*
 
-Aspetto estensionale : valori della tabella
-
-Posso mettere in proveesami solo valori che esistono in studenti, non ho modo di collegare uno studente 
-
-Vincolo di foreing key : controllo se chiave presente in tabella studenti
+Inserimento dati :
+```sql
+INSERT INTO ProveEsami
+VALUES ('BD', 71523 , '28.12.06' , 30 , 'S')
+```
 
 Query : 
+```sql
+SELECT Matricola
+FROM   ProveEsami
+WHERE Materia = 'BD' AND Voto = 30;
 
-![[Pasted image 20230922092004.png]]
+/* response : tutte le matricole con voto 30 in BD */
 
-tutti gli studenti con voto 30 in basi di dati
+Matricola : 
 
-Funizioni : 
-+ DDL ( data definition language )
-+ DML ( linguaggio per uso dei dati )
-+ controllo dei dati
-+ admin panel
-+ strumenti per lo sviluppo di applicazioni
+71523
+```
 
-DDL
+## Funzionalità dei DBMS
 
-DB deve essere indipendente da app
++ Linguaggio per la **definizione della base di dati** ( *DDL* )
++ Linguaggi per l'**uso deo dati** ( *DML* )
++ Meccanismi per il **controllo dei dati**
++ Strumenti per il **responsabile della base di dati**
++ Strumenti per lo **sviluppo delle applicazioni**
 
-livelli di astrazione : 
-+ livello fisico : come i dati sono immagazzinati in memoria secondaria
-+ livello logico : descrizione schema base de dati
-+ livello di vista logica : come vengono visti da diversi utenti ( moltepli e differenti )
+### DDL 
 
-livello logico : solo struttura non come vengono memorizzati ( fisicamente )
+La definizione / descrizione del *DB* è indipendente dalle applicazioni che la usano
 
+3 livelli di descrizione ( astrazione ) dei dati :
++ **livello di vista logica**
++ **livello logico**
++ **livello fisico**
+
+#### Livello Logico
+
+**Schema logico** : descrive la *struttura* degli insiemi di dati e delle *realzioni* tra questi secondo un certo *modello dei dati* ( non fa riferimento alla loro organizzazione fisica in memoria )
+
+Esempio creazione delle tabelle :
 ```sql
 
 CREATE TABLE Studenti(Matricola int, Nome char(20), Login char(8), AnnoNascita int, Reddito real)
@@ -251,20 +229,25 @@ CREATE TABLE Esami(Mtricola int, IdeC char(8), Voto int)
 
 ```
 
-livello fisico : 
+#### Livello Fisico
 
-come vanno realizzati in memoria
+Descrive lo *schema fisico* o *interno*
++ Come vanno organizzati fisicamente i dati nelle memorie permanenti
++ Definizione di strutture dati ausiliarie per l'utilizzo della *Base di Dati* ( es : indici per la ricerca )
 
-organizzazione seriale : nessun ordinamento
-organizzazione sequenziale con index 
-
+Esempio : 
++ *Organizzazione seriale* : organizzazione senza alcun ordinamento
++ *Organizzazione sequenziale* :  organizzazione attraverso indici ( utile per la ricerca , accedo direttamente attraverso l'indice )
 ```sql
 CREATE INDEX Indice ON Studenti(Matricola); 
 ```
 
-accedo temite index per indirizzare la ricerca
+#### Livello di Vista Logica
 
-vista logica
+Descrive come deve apparire la struttura della base di dati ad una certa applicazione ( o utente , privacy oriented ) 
+
+
+
 
 es fornire solo il numero di studenti che sostengono un esame non chi lo ha svolto
 
