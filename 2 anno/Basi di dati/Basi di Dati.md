@@ -323,26 +323,4 @@ Tipi di *malfunzionamenti* :
 + **Fallimento transazione** 
 + **Disastri**
 Ripristino da *malfunzionamenti* tramite *jurnal* e copie di sicurezza ( *backup* ) : 
-	Riesecuzione di tutte le operazioni avvenuto dopo l'ultimo backup tramite il journal in modo da far tornare 
-
-
-Data security
-
-+ Integrità
-	+ mantenimento vincoli di integrità
-+ Sicurezza
-	+ protezione da usi non autorizzati
-	+ limitazione delle operazioni esaguibili
-	+ protezione delle privacy : k-anonimity posso svelare un dato solo se esistono k-1 di questi dati, se k troppo piccolo rischio di deanonimmizzazione
-+ Protezione : 
-	+ interferenza da accesso concorrente
-		+ soluzione attraverso la *transazione* proprietà A.C.I.D.
-			+ Atomicità
-			+ consistenza 
-			+ durability ( persistenza )
-			+ isolation : anche se le transazioni vengono esuite contemporaneamente effetto complessivo come se fosse un esecuzione seriale
-	+ malfunzionamentni hw e sw
-		+ fallimento transazione 
-		+ fallimento di sistema
-		+ disastri
-	 ripristino copia di sicurezza e journal : riesecuzione di transazioni che sono avvenute dopo copia di sicurezza tramite journal  
+	*Riesecuzione* di tutte le operazioni avvenuto dopo l'ultimo *backup* tramite il *journal* in modo da far tornare la base di dati allo stato originale
