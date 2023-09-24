@@ -244,31 +244,87 @@ CREATE INDEX Indice ON Studenti(Matricola);
 
 #### Livello di Vista Logica
 
-Descrive come deve apparire la struttura della base di dati ad una certa applicazione ( o utente , privacy oriented ) 
+Descrive come deve *apparire* la struttura della base di dati ad una certa applicazione ( o utente , privacy oriented ) 
 
+Esempio :
+```sql
+InfCorsi (IdeC char(8), Titolo char(20), NumEsami int)
 
+CREATE VIEW InfCorsi (IdeC , Titolo , NumEsami) AS
+			SELECT IdeC ,
+				   Titolo ,
+				   COUNT(*)
+			FROM Corsi NATURAL JOIN Esami
+			GROUP BY IdeC, Titolo
+```
 
+La tabella *InfCorsi* ( conta quanti studenti hanno svolto un esame ) è una tabella *virtuale* : 
+	Non viene salvata in memoria ma viene ricalcolata ogni volta che la si richiede con una query
 
-es fornire solo il numero di studenti che sostengono un esame non chi lo ha svolto
+#### Data independence 
 
-tabella virtuale : ogni volta ricalcolata con query , infCorsi non immagazzinata in memoria
-conta quanti studenti hanno svolto un esame
++ **Indipendenza fisica** : I programmi applicativi non devono essere modificati in seguito a modifiche dell'organizzazione fisica dei dati
++ **Indipendenza logica** : I programmi applicativi non devono essere modificati in seguito a modifiche dello schema logico :
+	+ richiede la creazione di una nuova vista ( *tabella virtuale* ) in modo che ci sia la stessa visione precente da parte dell'applicazione
+	
+	Esempio : 
+	```sql
+	/* La tabella Studenti divisa in StudentiPartTime e StudentiFullTime */
+	CREATE TABLE StudentiFullTime (...);
+	CREATE TABLE StudentiPartTime (...);
 
-Indipendenza fisica : app indipendente dall'organizzazione fisica dei dati
-indipendenza logica : app indipendente dallo schema logica della base di dati
-	Bisogna creare una nuova vista in modo che ci sia la stessa visione precedente, tabella virtuale
+	/* Tabella virtuale che ricrea la tabella Studenti */
+	CREATE VIEW Studenti AS
+		SELECT * FROM StudentiFullTime
+		UNION
+		SELECT * FROM StudentiPartTime
+	```
 
-Linguaggi per uso dei dati 
-a.c.
-tipi di utenti : 
-+ utenti delle applicazioni only gui
-+ utenti non programmatori
-	+ accedere ai dati 
-	+ linguaggi di interrogazione
-+ programmatori 
-	+ SQL embedded , all'interno di linguaggi convenzinali con sql ( execsql )
-	+ linguaggio convenzionale + librerie
-	+ Linguaggi integrati
+### DML
+
+*Linguaggi per l'uso dei dati*
+
+Tipi di utenti : 
++ *Utenti delle applicazioni* : Only GUI
++ *Utenti non programmatori* : 
+	+ interfaccia grafica per accedere ai dati
+	+ lingaggio di interrogazione
++ *Programmatori delle applicazioni*
+	+ **SQL embedded** : Linguaggio convenzionale esteso con un construtto per marcare i comandi *SQL* ( macro : risolte dal pre-compilatore con chiamate a funzioni di libreria che supporta *SQL* )
+	+ **Linguaggio tradizionale + librerie** : Aggiunta di funzioni che hanno come input una stringa con comandi *SQL* 
+	+ **Linguaggi integrati** : Linguaggi disegnati ad-hoc per usare *SQL* 
+
+### Controllo dei dati
+
+Caratteristiche che garantisce il **DBMS** : 
++ **Integrità**
+	+ Mantenere i vincoli di integrità 
++ **Sicurezza**
+	+ Protezione dei dati da usi non autorizzati :
+		+ limitazione delle operazioni eseguibili ( alcuni utenti possono solo accedere altri possono solo vedere dati statistici etc.. )
+		+ limitazione dell'accesso ai soli utenti autorizzati
+		+ [k-anonimity](s://it.wikipedia.org/wiki/K-anonimato) per proteggere i dati riservati :
+			Un dato di una persona può essere svelato se so i dati di qualcun'altro soprattuto se vi sono poche persone con questo dato ( esempio media ) per questo si può svelare un dato solo se esistono k-1 persone con questo dato 
++ **Affidabilità**
+	Protezione dei dati da : 
+	+ **interferenze** da *accesso concorrente* 
+	+ **malfunzionamenti hardware o software**
+
+#### Transazione
+
+Una *Transazione* è una sequenza di azioni di lettura e scrittura in memoria permanente e di elaborazioni di dati in memoria temporanea con le seguenti caratteristiche ( *A.C.I.D.* ) :
++ **Atomicità** : Le transizioni che terminano prematuramente ( *Aborted Transactions* ) sono trattate dal sistema come se non fossero mai iniziate eliminando eventuali effetti sulla base di dati
++ **Consistenza** 
++ **Isolation** : Nel caso di esecuzioni concorrenti di più transazioni l'effetto complessivo è quello di una esecuzione seriale
++ **Durability** : Le modifiche sulla base di dati di una transazione terminata normalmente sono permanenti, non sono alterabili da eventuali malfunzionamenti 
+
+Tipi di *malfunzionamenti* :
++ **Malfunzionamenti HW o SW**  : detemina interruzione di tutte le transazioni attive e la perdita dei contenuti della memoria temporanea
++ **Fallimento transazione** 
++ **Disastri**
+Ripristino da *malfunzionamenti* tramite *jurnal* e copie di sicurezza ( *backup* ) : 
+	Riesecuzione di tutte le operazioni avvenuto dopo l'ultimo backup tramite il journal in modo da far tornare 
+
 
 Data security
 
