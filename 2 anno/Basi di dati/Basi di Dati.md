@@ -324,3 +324,98 @@ Tipi di *malfunzionamenti* :
 + **Disastri**
 Ripristino da *malfunzionamenti* tramite *jurnal* e copie di sicurezza ( *backup* ) : 
 	*Riesecuzione* di tutte le operazioni avvenuto dopo l'ultimo *backup* tramite il *journal* in modo da far tornare la base di dati allo stato originale
+
+
+# 25/09/2023
+
+Strumenti per amministratore 
++ 
++ strumenti per messa a punto del sistema : 
+	+ query più freqenti , altri dati per valutare prestazioni aim miglioramento performance DBMS 
++ stabilire diritti di accesso ai dati 
++ strumenti per il ripristino del DB
+
+Vantaggi : 
++ realizzazione della indipendenza fisica dei  dati da programmi : assicurata quando si fa schema logioc non si danno info in organizzazione fisica
++ indipendenza logica : creazione di viste per varie applicazioni o utenti richiede più lavoro deve essere creata manualmente
++ accedere in modo rapido : index hashes etcc
++ satto consistente = tutti vincoli di integrità rispettati DBMS verifica questa cosa se un vincolo non rispettato transazione non ha successo
++ protezione da accessi concorrenti grazie a transazioni
++ Riduzione dei tempi di sviluppo delle applicazioni : non è necessario fare controlli di integrità nelle applicazioni
+
+Svantaggi : 
++ costosi da mantenere in passato ( open source solutions )
+
+
+## Modellazione concettuale 
+
++ definizione struttura dei dati
++ definire operazione delle applicazioni
+
+definizione di un modello : 
+- cosa significa definire un modello? 
+- cosa si modella? 
+- come si modella (quale formalismo)
+
+modello astratto : 
++ modello è la rappresentazioni di certi fatti di interesse
++ utilizzo di un linguaggio formale disambiguo
+
+Fasi di analisi
+![[Pasted image 20230925142003.png]]
+
+specifica dei requisiti : documento input per la progettazione concettuale : trasformare specifica in schema concettuale dove specificheremo la struttura della base di dati , schema concettuale con linguaggio di alto livello ( modello ad oggetti )
+
+progettazione logica : trasformare schema concettuale in schema logico realizzato in calcolatore
+utilizzo dello schema relazionale ( modello relazionale ) 
+
+progettazione fisica lo schema logico arrichito con info di come sono immagazzinati i dati in memoria permanente ( utilizzo di strutture dati ( index , hashes ) che possono aiutare la ricerca dei dati )
+
+**Modellazione concettuale** :
+
+aspetto ontologico : cosa volgiamo rappresentaate
+Con quali meccanismi di astrazione si modella?
+(aspetto logico)
+Con quale linguaggio formale si definisce il modello?
+(aspetto linguistico)
+Come si procede per costruire un modello? 
+(aspetto pragmatico)
+
+
+Cosa vogliamo modellare : 
++ conoscenza concreta : fatti   
++ conoscenza astratta : vincoli sui fatti
++ conoscenza procedurale : operazioni di base e per utenti
++ comunicazione dell'utente
+
+
+modellazione conoscenza concreta : modellare 3 tipologie di fatti :
+**entità** : es studenti, prove d'esame , libri , presitti
+collezioni di entità omogenei : insieme degli studenti , insieme degli esami
+associazioni tra entità : esame associato a studente che ha svolto quell'esame
+
+**proprietà** : che proprietà ha un entità es il nome mi interessa solo in funzione dello studente , non è autonomo ma collegata  sempre ad un entità ; 
+
+une entità non coincide con i valori delle sue proprietà : un entità non sono i suoi valori 
+	2 persone  possono avere proprietà uguali ma sono comunque entità distinte ( nel modello concettuale  )
+
+proprietà coppia tra nome e tipo
++ **atomica** non è ulteriormente divisibile = nome
++ **strutturata** : può essere divisibile es : indirizzo ( città via cap etcc )
++ **univoca** : assume un unico valore
++ **multivalore** : assume più valori ( es autori di un libro )
++ **totale/parziale** : proprietà assume sempre un valore altrimenti parziale ( es numero di telefono una persona può non avere un numero ma un nome è totale )
+
+**tipo** : ne specifica la natura di un entità
+Antonio è di tipo persona
+dominio relativo
+
+collezione(classe) insieme variabile nel tempo (può) di entità omogenee dello stesso tipo : 
+Studenti : {leonardo , ni , ....}
+
+**Gerarchie** 
+collezioni organizzate in una gerarchia di specializzazione(sottoclasse)/generalizzazione(superclassi)
+
+
+
+
