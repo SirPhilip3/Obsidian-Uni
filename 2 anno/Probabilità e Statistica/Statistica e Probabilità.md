@@ -47,3 +47,19 @@ Considerieamo un insieme di $n$ elementi. Una *Disposizione* di $r$ di essi è u
 
 #### Permutazioni
 
+Le  disposizioni semplici di $n$ elementi presi $n$ alla volta si chiamano *permutazioni* :
+	Tutti i modi in cui $n$ elementi possono esser ordinati in fila :
+	$$n\times (n-1)...\times 2 \times 1=n!$$
+Esempio :
+Le permutazioni delle lettere *I , L , A* sono $3! = 6$ :
+$ILA,IAL,LIA,LAI,AIL,ALI$
+
+#### Combianzioni
+
+In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ elementi si chiama **combianzione** di $n$ elemento presi $r$ alla volta 
+	Il numero di combinazioni di $n$ elementi $r$ alla volta è :
+	$$\frac{n\times(n-1)...\times(n-r+1)}{r!} = \binom{n}{r}$$
+	**Coefficiente binomiale** $n$ su $r$
+
+Esempio :
+	La professoressa interroga ogni lunedì 10 studenti da una classe di 25. Esistono per lei $\binom{25}{10} = 3268760$ possibilità di scelta

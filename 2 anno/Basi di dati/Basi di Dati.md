@@ -416,6 +416,48 @@ Studenti : {leonardo , ni , ....}
 **Gerarchie** 
 collezioni organizzate in una gerarchia di specializzazione(sottoclasse)/generalizzazione(superclassi)
 
+concetto di ereditatietà = una sottoclasse eredita propietà della calsse generale può aggiungere altre proprietà o ridefinire quelle presenti nella superclasse 
 
+incusione = una sottoclasse deve essere un sottoinsieme della sua generalizzazione
 
+**associazioni** 
+in relazione 2 o più entità ache nella stessa collezione 
+
+Es
+
+Basi di dati    è un entità
+-----.(è relativa a )----
+Libro ha come posizione D3 55 2
+
+Un’**associazione** R(X, Y) fra due collezioni di entità X ed Y è un insieme di istanze di associazione tra elementi di X e Y, che varia in generale nel tempo. Il prodotto cartesiano (X × Y) è detto dominio dell’associazione.z
+
+![[Pasted image 20230925150426.png]]
+
+HaScritto (insieme di coppie) è un sotto insieme del prodotto tra autori e descrizioni bibliografiche
+
+proprietà associazioni : 
+- *molteglicità*
+- *totalità*
+- *univoca* = per ogni elemento di X esiste un associazione con al più un elemento di Y
+- *multivalore* = per ogni elemento di X esiste un associazione con più di un elemento di Y
+posso guardare anche in verso contrario (Y -> X o X -> Y)
+
+(1:M) <---->>
+(1:1) <---->
+(N:M) <<---->>
+(N:1) <<---->
+
+Vincolo di totalità: Un’associazione R(X, Y) è totale da X a Y se per ogni elemento x di X esiste almeno un elemento di Y che è associato ad x; se non vale questo vincolo, l’associazione è parziale da X a Y.
+
+conoscenza astratta 
+struttura della conoscenza concreate 
+erstrizioni tra valori della conoscenza concreate ( vincoli di integrità )
+
+vincoli di integrità :
++ statici  : voto deve essere compreso tra 18 30 ( può comprendere più attributi la lode puù essere data solo se il voto è 30 )
+	es chiave ( insieme di attributi x tali che x individua in modo univoco un elemento della collezione , non ci possono essere 2 elementi della collezione con stessa chiave )
+	
++ dinamici : condizioni in cui la conoscenza concreata può evolvere nel tempo : data di nascita non può cambiare 
+
+fatti derivabili : media dei voto / età di una persona non serve rappresentarlo
 
