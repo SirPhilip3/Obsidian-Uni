@@ -29,3 +29,5 @@ Sviluppiamo un algoritmo che sfrutti queste formule :
 	```return``` $\frac{1}{\sqrt{5}}\cdot(\intop^n-\oint^n)$
 
 Dim *correttezza* per **induzione** 
+
+/comm
