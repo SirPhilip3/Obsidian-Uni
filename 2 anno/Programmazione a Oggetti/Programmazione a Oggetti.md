@@ -74,3 +74,4 @@ rappresentazione di un'entità reale o astratta
 
 funzionalità per evolvere l'oggetto
 metodi modifiano i campi mantenendo consistenza logica
+
