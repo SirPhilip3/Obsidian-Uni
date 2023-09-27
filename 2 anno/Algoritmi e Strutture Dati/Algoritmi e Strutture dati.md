@@ -89,4 +89,8 @@ Fib2(int n) -> int
 	Sì , abbiamo seguito la definizione di *Fattoriale*
 
 **Complessità** ?
-	Per trovare la complessità di q
+	Per trovare la complessità di questo algoritmo è necessario calcolare il numero di istanze lanciate  :
+
+Per calcolare le complessità ci affidiamo a degli **alberi della ricorsione** 
+
+![[Untitled-2023-09-27-18293.png]]
