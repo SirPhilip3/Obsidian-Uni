@@ -30,4 +30,3 @@ Sviluppiamo un algoritmo che sfrutti queste formule :
 
 Dim *correttezza* per **induzione** 
 
-/comm
