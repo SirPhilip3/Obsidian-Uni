@@ -325,7 +325,6 @@ Tipi di *malfunzionamenti* :
 Ripristino da *malfunzionamenti* tramite *jurnal* e copie di sicurezza ( *backup* ) : 
 	*Riesecuzione* di tutte le operazioni avvenuto dopo l'ultimo *backup* tramite il *journal* in modo da far tornare la base di dati allo stato originale
 
-
 # 25/09/2023
 
 Strumenti per amministratore 
