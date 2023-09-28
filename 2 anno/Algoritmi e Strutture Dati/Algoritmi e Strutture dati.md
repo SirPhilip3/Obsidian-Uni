@@ -88,9 +88,45 @@ Fib2(int n) -> int
 È **corretto** ?
 	Sì , abbiamo seguito la definizione di *Fattoriale*
 
-**Complessità** ?
+**Complessità** ? ( $T(n)$ )
 	Per trovare la complessità di questo algoritmo è necessario calcolare il numero di istanze lanciate  :
 
-Per calcolare le complessità ci affidiamo a degli **alberi della ricorsione** 
+Calcolo della *complessità* attraverso esempi : 
+
+|$n$|$T(n)$|
+|--|--|
+|$1$|$1$|
+|$2$|$1$|
+|$3$|$2+T(2)+T(1) = 4$|
+|4|$2+T(3)+T(2) = 7$|
+
+
+Da questo possiamo dedurre che la complessità generale per un qualsiasi $n$ è :
+$$T{(n)}=2 + T{(n-1)}+T{(n-2)}$$
+Quindi per $n=5$ avremo : $T_5=2+5\cdot1+4\cdot2=13$
+
+Per calcolare le complessità possiamo affidarci a degli **alberi della ricorsione** ($T_n$)
 
 ![[Untitled-2023-09-27-18293.png]]
+
+Per calcolare la *complessità* attraverso l'utilizzo di *alberi della ricorsione* bisogna sapere la quantità di *foglie* ( $f(T_n)$ ) e *nodi interni* ( $i(T_n)$ ) , osservando l'*albero* possiamo ottenere :
+$$T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$$
+#### Proposizione 1 :
+Se $T_n$ è l'*albero delle ricorsioni* di `Fib2(n)` allora vale che : 
+	$$\text{numero di foglie} \space f(T_n) = F_n\space \text{ennesimo numero di fibonacci}$$
+**Dimostrazione**
+
+..................
+
+
+#### Proposizione 2 :
+Se $T_n$ è un albero dove i *nodi interni* hanno esattamente 2 figli ( ossia è un albero binario ) allora : 
+	$$\text{numero di nodi interni }i(T_n) = f(T_n)-1 \implies F_n -1$$
+**Dimostrazione** 
+..................
+####
+
+Sostituendo nella formula $T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$ avremo :
+$$T(n) = 2\cdot (F_n -1) + F_n \implies 3F_n-2 \approx F_n$$
+Quindi si deduce che la *compessità* corrisponde all'incirca all'ennesimo numero di *fibonacci* 
+
