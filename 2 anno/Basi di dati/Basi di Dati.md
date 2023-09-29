@@ -15,7 +15,7 @@ delle informazioni necessarie alle attività dell'azienda
 + Sistema informatico : insieme delle tecnologie infromatiche a supporto delle attività di un organizzazione
 + Sistema informativo automatizzato : parte del sistema informatico che raccoglie, elabora , archivia e scambia le informazioni usando un sistema informatico
 
-## Infromazioni 
+## Informazioni 
 
 Nei sistemi informatici le **informazioni** vengono rappresentate in modo essenziale attraverso i **dati**
 + **Informazioni** : elemento che consente di a vere conoscenza più o meno esatta di situazioni
@@ -325,52 +325,57 @@ Tipi di *malfunzionamenti* :
 Ripristino da *malfunzionamenti* tramite *jurnal* e copie di sicurezza ( *backup* ) : 
 	*Riesecuzione* di tutte le operazioni avvenuto dopo l'ultimo *backup* tramite il *journal* in modo da far tornare la base di dati allo stato originale
 
+
+### Strumenti per amministrazione
+
+Strumenti per l'amministrazione della base di dati :
++ Strumenti per la messa a punto del sistema :
+	dati per valutare le prestazioni del database con come obbiettivo il miglioramento delle performance
++ Strumenti per stabilire i diritti di accesso ai dati
++ Strumenti per ripristinare la base di dati in caso di malfunzionamenti del sistema o di disastri
+
 # 25/09/2023
+## DBMS Vantaggi / Svantaggi
 
-Strumenti per amministratore 
-+ 
-+ strumenti per messa a punto del sistema : 
-	+ query più freqenti , altri dati per valutare prestazioni aim miglioramento performance DBMS 
-+ stabilire diritti di accesso ai dati 
-+ strumenti per il ripristino del DB
+**Vantaggi** : 
++ *Indipendenza fisica dei dati* da programmi : 
+	 questa viene assicurata alla creazione dello schema logico in cui non si danno informazioni sulla loro organizzazione fisica
++ *Indipendenza logica* : 
+	 assicurata mediante la creazione di viste per varie applicazioni o utenti 
++ Gestione efficiente dei dati :
+	 attraverso strutture dati apposite per la ricerca ( hashes , index ... )
++ *Stato consistente* :
+	 tutti vincoli di integrità vengono rispettati , il *DBMS* verifica la correttezza di questi vincoli e se è presente un vincolo non rispettato la transazione non ha successo
++ Protezione da accessi concorrenti grazie alle transazioni
++ Riduzione dei tempi di sviluppo delle applicazioni : 
+	 non è necessario fare i controlli di integrità all'interno delle applicazioni
 
-Vantaggi : 
-+ realizzazione della indipendenza fisica dei  dati da programmi : assicurata quando si fa schema logioc non si danno info in organizzazione fisica
-+ indipendenza logica : creazione di viste per varie applicazioni o utenti richiede più lavoro deve essere creata manualmente
-+ accedere in modo rapido : index hashes etcc
-+ satto consistente = tutti vincoli di integrità rispettati DBMS verifica questa cosa se un vincolo non rispettato transazione non ha successo
-+ protezione da accessi concorrenti grazie a transazioni
-+ Riduzione dei tempi di sviluppo delle applicazioni : non è necessario fare controlli di integrità nelle applicazioni
+**Svantaggi** : 
++ costosi da mantenere in passato ( eliminato dalle soluzioni open source )
 
-Svantaggi : 
-+ costosi da mantenere in passato ( open source solutions )
+## Progettazione e Modellazione
 
+Definizione della *struttura dati* della base di dati richiede di definire un **modello** della realtà di interesse il più possibile fedele  
+
+**Definizione** : Un *modello astratto* è la rappresentazione formale di idee e conoscenze relative a un fenomeno.
+
+Aspetti fondamentali di un modello : 
++ è la rappresentazione di certi fatti 
++ utilizzo di un linguaggio formale disanbiguo
+
+Fasi di progettazione della Base di Dati
+![[ProgettazioneDB.excalidraw]]
+
+**Analisi dei requisiti** : 
+	è la specifica che viene data in input da un commitente , deve essere trasformato in *schema concettuale* con un linguaggio ad alto livello ( modello ad oggetti ) 
+
+**Progettazione logica** :
+	Trasformazione dello *schema concettuale* in *schema logico* realizzato nel calcolatore utilizzando lo schema relazionale ( *modello relazionale* ) 
+
+**Progettazione fisica** :
+	è lo *schema logico* arrichito con informazioni di come sono immagazzinati i dati in memoria permanente ( utilizzo di strutture dati ( index , hashes ) che possono aiutare la ricerca dei dati )
 
 ## Modellazione concettuale 
-
-+ definizione struttura dei dati
-+ definire operazione delle applicazioni
-
-definizione di un modello : 
-- cosa significa definire un modello? 
-- cosa si modella? 
-- come si modella (quale formalismo)
-
-modello astratto : 
-+ modello è la rappresentazioni di certi fatti di interesse
-+ utilizzo di un linguaggio formale disambiguo
-
-Fasi di analisi
-![[Pasted image 20230925142003.png]]
-
-specifica dei requisiti : documento input per la progettazione concettuale : trasformare specifica in schema concettuale dove specificheremo la struttura della base di dati , schema concettuale con linguaggio di alto livello ( modello ad oggetti )
-
-progettazione logica : trasformare schema concettuale in schema logico realizzato in calcolatore
-utilizzo dello schema relazionale ( modello relazionale ) 
-
-progettazione fisica lo schema logico arrichito con info di come sono immagazzinati i dati in memoria permanente ( utilizzo di strutture dati ( index , hashes ) che possono aiutare la ricerca dei dati )
-
-**Modellazione concettuale** :
 
 aspetto ontologico : cosa volgiamo rappresentaate
 Con quali meccanismi di astrazione si modella?
@@ -460,3 +465,4 @@ vincoli di integrità :
 
 fatti derivabili : media dei voto / età di una persona non serve rappresentarlo
 
+# 29/09/2023
