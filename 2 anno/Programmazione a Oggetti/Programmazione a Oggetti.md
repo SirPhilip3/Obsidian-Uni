@@ -75,3 +75,56 @@ rappresentazione di un'entità reale o astratta
 funzionalità per evolvere l'oggetto
 metodi modifiano i campi mantenendo consistenza logica
 
+# 29/09/2023
+
+encapsulamento dei metodi , non modifico i dati al di fuori della classe , espongo solo funzioni e nascondo i dati
+
+struttura dati fissa durante l'execution 
+ogni oggetto ha il prorpio life_cycle
+
+ogni var locale che contiene un oggetto è un pointer a quell'oggetto se faccio 
+	`fighter f3 = f1`
+
+f3 prende stessi valori di f1 quando modificati *aliasing*
+
+@ indica address accorciato 
+
+metodi public / private
+```java
+class Runner{
+// prima i campi e poi i metodi
+	double speed;
+
+	void refuel(){
+	
+	}
+
+}
+```
+
+tutto il codice all'interno di una classe
+
+ogni classe = nuovo tipo 
+
+ciascuna classe in un file con nome del file = nome della calsse in realtà ci sono inner classes // not really
+
+[naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
+
+Constructors
+
+metodi sempre invocati su un oggetto
+
+receiver = oggetto che viene modificato dal metodo chiamato
+
+Contructor : 
+stesso nome della classe
+non ha un ritorno 
+
+1 allocca memoria per un oggetto fighter 
+2 invoca contructor
+
+se non c'è un costruttore creazione del costruttore di default senza alcun parametro
+
+se definisco un contructor non posso più cotruire un oggetto senza quel costruttore
+
+posso definire più costruttori ( overloading )
