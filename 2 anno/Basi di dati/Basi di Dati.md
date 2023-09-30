@@ -540,4 +540,3 @@ La *conoscenza astratta* sono i fatti generali che descrivono :
 
 # 29/09/2023
 
-/git
