@@ -377,57 +377,103 @@ Fasi di progettazione della Base di Dati
 
 ## Modellazione concettuale 
 
-aspetto ontologico : cosa volgiamo rappresentaate
-Con quali meccanismi di astrazione si modella?
-(aspetto logico)
-Con quale linguaggio formale si definisce il modello?
-(aspetto linguistico)
-Come si procede per costruire un modello? 
-(aspetto pragmatico)
+Aspetti del problema :
++ **aspetto ontologico** :
+	ciò che volgiamo rappresentare
++ **aspetto logico** :
+	che meccanismi di astrazione si applicano
++ **aspetto linguistico** :
+	con quale linguaggio fromale definiamo il modello
++ **aspetto pragmatico** :
+	come si procede per lo sviluppo del modello
+
+#### Aspetto ontologico
+
+Ciò che vogliamo rappresentare sono : 
++ **Conoscenza concreta** :
+	I fatti
++ **Conoscenza astratta** :
+	Struttura e vincoli sulla conoscenza concreta
++ **Conoscenza procedurale** : 
+	Le operazioni di base e degli utenti
++ **Comunicazioni** :
+	Come si comunicherà con il sistema informatico
+
+##### Conoscenza Concreta
+
+Per modellare la *conoscenza concreta* dobbiamo modellare 3 tipologie di fatti :
++ **Entità** : es studente , libro , prova d'esame
++ **Collezioni** : es insieme degli studenti , insieme dei libri
++ **Associazioni** : es un esame è associato ad uno studente
+
+###### Entità 
+
+Le **entità** sono ciò di cui ci interessa rappresentare alcuni fatti ( o *proprietà* )
+	Es : un libro , una descrizione bibliografica , un prestito
+> [!caution] 
+>  Una *entità* non coincide con i valori delle sue proprietà 
+> 	 Es : 2 persone possono avere le stesse proprietà ma sono comunque entità distinte ( nel modello concettuale )  
+
+Ogni *entità* ha un **tipo** che ne specifica la natura e identifica le *proprietà* e il *dominio relativo* :
+	Es Antonio ha tipo *Persona* con proprietà :
+		- Nome : `string`
+		- Indirizzo : `string`
 
 
-Cosa vogliamo modellare : 
-+ conoscenza concreta : fatti   
-+ conoscenza astratta : vincoli sui fatti
-+ conoscenza procedurale : operazioni di base e per utenti
-+ comunicazione dell'utente
+Le **proprietà** si distinguono dalle *entità* poichè sono fatti che sono interessanti poichè descrivono delle caratteristiche di determinante *entità*
+	Es : indirizzo che è interessante solo poichè riferito ad un utente
+
+Una *propietà* è una coppia < Attributo , Valore >
++ Tipologie di *proprietà* :
+	+ **Atomica** : non è ulteriormente divisibile ( il nome )
+	+ **Strutturara** : può essere divisibile in parti atomiche ( l'indirizzo è divisibile in : città , cap , via etcc )
+
+	+ **Univoca** : quando quella proprietà assume un unico valore ( grado di parentela ) 
+	+ **Multivalore** : quando quella proprietà può assumere più valori ( gli autori di un libro possono essere più di uno )
+
+	+ **Totale** : quando quella proprietà deve assumere sempre almeno un valore ( il nome )
+	+ **Parziale** : quando quella proprietà può non assumere un valore ( numero di telefono )
 
 
-modellazione conoscenza concreta : modellare 3 tipologie di fatti :
-**entità** : es studenti, prove d'esame , libri , presitti
-collezioni di entità omogenei : insieme degli studenti , insieme degli esami
-associazioni tra entità : esame associato a studente che ha svolto quell'esame
+Esempi :
 
-**proprietà** : che proprietà ha un entità es il nome mi interessa solo in funzione dello studente , non è autonomo ma collegata  sempre ad un entità ; 
+|Tipo Entità|Proprietà|
+|---|---|
+|Studente|Nome,AnnoNascita,Matricola,e-mail,...
+|Esame|Materia,Candidato,Voto,Lode,...
+|Auto|Modello,Colore,Cilindrata,Targa
+|Decrizione bibliografica|Autori,Titolo,Editore,Anno,...
 
-une entità non coincide con i valori delle sue proprietà : un entità non sono i suoi valori 
-	2 persone  possono avere proprietà uguali ma sono comunque entità distinte ( nel modello concettuale  )
+###### Collezione
 
-proprietà coppia tra nome e tipo
-+ **atomica** non è ulteriormente divisibile = nome
-+ **strutturata** : può essere divisibile es : indirizzo ( città via cap etcc )
-+ **univoca** : assume un unico valore
-+ **multivalore** : assume più valori ( es autori di un libro )
-+ **totale/parziale** : proprietà assume sempre un valore altrimenti parziale ( es numero di telefono una persona può non avere un numero ma un nome è totale )
+Una **Collezione ( classe )** è un insieme variabile nel tempo di *entità* omogenee ( dello stesso *tipo* )
+	Es : `Studenti` è un insieme di tutti gli *Studenti* 
 
-**tipo** : ne specifica la natura di un entità
-Antonio è di tipo persona
-dominio relativo
+Esempi :
 
-collezione(classe) insieme variabile nel tempo (può) di entità omogenee dello stesso tipo : 
-Studenti : {leonardo , ni , ....}
+![[CollectionEx.excalidraw]]
 
-**Gerarchie** 
-collezioni organizzate in una gerarchia di specializzazione(sottoclasse)/generalizzazione(superclassi)
+> [!caution] 
+> Certi fatti possono essere interpretati come *proprietà* in certi constesti e come *entità* in altri  
 
-concetto di ereditatietà = una sottoclasse eredita propietà della calsse generale può aggiungere altre proprietà o ridefinire quelle presenti nella superclasse 
+Spesso le collezioni di *entità* sono organizzate in una gerarchia di **specializzazione/generalizzazione (sottoclassi/superclassi)** 
+	Es : nella **B.D.** della biblioteca la collezione degli `Utenti` può essere considerata una *generalizzazione* di `Studenti`e `Docenti`
 
-incusione = una sottoclasse deve essere un sottoinsieme della sua generalizzazione
+Due importanti caratteristiche delle gerarchie :
++ **Ereditarietà** : 
+	Una *sottoclasse* eredita le proprietà della classe generale , possono essere aggiunte altre proprietà o ridefinire quelle presenti nella *superclasse*
++ **Inclusione** : 
+	Una *sottoclasse* deve essere un sottoinsieme della sua *generalizzazione*
 
-**associazioni** 
-in relazione 2 o più entità ache nella stessa collezione 
+  Es : 
+	La *classe* degli `Studenti` è una generalizzazione delle *classi* :
+	+ **matricole** e **laureandi**
+	+ **studenti in corso** e **studenti fuori corso**
+	+ **sudenti locali** e **studenti fuori sede**
+###### Associazioni
 
-Es
+Una *Associazione* è un fatto che correla due o più *entità* stabilendo un legame logico tra di loro 
+	Es : l'utente `Tizio` 
 
 Basi di dati    è un entità
 -----.(è relativa a )----
