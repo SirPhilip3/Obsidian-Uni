@@ -472,43 +472,72 @@ Due importanti caratteristiche delle gerarchie :
 	+ **sudenti locali** e **studenti fuori sede**
 ###### Associazioni
 
-Una *Associazione* è un fatto che correla due o più *entità* stabilendo un legame logico tra di loro 
-	Es : l'utente `Tizio` 
+Una *Istanza di Associazione* è un fatto che correla due o più *entità* stabilendo un legame logico tra di loro 
+	Es : l'utente `Tizio` *ha in prestito* una copia della `Divina Commedia`
 
-Basi di dati    è un entità
------.(è relativa a )----
-Libro ha come posizione D3 55 2
+Un’**associazione** $R(X, Y)$ fra due collezioni di entità $X$ ed $Y$ è un insieme di *istanze di associazione* tra elementi di $X$ e $Y$, che varia in generale nel tempo. 
+Il prodotto cartesiano $(X \times Y)$ è detto *dominio* dell’associazione.
 
-Un’**associazione** R(X, Y) fra due collezioni di entità X ed Y è un insieme di istanze di associazione tra elementi di X e Y, che varia in generale nel tempo. Il prodotto cartesiano (X × Y) è detto dominio dell’associazione.z
+Esempio :
+![[AssociationEx.excalidraw]]
 
-![[Pasted image 20230925150426.png]]
+HaScritto ( insieme di coppie ) è un sottoinsieme del prodotto tra autori e descrizioni bibliografiche
 
-HaScritto (insieme di coppie) è un sotto insieme del prodotto tra autori e descrizioni bibliografiche
+Un'*Associazione* è caratterizzata dalle seguenti proprietà strutturali :
+- *molteplicità* o *cardinalità* : 
+	- *univoca* : 
+		per ogni elemento di X esiste un associazione con al più ( al massimo ) un elemento di Y
+	- *multivalore* : 
+		per ogni elemento di X esiste un associazione con più di un elemento di Y
+	+ Combinazioni delle *molteplicità* : 
+		+ `Frequenta(Studenti, Corsi)`
+			ha molteplicità ( **N : M** ) ( *uno studente* frequenta *più corsi* , *un corso* è frequentato da *molti studenti* )
+		+ `Insegna(Professori, Corsi)`
+			ha moltelpicità ( **1 : N** ) ( *un corso* è insegnato da *un solo professore* , *un professore* insegna *più corsi* )
+		+ `SuperatoDa(Esami, Studenti)`
+			ha molteplicità ( **N : 1** ) ( *un esame* è superato da *uno studente* ( considerato come il foglio d'esame ) , *uno studente* può superare *più esami* )
+		+ `Dirige(Professori, Dipartimenti)`
+			ha molteplicità ( **1 : 1** ) ( *un professore* dirige *un diaprtimento* , *un dipartimento* è diretto da *un professore* )
+- *totalità* :
+	- *totale* : quando per ogni elemento di $X$ *esiste almeno* un elemento di $Y$ a cui è *associato* 
+	- *parziale* : quando ogni elemento di $X$ può *non avere* alemo un elemento di $Y$ a cui è associato
+	- Esempi :
+		- `Insegna(Professori, Corsi)`
+			è *totale* su `Corsi` in quanto non può esistere un corso del piano di studi senza il corrispondente docente che lo `Insegna`
+			è *parziale* su `Professori` in quanto un professore potrebbe non insegnare corsi 
 
-proprietà associazioni : 
-- *molteglicità*
-- *totalità*
-- *univoca* = per ogni elemento di X esiste un associazione con al più un elemento di Y
-- *multivalore* = per ogni elemento di X esiste un associazione con più di un elemento di Y
-posso guardare anche in verso contrario (Y -> X o X -> Y)
+Esempi :
++ `NataA(Persone, Città)`
+	ha *cardinalità* ( **N : 1** ) ( *una persona* è nata in un *unica città* , *in una città* sono nate *più persone* )
+	è *totale* su `Persone` , *parziale* su `Città`
++ `HaVisitato(Persone, Città)`
+	ha *cardinalità* ( **N : M** ) ( *più persone* hanno visitato *una città* , *più città* sono visitate da *una persona* )
+	è *parziale* su `Persone` e `Città` ( una persona può non aver visitato nessuna città , una città può non essere mai visitata da nessuna persona )
++ `èSindacoDi(Persone, Città)`
+	ha *cardinalità* ( **1 : 1** ) ( *una persona* è sindaco di una *sola città* , *una citta* può avere un *solo sindaco*)
+	è *parziale* su `Persone` e `Città` ( una persona può non essere sindaco di nessuna città , una città può non avere nessun sindaco ( durante le elezioni ) )
 
-(1:M) <---->>
-(1:1) <---->
-(N:M) <<---->>
-(N:1) <<---->
+##### Conoscenza Astratta
 
-Vincolo di totalità: Un’associazione R(X, Y) è totale da X a Y se per ogni elemento x di X esiste almeno un elemento di Y che è associato ad x; se non vale questo vincolo, l’associazione è parziale da X a Y.
+La *conoscenza astratta* sono i fatti generali che descrivono :
++ la struttura della *conoscenza concreta* : 
+	- *collezioni* : nomi , tipo degli elementi 
+	- *associazioni* : nomi , collezioni correlate ,prorpietà strutturali 
++ restrizioni sui valori possibli ( **vincoli di integrità** ) sulla *conoscenza concreta* e sui modi in cui essi possono evolvere nel tempo
++ regole per derivare nuovi fatti da altri noti ( **Fatti derivabili** )
 
-conoscenza astratta 
-struttura della conoscenza concreate 
-erstrizioni tra valori della conoscenza concreate ( vincoli di integrità )
+- **Vincoli di Integrità** :
+	+ **Vincoli di integrità statici** :
+		Condizioni della *conoscenza concreta* che devono essere soddisfatte indipendentemente da come evolve l'universo del discorso 
+		Es : `Stipendio` deve sempre essere positivo
+	+ **Vincoli di integrità dinamici** : 
+		Condizioni sul modo in cui la *conoscenza concreta* può evolvere nel tempo  
+		Es : `DataNascita` non può cambaire nel tempo 
 
-vincoli di integrità :
-+ statici  : voto deve essere compreso tra 18 30 ( può comprendere più attributi la lode puù essere data solo se il voto è 30 )
-	es chiave ( insieme di attributi x tali che x individua in modo univoco un elemento della collezione , non ci possono essere 2 elementi della collezione con stessa chiave )
-	
-+ dinamici : condizioni in cui la conoscenza concreata può evolvere nel tempo : data di nascita non può cambiare 
 
-fatti derivabili : media dei voto / età di una persona non serve rappresentarlo
++ **Fatti derivabili** : 
+	Es : media dei voti ( da tutti i voti ) , età di una persona ( dalla data di nascita )
 
 # 29/09/2023
+
+/git
