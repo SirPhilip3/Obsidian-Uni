@@ -633,7 +633,47 @@ Esempio : Si vuole rappresentare l’associazione tra Voli, Passeggeri e Posti. 
 
 ###### Esempio più complesso
 
-
+Si vogliono modellare alcuni fatti riguardanti una biblioteca universitaria:
++ Le *descrizioni bibliografiche* dei libri a volume unico :
+	- sia quelli già disponibili che quelli ordinati ma non ancora consegnati alla biblioteca
+	caraterizzati da :
+	+ codice ISBN che li identifica
+	+ titolo del libro
+	+ autori
+	+ aditore
+	+ anno di pubblicazione
+	+ termi che lo descrivono
++ I termini del *thesaurus* (parole chiave) :
+	Termini che descrivono il contenuto del libro
+	Relazioni tra i termini del *thesaurus* :
+	+ **Preferenza**
+		Es : 
+		+ Elaboratore , Calcolatrice : lo **Standard** è Calcolatore
+	+ **Gerarchia** 
+		Es :
+		+ Felino **PiùSpecifico** è Gatto , Leone , Tigre
+		+ Gatto **PiùGenerale** è Felino 
++ I *libri* :
+	identificati da : 
+	+ la loro *posizione* in biblioteca
++ Gli *autori* dei libri
+	con le seguenti caratteristiche:
+	+ codice fiscale
+	+ nome 
+	+ cognome
+	+ nazionalità 
+	+ data di nascita
++ Gli *utenti* della biblioteca
+	Dati interessanti :
+	+ nome
+	+ cognome
+	+ indirizzo
+	+ recapiti telefonici
+	I dati del prestito interessano fino alla restituzione , un utente può avere più libri in prestito
++ I *prestiti* in corso
+	che hanno :
+	+ data di inizio del prestito
+	+ data di restituzione del prestito
 
 ##### Gerarchie
 
