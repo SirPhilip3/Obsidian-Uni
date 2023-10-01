@@ -649,6 +649,7 @@ Si vogliono modellare alcuni fatti riguardanti una biblioteca universitaria:
 	+ **Preferenza**
 		Es : 
 		+ Elaboratore , Calcolatrice : lo **Standard** è Calcolatore
+		+ Calcolatore i **Sinonimi** sono : Elaboratore , Calcolatrice
 	+ **Gerarchia** 
 		Es :
 		+ Felino **PiùSpecifico** è Gatto , Leone , Tigre
