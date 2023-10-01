@@ -599,3 +599,42 @@ Es : `Persone`
 
 Le *associazioni* si leggono e creano pensando o da sinistra verso destra o dall'alto al basso
 
+![[rappAssociazioni.excalidraw]]
+
+Esempio :
+![[AssociazioniEx1.excalidraw]]
+
+Le *associazioni* possono avere delle *proprietà*
+
+![[AssociazioniEx2.excalidraw]]
+
+Se vi sono più di 1 attributo in una *associazione* allora sarebbe meglio trasformarla in una *classe*
+
+Es : 
+	se vogliamo rendere la precedente associazione storica : 
+![[AssociazioniEx2_1.excalidraw]]
+
+In cui `Prestiti` ha come proprietà la data di inizio e fine del prestito
+
+Le *associazioni* possono essere *ricorsive*
+
+![[AssociazioniEx3.excalidraw]]
+
+Posso renderla più generalistica :
+
+![[AssociazioniEx3_1.excalidraw]]
+
+*Associazioni* n-arie
+Le associazioni tra più *classi* vengono rappresentate inserndo una classe intermedia al posto di una *associazione* 
+
+Esempio : Si vuole rappresentare l’associazione tra Voli, Passeggeri e Posti. Per ogni volo, al momento dell’imbarco, viene assegnato un posto a ciascun passeggero
+
+![[AssociazioniEx4.excalidraw]]
+
+###### Esempio più complesso
+
+
+
+##### Gerarchie
+
+##### Ereditarietà
