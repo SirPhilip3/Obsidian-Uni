@@ -540,3 +540,62 @@ La *conoscenza astratta* sono i fatti generali che descrivono :
 
 # 29/09/2023
 
+## Modello dei dati ad Oggetti
+
+Un **Modello dei dati** è un insieme di meccanismi di astrazione per descrivere la struttura della conoscenza concreta ciò avviene attraverso *schemi* simili ai diagrammi ER ( entità-relazione )
+
+Il *Modello ad oggetti* è caratterizzato dalle seguenti nozioni :
++ L'*oggetto*
++ Il *Tipo di Oggetto*
++ La *classe*
++ Le *Ereditarietà*
++ La *Gerarchia fra tipi*
++ La *Gerarchia fra classi*
+
+### Oggetto
+
+Un *Oggetto* è un'entità software con :
++ **Stato** : 
+	Modellato da un insieme di *costanti* o *variabili* ( possono essere anche oggetti ma per noi ciò non sarà possibile )
++ **Comportamento** : Modellato da un insieme di metodi ( operazioni per *manipolare* oggetti ) 
++ **Identità** : 
+	è associato ad un oggetto al momento della sua creazione e non può essere modificato ( come se fosse un index che *identifica univocamente* quell'oggetto )
+
+Un *oggetto* può rispondere a richieste dette **messaggi** restituendo valori memorizzato nello stato o calcolati attraverso metodi
+
+#### Tipo Oggetto
+
+Primo passo nella costruzione di un modello consiste nel :
++ Identificare le *classi* ( o collezioni omogenee ) 
++ Definizione dei *tipi di oggetti* ( ossia lo *stato* e i *metodi*  ) che rappresentano le *classi*
+	Es : `Persona`
+	Definiamo lo *stato* : 
+	`string` Nome
+	`string` Cognome
+	`int` DataNascita
+	Definiami i *metodi* :
+	`int GiveEtà()`
+
+#### Classi
+
+Una *classe* è un insieme di *oggetti* dello stesso tipo , modificabile con operatori per includere o estrarre elementi dall'insieme , associabile a *vincoli di integità*
+
+Es : `Persone`
+
+![[SrudentiExClass.excalidraw]]
+
+##### Tipi degli attributi
+
++ **Primitivi** : ( `int, real, bool, date, string` )
++ **Non Primitivi** :
+	+ **Record** : `[A1:T1;...;An:Tn]` , è un insieme di coppie `nome:tipo` 
+		Es : `Indirizzo: [Via:string ; Città:string]`
+	+ **Enumerazione** : `(Val1;...;Valn)` , può assumere un solo valore presente all'interno dell'enumerazione
+		Es : `Sesso: M`  ( scielto tra `(M; F)` )
+	+ **Sequenza** : `seq T` , lista di elementi
+		Es : `LingueParlate: Italiano,Tedesco,Inglese`
+
+##### Associazioni
+
+Le *associazioni* si leggono e creano pensando o da sinistra verso destra o dall'alto al basso
+
