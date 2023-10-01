@@ -68,6 +68,23 @@ Riguarda ^AFgGNOSI
 
 Descrive ^oukudj3A
 
+I Libri ordinati non sono 
+presenti in biblioteca 
+ma hanno una descrizione bibliografica ^OmI7FEiI
+
+ci sono più copie 
+in biblioteca ^5edsF2R0
+
+I dati ci interessano 
+fino alla restituzione ^COHxtXW9
+
+Se non vi sono evidenti chiavi non 
+devo metterle nel modello 
+ad oggetti , sono intrinseche ^r49l91NX
+
+Totale poichè ogni bibliografia 
+ha bisogno di almeno un autore ^qeF7hodW
+
 %%
 # Drawing
 ```json
@@ -413,8 +430,8 @@ Descrive ^oukudj3A
 		},
 		{
 			"type": "rectangle",
-			"version": 369,
-			"versionNonce": 1770645281,
+			"version": 371,
+			"versionNonce": 1606152143,
 			"isDeleted": false,
 			"id": "s0A5HQiGc9OggCZFuYZLi",
 			"fillStyle": "hachure",
@@ -443,9 +460,17 @@ Descrive ^oukudj3A
 				{
 					"id": "6EVFeHWQYcwmz5lLcPraf",
 					"type": "arrow"
+				},
+				{
+					"id": "o7IINfjqx-uHZl8G41WgQ",
+					"type": "arrow"
+				},
+				{
+					"id": "cNLieqwxpPfzjjK9yDrCB",
+					"type": "arrow"
 				}
 			],
-			"updated": 1696171557409,
+			"updated": 1696178440618,
 			"link": null,
 			"locked": false
 		},
@@ -2863,6 +2888,472 @@ Descrive ^oukudj3A
 			"containerId": null,
 			"originalText": "Descrive",
 			"lineHeight": 1.25
+		},
+		{
+			"id": "mWDk3uYGHxoafiI-3gc-9",
+			"type": "arrow",
+			"x": 1067.5569047825556,
+			"y": -189.44608442369633,
+			"width": 86.07073102678578,
+			"height": 87.37474714006697,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"seed": 601887073,
+			"version": 98,
+			"versionNonce": 970575585,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1696178301922,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					86.07073102678578,
+					-87.37474714006697
+				]
+			],
+			"lastCommittedPoint": null,
+			"startBinding": null,
+			"endBinding": {
+				"elementId": "OmI7FEiI",
+				"focus": 0.8678593243101281,
+				"gap": 9.12859235491078
+			},
+			"startArrowhead": null,
+			"endArrowhead": "arrow"
+		},
+		{
+			"id": "OmI7FEiI",
+			"type": "text",
+			"x": 1162.7562281642522,
+			"y": -315.9438871580714,
+			"width": 371.25970458984375,
+			"height": 75,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 1706196271,
+			"version": 116,
+			"versionNonce": 1247759041,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "mWDk3uYGHxoafiI-3gc-9",
+					"type": "arrow"
+				}
+			],
+			"updated": 1696178301922,
+			"link": null,
+			"locked": false,
+			"text": "I Libri ordinati non sono \npresenti in biblioteca \nma hanno una descrizione bibliografica",
+			"rawText": "I Libri ordinati non sono \npresenti in biblioteca \nma hanno una descrizione bibliografica",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 67,
+			"containerId": null,
+			"originalText": "I Libri ordinati non sono \npresenti in biblioteca \nma hanno una descrizione bibliografica",
+			"lineHeight": 1.25
+		},
+		{
+			"type": "arrow",
+			"version": 421,
+			"versionNonce": 219664911,
+			"isDeleted": false,
+			"id": "tfiRPel1Ag7hlNkY3YoYq",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"angle": 0,
+			"x": 1045.2878195496487,
+			"y": -154.89596088737568,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 346.8910435267858,
+			"height": 85.93687485803248,
+			"seed": 782161505,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1696178367681,
+			"link": null,
+			"locked": false,
+			"startBinding": null,
+			"endBinding": {
+				"elementId": "5edsF2R0",
+				"focus": -0.6482970466892569,
+				"gap": 15.356731717281946
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					224.4047925431746,
+					-21.509090472704713
+				],
+				[
+					346.8910435267858,
+					64.42778438532777
+				]
+			]
+		},
+		{
+			"id": "5edsF2R0",
+			"type": "text",
+			"x": 1407.5355947937164,
+			"y": -100.15894017146422,
+			"width": 168.11984252929688,
+			"height": 50,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 1511531631,
+			"version": 43,
+			"versionNonce": 989112303,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "tfiRPel1Ag7hlNkY3YoYq",
+					"type": "arrow"
+				}
+			],
+			"updated": 1696178367679,
+			"link": null,
+			"locked": false,
+			"text": "ci sono più copie \nin biblioteca",
+			"rawText": "ci sono più copie \nin biblioteca",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 42,
+			"containerId": null,
+			"originalText": "ci sono più copie \nin biblioteca",
+			"lineHeight": 1.25
+		},
+		{
+			"type": "arrow",
+			"version": 316,
+			"versionNonce": 424504897,
+			"isDeleted": false,
+			"id": "o7IINfjqx-uHZl8G41WgQ",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"angle": 0,
+			"x": 806.6455901969703,
+			"y": 220.08801767730117,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 111.16302549605871,
+			"height": 89.9647611488086,
+			"seed": 663980545,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1696178497418,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "s0A5HQiGc9OggCZFuYZLi",
+				"focus": -0.689585144382649,
+				"gap": 17.37185003435775
+			},
+			"endBinding": {
+				"elementId": "COHxtXW9",
+				"focus": -0.8091517109450032,
+				"gap": 9.21959444049611
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					111.16302549605871,
+					89.9647611488086
+				]
+			]
+		},
+		{
+			"id": "COHxtXW9",
+			"type": "text",
+			"x": 927.028210133525,
+			"y": 289.02057066168163,
+			"width": 216.6998291015625,
+			"height": 50,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 521840399,
+			"version": 132,
+			"versionNonce": 1142119041,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "o7IINfjqx-uHZl8G41WgQ",
+					"type": "arrow"
+				}
+			],
+			"updated": 1696178497418,
+			"link": null,
+			"locked": false,
+			"text": "I dati ci interessano \nfino alla restituzione",
+			"rawText": "I dati ci interessano \nfino alla restituzione",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 42,
+			"containerId": null,
+			"originalText": "I dati ci interessano \nfino alla restituzione",
+			"lineHeight": 1.25
+		},
+		{
+			"type": "arrow",
+			"version": 211,
+			"versionNonce": 953812335,
+			"isDeleted": false,
+			"id": "cNLieqwxpPfzjjK9yDrCB",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"angle": 0,
+			"x": 707.3161049849166,
+			"y": 288.89754845972254,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 1.3040597098213311,
+			"height": 67.81332833426342,
+			"seed": 1830798465,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1696178490487,
+			"link": null,
+			"locked": false,
+			"startBinding": {
+				"elementId": "s0A5HQiGc9OggCZFuYZLi",
+				"focus": -0.07895818123869265,
+				"gap": 13.002387088992691
+			},
+			"endBinding": {
+				"elementId": "r49l91NX",
+				"focus": -0.02733243494435574,
+				"gap": 9.390175361558988
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-1.3040597098213311,
+					67.81332833426342
+				]
+			]
+		},
+		{
+			"id": "r49l91NX",
+			"type": "text",
+			"x": 542.0041006530915,
+			"y": 366.10105215554495,
+			"width": 335.41973876953125,
+			"height": 75,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 2024176161,
+			"version": 132,
+			"versionNonce": 829783951,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "cNLieqwxpPfzjjK9yDrCB",
+					"type": "arrow"
+				}
+			],
+			"updated": 1696178490487,
+			"link": null,
+			"locked": false,
+			"text": "Se non vi sono evidenti chiavi non \ndevo metterle nel modello \nad oggetti , sono intrinseche",
+			"rawText": "Se non vi sono evidenti chiavi non \ndevo metterle nel modello \nad oggetti , sono intrinseche",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 67,
+			"containerId": null,
+			"originalText": "Se non vi sono evidenti chiavi non \ndevo metterle nel modello \nad oggetti , sono intrinseche",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "rRP53X2bY0iAAqq1RXJYB",
+			"type": "arrow",
+			"x": 443.97077867489384,
+			"y": -53.64342002127353,
+			"width": 395.86385428147855,
+			"height": 161.57715393140393,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"seed": 959127727,
+			"version": 126,
+			"versionNonce": 73799937,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1696178572880,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-84.02001633405348,
+					-145.41941693195588
+				],
+				[
+					-395.86385428147855,
+					-161.57715393140393
+				]
+			],
+			"lastCommittedPoint": null,
+			"startBinding": null,
+			"endBinding": {
+				"elementId": "qeF7hodW",
+				"focus": -0.26507184897850317,
+				"gap": 1
+			},
+			"startArrowhead": null,
+			"endArrowhead": "arrow"
+		},
+		{
+			"id": "qeF7hodW",
+			"type": "text",
+			"x": -258.88964646994464,
+			"y": -239.45712543608033,
+			"width": 306.4397277832031,
+			"height": 50,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 0.5,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 93667439,
+			"version": 101,
+			"versionNonce": 756895969,
+			"isDeleted": false,
+			"boundElements": [
+				{
+					"id": "rRP53X2bY0iAAqq1RXJYB",
+					"type": "arrow"
+				}
+			],
+			"updated": 1696178572880,
+			"link": null,
+			"locked": false,
+			"text": "Totale poichè ogni bibliografia \nha bisogno di almeno un autore",
+			"rawText": "Totale poichè ogni bibliografia \nha bisogno di almeno un autore",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 42,
+			"containerId": null,
+			"originalText": "Totale poichè ogni bibliografia \nha bisogno di almeno un autore",
+			"lineHeight": 1.25
 		}
 	],
 	"appState": {
@@ -2871,7 +3362,7 @@ Descrive ^oukudj3A
 		"currentItemStrokeColor": "#1e1e1e",
 		"currentItemBackgroundColor": "transparent",
 		"currentItemFillStyle": "hachure",
-		"currentItemStrokeWidth": 1,
+		"currentItemStrokeWidth": 0.5,
 		"currentItemStrokeStyle": "solid",
 		"currentItemRoughness": 1,
 		"currentItemOpacity": 100,
@@ -2880,10 +3371,10 @@ Descrive ^oukudj3A
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": -365.8179655481913,
-		"scrollY": 703.076487721405,
+		"scrollX": 1236.8788973376004,
+		"scrollY": 1153.1378229482134,
 		"zoom": {
-			"value": 0.7199298864413262
+			"value": 0.4678566480136854
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,

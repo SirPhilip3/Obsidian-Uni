@@ -676,6 +676,28 @@ Si vogliono modellare alcuni fatti riguardanti una biblioteca universitaria:
 	+ data di inizio del prestito
 	+ data di restituzione del prestito
 
-##### Gerarchie
+Schema finale 
+![[AssociazioniComplexExample.excalidraw]]
+##### Gerarchie tra tipi di oggetto
 
-##### Ereditarietà
+Relazione di **sottotipo** ( $\leq$ ) o ( *ordine parziale* )
+
+Proprietà :
++ **Riflessiva** : ogni oggetto è sempre $\leq$ a se stesso
++ **Antiriflessiva** :
+	presi $t_1$ e $t_2$ se $t_1\leq t_2$ e $t_2\leq t_1$ allora $\implies$ $t_1==t_2$
++ **Transitiva** :
+	presi $t_1 , t_2\space \text{e}\space t_3$ se $t_1\leq t_2$ e $t_2\leq t_3$ allora $\implies t_1\leq t_3$  
+
+Esempio :
+
+![[Point.excalidraw]]
+
+![[ColoredPoint.excalidraw]]
+
+`ColoredPoint` è un *sottoinsieme* di `Point` poichè gli attributi di `Point` sono tutti presenti in `ColoredPoint`
+
+![[ColoredPointInt.excalidraw]]
+
+Anche `ColoredPointint` è un *sottoinsieme* di `ColoredPoint` e quindi di `Point` poichè `x , y` essendo interi sono un *sottotipo* dei reali
+
