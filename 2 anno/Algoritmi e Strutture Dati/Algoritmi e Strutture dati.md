@@ -130,3 +130,96 @@ Sostituendo nella formula $T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$ avremo :
 $$T(n) = 2\cdot (F_n -1) + F_n \implies 3F_n-2 \approx F_n$$
 Quindi si deduce che la *compessità* corrisponde all'incirca all'ennesimo numero di *fibonacci* 
 
+---
+Per determinare come cresce la *complessità* dei numeri di *fibonacci* possiamo appoggiarci alla seguente *proprietà* :
+$$\forall n \ge 6$$
+$$F_n \ge 2^{\frac{n}{2}} \simeq \sqrt2^n$$
+
+**Dimostrazione** :
+
++ **Caso Base** : 
+	$n=6$
+
++ **Passo induttivo**
+	**Ipotesi induttiva** : Assumiamo che la *proprietà* sia vera per $n-1$
+
+	Quindi , per definzione di numero di *fibonacci* abbiamo :
+	$$F_n=F_{n-1}+F_{n-2}$$
+	Considerando la *proprietà* abbiamo che :
+	$$F_{n-1} \ge 2^\frac{n-1}{2}$$
+	$$F_{n-2} \ge 2^\frac{n-2}{2}$$
+	Quindi la definizione diventa :
+	$$F_n=2^\frac{n-1}{2}+2^\frac{n-2}{2}$$
+	$$c\cdot2^\frac{-1}{2}+2^\frac{n}{2}\cdot2^{-1}$$
+	$$2^\frac{n}{2}\Big(2^{\frac{-1}{2}}+2^{-1}\Big)$$
+	$$2^\frac{n}{2}\Bigg(\frac{1}{\sqrt2}+\frac{1}{2}\Bigg)$$
+	E visto che 
+	$$\Bigg(\frac{1}{\sqrt2}+\frac{1}{2}\Bigg)\ge1$$
+    Abbiamo che :
+	$$F_{n} \ge 2^\frac{n}{2}$$
+La soluzione *ricorsiva* del problema risulta quindi estremamente *inefficente* , principalmente poichè vengono *ripetute* moltissime operazioni già svolte in precedenza ( es il calcolo dei numeri di fibonacci $F_1$ e $F_2$ )
+
+### Fib3
+
+Trasformando la soluzione ricorsiva in *iterativa* ed aggiungendo un *array* dove contenere i risultati precedentemente calcolati 
+
+```c
+Fib3(n)
+	Allocazione di un array di n interi
+	F[1] = F[2] = 1 // assegnazione casi base
+	for i=3 to n
+		F[i]=F[i-1]+F[i-2] //calcolo fib con array
+	return F[n] // rit ultimo el array ossia n-esimo numero di fibonacci
+```
+
+È **Corretto** ?
+	sì poichè applichiamo la definzione di numero di *fibonacci*
+
+**Complessità** :
+	Per $n\leq3$ la *complessità* risulta costante poichè non entriamo mai nel ciclo *for*
+	Per $n\ge3$
+		3 operazioni vengono sempre svolte :
+			- Allocazione della memoria iniziale
+			- Assegnazione dei casi base
+			- ritorno del risultato
+		Il corpo interno del ciclo *for* viene svolto $n-3+1$ volte ( -3 poichè non lo svolgiamo per i casi base , +1 poichè ne viene svolto sempre 1 in più per l'uscita dal ciclo )
+		L'istruzione *for* viene svolta $n-1$ volte 
+
+Quindi complessivamente la *complessità* risutlerà essere : 
+$$T(n)=3+(n-2)+(n-1)=2n$$
+
+La *complessità* risulterà quindi essere **lineare**
+
+Questo algoritmo può essere ulteriormente migliorato diminuendo la *complessità spaziale* 
+
+### Fib4
+
+```c
+Fib4(n)
+	a=1 , b=1 //casi base
+	for i=3 to n
+		c=a+b //applico fibonacci 
+		a=b // il primo caso base diventa il 2  
+		b=c // il 2 caso base diventa il numero di fibonacci
+	return c
+```
+
+La **Complessità** risulta essere :
+$$4n-5$$
+che rimane **lineare**
+
+Ovviamente è **corretto** poichè segue la definizione di numero di *fibonacci*
+###
+Possiamo quindi riassumere le varie complessità dei precedenti algoritmi qui :
+
+|ver|correttezza|complessità Temporale|complessità Spaziale|
+|---|---|---|---|
+|binet|no|costante|costante|
+|ricorsiva|si|esponenziale|lineare*|
+|iterativa|si|lineare|lineare|
+|iterativa2|si|lineare|costante|
+
+.* La complessità spaziale della soluzione è lineare poichè lo spazio allocato per ogni chiamata ricorsiva viene deallocato alla sua conclusione quindi il caso peggiore per la memoria utilizzata è la profondità dell'albero delle ricorsioni
+
+## Notazione O grande
+
