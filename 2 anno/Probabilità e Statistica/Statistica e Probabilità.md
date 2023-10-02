@@ -63,3 +63,4 @@ In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ ele
 
 Esempio :
 	La professoressa interroga ogni lunedì 10 studenti da una classe di 25. Esistono per lei $\binom{25}{10} = 3268760$ possibilità di scelta
+
