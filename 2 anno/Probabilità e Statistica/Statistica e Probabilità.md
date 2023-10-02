@@ -64,3 +64,10 @@ In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ ele
 Esempio :
 	La professoressa interroga ogni lunedì 10 studenti da una classe di 25. Esistono per lei $\binom{25}{10} = 3268760$ possibilità di scelta
 
+#### R-Studio
+
+c minuscola -> concatenate
+
+**sapzio campionario** : insieme di tutti i possibili risusltati di un fenomeno aleatorio ( non abbiamo certezza del risusltato ) 
+moneta = testa o crocio = 2
+**cardinalità** : numero di elementi = 2 
