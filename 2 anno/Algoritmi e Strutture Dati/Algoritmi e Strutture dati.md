@@ -291,7 +291,7 @@ Per :
 $$\frac{1}{2}n^2-3n = \Theta\big(n^2\big)$$
 Quindi si comporta come il termine $n^2$ , in generale tutti i polinomi si comportano come il loro termine di massimo grado
 
-Esempio : 
+**Esempio** : 
 $$\sqrt{n+10}=\Theta(\sqrt{n})$$
 *Dimostrazione* :
 
@@ -308,4 +308,6 @@ $$c_1\le 1$$
 2. 
 	$$n+10\le c_2^2\cdot n$$
 	$$(c_2^2-1)\cdot n\ge 10$$
-	
+Quindi avremo che :
+$$c_2\gt1$$
+
