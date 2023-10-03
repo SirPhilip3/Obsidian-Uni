@@ -223,3 +223,16 @@ Possiamo quindi riassumere le varie complessità dei precedenti algoritmi qui :
 
 ## Notazione O grande
 
+La notazione *O grande* viene utilizzata per rappresentare l'andamento della complessità asintotica di un algoritmo
+
+**Classi di Complessità** : 
+### $O\Big(g(n)\Big)$
+
+O grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* : 
+$$\bigg\{f(n)\mid\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(n)\le c\cdot g(n)\bigg\}$$
+In cui $\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0$ significa : per $n$ sufficentemente grandi
+
+Esempio :
+
+Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete realzione : $f(n)\le c\cdot g(n)$   ( Ossia che $f(n)$ stia sotto $c\cdot g(n)$  ) 
+
