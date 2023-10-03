@@ -277,4 +277,35 @@ Quando è vera la precedente disequazione
 
 ### $\Theta\Big(g(n)\Big)$
 
-Risulta la combinazione di *O-grande* e *Omega-grande* 
+Risulta la combinazione di *O-grande* e *Omega-grande* ossia :
+$$\bigg\{f(n)\mid\exists\space c_1\gt0\space \land\exists\space c_2\gt 0 , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : c_1\cdot g(n)\le f(n)\le c_2\cdot g(n)\bigg\}$$
+
+![[big-theta-notation.png]]
+
+Accade quando $f(n)$ si comporta asintoticamente come $g(n)$ 
+
+Quindi avremo che :
+$$f(n)=\Theta\big(g(n)\big)\iff f(n)=\Omega\big(g(n)\big) \land\space f(n)=O\big(g(n)\big)$$
+
+Per : 
+$$\frac{1}{2}n^2-3n = \Theta\big(n^2\big)$$
+Quindi si comporta come il termine $n^2$ , in generale tutti i polinomi si comportano come il loro termine di massimo grado
+
+Esempio : 
+$$\sqrt{n+10}=\Theta(\sqrt{n})$$
+*Dimostrazione* :
+
+Applico la definizione : 
+	$$\exists\space c_1 , c_2 \gt 0 \space\text{t.c.}\space c_1\sqrt{n}\le \sqrt{n+10}\le c_2\sqrt{n}$$
+	$$c_1^2\cdot n\le n+10\le c_2^2\cdot n$$
+Suddividendo le disequazioni abbiamo :
+1. 
+$$c_1^2\cdot n\le n+10$$
+$$c_1^2\cdot n-n\le 10$$
+$$(c_1^2-1)\cdot n\le 10$$
+Perchè la disequazione risulti vera necessitamo che $(c_1^2-1)$ sia $\le 0$ , avremo quindi :
+$$c_1\le 1$$
+2. 
+	$$n+10\le c_2^2\cdot n$$
+	$$(c_2^2-1)\cdot n\ge 10$$
+	
