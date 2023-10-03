@@ -10,18 +10,18 @@ tags: [excalidraw]
 # Text Elements
 Dopo n0 o x0 f(n) deve 
 sempre rimanere al di 
-sotto di c*g(n) 
+sopra di c*g(n) 
 ( al netto di una costante c )
- ^DaoB9jRk
+ ^QN58tnIW
 
 prima di x0 non ci interessa , 
 ci interessa il 
 comportamento asintotico 
-( per un x sufficentemente grande ) ^aohlctdT
+( per un x sufficentemente grande ) ^DNikK2zI
 
 
 # Embedded files
-79bd1aa2eb7b1bfb288fb538586a6e6ab387bba8: [[Pasted Image 20231003111112_859.png]]
+1fe02d21f2c9d5f12e3387533dc04e5c2e1ef9b6: [[Pasted Image 20231003131838_591.png]]
 
 %%
 # Drawing
@@ -32,12 +32,12 @@ comportamento asintotico
 	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.9.20",
 	"elements": [
 		{
-			"id": "qVyTYKMwI_MRG-OuXspbr",
+			"id": "t2jT91cxggz3lNMk4b_gF",
 			"type": "image",
-			"x": -354.1571369723108,
-			"y": -368.0010681152344,
-			"width": 450.5852090032154,
-			"height": 424,
+			"x": 166.42493573057112,
+			"y": -484.54724169805206,
+			"width": 542.5176874467355,
+			"height": 510.50832313444704,
 			"angle": 0,
 			"strokeColor": "transparent",
 			"backgroundColor": "transparent",
@@ -49,93 +49,58 @@ comportamento asintotico
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 622981320,
-			"version": 23,
-			"versionNonce": 1498529736,
+			"seed": 1963379912,
+			"version": 64,
+			"versionNonce": 2037157064,
 			"isDeleted": false,
 			"boundElements": null,
-			"updated": 1696324297440,
+			"updated": 1696331922960,
 			"link": null,
 			"locked": false,
 			"status": "pending",
-			"fileId": "79bd1aa2eb7b1bfb288fb538586a6e6ab387bba8",
+			"fileId": "1fe02d21f2c9d5f12e3387533dc04e5c2e1ef9b6",
 			"scale": [
 				1,
 				1
 			]
 		},
 		{
-			"id": "gHp76C937vfKOP1SdBRSa",
-			"type": "line",
-			"x": -116.49649783470704,
-			"y": -107.2332937796987,
-			"width": 0,
-			"height": 148.9418058549959,
-			"angle": 0,
-			"strokeColor": "#ffffff",
-			"backgroundColor": "transparent",
-			"fillStyle": "hachure",
-			"strokeWidth": 1,
-			"strokeStyle": "dotted",
-			"roughness": 0,
-			"opacity": 100,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": {
-				"type": 2
-			},
-			"seed": 1377481928,
-			"version": 293,
-			"versionNonce": 1104940232,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1696324375188,
-			"link": null,
-			"locked": false,
-			"points": [
-				[
-					0,
-					0
-				],
-				[
-					0,
-					148.9418058549959
-				]
-			],
-			"lastCommittedPoint": null,
-			"startBinding": null,
-			"endBinding": null,
-			"startArrowhead": null,
-			"endArrowhead": null
-		},
-		{
-			"id": "G8k-YlX2R1EWdq1sk0Jm-",
 			"type": "arrow",
-			"x": -110.2243974396821,
-			"y": 46.440753645488485,
-			"width": 76.86761842060008,
-			"height": 87.3106069913598,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "transparent",
+			"version": 320,
+			"versionNonce": 1595282120,
+			"isDeleted": false,
+			"id": "e_tCLc3upt2YUPwTyJ3FD",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": 458.00983350302533,
+			"y": 16.966822773081432,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 76.98151465259082,
+			"height": 87.34716631748688,
+			"seed": 1313338824,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 2
 			},
-			"seed": 1179847864,
-			"version": 166,
-			"versionNonce": 940401848,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1696330646520,
+			"boundElements": [],
+			"updated": 1696331963134,
 			"link": null,
 			"locked": false,
+			"startBinding": null,
+			"endBinding": {
+				"elementId": "QN58tnIW",
+				"focus": 0.09113074935768557,
+				"gap": 16.319884431290006
+			},
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
 			"points": [
 				[
 					0,
@@ -146,88 +111,79 @@ comportamento asintotico
 					66.09495363756662
 				],
 				[
-					76.86761842060008,
-					87.3106069913598
+					76.98151465259082,
+					87.34716631748688
 				]
-			],
-			"lastCommittedPoint": null,
-			"startBinding": null,
-			"endBinding": {
-				"elementId": "DaoB9jRk",
-				"focus": 0.0911307493576863,
-				"gap": 16.31988443128995
-			},
-			"startArrowhead": null,
-			"endArrowhead": "arrow"
+			]
 		},
 		{
-			"id": "DaoB9jRk",
 			"type": "text",
-			"x": -17.036894587792062,
-			"y": 135.71264704358657,
-			"width": 305.6597900390625,
-			"height": 125,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "transparent",
+			"version": 249,
+			"versionNonce": 1288883144,
+			"isDeleted": false,
+			"id": "QN58tnIW",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": 551.1973363549154,
+			"y": 106.2387161711795,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 305.6597900390625,
+			"height": 125,
+			"seed": 206961864,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 1169521080,
-			"version": 169,
-			"versionNonce": 1802505656,
-			"isDeleted": false,
 			"boundElements": [
 				{
-					"id": "G8k-YlX2R1EWdq1sk0Jm-",
+					"id": "e_tCLc3upt2YUPwTyJ3FD",
 					"type": "arrow"
 				}
 			],
-			"updated": 1696330646520,
+			"updated": 1696331963132,
 			"link": null,
 			"locked": false,
-			"text": "Dopo n0 o x0 f(n) deve \nsempre rimanere al di \nsotto di c*g(n) \n( al netto di una costante c )\n",
-			"rawText": "Dopo n0 o x0 f(n) deve \nsempre rimanere al di \nsotto di c*g(n) \n( al netto di una costante c )\n",
 			"fontSize": 20,
 			"fontFamily": 1,
+			"text": "Dopo n0 o x0 f(n) deve \nsempre rimanere al di \nsopra di c*g(n) \n( al netto di una costante c )\n",
+			"rawText": "Dopo n0 o x0 f(n) deve \nsempre rimanere al di \nsopra di c*g(n) \n( al netto di una costante c )\n",
 			"textAlign": "left",
 			"verticalAlign": "top",
-			"baseline": 117,
 			"containerId": null,
-			"originalText": "Dopo n0 o x0 f(n) deve \nsempre rimanere al di \nsotto di c*g(n) \n( al netto di una costante c )\n",
-			"lineHeight": 1.25
+			"originalText": "Dopo n0 o x0 f(n) deve \nsempre rimanere al di \nsopra di c*g(n) \n( al netto di una costante c )\n",
+			"lineHeight": 1.25,
+			"baseline": 117
 		},
 		{
 			"type": "arrow",
-			"version": 332,
-			"versionNonce": 973909688,
+			"version": 406,
+			"versionNonce": 217166024,
 			"isDeleted": false,
-			"id": "m03BNSVcJ8l9GjeGr2TCS",
+			"id": "57Ny86eQMFwmQmBqyz5-C",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -126.00598194252991,
-			"y": 48.90530867097428,
+			"x": 442.2282490001775,
+			"y": 19.431377798567226,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 91.19160269749476,
 			"height": 89.2012556057405,
-			"seed": 37308600,
+			"seed": 151725000,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1696330742438,
+			"updated": 1696331944314,
 			"link": null,
 			"locked": false,
 			"startBinding": null,
@@ -252,28 +208,28 @@ comportamento asintotico
 		},
 		{
 			"type": "text",
-			"version": 452,
-			"versionNonce": 1123424184,
+			"version": 526,
+			"versionNonce": 1678792648,
 			"isDeleted": false,
-			"id": "aohlctdT",
+			"id": "DNikK2zI",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -542.6095622454974,
-			"y": 99.99662108947257,
+			"x": 25.62466869721004,
+			"y": 70.5226902170655,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 353.7996826171875,
 			"height": 100,
-			"seed": 2052284344,
+			"seed": 579037896,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696330742438,
+			"updated": 1696331944314,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -286,6 +242,50 @@ comportamento asintotico
 			"originalText": "prima di x0 non ci interessa , \nci interessa il \ncomportamento asintotico \n( per un x sufficentemente grande )",
 			"lineHeight": 1.25,
 			"baseline": 92
+		},
+		{
+			"type": "line",
+			"version": 316,
+			"versionNonce": 2023957688,
+			"isDeleted": false,
+			"id": "KAQOtZsU9zu51yW1ekH4o",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "dotted",
+			"roughness": 0,
+			"opacity": 100,
+			"angle": 0,
+			"x": 451.3976881300016,
+			"y": -168.95318309091542,
+			"strokeColor": "#ffffff",
+			"backgroundColor": "transparent",
+			"width": 3.2974111390085454,
+			"height": 176.41988906892402,
+			"seed": 2028090312,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": {
+				"type": 2
+			},
+			"boundElements": [],
+			"updated": 1696331953552,
+			"link": null,
+			"locked": false,
+			"startBinding": null,
+			"endBinding": null,
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": null,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					-3.2974111390085454,
+					176.41988906892402
+				]
+			]
 		}
 	],
 	"appState": {
@@ -303,10 +303,10 @@ comportamento asintotico
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 976.0058573480441,
-		"scrollY": 884.1896670564182,
+		"scrollX": 97.38529621923325,
+		"scrollY": 653.4161393048449,
 		"zoom": {
-			"value": 0.5174189440451158
+			"value": 0.8305447350920775
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,

@@ -236,3 +236,45 @@ Esempio :
 
 Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete realzione : $f(n)\le c\cdot g(n)$   ( Ossia che $f(n)$ stia sotto $c\cdot g(n)$  ) 
 
+![[Ogrande.excalidraw]]
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Esempio :
+$$\frac{1}{2}n^2-3n=O\big(n^2\big)$$
+Applicando la definizione :
+$$\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : \frac{1}{2}n^2-3n\le c\cdot n^2$$
+Dimostriamo quindi la precedente relazione :
+$$\frac{1}{2}n-3\le c\cdot n $$
+$$\frac{1}{2}n-c\cdot n\le3$$
+$$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
+Quando è vera la precedente disequazione 
+
+--erf
+
+### $\Omega\Big(g(n)\Big)$
+
+Omega grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* :
+$$\bigg\{f(n)\mid\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : c\cdot g(n)\le f(n)\bigg\}$$
+
+Risulta essere l'esatto contrario di *O-grande*
+
+Esempio :
+
+Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete realzione : $c\cdot g(n)\le f(n)$   ( Ossia che $f(n)$ stia sopra $c\cdot g(n)$  ) 
+
+![[Omega.excalidraw]]
+
+!!!!!!!!!!!!!!!!!!
+Esempio :
+$$\frac{1}{2}n^2-3n=\Omega\big(n^2\big)$$
+Applicando la definizione :
+$$\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : c\cdot n^2\le \frac{1}{2}n^2-3n $$
+Dimostriamo quindi la precedente relazione :
+$$ c\cdot n \le\frac{1}{2}n-3$$
+$$3\le\frac{1}{2}n-c\cdot n$$
+$$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
+Quando è vera la precedente disequazione 
+
+
+### $\Theta\Big(g(n)\Big)$
+
+Risulta la combinazione di *O-grande* e *Omega-grande* 
