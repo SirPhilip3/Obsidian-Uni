@@ -247,7 +247,7 @@ $$\frac{1}{2}n-3\le c\cdot n $$
 $$\frac{1}{2}n-c\cdot n\le3$$
 $$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
 Quando è vera la precedente disequazione 
-
+?????????????????
 --erf
 
 ### $\Omega\Big(g(n)\Big)$
