@@ -16,7 +16,7 @@ Un **Sistema Operativo** è quindi un :
 + **Utente** : Le applicazioni sono in maggior parte runnate in modalità *utente* 
 + **Kernel** : Il S.O. è per la maggior parte runnato in modalità *kernel*
 
-### Storia dei Sistemi Operativi
+## Storia dei Sistemi Operativi
 
 #### 1° generazione ( 1945 - 1955 )
 
@@ -97,49 +97,30 @@ Sviluppo di sistemi *Paralleli* : sistema costituito da un insieme di unità di 
 
 Utilizzo della teconologia a **oggetti** per sviluppare i sistemi operativi ( *Sistemi operativi orientati agli oggetti* , **OOOS** ) , consente modularità facilmente mantenibili e estensibili
 
-Creazione del preogetto **GNU** : 
+Creazione del progetto **GNU** e **OSI** ( *Open Source Initiative* ) : 
 + Open source operating systems : *Linux* , *Apache Web server*
++ Migliora il debugging , testing e advancement del software ( visto che tutti possono lavorarci ) 
++ Adattabilità a vari ambienti di utilizzo
+
+Creazione di **GUI** per migliorare l'esperienza utente 
+Introduzione della tecnologia *plug-and-play*
 
 #### 5° generazione ( 1990 - present )
 
+Sviluppo della tecnologia per sistemi *mobili* ( Android , iOS ) 
+	Considerando le limitazioni di questi :
+	Risparmio energetico mantenendo prestazioni decenti
 
+Sviluppo dell'**IoT**
 
+## Componenti OS
 
-cpu state:
-user - supervisor
-
-scheduling
-
-----
-OS : 
-verso l'alto
-- macchina astratta
-	- user UI
-	- programmi da eseguire
-verso il basso
-- gestore di risorse
-	- gestione HW
-	- gestione os, mem virtuale
-
-interfaccia tra utente e macchina fisica ( HW , os ) , illusione di macchia "ideale"
-
-gestione delle risorse : performance
-
---- 
-Definizione
-
-SF che controlla l'HW
-gestisce e controlla l'esecuzione di un insieme di applicazioni, interfaccia tra app e hw, gestione risorse hw
-
-process possono essere : 
-+ user ( app )
-+ kernel ( OS )
-
-Macchina estesa : nasconde dettagli e operazioni che devono essere eseguite
- - se avvengono dei malfunzionamenti l'utente non può svolgere nessuna diagnostica
- - in generale vantaggio perchè l'utente non necessita di sapere , rende indipendente le applicazioni dai dettagli 
-
-Gestore di risorse rispetto a spazio e tempo ( dipende dal processo )
-
-multiprogrammazione : gestione dei job a differenza di utilizzo hw ( cpu , memoria , perifercihe )
-
+Deve gestire componenti *hardware* e *software* : 
++ processori
++ memoria
++ memoria secondaria
++ I/O
++ processi
++ thread
++ file
++ database
