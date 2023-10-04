@@ -56,7 +56,7 @@ $ILA,IAL,LIA,LAI,AIL,ALI$
 
 #### Combianzioni
 
-In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ elementi si chiama **combianzione** di $n$ elemento presi $r$ alla volta 
+In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ elementi si chiama **combianzione** di $n$ elemento presi $r$ alla volta ( *senza ordine* )
 	Il numero di combinazioni di $n$ elementi $r$ alla volta è :
 	$$\frac{n\times(n-1)...\times(n-r+1)}{r!} = \binom{n}{r}$$
 	**Coefficiente binomiale** $n$ su $r$
