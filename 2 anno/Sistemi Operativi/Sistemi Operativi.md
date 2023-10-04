@@ -174,7 +174,6 @@ Per il miglioramento delle prestazioni possono essere implementati :
 > [!warning] 
 >  Se la memoria è condivisa bisogna fare attenzione che i *thread* non modifichino o accedino a memoria in conflitto 
 
-
 #### Scheda madre
 
 Scheda che contiene tutti i circuiti elettrici stampati per il collegamento dei vari componenti di un calcolatore inoltre contiene il :
@@ -245,4 +244,3 @@ memoria volatile che principalmente mantiene dati come la data e l'ora
 
 #### Dischi
 
-/git
