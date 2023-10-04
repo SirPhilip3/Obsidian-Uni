@@ -124,3 +124,21 @@ Deve gestire componenti *hardware* e *software* :
 + thread
 + file
 + database
+
+### Processori
+
+esegue codice in linguaggio macchina
+
+presenza di *coprocessori* per compiti specifici ( es audio / video )
+
+contengono *registri* ( memorie ad alta velocità vicine al processore , amntengono i dati immediatamenti necessari all'avanzamento di un processo ) 
+	ci sono dei registri speciali : ( **PC** ( Program Counter ) , **SP** ( Stack Pointer ) , **PSW** ( [Program Status Word](https://en.wikipedia.org/wiki/Program_status_word) ) che contiene *flags* , bit di confronto quando si usano istruzioni di confronto o flags per **interrupt** di sistema ossia cambiamenti di contesto / errori / modalità del kernel )
+
+lunghezza della *parola* -> lunghezza delle istruzioni ( supporate diverse lunghezze a seconda della macchina )
+
+tempo di esecuzione misurazione in cicli ossia un'oscillazione completa di un segnale elettrico la cui lunghezza è fornita dal *clock* di sistema ( misurata in Hz )
+
+La **CPU** ha 2 modalità di funzionamento :
++ *kernel* ( riservata per funzioni del sistema operativo come managing memoria etcc )
++ *utente* 
+
