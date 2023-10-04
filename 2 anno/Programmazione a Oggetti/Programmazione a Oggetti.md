@@ -128,3 +128,81 @@ se non c'è un costruttore creazione del costruttore di default senza alcun para
 se definisco un contructor non posso più cotruire un oggetto senza quel costruttore
 
 posso definire più costruttori ( overloading )
+
+# 04/10/2023
+
+Instanza oggetto with contructor
+
+new in bytecode = malloc di c ( malloc sizeof figther ) niiziailizza tutto a 0
+
+nello stack delle op i parametri e li assegna a campi
+
+tutti i metodi all'interno di una classe , sempre invocati in un metodo
+
+tutti metodi dentro una calsse ha un prametro implicito this
+
+chiamare constructor da constructor
+
+```java
+Fighter(Weapon w1, Armor a1){
+
+	this(0,100,w1,a1)//chiama 2° constructor
+
+}
+
+Fighter(int exp , int life, Weapon w1, Armor a1) {  
+    this.exp = exp;
+    this.life=life;
+    this.weapon = w1;  
+    this.armor = a1;  
+}
+```
+
+modifiers :
+caratterizzare la classe , campo o metodo che ci permettono di modificarli
+
+3 classi
+
++ Accesso
+	+ public
+	+ private
+	+ protected
++ Concurrency
+	+ synchronized
+	+ volatile
++ Others
+	+ satic 
+	+ final
+	+ obstract
+
+
+static
+	non è per forza legato ad un oggetto
+	definire un metodo / campo di una classe 
+
+metodi static 
+	appartiene alla classe nella sua interezza 
+	in un metodo statico il puntatore a this non esiste
+	non esistendo in pos 0 dello stack c'è primo 
+
+```java
+
+static{
+
+	Fighter.id=0;
+
+}
+
+```
+
+costruttore statico per inizializzare i campi statici della classe , eseguito la prima volta che viene usata quella classe / start
+
+<clinit> per static constructors
+
+final : classi , campi e metodi
+ha effetto su ereditarietà
+
+campo final = non può essere modificato , si inizializza solo all'interno di un constructor
+es id non deve essere modificato
+
+costante globale static e final
