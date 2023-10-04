@@ -141,4 +141,108 @@ tempo di esecuzione misurazione in cicli ossia un'oscillazione completa di un se
 La **CPU** ha 2 modalità di funzionamento :
 + *kernel* ( riservata per funzioni del sistema operativo come managing memoria etcc )
 + *utente* 
+Per cambiare tra queste 2 modalità un'applicazione in modalità *utente* può usare l'istruzione **TRAP** per cambiare modalità in *kernel*
 
+#### Miglioramento prestazioni
+
+Le prestazioni di una **CPU** si possono calcolare attraverso la seguente fromula :
+$$T = N_i/IPS$$
+dove $IPS$ è :
+$$IPS=F\times IPC=F/CPI$$
+Dove :
++ T : è il tempo di esecuzione
++ $N_i$ : è il numero di istruzioni di un programma
++ IPS : è il numero di istruzioni svolte al secondo
++ F : è la frequanza di clock del processore
++ IPC : sono il numero di istruzioni per ciclo di clock
++ CPI : sono i cicli di clock per istruzioni
+
+Il *T*empo di esecuzione può essere migliorato :
+	- Aumentando F
+	- Riducendo $N_i$ ( svolto realizzando diverse architetture es : CISC / RISC )
+	- Aumentando gli IPC o diminuendo il CPI ( costruendo una *pipeline* o creando una *CPU superscalare* )
+
+![[Pasted image 20231004220324.png]]
+
+Per il miglioramento delle prestazioni possono essere implementati :
++ *Multithreading* ( hyperthreading )
+	*una* CPU può mantenere lo stato di due *thread* ( più piccola parte eseguibile di un programma ) se il loro scambio avviene entro 1 nanosec ( in modo che sembrino concorrenti )
++ *Multi core CPU* 
+	più processori completi ( *core* ) su un singolo chip 
+	questi hanno la memoria L1 non condivisa e possono o no avere anche la memoria L2 condivisa
+
+> [!warning] 
+>  Se la memoria è condivisa bisogna fare attenzione che i *thread* non modifichino o accedino a memoria in conflitto 
+
+
+#### Scheda madre
+
+Scheda che contiene tutti i circuiti elettrici stampati per il collegamento dei vari componenti di un calcolatore inoltre contiene il :
++ **BIOS** ( *Basic Input Output System* ) Software I/O di basso livello per il boot del sistema e gestione delle risorse ( mantenuto in un chip a parte )
++ **Memorie**
+
+### Memoria 
+
+Vi sono vari livelli di memoria che permettono all'utente finale di avere l'impressione di possedere una macchina con molta memoria e veloce 
+
+![[Pasted image 20231004222902.png]]
+
+#### Registri
+
+Sono interni alla CPU , molto veloci 
+
+Capacità :
++ 32x32 bit per CPU a 32 bit
++ 64x64 bit per CPU a 64 bit
+
+Alcuni registri importanti ( oltre a PC , SP , PSW ) :
+
++ *Base register* 
++ *Limit register*
+
+Limitano inferiormente ( start , *base register* ) e superiormente ( fine , *limit register* ) un processo , limtando così gli indirizzi che può accedere e modificare 
+Possono essere utilizzati a coppie per condiviere vari dati con vari programmi per cui :
++ la prima coppia di *base* e *register* (1) sono associati al limite del codice del programma
++ la seconda coppia (2) limita invece i *dati* su cu un programma può operare
+
+![[Screenshot 2023-10-04 230745.png]]
+#### Cache
+
+Diversi livelli dal livello più basso , *L1* , interno alla CPU molto veloce ma molto piccolo ; a livelli più alti con sempre più memoria , più distanti dalla CPU e più lenti
+
+La cache è fondamentale per l'aumento delle prestazioni del calcolatore , essa riduce infatti i tempi di accesso alla memoria memorizzando blocchi di dati vicini tra loro che hanno più probabilità di essere acceduti il più vicino possibile alla CPU
+
+Risulta quindi fondamentale trovare le adatte :
++ *dimensioni*
++ *politiche* di inserimento e rimozione
+
+Quando un dato è presente in cache si dice *cache hit*
+
+Inoltre la cache è considerata *valida* quando rappresenta correttamente lo stato dei dati nella memoria principale
+
+#### RAM
+
+**RAM** ( *Random Access Memory* )
+
+è una memoria *volatile* e ad acesso diretto
+
+vari tipi di *RAM* : 
++ **DRAM** : ( dynamic ) richiede aggiornamenti continui del circuito per non perdere i dati
++ **SRAM** : ( static ) non richiede aggiornamenti ma è più lenta
+
+La *RAM* è caratterizzata da una *banda* ossia quanti dati possono essere trasferiti per unità di tempo
+#### ROM
+
+*Read Only Memory* : 
+	non volatile , veloce , economica , programmata dal produttore
+#### EEPROM
+
+Memoria *Flash* , *Electronically Erasable* :
+	non volatile , riscrivibile , molto più lenta della *RAM*
+#### CMOS
+
+memoria volatile che principalmente mantiene dati come la data e l'ora
+
+#### Dischi
+
+/git
