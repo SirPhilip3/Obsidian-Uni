@@ -272,8 +272,61 @@ Il *driver* comunica con il SO attraverso dei *registri* che possono essere :
 
 ##### busy waiting
 
-
+La CPU attende *attivamente* la fine dell'operazione di *I/O* 
 ##### interrupt
 
+La CPU invia una richiesta di *I/O* al driver , il driver gestisce la richiesta , nel frattempo la CPU svolge un'altro compito ; alla fine dell'operazione dI *I/O* il driver lancia un'interrupt che viene gestita dall'apposito gestore delle interruzioni
 
+![[Pasted image 20231005125839.png]]
 ##### DMA ( Direct Memory Access )
+
+Il *DMA* è un chip che svincola il processore dal controllo di alcuni dispositivi di *I/O* 
+
+Nei casi precedenti era la CPU a gestire il trasferimento dei dati , con il *DMA* le periferiche traferiscono direttamente i dati da e verso la memoria , il *DMA* notifica solamente il processore del completamento dell'operazione di *I/O*
+
+### Bus
+
+Il *bus* è un insieme di **tracce** ( collegamenti elettrici ) che trasportano informazioni tra dispositivi hardware
+
+Una **porta** è un *bus* che collega solo 2 dispositivi
+Un **canale** *di I/O* è un *bus condiviso* da diveris dispositivi per eseguire operazioni di *I/O* indipendentemente dalla CPU
+
+Esempi : 
++ **FSB** ( *Frontside Bus* ) collega la CPU alla memoria principale ( viene diviso in bus dati e bus indirizzi )
++ **PCIe** ( *Pheripherial Component Interconnect Express* ) collega una CPU a vari dispositi ( veolcità tra 16 e 64 Gbps )
++ **AGP** ( *Accelerated Graphic Port* ) utilizzato per schede grafiche ( no more in use )
++ **DMI** ( *Direct Media Interface* )
++ **SATA** ( *Seral Advanced Tecnology Attachment* ) usato per hard disk 
++ **USB** ( *Universal Serial Bus* )
++ **SCSI** ( *Small Computer System Interface* ) 
+
+![[Screenshot 2023-10-05 131705.png]]
+
+![[Pasted image 20231005132238.png]]
+
+### Tipi di OS
+
+Generalmente un **SO** si interfaccia con le applicazioni attraverso le chiamate di sistema :
+
+![[Pasted image 20231005133127.png]]
+
+La progettazione dei *componenti del SO* dipende dalla funzione che deve svolgere il *SO* es :
++ SO per sistemi *integrati* ( *Embedded* ) 
+	+ devono gestire un numero limitato di risorse specializzate 
+	+ gestione molto efficente delle risorse 
++ SO per *mainframe* 
+	+ devono gestire una grande quantità di *I/O*
+	+ fornire servizi come *batch* , *transazioni* , *time-sharing*
++ SO per *server*
+	+ gestione di molti utenti
+	+ fornire servizi come : *web server* , *archiviazione* , *ISP*
++ SO per *multiprocessore*
+	+ gestione del parallelismo dei processi
++ SO *real-time*
+	+ devono mantenere prestazioni sufficenti per rispettare le *deadline* dei processi
++ SO per *smart-card* 
+	+ gestione di operazioni molto semplici
++ SO per *PC*
+	+ singolo utente , molti processi in esecuzione
++ SO per *dispositivi mobili*
+	+ gestione di molti sensori , power efficency molto importante
