@@ -330,3 +330,43 @@ La progettazione dei *componenti del SO* dipende dalla funzione che deve svolger
 	+ singolo utente , molti processi in esecuzione
 + SO per *dispositivi mobili*
 	+ gestione di molti sensori , power efficency molto importante
++ SO per *sensori* ( TinyOS )
+
+## Concetti Base
+
+Le architetture degli SO devono considerare :
++ *Prestazioni* 
++ *Protezione* dei dati
+	+ Impedire ai processi di accedere a istruzioni privilegiate o a zone di memoria non autorizzate
+	+ Ciò avviene attraveso 2 modalità di esecuzione della CPU :
+		+ *Modalità utente* ( l'utente può eseguire solo un sottoinsieme di istruzioni ) 
+		+ *kernel mode* ( il processo può accedere alle istruzioni e alle risorse privilegiate per conto dei processi )
+	+ avviene anche attravero il concetto di *privilegio minimo* ossia ogni processo ha solo i minimi privilegi e accessi
+	+ La protezione da errori può avvenire attraverso interrupt 
+		+ Un processo potrebbe svolgere operazioni non permesse ( es divisione per 0 o accedere a indirizzi di memoria in cui non può accedere )
+		+ Per evitare che un processo monopolizzi il processore vengono lanciate periodicamente interrupt attraverso un *timer* per ridare il controllo dei processi allo *scheduler*
+
+## Avvio del sistema operativo
+
++ **Bootstrapping**
+	è il caricamento in memoria dei componenti iniziali del sistema operativo
+	+ Eseguita dal *Basic Input/Otput System* ( **BIOS** ) ( modernamente dall'*EFI* ( *Extensible Firmware Interface* ) )
+		+ Inizializza l'hardware di sistema 
+		+ Carica le istruzioni in memoria principale dal *settore* *di* *boot* della memoria secondaria 
+	+ Prima di inizializzzare il *boot* il **BIOS** svolge un test sull'hardware ( *Power On Self Test* ) 
+
+![[Pasted image 20231005223556.png]]
+
+## Processi
+
+
+
+## File system
+
+## Chiamate di sistema
+
+
+
+
+
+
