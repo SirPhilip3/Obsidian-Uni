@@ -244,3 +244,36 @@ memoria volatile che principalmente mantiene dati come la data e l'ora
 
 #### Dischi
 
+Può mantenere grandi quantità di dati a basso costo
+
+Accesso ai dati più lento rispetto alla memoria principale 
++ Movimento meccanico della testa di lettura / scrittura
++ Latenza di rotazione
++ Tempo di trasferimento
+
+è un dispositivo a *blocchi* ( ossia i dati sono conservati in blocchi , per diminuire il delay vengono caricati in memoria più blocchi in modo da diminuire le volte che è necessario accedere ad un disco )
+
+Ogni disco è costituito da varie tracce e ogni traccia è divisa in settori ( l'address per accedere ad un determinato settore deve quindi contenere : n° cilindro , n° disco , n° traccia , n° settore )
+
+![[Pasted image 20231005105729.png]]
+
+Il *controllore* ( *driver* ) è colui che si interfaccia con il **SO** per accedere al disco ( mantenuto su uno o più chip )
+
+Un *driver* puù essere inserito nel sistema operativo in diversi modi :
++ manualmente ( in un chip ) , riavviando la macchina
++ in un file del SO , riavviando la macchina
++ senza riavviare ( *plug-and-play* )
+
+Il *driver* comunica con il SO attraverso dei *registri* che possono essere :
++ mappati nello spazio di indirizzamento del SO ( il SO ci comunica con normali istruzioni come se fossero normali registri su cui può scrivere o leggere )
++ in una porta speciale di I/O ( l'accesso avviene tramite istruzioni speciali )
+
+#### Comunicazione con I/O
+
+##### busy waiting
+
+
+##### interrupt
+
+
+##### DMA ( Direct Memory Access )
