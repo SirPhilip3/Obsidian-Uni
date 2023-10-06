@@ -197,7 +197,7 @@ static{
 
 costruttore statico per inizializzare i campi statici della classe , eseguito la prima volta che viene usata quella classe / start
 
-<clinit> per static constructors
+clinit per static constructors
 
 final : classi , campi e metodi
 ha effetto su ereditarietà
@@ -206,3 +206,83 @@ campo final = non può essere modificato , si inizializza solo all'interno di un
 es id non deve essere modificato
 
 costante globale static e final
+
+# 06/10/2023
+
+modi per accedere a campo statico 
+```java
+
+this.( nome campo statico )
+
+```
+
+```jvmbytecode
+aload0
+aload 0
+pop
+getstatic
+```
+
+inutile load visto che svolge pop dopo
+
+campi persistono in heap fino a che l'oggetto non viene deallocato 
+minimizzazione dei campi presenti ( mem occupation )
+
+naming conventions : [Conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html) 
+
+static types :
+
+primitive ( *values* )
+objects ( *refrence types* )
+
+```java
+x=5
+Weapon w = new Weapon()
+```
+
+|campi|value|
+|---|---|
+|x|5|
+|w|pointer ad oggetto che abbiamo creato|
+
+pointer nascosti
+non posso allocare un oggetto direttamente nello stack ma viene allocato solamente il pointer
+
+pointer condivisi tra oggetti
+```
+Weapon w1 = new Weapon(324)
+FIghter f1 = new Fighter(w1)
+f1.weapon.damage = 1200
+```
+
+sia f1 che w1 diventano 1200 modifico values nel pointer 
+
+code data structure 
+
+## Aliasing 
+
+stessa area di memoria 2 nomi differenti es :
+w1.damage
+f1.weapon.damage
+
+## Packages
+
+Raggruppamenti di classi che possono essere importate in altre .class
+naming conventions :
+url reverse
+deve rispecchiare il precorso delle directory
+
+* * importa tutte le classi del package , memory !
+
+## Encapsulation
+
+Information hiding ( througth access modifiers ) :
+
+private : solo visibile dalla classe ( visibilità di package , visibile solo dal package corrente , non c'è una gerarchia di package , package più profondi non ereditano , rimangono distinti )
+public : tutti possono vedere ( final = non modificabile ) 
+protected
+
+deprecated metodo not supported
+
+public "per usi interni" : modules file di testo in cui dico che classi esporto
+
