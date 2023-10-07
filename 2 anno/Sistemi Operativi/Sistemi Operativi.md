@@ -10,7 +10,17 @@ Un **Sistema Operativo** è quindi un :
 + **Macchina Astratta** :
 	Nasconde i dettagli e le operazioni complesse ( *mascheramento* ) e presenta all'utente una macchina virtuale facile da usare ( *trasparenza* )
 + **Gestore di Risorse** :
-	Deve gestire le risorse **HW** in modo da fornire le migliori prestazioni possibili 
+	Deve gestire le risorse **HW** in modo da fornire le migliori prestazioni possibili
+
+Le proprietà che deve soddisfare un *SO* sono :
++ Efficenza
++ Robustezza
++ Scalabilità
++ Estensibilità
++ Portabilità
++ Sicurezza
++ Interattività
++ Usabilità
 ### Modalità
 
 + **Utente** : Le applicazioni sono in maggior parte runnate in modalità *utente* 
@@ -113,7 +123,7 @@ Sviluppo della tecnologia per sistemi *mobili* ( Android , iOS )
 
 Sviluppo dell'**IoT**
 
-## Componenti OS
+## Componenti gestiti da SO
 
 Deve gestire componenti *hardware* e *software* : 
 + processori
@@ -373,16 +383,87 @@ Più processi che volgio accedere ad una stessa risorsa possono causare un *dead
 ## File system
 
 La struttura di un *file system* è tipicamente realizzata ad albero 
+
+![[Screenshot 2023-10-07 162034.png]]
+
 Ogni file è *identificato* univocamente dal suo *path* e ha associato un *descrittore* del file
 
 Se vogliamo leggere un *file system* di un altro dispositivo esterno dobbiamo *montarlo* su una directory del nostro *SO* , in questo modo possiamo accedervi come se fosse una qualsiasi altra cartella del nostro *SO*
 
-Esistono dei File speciali per determinati dispositivi di *I/O* , questi sono utilizzati per trattare i dispositivi di *I/O* come file
+![[Screenshot 2023-10-07 164822.png]]
 
+Esistono dei *File speciali* , questi sono utilizzati per trattare i dispositivi di *I/O* come file , scrivendoci e leggendoli si interagisce con essi :
++ *blocchi* ( per dischi )
++ *caratteri* ( per stampanti / modem )
+Vengono montati nella directory `/dev` ( nei sistemi *Unix* )
+
+Vi sono anche file detti *Pipe* , utilizzati per la connessione fra 2 processi
+
+![[Pasted image 20231007165102.png]]
+
+## Altre tecnologie
+
+### Plug and Play
+
+Consente ai *Sistemi Operativi* di configurare l'hardware di nuova installazione senza l'interazione dell'utente
+
+Funzionamento :
++ *Identificazione* del nuovo dispositivo al sistema operativo
++ *Comunicare* al sistema operativo le risorse i servizi che il dispositivo richiede per funzionare correttamente
++ Identificazione del *driver* necessario per la configurazione del dispositivo ( la configurazione comporta l'assegnamento per esempio di un canale DMA per comunicare informazioni al SO ) 
+### Caches
+
+Memorie veloci che mantengono copie di dati che verranno richiesti dai programmi 
+Aumenta la velocità di esecuzione dei programmi 
+Vengono utilizzati algoritmi per ottimizzare l'uso della cache ( per l'inserimento e rimozione di blocchi di memoria )
+### Buffers
+
+area di *memoria temporanea* che contiene dati durante le operazioni di *I/O*
+Questi *buffer* vengono utilizzati per il coordinamento delle comunicazioni tra dispositivi a diverse velocità 
+Vengono anche utilizzati per permettere l'elaborazione dei dati in modo *asincrono*
+!!!!!!
+### Spooling ( Simultaneous Peripheral Operations On Line )
+
+Tecnica di *buffering* in cui un dispoditivo intermedio ( il disco ) è interposto tra un processo e una periferica *I/O* lenta 
+
+Permette ai processi di inviare operazioni di richiesta da una periferica senza aspettare che il dipositivo sia pronto a servire la richiesta
+### Memoria Virtuale
+
+Permette di eseguire programmi con richieste di memoria di maggiori dimensioni rispetto alla memoria fisica disponibile
 ## Chiamate di sistema
 
+Un processo utente attiva le chiamate al sistema operativo ( modalità kernel ) attraverso una *TRAP* , il controllo passa quindi al sistema operativo che svolge le chiamate di sistema , al termine il controllo ritorna all'istruzione sucessiva del processo utente
+
+![[Pasted image 20231007175211.png]]
+
+Esempi di chiamate di sistema in Unix :
+
+|Call|Description|
+|---|---|
+
+Differenze con le chiamate di sistema di Windows :
+
+|UNIX|Win32|Description|
+|---|---|---|
 
 
 
+## Componenti del SO
 
++ Processor *scheduler*
++ Gestore della memoria
++ Gestore della I/O
++ Gestore dell'*Interprocess communication* ( *IPC* )
++ Gestore del File system
 
+l'architettura di un sistema operativo influenza direttamente le priorità di un sistema operativo
+Per questo esistono diverse architetture :
+### Architettura Monolitica
+
+Ogni componente del sistema operativo è contenuta nel nucleo 
+Ogni componente può comunicare direttamente con qualsiasi altra componente , rendendo lo scambio di dati molto veloce 
+Ciò la rende una architettura *molto efficente* ma risulta difficilemente estensibile ( difficoltà ad indentificare le fonti de )
+
+### Architettura a livelli
+
+### Architettura Microkernel
