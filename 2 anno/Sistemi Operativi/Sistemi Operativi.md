@@ -487,3 +487,33 @@ Il sistema risulta quindi avere un elevato grado di modularità , estensibilità
 
 ## Macchine virtuali
 
+Sono una *astrazione software* di un sistema di elaborazione , spesso in esecuzione sopra un SO nativo
+
+Permette la coesistenza di diverse istanze di un SO eseguibili contemporaneamente *emulando* hardware e software non presente nel sistema originario
+
+![[Pasted image 20231007212329.png]]
+
+## Sistemi Operativi di Rete e Distribuiti
+
+### Di Rete
+
+Il *SO* viene eseguito in un solo computer ma può utilizzare le risorse di computer collegati alla rete per eseguire i suio processi
+
+### Distribuito
+
+Il *sistema operativo distribuito* è unico e gestisce le risorse di un insieme di sistemi , ciò gli permette di avere una :
++ elevata ridondanza e *tolleranza ai guasti* 
++ trasparenza di accesso per le applicazioni ( non sembra di avere a disposizione risorse replicate )
++ elevate prestazioni 
++ scalabilità
+
+Un esempio di questi sistemi operativi è una rete di tipo client/server
+
+![[Pasted image 20231007214042.png]]
+
+**Middleware** è un software per sistemi distribuiti che permette *interazioni* tra più processi in esecuzione su uno o più computer in una rete ( per sistemi *eterogenei* ( costituiti da macchine diverse fra loro ) ) 
+
+Esempio : *Open DataBase Connectivity* ( *ODBC* )
++ API per accesso a database
++ Permette alle applicazioni di accedere ai database distribuiti tramite il *driver* *ODBC*
+
