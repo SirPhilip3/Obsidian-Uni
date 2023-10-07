@@ -448,7 +448,7 @@ Differenze con le chiamate di sistema di Windows :
 
 
 
-## Componenti del SO
+## Architetture SO
 
 + Processor *scheduler*
 + Gestore della memoria
@@ -462,8 +462,28 @@ Per questo esistono diverse architetture :
 
 Ogni componente del sistema operativo è contenuta nel nucleo 
 Ogni componente può comunicare direttamente con qualsiasi altra componente , rendendo lo scambio di dati molto veloce 
-Ciò la rende una architettura *molto efficente* ma risulta difficilemente estensibile ( difficoltà ad indentificare le fonti de )
+Ciò la rende una architettura *molto efficente* ma risulta difficilemente estensibile ( difficoltà ad indentificare le fonti degli errori )
+
+![[Pasted image 20231007181517.png]]
 
 ### Architettura a livelli
 
+Divisione del nucleo del sistema operativo in *livelli* che svolgono differenti funzioni 
+
+Ogni livello può comunicare solo con strati immediatemente sopra e sotto
+Le richieste dei processi potrebbero quindi dover passare attraverso vari strati ( necessitano di ulteriori metodi per spostare le informazioni da un livello ad un altro ) prima di essere completate ( il througthput risulta meno efficente rispetto ai sistemi monolitici )
+
+![[Pasted image 20231007182526.png]]
 ### Architettura Microkernel
+
+Il kernel fornisce solo *servizi limitati* ( per contenere le dimensioni del kernel e garantirne la scalabilità )
+Il sistema risulta quindi avere un elevato grado di modularità , estensibilità e portabilità
+
+è necessario svolgere vari cambi di tra user space e kernel space per svolgere le stesse operazioni ( degradazione delle prestazioni di sistema )
+
+![[Pasted image 20231007182909.png]]
+
+
+
+## Macchine virtuali
+
