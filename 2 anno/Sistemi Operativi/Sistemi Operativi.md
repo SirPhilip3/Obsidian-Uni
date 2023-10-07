@@ -359,9 +359,25 @@ Le architetture degli SO devono considerare :
 
 ## Processi
 
+Un *processo* è un progrmma in esecuzione ed è caratterizzato da :
++ Spazio di indirizzamento 
++ **UID** identificatore unico di utente 
++ Tabella dei processi ( tabella contentente ogni processo in vita con un pointer al suo *descrittore* ; usata dallo *scheduler* per gestire i processi )
++ **IPC** ( *interprocess communication* ) ( ogni processo può comunicare con altri processi per sca,biarsi dati )
++ Ogni processo può creare dei processi figli
++ Ogni processo possiede un *descrittore* di processo che contiene tutte le informazioni necessarie per fare runnare quel processo
 
-
+Più processi che volgio accedere ad una stessa risorsa possono causare un *deadlock* , ossia uno stallo che non consente ai processi di proseguire , per risolvere questo problema ci sono 2 principali tecniche :
++ *detection* dello stallo e conseguente *kill* dei processi responsabili
++ *prevenzione* dello stallo
 ## File system
+
+La struttura di un *file system* è tipicamente realizzata ad albero 
+Ogni file è *identificato* univocamente dal suo *path* e ha associato un *descrittore* del file
+
+Se vogliamo leggere un *file system* di un altro dispositivo esterno dobbiamo *montarlo* su una directory del nostro *SO* , in questo modo possiamo accedervi come se fosse una qualsiasi altra cartella del nostro *SO*
+
+Esistono dei File speciali per determinati dispositivi di *I/O* , questi sono utilizzati per trattare i dispositivi di *I/O* come file
 
 ## Chiamate di sistema
 
