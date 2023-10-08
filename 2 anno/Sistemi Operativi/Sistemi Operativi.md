@@ -369,7 +369,7 @@ Le architetture degli SO devono considerare :
 
 ## Processi
 
-Un *processo* è un progrmma in esecuzione ed è caratterizzato da :
+Un *processo* è un programma in esecuzione ed è caratterizzato da :
 + Spazio di indirizzamento 
 + **UID** identificatore unico di utente 
 + Tabella dei processi ( tabella contentente ogni processo in vita con un pointer al suo *descrittore* ; usata dallo *scheduler* per gestire i processi )
@@ -517,3 +517,91 @@ Esempio : *Open DataBase Connectivity* ( *ODBC* )
 + API per accesso a database
 + Permette alle applicazioni di accedere ai database distribuiti tramite il *driver* *ODBC*
 
+
+
+## Processi
+
+I sistemi operativi hanno il compito di svolgere le seguenti operazioni su un processo :
++ *creazione*
++ *distruzione*
++ *sospensione*
++ *ripresa*
++ *risveglio*
+
+La CPU è assegnata a turno ad un processo per volta ( *pseudo-parallelismo* )  
+
+Lo spazio di indirizzamento di un processo è diviso in varie regioni :
++ **Testo** : contiene il codice che deve essere eseguito dal processore
++ **Dati** : contiene le variabili e la memoria allocata dinamicamente
++ **stack** : memorizza istruzioni e variabili locali per le chiamate di procedura attive
+
+### Creazione di processi
+
+Avviene :
++ All'inizializzazione del sistema
++ dopo una chiamata di sistema di creazione di un processo
++ dopo una richiesta di un utente per la creazione di un processo
+
+Processi di sistema :
++ Attivi ( collegati ad utenti )
++ in background ( non associati ad utenti ma con funzioni specifiche ) chiamati *demoni*
+
+Comandi per la creazione di processi :
+**Fork** in *Unix* 
++ crea un clone del processo chiamante 
++ il processo figlio ha una copia dello spazio di indirizzamento del padre ( spazi distinti )
++ per differenziarsi il processo figlio esegue un *execve* per cambiare la propri immagine di memoria
+
+**CreateProcess** in *Windows*
++ Creazione di un nuovo processo con una nuova immagine di memoria 
+
+I processi *Padre-Figlio* possono condividere delle risorse
+
+### Chiusura di Processi
+
+La chiusura di un processo avviene quando : 
++ Uscita autonoma del programma
++ Uscita per errore nel programma ( rimane volontaria da parte del processo )
++ Errore critico ( uscita eseguita dal sistema operativo )
++ Uscita forzata da un altro processo
+
+Chiamate di sistema per la chiusura di un programma :
+*Unix* :
++ `exit` 
+*Windows* : 
++ `TerminateProcess`
+
+### Gerarchie
+
+Il processo che genera un altro processo : *Padre*
+Il processo creato è chiamato : *Figlio*
+
+Quando un processo *padre* viene distrutto il SO può rispondere in 2 modi differenti :
++ Distruggere tutti i processi figli di quel genitore
++ Consentire ai processi figli di procedere indipendentemente dai loro genitori
+
+In *Unix* viene creato il *Process group* che contiene il processo padre e tutti i suoi discendenti
+In *Windows* non c'è il concetto di gerarchie ma il processo padre ha un `handle` che gli permette di controllare il figlio
+
+### Ciclo di vita
+
+Un processo può essere in vari stati :
++ **Running** ( in esecuzione ) : il processo è in esecuzione su un processore
++ **Ready** ( pronto ) : il processo potrebbe essere posto in esecuzione su un processore se ve ne fosse uno disponibile
++ **Blocked** ( bloccato ) : il processo è in attesa di qualche evento che deve accadere prima che possa proseguire
+
+Il SO mantiene una lista *ready* e una *blocked* per mantenere i riferimenti ai processi non in esecuzione
+
+![[Pasted image 20231008115537.png]]
+
+Il *Dispatching* : assegnamento di un processore al primo processo nella lista *ready*
+
+Il SO può impostare un *timer a intervalli* per fare in modo che un processo non venga eseguito per un tempo troppo lungo
+
+Transizioni di stato dei processi :
++ *ready* -> *running* : quando il processo è *dispatched*
++ *running* -> *ready* : quando un processo termina il suo tempo di CPU
++ *running* -> *blocked* : quando il processo viene bloccato per attesa di un evento
++ *blocked* -> *ready* : quando è avvenuto quell'evento per il quale era *blocked*
+
+![[Pasted image 20231008120024.png]]
