@@ -380,9 +380,45 @@ Avremo quindi che $\sqrt n \le n$
 ### Proprietà
 
 $$f(n)=O\Big(g(n)\Big) \Leftrightarrow g(n) = \Omega\Big(g(n)\Big)$$
+Per dimostrare la precedente proprietà bisogna dimostrare sia $\Rightarrow$ che $\Leftarrow$
 
+Dimostriamo $\Rightarrow$
 
+Ipotesi : $f(n)=O\Big(g(n)\Big)$
 
+Per ipotesi avremo quindi che :
+$$\exists\space c\gt0 , \exists\space n_0\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_0 : f(n)\le c\cdot g(n)$$
+Ciò che vogliamo dimostrare è : 
+$$\exists\space c'\gt0 , \exists\space n_0'\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_0' : c'\cdot f(n)\le g(n)$$
+
+Dall'ipotesi abbiamo che :
+$$\frac{1}{c}\cdot f(c)\le g(n)$$
+Ponendo $c'=\frac{1}{c}$ e sciegliendo $n_0'=n_0$ la proprietà è dimostrata
+
+La dimostrazione è equivalente per $\Leftarrow$
+
+#### Prorietà Transitiva
+
+La seguente proprietà e valida per $O$ , $\Omega$ , $\Theta$
+
+Se :
+$$f(n)=O\Big(g(n)\Big)\space \text{e} \space g(n)=O\Big(h(n)\Big)$$
+Allora :
+$$f(n)=O\Big(h(n)\Big)$$
+
+Dimostrazione :
+
+Ipotesi :
+$$\exists\space c_1\gt0 , \exists\space n_1\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_1 : f(n)\le c_1\cdot g(n)$$
+$$\exists\space c_2\gt0 , \exists\space n_2\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_2 : g(n)\le c_2\cdot h(n)$$
+Ciò che vogliamo dimostrare :
+$$\exists\space c_3\gt0 , \exists\space n_3\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_3 : f(n)\le c_3\cdot h(n)$$
+
+Sciegliamo un $n_3 = max\{n_1,n_2\}$ ( massimo tra $n_1$ e $n_2$ in modo tale che ciò che vogliamo dimostrare valga sia per la prima che per la seconda ipotesi )
+
+Sostituendo nella prima ipotesi con la seconda ipotesi abbiamo :
+$$f(n)\le c_1\cdot c_2\cdot h(n)$$
+Poichè $c_1\cdot c_2 \ge c_3\gt0$ abbiamo dimostrato che : $f(n)=O\Big(h(n)\Big)$
 ### $o\Big(g(n)\Big)$
 ### $\omega \Big(g(n)\Big)$
 
