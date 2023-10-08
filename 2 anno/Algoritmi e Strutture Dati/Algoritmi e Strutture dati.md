@@ -305,9 +305,84 @@ $$c_1^2\cdot n-n\le 10$$
 $$(c_1^2-1)\cdot n\le 10$$
 Perchè la disequazione risulti vera necessitamo che $(c_1^2-1)$ sia $\le 0$ , avremo quindi :
 $$c_1\le 1$$
+$n$ deve quindi essere
+$$n\ge1$$
+
 2. 
 	$$n+10\le c_2^2\cdot n$$
 	$$(c_2^2-1)\cdot n\ge 10$$
 Quindi avremo che :
 $$c_2\gt1$$
+Con $n$ che risulterà essere :
+$$n\ge \frac{10}{c_2^2-1}$$
+Scielgiendo $c_2=\sqrt2$ avremo che $n\ge10$ 
+Quindi avremo che 
+$$\sqrt{n+10}=\Theta(\sqrt{n})$$
+Quando :
+$$c_1=1$$
+$$c_2=\sqrt2$$
+$$n_0=10$$
+Abbiamo scielto $n_0=10$ poichè soddisfa entrambe le condizioni
+
+### Ulteriori Dimostrazioni
+
+#### $log\space n=O(n)$
+
+Osservando il grafico si può capire il perchè 
+
+```functionplot
+---
+title: 
+xLabel: 
+yLabel: 
+bounds: [-2,10,-3,10]
+disableZoom: false
+grid: true
+---
+1 y=x-1
+2 y=log(x)
+```
+
+Poichè $log(n)\le n-1 \implies log(n) \le n$
+
+ciò avviene per $c=1$ e $n_0=1$
+#### $n\cdot log\space n = O\big(n^2\big)$
+
+Visto che 
+$$log(n)\le n$$
+Avremo che :
+$$n\cdot log(n)\le n^2$$
+Quindi è *O grande* per $c=1$ e $n_0=1$
+#### $n!=O\big(n^n\big)$
+
+Si può dimostrare dicendo che :
+$$1\cdot2\cdot3\cdot...\cdot n = n! \le n\cdot n\cdot...\cdot n = n^n$$
+Quindi :
+$$n!\le n^n$$
+#### $n!=\Omega\big(2^n\big)$
+
+$$1\cdot2\cdot3\cdot...\cdot n\space \text{è maggiore di} \space 1\cdot2\cdot2\cdot...\cdot2 = 2^{n-1}$$
+Quindi avremo che :
+$$n!\ge2^{n-1}\implies n!\ge\frac{1}{2}2^n$$
+In questo caso $c$ diventa $\frac{1}{2}$ in questo modo abbiamo verificato che $n!=\Omega(2^n)$
+#### $log\space (n!) = O(n\cdot log\space n)$
+
+$$log\big(n!\big)=log\Bigg(\prod_{i=1}^{n} i\Bigg)$$
+$$=\sum_{i=1}^{n} log(i)$$
+Essendo che $log(i)\le log(n)$ avremo che :
+$$\sum_{i=1}^{n} log(i)\le n\cdot log(n)$$
+#### $\sqrt n = O(n)$
+
+Possiamo facilmente dimostrarla :
+Essendo che :
+$$n\le n^2\space\space \forall n\ge1$$
+Avremo quindi che $\sqrt n \le n$
+### Proprietà
+
+$$f(n)=O\Big(g(n)\Big) \Leftrightarrow g(n) = \Omega\Big(g(n)\Big)$$
+
+
+
+### $o\Big(g(n)\Big)$
+### $\omega \Big(g(n)\Big)$
 
