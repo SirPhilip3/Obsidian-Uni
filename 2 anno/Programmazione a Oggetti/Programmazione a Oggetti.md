@@ -290,3 +290,13 @@ public "per usi interni" : modules file di testo in cui dico che classi esporto
 
 getter info su stato di un oggetto , può non essere direttametne un campo
 
+Docs
+
+.jar artifact contiene il bytecode
+manifest : conteiene la classe main
+
+javadoc ( docs in html )
+commenti per documentation /** */ 
+
+
+
