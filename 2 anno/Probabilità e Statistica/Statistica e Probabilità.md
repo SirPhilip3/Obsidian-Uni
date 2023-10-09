@@ -73,3 +73,5 @@ moneta = testa o crocio = 2
 **cardinalità** : numero di elementi = 2 
 
 # 9/10/2023
+
+35/39 prob elementaty
