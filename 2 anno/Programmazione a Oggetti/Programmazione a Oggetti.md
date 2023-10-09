@@ -286,3 +286,6 @@ deprecated metodo not supported
 
 public "per usi interni" : modules file di testo in cui dico che classi esporto
 
+# 9/10/2023
+
+/git

@@ -420,5 +420,43 @@ Sostituendo nella prima ipotesi con la seconda ipotesi abbiamo :
 $$f(n)\le c_1\cdot c_2\cdot h(n)$$
 Poichè $c_1\cdot c_2 \ge c_3\gt0$ abbiamo dimostrato che : $f(n)=O\Big(h(n)\Big)$
 ### $o\Big(g(n)\Big)$
+
+$$o\Big(g(n)\Big)=\Big\{f(n)\mid \forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(c) \lt c\cdot g(n)\Big\}$$
+
+Vi sono alcune differenze con l'*O* :
+$$\forall\space c \gt 0$$
+Invece di :
+$$\exists\space c \gt 0$$
+Inoltre : 
+$$f(c) \lt c\cdot g(n)$$
+Invece di :
+$$f(c) \le c\cdot g(n)$$
+Queste differenze ci fanno capire che non c'è più un $c$ per il quale vale la definizione ma deve valere per tutti i valori di $c$
+
+Avremo quindi che *O* risulterà essere un sottoinsieme di *o*
+$$o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$$
+Quindi avremo anche che :
+$$f(n)=o\Big(g(n)\Big)\implies f(n)=O\Big(g(n)\Big)$$
+
+La definizione di $o(g(n))$ è molto simile alla definzione di limite di una sucessione infatti :
+$$\lim_{n\rightarrow\infty} a_n = l$$
+$$\forall\space \epsilon \gt 0\space \exists\space n_0 \in\mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0  \space|a_n-l |\le\epsilon $$
+Come si può vedere infatti la prima parte è identica alla definizione di *o* , la seconda parte $|a_n-l |\le\epsilon$ è riconducibile alla distanza tra le 2 funzioni , che si può ricondurre a $f(c) \lt c\cdot g(n)$
+
+Quindi si può dedurre la seguente *proprietà* :
+$$f(b)=o\Big(g(n)\Big)\iff \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=0$$
+Visto che : 
+$$o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$$
+Abbiamo anche che :
+$$ \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=0 \implies f(n)=o\Big(g(n)\Big)=O\Big(g(n)\Big)$$
+
+Esempi :
+$$log\ n =O(\sqrt n) $$
+$$\lim_{n \to \infty} \frac{log_e\ n}{\sqrt n} = \lim_{n \to \infty} \frac{\frac{1}{n}}{\frac{1}{2}\cdot n^{\frac{-1}{2}}} \quad \text{(per L'Hôpital)}$$
+$$\lim_{n \to \infty} \frac{2}{\sqrt n}=0$$
+Avremo quindi che : 
+$$log\ n =o(\sqrt n)$$
+poichè $o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$ avermo che :
+$$log\ n =O(\sqrt n)$$
 ### $\omega \Big(g(n)\Big)$
 
