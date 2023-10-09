@@ -515,9 +515,16 @@ $$\lim_{n\rightarrow \infty} \frac{(1+\sin(n))\cdot n}{n}=\lim_{n\rightarrow \in
 Non è quindi sempre valida la definizione di limite per dimostra l'apparteneza ad una classe di complessità
 ### Polinomi
 
+Per determinare la complessità di un polinomi bisogna considerare solo l'elemento che risulta più alto grado :
+Esempio :
+$$3n^3+2n^2+6n+5=\Theta(n^3)$$
+Regola dei polinomi *semplici*
+$$P(n)\ \text{con grado k massimo} \implies P(n)=\Theta(n^k)$$
+???????????????????????????????
+Per polinomi più complessi bisogna considerare l'elemento più "complesso" e quello diventa il $\Theta$
+???????????????????????????????
 
-
-
+/git
 
 
 
