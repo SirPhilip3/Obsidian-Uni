@@ -421,7 +421,7 @@ $$f(n)\le c_1\cdot c_2\cdot h(n)$$
 Poichè $c_1\cdot c_2 \ge c_3\gt0$ abbiamo dimostrato che : $f(n)=O\Big(h(n)\Big)$
 ### $o\Big(g(n)\Big)$
 
-$$o\Big(g(n)\Big)=\Big\{f(n)\mid \forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(c) \lt c\cdot g(n)\Big\}$$
+$$o\Big(g(n)\Big)=\Big\{f(n)\mid \forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(n) \lt c\cdot g(n)\Big\}$$
 
 Vi sono alcune differenze con l'*O* :
 $$\forall\space c \gt 0$$
@@ -444,7 +444,7 @@ $$\forall\space \epsilon \gt 0\space \exists\space n_0 \in\mathbb{N}\space \text
 Come si può vedere infatti la prima parte è identica alla definizione di *o* , la seconda parte $|a_n-l |\le\epsilon$ è riconducibile alla distanza tra le 2 funzioni , che si può ricondurre a $f(c) \lt c\cdot g(n)$
 
 Quindi si può dedurre la seguente *proprietà* :
-$$f(b)=o\Big(g(n)\Big)\iff \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=0$$
+$$f(n)=o\Big(g(n)\Big)\iff \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=0$$
 Visto che : 
 $$o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$$
 Abbiamo anche che :
@@ -459,6 +459,68 @@ $$log\ n =o(\sqrt n)$$
 poichè $o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$ avermo che :
 $$log\ n =O(\sqrt n)$$
 ### $\omega \Big(g(n)\Big)$
+
+$$\omega\Big(g(n)\Big)=\Big\{f(n)\mid \forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 :c\cdot g(n)\lt f(n)\Big\}$$
+Come per *o-piccolo* anche in questo caso abbiamo che :
+$$\omega\Big(g(n)\Big)\subset \Omega\Big(g(n)\Big)$$
+Lo stesso vale per la definizione tramite *limite* :
+$$f(n)=\omega\Big(g(n)\Big)\iff \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=\infty$$
+Il limite risulta uguale a $\infty$ poichè abbiamo che $g(n)\lt f(n)$
+
+Le seguenti proprietà possono quindi essere determinate dalle precedenti definizioni :
+$$o(g(n))\ \cap \ \Omega(g(n))=\emptyset$$
+$$\omega(g(n))\ \cap \ O(g(n))=\emptyset$$
+
+![[O-notationWenn.excalidraw]]
+
+Questo può essere *dimostrato* per assurdo :
+
+Supponiamo che valga la tesi e che quindi $o(g(n))\ \cap \ \Omega(g(n))\neq \emptyset$
+
+Avremo quindi che :
+$$\exists \ f(n) \in o(g(n))\ \cap \ \Omega(g(n))$$
+Seguendo le definzioni avremo che :
+$$\forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(n) \lt c\cdot g(n)\quad \text{Per o-piccolo}$$
+$$\exists\space c'\gt0\space , \exists\space n_0' \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0' : c'\cdot g(n)\le f(n)\quad \text{Per $\Omega$}$$
+1. Poichè abbiamo che per *o-piccolo* abbiamo che la definizione deve valere per ogni $c$ allora scielgieremo come $c$ $c'$ 
+2. Per far valere entrambe le difinizioni dobbiamo sciegliere un $n\ge max\{n_0,n_0'\}$
+
+Avendi fatto queste 2 considerazioni possiamo concludere che :
+$$f(n)\lt c'\cdot g(n)\le f(n)$$
+Questo è evidentemente *assurdo* ; abbiamo quindi dimostrato che : $o(g(n))\ \cap \ \Omega(g(n))=\emptyset$
+
+La stessa dimostrazione può essere svolta per $\omega(g(n))\ \cap \ O(g(n))=\emptyset$ 
+
+#### Proposizione 
+
+Anche $\Theta (g(n))$ ha un simile comportamento a $o(g(n))$ e $\omega (g(n))$ per quanto riguarda i *limiti* , infatti possiamo scrivere che :
+$$\text{Se}\quad\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} = l \quad \text{con $0 \lt l \lt \infty$ } \quad \implies \quad f(n)=\Theta(g(n))$$
+
+### Lim e O notation riassunto
+
+$$\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} \begin{cases} 0 & \implies f(n) = O(g(n)) \\ l & \implies f(n)=\Theta(g(n)) \\ \infty & \implies f(n)=\Omega(g(n)) \end{cases}$$
+
+Esempio :
+
+$$(1+\sin(n))\cdot n=O(n)$$
+Avremo che :
+$$-1\le\sin(n)\le 1$$
+$$0\le1+\sin(n)\le 2$$
+Ora moltiplicando per $n$
+$$(1+\sin(n))\cdot n\le 2\cdot n$$
+Avremo quindi che $c=2$ e per definizione abbiamo dimostrato che : $(1+\sin(n))\cdot n=O(n)$
+
+Ora proviamo a fare lo stesso con la definizione di $\lim$
+$$\lim_{n\rightarrow \infty} \frac{(1+\sin(n))\cdot n}{n}=\lim_{n\rightarrow \infty} (1+\sin(n))=\emptyset$$
+Non è quindi sempre valida la definizione di limite per dimostra l'apparteneza ad una classe di complessità
+### Polinomi
+
+
+
+
+
+
+
 
 
 
