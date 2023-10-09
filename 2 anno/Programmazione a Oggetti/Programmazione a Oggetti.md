@@ -288,4 +288,5 @@ public "per usi interni" : modules file di testo in cui dico che classi esporto
 
 # 9/10/2023
 
-/git
+getter info su stato di un oggetto , può non essere direttametne un campo
+

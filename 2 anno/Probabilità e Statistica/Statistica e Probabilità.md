@@ -71,3 +71,5 @@ c minuscola -> concatenate
 **sapzio campionario** : insieme di tutti i possibili risusltati di un fenomeno aleatorio ( non abbiamo certezza del risusltato ) 
 moneta = testa o crocio = 2
 **cardinalità** : numero di elementi = 2 
+
+# 9/10/2023

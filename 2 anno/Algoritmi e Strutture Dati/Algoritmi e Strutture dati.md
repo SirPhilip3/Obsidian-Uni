@@ -460,3 +460,5 @@ poichè $o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$ avermo che :
 $$log\ n =O(\sqrt n)$$
 ### $\omega \Big(g(n)\Big)$
 
+
+
