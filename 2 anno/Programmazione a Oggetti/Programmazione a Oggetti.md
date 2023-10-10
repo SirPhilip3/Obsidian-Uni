@@ -8,12 +8,179 @@ Differenze tra diversi linguaggi :
 |---|---|
 |Basato sul concetto di *oggetti* , ogni oggetto può contenere dati o codice , dati nella forma dei *campi* mentre codice nella forma di procedure o *metodi* , i metodi all'interno degli oggetti possono modificare i dati di se stesso , gli *oggetti* sono istanze di *classi* il che determina il loro tipo | Un programma imperativo utilizza istruzioni per cambiare lo stato del programma , programmazione imperativa consiste in comandi per il computer da svolgere ( si concentra nel come un programma deve funzionare ) |
 
+*java* è garbage collected ( no more deletes )
+
+*java* compilation workflow :
++ *.java* viengono compilati in *java bytecode*
++ Il *java bytecode* viene eseguito in una virtual machine ( *Java Runtime Enviroment* ( *JRE* ) )
+
+Rende il codice *java* molto *portabile* ( basta avere il corretto JRE per quella macchina e il codice eseguirà )
+#### Java bytecode
+
+Il *java bytecode* è un linguaggi di basso livello indipendete dalla macchina ( è uguale per tutte le macchine ) che viene eseguito dalla *JRE*
+
+L'esecuzione del *java bytecode* è costituito da :
++ [**Stack** of frames](https://www.jrebel.com/blog/java-bytecode-tutorial) ( uno per ogni metodo )
+	è costituito da : 
+	+ un insieme di *variabili locali* contenti dei valori ( es quelli passati ad una funzione ) , la sua dimensione è deteminata a compile time
+	+ uno *stack degli operandi* ( è uno stack di tipo *LIFO* usato per pushare e poppare valori  , viene usato durante l'esecuzione del metodo )
++ Una memoria che contiene gli oggetti istanziati
+##### Accenni di bytecode
+
+Istruzioni sono caratterizzate dal tipo a cui si riferiscono , quindi una istruzione che somma due interi è diversa da una che somma due float : 
+`iadd` : add tra 2 int ( indicato dall'*i* iniziale )
+`fadd` : add tra 2 float ( indicato dall'*f* iniziale ) 
+
+L'invocazione di funzione avviene attraverso il comando `invoke` che può differenziarsi in :
++ `invokevirtual` : calls a public method
++ `invokespecial` : calls the constructor of a class
++ `invokestatic` : calls a static method
+
+Vi sono poi altri comandi per :
++ load e store di variabili locali
++ scrittura o lettura di locazioni sull'heap
++ controllare condizioni su delle variabili
+
+###### Esempi :
+
+Duplicazioni di 2 variabili
+
+![[Pasted image 20231010110858.png]]
+
+Caricamento di una variabile locale nello stack
+
+![[Pasted image 20231010110922.png]]
+
+Store di una variabile nelle variabili locali
+
+![[Pasted image 20231010111153.png]]
+
+Somma di due variabili 
+
+![[Pasted image 20231010111432.png]]
 
 
 
 
 
 
+
+
+
+
+#### Perchè usare OOP
+
+Il paradigma di programmazione ad oggetti o *OOP* ( *Object Oriented Programming* ) ci consente di creare codice che si concetri nella *riusabilità* , questo avviene attraverso  : 
++ l'*incapsulamento* del codice 
++ *information hiding*
++ *eridetarietà* che ci permette di estendere e specializzare codice già esistente
++ *polimorfismo* , *metodi dinamici* , *classificazione* ci permetto di realizzare algoritmi riusabili 
+
+
+# Introduzione al linguaggio
+
+## Classi
+
+Le classi rappresentano oggetti reali o immaginari , queste consitono di *campi* ( che identificano lo stato di un oggeto ) e *metodi* ( identificano le azioni e il cambio di stato di un oggetto )
+
+Ogni *classe* definisce un *tipo*
+
+La parola chiave *this.* viene utilizzata per accedere agli oggetti della classe 
+
+Esempio : una macchina 
+```java
+class Car {
+	double fuel;
+	double speed;
+
+	void refuel(double amount){
+		fuel+=amount;
+	}
+
+	void accelerate(double a){
+		speed*=a;	
+		fuel-=a*FUEL_CONS	
+	}
+
+	void fullBreak(){
+		speed = 0.0;
+	}
+}
+```
+
+Le *classi* possono essere istanziate in *oggetti* :
+```java
+Car myCar = new Car(); //invocazione del default constructor visto che non ne abbiamo definito uno = tutti i valori a 0 : fuel=0 , speed=0.0
+```
+
+Le variabili locali ( `myCar` ) contengono una reference ad un *oggetto* 
+
+Quindi se per esempio ho 2 macchine e assegno dei valori alla prima , sucessivamente ne creo un'altra e voglio che abbia gli stessi valori se le assegno la prima macchina avrò copiato un pointer alla prima machina quindi se modifico la seconda modificherò anche la prima : *aliasing*
+
+```java
+Car Car1 = new Car();
+// fuel=0 , speed=0.0
+Car1.refuel(32);
+// fuel=32 , speed=0.0
+Car1.accelerate(43);
+// fuel=30 , speed=43
+
+Car Car2 = Car1;
+// fuel=30 , speed=43
+Car2.fullBreak();
+// fuel=30 , speed=0.0
+Car1 // fuel=30 , speed=0.0 ho modificato anche Car1
+```
+
+### Constructors
+
+I *costruttori* sono metodi speciali che ci permettono di istanziare una classe con valori differenti da quelli di default
+
+Il costruttore che viene utilizzato senza averne definito uno è detto di *default* e imposta i valori predefiniti ( a 0 o null ) ai *campi*
+
+Se però definiamo un *costruttore* differente da quello di default , quello di default non viene inserito nella classe
+
+Esempio :
+```java
+class FuelType{
+	String name;
+	double costPerLiter;
+	double fuelConsumption;
+
+	FuelType(String n, double cpl, double fc){ //costruttore
+		this.name=n;
+		this.costPerLiter=cpl;
+		this.fuelConsumption=fc;
+	}
+}
+```
+
+*this* può essere utilizzato per chiamare costruttori all'interno di altri costruttori 
+Esempio :
+```java
+class FuelTank{
+	String name;
+	double amount;
+
+	FuelTank(FuelType type, double amount){ 
+		this.type=type;
+		this.amount=amount;
+	}
+
+	FuelTank(FuelType type){
+		this(type,0);// chiama il primo costruttore
+	}
+}
+```
+
+### Modificatori
+
+3 tipi di *modificatori*
++ *Access* modifiers : applicato a *campi* e *metodi*
+	Utilizzati per limitare l'accesso dall'esterno di vari elementi di una *classe*
++ *Concurrency* modifiers : applicato a *campi* e *metodi*
++ *Altri* 
+	+ 
 
 
 
