@@ -132,6 +132,21 @@ Car2.fullBreak();
 Car1 // fuel=30 , speed=0.0 ho modificato anche Car1
 ```
 
+### Tipi
+
+Possiamo dividere i tipi di *java* in 2 categorie :
++ **Valori** : int/long , boolean , float/double , char 
++ **Reference** : oggetti , array etc... ( tutti questi contengono un pointer all'area di memoria asseganta ad un oggetto , array etc... )
+
+L'utilizzo di *reference* è utile per diminuire la presenza di duplicazioni / ridondanza di dati e codice 
+
+#### Aliasing
+
+*Aliasing* indica che un'area di memoria può essere acceduta tramite più nomi differenti ( ad ogni nome è associato lo stesso pointer ) , consente di effettuare *data-sharig*
+
+Example :
+
+![[Screenshot 2023-10-10 133609.png]]
 ### Constructors
 
 I *costruttori* sono metodi speciali che ci permettono di istanziare una classe con valori differenti da quelli di default
@@ -173,16 +188,64 @@ class FuelTank{
 }
 ```
 
+In *byte code* il costruttore è identificato con `init` , `clinit` per i costruttori statici
+
 ### Modificatori
 
 3 tipi di *modificatori*
 + *Access* modifiers : applicato a *campi* e *metodi*
 	Utilizzati per limitare l'accesso dall'esterno di vari elementi di una *classe*
+	+ *public*
+	+ *default*
+	+ *protected*
+	+ *private*
 + *Concurrency* modifiers : applicato a *campi* e *metodi*
+	Utilizzati per rendere il codice "simultaneo"
+	+ *sincronized*
+	+ *volatile*
 + *Altri* 
-	+ 
+	+ *static* : utilizzato in *campi* e *metodi*
+		Utilizzato *nelle classi* non in oggetti 
+		*Metodi* statici possono accedere solo a campi statici e a metodi statici e si riferiscono alla *classe* stessa , per questo non si può usare *this*
+		Può essere anche scritto un costruttore statico che segue le regole precedenti e viene eseguito all'inizializzazione della classe ( ancora prima dell'istanziazione di oggetti )
+		Un *campo statico* è unico per tutti gli *oggetti* istanziati
+		Esempi :
+	```java
+	class FuelTank{
+		double amount;
+		static int numberOfTanks;
 
+		static void resetTanksCount(){
+			numberOfTanks=0;
+		}
+		static{
+			FuelTank.resetTanksCount();
+		}
+	}
+	```
+	+ *final* : utilizzato in *campi* , *metodi* e *classi*
+		Un *campo* finale non può essere modificato dopo la sua inizializzazione , tutti i campi *final* devono essere inizializzati da un costruttore
+	+ *abstract* : utilizzato in *metodi* e *classi*
 
+Più modificatori possono essere assegnati ad uno stesso *campo* , *metodo* o *classe* , a patto che siano compatibili
+
+### new operator
+
+L'operatore *new* è colui che istanzia una classe 
+Esempio :
+```java
+Car c = new Car(100,"diesel",10);
+```
+
+I passaggi che svolge sono : 
++ Alloca la memoria per memoriazzare lo stato di un oggetto
++ Inizializza tutti i *campi* a zero/null
++ Invoca il costruttore specificato dai parametri in ingresso
++ Ritorna un *pointer* all'oggetto creato ( nell'heap )
+
+## Packages
+
+/git
 
 # 22/09/2023
 
