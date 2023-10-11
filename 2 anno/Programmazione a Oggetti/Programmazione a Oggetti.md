@@ -431,7 +431,9 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 
 
 
-# 22/09/2023
+
+# Appunti
+## 22/09/2023
 
 Integer.parseint(args()) parsing args da string ad int
 
@@ -454,7 +456,7 @@ operand stack  , pila delle operazioni
 
 i davanti a bytcode = int
 
-# 27/09/2023
+## 27/09/2023
 
 [bytecode]([Java bytecode - Wikipedia](https://en.wikipedia.org/wiki/Java_bytecode))
 
@@ -508,7 +510,7 @@ rappresentazione di un'entità reale o astratta
 funzionalità per evolvere l'oggetto
 metodi modifiano i campi mantenendo consistenza logica
 
-# 29/09/2023
+## 29/09/2023
 
 encapsulamento dei metodi , non modifico i dati al di fuori della classe , espongo solo funzioni e nascondo i dati
 
@@ -562,7 +564,7 @@ se definisco un contructor non posso più cotruire un oggetto senza quel costrut
 
 posso definire più costruttori ( overloading )
 
-# 04/10/2023
+## 04/10/2023
 
 Instanza oggetto with contructor
 
@@ -640,7 +642,7 @@ es id non deve essere modificato
 
 costante globale static e final
 
-# 06/10/2023
+## 06/10/2023
 ##
 modi per accedere a campo statico 
 ```java
@@ -719,7 +721,7 @@ deprecated metodo not supported
 
 public "per usi interni" : modules file di testo in cui dico che classi esporto
 
-# 9/10/2023
+## 9/10/2023
 
 getter info su stato di un oggetto , può non essere direttametne un campo
 

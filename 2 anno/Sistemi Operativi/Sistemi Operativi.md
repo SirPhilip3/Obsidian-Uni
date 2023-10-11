@@ -605,3 +605,40 @@ Transizioni di stato dei processi :
 + *blocked* -> *ready* : quando è avvenuto quell'evento per il quale era *blocked*
 
 ![[Pasted image 20231008120024.png]]
+
+### Descrittori di Processo
+
+In inglese : *Process Control Blocks ( PCBs )* mantiene le informazioni necessarie all'OS per gestire il processo :
++ Process identificator number ( *PID* )
++ *Stato* del processo ( *ready* , *running* , *blocked* )
++ *Program counter* ( PC )
++ *Stack pointer* ( SP )
++ Proprità del processo nello scheduling
++ Diritti ( r,w,e per i vari utenti )
++ Pointer al processo padre
++ Pointer ai processi figli
++ Pointer per localizzare i dati e le istruzioni in memoria
++ Pointer alle risorse allocate
+
+La **Tabella dei Processi** mantiene dei pointers ai *PCB* di ogni processo divisi in 2 tabelle :
++ *sistema* : contiene i processi legati al *sistema operativo*
++ *utente* : contiene i processi legati ad un utente
+
+Quando un processo termina il SO rimuove il processo dalla tabella dei processi e libera tutte le risorse legate a quel processo ( fa garbage collection )
+
+### Sospensione
+
+Un processo può essere *sospeso* per motivi di sicurezza o di debugging
+
+Quando un processo viene *sospeso* viene rimosso dalla contesa per il tempo sulla CPU senza distruggerlo 
+
+Una sospensione può essere richiesta da se stesso o da un altro processo ma il suo riavvio ( *risveglio* ) può essere effettuato solo da un altro processo
+
+Vi sono 2 stati di sospensione : 
++ *suspendedready*
++ *suspendedblocked*
+La scielta tra i due tipi di sospensione riguarda lo stato del processo dove viene sospeso : se era nello stato *ready* al momento della sospensione allora otterrà lo stato di *suspendedready* altrimenti se era nello stato *blocked* otterrà lo stato *suspendedblocked*
+
+![[Pasted image 20231011225755.png]]
+
+### Context Switch
