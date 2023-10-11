@@ -429,7 +429,7 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 
 *javadoc* genera un documento *HTML* con tutta la documentazione dell'*API* , utilizzati dalle *IDE* per mostrare la documentazione per un certo metodo
 
-/git
+
 
 # 22/09/2023
 
