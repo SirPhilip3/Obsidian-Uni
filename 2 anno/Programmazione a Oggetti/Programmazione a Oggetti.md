@@ -418,8 +418,18 @@ etc..
 [manifest](https://docs.oracle.com/javase/tutorial/deployment/jar/manifestindex.html)
 ## Javadoc
 
-Bisogna documentare tutti i *metodi* pubblici ( tutti i metodi *API* ) 
+Bisogna documentare tutti i *metodi* pubblici ( tutti i metodi *API* ) con il loro significato in modo da astrarre dalla loro implementazione interna
 
+La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
++ *Source code comments* spiegano cosa computa una parte specifica di un programma
+	+ single line ( `//...` )
+	+ multiple lines ( `/*...*/`)
++ *Documentation* ( *javadoc* ) sono commenti che spiegano l'*API* di una *libreria*
+	+ `/**...*/`
+
+*javadoc* genera un documento *HTML* con tutta la documentazione dell'*API* , utilizzati dalle *IDE* per mostrare la documentazione per un certo metodo
+
+/git
 
 # 22/09/2023
 
