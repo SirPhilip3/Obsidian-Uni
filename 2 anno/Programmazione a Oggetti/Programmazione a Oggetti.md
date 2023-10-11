@@ -15,6 +15,8 @@ Differenze tra diversi linguaggi :
 + Il *java bytecode* viene eseguito in una virtual machine ( *Java Runtime Enviroment* ( *JRE* ) )
 
 Rende il codice *java* molto *portabile* ( basta avere il corretto JRE per quella macchina e il codice eseguirà )
+
+[Naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
 #### Java bytecode
 
 Il *java bytecode* è un linguaggi di basso livello indipendete dalla macchina ( è uguale per tutte le macchine ) che viene eseguito dalla *JRE*
@@ -245,6 +247,29 @@ I passaggi che svolge sono :
 
 ## Packages
 
+Le *classi* possono essere raggruppate in *pacchetti* ( *packages* )
+
+Il nome dei *packages* deve rispecchiare un URL specchiato , il nome deve rispecchiare la classificazione in cartelle all'interno della repository
+
+Le parole chiave della classe devono essere presenti anche nel "nome" del package 
+
+Esempio :
+```java
+package it.unive.dais.po1.fuel;
+class FuelTank{...}
+class FuelType{...}
+```
+
+Per importare un package :
+```java
+package it.unive.dais.po1.car;
+import it.unive.dais.po1.fuel.*;
+class Car{...}
+```
+
+\* indica l'importazione di tutte le classi presenti nel pacchetto 
+
+## Encapsulation
 
 
 # 22/09/2023
