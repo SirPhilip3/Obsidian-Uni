@@ -245,7 +245,7 @@ I passaggi che svolge sono :
 
 ## Packages
 
-/git
+
 
 # 22/09/2023
 
