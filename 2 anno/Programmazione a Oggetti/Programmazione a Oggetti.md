@@ -271,6 +271,84 @@ class Car{...}
 
 ## Encapsulation
 
+*Incapsulamento* : quando i dati sono legati ai metodi che li modificano 
+
+Una parte fondamentale dell'*incapsulamento* è l'*information hiding* ossia rendere visibile all'usufruitore finale solo lo stretto necessario per utilizzare il proprio modulo senza avere accesso diretto ai dati
+
+Per modificare l'accessibilità ai dati possono essere utilizzati gli *access modifiers* :
++ **public** : 
+	consente l'accesso ovunque di quel dato o classe ( stessa classe , stesso pacchetto , stessa sottoclasse , dappertutto ) 
+	Viene usato per rappresentare l'*interfaccia pubblica* del programma 
++ **protected** : consente l'accesso solo alla stessa classe , stesso pacchetto , stessa sottoclasse
++ **\<default\>** : consente l'accesso solo alla stessa classe , stesso pacchetto 
+	Utilizzati per quello che deve essere acceduto dalla *stessa unità software*
++ **private** : consente l'accesso solo alla stessa classe
+	Quello che dovrebbe rimanere nascosto : dettagli di implementazione che potrebbero essere modificati
+
+Riassunto :
+
+|-|Same class|Same package|Sottoclassi|Dappertutto|
+|---|---|---|---|---|
+|public|yes|yes|yes|yes|
+|protected|yes|yes|yes|no|
+|\<default\>|yes|yes|no|no|
+|private|yes|no|no|no|
+
+Esempio :
+
+``
+<table>
+<tr>
+<td> Status </td> <td> Response </td>
+</tr>
+<tr>
+<td> 200 </td>
+<td>
+
+↑ Blank line!
+```json
+json
+{
+    "id": 10,
+    "username": "alanpartridge",
+    "email": "alan@alan.com",
+    "password_hash": "$2a$10$uhUIUmVWVnrBWx9rrDWhS.CPCWCZsyqqa8./whhfzBZydX7yvahHS",
+    "password_salt": "$2a$10$uhUIUmVWVnrBWx9rrDWhS.",
+    "created_at": "2015-02-14T20:45:26.433Z",
+    "updated_at": "2015-02-14T20:45:26.540Z"
+}
+```
+↓ Blank line!
+
+</td>
+</tr>
+<tr>
+<td> 400 </td>
+<td>
+
+**Markdown** _here_. (↕︎ Blank lines above and below!)
+
+</td>
+</tr>
+</table>
+````
+
+|e|d|f|
+|---|---|---|
+|`{java} package it.unive.dais.po1.fuel`|
+
+| Header 1 | Header 2 | 
+|---------------|---------------| 
+| Code Block 1 | Code Block 2 |
+| ``` | ``` | 
+| Line of code | Line of code | 
+| Line of code | Line of code |
+| ``` | ``` | 
+| More code | More code | 
+| More code | More code |
+|---------------|---------------|
+
+
 
 # 22/09/2023
 
@@ -482,7 +560,7 @@ es id non deve essere modificato
 costante globale static e final
 
 # 06/10/2023
-
+##
 modi per accedere a campo statico 
 ```java
 
