@@ -284,6 +284,9 @@ Per modificare l'accessibilità ai dati possono essere utilizzati gli *access mo
 	Utilizzati per quello che deve essere acceduto dalla *stessa unità software*
 + **private** : consente l'accesso solo alla stessa classe
 	Quello che dovrebbe rimanere nascosto : dettagli di implementazione che potrebbero essere modificati
++ **deprecated** : utilizzato per indicare un *metodo* non supportato
+
+Esistono anche i *modules* , sono un file con all'interno il nome delle classe whitelistate per l'esportazione in un file *jar*
 
 Riassunto :
 
@@ -296,58 +299,126 @@ Riassunto :
 
 Esempio :
 
-``
-<table>
-<tr>
-<td> Status </td> <td> Response </td>
-</tr>
-<tr>
-<td> 200 </td>
-<td>
+```java
+package it.unive.dais.po1.fuel;
 
-↑ Blank line!
-```json
-json
-{
-    "id": 10,
-    "username": "alanpartridge",
-    "email": "alan@alan.com",
-    "password_hash": "$2a$10$uhUIUmVWVnrBWx9rrDWhS.CPCWCZsyqqa8./whhfzBZydX7yvahHS",
-    "password_salt": "$2a$10$uhUIUmVWVnrBWx9rrDWhS.",
-    "created_at": "2015-02-14T20:45:26.433Z",
-    "updated_at": "2015-02-14T20:45:26.540Z"
+class FuelTank {
+	// il tipo di alimentazione non devo modificarla
+	private FuelType type;
+	// devo poter sapere e modificare la quantità di carburante che è presente nel        serbatoio
+	public double amount;
+	public FuelTank (...){...}
 }
 ```
-↓ Blank line!
 
-</td>
-</tr>
-<tr>
-<td> 400 </td>
-<td>
+```java
+package it.unive.dais.po1.fuel;
 
-**Markdown** _here_. (↕︎ Blank lines above and below!)
+class FuelType {
+	// è l'implementazione interna , non deve essere modificata ( il nome del             carburante non può essere cambiato )
+	private String name; 
+	private double costPerLiter;
+	private double fuelConsumption;
+	// i tipi di carburante devono essere costruiti esternamente
+	public FuelType (...){...}
+}
+```
 
-</td>
-</tr>
-</table>
-````
+```java
+package it.unive.dais.po1.car;
+import it.unive.dais.po1.fuel.*;
+class Car { 
+	// è l'implementazione interna , non deve essere modificata ( la macchina non può     diventare a benzina )
+	private double speed; 
+	private FuelType fuelType;
+	private double fuel;
+	// devono essere visti esternamente
+	public void refuel(FuelTank tank){...}
+	public void accelerate(double a){...}
+	public void fullBreak(){...}
+}
+```
 
-|e|d|f|
-|---|---|---|
-|`{java} package it.unive.dais.po1.fuel`|
+### Getters
 
-| Header 1 | Header 2 | 
-|---------------|---------------| 
-| Code Block 1 | Code Block 2 |
-| ``` | ``` | 
-| Line of code | Line of code | 
-| Line of code | Line of code |
-| ``` | ``` | 
-| More code | More code | 
-| More code | More code |
-|---------------|---------------|
+I metodi *getter* ci permettono di avere accesso di sola lettura a *campi* di un *oggetto*
 
+Sono *public* e ritornano semplicemente o il valore di un *campo* o una computazione sui dati di quell'oggetto
+
+In questo modo assicuro che lo stato dell'oggetto non possa essere modificato accedendo ad un *campo* 
+
+Esempio :
+```java
+package it.unive.dais.po1.car;
+import it.unive.dais.po1.fuel.*;
+class Car { 
+	private double speed; 
+	private FuelType fuelType;
+	private double fuel;
+
+	public double getSpeed(){
+		return speed;
+	}
+	
+	public double getValueOfFuel(){
+		return fuel*fuelType.getCost();
+	}
+}
+```
+
+### Setters
+
+I metodi *setters* ci permettono di avere accesso di sola scrittura ad un *campo*
+
+Sono *public* e generalmente consistono in una assegnazione ( può includere un controllo per fare in modo che venga inserito un valore valido )
+
+Esempio 
+```java
+package it.unive.dais.po1.car;
+import it.unive.dais.po1.fuel.*;
+class Car { 
+	private double speed; 
+	private FuelType fuelType;
+	private double fuel;
+
+	public void setSpeed(double s){
+		this.speed=s;
+	}
+	
+	public void setSpeed(double s){
+		if(s<0)
+			this.speed=0;
+		else this.speed=s;
+	}
+}
+```
+
+### Conclusion
+
+I *getters* e *setters* sono molto utili per controllare più facilmente la variazione degli *oggetti* a discapito dell'efficenza in quanto è necessaria ogni volta una chiamata ad un metodo
+
+*Information hiding* è fondamentale in quanto quando un modulo è rilasciato gli utenti utilizzeranno tutto ciò che è pubblico se rimangono pubblici dettagli di implemetazione possono verificarsi comportamenti imprevisti del modulo quindi :
+Un cliente deve avere :
++ Accesso a tutte le informazioni strettamente necessarie per utilizzare il modulo
++ Nessun accesso a qualsiasi altro dato dell'oggetto
+
+## Capsule
+
+Una *capsula* è un pacchetto software con una chiara *application programming interface* ( *API* ) ( sarebbero i metodi pubblici )
+
+Le *capsule* in java sono pubblicate come *librerie* ossia un insieme di *classi* ( appartenenti a *pacchetti* ) impacchettate assieme pubblicate come un file *jar* ( è un file zippato contente i *.class* e altre informazioni )
+
+Per creare un *jar* viene utilizzato il comando `jar` , un *jar* può essere esseguito specificando il file *.class* che contiene il metodo main quando compiliamo
+
+Il *jar* creato contiene un file `META-INF/MANIFEST.MF` che contiene informazioni generali sulla libreia come :
++ La sua versione : `Manifiest-Version: 1.0`
++ Il creatore : `Implementation-Vendor: Oracle Corporation` 
++ La versione della documentazoine  : `Specification-Version: 11`
+etc..
+[manifest](https://docs.oracle.com/javase/tutorial/deployment/jar/manifestindex.html)
+## Javadoc
+
+Bisogna documentare tutti i *metodi* pubblici ( tutti i metodi *API* ) 
 
 
 # 22/09/2023
