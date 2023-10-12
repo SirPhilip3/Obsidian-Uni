@@ -750,5 +750,5 @@ Esempio :  Intel IA-32 ( x86 ) distingue 2 tipi di segnali che possono essere ri
 + **Trap** :
 + **Abort** : 
 
-/GIT
+
 
