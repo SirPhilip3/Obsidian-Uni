@@ -707,3 +707,48 @@ Una *interrupt* può essere avviata da qualche evento che può non essere colleg
 
 #### Gestione dell'interrupt
 
+Dopo aver ricevuto una *interrupt* la CPU completa l'esecuzione dell'istruzione corrente sucessivamente interrompe il processo corrente 
+
+Il processore chiama il *gestore degli interrupt* che determina come il sistema deve rispondere a quella specifica interruzione 
+
+I vari puntatori ai gestori delle interruzioni sono memorizzati in un array detto ( *vettore di interrupt* )
+
+Dopo aver gestito correttamente l'interruzione il SO ripristina il processo interrotto in precedenza oppure viene eseguito il processo sucessivo ( se il precedente non può continuare o aveva finito di eseguire )
+
+I passi completi per la gestione di un interruzione sono :
+1. l'hardware mette nello *stack* il *PC* ( salva lo stato del processo )
+2. l'hardware carica il nuovo *PC* dal *vettore di interrupt* ( carica il gestore delle interrupt )
+3. Una procedura in *assembly* salva i registri
+4. Una procedura in *assembly* imposta il nuovo *stack*
+5. Si esegue la procedura per la *gestione dell'interrupt* ( scritta in C )
+6. Lo *scheduler* viene attivato per selezionare il prossimo processo da eseguire
+7. La procedura in C restituisce il controllo al codice in assembly
+8. La procedura in assembly avvia il nuovo processo da eseguire
+
+![[Pasted image 20231012132701.png]]
+
+#### Classi di Interrupt
+
+Le *interrupt* supportate dalla architettura del sistema 
+
+Esempio :  Intel IA-32 ( x86 ) distingue 2 tipi di segnali che possono essere ricevuti dal processore :
++ *Interrupts* : notifica il processore che si è verificato un evento e che lo stato di un dispositivo esterno è cambiato ( viene generata da un dispositivo esterno al processore )
++ *Eccezioni* : Indicano quando si è verificato un errore ( hardware o come risultato di un'istruzione software ) , vengono classificate come : *faults* , *traps* , *abort*
+
+##### Interrupt in x86
+
++ **I/O** :
+	Attivate dall’hardware I/O, notificano al processore la variazione di stato di un canale o di una periferica. Es. fine di operazione di I/O..........................
++ **Timers** :
+	Periferiche che generano interrupt ad intervalli periodici, usati per gestire il tempo o per monitorare le prestazioni. Es. fine di un quanto di tempo di un processo..........................
++ **Interruzione per IPC** :
+	Un processo può inviare messaggi ad altri processi. In sistemi multiprocessori i processi possono essere contemporaneamente in esecuzione..............................
+
+##### Exceptions in x86
+
++ **Fault** :
++ **Trap** :
++ **Abort** : 
+
+/GIT
+
