@@ -642,3 +642,68 @@ La scielta tra i due tipi di sospensione riguarda lo stato del processo dove vie
 ![[Pasted image 20231011225755.png]]
 
 ### Context Switch
+
+Viene eseguito dal SO per fermare l'esecuzione di un processo *running* e iniziare l'esecuzione di un processo *ready*
+
+Svolgimento :
++ SO toglie il processo dalla CPU salvendone il contesto di esecuzione nel suo *PCB*
++ SO carica il nuovo processo grazie ai dati presenti nel *PCB* del processo *ready*
+
+Il tempo necessario per svolgere queste operazioni è un tempo "morto" per la CPU , ossia non viene fatta alcun calcolo per l'avanzamento di un processo , per questo il tempo di *contex switch* deve essere ridotto al minimo 
+
+Questo processo può essere eseguito in hardware per alcune architetture
+
+![[Pasted image 20231012101645.png]]
+
+### Prestazioni CPU
+
+Le prestazioni di una CPU possono essere calcolate in termini di *utilizzazione* della CPU 
+L'utilizzazione dipende dal grado di *multiprogrammazione* , infatti se vi sono più processi in *ready* la CPU sarà maggiormente occupata.
+
+L'utilizzazione della CPU dipende anche principalmente dal tempo che un processo è in attessa di I/O , infatti in quel tempo la CPU può svolgere un altro processo
+
+Quindi considerando : 
++ $n$ processi in memoria
++ $p$ frazione di tempo in cui un processo è in attesa di I/O
+
+Avremo che l'*utilizzazione* della CPU potrà essere calcolcata con la seguente formula :
+$$1-p^n$$
+In grafico :
+20% di attesa di I/O -> blu
+50% di attesa di I/O -> rosso
+80% di attesa di I/O -> verde
+```functionplot
+---
+title: 
+xLabel: Grado di multiprogrammazione
+yLabel: Utilizzo della CPU ( in percentuale )
+bounds: [0,11,0,1]
+disableZoom: true
+grid: true
+---
+20(x)=1-0.2^x
+50(x)=1-0.5^x
+80(x)=1-0.8^x
+```
+
+
+### Interrupts
+
+Le *interrupts* abilitano il software alla ricezione di segnali hardware
+
+Una *interrupt* può essere iniziato da un processo in esecuzione :
++ Questo tipo di interrupt viene chiamato *trap*
++ è *sincrono* con le operazioni del processo
++ Avviene per esempio con divisione per zero o quando il programma si riferisce ad aree di memoria protette
+
+Una *interrupt* può essere avviata da qualche evento che può non essere collegato al processo in esecuzione : 
++ è *asincrono* con le operazioni del processo
++ Esempi : un tasto viene premuto su una tastiera o viene mosso un mouse
+
+*Polling*
+	Il *polling* è un approccio alternativo all'interruzione del flusso delle operazioni in CPU :
+	Il processore richiede ad intervalli regolari lo stato di ogni dispositivo di I/O
+	Se il sistema diventa complesso l'*overhead* *aumenta*
+
+#### Gestione dell'interrupt
+
