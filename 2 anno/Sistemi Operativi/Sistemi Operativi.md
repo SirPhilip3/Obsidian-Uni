@@ -738,17 +738,61 @@ Esempio :  Intel IA-32 ( x86 ) distingue 2 tipi di segnali che possono essere ri
 ##### Interrupt in x86
 
 + **I/O** :
-	Attivate dall’hardware I/O, notificano al processore la variazione di stato di un canale o di una periferica. Es. fine di operazione di I/O..........................
+	L'interrupt di *I/O* è lanciata da un hardware di *I/O* per notificare al processore una variazione di stato di un canale ( es fine operazione di *I/O* ) o di una periferica
 + **Timers** :
-	Periferiche che generano interrupt ad intervalli periodici, usati per gestire il tempo o per monitorare le prestazioni. Es. fine di un quanto di tempo di un processo..........................
+	Sono *interrupt* generati periodicamente da periferiche , vengono usate  per gestire il tempo o per monitorare le prestazioni
 + **Interruzione per IPC** :
-	Un processo può inviare messaggi ad altri processi. In sistemi multiprocessori i processi possono essere contemporaneamente in esecuzione..............................
+	Avviene quando un processo invia messaggi ad un altro processo , nei sistemi multiprocessori vi possono essere più processi contemporanemanente in esecuzione
 
 ##### Exceptions in x86
 
-+ **Fault** :
-+ **Trap** :
-+ **Abort** : 
++ **Fault** : Avviene quando si svolge un'operazione non consentita :
+	+ divisione per zero
+	+ tenatare di eseguire un codice di operazione non valido
+	+ utilizzo di dati in formato errato
+	+ tentativo di accedere ad una zona di memoria proibita
+	+ tentativo di eseguire da parte di un processo utente di istruzioni kernel
+	+ riferimento a delle risorse protette
++ **Trap** : Generate da eccezioni come overflow o durante il debugging alla presenza di un breakpoint nel codice
++ **Abort** : Viene generata quando il processore identifica un errore dal quale non si può recuperare l'esecuzione del processo :
+	Può avvenire nel caso di *double-fault* ossia quando il controller delle eccezioni esso stesso genera un'eccezione , la risoluzione dei *fault* in questo caso non può essere portata a termine sequenzialmente portando quindi alla terminazione del processo che l'ha attivata
 
+### Interprocess communication
 
+La comunicazione tra processi è fondamentale per consentire ai processi di scambiarsi informazioni o per cooperare e raggiungere un obbiettivo comune ( per esempio distributed rendering )
 
+La comunicazione è basata sullo scambio di *messaggi* 
+
+I *messaggi* possono essere trasmessi in una direzione sola ( da processo *mittente* a *destinatario* ) 
+
+Lo scambio di messaggi può essere bidirezionale ossia ogni processo può agire sia come *mittente* che come *reicevitore*
+
+I *messaggi* possono essere :
++ **bloccati** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , viene bloccato fino alla ricezione di questa notifica
++ **non bloccati** : permette al mittente di continuare ulteriori elaborazioni poichè non viene bloccato per aspettare la notifica di ricezione del messaggio
+
+L'implementazione più comune per i messaggi è la *pipe* ossia si utilizza una regione di memoria protetta dal SO che funge da *buffer* consentendo ai due o più processi di scambiarsi dati 
+
+#### IPC in sistemi distribuiti
+
+In sistemi distribuiti i *messaggi* trasmessi possono essere corrotti o persi più facilmente per questo ci sono :
++ *protocolli di conferma* che confermano che le trasmissioni siano state effettuate correttamente ( aknowledgment )
++ meccanismi di *timeout* per fare in modo che se un messaggio non viene ricevuto entro un determinato lasso di tempo esso venga *ritrasmesso*
+
+Inoltre per fare in modo che i messaggi vengano ricevuti dai processi corretti ad un processo ricevente viene assegnata una *porta* numerata dove ascolta per la ricezione del messaggio 
+
+Deve inoltre essere sviluppato un sistema di autenticazione per garanitre la sicurezza dei dati ( in modo che un processo non possa fingersi un'altro )
+
+#### Segnali
+
+I *segnali* sono interruzioni software che notificano ad un processo l'avvenimento di un evento
+
+// SO3.34 rileggi è libro
+I *processi* possono *ricevere* , *ignorare* o *mascherare* un segnale
++ **ricevere** un segnale e quindi lancia una ruotine per la gestione di quel segnale 
++ **ignorare** un segnale ossia scartarlo
++ **mascherare** un segnale significa che il SO non consegnerà più segnali di quel tipo fino a quando il processo non cancella il *mascheramento* di quel segnale
+
+### Caso di studio : processo UNIX
+
+Tutti i *processi* hanno un insieme di indirizzi di memoria (  )
