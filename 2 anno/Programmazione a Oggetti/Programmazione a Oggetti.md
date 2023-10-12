@@ -61,15 +61,6 @@ Somma di due variabili
 
 ![[Pasted image 20231010111432.png]]
 
-
-
-
-
-
-
-
-
-
 #### Perchè usare OOP
 
 Il paradigma di programmazione ad oggetti o *OOP* ( *Object Oriented Programming* ) ci consente di creare codice che si concetri nella *riusabilità* , questo avviene attraverso  : 
@@ -77,7 +68,6 @@ Il paradigma di programmazione ad oggetti o *OOP* ( *Object Oriented Programming
 + *information hiding*
 + *eridetarietà* che ci permette di estendere e specializzare codice già esistente
 + *polimorfismo* , *metodi dinamici* , *classificazione* ci permetto di realizzare algoritmi riusabili 
-
 
 # Introduzione al linguaggio
 
@@ -428,8 +418,6 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 	+ `/**...*/`
 
 *javadoc* genera un documento *HTML* con tutta la documentazione dell'*API* , utilizzati dalle *IDE* per mostrare la documentazione per un certo metodo
-
-
 
 
 # Appunti
