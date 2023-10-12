@@ -795,4 +795,38 @@ I *processi* possono *ricevere* , *ignorare* o *mascherare* un segnale
 
 ### Caso di studio : processo UNIX
 
-Tutti i *processi* hanno un insieme di indirizzi di memoria (  )
+Tutti i *processi* hanno un insieme di indirizzi di memoria ( spazio di indirizzi virtuali )
+
+Il *PCB* di un processo è mantenuto dal *kernel* in una regione proteta della memoria che i processi utente non possono accedere
+
+In *UNIX* il *PCB* memorizza :
++ Il contenuto dei registri del processore
++ PID
++ Il Progam Counter
++ Lo *stack* si sistema
+
+Tutti i processi sono elencati nella *tabella dei processi*
+
+I processi possono interagire con il SO attraverso *chiamate di sistema* 
+
+Un processo può generare un processo figlio attraverso la chiamata di sistema *fork* che crea una copia del processo padre
++ Il processo figlio riceve una *copia* delle risorse del genitore
++ I file aperti dal processo padre sono condivisi con il figlio
++ La *fork* restituisce il PID del figlio al genitore
+
+Ogni processo ha una *priorità* ( per lo scheduling ) che è indicata da numeri interi tra -20 a 19 ( con -20 si indica la priorità più alta di scheduling ) 
+
+*UNIX* fornisce i *pipes* per consentire il trasferimento di dati tra processi
+
+Esempio di chiamate di sistema UNIX :
+
+|**Chiamata di sistema**|**Descrizione**|
+|---|---|
+|`fork`|Crea un processo figlio e alloca una copia delle risorse del processo padre al figlio|
+|`exec`|Carica da un file le istruzioni e dati di un processo nel suo spazio di indirizzamento|
+|`wait`|Il processo chiamante si blocca fino a quando il processo figlio non ha terminato|
+|`signal`|Permette ad un processo di specificare un gestore di segnalazione per un dato tipo di segnale|
+|`exit`|Termina il processo chiamante|
+|`nice`|Modifica la priorità del processo usata dallo scheduling|
+
+/git
