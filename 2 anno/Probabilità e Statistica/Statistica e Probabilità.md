@@ -64,18 +64,82 @@ Esempio :
 
 ### Fenomeni aleatori
 
+Un *fenomeno aleatorio* è un fenomeno *incerto* , ossia del quale non si può prevedere con certezza l'esito
+Su questi fenomeni si applica il calcolo delle probabilità 
+
+Esempio di fenomeni aleatori :
++ lancio del dado
++ lancio di una moneta
+
 ### Definizioni
 
 #### Spazio campionario
 
+Rappresenta l'insieme di tutti i *possibili* *risultati* di un fenomeno aleatorio ( rappresentato con $\Omega$ ) 
+
+Esempi :
+	Una mano di poker ha $\Omega = \binom{52}{5}$ possibili sottoinsiemi delle 52 carte
+	Lancio di un dado : $\Omega =\{1,2,3,4,5,6\}$
 #### Risultati
 
+Un *risultato* è un elemento dello spazio campionario e si può indicare con $\omega \in \Omega$
 #### Eventi
+
+Un *evento* è un sottoinsieme $A \subset \Omega$
+
+Esempio : 
+	Ottenere un numero pari dal lancio di un dado è considerato un *evento* e può essere rappresentato come l'insieme $\{2,4,6\}$
+
+Quando un *evento* è vero ( avviene ) si dice che è *realizzato* o *verificato*
+
+Anche i singoli *risultati* possono essere visti come *eventi* ( detti *eventi elementari* )
+
+$\Omega$ viene detto *evento certo* poichè sicuramente si verificherà 
+
+Esempi :
+	Un dato da un punteggio superiore a 4 : $A=\{5,6\}$
+	Otteniamo almeno 3 teste da 4 lanci di una moneta :
+	$$A=\{TTTC,TTCT,TCTT,CTTT,TTTT\}$$
+
+Due *eventi* A e B si dicono *incompatibili* ( *disgiunti* ) se non è possibile che siano entrambi veri, cioè se $A\cap B=\emptyset$ 
+![[Disgiunti.excalidraw]]
 
 ##### Operazioni sugli eventi
 
-**Unione**
-### Probabilità
++ **Complementare**
+	Il *complementare* è la *negazione* di un evento A indicato con $\overline{A}$ , questo è l'evento che è vero quando A è falso e viceversa
+	Il *cmplementare* dell'evento certo è l'*evento* *impossibile* : $\overline{\Omega} = \emptyset$  
+	![[Complement.excalidraw]]
++ **Intersezione**
+	L'*intersezione* di due eventi A e B , indicato con $A\cap B$ è l'evento che è vero quando sia A che B sono veri :
+	![[Intersection.excalidraw]]
++ **Unione**
+	L'*unione* di due eventi A e B indicata con $A\cup B$ è l'evento che è vero quando o A oppure B oppure entrambi sono veri
+	![[Unione.excalidraw]]
++ **Incluso** 
+	L'evento A è incluso nell'evento B ( $A\subset B$ ) se il verificarsi di A implica il verificarsi di B
+	![[Incluso.excalidraw]]
+
+#### Partizioni
+
+Una famiglia di *eventi* si dice una *partizione* dello spazio campionario se ogni coppia di insiemi della famiglia ha intersezione vuota e l'unione di tutti i componenti della famiglia è $\Omega$ stesso
+
+Una *partizione* può essere *finita* , ad esempio : 
+$\{C_1,C_2,C_3\}$ è una partizione di 3 elementi se :
+$$C_1\cap C_2 = C_1\cap C_3 = C_2\cap C_3 = \emptyset$$
+e 
+$$C_1\cup C_2\cup C_3=\Omega$$
+![[Partizione.excalidraw]]
+
+Un qualsiasi *evento* A si può scrivere come unione delle sue intersezioni con gli elementi della *partizione*
+$$A=(A\cap C_1)\cup(A\cap C_2)\cup(A\cap C_3)$$
+![[Paritzione2.excalidraw]]
+
+Una partizione *numerabile* può essere definita come :
+$$C_i\cap C_j = \emptyset\quad \forall i, j;\quad \bigcup_{i=1}^{\infty} C_i=\Omega$$
+Sciegliendo un qualsiasi *evento* A come unione *numerabile* delle sue intersezioni con gli elementi di una partizione abbiamo :
+$$A=\bigcup_{i=1}^{\infty}\space (A\cap C_i)$$
+
 
 #### Proprietà
 
