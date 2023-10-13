@@ -829,3 +829,7 @@ Esempio di chiamate di sistema UNIX :
 |`exit`|Termina il processo chiamante|
 |`nice`|Modifica la priorità del processo usata dallo scheduling|
 
+
+
+## Threads
+
