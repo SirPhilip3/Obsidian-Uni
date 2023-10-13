@@ -631,7 +631,7 @@ es id non deve essere modificato
 costante globale static e final
 
 ## 06/10/2023
-##
+
 modi per accedere a campo statico 
 ```java
 
@@ -682,13 +682,13 @@ sia f1 che w1 diventano 1200 modifico values nel pointer
 
 code data structure 
 
-## Aliasing 
+### Aliasing 
 
 stessa area di memoria 2 nomi differenti es :
 w1.damage
 f1.weapon.damage
 
-## Packages
+### Packages
 
 Raggruppamenti di classi che possono essere importate in altre .class
 naming conventions :
@@ -697,7 +697,7 @@ deve rispecchiare il precorso delle directory
 
 * * importa tutte le classi del package , memory !
 
-## Encapsulation
+### Encapsulation
 
 Information hiding ( througth access modifiers ) :
 
@@ -723,7 +723,18 @@ commenti per documentation /** */
 
 ## 13/10/2023
 
+artefatto = risultato compilazione
 
+deployment = jar dentro un jar non ci sono commenti
 
+nel manifest ho la versione del mio pacchetto non serve duplicarla con il javadoc `@version`
 
-/git
+tag autore non in javadoc di default
+
+visibility level = documentazione su private , public etcc
+
+design by *contract*
+
+specifica che input e corrisopndente output deve fornire un metodo
+
+contratto sintattico
