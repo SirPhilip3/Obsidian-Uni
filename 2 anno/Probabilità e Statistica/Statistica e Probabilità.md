@@ -141,13 +141,16 @@ Sciegliendo un qualsiasi *evento* A come unione *numerabile* delle sue intersezi
 $$A=\bigcup_{i=1}^{\infty}\space (A\cap C_i)$$
 
 
-#### Proprietà
+#### Esempio
 
-#### Spazi compionatori finiti
+**Fenomeno Aleatorio** : Studio del lancio di un dado 
 
-#### Eventi elementari equiprobabili
+**Eventi** : Consideriamo i seguenti eventi :
+	A = $\{5,6\}$ : il risultato del lancio è superiore a 4
+	B = $\{2,4,6\}$ : il risultato del lancio è pari
+**Partizione** : 
 
-#### Popolazioni e sottopopolazioni
+### Probabilità
 
 # Appunti
 #### R-Studio

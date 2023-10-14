@@ -188,7 +188,7 @@ In *byte code* il costruttore è identificato con `init` , `clinit` per i costru
 + *Access* modifiers : applicato a *campi* e *metodi*
 	Utilizzati per limitare l'accesso dall'esterno di vari elementi di una *classe*
 	+ *public*
-	+ *default*
+	+ *\<default\>*
 	+ *protected*
 	+ *private*
 + *Concurrency* modifiers : applicato a *campi* e *metodi*
@@ -738,3 +738,13 @@ design by *contract*
 specifica che input e corrisopndente output deve fornire un metodo
 
 contratto sintattico
+
+# Tutorati 
+## 14/10/2023
+
+final deve essere assegnato alla creazione dell'oggetto della classe solo 1 volta dal costruttore o nella dichiarazione della variabile
+
+Encapsulation 
+
+
+
