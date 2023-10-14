@@ -223,7 +223,30 @@ Esempio :
 		$$\mathbb{P}[\text{sistema funzionante}]=\frac{\binom{n-m+1}{m}}{\binom{n}{m}}$$
 #### Popolazioni e sottopopolazioni
 
-Una *popolazione* è un insieme di $N$ elementi suddivisi, a seconda che possiedano o meno una certa caratteristica, in due *sottopopolazioni* rispettivamente $m$ e $N-m$
+Una *popolazione* è un insieme di $N$ elementi suddivisi, a seconda che possiedano o meno una certa caratteristica, in due *sottopopolazioni* rispettivamente $m$ e $N-m$ elementi
+
+Qual'è la probabilità che su $n$ elementi estratti casualmente esattamente $k$ abbiano quella caratteristica ( e i rimanenti $n-k$ no ) ?
+
+##### Soluzione con reinserimento
+
++ **Spazio campionatorio** : $\Omega = \{(x_1,...,x_n); x_i\in\text{popolazione}\space \forall i \}$
+	Le estrazioni sono casuali quindi ogni $n$-upla ( vettore ordinato di dimensione $n$ ) in $\Omega$ ha la stessa probabilità di essere estratta
++ **Evento di interesse** : $A_k=\{(x_1,...,x_n)\in \Omega; k\space \text{elementi hanno la caratteristica richiesta}\}$
+$$\#\Omega=N^n ;\quad \#A_k=\binom{n}{k}m^k(N-m)^{n-k}$$$$\mathbb{P}[A_k]=\binom{n}{k}m^k(N-m)^{n-k}\frac{1}{N^n}$$
+$$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(\frac{N-m}{N}\bigg)^{n-k}$$
+$$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(1-\frac{m}{N}\bigg)^{n-k}$$
+Spiegazione formula ::
+
+##### Soluzione senza reinserimento
+Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
+
++ **Spazio campionatorio** : $\Omega = \{(x_1,...,x_n); x_i\in\text{popolazione}\space \forall i \}$
+	Le estrazioni sono casuali quindi ogni sottoinsieme ( vettore non ordinato di dimensione $n$ ) in $\Omega$ ha la stessa probabilità di essere estratta
++ **Evento d'interesse** :
+	$A_k=\{(x_1,...,x_n)\in \Omega; k\space \text{elementi hanno la caratteristica richiesta}\}$
+$$\#\Omega=\binom{N}{m} ;\quad \#A_k=\binom{n}{k}\binom{N-m}{n-k}$$
+$$\implies \mathbb{P}[A_k]=\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}$$
+Spiegazione formula ::
 # Appunti
 #### R-Studio
 
