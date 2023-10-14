@@ -148,9 +148,21 @@ $$A=\bigcup_{i=1}^{\infty}\space (A\cap C_i)$$
 **Eventi** : Consideriamo i seguenti eventi :
 	A = $\{5,6\}$ : il risultato del lancio è superiore a 4
 	B = $\{2,4,6\}$ : il risultato del lancio è pari
-**Partizione** : 
-
+Allora avremo che :
+	$A\cap B = \{6\}$ : il risultato del lancio è pari *e* superiore a 4
+	$A\cup B=\{2,4,5,6\}$ : il risultato del lancio è pari *o* superiore a 4 
+**Partizione** : Dividiamo lo *spazio campionario* ( $\Omega= \{1,2,3,4,5,6\}$ ) in numeri divisibili per 3 e non ( creiamo una *partizione* )
+$$C_1=\{3,6\};\quad C_2=\{1,2,4,5\}$$
+Allora avremo che : 
+$$A=(A\cap C_1)\cup(A\cap C_2) = \{6\}\cup\{5\}$$
+$$B=(B\cap C_1)\cup(B\cap C_2)=\{6\}\cup\{2,4\}$$
 ### Probabilità
+
+#### Definizione assiomatica 
+
+La *probabilità* è una funzione che assegna ad ogni evento di uno spazio campionario un valore in $\mathbb{R}^+$ , ossia un numero non negativo , che deve soddisfare i seguenti *assiomi* :
+
+1. *Positività* : $0\le$
 
 # Appunti
 #### R-Studio
