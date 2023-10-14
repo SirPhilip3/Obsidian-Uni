@@ -162,8 +162,68 @@ $$B=(B\cap C_1)\cup(B\cap C_2)=\{6\}\cup\{2,4\}$$
 
 La *probabilità* è una funzione che assegna ad ogni evento di uno spazio campionario un valore in $\mathbb{R}^+$ , ossia un numero non negativo , che deve soddisfare i seguenti *assiomi* :
 
-1. *Positività* : $0\le$
+1. *Positività* : $0\le\mathbb{P}[A]\le1$
+2. *Normalizzazione* : $\mathbb{P}[\Omega]=1$ ( probabilità dell'evento certo = 1 )
+3. *Additività* : Se $A_1, A_2, ...$ è una sequenza di eventi *incompatibili* cioè $A_i\cap A_j=\emptyset\quad \forall i\ne j$  allora :
+	$$\mathbb{P}\Bigg[\bigcup_{n=1}^{\infty} A_n\Bigg]=\sum_{n=1}^{\infty}\mathbb{P}[A_n]$$
+	Ossia la probabilità dell'unione degli eventi incompatibili è uguale alla somma delle probabilità dei singoli eventi
 
+#### Interpretazione Logica
+
+La probabilità dell'evento A , $\mathbb{P}[A]$ , è un numero tra 0 e 1 che indica il grado di fiducia dell'individuo nell'avverarsi dell'evento A. Più $\mathbb{P}[A]$ si avvicina a 1 più ci aspettiamo che l'evento si avveri ( o minore è la nostra incertezza sull'avverarsi di quell'evento )
+
+Una volta osservato il fenomeno aleatorio sappiamo se A si è verificato o meno e di conseguenza la sua probabilità non serve più ( 1 se l'evento si è verificato 0 altrimenti )
+
+#### Proprietà
+
+##### Complementare
+Probabilità del *complementare*
+Dato un evento A :
+$$\mathbb{P}\Big[\overline{A}\Big]=1-\mathbb{P}[A]$$
+##### Evento impossibile
+Probabilità dell'*evento impossibile*
+$$\mathbb{P}[\emptyset]=\mathbb{P}\Big[\overline{\Omega}\Big]=1-\mathbb{P}[\Omega]=0$$
+##### Unione
+Probabilità dell'*unione*
+Dati due eventi A e B
+$$\mathbb{P}[A\cup B]=\mathbb{P}[A]+\mathbb{P}[B]-\mathbb{P}[A\cap B]$$
+##### Partizione
+Probabilità di una *partizione*
+Se $C_1,C_2,...$ sono una partizione allora :
+$$\mathbb{P}\Bigg[\bigcup_{i=1}^{\infty} C_i\Bigg]=\mathbb{P}[\Omega]=1$$
+#### Legge della probabilità totale
+
+Se $C_1,C_2,...$ sono una partizione dell'evento certo, la probabilità di un qualsiasi evento A può essere scritta come :
+$$\mathbb{P}[A]=\sum_{i} \mathbb{P}[A\cap C_i]$$
+#### Spazi campionari finiti
+
+Quando lo spazio campionatorio costituisce un insieme finito, $\Omega=\{\omega_1,...,\omega_n\}$ allora un'assegnazione di probabilità è data da $n$ valori $p_1,...,p_n$ tali che :
+1. $p_i\in[0,1],\quad \forall i=1,...,n$
+2. $\sum_{i=1}^n p_i=1$
+3. $p_i=\mathbb{P}[\{\omega_i\}], \quad \forall i=1,...,n$
+
+Dato che ogni evento è $A\subset \Omega$ , esso si può scrivere come unione ( finita ) degli eventi elementari ( disgiunti ) che lo costituiscono 
+$$A=\{\omega_1,...,\omega_{i_r}\}=\bigcup_{k=1}^r \{\omega_{i_k}\}$$
+Potremmo quindi scrivere che la *probabilità* di A è :
+$$\mathbb{P}[A]=\sum_{k=1}^r\mathbb{P}[\{\omega_{i_k}\}]=\sum_{k=1}^r p_{i_k}$$
+#### Eventi elementari equiprobabili
+
+Se possiamo assumere che tutti gli eventi elementari abbiano la *stessa probabilità* allora :
+$$p_i=\mathbb{P}[\{\omega_i\}]=\frac{1}{n}, \quad \forall i=1,...,n$$
+Per ogni evento $A=\{\omega_1,...,\omega_{i_r}\}$ si può dunque scrivere
+$$\mathbb{P}[A]=\frac{r}{n}=\frac{\#A}{\#B}=\frac{\text{numero casi favorevoli}}{\text{numero casi possibili}}$$
+Esempio :
+1. **Il dado** : Qual'è la probabilità che il risultato del lancio di un dado equilibrato sia un numero divisibile per 3
+	+ Ognuno dei 6 possibili risultati ha la stessa probabilità di $\frac{1}{6}$
+	+ I *casi favorevoli* per il nostro evento sono 2 : $\{3\}\space e \space \{6\}$ mentre i *casi possibili* sono 6
+	+ Il risultato sarà quindi $\frac{2}{6}=\frac{1}{3}$
+2. **Le antenne** : Un sistema di comunicazione è formato da $n$ antenne allineate di cui $m$ difettose. Il sistema funziona correttamente se non ci sono 2 antenne difettose consecutive. Qual'è la *porbabilità* che avremo un sistema funzionante ?
+	+ Le antenne hanno $\binom{n}{m}$ configurazioni possibili ( ognuna con la stessa probabilità )
+	+ Il numero di configurazioni funzionanti sono : $\binom{n-m+1}{m}$ perciò la probabilità richiesta sarà :
+		$$\mathbb{P}[\text{sistema funzionante}]=\frac{\binom{n-m+1}{m}}{\binom{n}{m}}$$
+#### Popolazioni e sottopopolazioni
+
+Una *popolazione* è un insieme di $N$ elementi suddivisi, a seconda che possiedano o meno una certa caratteristica, in due *sottopopolazioni* rispettivamente $m$ e $N-m$
 # Appunti
 #### R-Studio
 
