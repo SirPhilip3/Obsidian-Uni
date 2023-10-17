@@ -62,6 +62,10 @@ In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ ele
 Esempio :
 	La professoressa interroga ogni lunedì 10 studenti da una classe di 25. Esistono per lei $\binom{25}{10} = 3268760$ possibilità di scelta
 
+### Riassunto
+
+![[image.jpeg]]
+
 ### Fenomeni aleatori
 
 Un *fenomeno aleatorio* è un fenomeno *incerto* , ossia del quale non si può prevedere con certezza l'esito
