@@ -833,3 +833,32 @@ Esempio di chiamate di sistema UNIX :
 
 ## Threads
 
+### Introduzione
+
+I *thread* vengono sviluppati per :
++ Rappresentare in modo più naturale le attività *parallele* ( o *concorrenti* )
++ Per migliorare le prestazioni in sistemi *multiprocessore* 
+	+ Il *thread* è infatti più leggero del *processo*
+	+ Miglior utilizzo della CPU se i *thread* sono I/O bound ( poichè ci sono altri thread non I/O bound dello stesso processo che posso eseguire nel mentre )
++ Poichè essi condividono lo spazio degli *indirizzi* e dei *dati* vi è riduzione dell'overhead dovuto al *context switch*
+
+### Definizione
+
+Viene considerato un *lightweigth process* ( *LWP* )
+
+Condividono con il loro processo d'origine lo spazio di *indirizzamento* , *file* aperti ed altre informazioni globali ( non è rischiesto al SO di inizializzare questi dati riducendo l'overhead di *creazione* e *terminazione* )
+
+I *thread* hanno delle infomazioni che sono locali ad ogni *thread* come : Registri , stack , maschere dei segnali etcc ( *Thread Specific Dara* ( *TSD* ) )
+
+I *thread* possono essere getiti da :
++ *SO*
++ da un'applicazione utente
+
+![[Pasted image 20231020183053.png]]
+
+Un *thread* si sposta fra degli *stati discreti* ( come un *processo* , possiedono infatti stati in comune come : creazione , terminazione , ripresa e sospensione ) 
+
+In sistemi con un unico processore i thread runnano paralleli in modo virtuale ( la CPU può supportare un thread alla volta quindi scambia molto velocemente tra 2 thread in modo che sempbrino essere svolti in parallelo )
+
+### Stati 
+
