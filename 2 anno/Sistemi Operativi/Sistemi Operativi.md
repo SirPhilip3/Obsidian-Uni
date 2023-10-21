@@ -908,7 +908,7 @@ Alcune chiamate presenti in *Ptherad* :
 + Thread di livello *kernel*
 + Thread *ibridi* tra livello utente e kernel
 
-#### Thread di livello utente
+#### Thread di livello Utente
 
 I thread a livello utente svolgono operazione nello spazio utente , per questo non possono eseguire istruzioni privilegiate o accedere direttamente al nucleo
 
@@ -935,10 +935,108 @@ La *tabella dei thread* viene gestita da uno scheduler ad hoc che mantiene inolt
 
 ![[Pasted image 20231021153912.png]]
 
-#### Thread di livello kernel
+#### Thread di livello Kernel
 
 I thread a livello nucleo mappano ogni thread al proprio contesto di esecuzione ( mapping *uno-a-uno* ) , ogni processo ha quindi vari contesti di esecuzione
 
 + **Vantaggi** :
 	+ Aumento del *throughput* , infatti poichè questi hanno spazi di esecuzione differenti , se un thread è impattato da una operazione di I/O posso svolgere un thread diverso ma dello stesso processo
-	+ Aumento della *scalabilità* : questa tipologia di thread 
+	+ Aumento della *scalabilità* : questa tipologia di thread si comporta maggiormente come una soluzione multithreaded ( i thread possono essere posti in scheduling su diversi core )
++ **Svantaggi** :
+	+ *Overhead* dovuto ai cambi di contesto che devono essere effettuati se devo effettuare operazioni sui thread 
+	+ Ridotta *portabilità* poichè questi thread sono specifici per un SO
+
+![[Pasted image 20231021160628.png]]
+
+Non occorre una tabella di thread per ogni processo , è il *kernel* stesso che gestisce e mantiene la *tabella di thread*
+
+Per diminuire l'*overhead* dovuto alle chiamate di sistema i contesti di esecuzione dei thread non vengono eliminate dopo la terminazione di un thread ( il thread viene solo contraddistinto come terminato nella tabella dei thread ) in modo da riclarle
+
+Lo *scheduler* essendo implementato a livello del nucleo è meno flessibile di quello dei thread a livello utente poichè non può essere adattato a situazioni differenti tra loro , in complesso se un thread è bloccato esso non blocca l'intero processo ed altri thread possono essere mandati in esecuzione
+
+![[Pasted image 20231021161310.png]]
+
+#### Thread Ibridi
+
+I thread *ibridi* sono la combinazione dell'implementazione dei thread di livello utente e quelli di livello kernel
+
++ I thread sono mappati *molti-a-molti*
+	+ Il numero di thread di livello utente e livello kernel nono deve essere uguale
+	+ Riduce l'*overhead* rispetto al mapping *uno-a-uno* implementando il *thread pooling* ( ossia l'assegnazione di thread utente ad un determianto thread kernel ( *worker thread* ) )
+
+Per diminuire l'overhead dovuto dei thread a livello del nucleo utilizziamo i :
++ *Worker threads*
+	+ Sono dei thread a livello nucleo *persistenti* che occupano il *pool* di thread
+	+ Diminuisce l'overhead dovuto alla creazione e distruzione di thread a livello nucleo , infatti a livello nucleo necessitiamo di chiamate a sistema per svolgere queste funzioni , mantenendo sempre in attesa un certo numero di thread per essere assegnati a dei thread utente ( che sofforono in modo minore dell'overhead dovuto alla creazione e distruzione ) diminuiamo notevolmente il numero di volte che dobbiamo creare e distruggere un thread al livello del nucleo
+
+Per aumentare invece la *flessibilità* dello scheduler si utilizza la tecnica dell'*attivazione dello scheduler* :
++ Permette ad uno *scheduler* di livello utente di gestire i thread a livello utente
++ Ad ogni processo vengono assegnati dei processori virtuali su cui fare lo scheduling a tempo di esecuzione 
++ Se si presenta una situazione di thread bloccato nel kernel questo viene notificato allo scheduler utente ( *upcall* ) che cambierà il thread in esecuzione
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+![[Pasted image 20231021171208.png]]
+
+#### Thread Pop-Up
+
+Un *thread pop-up* è un thread che viene creato per la gestione di messaggi in arrivo da parte di altri processi ( anche in processo collegati ad una rete )
+
+![[Pasted image 20231021171659.png]]
+
+#### Conflitti tra Thread 
+
+Poichè i *thread* hanno in comune lo spazio di indirizzamento potrebbero agire contemporanemente sullo stesso dato ( ovviamente ciò si applica solo a dati che hanno entrambi accesso come le *variabili globali* ) 
+
+Es : 
+![[Pasted image 20231021172150.png]]
+
+Le possibili soluzioni a questo problema portebbero essere : 
++ vietare la modifica delle variabili globali ai thread
++ utilizzare solo variabili globali private ( ossia una copia presente in ogni thread )
+
+### Thread in Linux
+
+In *linux* non vi è differenza tra i processi e i thread ( chiamati *Task* ) , essi infatti hanno lo stesso descrittore di processo 
+
+Per costruire un descrittore di una *Task* si utilizza la chiamata di sistema `Task_struct`
+
+Per generare *Task* figli si utilizza la chiamata di sistema `fork`
+
+Per abilitare una *Task* come *thread* linux fornisce una verisione modificata di `fork` chiamata `clone` , questa chiamata accetta argomenti che permettono di specificare che risorse condividere con tra il *Task padre* e il *task figlio*
+
+Le *task* in linux passano anchesse attraverso vari stati :
+
+![[Screenshot 2023-10-21 172903.png]]
+
+Un *task zombie* è un task che è contrassegnato come da uccidere ma vengono momentanemente mantenuti in memoria il suo stato per poter essere riutilizzato
+
+Inoltre in *linux* vi è una differente divisione del tempo rispetto a *windows* :
++ *epoche* : le epoche sono la somma massima dei tempi di esecuzione in CPU ( es un *task* può svolgere 10 esecuzioni in CPU per un massimo di 1000us , quando avrà terminato queste esecuzioni la sua *epoca* finirà e dovrà quindi aspettare che gli venga asseganta un'altra *epoca* ) 
+Questo permette di evitare ancor più maggiormente la monopolizzazione della CPU da parte di un singolo *task*
+### Thread in Windows
+
+I processi contegono gli *handle* ( riferimenti ad oggetti ) , i *thread* con cui condividono le risorse e i programmi (??????)
+
+Il *contesto di esecuzione* di un processo contiene :
++ Runtime stack
++ Lo stato dei registri della macchina
++ Degli attributi
++ Unità di esecuzione reale ( thread ) inviata al processore per l'esecuzione
+Questo viene chiamato *PEB* ( *Process Environment Block* )
+
+L'equivalente per un thread viene chiamato *TEB* ( *Thread Environment Block* ) ( contiene tutto ciò necessario ad un thread )
+
+*Windows* può raggruppare vari processi in un *job* , in modo da gestire meglio le risorse per ogni thread realtive a quel *job*
+
+In *windows* i *thread* possono creare le *Fiber* ( gestiti a livello utente )
++ Un *fiber* viene eseguito nel contesto del *thread* che lo crea ( vengono infatti gestiti dal programmatore anzichè dallo scheduler )
++ I *thread* possono essere converiti in *fiber* , le *fiber* possono essere create indipendentemente dai *thread*
++ Hanno un bassissimo overhead per il cambio di contesto visto che lavorano a livello utente con risose condivise
+
+La relazione tra *thread* e *fiber* è *molti-a-molti* ( normalmente un thread è associato ad un insieme di fiber )
+
+*windows* utilizza il concetto di *thread worker* che compongono un *pool di thread* di livello *kernel* che eseguono le funzioni previste dai thread utente , essi si comportano come una coda ossia ap 
+
+## Scheduler
+
