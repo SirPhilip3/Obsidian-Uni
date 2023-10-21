@@ -1043,6 +1043,6 @@ Se un thread si blocca in attesa di eventi esso non può essere riassegnato ad u
 La transizione tra stai di un *processo* in *windows* è la seguente :
 ![[Pasted image 20231021180457.png]]
 
-/git
+
 ## Scheduler
 
