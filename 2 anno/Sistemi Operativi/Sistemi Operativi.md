@@ -1036,7 +1036,13 @@ In *windows* i *thread* possono creare le *Fiber* ( gestiti a livello utente )
 
 La relazione tra *thread* e *fiber* è *molti-a-molti* ( normalmente un thread è associato ad un insieme di fiber )
 
-*windows* utilizza il concetto di *thread worker* che compongono un *pool di thread* di livello *kernel* che eseguono le funzioni previste dai thread utente , essi si comportano come una coda ossia ap 
+*windows* utilizza il concetto di *thread worker* che compongono un *pool di thread* di livello *kernel* che eseguono le funzioni previste dai thread utente.
+La coda di *task* da eseguire viene servita da questo *thread pool* 
+Se un thread si blocca in attesa di eventi esso non può essere riassegnato ad un altro *task* da eseguire 
 
+La transizione tra stai di un *processo* in *windows* è la seguente :
+![[Pasted image 20231021180457.png]]
+
+/git
 ## Scheduler
 
