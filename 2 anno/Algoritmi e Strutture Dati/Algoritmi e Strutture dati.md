@@ -546,8 +546,149 @@ grid: true
 3 y=x^(1/2)
 4 y=log(x^2)
 ```
+#### Proprietà
 
-Quindi per riassumere possiamo scrivere la seguente 
+Quindi per riassumere possiamo scrivere la seguente **Proprietà** :
+$$f(n)+o(f(n))=\Theta(f(n))$$
+Ciò significa : una funzione che è la somma di una funzione $f(n)$ ad una funzione che è più piccola di $f(n)$ risulterà avere come complessità $\Theta(f(n))$ 
 
+La precedente proprietà può anche essere riscritta nel seguente modo :
+$$\text{Considerando}\quad o(f(n))=h(n)\quad \text{e} \quad f(n)+h(n)=g(n) \quad \text{Avremo che :}$$
+$$g(n)=\Theta{f(n)}$$
 
+## Metodi per la stima della complessità di un Algoritmo
 
+Facciamo un Esempio :
+
+Abbiamo un algoritmo di *ricerca sequenziale* che ci permette di ricercare un numero *x* all'interno di un array , passando uno per uno gli elmenti dell'array e verificando che questo sia o non sia il numero che cerchiamo.
+
+Avremo quindi diversi tipi di complessità :
++ *caso migliore* : $T_{\text{best}}(n)=1$
+	Nel caso migliore avremo che *x* sarà presente nel primo elemento dell'array
++ *caso peggiore* : $T_{\text{worst}}(n)=n$
+	Nel caso peggiore avremo che *x* non è presente all'interno dell'array o è l'ultimo elemento
++ *media* : $T_{\text{avg}}(n)=\frac{n}{2}$
+	Se volessimo calcolare il caso medio dovremmo effettuare uno studio probabilistico del nostro algoritmo ( nel nostro caso in termini di complessità risulta assimilabile al caso peggiore ma potrebbe essere diverso )
+
+A noi interessa studiare al caomplessità nel **caso peggiore** in vari costrutti standard per la costruzione di algoritmi
+#### Sequenza
+
+Se un algoritmo è formato da blocchi di codice che costituiscono nel complesso una *sequenza* di istruzioni
+
+![[SequenzaCompl.excalidraw]]
+Avremo che la sua complessità può essere calcolata come :
+$$seq=O(f(n)+g(n))$$
+#### If then else
+
+Avendo un codice simile :
+```c
+if <cond>   then
+	Ramo-then
+else 
+	Ramo-else
+```
+
+Avremo 3 complessità che comongono l'*if then else* :
++ `<cond>` : La condizione iniziale ha acnhessa una complessità , questa istruzione viene sempre eseguita 
+	$O(f(n))$
++ `Ramo-then`
+	$O(g(n))$
++ `Ramo-else`
+	$O(h(n))$
+
+Per via della condizione dell'*if* uno dei 2 rami dell'*if* non viene svolto per questo calcolando la complessità di un *if then else* prendiamo sempre in considerazione il ramo che ha la maggiore complessità.
+Avremo quindi :
+$$if=O(f(n)+max\{g(n),h(n)\})$$
+#### Ciclo For
+
+Avendo un codice simile :
+```c
+for i to k
+	Block
+```
+
+Il `Block` verrà ripetuto $k$ volte quindi avremo come complessità ( considerando la complessità di `Block` come $O(f(n))$  ) :
+$$for=O(k\cdot f(n))$$
+#### Cicli For annidati
+
+I cicli *for annidati* funzionano in modo simile ai normali cicli *for* quindi avendo un codice simile :
+```c
+for i to k
+	for j to n
+		Block
+```
+
+Dove `n` dipende dall'input della funzione 
+
+Come prima il `Block` verrà ripetuto $k\cdot n$ volte e avendo la complessità del `Block` come : $O(f(n)))$
+Avremo che la complessità totale sarà :
+$$forA=O(k\cdot n \cdot f(n))$$
+Se avessimo anche $k$ in funzione dell'input della funzione $n$ avremo :
+$$forA=O(n^2 \cdot f(n))$$
+#### While
+
+Avendo un codice simile :
+```c
+while <cond> do
+	Block
+```
+
+In questo caso non sappiamo a priori il numero di volte che il ciclo verrà eseguito quindi prenderemo il massimo numero di iterazioni ossia il *caso peggiore* : $N(n)$
+
+Considerando quindi la complessità della `<cond>`  come $O(f(n))$ e la complessità del `Block` come $O(g(n))$
+Avremo quindi che la complessità totale sarà :
+$$while = O\Big(N(n)\cdot\big(f(n)+g(n)\big)\Big)$$
+#### Esempio
+
+Abbiamo un il seguente algoritmo :
+```c
+Alg(int n) -> n 
+int a , i , j
+if( n > i ) then
+	a = 0
+	for i = 1 to n
+		for j = 1 to n
+			a = (n + i) * j + n/2
+	
+	for i = 1 to 16
+		a = a + Algo(n/4)
+	return a
+else
+	return false
+```
+
+Studiando quindi la complessità avremo che :
++ La condizione dell'*if* iniziale è *costante* ( è solo la verifica che un numero sia maggiore di un'altro ) quindi la sua complessità può essere ignorato nel calcolo totale finale
++ Ramo `then`
+	+ *for annidati* :
+		I *for* annidati poichè il loro numero di iterazioni dipende da $n$ e il *blocco* all'interno dell'ultimo *for* risulta essere costante rispetto a $a$ avremo che la *complessità* di questo *for annidato* sarà :
+		$$O(n\cdot n\cdot \text{costante})=O(n^2)$$
+	+ secondo *for* non annidato ( riga 9-10 ) : 
+		Il secondo *for* risulta avere $16$ ricorrenze 
+		Il *blocco* all'interno del *for* è ricorsivo avremo quindi che la sua complessità sarà la complessità dell'algoritmo con come input $n/4$
+		La complessità totale del *for* sarà quindi :
+		$$O\bigg(16\cdot T\bigg(\frac{n}{4}\bigg)\bigg)$$
++ Ramo `else`
+	Il ramo *else* risulta *costante* poichè è solo un `return`
+
+La complessità totale dell'algoritmo sarà quindi la somma della complessità delle sue parti :
+$$T(n)=n^2+16\cdot T\bigg(\frac{n}{4}\bigg)\quad \text{con}\space n\gt1$$
+Abbiamo quindi una fromula ricorsiva che attraverso il *Teorema Master* può essere semplificata in : 
+$$T(n)=\Theta(n^2\log(n))$$
+### Risolvere le Ricorrenze
+
+Per risolvere le ricorrenze abbiamo 4 metodi principali :
++ Metodo degli *alberi della ricorsione*
++ Metodo dell'*intersezione*
++ Metodo della *sostituzione*
++ *Teorema Master*
+
+#### Metodo degli alberi della ricorsione
+
+#### Metodo dell'intersezione
+
+#### Metodo della sostituzione
+
+#### Teorema Master
+
+/git
