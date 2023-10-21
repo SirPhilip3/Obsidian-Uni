@@ -336,7 +336,7 @@ title:
 xLabel: 
 yLabel: 
 bounds: [-2,10,-3,10]
-disableZoom: false
+disableZoom: true
 grid: true
 ---
 1 y=x-1
@@ -520,14 +520,34 @@ Esempio :
 $$3n^3+2n^2+6n+5=\Theta(n^3)$$
 Regola dei polinomi *semplici*
 $$P(n)\ \text{con grado k massimo} \implies P(n)=\Theta(n^k)$$
-???????????????????????????????
-Per polinomi più complessi bisogna considerare l'elemento più "complesso" e quello diventa il $\Theta$
-???????????????????????????????
+Quando abbiamo una espressione addittiva con termini di complessità diverse possiamo dire che funzione si comporta come il *termine dominante*
 
+Esempio :
+$$21n^2+n^2\log{n} + \sqrt{n}+\log{n^2}$$
+I *termini dominati* sono : $n^2\log{n}$ e $\log{n^2}$
+E visto che : $\log{n^2}=2\log{n}$
+Avremo che sicuramente : $n^2\log{n}\ge 2\log{n}$
 
+Quindi il polinomio avrà come complessità : $\Theta(n^2\log{n})$
 
+Infatti possiamo anche osservare dal grafico :
 
+```functionplot
+---
+title: Polinomial
+xLabel: x
+yLabel: y
+bounds: [0,10,0,10]
+disableZoom: true
+grid: true
+---
+1 y=x^2
+2 y=x^2*log(x)
+3 y=x^(1/2)
+4 y=log(x^2)
+```
 
+Quindi per riassumere possiamo scrivere la seguente 
 
 
 
