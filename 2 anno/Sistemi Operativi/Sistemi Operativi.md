@@ -862,3 +862,83 @@ In sistemi con un unico processore i thread runnano paralleli in modo virtuale (
 
 ### Stati 
 
+Gli stati di un *thread* possono essere conderati analoghi a quelli di un processo , gli stati sono :
++ *Born*
++ *Ready* ( *pronto* )
++ *Running* ( *in esecuzione* )
++ *Dead*
++ *Blocked* ( thread bloccato da un evento di I/O )
++ *Waiting* ( thread bloccato poichè sta aspettando il finire di una evento di un'altro thread )
++ *Sleeping* ( Blocco di un *thread* per un determinato periodo di tempo )
+
+![[Pasted image 20231021144706.png]]
+
+### Operazioni sui Thread
+
++ **Cancellazione** 
+	+ Questa operazione indica che un thread dovrebbe essere eliminato ma non è garantito che lo sarà ( viene mantenuta in memoria la sua tabella di stato )
+	+ i thread possono disabilitare o mascherare i segnali di cancellazione ( ecccetto il segnale di *abort* )
++ *Join*
+	+ Normalmente se un *thread* crea un'altro thread ( diventa quindi *thread primario* ) quando il thread padre termina allora anche tutti i suoi figli terminano
+	+ Se il *thread primario* fa un *join* con i suoi thread figli allora prima di terminare deve aspettare che anche i thread figli abbiano terminato la loro esecuzione [Thread](https://pages.mtu.edu/~shene/NSF-3/e-Book/FUNDAMENTALS/thread-management.html) 
+
+### Standard POSIX
+
+Implementati nella liberia *Pthread*
+
+I *thread* possiedono :
++ un identificatore
++ un insieme di registri ( PC , ... )
++ un insieme di attribuiti ( parametri per lo scheduling , stack , etcc... )
+
+Alcune chiamate presenti in *Ptherad* :
+
+|*Chiamata*|*Descrizione*|
+|---|---|
+|`Pthread_create`|Crea un nuovo thread|
+|`Pthread_exit`|Termina il thread chiamante|
+|`Pthread_join`|Attende che un thread specifico esca|
+|`Pthread_yield`|Rilascia al CPU perchè venga eseguito un altro thread|
+|`Pthread_attr_init`|Crea e inizializza la struttura attributi di un thread|
+|`Pthread_attr_destroy`|Rimuove la struttura attribuiti di un thread|
+
+### Modelli di Thread
+
++ Thread di livello *utente*
++ Thread di livello *kernel*
++ Thread *ibridi* tra livello utente e kernel
+
+#### Thread di livello utente
+
+I thread a livello utente svolgono operazione nello spazio utente , per questo non possono eseguire istruzioni privilegiate o accedere direttamente al nucleo
+
+*Implementazione* :
+
+- Mapping dei thread *molti-a-uno* : 
+	- Il SO associa tutti i thread di un processo multithread ad un *unico contesto di esecuzione* a livello *kernel*
+
++ **Vantaggi** :
+	+ Le librerie di livello utente possono *schedulare* i thread per ottimizzare le prestazioni
+	+ Non c'è bisogno del *context switch* per la sincronizzazione dei threads ( poichè viene tutto svolto a livello utente )
+	+ Possono essere utilizzati anche in sistemi dove il SO non supporta il CPU multithreading
+
++ **Svantaggi** :
+	+ Il *kernel* vede un processo multithread come un singolo *thread* di controllo
+	+ Se un thread deve attendere una risposta dall'I/O non è possibile cambiare thread nello stesso processo
+	+ Non possono essere *schedulati* su più processori alla volta
+
+![[Pasted image 20231021153318.png]]
+
+I *thread a livello utente* sono raggrupati per ogni processo in una *tabella di thread* 
+
+La *tabella dei thread* viene gestita da uno scheduler ad hoc che mantiene inoltre una lista dei thread bloccati e la lista dei thread pronti ( come nella tabella dei processi ) 
+
+![[Pasted image 20231021153912.png]]
+
+#### Thread di livello kernel
+
+I thread a livello nucleo mappano ogni thread al proprio contesto di esecuzione ( mapping *uno-a-uno* ) , ogni processo ha quindi vari contesti di esecuzione
+
++ **Vantaggi** :
+	+ Aumento del *throughput* , infatti poichè questi hanno spazi di esecuzione differenti , se un thread è impattato da una operazione di I/O posso svolgere un thread diverso ma dello stesso processo
+	+ Aumento della *scalabilità* : questa tipologia di thread 
