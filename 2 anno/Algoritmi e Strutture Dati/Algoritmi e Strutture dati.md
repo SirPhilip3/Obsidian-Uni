@@ -750,8 +750,25 @@ $$T(n) = \begin{cases} 1 & n=1 \quad\text{caso base} \\ T(\lfloor\frac{n}{2}\rfl
 Faccio una ipotesi riguardante la sua *complessità* 
 $$T(n)=O(n)$$
 Dimostriamo quindi per induzione la nostra assunzione :
-Utilizzando la definizione di $\text{O-grande}$ :
+Utilizzando la definizione di $\text{O-grande}$ come *ipotesi induttiva*:
 $$\exists\space c>0\quad \exists\space n_0 \in \mathbb{N} \quad \text{t.c.} \quad \forall\space n \ge n_0 \quad T(n)\le c\cdot n$$
+Per prima cosa consideriamo il *caso base* :
+
+con $n_0=1$ avremo :
+$$T(1)\le1\cdot c$$
+Essendo che $T(1)=1$ per il caso base avremo che :
+$$c\ge 1$$
+
+Quindi se vogliamo che la proprietà valga da 1 in poi la costante $c$ deve essere $\ge$ 1
+
+Passando quindi al caso con $n\ge 2$ abbiamo che :
+$$T(n)=T(\lfloor\frac{n}{2}\rfloor)+n$$
+Questo vale se consideriamo che l'ipotesi induttiva vale per tutti gli $n-1$
+
+Sostituendo quindi all'interno dell'*ipotesi induttiva* abbiamo :
+$$T()$$
+
+
 
 #### Teorema Master
 
