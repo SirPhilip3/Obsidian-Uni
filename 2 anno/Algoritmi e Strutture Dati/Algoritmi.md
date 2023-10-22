@@ -955,4 +955,3 @@ Possiamo quindi conludere che la complessità risulta essere :
 $$T(n)=\Theta(n)$$
 Poichè deve essere che $T(n)=\Theta(f(n))\quad f(n)=n$
 
-/git
