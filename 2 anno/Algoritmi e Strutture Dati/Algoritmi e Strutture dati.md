@@ -815,7 +815,7 @@ $$T(n)=\Theta(f(n))$$
 
 La complessità di $split+merge$ è *minore* della complessità delle *chiamate ricorsive*
 
-$$f(n)=O(n^{d-\epsilon})$$
+$$f(n)=O\Big(n^{d-\epsilon}\Big)$$
 Se $f(n)$ è $O(n^{d-\epsilon})$  allora per $\epsilon \gt 0$ avremo che 
 $$T(n)=\Theta\Big(n^d\Big)$$
 Ossia la parte ricorsiva domina sulla parte di $split+merge$ 
@@ -831,5 +831,128 @@ $$T(n)=\Theta(n^d\cdot \log n)$$
 
 $$T(n)=T\bigg(\frac{n}{2}\bigg)+c$$
 Si può applicare il *teorema master* ? :
+- [ ] La forma è simile a : $a\cdot T(\frac{n}{2})+c$
+- [ ] $f(n)\ge 0$ 
+- [ ] $a\ge 1$ 
+- [ ] $b\gt 1$
 
-$\{$
+Avendo verificato che si può applicare il *teorema master* andiamo a verificare in che caso ci troviamo 
+
++ $a=1$
++ $b=2$
++ $f(n)=c$
++ $d=\log_2 1=0$
+
+Come si confronta $n^d$ a $f(n)$
++ $g(n)=n^d=n^0=1$
++ $f(n)=c$ 
+
+Poichè asintoticamente 1 e c si comportano nello stesso modo siamo nel caso in cui lo $split+merge = \text{chiamate ricorsive}$
+
+Quindi avremo che :
+$$T(n)=\Theta(n^0\cdot \log n)=\Theta(\log n)$$
+###### 2
+$$T(n)=9\cdot T\bigg(\frac{n}{3}\bigg)+n$$
+Si può applicare il *teorema master* ? :
+- [ ] La forma è simile a : $a\cdot T(\frac{n}{2})+c$
+- [ ] $f(n)\ge 0$ 
+- [ ] $a\ge 1$ 
+- [ ] $b\gt 1$
+
+Avendo verificato che si può applicare il *teorema master* andiamo a verificare in che caso ci troviamo 
+
++ $a=9$
++ $b=3$
++ $f(n)=n$
++ $d=\log_3 9=2$
+
+Come si confronta $n^d$ a $f(n)$
++ $g(n)=n^d=n^2$
++ $f(n)=n$ 
+
+Poichè $n^2$ ( parte ricorsiva ) domina su $f(n)=n$ ( parte di $split+merge$ ) siamo nel caso in cui la parte ricorsiva domina sullo $split+merge$
+
+Per trovare $\epsilon$ basterà applicare il *teorema* :
+$$f(n)=O(n^{d-\epsilon})$$
+Sostituendo abbiamo :
+$$n=O(n^{2-\epsilon})$$
+Per trovare $\epsilon$ dobbiamo consideare che $n$ deve avere la stessa complessità di $O(n^{2-\epsilon})$ 
+Basterà quindi sciegliere $\epsilon\quad \text{t.c.}\quad 1=2-\epsilon$
+Scielgiendo quindi $\epsilon = 1$ la condizione sarà verificata e avremo che la complessità sarà :
+$$T(n)=\Theta(n^2)$$
+###### 3
+
+$$T(n)=3\cdot T\bigg(\frac{n}{9}\bigg)+1$$
+Si può applicare il *teorema master* ? :
+- [ ] La forma è simile a : $a\cdot T(\frac{n}{2})+c$
+- [ ] $f(n)\ge 0$ 
+- [ ] $a\ge 1$ 
+- [ ] $b\gt 1$
+
+
+Avendo verificato che si può applicare il *teorema master* andiamo a verificare in che caso ci troviamo 
+
++ $a=3$
++ $b=9$
++ $f(n)=1$
++ $d=\log_9 3=\frac{1}{2}$
+
+Come si confronta $n^d$ a $f(n)$
++ $g(n)=n^{\frac{1}{2}}=\sqrt n$
++ $f(n)=1$ 
+
+Poichè $\sqrt n$ ( parte ricorsiva ) domina su $f(n)=1$ ( parte di $split+merge$ ) siamo nel caso in cui la parte ricorsiva domina sullo $split+merge$
+
+Troviamo quindi $\epsilon$
+$$1=O(n^{\frac{1}{2}-\epsilon})$$
+$$0=\frac{1}{2}-\epsilon\quad\quad \text{0 poichè $n^0=1$}$$
+Quindi con
+$$\epsilon=\frac{1}2$$
+Abbiamo verificato la condizione 
+Avremo quindi che la complessità sarà :
+$$T(n)=\Theta(\sqrt n)$$
+###### 4
+$$T(n)=3\cdot T\bigg(\frac{n}{9}\bigg)+n$$
+Si può applicare il *teorema master* ? :
+- [ ] La forma è simile a : $a\cdot T(\frac{n}{2})+c$
+- [ ] $f(n)\ge 0$ 
+- [ ] $a\ge 1$ 
+- [ ] $b\gt 1$
+
+
+Avendo verificato che si può applicare il *teorema master* andiamo a verificare in che caso ci troviamo 
+
++ $a=3$
++ $b=9$
++ $f(n)=n$
++ $d=\log_9 3=\frac{1}{2}$
+
+Come si confronta $n^d$ a $f(n)$
++ $g(n)=n^{\frac{1}{2}}=\sqrt n$
++ $f(n)=n$
+
+Poichè $n$ ( $split+merge$ ) domina su $\sqrt n$ ( parte ricorsiva ) siamo nel caso in cui lo $split+merge$ domina sulla parte ricorsiva 
+
+Troviamo quindi l'$\epsilon$ 
+$$n=\Omega\Big(n^{\frac{1}{2}+\epsilon}\Big)$$
+$$1=\frac{1}{2}+\epsilon$$
+Quindi scielgiendo 
+$$\epsilon=\frac{1}{2}$$
+Abbiamo soddisfatto la condizione
+
+Dobbiamo però considerare la *condizione ausiliaria* :
+Dobbiamo trovare un $c$ t.c. :
+$$\exists\space 0\lt c\lt1 \quad \text{con $n$ sufficentemente grande tale che :}$$
+$$a\cdot f\bigg(\frac{n}{b}\bigg)\le c\cdot f(n)$$
+
+Sostituendo abbiamo che :
+$$3\cdot\frac{n}{9}\le c\cdot n$$
+$$\frac{1}{3}\cdot n\le c\cdot n$$
+$$\frac{1}{3}\le c$$
+Quindi la condizione risulta verificata per $c=\frac{1}{3}$
+
+Possiamo quindi conludere che la complessità risulta essere :
+$$T(n)=\Theta(n)$$
+Poichè deve essere che $T(n)=\Theta(f(n))\quad f(n)=n$
+
+/git
