@@ -766,9 +766,70 @@ $$T(n)=T(\lfloor\frac{n}{2}\rfloor)+n$$
 Questo vale se consideriamo che l'ipotesi induttiva vale per tutti gli $n-1$
 
 Sostituendo quindi all'interno dell'*ipotesi induttiva* abbiamo :
-$$T()$$
-
-
-
+$$T(n)\le c\cdot \frac{n}{2}+n$$
+$$\le n\cdot \bigg(\frac{c}{2}+1\bigg)$$
+ma noi vogliamo che sia $\le c\cdot n$
+Quindi dovremmo porre che :
+$$\frac{c}{2}+1\le c$$
+$$c\ge 2$$
+Avremo quindi che quando $c\ge2$ la complessità dell'algoritmo sara :
+$$T(n)\le c\cdot n$$
+Abbiamo quindi dimostrato che la complassità è : $O(n)$
 #### Teorema Master
 
+Il *teorema Master* ci permette di risolvere le ricorrenze di algoritmi dividi et impera
+Possiamo infatti dividere questo tipo di algoritmi in tre parti :
+$$T(n)=T_{split}(n)+\sum_{i=1}^a T\bigg(\frac{n}{b}\bigg) + T_{merge}(n)$$
+In cui :
++ $T_{split}(n)$ 
+	Questo rappresenta il tempo necessario per dividere il problema in sottoproblemi
++ $\sum_{i=1}^a T(\frac{n}{b})$
+	Questo rappresenta la somma dei tempi di computazione dei singoli sottoproblemi che se avessero tutti la stessa dimensionabilità potrebbe essere scritto come : $a\cdot T(\frac{n}{b})$
++ $T_{merge}(n)$
+	Questo rappresenta il tempo necessario per combinare le soluzioni dei sottoproblemi in una soluzione finale
+
+La formula precedente può essere sommarizata come segue :
+$$T(n)=a\cdot T\bigg(\frac{n}{b}\bigg)+f(n)$$
+In cui $f(n)=T_{split}(n)+T_{merge}(n)$
+
+Perchè il *teorema* possa essere applicato dobbiamo avere soddifatte le seguenti condizioni :
++ $f(n)\ge0$ : n deve essere sufficentemente grande
++ $a\ge1$
++ $b\gt1$
+
+Utilizzeremo inoltre un paramtro $d$ :
+$$d=\log_b a$$
+Il *teorema* comprende 3 casi : 
+##### $split+merge \gt \text{chiamate ricorsive}$
+
+La complessità di $split+merge$ è *maggiore* della complessità delle *chiamate ricorsive*
+$$f(n)=\Omega\Big(n^{d+\epsilon}\Big)$$
+Ossia $f(n)$ è dominata dalla parte di $split+merge$ 
+Dobbiamo in questo caso verificare la *condizione ausiliaria* :
+$$\exists\space 0\lt c\lt1 \quad \text{t.c.} \quad \text{per $n$ sufficentemente grande vale :}$$
+$$a\cdot f\bigg(\frac{n}{b}\bigg)\le c \cdot f(n)$$
+( questo verifica che il secondo livello di ricorsione per le $split+merge$ sia minore di del tempo di $f(n)$ )
+Verificata la condizione ausiliaria possiamo concludere che la complessità sarà :
+$$T(n)=\Theta(f(n))$$
+##### $split+merge \lt \text{chiamate ricorsive}$
+
+La complessità di $split+merge$ è *minore* della complessità delle *chiamate ricorsive*
+
+$$f(n)=O(n^{d-\epsilon})$$
+Se $f(n)$ è $O(n^{d-\epsilon})$  allora per $\epsilon \gt 0$ avremo che 
+$$T(n)=\Theta\Big(n^d\Big)$$
+Ossia la parte ricorsiva domina sulla parte di $split+merge$ 
+##### $split+merge = \text{chiamate ricorsive}$
+
+La complessità di $split+merge$ è *uguale* a quella delle *chiamate ricorsive*
+$$f(n)=\Theta\Big(n^d\Big)$$
+Ossia $f(n)$ ha complessità simile allo $split+merge$  , avremo la complessità come :
+$$T(n)=\Theta(n^d\cdot \log n)$$
+##### Esempi
+
+###### 1
+
+$$T(n)=T\bigg(\frac{n}{2}\bigg)+c$$
+Si può applicare il *teorema master* ? :
+
+$\{$
