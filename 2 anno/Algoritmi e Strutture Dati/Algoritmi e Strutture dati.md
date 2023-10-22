@@ -682,12 +682,76 @@ Per risolvere le ricorrenze abbiamo 4 metodi principali :
 + Metodo dell'*intersezione*
 + Metodo della *sostituzione*
 + *Teorema Master*
-
 #### Metodo degli alberi della ricorsione
 
-#### Metodo dell'intersezione
+Vedi [Fib2](#Fib2)
+#### Metodo dell'interazione
 
+Si cerca di sviluppare la ricorsione fino all'identificazione di un *pattern*
+
+##### Esempio 1 :
+In un algoritmo che ha come complessità :
+$$T(n) = \begin{cases} c+T(\frac{n}{2}) & n\ge 2 \\ 1 & n=1 \quad\text{caso base}\end{cases}$$
+Sviluppando per $n\ge 2$ avremo :
+$$T(n)=c+T\bigg(\frac{n}{2}\bigg)$$
+$$=c+\bigg[c+T\bigg(\frac{n}{2^2}\bigg)\bigg]$$
+$$=2\cdot c+T\bigg(\frac{n}{2^2}\bigg)$$
+$$2\cdot c+\bigg[c+T\bigg(\frac{n}{2^3}\bigg)\bigg]$$
+$$=3\cdot c+T\bigg(\frac{n}{2^3}\bigg)$$
+Possiamo quindi trovare un *pattern* :
+$$=k\cdot c+T\bigg(\frac{n}{2^k}\bigg)$$
+Ora usando il caso base risolviamo la ricorsione 
+$$\frac{n}{2^k}=1$$
+$$n=2^k$$
+$$k=\log_2 n$$
+Ora sostituiamo nell'equazione derivata dal *pattern* :
+$$c\cdot \log_2 n + T(1)$$
+$$=c\cdot \log_2 n +1$$
+Siccome non ci interessano le costanti possiamo dedurre che :
+$$T(n)=O(\log_2 n)$$
+Se consideriamo il *terema Master* potremmo dire :
+$$T(n)=\Theta(\log_2 n)$$
+
+##### Esempio 2 :
+
+$$T(n) = \begin{cases} 9\cdot T(\frac{n}{3})+n & n\ge 2 \\ 1 & n=1 \quad\text{caso base}\end{cases}$$
+
+Per $n$ sufficentemente grande avremo che :
+$$T(n)=9\cdot T\bigg(\frac{n}{3}\bigg)+n$$
+$$=9\cdot \bigg[9\cdot T\bigg(\frac{n}{3^2}\bigg)+\frac{n}{3}\bigg]+n$$
+$$=9^2\cdot T\bigg(\frac{n}{3^2}\bigg)+3\cdot n+n$$
+$$=9^2\cdot \bigg[9\cdot T\bigg(\frac{n}{3^3}\bigg)+\frac{n}{3^2}\bigg]+3\cdot n+n$$
+$$=9^k\cdot T\bigg(\frac{n}{3^k}\bigg)+ n[3^2+3^1+3^0]$$
+$$=9^k\cdot T\bigg(\frac{n}{3^k}\bigg) + \Bigg(\sum_{i=0}^{k-1}3^i\Bigg)\cdot n$$
+Possiamo identificare inoltre che 
+$$\sum_{i=0}^{k-1}3^i$$
+è una *progressione geometrica finita* che può quindi essere scritta come :
+$$\sum_{i=0}^{n}q^i=\frac{q^{n+1}-1}{q-1}$$
+Avremo quindi :
+$$T(n)=9^k\cdot T\bigg(\frac{n}{3^k}\bigg) + n\cdot \frac{3^k-1}{2}$$
+
+Ora utilizzando il caso base avremo che :
+$$\frac{n}{3^k}=1$$
+$$n=3^k$$
+$$\log_3 n = k$$
+Sostituendo nell'equazione dedotta avremo :
+$$T(n)=9^{\log_3 n}+n\cdot \frac{3^{\log_3 n}-1}{2}$$
+$$=3^{{\log_3 n}^2}+n\cdot \frac{n-1}{2}$$
+$$=n^2+\frac{n^2}{2}-\frac{n}{2}$$
+Possiamo quindi determinare che la complessità sarà :
+$$T(n)=\Theta(n^2)$$
 #### Metodo della sostituzione
+
+Il metodo della *sostituzione* consiste nel fare una ipotesi sulla complessità dell'algoritmo ( grazie all'esperienza e alla conoscenza di altri teoremi ) e poi *dimostrarla* 
+
+##### Esempio
+
+$$T(n) = \begin{cases} 1 & n=1 \quad\text{caso base} \\ T(\lfloor\frac{n}{2}\rfloor)+n & n\ge 2  \end{cases}$$
+Faccio una ipotesi riguardante la sua *complessità* 
+$$T(n)=O(n)$$
+Dimostriamo quindi per induzione la nostra assunzione :
+Utilizzando la definizione di $\text{O-grande}$ :
+$$\exists\space c>0\quad \exists\space n_0 \in \mathbb{N} \quad \text{t.c.} \quad \forall\space n \ge n_0 \quad T(n)\le c\cdot n$$
 
 #### Teorema Master
 
