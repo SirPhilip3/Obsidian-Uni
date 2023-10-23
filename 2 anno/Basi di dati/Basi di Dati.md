@@ -802,3 +802,65 @@ Un'*istanza* di uno schema di relazione si dice *valida* se rispetta tutti i vin
 
 ##### Chiavi
 
+Si possono distiguere vari tipi di *chiavi* :
++ *Superchiave* : 
+	un sottoinseme di attributi di uno schema relazionale tale che il valore di questi determini in modo univoco una ennupla
+	Esempio : `(Matricola)` e `(Cognome,Matricola)` sono superchiavi in `Studenti(Nome,Cognome,Matricola,Anno)`
++ *Chiave* : 
+	è una *superchiave* minimale ( minimo numero di attributi per identificare univocamente una ennupla ) 
+	Esempio : `(Matricola)`
++ *Chiave Primaria* : una delle *chiavi* in genere di lunghezza minima
+
+Altri tipi di chiave sono indicati con `<<UNIQUE>>` oppure `<<CK>>`
+
++ *Chiavi esterne* :
+	Sono un insieme di attributi in una relazione R che riferisce la *chiave primaria* di un'altra realazione S 
+	Le *relazioni* sono create con questo meccanismo
+	La *chiave esterna* deve rispettare il vincolo di *integrità refrenziale* ossia essa non può assumere valori non presenti nella chiave a cui si riferisce
+
+Esempio :
+
+![[Pasted image 20231023124851.png]]
+
+##### Valori non nulli
+
+Un attributo può avere valore non specificato ( *proprietà praziali* ) per varie ragioni :
++ non applicabile 
++ sconoscituo al momento
+
+Per indicare valori non specificati si usa *NULL* 
+
+Negli schemi relazionali si può imporre il vincolo *NOT NULL* per un attributo ( questo non può avere come valore *NULL* , deve essere inserito , non può essere sconosciuto )
+
+Gli attributi delle *chiave primaria* ( in generale delle *chiavi* ) devono assumere valore *NOT NULL*
+Una *chiave esterna* può avere come valore *NULL* se essa rappresenta un associzione parziale
+
+### Da Modello a Oggetti al Modello Relazionale
+
+#### N : 1
+
+##### univoche e totali
+
+![[Pasted image 20231023125801.png]]
+
+La *foreing key* va messa dalla parte della moltelicità N che punta alla molteplicità 1
+Inoltre se sono presenti degli attributi sulla relazione questi devono essere inseriti all'interno della *tabella* che contiene la *foreing key*
+##### univoche e parziali
+
+![[Pasted image 20231023130147.png]]
+
+Se le associazioni sono parziali dalla parte univoca abbiamo 2 scielte su come tradurlo nello schema relazionale :
++ Mantere la traduzione delle *univoche e totali* permettendo però alla chiave esterna di essere *NULL*
++ Creando una nuova classe che colleghi le 2 classi attraverso 2 *key* , una *private key* che identifica l'oggetto questa sarà anche *foreing key* per il verso che non ha la parzialità , per il verso che ha la *parzialità* avremo una foreing key
+	Così facendo essendo che la *primary key* non può mai essere *NULL* se non esiste una relazione nel verso parziale allora semplicemente non essiterà la tabella di connesione
+
+La seconda opzione è preferibile se vi sono molti *NULL* 
+
+Come prima se vi sono attributi nella relazione si aggiungono dove vi sono le *forening key*
+##### ricorsive
+
+![[Pasted image 20231023132301.png]]
+
+
+
+#### 1 : 1
