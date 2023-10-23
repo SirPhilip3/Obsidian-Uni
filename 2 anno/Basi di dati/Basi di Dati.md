@@ -701,3 +701,104 @@ Esempio :
 
 Anche `ColoredPointint` è un *sottoinsieme* di `ColoredPoint` e quindi di `Point` poichè `x , y` essendo interi sono un *sottotipo* dei reali
 
+##### Ereditarietà
+
+L'*Ereditarietà* ci permette di definire un tipo oggetto a partire da un altro per differenza , infatti questo metodo ci permette di ereditare tutti gli attributi dell'oggetto "padre" e aggiungerene o ridefinire attributi per differenziare l'oggetto "figlio"
+
+L'*ereditarietà* tra tipi si usa solo per definire sottotipi ( *ereditarietà stretta* ) , in questo caso :
++ gli attributi possono essere aggiunti 
++ gli attributi possono essere ridefiniti solo specilizzandone il tipo
+
+Esempio :
+
+![[fj.png]]
+
+In questo caso `Student` eredita tutti gli attributi di `Person` e per specializzarsi abbiamo aggiunto gli attributi `Matricola` e `AnnoDiIscrizione`
+##### Gerarchia tra Classi
+
+Fra le *classi* può essere definita una relazione di *sottoclasse* ( o sottoinsieme ) con le seguenti proprietà :
+
++ *Vincolo estensionale* : 
+	Se C è sottoclasse di C' allora le entità in C sono un sottoinsieme delle entità in C' 
++ *Vincolo intesionale* : 
+	Se C è ssottoclasse di C' allora il tipo delle entità in C è sottotipo del tipo degli elementi di C'
++ *Vincolo di disgiunzione*
+	Esempio :
+	![[dis.png]]
+	In questo caso l'intersezione tra le due sottoclassi deve essere nulla ( ossia le 2 sottoclassi sono *disgiunte* tra loro ) : $B\cap C =\emptyset$
++ *Vincolo di copertura* :
+	Esempio :
+	![[Pasted image 20231023110902.png]]
+	In questo caso l'unione tra le due sottoclassi deve essere la classe "padre" ( superclasse ) :
+	$B\cup C=A$
+
+Ovviamente si possono fare varie combinazioni di questi vincoli :
++ *Sottoclassi scorrelate*
+	![[Pasted image 20231023111818.png]]
++ *Sottoclassi disgiunte*
+	![[Pasted image 20231023111836.png]]
++ *Sottoclassi copertura*
+	![[Pasted image 20231023111856.png]]
++ *Sottoclassi partizione*
+	![[Pasted image 20231023111926.png]]
+
+Esempio di *Gerarchia Multipla* :
+![[Pasted image 20231023112155.png]]
+
+In questo caso se in `Giornalisti` ci fosse un attributo `LavoraPer : string` e in `Fotografi` ci fosse un attributo `LavoraPer : seq string` quando questo verrà ereditato da `Fotogioranlisti` gli attributi saranno incompatibili in quanto di tipo diverso per questo durante la creazione della base di dati si definirà un ordine secondo ilquale bisogna ereditare quell'attributo
+
+#### Integrazione degli Schemi
+
+Se abbiamo 2 schemi con caratteristiche simili possiamo combinarli per avere uno schema più generale
+
+Esempio : 
+Avendo i seguenti 2 schemi che descrivono i libri di una biblioteca :
+
+![[Pasted image 20231023113557.png]]
+
+Innanzitutto risolviamo i conflitti di nome , di tipo e di vincoli di integrità , nel secondo schema possiamo quindi modificare :
++ `Nome` diventa `Titolo`
++ `Editore` diventà l'entità `Editori` con come attributo `Nome` 
++ `Descrittori` diventa `Argomenti`
+
+![[Pasted image 20231023114214.png]]
+
+Fondendo quindi i due schemi ( unendo le classi comuni ) avremo :
+
+![[Pasted image 20231023114238.png]]
+
+Ed in quanto `Libri` è una specializzazione di `Documenti` avremo : 
+
+![[Pasted image 20231023114325.png]]
+## Modello Relazionale
+
+Dobbiamo trasformare il modello *concettuale* ad oggetti al modello logico *relazionale*
+
+Le *collezioni* diventano *realzioni* ( *tabelle* )
+Le *associazioni* vengono rappresentate con *chiavi* ( *foreing* )
+
+I meccanismi per definire una base di dati con il modello realzionale sono l'*ennupla* e la *relazione*
+
++ Tipo *ennupla* T : insieme finito di coppie ( Attributo : *Tipo primitivo* )
+	Es : `( A1 : T1 , .... , An : Tn )`
++ *Tipo relazione* ( o tipo insieme di ennuple ) : 
+	Se T è un tipo *ennupla* allora { T } è un tipo relazione 
+	Esempio :
+	`{ (Nome : string, Cognome : string, Matricola : int) }`
++ *Schema di relazione* : assegna ad una relazione un nome :
+	Esempio :
+	`Studenti : { (Nome : string, Cognome : string, Matricola : int) }`
++ *Istanza di uno schema* : insieme finito di ennuple di tipo T ( la usa *cardinalità* è il numero di ennuple )
++ *Schema ralezionale di un BD* : insieme di schemi di relazione e vincoli di integrità
+
+#### Vincoli di integrità
+
+I vincoli di integrità che considereremo sono :
++ *chiavi*
++ *chiavi esterne*
++ *valori non nulli*
+
+Un'*istanza* di uno schema di relazione si dice *valida* se rispetta tutti i vincoli definiti su R
+
+##### Chiavi
+
