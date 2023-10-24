@@ -251,6 +251,114 @@ Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
 $$\#\Omega=\binom{N}{m} ;\quad \#A_k=\binom{n}{k}\binom{N-m}{n-k}$$
 $$\implies \mathbb{P}[A_k]=\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}$$
 Spiegazione formula ::
+
+
+
+
+### Probabilità condizionata
+
+Una probabilità si dice *condizionata* ( o *subordinata* ) quando : 
+Prima dell'arrivo di un'informazione ho un'idea di probabilità con l'arrivo di un'informazione questa probabilità viene aggiornata ( essenzialmente sapendo una certa informazione aggoirnare la probabilità di un evento )
+
+#### Definizione 
+
+Sia B un evento di probabilità positiva. La *probabilità condizionata* dell'evento A dato l'evento B è :
+$$\mathbb{P}[A|B]=\frac{\mathbb{P}[A\cap B]}{\mathbb{P}[B]}$$
++ Evento condizionato : $A$
++ Evento condizionante : $B$
++ Probabilità di A in presenza di B : $\mathbb{P}[A|B]$
+
+**Esempio** : 
+
+Eventi : 
++ $B$ : Incendio quel giorno
++ $\overline{B}$ : non c'è un incedio quel giorno
++ $A$ : La lezione è in ritardo
++ $\Omega$ : tutto ciò che poteva succedere quel giorno
+
+![[Pasted image 20231024103714.png]]
+
+Prima abbiamo che la probabilità risulta essere l'intersezione tra i 2 eventi :
+$$\mathbb{P}[A\cap B]$$
+
+Come varia la probabilità di $A$ sapendo che è avvenuto $B$ ?
+Sapendo che $B$ è avvenuto l'evento certo diventa $B$ ( essenzialmente $\Omega$ diventa $B$ ) :
+
+![[Pasted image 20231024103836.png]]
+
+Ora la probabilità aggiornata sarà :
+$$\mathbb{P}[A|B]=\frac{\mathbb{P}[A\cap B]}{\mathbb{P}[B]}$$
+
+In questo modo *normalizziamo* la nuova probabilità sul nuovo evento certo $B$
+
+>[!warning]
+>$\mathbb{P}[A|B]\not=\mathbb{P}[B|A]$
+>Nel primo caso la normalizzazione è in B nel secondo è in A 
+
+##### Assiomi
+
+$$\mathbb{P}[A|B]\quad \text{e} \quad \mathbb{P}[\overline{A}|B]$$
+Sono in relazione tra loro infatti :
+$$\mathbb{P}[\overline{A}|B]=\frac{\mathbb{P}[\overline{A}\cap B]}{\mathbb{P}[B]}=\frac{\mathbb{P}[B]-\mathbb{P}[A\cap B]}{\mathbb{P}[B]}=1-\mathbb{P}[A|B]$$
+
+>[!warning]
+>$\mathbb{P}[A|B]\quad \text{e} \quad \mathbb{P}[A|\overline{B}]$ non sono in relazione diretta
+ 
+**Esempio** :
+
+Abbiamo un urna contente 4 palle bianche numerate da 1 a 4 e 3 palle nere numerate da 1 a 3 
+Da questa urna si campiona casualmente una palla , avremo quindi i seguenti eventi :
++ B = "viene estratta una palla bianca"
++ N = "viene estratta una palla nera"
++ $C_i$ = "viene estratto il numero $i$" con $i=1,2,3,4$ 
+
+Calcoliamo le seguenti probabilità condizionate :
++ La palla estratta ha il numero 1 *dato* che è bianca
++ La palla estratta ha il numero 1 *dato* che è nera 
++ La palla estratta sia nera *dato* che ha il numero 1
+
+Avremo quindi :
++ $$\mathbb{P}[C_1|B]=\frac{\mathbb{P}[C_1 \cap B]}{\mathbb{P}[B]}=\frac{1/7}{4/7}=\frac1 4$$
++ $$\mathbb{P}[C_1|N]=\frac{\mathbb{P}[C_1 \cap N]}{\mathbb{P}[N]}=\frac{1/7}{3/7}=\frac1 3$$
++ $$\mathbb{P}[N|C_1]=\frac{\mathbb{P}[N \cap C_1]}{\mathbb{P}[C_1]}=\frac{1/7}{2/7}=\frac1 2$$
+#### Formula delle probabilità composte
+
+La definizione di *probabilità condizionata* si può utilizzare per descrivere le probabilità di un'intersezione , sempre che $\mathbb{P}[A|B]$ sia ben definita :
+$$\mathbb{P}[A\cap B]=\mathbb{P}[A|B]\cdot\mathbb{P}[B]$$
+Questa formula può essere generalizzata per un qualsiasi numero di eventi :
+$$\mathbb{P}[A_1\cap A_2\cap \dotsc \cap A_n]=\mathbb{P}[A_1]\cdot\mathbb{P}[A_2|A_1]\cdot\mathbb{P}[A_3|A_1\cap A_2]\dotsc\cdot\mathbb{P}[A_n|A_1\cap \dotsc \cap A_{n-1}]$$
+
+**Esempio** : 
+
+
+
+#### Eventi Indipendenti
+
+Si dice che $A$ e $B$ sono *indipendenti* nel caso in cui :
+$$\mathbb{P}[A|B]=\mathbb{P}[A]$$
+Avremo anche quindi che :
+$$\mathbb{P}[A\cap B]=\mathbb{P}[A]\cdot\mathbb{P}[B]$$
+Ossia sapere l'avvenimento di $B$ non modifica la probabilità di $A$
+
+>[!warning] 
+>Eventi *indipendenti* è diverso da eventi *disgiunti* 
+>Due eventi possono *disgiunti*  possono essere *indipendenti* solo se uno di essi ha probabilità 0
+
+La definizione può essere resa generale :
+Gli eventi $A_1, \dotsc , A_n$ si dicono reciprocamente *indipendenti* se comunque si prendono $k\gt 1$ di essi , si ha :
+$$\mathbb{P}[A_{i_k}\cap\dots \cap A_{i_k}]=\mathbb{P}[A_{1_k}]\cdot\dotsc\cdot\mathbb{P}[A_{i_k}]$$
+#### Esempi
+
+#### Legge della Probabilità totale
+
+Se $C_1, C_2, \dotsc$  Sono una partizione dell'evento certo , la probabilità di un qualsiasi evento $A$ può essere scritta come :
+$$\mathbb{P}[A]=\sum_i\mathbb{P}[A\cap C_i]=\sum_i\mathbb{P}[C_1]\cdot\mathbb{P}[A|C_i]$$
+La prima uguaglianz aderiva dal fatto che l'evento $A$ è l'unione delle intersezioni tra l'evento stesso e le partizioni :
+$$A=\bigcup_$$
+
+#### Legge di Bayes
+
+
 # Appunti
 #### R-Studio
 
