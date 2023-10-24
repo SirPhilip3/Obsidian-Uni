@@ -861,6 +861,54 @@ Come prima se vi sono attributi nella relazione si aggiungono dove vi sono le *f
 
 ![[Pasted image 20231023132301.png]]
 
-
-
+Le associazioni ricorsive parziali si risolvono come nelle univoche e parziali , abbiamo quindi 2 scielte riguardanti la traduzione come nelle univoche e parziali
+Seguono le stesse regole delle univoche e parziali
 #### 1 : 1
+
+![[Pasted image 20231024131626.png]]
+>[!todo]
+##### Parzialità
+
+![[Pasted image 20231024131643.png]]
+>[!todo]
+#### N : M
+
+![[Pasted image 20231024131718.png]]
+>[!todo] 
+##### ricorsione
+
+![[Pasted image 20231024131731.png]]
+>[!todo] 
+
+#### Sottoclassi
+
+Per tradurre le *sottoclassi* abbiamo a disposizione 3 possibili soluzioni
+
+Esempio :
+
+![[Pasted image 20231024132129.png]]
+
+##### Relazione Unica
+
+Nella *relazione unica* creo una *relazione* unica contente tutti gli attributi ( anche le chiavi ) ed in più un discriminante che mi permette di distinguere in che classe mi trovo
+
+![[Pasted image 20231024132703.png]]
+##### Partizionamento Verticale
+
+Nel *partizionamento verticale* mantengo la divisione delle sottoclassi ed inserisco in ogni sotto-relazione la chiave della superclasse come *primary key* e come *foreing key* alla "superelazione" ( la superclasse originale )
+
+![[Screenshot 2023-10-24 133034.png]]
+
+##### Parizionamento Orizzontale
+
+Nel *partizionamento orizzontale* creo 3 tabelle indipendenti , le tabelle relative alle sottoclassi dovranno contenere tutti i campi della sovraclasse ( ciò crea duplicazione di dati )
+>[!warning]
+>Se la superclasse ha delle *foreing key* entranti non si può utilizzare questo parizionamento poichè nel caso di sottoclassi partizione non si potrebbe fare il collegamento 
+ 
+![[Pasted image 20231024133554.png]]
+
+In questo caso la tabella della superclasse non è presente poichè le sue sottoclassi erano disgiunte e quindi l'unione delle stesse crea la superclasse per questo aver la tabella della superclasse creerebbe ridondanza nei dati
+
+##### Cosa sciegliere ?
+
+/git

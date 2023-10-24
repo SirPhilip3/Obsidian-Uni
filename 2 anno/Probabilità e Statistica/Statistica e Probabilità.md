@@ -349,14 +349,37 @@ Gli eventi $A_1, \dotsc , A_n$ si dicono reciprocamente *indipendenti* se comunq
 $$\mathbb{P}[A_{i_k}\cap\dots \cap A_{i_k}]=\mathbb{P}[A_{1_k}]\cdot\dotsc\cdot\mathbb{P}[A_{i_k}]$$
 #### Esempi
 
+> [!todo]
+
 #### Legge della Probabilità totale
 
 Se $C_1, C_2, \dotsc$  Sono una partizione dell'evento certo , la probabilità di un qualsiasi evento $A$ può essere scritta come :
 $$\mathbb{P}[A]=\sum_i\mathbb{P}[A\cap C_i]=\sum_i\mathbb{P}[C_1]\cdot\mathbb{P}[A|C_i]$$
 La prima uguaglianz aderiva dal fatto che l'evento $A$ è l'unione delle intersezioni tra l'evento stesso e le partizioni :
-$$A=\bigcup_$$
+$$A=\bigcup_i(A\cap C_i)$$
+che sono a due a due *disgiunti* 
+La seconda uguaglianza deriva invece dalla definizione di *probabilità condizionata*
 
+**Esempio**
+
+> [!todo]
 #### Legge di Bayes
+
+Sia data la partizione $C_1, C_2, \dotsc$  ( con tutti i suoi elementi tale che abbiano probabilità positiva ) e un evento A ( con probabilità positiva ) Allora avremo che la probabilità condizionata da una qualsiasi partizione sarà :
+$$\mathbb{P}[C_m|A]=\frac{\mathbb{P}[A|C_m]\cdot\mathbb{P}[C_m]}{\sum_i \mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]}$$
+Questa può essere derivata da :
++ $$\mathbb{P}[C_m|A]=\frac{\mathbb{P}[C_m\cap A]}{\mathbb{P}[A]}$$
+	Derivante dalla definizione di *probabilità condizionata*
++ $$\mathbb{P}[C_m\cap A]=\mathbb{P}[C_m]\cdot \mathbb{P}[A|C_m]$$
+	Derivante dalla fromula delle *probabilità composte*
++ $$\mathbb{P}[A]=\sum_i\mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]$$
+	Derivante dalla legge della *probabilità totale*
+
+**Interpretazione** :
+• Interpretazione del teorema di Bayes: 
+	• Permette di aggiornare l’assegnazione di probabilità data a priori a certi eventi $C_m$, alla luce di nuova informazione ($A$ si è verificato). 
+	• Il risultato di questa operazione di aggiornamento sono le nuove probabilità $P[C_m|A]$, dette anche a posteriori. 
+	• Le probabilità a posteriori costituiscono una sintesi dell’informazione disponibile a priori su un certo fenomeno e dell’informazione empirica.
 
 
 # Appunti
