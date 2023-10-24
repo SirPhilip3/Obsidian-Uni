@@ -911,4 +911,3 @@ In questo caso la tabella della superclasse non è presente poichè le sue sotto
 
 ##### Cosa sciegliere ?
 
-/git
