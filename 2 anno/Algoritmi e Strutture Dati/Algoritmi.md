@@ -5,7 +5,7 @@
 + **Algoritmo corretto**
 	Un algoritmo si dice corretto se per ogni input si ferma e da in output il risultato corretto ( si dice che l'algoritmo risolve il problema computazionale )
 + **Complessità computazionale** 
-	.................
+>[!todo]
 
 Esempio : 
 
@@ -73,9 +73,6 @@ Quindi **Fib1** è **corretto** ?
 **Complessità** ?
 	La complessità non dipende dalla grandezza di $n$ in input per questo viene sempre svolta 1 sola istruzione ciò implica che la complessità è *costante*
 
-
-
-
 ### Fib2
 
 In *Fib2* utilizziamo la definizione di numero di *Fibonacci* rendendo così l'algoritmo *ricorsivo* :
@@ -115,15 +112,14 @@ $$T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$$
 Se $T_n$ è l'*albero delle ricorsioni* di `Fib2(n)` allora vale che : 
 	$$\text{numero di foglie} \space f(T_n) = F_n\space \text{ennesimo numero di fibonacci}$$
 **Dimostrazione**
-
-..................
+>[!todo]
 
 
 #### Proposizione 2 :
 Se $T_n$ è un albero dove i *nodi interni* hanno esattamente 2 figli ( ossia è un albero binario ) allora : 
 	$$\text{numero di nodi interni }i(T_n) = f(T_n)-1 \implies F_n -1$$
 **Dimostrazione** 
-..................
+>[!todo]
 ####
 
 Sostituendo nella formula $T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$ avremo :
@@ -237,7 +233,7 @@ Esempio :
 Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete realzione : $f(n)\le c\cdot g(n)$   ( Ossia che $f(n)$ stia sotto $c\cdot g(n)$  ) 
 
 ![[Ogrande.excalidraw]]
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 Esempio :
 $$\frac{1}{2}n^2-3n=O\big(n^2\big)$$
 Applicando la definizione :
@@ -247,9 +243,8 @@ $$\frac{1}{2}n-3\le c\cdot n $$
 $$\frac{1}{2}n-c\cdot n\le3$$
 $$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
 Quando è vera la precedente disequazione 
-?????????????????
---erf
 
+>[!todo]
 ### $\Omega\Big(g(n)\Big)$
 
 Omega grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* :
@@ -263,7 +258,7 @@ Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un 
 
 ![[Omega.excalidraw]]
 
-!!!!!!!!!!!!!!!!!!
+
 Esempio :
 $$\frac{1}{2}n^2-3n=\Omega\big(n^2\big)$$
 Applicando la definizione :
@@ -274,7 +269,7 @@ $$3\le\frac{1}{2}n-c\cdot n$$
 $$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
 Quando è vera la precedente disequazione 
 
-
+>[!todo]
 ### $\Theta\Big(g(n)\Big)$
 
 Risulta la combinazione di *O-grande* e *Omega-grande* ossia :

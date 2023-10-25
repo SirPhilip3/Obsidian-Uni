@@ -770,6 +770,10 @@ Fondendo quindi i due schemi ( unendo le classi comuni ) avremo :
 Ed in quanto `Libri` è una specializzazione di `Documenti` avremo : 
 
 ![[Pasted image 20231023114325.png]]
+
+>[!todo]
+>svolgimento esercizi
+
 ## Modello Relazionale
 
 Dobbiamo trasformare il modello *concettuale* ad oggetti al modello logico *relazionale*
@@ -839,13 +843,13 @@ Una *chiave esterna* può avere come valore *NULL* se essa rappresenta un associ
 
 #### N : 1
 
-##### univoche e totali
+##### Univoche e totali
 
 ![[Pasted image 20231023125801.png]]
 
 La *foreing key* va messa dalla parte della moltelicità N che punta alla molteplicità 1
 Inoltre se sono presenti degli attributi sulla relazione questi devono essere inseriti all'interno della *tabella* che contiene la *foreing key*
-##### univoche e parziali
+##### Univoche e parziali
 
 ![[Pasted image 20231023130147.png]]
 
@@ -857,7 +861,7 @@ Se le associazioni sono parziali dalla parte univoca abbiamo 2 scielte su come t
 La seconda opzione è preferibile se vi sono molti *NULL* 
 
 Come prima se vi sono attributi nella relazione si aggiungono dove vi sono le *forening key*
-##### ricorsive
+##### Ricorsive
 
 ![[Pasted image 20231023132301.png]]
 
@@ -908,6 +912,37 @@ Nel *partizionamento orizzontale* creo 3 tabelle indipendenti , le tabelle relat
 ![[Pasted image 20231024133554.png]]
 
 In questo caso la tabella della superclasse non è presente poichè le sue sottoclassi erano disgiunte e quindi l'unione delle stesse crea la superclasse per questo aver la tabella della superclasse creerebbe ridondanza nei dati
-
 ##### Cosa sciegliere ?
 
++ **Relazione Unica**
+	Conveniente se le sottoclassi differiscono per pochi attributi
++ **Partizionamento orizzontale**
+	- Complica la visita di tutti gli elementi della supercalsse ( devo visitare entrambe le sottoclassi )
+	- Se vi è un'associzione entrante nella suoperclasse è sconsigliato 
+	- Senza vincolo di disgiunzione è necessario creare 3 classi distinte
++ **Parizionamento verticale**
+	+ Complica il recupero di tutte le informazioni relative ad un'entità ( sono distribuite in più classi )
+
+##### Che chiave sciegliere ?
+
++ Per relazioni corrispondenti a *classi radice* ( senza superclasse ) :
+	+ attributo univoco , totale , costante
+	+ attributo artificiale ( *chiave sintetica* )
++ Relazioni che corrispondo a *sottoclassi* :
+	+ chiave della corrispondente *superclasse*
++ Relazioni in associazioni *N : N* :
+	+ *concatenazione* delle *chiavi esterne* delle 2 classi
+
+#### Attributi multivalore
+
+Come vengono tradotte le *sequenze* ?
+Creo una nuova sottoclasse contente come *primary key* e *foreing key* la chiave della sua superclasse ( ossia dove c'è la sequenza ) 
+Aggiungo un attributo che serà un singolo elemento della sequenza originale e la pongo come *primary key* ( viene così creata una associazione simil *N : M* )
+
+Prima :
+![[Pasted image 20231025101033.png]]
+
+Dopo :
+![[Pasted image 20231025101009.png]]
+>[!todo]
+>svolgimento esercizi

@@ -436,6 +436,9 @@ Un processo utente attiva le chiamate al sistema operativo ( modalità kernel ) 
 
 ![[Pasted image 20231007175211.png]]
 
+>[!todo]
+>completa tables
+
 Esempi di chiamate di sistema in Unix :
 
 |Call|Description|
@@ -516,8 +519,6 @@ Un esempio di questi sistemi operativi è una rete di tipo client/server
 Esempio : *Open DataBase Connectivity* ( *ODBC* )
 + API per accesso a database
 + Permette alle applicazioni di accedere ai database distribuiti tramite il *driver* *ODBC*
-
-
 
 ## Processi
 
@@ -787,7 +788,6 @@ Deve inoltre essere sviluppato un sistema di autenticazione per garanitre la sic
 
 I *segnali* sono interruzioni software che notificano ad un processo l'avvenimento di un evento
 
-// SO3.34 rileggi è libro
 I *processi* possono *ricevere* , *ignorare* o *mascherare* un segnale
 + **ricevere** un segnale e quindi lancia una ruotine per la gestione di quel segnale 
 + **ignorare** un segnale ossia scartarlo
@@ -828,7 +828,6 @@ Esempio di chiamate di sistema UNIX :
 |`signal`|Permette ad un processo di specificare un gestore di segnalazione per un dato tipo di segnale|
 |`exit`|Termina il processo chiamante|
 |`nice`|Modifica la priorità del processo usata dallo scheduling|
-
 
 
 ## Threads
@@ -974,7 +973,7 @@ Per aumentare invece la *flessibilità* dello scheduler si utilizza la tecnica d
 + Ad ogni processo vengono assegnati dei processori virtuali su cui fare lo scheduling a tempo di esecuzione 
 + Se si presenta una situazione di thread bloccato nel kernel questo viene notificato allo scheduler utente ( *upcall* ) che cambierà il thread in esecuzione
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!
+>[!todo]
 
 ![[Pasted image 20231021171208.png]]
 
@@ -1017,6 +1016,7 @@ Questo permette di evitare ancor più maggiormente la monopolizzazione della CPU
 ### Thread in Windows
 
 I processi contegono gli *handle* ( riferimenti ad oggetti ) , i *thread* con cui condividono le risorse e i programmi (??????)
+>[!todo]
 
 Il *contesto di esecuzione* di un processo contiene :
 + Runtime stack
@@ -1046,3 +1046,5 @@ La transizione tra stai di un *processo* in *windows* è la seguente :
 
 ## Scheduler
 
+>[!todo]
+>scheduler

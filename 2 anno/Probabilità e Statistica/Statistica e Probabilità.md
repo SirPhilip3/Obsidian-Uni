@@ -2,8 +2,6 @@
 
 ## Probabilità elementare
 
-//! rivedi appunti
-
 ### Principio fondamentale del calcolo combinatorio
 
 Se una scelta può essere fatta in $m_1$ modi dviersi e un'altra scelta può essere fatta in $m_2$ modi diversi allora esistono in totale :
@@ -239,7 +237,8 @@ Qual'è la probabilità che su $n$ elementi estratti casualmente esattamente $k$
 $$\#\Omega=N^n ;\quad \#A_k=\binom{n}{k}m^k(N-m)^{n-k}$$$$\mathbb{P}[A_k]=\binom{n}{k}m^k(N-m)^{n-k}\frac{1}{N^n}$$
 $$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(\frac{N-m}{N}\bigg)^{n-k}$$
 $$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(1-\frac{m}{N}\bigg)^{n-k}$$
-Spiegazione formula ::
+>[!todo]
+>speigazione formule
 
 ##### Soluzione senza reinserimento
 Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
@@ -250,10 +249,8 @@ Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
 	$A_k=\{(x_1,...,x_n)\in \Omega; k\space \text{elementi hanno la caratteristica richiesta}\}$
 $$\#\Omega=\binom{N}{m} ;\quad \#A_k=\binom{n}{k}\binom{N-m}{n-k}$$
 $$\implies \mathbb{P}[A_k]=\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}$$
-Spiegazione formula ::
-
-
-
+>[!todo]
+>speigazione formule
 
 ### Probabilità condizionata
 
