@@ -1157,17 +1157,66 @@ Svantaggi :
 Basato su *FIFO* 
 
 I processi vengono eseguiti solo per un periodo di tempo limitato detto intervallo o *quanto* di tempo ( prelazione )
+La grandezza del *quanto* di tempo deve essere definita in modo da massimizzare l'efficenza della CPU tenendo presente il costo dei cambi di contesto e l'utilizzo della CPU da parte dei processi ( in contrasto con le operzioni di I/O )
++ *grande*
+	Degenera nella coda *FIFO* se troppo grande
++ *piccola*
+	Elevato *overhead* dovuto ai tempi del cambio di contesto 
++ *media*
+	Abbastanza lungo per i processi interattivi per fare richieste di I/O
+	Processi *batch* ottengono la maggior parte del tempo di CPU
 
 Vantaggi :
 + Facile da implementare
 
 Svantaggi :
 + Per minimizzare l'overhead di creare nuovi processi è necessario mantenere numerosi processi in memoria
++ Numerosi cambi di contesto
 
 ![[Screenshot 2023-10-26 101329.png]]
 
+![[Pasted image 20231026101818.png]]
+
+#### Scheduling a Priorità
+
+I processi sono divisi in *classi di priorità* , I processi appartenenti a classi di maggiore priorità sono eseguiti prima
+
+La priorità può essere :
++ *statica* : determinata all'avvio del processo
++ *dinamica* : cambia nel tempo
+	+ *basata sui tempi* : un processo che necessità più tempo di esecuzione ottiene un maggiore priorità
+		Es : La probabilità dinamica potrebbe essere impostata come $\frac{1}{f}$ dove $f$ rappresenta la frazione di tempo realmente utilizza dal processo durante il suo quanto di tempo 
+	+ *astratta* : a seconda dell'utente che lancia il processo 
+
+Combinazione tra algoritmo *round-robin* e a *priorità*
+Si creano varie classi di priorità , all'interno di ogni classe si utilizza l'agoritmo *round-robin* per mandare in esecuzione ognuno dei processi ; prima si mandano in esecuzione i processi con classe di priorità più alta 
+
+Processi con priorità bassa potrebbero non essere mai eseguiti
+
+![[Pasted image 20231026105414.png]]
 #### SRR ( Selfish-Round-Robin )
 
+Aumento della priorità con l'età del processo
+
+Possiede 2 code :
++ *Attivo* 
++ *In Attesa*
+
+Un processo nuovo entra nella coda *In Attesa* e più tempo ci rimane più la sua priorità aumenta
+Quando la sua priorità è uguale a quella dei processi pronti viene posto nella coda *attivo* e viene quindi applicato il *round-robin*
+
+Possono essere applicate diverse velocità di crescita della priorità a seconda se un processo necessità di essere svolto più velocemente
 #### HRRN ( Highest-Response-Ratio-Next )
+
+Considero quanto a lungo un processo aspetta rispetto al suo tempo di esecuzione 
+Avremo quindi che la priorità dinamica sarà impostata come :
+$$\text{Priorità dinamica} = \frac{\text{tempo di risposta}}{\text{tempo di esecuzione}}$$
+dove il $\text{tempo di risposta}=\text{tempo di attesa}+\text{tempo di esecuzione}$
+
+Non ha prelazione ma previene l'attesa infinita da parte di un processo
+
+#### Code multilivello con Feedback
+
+
 
 #### FSS ( Fair Share )
