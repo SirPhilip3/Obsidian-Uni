@@ -1316,3 +1316,5 @@ I thread a livello *utente* di un processo non può essere mischiati con altri *
 I thread di livello *kernel* invece non vivendo in un contesto di esecuzione specifico per un processo questi possono essere mischiati con thread di altri processi
 
 ![[Pasted image 20231026171350.png]]
+
+/git
