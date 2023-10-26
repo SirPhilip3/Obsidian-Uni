@@ -1317,4 +1317,4 @@ I thread di livello *kernel* invece non vivendo in un contesto di esecuzione spe
 
 ![[Pasted image 20231026171350.png]]
 
-/git
+
