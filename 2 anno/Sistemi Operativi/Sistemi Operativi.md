@@ -1217,6 +1217,102 @@ Non ha prelazione ma previene l'attesa infinita da parte di un processo
 
 #### Code multilivello con Feedback
 
+I processi che arrivano per essere eseguiti entrano nella coda di più alto livello e sono eseguiti con priorità maggiore rispetto ai processi di code inferiori
 
+Una volta finito il loro quanto di tempo e non hanno finito il loro processo allora essi vengono declassati alla coda di livello inferiore
 
+Ciò avviene per vari livelli di priorità
+
+In questo modo i processi più brevi e I/O bound hanno una priorità maggiore rispetto a processi più lunghi questi infatti vengono eseguiti solo alla termianzione dei processi più veloci 
+
+Le code sono implementate con *FIFO* ( o *FCFS* ) tranne l'ultima coda che implementa il *round-robin* 
+
+![[Screenshot 2023-10-26 154926.png]]
+
+L'algoritmo per rispondere ai cambiamenti dell'ambiente ( quando un processo ha un comportamento batch e quando diventa interattivo ) sposterà il processo in code di differente priorità per rispecchiare il suo utilizzo da parte dell'utente ( per rilevare questi cambiamenti di comportametno comporta un maggior *overhead* )
 #### FSS ( Fair Share )
+
+FSS controlla l'accesso da parte degli utenti delle risorse 
+Assicura che gruppi di utenti meno importanti non possano monopolizzare le risorse
+
+Le risorse inutilizzate sono distribuite secondo la proporzione delle risorse già assegnate 
+
+Se un gruppo di utenti non utilizza tutte le risorse assegnate allora potrebbe aumentare la sua priorità in modo che più dei suoi processi vadino in esecuzione aumentando quindi le risorse che utilizza
+
+![[Screenshot 2023-10-26 161735.png]]
+
+
+#### Scheduling per sistemi Real-Time
+
+I processi devono essere completati entro un certo periodo di tempo
+
+2 tipi di real time scheduling :
++ *Soft real-time* scheduling : 
+	+ Non garantisce che i vincoli temporali siano soddisfatti
++ *Hard real-time* scheduling :
+	+ I vincoli temporali devono essere sempre soddisfatti
+
+Il *deadline scheduling* è usato quando i processi devono essere completati entro un tempo stabilito ma che se questa deadline non è raggiunta i loro risultati sono inutili
+
+Questo tipo di scheduling è difficile da implementare poichè bisogna conoscere i requisiti delle risorse in anticipo : 
++ Notevole *overhead*
++ Il servizio offerto ad altri tipi di processi degrada 
+
+Gli eventi in sistemi *real-time* possono essere distinti in 2 tipi :
++ *periodici* ( prevedibili )
++ *non periodici* ( non prevedibili )
+
+Dati *m* eventi periodici e sapendo che l'evento *i* avviene durante il periodo $P_i$ e richiede $C_i$ secondi di CPU allora potremmo dire che il sistema è *schedulabile* se : 
+$$\sum_{i=1}^m\frac{C_i}{P_i}\le1$$
+Gli algoritmi per gestire i sistemi dinamici possono essere : *satici* o *dinamici* :
+
+##### Real-Time scheduling statico
+
+Non si adegua al cambiamento delle priorità nel corso del tempo , adatto a sistemi dove le condizioni cambiano raramente
+
+Risulta avere un basso *overhead*
+
+*Rate-monotonic* ( RM ) scheduling :
+	Aumenta la priorità del processo in modo monotono con la frequenza che deve essere eseguito
+	L'agoritmo altrimenti è *round-robin* con prelazione e priorità
+	Favorisce quindi i processi periodici , eseguiti spesso
+
+*Deadline RM scheduling*
+	Utile per i processi periodici che però possono avere scadenze differenti dal loro periodo ( dura 10s scadenza in 12s o 8s )
+##### Real-Time scheduling dinamico
+
+Regola le priorità a seconda delle condizioni variate durante l'esecuzione
+
+Può portare ad un *overhead* molto elevato , deve garantire che questo non porti ad un aumento di mancate scadenze 
+
+Le priorità sono di solito legate alla scadenze dei processi 
+
+*Earliest-deadline-first* ( *EDF* )
++ con prelazione
++ scieglie sempre il processo con scadenza più vicina
++ massimizza il throughput e minimizza il tempo di attesa
+
+*Minimum-laxity-first*
++ Basa le priorità sulla *lassità* :
+	+ misura il tempo alla scadenza del processo ( ossia quanto manca alla deadline )
+		$L=D-(T+C)$
+		Dove:
+			D = deadline
+			T = tempo corrente 
+			C = tempo di esecuzione rimanente
+
+#### Politica e meccanismo di scheduling
+
+Viene fatta la separazione tra :
++ *maccanismo* di scheduling ( è nel nucleo )
++ *politica* di scheduling ( responsabilià del processo utente poichè è lui che conosce la priorità dei suoi thread )
+
+#### Scheduling di Thread
+
+I thread a livello *utente* di un processo non può essere mischiati con altri *thread* di altri processi poichè questi vivono in un diverso contesto di esecuzione
+
+![[Pasted image 20231026171255.png]]
+
+I thread di livello *kernel* invece non vivendo in un contesto di esecuzione specifico per un processo questi possono essere mischiati con thread di altri processi
+
+![[Pasted image 20231026171350.png]]
