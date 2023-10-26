@@ -1046,5 +1046,128 @@ La transizione tra stai di un *processo* in *windows* è la seguente :
 
 ## Scheduler
 
->[!todo]
->scheduler
+Un algoritmo di *scheduling* deve decidere quale processo viene eseguito ad un certo istante ,
+queste decisioni devono essere prese cercando di raggiungere i seguenti *obbiettivi* :
++ Massimizzare il *throughput*
++ Minimizzare la *latenza*
++ Prevenire la *starvation* di un processo ( attesa infinita )
++ Completare i processo entro una *deadline* ( molto importante in sistemi real-time )
++ Massimizzare l'uso del processore
++ Garantire la *predicibilità* dello scheduling
++ Minimizzare l'*overhead*
++ *Bilanciamento* di tutte le parti del sistema
++ *Equità* : ogni processo deve ricevere la *CPU* in modo equo
+
+Vi sono differenti obbiettivi per lo scheduling di processi differenti :
++ Processi *processori-bound*
++ Processi *I/O-bound*
++ Processi *batch*
++ Processi *iterattivi*
+Inoltre lo scheduling cambia a seconda dei tipi di sistema :
++ Sistemi *Batch*
+	+ Massimizzazione del *throughput*
+	+ Massimizzare utilizzo della CPU
++ Sistemi *Interattivi*
+	+ Minimizzare il *tempo di risposta*
++ Sistemi *Real-Time*
+	+ Rispetto delle *scadenze*
+	+ *Prevedibilità* dello scheduler ( stabilità delle prestazioni )
+
+### Livelli di scheduling
+
++ Scheduling di *alto livello*
+	Determina che *job* può entrare in competizione per le risorse
+	Mantiene il controllo sul numero di processi in esecuzione nel sistema ad un dato tempo
++ Scheduling di *medio intermedio*
+	Determina quali *processi* possono competere per il processore
++ Scheduling di *basso livello*
+	Assegna le *priorità* ai processi
+	Assegna i processori ai processi
+
+### Prelazione
+
+Lo scheduling può essere :
++ *con prelazione*
+	I processi possono essere tolti dall'attuale processore
+	Si possono avere un miglioramento delle prestazioni ( migliore *tempo di risposta* )
+	E' molto importante in ambienti *interattivi* 
++ *senza prelazione*
+	I processi sono eseguiti fino al loro completamento
+	Processi che richiedono molto tempo possono bloccare altri processi
+
+### Priorità
+
++ *statica* :
+	La priorità viene assegnata alla nascita del processo e non cambia nel tempo
+	*facile* da implementare
+	*basso* overhead
+	*poca* flessibiltà 
++ *dinamica* :
+	La priorità può essere cambiata nel tempo
+	*elevata* flessibilità
+	*maggior* overhead
+
+### Algoritmi di Scheduling
+
+Sono responsabili per decidere :
++ *che* processo eseguire 
++ *quanto* tempo deve essere posto in esecuzione il processo
++ gestire le *interrupt* e i processi che si bloccano ( per I/O etcc )
+
+Deve fare scelte su : 
++ *prelazione*
++ *priorità*
++ *tempo di esecuzione*
++ *tempo fino al completamento*
++ *equità*
+
+#### FIFO ( First-In-First-Out )
+
+I processi vengono posti in esecuzione a seconda del loro tempo di arrivo all'interno della coda dei processi pronti 
+Non viene utilizzata la prelazione
+Molto iniefficente 
+
+![[Pasted image 20231026095649.png]]
+#### SJF ( Shortest-Job-First )
+
+Lo scheduler seleziona il processo con il *minimo tempo* stimato *per terminare*
+
+Vantaggi :
++ Il tempo medio di attesa per ogni processo è minore di *FIFO*
+
+Svantaggi :
++ Essendo *senza prelazione* può portare a tempi di risposta lunghi in presenza di richieste interattive
++ Potrebbe protare a *starving* di processi molto lunghi
++ La stima del tempo per terminare può essere scorretta o falsata da un processo per "saltare la coda" 
+
+#### SRT ( Shortest-Remaining-Time-First )
+
+è la versione con *prelazione* di *SJF*
+
+Vantaggi :
++ Ottimo per il tempo medio di risposta
+
+Svantaggi :
++ I processi più corti che arrivano fanno prelazione sui processi in esecuzione 
++ I processi lunghi aspettano ancora di più rispetto a *SJF* ( poichè verrano eseguiti sempre processi e parti di processi più corti prima di lui )
++ *overhead* elevato per il cambio di contesto
+
+#### RR ( Round-Robin )
+
+Basato su *FIFO* 
+
+I processi vengono eseguiti solo per un periodo di tempo limitato detto intervallo o *quanto* di tempo ( prelazione )
+
+Vantaggi :
++ Facile da implementare
+
+Svantaggi :
++ Per minimizzare l'overhead di creare nuovi processi è necessario mantenere numerosi processi in memoria
+
+![[Screenshot 2023-10-26 101329.png]]
+
+#### SRR ( Selfish-Round-Robin )
+
+#### HRRN ( Highest-Response-Ratio-Next )
+
+#### FSS ( Fair Share )
