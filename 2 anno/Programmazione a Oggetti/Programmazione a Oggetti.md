@@ -739,6 +739,38 @@ specifica che input e corrisopndente output deve fornire un metodo
 
 contratto sintattico
 
+
+## 27/10/2023
+
+Design by contract
+
+@requires requisiti per classe javadoc ( precondition )
+@ensures che val garantisce al completamento
+indicazione con pre() per i dati presenti prima dell'esecuzione del metodo
+
+contratto non deve contenere dei dati che non sono esposti esternamente
+
+@ensures 
+	return == 1 => f1.isAlive() && ! f2.isAlive() && f1.getLevel() >= pre(f1.getLevel())      && 
+	return == 2 => f2.isAlive() && ! f1.isAlive() && f2.getLevel() >= pre(f2.getLevel())
+non espone campi private e caraterizza ciò che succede se return 1 o 2 
+
+per un campo possiamo definire un *object invariant* 
+
+@invariant damage >= 0 && damage < pre(damage)
+all'inzio damage >=0 e se viene utilizzato sarà sempre minore di ciò che era prima 
+
+l'invariante deve essere soddisfatto in tutti i metodi che utilzzano il campo
+
+java modelling lenguage
+
+@loop_invariant ( invariante di ciclo ) ciò che rimane vero durante tutto il ciclo
+
+new class 
+
+
+
+
 # Tutorati 
 ## 14/10/2023
 
