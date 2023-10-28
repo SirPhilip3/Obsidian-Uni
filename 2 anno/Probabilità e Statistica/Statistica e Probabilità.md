@@ -338,7 +338,7 @@ $$\mathbb{P}[A_1\cap A_2\cap \dotsc \cap A_n]=\mathbb{P}[A_1]\cdot\mathbb{P}[A_2
 
 **Esempio** : 
 
-
+>[!todo]
 
 #### Eventi Indipendenti
 
@@ -350,7 +350,7 @@ Ossia sapere l'avvenimento di $B$ non modifica la probabilità di $A$
 
 >[!warning] 
 >Eventi *indipendenti* è diverso da eventi *disgiunti* 
->Due eventi possono *disgiunti*  possono essere *indipendenti* solo se uno di essi ha probabilità 0
+>Due eventi *disgiunti*  possono essere *indipendenti* solo se uno di essi ha probabilità 0
 
 La definizione può essere resa generale :
 Gli eventi $A_1, \dotsc , A_n$ si dicono reciprocamente *indipendenti* se comunque si prendono $k\gt 1$ di essi , si ha :
