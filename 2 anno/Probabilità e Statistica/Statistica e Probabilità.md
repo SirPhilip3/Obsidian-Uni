@@ -237,8 +237,19 @@ Qual'è la probabilità che su $n$ elementi estratti casualmente esattamente $k$
 $$\#\Omega=N^n ;\quad \#A_k=\binom{n}{k}m^k(N-m)^{n-k}$$$$\mathbb{P}[A_k]=\binom{n}{k}m^k(N-m)^{n-k}\frac{1}{N^n}$$
 $$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(\frac{N-m}{N}\bigg)^{n-k}$$
 $$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(1-\frac{m}{N}\bigg)^{n-k}$$
+
+Possiamo modificare la formula precedente considerando $\frac{m}{N}=p$ ossia la frazione può essere considerata come la probabilità di sucesso di un tentativo ; avremo quindi :
+$$\mathbb{P}[A_k]=\binom{n}{k}(p)^k(1-p)^{n-k}$$
+
 >[!todo]
 >speigazione formule
+
+L'utilizzo del binomiale può avvenire quando :
++ ci sono 2 eventi possibili ( successo e insuccesso )
++ la probabilità di successo è costante per ogni tentativo
++ gli eventi sono indipendenti tra di loro ( ossia l'esito di un tentativo non influenza l'esito degli altri tentativi )
+
+$$\binom{n}{k}$$ indica n come gli oggetti che dobbiamo selezionare e k il numero di oggetti con la caratteristica che vogliamo
 
 ##### Soluzione senza reinserimento
 Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
