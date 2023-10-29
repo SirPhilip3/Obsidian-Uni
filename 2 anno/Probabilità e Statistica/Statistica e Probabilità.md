@@ -240,16 +240,31 @@ $$=\binom{n}{k}\bigg(\frac{m}{N}\bigg)^k\bigg(1-\frac{m}{N}\bigg)^{n-k}$$
 
 Possiamo modificare la formula precedente considerando $\frac{m}{N}=p$ ossia la frazione può essere considerata come la probabilità di sucesso di un tentativo ; avremo quindi :
 $$\mathbb{P}[A_k]=\binom{n}{k}(p)^k(1-p)^{n-k}$$
-
->[!todo]
->speigazione formule
-
 L'utilizzo del binomiale può avvenire quando :
 + ci sono 2 eventi possibili ( successo e insuccesso )
 + la probabilità di successo è costante per ogni tentativo
 + gli eventi sono indipendenti tra di loro ( ossia l'esito di un tentativo non influenza l'esito degli altri tentativi )
 
-$$\binom{n}{k}$$ indica n come gli oggetti che dobbiamo selezionare e k il numero di oggetti con la caratteristica che vogliamo
+$$\binom{n}{k}$$
+Indica $n$ come gli oggetti che dobbiamo selezionare e $k$ il numero di oggetti con la caratteristica che vogliamo
+
+**Esempio**
+
+Abbiamo un urna con 50 palline , 15 delle quali sono rosse le rimanente nere , volgiamo estrarre 5 palline *con reinserimento* . Qual'è la probabilità che abbiamo esattamente 3 palline rosse estratte ?
+
+Avremo quindi che :
++ $n = 5$ ( dobbiamo selezionare 5 palline )
++ $k = 3$ ( i casi che vogliamo abbiano successo )
++ $m = 15$ ( numero delle palline con la caratterristica che è per noi un successo )
++ $N = 50$ ( numero totale di palline nell'urna )
+
+Avremo quindi :
+$$\binom{5}{3}\bigg(\frac{15}{50}\bigg)^3\bigg(1-\frac{15}{50}\bigg)^{2}$$
+
+Possiamo anche vederla avendo la probabilità di estrarre una pallina rossa ( successo ) ossia : $\frac{15}{50}=0.3$
+
+Avremo quindi :
+$$\binom{5}{3}(0.3)^3(1-0.3)^{2}$$
 
 ##### Soluzione senza reinserimento
 Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
@@ -260,24 +275,32 @@ Solo valida se $n\le N , k\le m$ e $n-k\le N-m$
 	$A_k=\{(x_1,...,x_n)\in \Omega; k\space \text{elementi hanno la caratteristica richiesta}\}$
 $$\#\Omega=\binom{N}{m} ;\quad \#A_k=\binom{n}{k}\binom{N-m}{n-k}$$
 $$\implies \mathbb{P}[A_k]=\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}$$
->[!todo]
->speigazione formule
 
 **Esempio** :
 
-Abbiamo un urna con 50 palline , 15 delle quali sono rosse le rimanente nere , volgiamo estrarre 5 palline senza reinserimento . Qual'è la probabilità che abbiamo esattamente 3 pallin
+Abbiamo un urna con 50 palline , 15 delle quali sono rosse le rimanente nere , volgiamo estrarre 5 palline *senza reinserimento* . Qual'è la probabilità che abbiamo esattamente 3 palline rosse estratte ?
 
+Avremo che :
++ $N = 50$ palline ( la totalità della nostra popolazione )
++ $n = 5$ ( il numero delle estrazioni )
++ $k = 3$ ( numero dei successi desiderati )
++ $m = 15$ ( numero di possibili successi nella popolazione totale )
+
+Avremo quindi :
+$$\frac{\binom{15}{3}\binom{50-15}{5-3}}{\binom{50}{5}}$$
+$$\frac{\binom{15}{3}\binom{35}{2}}{\binom{50}{5}}$$
+$$\mathbb{P}[R]=0,1277$$
 ### Probabilità condizionata
 
 Una probabilità si dice *condizionata* ( o *subordinata* ) quando : 
-Prima dell'arrivo di un'informazione ho un'idea di probabilità con l'arrivo di un'informazione questa probabilità viene aggiornata ( essenzialmente sapendo una certa informazione aggoirnare la probabilità di un evento )
+Prima dell'arrivo di un'informazione ho un'idea di probabilità con l'arrivo di un'informazione questa probabilità viene aggiornata ( essenzialmente sapendo una certa informazione aggiornare la probabilità di un evento )
 
 #### Definizione 
 
 Sia B un evento di probabilità positiva. La *probabilità condizionata* dell'evento A dato l'evento B è :
 $$\mathbb{P}[A|B]=\frac{\mathbb{P}[A\cap B]}{\mathbb{P}[B]}$$
-+ Evento condizionato : $A$
-+ Evento condizionante : $B$
++ Evento condizionato : $A$ ( ciò che cambia )
++ Evento condizionante : $B$ ( ciò che fa cambiare )
 + Probabilità di A in presenza di B : $\mathbb{P}[A|B]$
 
 **Esempio** : 
