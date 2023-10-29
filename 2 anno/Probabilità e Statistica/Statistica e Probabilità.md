@@ -263,6 +263,10 @@ $$\implies \mathbb{P}[A_k]=\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}$$
 >[!todo]
 >speigazione formule
 
+**Esempio** :
+
+Abbiamo un urna con 50 palline , 15 delle quali sono rosse le rimanente nere , volgiamo estrarre 5 palline senza reinserimento . Qual'è la probabilità che abbiamo esattamente 3 pallin
+
 ### Probabilità condizionata
 
 Una probabilità si dice *condizionata* ( o *subordinata* ) quando : 
