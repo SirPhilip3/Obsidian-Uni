@@ -946,3 +946,121 @@ Dopo :
 ![[Pasted image 20231025101009.png]]
 >[!todo]
 >svolgimento esercizi
+
+
+## Algebra Relazionale
+
+L'*algebra relaziomale* sono un insieme di operatori che danno come risultato relazioni , possiamo avere :
++ *Operatori primitivi* ( ridenominazione, proiezione, unione e differenza, restrizione, prodotto )
++ *Operatori derivati* ( giunzione, divisione, ... )
++ *Altri operatori* ( raggruppamento, order by, min, max )
+
+*Calcolo relazionale* : linguaggio dichiarativo ( espressioni ) di tipo logico da cui è derivato l'SQL
+### Notazione
+
+Data una relazione $R\space( A_1 : T_1 , \dots , A_n : T_n )$ avremo :
++ *tipo* : insieme dei tipi $\{( A_1 : T_1 , \dots , A_n : T_n )\}$
++ *grado* : $n$
++ *valore* : data una ennupla $t$ avremo che :
+	$t.A_i$ risulterà essere il *valore* dell'attributo $A_i$
+
+Nel modello di base non viene utilizzato il *NULL*
+### Ridenominazione
+
+Indicata con $\rho$
+Data una *relazione* R(X) con X insieme di attributi abbiamo che $A \in X$ e $B \notin X$ 
+Avremo che 
+$$\rho_{A\leftarrow B}(R)$$
+Sarà la relazione R dove A viene ridenominato con B
+
+Formalizzazione :
+$$\rho_{A\leftarrow B}(R)=\{t\space |\space \exists\space u \in R\quad t.B=u.A\space \land\space \forall C \in X-\{A\}\quad t.C=u.C \}$$
+La nuova relazione avrà :
++ *grado* : stesso grado di R
++ *tipo* : stesso tipo di R ma con un attributo modificato $\rho_{A\leftarrow B}(R) : \{( A_1 : T_1 , \dots , B : T , \dots , A_n : T_n )\}$
++ *cardinalità* : uguale a quella di R
+
+*Esempio*
+
+La ridenominazione risulta essere utile quando vogliamo unire 2 tabelle ( relazioni ) ma queste hanno un attributo con il medesimo nome :
+
+	Studenti( Nome , Cognome , Matricola )
+	Esami( Nome , Candidato , Voto )
+
+In questo caso il `Nome` dell'esame , se volessimo unire le 2 tabelle , andrebbe cambiato :
+$$\rho_{Nome\leftarrow NomeEsame}(Esami)$$
+
+### Unione e Differenza
+
+Avendo due relazioni R ed S con lo *stesso tipo* 
+
+*Unione* :
+	$R\cup S=\{t|t\in R \lor t \in S\}$
+*Differenza* :
+	$R-S=\{t|t\in R \land t \notin S\}$
+
+La nuova relazione avrà :
++ *tipo* : hanno entrambi lo stesso tipo delle relazioni originarie
++ *cardinalità* : 
+	Sapendo che $|R|=n$ e $|S|=m$
+	Avremo che :
+	+ $|R\cup S|\le n+m$   ( l'unione risulta nella eliminazione dei duplicati per questo $\le$ )
+	+ $max\{0 , n-m\}\le|R-S|\le n$   ( poichè tolgo tutto o non tolgo nulla )
+### Proiezione
+
+Indicata con $\pi$
+Utilizzato per selezionare degli attributi specifici
+
+Data la relazione $R(n)$ con $\{A_1, \dots , A_m\}\subseteq X$
+L'operazione $$\pi_{A_1,\dots,A_m}(R)=\{<t.A_1,\dots,t.A_m>|t\in R\}$$
+'Elimina' tutti gli attributi diversi da $A_1,\dots,A_m$
+
+La nuova relazione avrà :
++ *tipo* : $\{(t.A_1,\dots,t.A_m)\}$  ossia il tipo degli attributi che abbiamo selezionato
++ *cardinalità* :
+	Sapendo che $|R|=n$
+	Avremo che :$$|\pi_{A_1,\dots,A_m}(R)|\le n$$
+	Anche in questo caso se vi sono duplicati tra gli elementi che selezioniamo queste entry vengono eliminate
+
+	Se gli attributi selezionati sono una *superchiave* ( contengono almeno una *key* ) il numero di ennuple saranno $n$
+
+**Esempio** : 
+
+Abbiamo la seguente relazione 
+`Studenti( Nome , Cognome , Matricola <PK> , Anno , Provincia )`
+
+|Nome|Cognome|*Matricola* `<PK>`|Anno|Provincia|
+|---|---|---|---|---|
+|Paolo|Verdi|71523|2005|VE|
+|Anna|Rossi|76523|2006|PD|
+|Giorgio|Zeri|71347|2005|VE|
+|Chiara|Scuri|71346|2006|VE|
+
+Possiamo selezionare `Nome, Matricola, Provincia`
+$$\pi_{\text{Nome,Matricola,Provincia}}(Studenti)$$
+La risultante relazione è :
+
+|Nome|*Matricola* `<PK>`|Provincia|
+|---|---|---|
+|Paolo|71523|VE|
+|Anna|76523|PD|
+|Giorgio|71347|VE|
+|Chiara|71346|VE|
+
+In questo caso la *cardinalità* risulterà essere $n$ poichè la relazione risultante contiene la `<PK>`
+
+Se però avessimo :
+$$\pi_{\text{Provincia}}(Studenti)$$
+La risultante relazione è :
+
+|Provincia|
+|---|
+|VE|
+|PD|
+
+In questo caso abbiamo che i duplicat
+### Restrizione
+
+### Prodotto
+
+### Giunzione

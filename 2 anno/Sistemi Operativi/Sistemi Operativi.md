@@ -1432,17 +1432,66 @@ Infatti in un sistema *batch* bisognava gestire ogni *job* attraverso un *job co
 Molti processi devono risiedere in *memoria* contemporaneamente  
 
 Per mettere in memoria vari processi abbiamo diversi metodi :
-#### **Partizioni fisse**
+#### Partizioni fisse
 
 + Ogni processo attivo risede in un blocco di dimensione prefissata in memoria
 + Il processore sapendo dove sono i processi a priori è molto veloce a passare tra processi
 + Potrebbe richiedere più memoria di quella effettivamente richiesta dai processi
 + Utilizzazione di registri *boundary* multipli per proteggere i processi ( uno per ogni processo )
+	+ *base* ( indica l'indirizzo base del programma )
+	+ *limite* ( indica il limite superiore del programma )
+	+ Le richieste di accesso e modifica dei dati devono essere tra questi 2 registri ( apparte qunado venogno fatte chiamate di sistema ) 
+	![[Screenshot 2023-10-30 101912.png]]
 
 Per l'*assegnamento* dei job avremo quindi varie code separate ( una per ogni partizione ) che contengono i *job* che ( per la loro dimensione ) possono essere eseguiti solo lì
 
 ![[Pasted image 20231030100825.png]]
 
-Inizialmente si usavano *indirizzi assoluti* per fare riferimento all'area di memoria che 
+Inizialmente si usavano *indirizzi assoluti* per fare riferimento all'area di memoria che doveva contere il *job* Se quindi quell'area era occupata il programma non poteva essere caricato in nessun altra partizione
 
+Con lo sviluppo di *compilatori rilocanti* questo problema è stato risolto infatti ora i programmi iniziano da un indirizzo relativo 0 , questo verrà modificato quando viene lanciato il *loader* con l'indirizzo corretto in memoria
 
+![[Pasted image 20231030101548.png]]
+
++ **Svantaggi** :
+	+ **Frammentazione interna** :
+		+ Se il processo non occupa un'intera partizione viene sprecata memoria
+		+ Impossibilità di usare questa memoria
+		+ Un porcesso potrebbe essere troppo grande per essere inseriti in una partizione
+		![[Pasted image 20231030102424.png]]
+
+#### Partizioni variabili
+
+i *job* sono allocati in una partizione con le stesse dimensioni del *job*
++ Nessuno spazio sprecato all'inizio
++ Frammentazione interna impossibile
++ Può verificarsi **Frammentazione esterna** :
+	+ Quando un processo viene rimosso potrebbero :
+		+ Lasciare buchi troppo piccoli per qualsiasi altro processo
+
+![[Pasted image 20231030103230.png]]
+
+Combattere la *frammentazione esterna* attraverso :
++ *Coalescenza* : 
+	+ Combinazione di blocchi liberi adiacenti in un unico grande blocco 
+	![[Pasted image 20231030103612.png]]
++ *Compattazione* :
+	+ Ogni tanto viene chiamato *garbage collection* che :
+		+ Riorganizza la memoria in un unico blocco contiguo di spazio libero
+		+ *overhead* significativo
+	![[Pasted image 20231030103632.png]]
+
+Per aumentare l'efficenza nella gestione dello spazio bisogna migliorare l'efficenza di utilizzo dello spazio prima di chiamare la *garbage collection* 
+Per questo si implementano diverse strategie per il posizionamento di processi in memoria :
++ **First-fit** :
+	+ Il nuovo processo viene allocato nel primo spazio libero trovato di dimensini sufficenti
+	+ *basso overhead*
+	![[Pasted image 20231030104237.png]]
++ **Best-fit**
+	+ Il nuovo processo viene allocato nello spazio che lascia il minimo spazio inutilizzato
+	+ *maggior overhead*
+	![[Pasted image 20231030104254.png]]
++ **Worst-fit**
+	+ Il nuovo processo viene allocato nello spazio che lascia il maggior spazio inutilizzato
+	+ In questo modo esso lascia un grande spazio libero rendendo più probabile che un'altro processo possa utilizzarlo
+	![[Pasted image 20231030104306.png]]
