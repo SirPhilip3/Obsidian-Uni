@@ -1,5 +1,3 @@
-# 20/09/2023
-
 ## Cos'è un S.O.
 
 Il **Sistema Operativo** è il software che controlla l'hardware 
@@ -1316,5 +1314,135 @@ I thread a livello *utente* di un processo non può essere mischiati con altri *
 I thread di livello *kernel* invece non vivendo in un contesto di esecuzione specifico per un processo questi possono essere mischiati con thread di altri processi
 
 ![[Pasted image 20231026171350.png]]
+
+
+
+
+## Gestione della memoria
+
+Le memorie che dobbiamo gestire sono : 
++ Memoria *principale*
+	+ costosa
+	+ capacità limitata
+	+ alte prestazioni
++ Memoria *secondaria*
+	+ economica 
+	+ grande capacità
+	+ basse prestazioni
+
+Per far sì che l'utente abbia l'impressione di avere una memoria che :
++ è grande
++ è veloce
++ non è volatile
+
+Si implementano le gerarchie di memoria 
++ Memoria *secondaria*
+	+ Memorizza i dati e programmi che non sono necessari al momento
++ Memoria *principale*
+	+ Deve memorizzare solo i programmi e dati che sono strettamente necessari al momento
++ Memoria *cache*
+	+ Utilizzate per sfruttare la località spaziale e temporale delle istruzioni e dei dati all'interno della CPU 
+
+![[Pasted image 20231030084558.png]]
+
+### Organizzazione della memoria principale
+
+Per ottimizzare lo spazio all'interno della memoria principale dobbiamo rispondere alle seguenti domande :
++ *Quale* processo rimarrà in memoria ?
++ *A quanta memoria* ogni processo ha accesso ?
++ *Dove* posizionare in memoria ogni processo ?
+
+La memoria può essere organizzata in 2 macro modi differenti :
++ Il processo utilizza *tutto* lo spazio in memoria 
++ Ad ogni processo viene assegnata una *partizione* della memoria
+	+ questa può essere allocata *staticamente* o *dinamicamente*
+
+Esempi di organizzazione della memoria di un programma con quella del sistema operativo :
+
+![[Pasted image 20231030090551.png]]
+
+Il BIOS poteva essere posto nella *ROM* ( *Read Only Memory* ) nei primi PC ( 3° esempio )
+
+#### Strategie di gestione della memoria
+
+Vi sono diverse categorie di strategie da applicare quando dobbiamo gestire la memoria principale :
++ *fetch*
+	+ Quando dobbiamo inserire la prossima sezione di programma e dati in memoria principale ?
+	+ 2 principali tipologie di strategie :
+		+ a *richiesta* ( spostemento quando viene richiesto dal programma )
+		+ a *previsione* ( spostamento quando prevediamo che un programma dovrebbe andare in esecuzione )
++ *posizionamento*
+	+ Decide dove inserire dati e programmi nella memoria 
+	+ 3 strategie di inserimento principali :
+		+ *best-fit*
+		+ *first-fit*
+		+ *worst-fit*
++ *sostituzione*
+	+ Decide quali dati e programmi rimuovere dalla memoria principale 
+
+### Allocazione di programmi in memoria principale
+
+Possiamo avere 2 modi per organizzare i programmi in memoria principale :
++ Allocazione *contigua*
+	+ Un programma viene memorizzato come un unico blocco di indirizzi contigui
+	+ Potrebbe essere impossibile trovare un blocco di indirizzi contigui così grande
+	+ Basso overhead
+![[Pasted image 20231030094713.png]]
++ Allocazione *non contigua*
+	+ Un pogramma viene diviso in blocchi chiamati *segmenti*
+	+ Ogni *segmento* può essere allocato in diverse parti della memoria anche non contigue
+	+ Risulta più facile trovare spazi in memoria in cui un segmento può essere memorizzato
+	+ Alto overhead ma compensato dalla quantità di processi che possono essere in esecuzione
+
++ Un metodo alternativo per superare le limitazioni della allocazione *contigua* è l'**Overlay** :
+	+ è una tecnica di programmazione in cui il programma viene diviso in *sezioni logiche* 
+	+ Vengono poste in memoria solo le sezioni che sono attive in questo momento
+	+ Questa tecnica comporta diversi svantaggi infatti risulta :
+		+ Difficile per il programmatore organizzare gli *overlay* per ottimizzare la memoria
+		+ Complica la scrittura e modifica dei programmi
+	+ Ci permette però di mettere in esecuzione programmi che hanno dimensioni maggiori rispetto alla memoria principale disponibile
+
+**Esempio** :
+
+![[Screenshot 2023-10-30 093754.png]]
+
+Ambiente *mono-utente* 
+>[!tldr] 
+> vedi slide 13 pdf 3.1
+
+In un ambiente *mono-utente* un utente ha il controllo dell'intero sistema in questo modo :
++ Le risorse non devono essere condivise 
++ Si può scrivere codice senza tenere conto dell'OS ( se abbiamo una allocazione contigua ) ossia a livello macchina inclusa la gestione dell'I/O ( sucessivamente viene sviluppato l'IOCS ( Input Output Control Systems ) )
+### Protezione in ambiente mono-utente
+
+Per fare in modo che i programmi utente non possano modificare il S.O. vengono introdotti i registri *boundary* :
++ Contengono l'indirizzo di inizio del programma
++ Può essere impostato solo tramite *istruzioni privilegiate*
++ Un programma può accedere alla memoria del SO solo attraverso *chiamate di sistema*
+
+![[Pasted image 20231030095053.png]]
+
+### Single-Stream Batch Processing
+
+I primi sistemi avevano un tempo di *setup* rilevante
+
+Infatti in un sistema *batch* bisognava gestire ogni *job* attraverso un *job control language* , ossia definirlo e configurarlo a mano ( spazio in memoria etcc ) 
+### Multiprogrammazione a partizioni fisse
+
+Molti processi devono risiedere in *memoria* contemporaneamente  
+
+Per mettere in memoria vari processi abbiamo diversi metodi :
+#### **Partizioni fisse**
+
++ Ogni processo attivo risede in un blocco di dimensione prefissata in memoria
++ Il processore sapendo dove sono i processi a priori è molto veloce a passare tra processi
++ Potrebbe richiedere più memoria di quella effettivamente richiesta dai processi
++ Utilizzazione di registri *boundary* multipli per proteggere i processi ( uno per ogni processo )
+
+Per l'*assegnamento* dei job avremo quindi varie code separate ( una per ogni partizione ) che contengono i *job* che ( per la loro dimensione ) possono essere eseguiti solo lì
+
+![[Pasted image 20231030100825.png]]
+
+Inizialmente si usavano *indirizzi assoluti* per fare riferimento all'area di memoria che 
 
 
