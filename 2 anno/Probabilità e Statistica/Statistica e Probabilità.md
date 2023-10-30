@@ -424,7 +424,7 @@ Questa può essere derivata da :
 
 > [!todo]
 
-/git
+
 
 # Appunti
 #### R-Studio
