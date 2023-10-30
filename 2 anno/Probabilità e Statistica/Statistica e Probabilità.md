@@ -416,6 +416,15 @@ Questa può essere derivata da :
 	• Il risultato di questa operazione di aggiornamento sono le nuove probabilità $P[C_m|A]$, dette anche a posteriori. 
 	• Le probabilità a posteriori costituiscono una sintesi dell’informazione disponibile a priori su un certo fenomeno e dell’informazione empirica.
 
+**Esempio** :
+
+> [!todo]
+
+### Varaibili Casuali
+
+> [!todo]
+
+/git
 
 # Appunti
 #### R-Studio

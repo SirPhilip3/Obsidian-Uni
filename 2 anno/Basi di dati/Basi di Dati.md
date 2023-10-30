@@ -1058,9 +1058,116 @@ La risultante relazione è :
 |VE|
 |PD|
 
-In questo caso abbiamo che i duplicat
+In questo caso abbiamo che i duplicati di `VE` risultano essere stati eliminati per questo la *cardinalità* è 2
 ### Restrizione
+
+Indicata con $\sigma$
+
+$$\sigma_{\phi}(R)=\{t|t\in R\land \phi(t)\}$$
+Utilizzata per creare una relazione le cui ennuple sono le ennuple di R che soddifano la condizione $\phi$
+
+La condizione $\phi$ è una composizione di uguaglianze , disuguaglianze e disequazioni tra attributi ( o tra attributi e costanti )
+$$\phi = A_i\space op\space A_j\space|\space A_i\space op\space c\space|\space\neg \phi\space|\space\phi\land\phi\space|\space\phi\lor\phi $$
+dove $op$ è un'operazione di confronto
+
+La nuova relaziona avrà :
++ *tipo* : stesso tipo di R
++ *cardinalità* : 
+	Sapendo che $|R|=n$
+	Avremo che :
+	$|\sigma_{\phi}|\le n$
+
+>[!tip]
+> Se una restrizione è molto selettiva meglio svolgerla prima di una meno selettiva
+> La restrizione gode infatti della proprietà *commutativa*
+
+**Esempio** :
+
+Trovare i dati degli `Studenti` della `Provincia` di Venezia `VE`
+
+$$\sigma_{\text{Provincia = 'VE'}}(Studenti)$$
+La relazione risultante sarà :
+
+|Nome|Cognome|*Matricola* `<PK>`|Anno|Provincia|
+|---|---|---|---|---|
+|Paolo|Verdi|71523|2005|VE|
+|Giorgio|Zeri|71347|2005|VE|
+|Chiara|Scuri|71346|2006|VE|
+
+Trovare il `Nome` , la `Matricola` e l'`Anno` di iscrizione degli `Studenti` di `Venezia`
+
+$$\pi_{\text{Nome,Matricola,Provincia}}(\sigma_{\text{Provincia = 'VE'}}(Studenti))$$
+La relazione risultante sarà :
+
+|Nome|*Matricola* `<PK>`|Anno|
+|---|---|---|
+|Paolo|71523|2005|
+|Giorgio|71347|2005|
+|Chiara|71346|2006|
 
 ### Prodotto
 
+$R \times S$
+
+Deve soddisfare una condizione iniziale ossia che R e S devono avere attributi distinti tra di loro ( se abbiamo attributi uguali per mantenere questa condizione basta fare una *ridenominazione* prima del prodotto )
+
+Le ennuple risultanti vengono ottenute tramite la concatenazione tra le ennuple di R e di S
+
+Avremo quindi :
+$$R\times S=\{<t\cdot A_1,\dots,t\cdot A_n,u\cdot B_1,\dots,u\cdot B_n>| t\in R \land u \in S\}$$
+La nuova realzione avrà :
++ *tipo* : la concatenzione dei tipi di R e S $\{(t\cdot A_1,\dots,t\cdot A_n,u\cdot B_1,\dots,u\cdot B_n>)\}$
++ *cardinalità* : 
+	Sapendo che : $|R|=n$ e $|S|=m$
+	Avremo che :
+	$|R\times S| = n\times m$
+
+Non ci possono essere duplicati nella relazione risultante poichè epr ipotesi iniziale abbimo che tutti gli attribuit devoni essere distinti tra loro
+
+**Esempio** :
+
+`Studenti x Esami`
+
+Con `Studenti` :
+
+|Nome|Cognome|*Matricola* `<PK>`|Anno|Provincia|
+|---|---|---|---|---|
+|Paolo|Verdi|71523|2005|VE|
+|Anna|Rossi|76523|2006|PD|
+|Giorgio|Zeri|71347|2005|VE|
+|Chiara|Scuri|71346|2006|VE|
+
+Con `Esami` :
+
+|*Codice* `<PK>`|Materia|Candidato `<FK>`|Data|Voto|Lode|
+|---|---|---|---|---|---|
+|B112|BD|71523|08.07.06|27|N|
+|F31|FIS|76366|08.07.06|26|N|
+|B247|BD|76366|28.12.06|28|S|
+
+Il prodotto associa ad ogni ennupla di `Studenti` tutte le ennuple di `Esami` , questo però a livello logico non è corretto poichè ad uno stidente viene assegnato un esame di un'altro studente ( non viene rispettato il vincolo di *foreing key* ) 
+
+Per farlo rispettare necessitiamo di fare delle altre operazioni
+
+Innazitutto dobbiamo fare una *restrizione* sul prodotto facendo in modo che abbiamo solo le ennuple tale che la `Matricola` sia uguale al `Candidato`
+
+$$\sigma_{\text{Matricola=Candidato}}(Studenti\times Esami)$$
 ### Giunzione
+
+Indicata con $\bowtie$
+
+Utile se vogliamo combinare relazioni correlate tra loro come la precedente 
+$$R\underset{A_i=B_j}{\bowtie}S$$
+Avendo R e S con attributi distinti 
+Possiamo espandere la *giunzione* in :
+$$R\underset{A_i=B_j}{\bowtie}S=\sigma_{A_i=B_j}(R\times S)$$
+*Giunzione naturale* :
+$R\bowtie S$
+
+Fa la giunzione di 2 relazioni basandosi su 2 attributi con lo stesso nome
+
+**Esempio** :
+
+Nel caso di prima la formula finale può essere scritta come :
+$$Studenti\underset{Matricola=Candidato}{\bowtie}Esami$$
+
