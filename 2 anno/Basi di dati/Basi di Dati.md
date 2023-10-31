@@ -1286,6 +1286,80 @@ Ossia :
 $$R\overleftarrow{\bowtie}S=R\bowtie S \cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$$
 #### Intersezione 
 
+Formalmente :
+$$R\cap S=\{t|t\in R \land t \in S\}$$
+Può essere vista come :
+$$R-(R-S)$$
++ $R-S$ : indica le ennuple che stanno in R ma non in S
+Se poi sottraiamo a queste $R$ allora avremo l'*intersezione* tra $R$ ed $S$
 
+>[!todo]
+>UNDERSTAND
 
+Ora dimostriamo la precedente formula :
+
+partiamo quindi da :
+$$t\in R -(R-S)\quad \text{sse}\quad t\in R \land t\notin(R-S)$$
+$$t\in R \land\lnot\Big[ t \in (R-S) \Big]$$
+$$t\in R \land \lnot\Big[t\in R \land t\notin S\Big]$$
+$$t\in R\land \Big[t\notin R \lor t \in S\Big] \quad \text{per deMorgan}$$
+$$t\in R\land t\in S\quad \text{Poichè essendo che $t\in R$ non può essere $t\notin R$}$$
+Essendo arrivati alla definizione iniziale abbiamo concluso la dimostrazione
 #### Divisione
+
+Si indica con $\div$
+
+Abbiamo :
+$R(XY)$
+$S(Y)$
+
+Vogliamo produrre una relazione $T(X)$ tale che una ennupla $t$ è di $T$ se e solo se per ogni $s$ di $S$ l'ennupla $<t, s>$ appare in $R$
+$$R\div S$$
+**Esempio** 
+
+Abbiamo $R$ :
+
+|$X$|$Y$|
+|---|---|
+|t1|s1|
+|t1|s2|
+|t2|s2|
+|t1|s3|
+|t3|s1|
+|t3|s2|
+|t3|s3|
+
+Abbiamo $S$ :
+
+|$Y$|
+|---|
+|s1|
+|s2|
+
+$R\div S =$
+
+|X|
+|---|
+|t1|
+|t3|
+
+Questo perchè decidiamo di inserire in $R \div S$ un $t$ se e solo se in $R$ è concatenato da ogni ennupla di $S$
+
+Quindi per $t1$ visto che è accopiato sia da $s1$ che da $s2$ in $S$ allora $t1$ può essere inserto in $R \div S$
+Stessa cosa per $t3$ 
+$t2$ invece non è concatenato ad $s2$ quindi non possiamo inserirlo nella tabbella $R \div S$
+
+Formalmente quindi avremo che :
+$$R \div S=\{t|t \in \pi_X(R)\land \forall s \in S \quad <t,s>\in R\}$$
+
+**Dimostrazione**
+
+Se compariamo al divisione sulle relazioni e sui numeri
+
+Nei *numeri* abbiamo :
+$$r\div s = max\{t |t\cdot s \le r\}\quad \text{con $s\neq 0$}$$
+Nelle *relazioni* abbiamo :
+$$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
+
+**Esempio** :
+
