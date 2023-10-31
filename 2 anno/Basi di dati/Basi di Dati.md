@@ -956,7 +956,8 @@ L'*algebra relaziomale* sono un insieme di operatori che danno come risultato re
 + *Altri operatori* ( raggruppamento, order by, min, max )
 
 *Calcolo relazionale* : linguaggio dichiarativo ( espressioni ) di tipo logico da cui è derivato l'SQL
-### Notazione
+### Operatori primitivi
+#### Notazione
 
 Data una relazione $R\space( A_1 : T_1 , \dots , A_n : T_n )$ avremo :
 + *tipo* : insieme dei tipi $\{( A_1 : T_1 , \dots , A_n : T_n )\}$
@@ -965,7 +966,7 @@ Data una relazione $R\space( A_1 : T_1 , \dots , A_n : T_n )$ avremo :
 	$t.A_i$ risulterà essere il *valore* dell'attributo $A_i$
 
 Nel modello di base non viene utilizzato il *NULL*
-### Ridenominazione
+#### Ridenominazione
 
 Indicata con $\rho$
 Data una *relazione* R(X) con X insieme di attributi abbiamo che $A \in X$ e $B \notin X$ 
@@ -990,7 +991,7 @@ La ridenominazione risulta essere utile quando vogliamo unire 2 tabelle ( relazi
 In questo caso il `Nome` dell'esame , se volessimo unire le 2 tabelle , andrebbe cambiato :
 $$\rho_{Nome\leftarrow NomeEsame}(Esami)$$
 
-### Unione e Differenza
+#### Unione e Differenza
 
 Avendo due relazioni R ed S con lo *stesso tipo* 
 
@@ -1006,7 +1007,7 @@ La nuova relazione avrà :
 	Avremo che :
 	+ $|R\cup S|\le n+m$   ( l'unione risulta nella eliminazione dei duplicati per questo $\le$ )
 	+ $max\{0 , n-m\}\le|R-S|\le n$   ( poichè tolgo tutto o non tolgo nulla )
-### Proiezione
+#### Proiezione
 
 Indicata con $\pi$
 Utilizzato per selezionare degli attributi specifici
@@ -1059,7 +1060,7 @@ La risultante relazione è :
 |PD|
 
 In questo caso abbiamo che i duplicati di `VE` risultano essere stati eliminati per questo la *cardinalità* è 2
-### Restrizione
+#### Restrizione
 
 Indicata con $\sigma$
 
@@ -1105,7 +1106,7 @@ La relazione risultante sarà :
 |Giorgio|71347|2005|
 |Chiara|71346|2006|
 
-### Prodotto
+#### Prodotto
 
 $R \times S$
 
@@ -1152,7 +1153,9 @@ Per farlo rispettare necessitiamo di fare delle altre operazioni
 Innazitutto dobbiamo fare una *restrizione* sul prodotto facendo in modo che abbiamo solo le ennuple tale che la `Matricola` sia uguale al `Candidato`
 
 $$\sigma_{\text{Matricola=Candidato}}(Studenti\times Esami)$$
-### Giunzione
+
+### Operatori derivati
+#### Giunzione
 
 Indicata con $\bowtie$
 
@@ -1161,13 +1164,128 @@ $$R\underset{A_i=B_j}{\bowtie}S$$
 Avendo R e S con attributi distinti 
 Possiamo espandere la *giunzione* in :
 $$R\underset{A_i=B_j}{\bowtie}S=\sigma_{A_i=B_j}(R\times S)$$
-*Giunzione naturale* :
-$R\bowtie S$
 
-Fa la giunzione di 2 relazioni basandosi su 2 attributi con lo stesso nome
+La *giunzione* viene anche chiamata *equijoin* 
 
 **Esempio** :
-
 Nel caso di prima la formula finale può essere scritta come :
 $$Studenti\underset{Matricola=Candidato}{\bowtie}Esami$$
 
+
+##### Giunzione naturale 
+$R\bowtie S$
+Con $R(X,Y)$ e $S(Z,X)$
+
+Avremo quindi che R ed S hanno un attributo in comune : X
+
+Definizione formale :
+$$t\in R \bowtie S\quad \text{sse}\quad t[X\space Y] \in R\ \land\ t[Z\ X]\in S$$
+Ossia l'ennupla $t$ esiste in $R\bowtie S$ se e solo se l'ennupla $t$ con attributi X e Y appartiene alla relazione R e se l'ennupla t con attributi Z e X appartiene alla relazione S
+
+In sostanza $R\bowtie S$ restituisce una relazione che ha come attributi X Y Z , in cui l'attributo comune X è presente una sola volta
+
+Fa la giunzione di 2 relazioni basandosi su 2 attributi con lo stesso nome
+
+La *giunzione naturale* può essere rappressentata anche attraverso *operazioni primitive* :
+
+Siano $X = \{A_1, \dots , A_n\}$ gli attributi comuni di R e S
+
+1. Come prima cosa dobbiamo *ridenominare* gli attributi comuni :
+$$R'=\rho_{A_k\leftarrow RA_k}(R)$$
+	Con $k=1,\dots,n$
+	Dove $\{RA_1,\dots , RA_n\}$ devono essere attributi nuovi
+2. Prodotto 
+$$T=R'\times S$$
+3. Vogliamo ora svolgere un *equijoin* su $A_k$ e $RA_k$
+	$$N = \sigma_{A_k=RA_k}(T)$$
+	con $k=1,\dots,n$
+	I precedenti 2 passi possono essere riscritti nel seguente modo :
+	$$R'\underset{A_k=RA_k}{\bowtie}S$$
+4. Ora mi basterà selezionare ( fare la *proiezione* ) di uno degli attributo $A$ o $RA$
+	$$\pi_{XYZ}(N)$$
+	Dove $X=\{A_1, \dots , A_n\}$ 
+
+**Esempio** :
+
+Abbaimo :
+`Studenti(Nome, Matricola <PK>, Cognome)`
+`Esami(Codice <PK>, Matricola <FK>(Studenti), Voto, Materia)`
+
+Se facciamo la *giunzione naturale* abbiamo :
+$$Studenti\bowtie Esami$$
+Avremo come risultato l'*equijoin* :
+$$Studenti\underset{Stud.Matricola=Exa.Matricola}{\bowtie}Esami$$
+>[!warning]
+> Se vi sono più attributi con lo stesso nome dobbiamo capire se volgiamo il comportamento della *giunzione naturale* poichè es :
+>`Studenti.Nome != Esami.Nome`
+>Ma se facciamo la *giunzione naturale* verrebbero incorporate anche se hanno significato differente in contesti differenti , in questo caso usare una *ridenominazione*
+
+##### Giunzione Esterna
+
+La *giunzione esterna* include nel risultato finale anche le ennuple che non partecipano alla *giunzione* 
+
+*Esempio* :
+
+Se uno studente non ha fatto alcun esame ( ossia non è presente nella tabella `Esami` ) con una *giunzione* verrebbe escluso dalla tabella risultante mentre con una *giunzione esterna* questo viene incluso ma con gli attributi della tabella dove non è presente settati a *NULL*
+
+Vi sono 3 tipi di *giunzione esterne* :
++ *Giunzione esterna completa*
++ *Giunzione esterna destra*
++ *Giunzione esterna sinistra*
+
+###### Completa
+
+Si rappresenta con 
+$$R\overleftrightarrow{\bowtie}S$$
+
+E restituisce la *giunzione naturale* di R e S estesa con le ennuple di R ed S che non appartengono alla *giunzione naturale* ( queste vengono completate con *NULL* per gli attributi mancanti )
+
+Formalmente avremo :
+
+Avendo $R(X)$ e $S(Y)$
+Dove :
+$A_1,\dots,A_n$ sono attributi di R e non di S
+$B_1,\dots,B_n$ sono attributi di S e non di R
+
+Avremo quindi : 
+$$R\overleftrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]\cup$$
+$$\cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$$
+Spiegando :
++ $R\bowtie S$ : *giunzione naturale* inziale
++ $\cup$ : unisco alla *giunzione naturale* le ennuple non presenti 
++ $\Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]$ : rappresenta le ennuple in R non presente nella *giunzione naturale*
+	+ $(R-\pi_X(R\bowtie S))$ : Abbiamo $R$ a cui togliamo gli elmenti nella *giunzione naturale* ( proiezione su $X$ poichè $R\bowtie S$ ha il tipo come l'unione dei tipi di $R$ e $S$ )
+	+ $\times$ : dobbiamo completare la tabella con i valori *NULL* degli attributi che non sono presenti 
++ $\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$ : è la stessa cosa del precedente ma rispetto ad $S$
+
+**Esempio** :
+
+Se la `Matricola` 125443 non ha fatto alcun `Esame` questa verrà inculsa alla *giunzione naturale* nel seguente modo 
+
+|Nome|Cognome|Matricola|Codice|Voto|Materia|
+|---|---|---|---|---|---|
+|Anna|Rossi|125443|NULL|NULL|NULL|
+
+###### Destra
+
+Si rappresenta con 
+$R\overrightarrow{\bowtie}S$
+
+E' un parziale della *giunzione esterna completa*
+
+Ossia :
+$$R\overrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]$$
+###### Sinistra
+
+Si rappresenta con 
+$R\overleftarrow{\bowtie}S$
+
+E' un parziale della *giunzione esterna completa*
+
+Ossia :
+$$R\overleftarrow{\bowtie}S=R\bowtie S \cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$$
+#### Intersezione 
+
+
+
+#### Divisione

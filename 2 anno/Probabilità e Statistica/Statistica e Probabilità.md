@@ -422,8 +422,6 @@ Questa può essere derivata da :
 
 ### Varaibili Casuali
 
-> [!todo]
-
 
 
 # Appunti
