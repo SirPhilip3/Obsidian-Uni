@@ -1361,5 +1361,7 @@ $$r\div s = max\{t |t\cdot s \le r\}\quad \text{con $s\neq 0$}$$
 Nelle *relazioni* abbiamo :
 $$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
 
+>[!todo]
+
 **Esempio** :
 
