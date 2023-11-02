@@ -4,7 +4,7 @@ Il **Sistema Operativo** è il software che controlla l'hardware
 
 Un **Sistema Operativo** è un programma che *gestisce e controlla l'esecuzione* di un insieme di applicazioni, agisce come *interfaccia* tra le applicazioni e l'hardware del calcolatore e *gestice le risorse* hardware
 
-Un **Sistema Operativo** è quindi un :
+Un **Sistema Operativo** è quindi una :
 + **Macchina Astratta** :
 	Nasconde i dettagli e le operazioni complesse ( *mascheramento* ) e presenta all'utente una macchina virtuale facile da usare ( *trasparenza* )
 + **Gestore di Risorse** :
@@ -166,7 +166,7 @@ Dove :
 + CPI : sono i cicli di clock per istruzioni
 
 Il *T*empo di esecuzione può essere migliorato :
-	- Aumentando F
+	- Aumentando $F$
 	- Riducendo $N_i$ ( svolto realizzando diverse architetture es : CISC / RISC )
 	- Aumentando gli IPC o diminuendo il CPI ( costruendo una *pipeline* o creando una *CPU superscalare* )
 
@@ -210,7 +210,7 @@ Alcuni registri importanti ( oltre a PC , SP , PSW ) :
 Limitano inferiormente ( start , *base register* ) e superiormente ( fine , *limit register* ) un processo , limtando così gli indirizzi che può accedere e modificare 
 Possono essere utilizzati a coppie per condiviere vari dati con vari programmi per cui :
 + la prima coppia di *base* e *register* (1) sono associati al limite del codice del programma
-+ la seconda coppia (2) limita invece i *dati* su cu un programma può operare
++ la seconda coppia (2) limita invece i *dati* su cui un programma può operare
 
 ![[Screenshot 2023-10-04 230745.png]]
 #### Cache
