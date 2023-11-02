@@ -554,19 +554,8 @@ $$x = \begin{cases}
    0 &\text{altrimenti} ; 
 \end{cases}$$
 
-
-```functionplot
----
-title: 
-xLabel: x
-yLabel: y
-bounds: [-1,10,-1,10]
-disableZoom: true
-grid: true
----
-2^(2x)
-```
-
+>[!todo]
+>grafico
 
 Come prima cosa verifichiamo che $f(x)$ sia davvero una densità :
 + $f(x)\ge 0, \forall x \in \mathbb{R}$  :  poichè è un esponenziale moltilicato per un numero positivo
@@ -576,8 +565,27 @@ Abbiamo quindi verificato che siamo effettivamente davanti ad una *desità di pr
 
 Consideriamo ora due eventi : $A = (1,2)$ e $B=(-1,1)$  e calcoliamone la probabilità 
 $$\mathbb{P}[X\in A]=\mathbb{P}[X\in (1,2) ]=\int_1^2 2e^{-2x}\ dx = e^{-2}-e^{-4}$$
-$$\mathbb{P}[X\in B]=\mathbb{P}[X\in (-1,1) ]=\int_1^2 2e^{-2x}\ dx = e^{-2}-e^{-4}$$
+$$\mathbb{P}[X\in B]=\mathbb{P}[X\in (-1,1) ]=\int_{-1}^0 0\ dx + \int_{0}^1 2e^{-2x}\ dx  = 1-e^{-2}$$
 
+
+>[!todo]
+>grafico
+
+#### Funzione di ripartizione
+
+Si dice *funzione di ripartizione* ( o distribuzione comulativa ) di una variabile aleatoria $X$ la funzione $F : \mathbb{R}\rightarrow [0 ,1 ]$ così definita
+$$F(x)=\mathbb{P}[X\le x], \quad \forall x \in \mathbb{R}$$ 
+La funzione di ripartizione in un dato punto $x$ è semplicemente la probabilità che la varibile $X$ assuma valori minori o al più uguali a $x$ .
+Per questo il suo dominio è $[0,1]$
+
+La *funzione di ripartizione* ha le seguenti proprietà :
++ $F$ è non decrescente
++ $F$ è continua a destra
++ $\lim_{x\rightarrow -\infty} F(x)=0$ e $\lim_{x\rightarrow +\infty} F(x)=1$ 
+
+Rappresenta la somma delle probabilità 
+
+Se $X$ è una variabile discreta con valori $\{x_1,x_2,\dots\}$ 
 
 
 >[!todo]
