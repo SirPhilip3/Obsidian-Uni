@@ -1365,3 +1365,26 @@ $$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
 
 **Esempio** :
 
+Vogliamo ricavare la `Matricola` degli studenti che hanno fatto tutti gli esami che ha fatto anche Anna Rossi ( `Matricola=76366` )
+
+Abbiamo 2 tabbelle ricavate così :
++ $ES\_AR=\pi_{Materia}(\sigma_{Candidato='76366'}(Esami))$
+	Questa rappresenta tutte le materie di cui ha svolto un esame Anna Rossi
++ $ES=\pi_{Candidato,Materia}(Esami)$ 
+	Questa rappresenta la tabella con le matricole e gli esami svolti da tutti gli studenti
+
+La tabella che quindi volgiamo sarà data dalla seguente operazione
+$$ES\div ES\_AR$$
+
+>[!todo]
+>tabella di spiegazione
+
+L'operazione di $\div$ può essere scritta in termini di *operatori primitivi* nel seguente modo :
+$$R\div S=\pi_{X}(R)-\pi_{X}\big((\pi_X(R)\times S)-R\big)$$
+Spiegazione :
+
++ 
+
+
+**Dimostrazione** :
+

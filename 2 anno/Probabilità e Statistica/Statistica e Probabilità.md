@@ -418,11 +418,26 @@ Questa può essere derivata da :
 
 **Esempio** :
 
-> [!todo]
+Un’azienda che assembla computer riceve il 24% dei componenti dal fornitore X, il 36% dal fornitore Y e il rimanente 40% dal fornitore Z. Risultano difettosi il 5% dei componenti forniti da X, il 10% dei componenti forniti da Y e il 6% dei componenti forniti da Z. 
 
+Se un computer assemblato presenta un componente difettoso, qual'è la probabilita che questo componente sia stato fornito da Z?
+
+Evidenziamo gli *eventi* :
++ X : Assembalto dal fornitore X ( $P[X] = 0.24$ )
++ Y : Assemblato dal fornitore Y ( $P[Y] = 0.36$ )
++ Z : Assemblato dal fornitore Z ( $P[Z] = 0.4$ )
++ D : Componenti difettorsi ( $P[D|X] = 0.05$ , $P[D|Y] = 0.1$ , $P[D|Z] = 0.06$ )
+
+Ciò che sappiamo è che il componente e danneggiato e noi vogliamo calcolare la probabilità che questo venga dal produttore Z
+Avremo che dovremo quindi calcolare :
+$$\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}$$
+$$\mathbb{P}[D]=\mathbb{P}[X]\cdot\mathbb{P}[D|X]+\mathbb{P}[Y]\cdot \mathbb{P}[D|Y]+\mathbb{P}[Z]\cdot \mathbb{P}[D|Z]$$
+$$=0.24\cdot0.05+0.36\cdot0.4+0.4\cdot 0.6$$
+Concludendo avremo :
+$$\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}=\frac{0.4\cdot0.06}{0.072}=0.33$$
 ### Varaibili Casuali
 
-
+>[!todo]
 
 # Appunti
 #### R-Studio
