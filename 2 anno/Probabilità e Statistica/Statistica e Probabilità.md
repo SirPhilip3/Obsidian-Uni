@@ -451,7 +451,134 @@ $$\Omega=\{(B1,B1),(B1,N3),(N3,N3),(N3,B2),\dots\}$$
 Per rappresentare questi eventi numericamebte potremmo assegnare ad ogni possibile un valore numerico :
 $$\Omega=\{2,4,6,5,\dots\}$$
 
-In questo caso 
+In questo caso ad ogni coppia di palline estratte gli assegnamo la somma dei loro valori
+
+**Variabili Aleatorie** ( o *causali* ) :
+	Una *variabile aleatoria* X è una funzione che assume valori numerici determinati dall'esito di un cero fenomeno aleatorio 
+	$$X : \Omega \rightarrow \mathbb{R}$$
+>[!warning]
+>Possono esistere più variabili aleatorie per lo stesso esperimento 
+
+*Esempi* :
++ $S_4$ : numero di teste in 4 lanci consecutivi di una moneta 
+	I possibili valori di $S_4$ sono : $0 ,1 ,2 ,3 , 4$ ( *variabile aleatoria discreta* )
++ $X$ : vincita in una scommessa 
+	I possibili valori di $X$ sono : $500$ e $-500$
++ $T$ : tempo di vita di un componente elettronico 
+	I possibili valori di $T$ sono tutti i possibili numeri reali maggiori di 0 ( *variabile aleatoria continua* )
+
+
+Una variabile aleatoria associata ad un esperimento definisce dunque un nuovo *spazio campionatorio* numerico costituito da tutti i possibili valori assunti dalla variabile stessa 
+
+![[Pasted image 20231102160105.png]]
+
+#### Varaibili aleatorie discrete
+
+Una variabile aleatoria *discreta* $X$ assume valori in un insieme numerabile ( o finito ) di punti : 
+$$\{x_1,x_2,\dots,x_i,\dots\}$$
+
+Ad ogni elemento del nuovo spazio campionatorio viene quindi asseganta una probabilità :
+$$\mathbb{P}[X=x_i]=p_i, \quad \forall i =1,2,\dots$$
+Ogni probabilità $p_i$ deve rispettare le seguenti proprietà :
++ $0\le p_i \le 1$ : la probabilità per ogni evento deve essere compresa tra 0 e 1 
++ $\sum_i p_i = 1$ : la somma di tutte le proprietà deve fare 1 
+
+Per calcolare la *probabilità* di un evento A si sommano le *probabilità* dei singoli valori che appartengono ad A :
+$$\mathbb{P}[X\in A]=\sum_{i:x_i\in A} p_i$$
+**Funzione di Probabilità** :
+
+E' un'assegnazione di probabilità $P(x)=\mathbb{P}[X=x]$ e può essere rappresentata attraverso un diagramma a bastoncini :
+
+![[Pasted image 20231102162013.png]]
+
+*Esempio* :
+
+Abbiamo un urna contenente 4 palline bianche ( numerate da 1 a 4 ) e 3 nere ( numerate da 1 a 3 )
+Si campiona casualmente una pallina :
+
+$X$  = numero estratto dall'urna
+$$X\in \{1,2,3,4\} = X(\Omega)\subset\mathbb{R}$$
+$$\mathbb{P}[X=1]=\frac{2}{7}$$
+$$\mathbb{P}[X=2]=\frac{2}{7}$$
+$$\mathbb{P}[X=2]=\frac{2}{7}$$
+$$\mathbb{P}[X=3]=\frac{1}{7}$$
+Avremo quindi che la *funzione di probabilità* è :
+$$x = \begin{cases}
+   \frac{2}{7} &\text{se } x=1,2,3; \\
+   \frac{1}{7} &\text{se } x=4; \\
+   0 &\text{altrimenti}
+\end{cases}
+$$
+
+Se $A=\{1,2\}$ allora 
+$$\mathbb{P}[X \in A]=\mathbb{P}[X\le2]=P_X(1)+P_X(2)=\frac{2}{7}+\frac{2}{7}=\frac{4}{7}$$
+#### Variabili aleatorie continue
+
+Una *variabile aleatoria continua* X assume valori in un insieme continuo di punti ( un sottoinsieme di $\mathbb{R}$ non numerabile )
+
+In questo caso non possiamo assgnare una probabilità ad ogni elemento dello *spazio campioanrio* poichè esso contiene infiniti elementi
+Per questo si assegna la probabilità ad ogni sottoinsieme di suoi possibili valori , questa sarà l'area sottesa ad una curva 
+
+La funzione che rappresenta la *densità di probabilità* deve seguire le seguenti regole :
++ $f(x)\ge 0, \quad \forall x\in \mathbb{R}$
++ $\int_{\mathbb{R}} f(x)\ dx = 1$  : ossia l'area totale sotto il grafico di $f(x)$ è 1
+
+**Densità di Probabilità** 
+
+Una *funzione* $f(x)$ con le prorpietà precedenti viene chiamata *densità di probabilità* 
+
+Una volta assegnata uan densità di probabilità alla variabile aleatoria continua X si può determinare la probabilità di ogni evento A
+$$\mathbb{P}[X \in A]=\int_A f(x)\ dx$$
+
+![[Pasted image 20231102164950.png]]
+
+>[!warning]
+>$\mathbb{P}[X=x]=P(x)=0 \quad \forall x \in \mathbb{R}$
+>Ossia la probabilità che sia esattamente un numero $x$ è 0 poichè l'area del sottografico di un punto preciso è 0 ( non esiste l'area al di sotto di un punto , è una linea ) 
+
+>[!note]
+>$\mathbb{1}_{I}(x)$
+>Indica la funzione indicatrice , questa è equivalente a dire :
+> $$x = \begin{cases}
+   \mathbb{1} &\text{se } x\in  I\\
+   0 &\text{altrimenti} ; 
+\end{cases}$$
+
+*Esempio* :
+
+Sia $X$ una variabile aleatoria continua con densità :
+$$f(x)=2\cdot e^{-2\cdot x}\mathbb{1}_{(0,+\infty)}(x)$$
+Questo corrisponde a :
+$$x = \begin{cases}
+   2\cdot e^{-2\cdot x} &\text{se } x\gt0\\
+   0 &\text{altrimenti} ; 
+\end{cases}$$
+
+
+```functionplot
+---
+title: 
+xLabel: x
+yLabel: y
+bounds: [-1,10,-1,10]
+disableZoom: true
+grid: true
+---
+2^(2x)
+```
+
+
+Come prima cosa verifichiamo che $f(x)$ sia davvero una densità :
++ $f(x)\ge 0, \forall x \in \mathbb{R}$  :  poichè è un esponenziale moltilicato per un numero positivo
++ $\int_0^{+\infty} 2e^{-2x}\ dx = 1$
+
+Abbiamo quindi verificato che siamo effettivamente davanti ad una *desità di probabilità* 
+
+Consideriamo ora due eventi : $A = (1,2)$ e $B=(-1,1)$  e calcoliamone la probabilità 
+$$\mathbb{P}[X\in A]=\mathbb{P}[X\in (1,2) ]=\int_1^2 2e^{-2x}\ dx = e^{-2}-e^{-4}$$
+$$\mathbb{P}[X\in B]=\mathbb{P}[X\in (-1,1) ]=\int_1^2 2e^{-2x}\ dx = e^{-2}-e^{-4}$$
+
+
 
 >[!todo]
 
