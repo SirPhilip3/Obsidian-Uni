@@ -437,6 +437,22 @@ Concludendo avremo :
 $$\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}=\frac{0.4\cdot0.06}{0.072}=0.33$$
 ### Varaibili Casuali
 
+Spazi campionatori e fenomeni aleatori possono non rappresentare un insieme numerico  
+
+In molte situazioni non ci interessa il risultato specifico di un esperimento ma una sua rappresentazione numerica ( *funzione numerica* )
+
+*Esempio* : 
+
+Abbiamo un urna contenente 4 palline bianche ( numerate da 1 a 4 ) e 3 nere ( numerate da 1 a 3 )
+Consideriamo l'estrazione di 2 palline con reinserimento 
+
+Avremo che lo *spazio campionario* risulta essere :
+$$\Omega=\{(B1,B1),(B1,N3),(N3,N3),(N3,B2),\dots\}$$
+Per rappresentare questi eventi numericamebte potremmo assegnare ad ogni possibile un valore numerico :
+$$\Omega=\{2,4,6,5,\dots\}$$
+
+In questo caso 
+
 >[!todo]
 
 # Appunti
