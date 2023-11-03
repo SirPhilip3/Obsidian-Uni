@@ -770,8 +770,65 @@ new class
 
 ## 03/11/2023
 
+Inheritance
 
+Creazione di classi generali poi espansione della loro definizione per definire classi diferrenti
 
+Polimorifismo 
+
+possesione di oggetti = ho una refernce ad un oggetto 
+
+un oggetto può essere qualcosa es io sono una persona ma anche uno studente etcc
+
+io ho tutti dati / funzionalità della persona + quello specifico per lo studente
+
+*extends* 
+![[erediarietà.excalidraw]]
+
+erreditarietà singola una calsse estende solo un'altra 
+
+Wizard non può avere come padre acnhe HUman
+
+Gerarchia delle classi è un albero dx sx disgiunte 
+
+perchè si possono creare dei casi di ambiguità
+
+constructors se creo una sottoclasse prima inizializzo supercalsse poi me  stesso 
+invocazione constructor superclasse :
+`super(...)`
+
+super pointer superclasse
+pointer che mi permette di eseguire quello che sta nella superclasse
+
+su sottoclassi invocazione costruttore sottoclasse 
+
+se abbiamo costruttore senza parametri viene automaticametne invocato il supercostruttore
+
+super può essere usato per eseguire campi e metodi ereditati ( i public )
+
+this per tutti + sottoclasse
+
+*protected* :
+	visibile dal package e sottoclassi
+
+Esternamente nessuno può inizializzare un personaggio di tipo generico solo wizard o figther
+
+generalmente non fa parte dell'interfaccia esterna 
+quando dobbiamo avere estensione alla calssse fa aprte dell'interfaccia esterna
+
+volgio sapere quanti danni mi infligge un personaggio genreico o sapere qunato si difende , con personaggio generico non lo so
+
+all'interno di figure hapublic getdamgae e setdamage ma non so l'implemetnaizoen per il personaggio genreico
+
+*abstract* rendere i metodi astratti 
+questo sarà obbligo delle mie sottoclassi di impleentarle
+
+L'intera classe deve essere astratta , non può essere istanziata
+metodo astratto può risiedere solo in una classe astratta 
+
+se eredito da una calsse astratta , eredito l'obbligo di implementarlo se non viene iplementato deve essere definita astratta anche la sottoclasse
+
+posso definire i metodi astratti nelle sottoclassi
 
 # Tutorati 
 ## 14/10/2023
