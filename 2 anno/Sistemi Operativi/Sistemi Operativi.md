@@ -267,7 +267,7 @@ Ogni disco è costituito da varie tracce e ogni traccia è divisa in settori ( l
 
 Il *controllore* ( *driver* ) è colui che si interfaccia con il **SO** per accedere al disco ( mantenuto su uno o più chip )
 
-Un *driver* puù essere inserito nel sistema operativo in diversi modi :
+Un *driver* può essere inserito nel sistema operativo in diversi modi :
 + manualmente ( in un chip ) , riavviando la macchina
 + in un file del SO , riavviando la macchina
 + senza riavviare ( *plug-and-play* )
@@ -297,11 +297,11 @@ Nei casi precedenti era la CPU a gestire il trasferimento dei dati , con il *DMA
 Il *bus* è un insieme di **tracce** ( collegamenti elettrici ) che trasportano informazioni tra dispositivi hardware
 
 Una **porta** è un *bus* che collega solo 2 dispositivi
-Un **canale** *di I/O* è un *bus condiviso* da diveris dispositivi per eseguire operazioni di *I/O* indipendentemente dalla CPU
+Un **canale** *di I/O* è un *bus condiviso* da diversi dispositivi per eseguire operazioni di *I/O* indipendentemente dalla CPU
 
 Esempi : 
 + **FSB** ( *Frontside Bus* ) collega la CPU alla memoria principale ( viene diviso in bus dati e bus indirizzi )
-+ **PCIe** ( *Pheripherial Component Interconnect Express* ) collega una CPU a vari dispositi ( veolcità tra 16 e 64 Gbps )
++ **PCIe** ( *Pheripherial Component Interconnect Express* ) collega una CPU a vari dispositi ( velocità tra 16 e 64 Gbps )
 + **AGP** ( *Accelerated Graphic Port* ) utilizzato per schede grafiche ( no more in use )
 + **DMI** ( *Direct Media Interface* )
 + **SATA** ( *Seral Advanced Tecnology Attachment* ) usato per hard disk 
@@ -371,7 +371,7 @@ Un *processo* è un programma in esecuzione ed è caratterizzato da :
 + Spazio di indirizzamento 
 + **UID** identificatore unico di utente 
 + Tabella dei processi ( tabella contentente ogni processo in vita con un pointer al suo *descrittore* ; usata dallo *scheduler* per gestire i processi )
-+ **IPC** ( *interprocess communication* ) ( ogni processo può comunicare con altri processi per sca,biarsi dati )
++ **IPC** ( *interprocess communication* ) ( ogni processo può comunicare con altri processi per scambiarsi dati )
 + Ogni processo può creare dei processi figli
 + Ogni processo possiede un *descrittore* di processo che contiene tutte le informazioni necessarie per fare runnare quel processo
 
