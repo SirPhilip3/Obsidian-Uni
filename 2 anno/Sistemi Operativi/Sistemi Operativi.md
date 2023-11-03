@@ -207,7 +207,7 @@ Alcuni registri importanti ( oltre a PC , SP , PSW ) :
 + *Base register* 
 + *Limit register*
 
-Limitano inferiormente ( start , *base register* ) e superiormente ( fine , *limit register* ) un processo , limtando così gli indirizzi che può accedere e modificare 
+Limitano inferiormente ( start , *base register* ) e superiormente ( fine , *limit register* ) un processo , limitando così gli indirizzi che può accedere e modificare 
 Possono essere utilizzati a coppie per condiviere vari dati con vari programmi per cui :
 + la prima coppia di *base* e *register* (1) sono associati al limite del codice del programma
 + la seconda coppia (2) limita invece i *dati* su cui un programma può operare
@@ -764,10 +764,10 @@ La comunicazione è basata sullo scambio di *messaggi*
 
 I *messaggi* possono essere trasmessi in una direzione sola ( da processo *mittente* a *destinatario* ) 
 
-Lo scambio di messaggi può essere bidirezionale ossia ogni processo può agire sia come *mittente* che come *reicevitore*
+Lo scambio di messaggi può essere bidirezionale ossia ogni processo può agire sia come *mittente* che come *ricevitore*
 
 I *messaggi* possono essere :
-+ **bloccatin** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , viene bloccato fino alla ricezione di questa notifica
++ **bloccanti** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , viene bloccato fino alla ricezione di questa notifica
 + **non bloccanti** : permette al mittente di continuare ulteriori elaborazioni poichè non viene bloccato per aspettare la notifica di ricezione del messaggio
 
 L'implementazione più comune per i messaggi è la *pipe* ossia si utilizza una regione di memoria protetta dal SO che funge da *buffer* consentendo ai due o più processi di scambiarsi dati 
@@ -795,7 +795,7 @@ I *processi* possono *ricevere* , *ignorare* o *mascherare* un segnale
 
 Tutti i *processi* hanno un insieme di indirizzi di memoria ( spazio di indirizzi virtuali )
 
-Il *PCB* di un processo è mantenuto dal *kernel* in una regione proteta della memoria che i processi utente non possono accedere
+Il *PCB* di un processo è mantenuto dal *kernel* in una regione protetta della memoria che i processi utente non possono accedere
 
 In *UNIX* il *PCB* memorizza :
 + Il contenuto dei registri del processore
@@ -855,7 +855,7 @@ I *thread* possono essere getiti da :
 
 Un *thread* si sposta fra degli *stati discreti* ( come un *processo* , possiedono infatti stati in comune come : creazione , terminazione , ripresa e sospensione ) 
 
-In sistemi con un unico processore i thread runnano paralleli in modo virtuale ( la CPU può supportare un thread alla volta quindi scambia molto velocemente tra 2 thread in modo che sempbrino essere svolti in parallelo )
+In sistemi con un unico processore i thread runnano paralleli in modo virtuale ( la CPU può supportare un thread alla volta quindi scambia molto velocemente tra 2 thread in modo che sembrino essere svolti in parallelo )
 
 ### Stati 
 
@@ -874,7 +874,7 @@ Gli stati di un *thread* possono essere conderati analoghi a quelli di un proces
 
 + **Cancellazione** 
 	+ Questa operazione indica che un thread dovrebbe essere eliminato ma non è garantito che lo sarà ( viene mantenuta in memoria la sua tabella di stato )
-	+ i thread possono disabilitare o mascherare i segnali di cancellazione ( ecccetto il segnale di *abort* )
+	+ i thread possono disabilitare o mascherare i segnali di cancellazione ( eccetto il segnale di *abort* )
 + *Join*
 	+ Normalmente se un *thread* crea un'altro thread ( diventa quindi *thread primario* ) quando il thread padre termina allora anche tutti i suoi figli terminano
 	+ Se il *thread primario* fa un *join* con i suoi thread figli allora prima di terminare deve aspettare che anche i thread figli abbiano terminato la loro esecuzione [Thread](https://pages.mtu.edu/~shene/NSF-3/e-Book/FUNDAMENTALS/thread-management.html) 
@@ -958,7 +958,7 @@ Lo *scheduler* essendo implementato a livello del nucleo è meno flessibile di q
 I thread *ibridi* sono la combinazione dell'implementazione dei thread di livello utente e quelli di livello kernel
 
 + I thread sono mappati *molti-a-molti*
-	+ Il numero di thread di livello utente e livello kernel nono deve essere uguale
+	+ Il numero di thread di livello utente e livello kernel non deve essere uguale
 	+ Riduce l'*overhead* rispetto al mapping *uno-a-uno* implementando il *thread pooling* ( ossia l'assegnazione di thread utente ad un determianto thread kernel ( *worker thread* ) )
 
 Per diminuire l'overhead dovuto dei thread a livello del nucleo utilizziamo i :
@@ -1025,12 +1025,12 @@ Questo viene chiamato *PEB* ( *Process Environment Block* )
 
 L'equivalente per un thread viene chiamato *TEB* ( *Thread Environment Block* ) ( contiene tutto ciò necessario ad un thread )
 
-*Windows* può raggruppare vari processi in un *job* , in modo da gestire meglio le risorse per ogni thread realtive a quel *job*
+*Windows* può raggruppare vari processi in un *job* , in modo da gestire meglio le risorse per ogni thread relative a quel *job*
 
 In *windows* i *thread* possono creare le *Fiber* ( gestiti a livello utente )
 + Un *fiber* viene eseguito nel contesto del *thread* che lo crea ( vengono infatti gestiti dal programmatore anzichè dallo scheduler )
 + I *thread* possono essere converiti in *fiber* , le *fiber* possono essere create indipendentemente dai *thread*
-+ Hanno un bassissimo overhead per il cambio di contesto visto che lavorano a livello utente con risose condivise
++ Hanno un bassissimo overhead per il cambio di contesto visto che lavorano a livello utente con risorse condivise
 
 La relazione tra *thread* e *fiber* è *molti-a-molti* ( normalmente un thread è associato ad un insieme di fiber )
 
