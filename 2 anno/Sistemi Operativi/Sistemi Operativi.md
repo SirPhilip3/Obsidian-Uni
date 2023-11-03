@@ -612,7 +612,7 @@ In inglese : *Process Control Blocks ( PCBs )* mantiene le informazioni necessar
 + *Stato* del processo ( *ready* , *running* , *blocked* )
 + *Program counter* ( PC )
 + *Stack pointer* ( SP )
-+ Proprità del processo nello scheduling
++ Priorità del processo nello scheduling
 + Diritti ( r,w,e per i vari utenti )
 + Pointer al processo padre
 + Pointer ai processi figli
@@ -645,10 +645,10 @@ La scielta tra i due tipi di sospensione riguarda lo stato del processo dove vie
 Viene eseguito dal SO per fermare l'esecuzione di un processo *running* e iniziare l'esecuzione di un processo *ready*
 
 Svolgimento :
-+ SO toglie il processo dalla CPU salvendone il contesto di esecuzione nel suo *PCB*
++ SO toglie il processo dalla CPU salvandone il contesto di esecuzione nel suo *PCB*
 + SO carica il nuovo processo grazie ai dati presenti nel *PCB* del processo *ready*
 
-Il tempo necessario per svolgere queste operazioni è un tempo "morto" per la CPU , ossia non viene fatta alcun calcolo per l'avanzamento di un processo , per questo il tempo di *contex switch* deve essere ridotto al minimo 
+Il tempo necessario per svolgere queste operazioni è un tempo "morto" per la CPU , ossia non viene fatto alcun calcolo per l'avanzamento di un processo , per questo il tempo di *contex switch* deve essere ridotto al minimo 
 
 Questo processo può essere eseguito in hardware per alcune architetture
 
@@ -659,7 +659,7 @@ Questo processo può essere eseguito in hardware per alcune architetture
 Le prestazioni di una CPU possono essere calcolate in termini di *utilizzazione* della CPU 
 L'utilizzazione dipende dal grado di *multiprogrammazione* , infatti se vi sono più processi in *ready* la CPU sarà maggiormente occupata.
 
-L'utilizzazione della CPU dipende anche principalmente dal tempo che un processo è in attessa di I/O , infatti in quel tempo la CPU può svolgere un altro processo
+L'utilizzazione della CPU dipende anche principalmente dal tempo che un processo è in attesa di I/O , infatti in quel tempo la CPU può svolgere un altro processo
 
 Quindi considerando : 
 + $n$ processi in memoria
@@ -747,7 +747,7 @@ Esempio :  Intel IA-32 ( x86 ) distingue 2 tipi di segnali che possono essere ri
 
 + **Fault** : Avviene quando si svolge un'operazione non consentita :
 	+ divisione per zero
-	+ tenatare di eseguire un codice di operazione non valido
+	+ tentare di eseguire un codice di operazione non valido
 	+ utilizzo di dati in formato errato
 	+ tentativo di accedere ad una zona di memoria proibita
 	+ tentativo di eseguire da parte di un processo utente di istruzioni kernel
@@ -767,8 +767,8 @@ I *messaggi* possono essere trasmessi in una direzione sola ( da processo *mitte
 Lo scambio di messaggi può essere bidirezionale ossia ogni processo può agire sia come *mittente* che come *reicevitore*
 
 I *messaggi* possono essere :
-+ **bloccati** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , viene bloccato fino alla ricezione di questa notifica
-+ **non bloccati** : permette al mittente di continuare ulteriori elaborazioni poichè non viene bloccato per aspettare la notifica di ricezione del messaggio
++ **bloccatin** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , viene bloccato fino alla ricezione di questa notifica
++ **non bloccanti** : permette al mittente di continuare ulteriori elaborazioni poichè non viene bloccato per aspettare la notifica di ricezione del messaggio
 
 L'implementazione più comune per i messaggi è la *pipe* ossia si utilizza una regione di memoria protetta dal SO che funge da *buffer* consentendo ai due o più processi di scambiarsi dati 
 
