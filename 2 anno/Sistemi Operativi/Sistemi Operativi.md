@@ -1029,7 +1029,7 @@ L'equivalente per un thread viene chiamato *TEB* ( *Thread Environment Block* ) 
 
 In *windows* i *thread* possono creare le *Fiber* ( gestiti a livello utente )
 + Un *fiber* viene eseguito nel contesto del *thread* che lo crea ( vengono infatti gestiti dal programmatore anzichè dallo scheduler )
-+ I *thread* possono essere converiti in *fiber* , le *fiber* possono essere create indipendentemente dai *thread*
++ I *thread* possono essere converiti in *fiber* , le *fiber* possono essere creati indipendentemente dai *thread*
 + Hanno un bassissimo overhead per il cambio di contesto visto che lavorano a livello utente con risorse condivise
 
 La relazione tra *thread* e *fiber* è *molti-a-molti* ( normalmente un thread è associato ad un insieme di fiber )
@@ -1141,7 +1141,7 @@ Svantaggi :
 #### SRT ( Shortest-Remaining-Time-First )
 
 è la versione con *prelazione* di *SJF*
-
+6
 Vantaggi :
 + Ottimo per il tempo medio di risposta
 
@@ -1262,7 +1262,7 @@ Gli eventi in sistemi *real-time* possono essere distinti in 2 tipi :
 
 Dati *m* eventi periodici e sapendo che l'evento *i* avviene durante il periodo $P_i$ e richiede $C_i$ secondi di CPU allora potremmo dire che il sistema è *schedulabile* se : 
 $$\sum_{i=1}^m\frac{C_i}{P_i}\le1$$
-Gli algoritmi per gestire i sistemi dinamici possono essere : *satici* o *dinamici* :
+Gli algoritmi per gestire i sistemi dinamici possono essere : *staici* o *dinamici* :
 
 ##### Real-Time scheduling statico
 
