@@ -1457,7 +1457,7 @@ Con lo sviluppo di *compilatori rilocanti* questo problema è stato risolto infa
 	+ **Frammentazione interna** :
 		+ Se il processo non occupa un'intera partizione viene sprecata memoria
 		+ Impossibilità di usare questa memoria
-		+ Un porcesso potrebbe essere troppo grande per essere inseriti in una partizione
+		+ Un porcesso potrebbe essere troppo grande per essere inserito  in una partizione
 		![[Pasted image 20231030102424.png]]
 
 #### Partizioni variabili
