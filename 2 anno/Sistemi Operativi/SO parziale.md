@@ -20,4 +20,8 @@ Il SO è diviso principalente in 2 parti ( 2 modalità di funzionamento dei proc
 
 **Storia OS**
 
-
++ 1 gen 
+	No *SO*
+	Pogrammazione in linguaggio macchina
+	Utilizzo di schede perforate , bulbs
+	
