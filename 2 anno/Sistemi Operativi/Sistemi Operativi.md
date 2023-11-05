@@ -1495,3 +1495,34 @@ Per questo si implementano diverse strategie per il posizionamento di processi i
 	+ Il nuovo processo viene allocato nello spazio che lascia il maggior spazio inutilizzato
 	+ In questo modo esso lascia un grande spazio libero rendendo più probabile che un'altro processo possa utilizzarlo
 	![[Pasted image 20231030104306.png]]
+
+#### Swapping di Memoria 
+
+Non occorre mantenere i processi attualmente non attivi in memoria :
++ I processi non attivi sono spostati temporaneamente in *memoria secondaria*
++ Massimizzazione della memoria disponibile per il processo in esecuzione
++ *Overhead significativo* per il cambio di contesto in quanto doppiamo caricare il nuovo processo in memoria 
+
+Per ovviare all'elevato *overhead* dovuto al cambiamento di contesto con la soluzione precedente si possono mantenere più programmi in memoria in modo da avere tempi di risposta migliori 
+
+![[Pasted image 20231105145437.png]]
+
+L'allocazione di memoria non comprende solo la memoria necessaria per il codice del processo ma anche ulteriore memoria su cui istanziare lo *stack* , ossia spazio utilizzato durante l'esecuzione del programma 
+
+![[Pasted image 20231105150001.png]]
+
+#### Gestione della Memoria Libera
+
+Vi sono 2 metodi per gestire la memoria libera :
++ **Mappa di bit**
+	La memoria viene organizzata in blocchi , ogni blocco corrisponde ad un bit di stato ( occupata o libera ) nella *mappa di bit*
++ **Liste collegate**
+	Utilizzo di una lista collegata contenente i segmenti di memoria libera o allocata
+	Ogni elemento della lista è composto da :
+	+ P o H se lo spazio di memoria è occupato ( P ) o libera ( H )
+	+ l'indirizzo dell'inizio della parte di memoria rappresentata
+	+ la lunghezza di questa parte di memoria 
+	+ il puntatore all'elemento sucessivo 
+
+![[Pasted image 20231105151011.png]]
+
