@@ -603,3 +603,21 @@ moneta = testa o crocio = 2
 
 35/39 prob elementaty
 
+## 6/11/2023
+
+maggiore dispersione = dobbiamo prima vedere se le varianze sono gradi o piccole rispetto alle loro medie  
+
+E[X] = 3.5   var[X] = 2.9
+E[Y] = 7 var[Y] = 5.833 -> scala quadratica
+
+*deviazione standard* 
+sd(X) = $\sqrt {Var(x)}$
+
+sd(X) = 1.707
+sd(Y) = 2.41
+
+*coeff di variazione* 
+
+cv(x)=sd(x)/mod|E[x] (media)|
+
+
