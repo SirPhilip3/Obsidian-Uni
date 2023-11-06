@@ -42,7 +42,7 @@ Limiti :
 #### 2° generazione ( 1955 - 1965 ) 
 
 Caratteristiche principali : 
-+ **Monoprogrammazione** : esecuzione di un *job* ( unità di esecuzione, programma o insieme di programmi ) alla volta
++ ***Mono*programmazione** : esecuzione di un *job* ( unità di esecuzione, programma o insieme di programmi ) alla volta
 + Uso di linguaggi ad alto livello : Fortran, Assembly
 + Programmazione attraverso schede perforate
 + Separazione tra programmatore e operatori
@@ -139,7 +139,7 @@ esegue codice in linguaggio macchina
 
 presenza di *coprocessori* per compiti specifici ( es audio / video )
 
-contengono *registri* ( memorie ad alta velocità vicine al processore , amntengono i dati immediatamenti necessari all'avanzamento di un processo ) 
+contengono *registri* ( memorie ad alta velocità vicine al processore , mantengono i dati immediatamenti necessari all'avanzamento di un processo ) 
 	ci sono dei registri speciali : ( **PC** ( Program Counter ) , **SP** ( Stack Pointer ) , **PSW** ( [Program Status Word](https://en.wikipedia.org/wiki/Program_status_word) ) che contiene *flags* , bit di confronto quando si usano istruzioni di confronto o flags per **interrupt** di sistema ossia cambiamenti di contesto / errori / modalità del kernel )
 
 lunghezza della *parola* -> lunghezza delle istruzioni ( supporate diverse lunghezze a seconda della macchina )
@@ -422,7 +422,7 @@ Vengono anche utilizzati per permettere l'elaborazione dei dati in modo *asincro
 !!!!!!
 ### Spooling ( Simultaneous Peripheral Operations On Line )
 
-Tecnica di *buffering* in cui un dispoditivo intermedio ( il disco ) è interposto tra un processo e una periferica *I/O* lenta 
+Tecnica di *buffering* in cui un dispositivo intermedio ( il disco ) è interposto tra un processo e una periferica *I/O* lenta 
 
 Permette ai processi di inviare operazioni di richiesta da una periferica senza aspettare che il dipositivo sia pronto a servire la richiesta
 ### Memoria Virtuale
