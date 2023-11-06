@@ -918,7 +918,7 @@ I thread a livello utente svolgono operazione nello spazio utente , per questo n
 	+ Le librerie di livello utente possono *schedulare* i thread per ottimizzare le prestazioni
 	+ Non c'è bisogno del *context switch* per la sincronizzazione dei threads ( poichè viene tutto svolto a livello utente )
 	+ Possono essere utilizzati anche in sistemi dove il SO non supporta il CPU multithreading
-	+ Più portabile visto che lo sviluppo dei thread è svolto da liberie utente e non dipendente da API di sistema 
+	+ *Più portabile* visto che lo sviluppo dei thread è svolto da liberie utente e non dipendente da API di sistema 
 
 + **Svantaggi** :
 	+ Il *kernel* vede un processo multithread come un singolo *thread* di controllo
@@ -1039,7 +1039,7 @@ La relazione tra *thread* e *fiber* è *molti-a-molti* ( normalmente un thread �
 La coda di *task* da eseguire viene servita da questo *thread pool* 
 Se un thread si blocca in attesa di eventi esso non può essere riassegnato ad un altro *task* da eseguire 
 
-La transizione tra stai di un *processo* in *windows* è la seguente :
+La transizione tra stati di un *processo* in *windows* è la seguente :
 ![[Pasted image 20231021180457.png]]
 
 
@@ -1058,7 +1058,7 @@ queste decisioni devono essere prese cercando di raggiungere i seguenti *obbiett
 + *Equità* : ogni processo deve ricevere la *CPU* in modo equo
 
 Vi sono differenti obbiettivi per lo scheduling di processi differenti :
-+ Processi *processori-bound*
++ Processi *CPU-bound*
 + Processi *I/O-bound*
 + Processi *batch*
 + Processi *iterattivi*
@@ -1142,7 +1142,7 @@ Svantaggi :
 #### SRT ( Shortest-Remaining-Time-First )
 
 è la versione con *prelazione* di *SJF*
-6
+
 Vantaggi :
 + Ottimo per il tempo medio di risposta
 
