@@ -549,7 +549,7 @@ Comandi per la creazione di processi :
 **Fork** in *Unix* 
 + crea un clone del processo chiamante 
 + il processo figlio ha una copia dello spazio di indirizzamento del padre ( spazi distinti )
-+ per differenziarsi il processo figlio esegue un *execve* per cambiare la propri immagine di memoria
++ per differenziarsi il processo figlio esegue un *execve* per cambiare la propria immagine di memoria
 
 **CreateProcess** in *Windows*
 + Creazione di un nuovo processo con una nuova immagine di memoria 
@@ -767,7 +767,7 @@ I *messaggi* possono essere trasmessi in una direzione sola ( da processo *mitte
 Lo scambio di messaggi può essere bidirezionale ossia ogni processo può agire sia come *mittente* che come *ricevitore*
 
 I *messaggi* possono essere :
-+ **bloccanti** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , viene bloccato fino alla ricezione di questa notifica
++ **bloccanti** : richiede al *ricevente* di notificare al *mittente* quando viene ricevuto il messaggio , il processo mittente viene bloccato fino alla ricezione di questa notifica
 + **non bloccanti** : permette al mittente di continuare ulteriori elaborazioni poichè non viene bloccato per aspettare la notifica di ricezione del messaggio
 
 L'implementazione più comune per i messaggi è la *pipe* ossia si utilizza una regione di memoria protetta dal SO che funge da *buffer* consentendo ai due o più processi di scambiarsi dati 
@@ -778,7 +778,7 @@ In sistemi distribuiti i *messaggi* trasmessi possono essere corrotti o persi pi
 + *protocolli di conferma* che confermano che le trasmissioni siano state effettuate correttamente ( aknowledgment )
 + meccanismi di *timeout* per fare in modo che se un messaggio non viene ricevuto entro un determinato lasso di tempo esso venga *ritrasmesso*
 
-Inoltre per fare in modo che i messaggi vengano ricevuti dai processi corretti ad un processo ricevente viene assegnata una *porta* numerata dove ascolta per la ricezione del messaggio 
+Inoltre per fare in modo che i messaggi vengano ricevuti dai processi corretti al processo ricevente viene assegnata una *porta* numerata dove ascolta per la ricezione del messaggio 
 
 Deve inoltre essere sviluppato un sistema di autenticazione per garanitre la sicurezza dei dati ( in modo che un processo non possa fingersi un'altro )
 
@@ -918,6 +918,7 @@ I thread a livello utente svolgono operazione nello spazio utente , per questo n
 	+ Le librerie di livello utente possono *schedulare* i thread per ottimizzare le prestazioni
 	+ Non c'è bisogno del *context switch* per la sincronizzazione dei threads ( poichè viene tutto svolto a livello utente )
 	+ Possono essere utilizzati anche in sistemi dove il SO non supporta il CPU multithreading
+	+ Più portabile visto che lo sviluppo dei thread è svolto da liberie utente e non dipendente da API di sistema 
 
 + **Svantaggi** :
 	+ Il *kernel* vede un processo multithread come un singolo *thread* di controllo
