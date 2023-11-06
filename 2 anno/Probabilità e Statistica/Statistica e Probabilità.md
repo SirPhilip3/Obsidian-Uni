@@ -620,4 +620,9 @@ sd(Y) = 2.41
 
 cv(x)=sd(x)/mod|E[x] (media)|
 
+cumsum = funzione di ripartizione
+
+*quantili*
+
+
 
