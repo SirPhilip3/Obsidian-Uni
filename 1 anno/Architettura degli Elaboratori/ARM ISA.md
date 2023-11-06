@@ -168,6 +168,7 @@ Comparison tra 2 registri cambia a seconda se li consideriamo signed o unsigned 
 
 w22 = 1111 1111 1111 1111 1111 1111 1111 1111 
 w23 = 0000 0000 0000 0000 0000 0000 0000 0001
+
 | |Signed|Unsigned|
 |---|---|---|
 |w22|-1|$2^{32}$|
