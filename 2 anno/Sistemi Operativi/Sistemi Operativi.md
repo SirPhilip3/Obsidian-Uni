@@ -938,7 +938,7 @@ La *tabella dei thread* viene gestita da uno scheduler ad hoc che mantiene inolt
 I thread a livello nucleo mappano ogni thread al proprio contesto di esecuzione ( mapping *uno-a-uno* ) , ogni processo ha quindi vari contesti di esecuzione
 
 + **Vantaggi** :
-	+ Aumento del *throughput* , infatti poichè questi hanno spazi di esecuzione differenti , se un thread è impattato da una operazione di I/O posso svolgere un thread diverso ma dello stesso processo
+	+ Aumento del *throughput* , infatti poichè questi hanno spazi di esecuzione differenti , se un thread è impattato da una operazione di I/O posso svolgere un thread diverso maanche di processi differenti
 	+ Aumento della *scalabilità* : questa tipologia di thread si comporta maggiormente come una soluzione multithreaded ( i thread possono essere posti in scheduling su diversi core )
 + **Svantaggi** :
 	+ *Overhead* dovuto ai cambi di contesto che devono essere effettuati se devo effettuare operazioni sui thread 
@@ -959,7 +959,7 @@ Lo *scheduler* essendo implementato a livello del nucleo è meno flessibile di q
 I thread *ibridi* sono la combinazione dell'implementazione dei thread di livello utente e quelli di livello kernel
 
 + I thread sono mappati *molti-a-molti*
-	+ Il numero di thread di livello utente e livello kernel non deve essere uguale
+	+ Il numero di thread di livello utente e livello kernel non deve per forza essere uguale
 	+ Riduce l'*overhead* rispetto al mapping *uno-a-uno* implementando il *thread pooling* ( ossia l'assegnazione di thread utente ad un determianto thread kernel ( *worker thread* ) )
 
 Per diminuire l'overhead dovuto dei thread a livello del nucleo utilizziamo i :
@@ -978,7 +978,7 @@ Per aumentare invece la *flessibilità* dello scheduler si utilizza la tecnica d
 
 #### Thread Pop-Up
 
-Un *thread pop-up* è un thread che viene creato per la gestione di messaggi in arrivo da parte di altri processi ( anche in processo collegati ad una rete )
+Un *thread pop-up* è un thread che viene creato per la gestione di messaggi in arrivo da parte di altri processi ( anche in processi collegati ad una rete )
 
 ![[Pasted image 20231021171659.png]]
 
@@ -1026,7 +1026,7 @@ Questo viene chiamato *PEB* ( *Process Environment Block* )
 
 L'equivalente per un thread viene chiamato *TEB* ( *Thread Environment Block* ) ( contiene tutto ciò necessario ad un thread )
 
-*Windows* può raggruppare vari processi in un *job* , in modo da gestire meglio le risorse per ogni thread relative a quel *job*
+*Windows* può raggruppare vari processi in un *job* , in modo da gestire meglio le risorse per ogni thread relativo a quel *job*
 
 In *windows* i *thread* possono creare le *Fiber* ( gestiti a livello utente )
 + Un *fiber* viene eseguito nel contesto del *thread* che lo crea ( vengono infatti gestiti dal programmatore anzichè dallo scheduler )
@@ -1077,7 +1077,7 @@ Inoltre lo scheduling cambia a seconda dei tipi di sistema :
 + Scheduling di *alto livello*
 	Determina che *job* può entrare in competizione per le risorse
 	Mantiene il controllo sul numero di processi in esecuzione nel sistema ad un dato tempo
-+ Scheduling di *medio intermedio*
++ Scheduling di *livello intermedio*
 	Determina quali *processi* possono competere per il processore
 + Scheduling di *basso livello*
 	Assegna le *priorità* ai processi
