@@ -161,7 +161,7 @@ Dove :
 + T : è il tempo di esecuzione
 + $N_i$ : è il numero di istruzioni di un programma
 + IPS : è il numero di istruzioni svolte al secondo
-+ F : è la frequanza di clock del processore
++ F : è la frequenza di clock del processore
 + IPC : sono il numero di istruzioni per ciclo di clock
 + CPI : sono i cicli di clock per istruzioni
 
@@ -1293,7 +1293,7 @@ Le priorità sono di solito legate alla scadenze dei processi
 
 *Minimum-laxity-first*
 + Basa le priorità sulla *lassità* :
-	+ misura il tempo alla scadenza del processo ( ossia quanto manca alla deadline )
+	+ misura il tempo *alla* scadenza del processo ( ossia quanto manca alla deadline )
 		$L=D-(T+C)$
 		Dove:
 			D = deadline
@@ -1458,12 +1458,12 @@ Con lo sviluppo di *compilatori rilocanti* questo problema è stato risolto infa
 	+ **Frammentazione interna** :
 		+ Se il processo non occupa un'intera partizione viene sprecata memoria
 		+ Impossibilità di usare questa memoria
-		+ Un porcesso potrebbe essere troppo grande per essere inserito  in una partizione
+		+ Un processo potrebbe essere troppo grande per essere inserito  in una partizione
 		![[Pasted image 20231030102424.png]]
 
 #### Partizioni variabili
 
-i *job* sono allocati in una partizione con le stesse dimensioni del *job*
+I *job* sono allocati in una partizione con le stesse dimensioni del *job*
 + Nessuno spazio sprecato all'inizio
 + Frammentazione interna impossibile
 + Può verificarsi **Frammentazione esterna** :
