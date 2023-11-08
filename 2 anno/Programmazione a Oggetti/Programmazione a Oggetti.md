@@ -830,6 +830,19 @@ se eredito da una calsse astratta , eredito l'obbligo di implementarlo se non vi
 
 posso definire i metodi astratti nelle sottoclassi
 
+## 08/11/2023
+
+@override
+
+ridefinizione dei metodi di super classi in sottoclassi 
+
+definizione vs signature
+
+ovverride stessa signature di un metodo 
+overload signature differenti
+
+overide visibiltà deve essere lastessa o più larga del metodo che sto overridando
+
 # Tutorati 
 ## 14/10/2023
 
@@ -838,6 +851,4 @@ final deve essere assegnato alla creazione dell'oggetto della classe solo 1 volt
 Encapsulation 
 
 ## 04/11/2023
-
-
 
