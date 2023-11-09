@@ -1542,8 +1542,19 @@ Le espressioni possono essere rappresentate attravero degli *alberi*
 
 ![[Pasted image 20231109105407.png]]
 
-Ora utilizziamo  $\sigma_{C_1\land C_2}(S\times R)\equiv \sigma_{C_1}(R)\times \sigma_{C_2}(S)$ per sempl
+Ora utilizziamo  $\sigma_{C_1\land C_2}(S\times R)\equiv \sigma_{C_1}(R)\times \sigma_{C_2}(S)$ per semplificare  $\sigma_{A=100\land F\gt5 \land A=E}(R\times S)$
+Ovviamente in questo caso abbiamo che possiamo anticipare $A=100$ e $F\gt 5$ ma non $A=E$ poichè $A$ ed $E$ si trovano assieme solo sulla tabella ottenuta dopo $\times$
 
+![[Screenshot 2023-11-09 105740.png]]
+
+Ora visto che necessitiamo solo di $A$ , $E$ , $F$ per formare la tabella finale possiamo anticipare la *proiezione* di questi attributi prima di $\times$ 
+
+![[Pasted image 20231109110220.png]]
 
 ### Calcolo Relazionale 
+
+Esistono 2 varianti del *calcolo relazionale* :
++ *calcolo relazionale di ennuple* ( *CRE* )
+	
++ *calcolo relazionale su domini* ( *CRD* )
 

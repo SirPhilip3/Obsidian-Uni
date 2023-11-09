@@ -579,16 +579,29 @@ La funzione di ripartizione in un dato punto $x$ è semplicemente la probabilit�
 Per questo il suo dominio è $[0,1]$
 
 La *funzione di ripartizione* ha le seguenti proprietà :
-+ $F$ è non decrescente
-+ $F$ è continua a destra
++ $F$ è non decrescente ( non può decrescere )
++ $F$ è continua a destra ( si arriva al valore da destra )
 + $\lim_{x\rightarrow -\infty} F(x)=0$ e $\lim_{x\rightarrow +\infty} F(x)=1$ 
 
 Rappresenta la somma delle probabilità 
 
-Se $X$ è una variabile discreta con valori $\{x_1,x_2,\dots\}$ 
+##### Funzione di Ripartizione per una variabiel discreta
+
+Se $X$ è una variabile *discreta* con valori $\{x_1,x_2,\dots\}$ e funzione di probabilità $P(x_i)=p_i$
+
+$$F(x)=\sum_{i:x_i\le x}\mathbb{P}[X=x_i]=\sum_{i:x_i\le x} p_i$$
+La *funzione di riaprtizione* di una *variabile* discreta è una funzione costante a tratti con salti in corrispondenza dei punti di massa $x_1, x_2,\dots$  
+
+![[Pasted image 20231109114806.png]]
+
+
+Dalla *funzione di ripartizione* si può risalire alla *funzione di probabilità* così :
+$$\mathbb{P}[X=x]=F(x)-F(x^-)$$
 
 
 >[!todo]
+
+
 
 # Appunti
 #### R-Studio
