@@ -1367,7 +1367,7 @@ $$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
 
 Vogliamo ricavare la `Matricola` degli studenti che hanno fatto tutti gli esami che ha fatto anche Anna Rossi ( `Matricola=76366` )
 
-Abbiamo 2 tabbelle ricavate così :
+Abbiamo 2 tabelle ricavate così :
 + $ES\_AR=\pi_{Materia}(\sigma_{Candidato='76366'}(Esami))$
 	Questa rappresenta tutte le materie di cui ha svolto un esame Anna Rossi
 + $ES=\pi_{Candidato,Materia}(Esami)$ 
@@ -1383,8 +1383,167 @@ L'operazione di $\div$ può essere scritta in termini di *operatori primitivi* n
 $$R\div S=\pi_{X}(R)-\pi_{X}\big((\pi_X(R)\times S)-R\big)$$
 Spiegazione :
 
-+ 
+>[!todo]
 
 
 **Dimostrazione** :
+>[!todo]
+
+#### Proiezione generalizzata
+
+$$\pi_{Exp_1\ \textbf{AS}\ A_1\ ,\ Exp_2\ \textbf{AS}\ A_2 \ ,\ \dots \ , Exp_n\ \textbf{AS}\ A_n } ( R )$$
+
+In questo caso le espressioni $Exp_n$ possono contenere attributi , costanti e operazioni su di essi 
+
+**Esempio** :
+
+Data un relazione : `Utente(Codice, SalarioLordo, Trattenute, ...)`
+
+$$\pi_{\text{Codice, SalarioLordo - Trattenute AS Stipendio }} ( Utente )$$
+Questo creerà la seguente tabelle :
+
+|Codice|Stipendio|
+|---|---|
+|--|--|
+
+Dove `Stipendio` sarà il calcolo effettuato da : `SalarioLorodo - Trattenute`
+
+#### Aggregazione
+
+Le *funzioni di aggregazione* hanno come argomenti *multinsiemi* e ritornano come risultato un valore
+
++ **sum(...)** : ritorna la somma degli elementi del multinsieme
++ **avg(...)** : ritorna la media degli elementi del multinsieme
++ **count(...)** : ritorna il numero degli elementi del multinsieme
++ **min(...)** e **max(...)** : ritorna il minimo e il massimo valore degli elementi del multinsieme
+
+Se vogliamo ignorare eventi duplicati ( 23 , 30 , 30 -> il secondo 30 viene ignorato ) si estende il nome della funzione con la stringa *-distinct*  
+
+#### Raggruppamento
+
+$$A_1,A_2,\dots,A_n\ \gamma \ f_1,f_2,\dots,f_n (R)$$
+
+Dove $f_n$ sono *funzioni di aggregazione* e $A_n$ sono attributi di $R$
+
+L'operatore $\gamma$ restituisce una realzione con tipo :
+$$\{(A_1:T_1,\dots,A_n:T_n\ , f_1:T_{f_1}\ , \dots , f_k : T_{f_k} )\}$$
+Il cui *grado* è : $n+k$
+
+**Funzionamento** :
+
+1. Si divide la relazione $R$ rispetto agli attributi  $A_1,\dots , A_n$ 
+	Si vanno quindi a creare un insieme di gruppi che hanno all'interno ennuple i cui attributi  $A_1,\dots , A_n$  coincidono
+	Se $A_1,\dots , A_n=\emptyset$  si crea un unico gruppo contente tutte le ennuple di $R$
+2. Si calcolano le *funzioni di aggregazione* per ogni gruppo 
+3. Ogni gruppo restituirà una sola ennupla contente :
+	+ I valori degli attributi $A_1,\dots , A_n$ 
+	+ i risultati delle funzioni $f_1,\dots , f_k$ 
+
+![[Pasted image 20231109094326.png]]
+
+**Esempio**
+
+Vogliamo restiruire per ogni `Candidato` il : n° di esami svolti , il voto minimo , il voto massimo e la media dei suoi voti
+
+Abbiamo :
+
+`Esami( Materia , Candidato , Data , Voto , Lode )`
+
+|Materia|Candidato|Data|Voto|Lode|
+|---|---|---|---|---|
+|BD|71523|08.07.06|20|N
+|FIS|76366|08.07.07|26|N
+|ASD|71523|28.12.06|30|S
+|BD|76366|28.12.06|28|N
+
+$$\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Big(Esami\Big)$$
+1. Raggruppamento rispetto a `Candidato`
+
+|Materia|Candidato|Data|Voto|Lode|
+|---|---|---|---|---|
+|BD|71523|08.07.06|20|N
+|ASD|71523|28.12.06|30|S
+
+|Materia|Candidato|Data|Voto|Lode|
+|---|---|---|---|---|
+|FIS|76366|08.07.07|26|N
+|BD|76366|28.12.06|28|N
+
+2. Calcolo delle *funzioni* e merge 
+
+|Candidato|Count(\*)|min(Voto)|max(Voto)|avg(Voto)|
+|---|---|---|---|---|
+|71523|2|20|30|25
+|76366|2|26|28|27
+
+>[!info]
+>count(\*)
+>significa che conta tutte le ennuple presenti nel gruppo
+
+#### Multinsiemi
+
+##### Proiezione senza l'eminazione dei duplicati
+
+$$\pi^b_{A_1,\dots,A_n}(O)$$
+L'apice $b$ ( bag ) indica che si decono mantenere i duplicati sulla *proiezione*
+##### Eliminazione dei duplicati
+
+Per elimirare tutti i duplicati da una relazione O :
+$$\delta(O)$$
+##### Ordinamento
+
+Ordinamento lessicografico degli attributi specificati all'interno della relazione O 
+
+$$\daleth_{A_1,\dots,A_n}(O)$$
+##### Unione , Intersezione , Differenza con bag ( b )
+
+Unione , Intersezione , Differenza con bag ( b ) significa svolgere le operazioni insiemisitiche *mantenedo* i duplicati
+
++ *Unione* : 
+	$O_1\ \cup^b \ O_2$
+
+	**Esempio** :
+	$O_1=\{1,1,1,2,2,3\}$
+	$O_2=\{2,2,2,3,3,4\}$
+	$O_1\ \cup^b \ O_2 = \{1,1,1,2,2,2,2,2,3,3,3,4\}$
++ *Intersezione*
+	$O_1\ \cap^b \ O_2$
+	Contiene solo le ennuple che compaiono meno volte 
+	**Esempio** :
+	$O_1\ \cap^b \ O_2 = \{2,2,3\}$
++ *Differenza*
+	$O_1\ -^b \ O_2$
+	Un elemento compare nella differenza tante volte quanto appare in $O_1$ meno il numero di volte che compare in $O_2$
+
+	**Esempio** :
+	$O_1\ -^b \ O_2 = \{1,1,1\}$
+	$O_1\ -^b \ O_2=\{2,3,4\}$ 
+
+### Trasformazioni Algebriche
+
+Utilizzate per anticipare *anticipazioni* , *preoiezioni* e *restrizioni* in modo da avere meno ennuple quando dobbiamo svolgere una *moltiplicazione*
+
+**Esempio** :
+
+Prendiamo la relazione `R(A, B, C, D)`
+
++ $\pi_A(\pi_{A,B}(R))\equiv \pi_A(R)$
++ $\sigma_{C_1}(\sigma_{C_2}(R))\equiv \sigma_{C_1\land C_2}(S)$
++ $\sigma_{C_1\land C_2}(S\times R)\equiv \sigma_{C_1}(R)\times \sigma_{C_2}(S)$
++ $R\times(S\times T) \equiv (R\times S)\times T$
++ $\sigma_C(X\gamma F(R))\equiv X\gamma F(\sigma_C(R))$
+
+**Esempio di Ottimizzazione**
+
+Consideriamo le relazioni `R(A, B, C, D)` e `S(E, F, G)` e la seguente espressione da ottimizzare :
+$$\pi_{A,F}(\sigma_{A=100\land F\gt5 \land A=E}(R\times S))$$
+
+Le espressioni possono essere rappresentate attravero degli *alberi*
+
+![[Pasted image 20231109105407.png]]
+
+Ora utilizziamo  $\sigma_{C_1\land C_2}(S\times R)\equiv \sigma_{C_1}(R)\times \sigma_{C_2}(S)$ per sempl
+
+
+### Calcolo Relazionale 
 
