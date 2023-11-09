@@ -585,7 +585,7 @@ La *funzione di ripartizione* ha le seguenti proprietà :
 
 Rappresenta la somma delle probabilità 
 
-##### Funzione di Ripartizione per una variabiel discreta
+##### Funzione di Ripartizione per una variabile discreta
 
 Se $X$ è una variabile *discreta* con valori $\{x_1,x_2,\dots\}$ e funzione di probabilità $P(x_i)=p_i$
 
@@ -597,10 +597,107 @@ La *funzione di riaprtizione* di una *variabile* discreta è una funzione costan
 
 Dalla *funzione di ripartizione* si può risalire alla *funzione di probabilità* così :
 $$\mathbb{P}[X=x]=F(x)-F(x^-)$$
-
+Ossia la probabilità che $X$ assuma il valore $x$ è uguale al salto della funzione di ripartizione nel punto $x$ 
 
 >[!todo]
+>Example
 
+##### Funzione di Ripartizione per una variabile continua
+
+Se $X$ è una variabile continua con densità $f(x)$ allora 
+$$F(x)=\int_{-\infty}^{x} f(t) \ dt$$
+*Proprietà* :
++ La funzione di ripartizione di una variabile continua è una funzione continua 
++ Dalla funzione di ripartizione si può risalire alla densità di probabilità della variabile in tutti i punti in cui $F(x)$ è derivabile :
+	$$f(x)=\frac{dF(x)}{dx}$$
+
+![[Pasted image 20231109160442.png]]
+
+>[!todo]
+>Example
+
+#### Costanti Caratterisitiche 
+
+Una *costante caratteristica* o indice è un numero associato ad una variabile aleatoria o alla sua distribuzione di probabilità e sintetizza l'infromazione di interesse sul fenomeno rappresentato dalla variabile 
+
+Alcune *costanti caratteristiche* sono :
++ Il *valore atteso* che è unindice di posizione ( media )
++ La *varianza* che è un indice di dispersione
++ I *quantili* di una variabile aleatoria contengono informazioni sia sulla posizione che sulla forma di una distribuzione di probabilità
+
+##### Valore atteso ( media )
+
+###### Valore atteso di una variabile aleatoria discreta
+
+Se $X$ è una variabile aletaoria discreta con valori $\{x_1,x_2,\dots \}$ e funzione di probabilità $P(x_i)=p_i$ allora il *valore atteso* o *media* di $X$ è :
+$$\mathbb{E}[X]=\sum_ix_ip_i=x_1p_1+x_2p_2+\dots$$
+
+**Esempio** :
+
+Abbiamo un urna 
+Per la variabile $X$ = numero estratto si ha :
+$$P_X(x)=\begin{cases}
+   \frac{2}{7} &\text{se } x=1,2,3; \\
+   \frac{1}{7} &\text{se } x=4; \\
+   0 &\text{altrimenti}
+\end{cases}$$
+
+Allora : $$\mathbb{E}[X]=1\frac{2}{7}+2\frac{2}{7}+3\frac{2}{7}+4\frac{1}{7}=\frac{16}{7}$$
+###### Valore atteso di una variabile aleatoria continua
+
+Se $X$ è una variabile aletaoria continua con densità $f(x)$ allora il *valore atteso* o *media* di $X$ è :
+$$\mathbb{E}[X]=\int_\mathbb{R}xf(x)\ dx$$
+**Esempio** :
+
+Abbiamo una variabile aleatoria continua $X$ con densità : $$f(x)=2e^{-2x}\mathbb{1}_{(0, +\infty)}(x)$$
+si ha :
+$$\mathbb{E}[X]=\int_0^{+\infty} 2xe^{-2x}\ dx = \frac1 2$$
+###### Proprietà
+
+Il *valore atteso* ha le seguenti proprietà :
++ $\mathbb{E}[a]=a$   dove $a$ è una costante
++ $\mathbb{E}[aX+b]=a\mathbb{E}[X]+b$    dove $a$ e $b$ sono costanti
+
+In particolare $\mathbb{E}[X-\mathbb{E}[X]]=0$
+##### Varianza
+
+###### Varianza di una variabile aleatoria discreta
+
+Se $X$ è una varaibile aleatoria discreta con valori $\{x_1,x_2,\dots \}$ e funzione di probabilità $P(x_i)=p_i$ allora la *varianza* di $X$ è :
+$$\text{Var}[X]=\sum_ix^2_ip_i-[\mathbb{E}[X]]^2$$
+**Esempio** :
+
+Abbiamo un urna 
+Per la variabile $X$ = numero estratto si ha :
+$$P_X(x)=\begin{cases}
+   \frac{2}{7} &\text{se } x=1,2,3; \\
+   \frac{1}{7} &\text{se } x=4; \\
+   0 &\text{altrimenti}
+\end{cases}$$
+Allora $$\text{Var}[X]=1\frac2 7 + 2^2\frac2 7 + 3^2\frac 3 7 + 4^2\frac 1 7-\bigg(\frac {16} 7 \bigg)^2$$
+
+###### Varianza di una variabile aleatoria continua
+
+Se $X$ è una variabile aletaoria continua con densità $f(x)$ allora la *varianza* di $X$ è :
+$$\text{Var}[X]=\int_\mathbb{R} x^2f(x)\ dx-[\mathbb{E}[X]]^2$$
+**Esempio**
+
+
+Abbiamo una variabile aleatoria continua $X$ con densità : $$f(x)=2e^{-2x}\mathbb{1}_{(0, +\infty)}(x)$$
+Abbiamo :
+$$\text{Var}[X]=\int_0^{+\infty} 2x^2e^{-2x}\ dx - \bigg(\frac 1 2\bigg)^2=\frac1 4$$
+###### Proprietà
+
+La *varianza* ha le seguenti proprietà :
++ $\text{Var}[a]=0$   dove $a$ è una costante
++ $\text{Var}[aX+b]=a^2\text{Var}[X]$    dove $a$ e $b$ sono costanti
+##### Moda
+
+
+
+##### Mediana
+
+##### Quantili
 
 
 # Appunti
