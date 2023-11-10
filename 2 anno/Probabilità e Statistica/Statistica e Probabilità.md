@@ -709,7 +709,7 @@ $$F(m)=\mathbb{P}[X\le m]\ge \frac 1 2 $$
 
 ##### Quantili
 
-
+>[!todo]
 # Appunti
 #### R-Studio
 

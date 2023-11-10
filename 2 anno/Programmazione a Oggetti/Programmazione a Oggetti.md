@@ -419,6 +419,8 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 
 *javadoc* genera un documento *HTML* con tutta la documentazione dell'*API* , utilizzati dalle *IDE* per mostrare la documentazione per un certo metodo
 
+>[!todo]
+>4 pwp
 
 # Appunti
 ## 22/09/2023
@@ -841,7 +843,76 @@ definizione vs signature
 ovverride stessa signature di un metodo 
 overload signature differenti
 
-overide visibiltà deve essere lastessa o più larga del metodo che sto overridando
+overide visibiltà deve essere la stessa o più larga del metodo che sto overridando
+
+## 10/11/2023
+
+quando eredito un metodo deo avere la stessa vsiibilità o con visibilità più larga
+
+final :
+	In classi e metodi differente àfinal per i campi , si rifà alll'ereditarietà
+	ci sono dei metodi che non voglio vengano riscritti adesso tutte le sottoclassi possono overridare un emtodo
+
+`{java} final public boolean isAlive()`
+
+in C# se non definisco modifier final è comunque final se voglio che lo sia uso keyword
+
+campo non può essere astratto , campo non ha un'implementazione so già cosa va a fare
+
+abastract+final -> metodo impossibile da implementare 
+
+abstract+static -> qualsiasi cosa static non è ereditabile quindi non potrei definirlo 
+
+static + final -> warning ridondante , statico non viene erdetiato quindi non potrebbe essere overridato ossia necessitare il final 
+
+#### Classi 
+
+classe final simile al metodo. la classe non può essere estesa
+
+se ho una classe final posso non definire i metodi final -> ==ridondante==
+
+classe non può essere privata poichè non darebbe utilizzabile , sarebbe visibile solo a se stessa 
+
+classe  protected -> accedibile ovunque , non sarebbe protected ma publilc 
+
+non può essere statica ( potrebbe avere senso se tutti i campi e metodi sono statici )
+
+inner class può essere statica -> classe definita all'interno di un'altra classe  
+
+
+### sottotipi
+
+tipo statico c'è sempre , ogni tipo statico 
+
+`{java} var` il compiler capisce che tipo possiede quell'oggetto 
+
+
+quando ho una classe estesa -> calsse estesa è un sottotipo della supercalsse , permette nella pratica di applicare i l principio di sostituzione 
+
+ci permette di usare metodi della superclasse nella sottoclasse poichè hanno lo stesso tipo 
+>[!todo]
+>ceck
+
+<: -> sottotipo
+Wizard <: Figure
+Wizard tipo più preciso rispetto al supertipo Figure
+
+### Polimorfismo
+
+accelerate su macchina consuma benzian su bici accelera solo
+
+tipo *dinamico* tipo :
+`{java} Vehicle v = new Car()`
+
+v è una macchina ma ptrebbe essere un'altra classe che estende la superclasse 
+
+per vedere tipo dinamico  `{java} istanceof`
+
+un wizard è anche un figure
+
+posso castare il tipo `(tipo)`
+
+
 
 # Tutorati 
 ## 14/10/2023
@@ -851,4 +922,5 @@ final deve essere assegnato alla creazione dell'oggetto della classe solo 1 volt
 Encapsulation 
 
 ## 04/11/2023
+
 
