@@ -693,9 +693,19 @@ La *varianza* ha le seguenti proprietà :
 + $\text{Var}[aX+b]=a^2\text{Var}[X]$    dove $a$ e $b$ sono costanti
 ##### Moda
 
+La *moda* di una variabile aleatoria $X$ è il punto ( o i punti ) in cui la funzione di probabilità ( o di densità ) assume valore massimo
 
+**Esempio** :
 
+La varaibile $X$ con densità $f(x)=2e^{-2x}\mathbb{1}_{(0, +\infty)}(x)$  ha come *moda* 0 , ha infatti il suo massimo nel limite destro di 0
 ##### Mediana
+
+La *mediana* di una variabile aleatoria $X$ è il minimo valore $m$ per cui 
+$$F(m)=\mathbb{P}[X\le m]\ge \frac 1 2 $$
+**Esempio** :
+
+
+
 
 ##### Quantili
 
