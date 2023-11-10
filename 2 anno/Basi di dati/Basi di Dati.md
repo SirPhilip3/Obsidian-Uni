@@ -1566,3 +1566,8 @@ Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazional
 + *algebra relazionale*
 	+ Un'interrogazione del DB è un'espressione che specifica oltre a cosa va recuperato anche le operazioni necessarie al loro recupero ( *procedurale* )
 
+>[!todo] 
+
+### SQL
+
+>[!todo]

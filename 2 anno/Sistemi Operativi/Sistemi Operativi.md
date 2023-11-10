@@ -1527,3 +1527,6 @@ Vi sono 2 metodi per gestire la memoria libera :
 
 ![[Pasted image 20231105151011.png]]
 
+>[!todo]
+>memoria virtuale
+

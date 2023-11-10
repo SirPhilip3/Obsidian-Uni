@@ -710,6 +710,9 @@ $$F(m)=\mathbb{P}[X\le m]\ge \frac 1 2 $$
 ##### Quantili
 
 >[!todo]
+
+### Distribuzioni di probabilità
+
 # Appunti
 #### R-Studio
 
