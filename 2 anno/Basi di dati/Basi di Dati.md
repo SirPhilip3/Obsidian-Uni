@@ -1555,6 +1555,14 @@ Ora visto che necessitiamo solo di $A$ , $E$ , $F$ per formare la tabella finale
 
 Esistono 2 varianti del *calcolo relazionale* :
 + *calcolo relazionale di ennuple* ( *CRE* )
-	
 + *calcolo relazionale su domini* ( *CRD* )
+
+Tutti questi linguaggi sono espressivamente *equivalenti* ( ossia posso ricavare lo stesso risultato con 3 formule differenti ) 
+
+Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazionalemente completo* 
+
+ + *calcolo relazionale*  
+	+ Un'interrogazione del DB è un'espressione che specifica cosa va recuperato ma non come venga recuperato ( operazioni decise dal DBMS ) ( *dichiarativo* )
++ *algebra relazionale*
+	+ Un'interrogazione del DB è un'espressione che specifica oltre a cosa va recuperato anche le operazioni necessarie al loro recupero ( *procedurale* )
 
