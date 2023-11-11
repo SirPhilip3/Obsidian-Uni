@@ -704,14 +704,27 @@ La *mediana* di una variabile aleatoria $X$ è il minimo valore $m$ per cui
 $$F(m)=\mathbb{P}[X\le m]\ge \frac 1 2 $$
 **Esempio** :
 
-
-
+>[!todo]
 
 ##### Quantili
 
+Fissato un valore $\alpha \in (0,1)$ , il *quantile di livello* $\alpha$ di una variabile aleatoria $X$ è il minimo valore $q_{\alpha}$ per cui :
+$$F(q_{\alpha}) = \mathbb{P}[X\le q_{\alpha}]\ge \alpha$$
+
+I *quantili* sono *indici di posizione* che generalizzano il concetto di mediana di una distribuzione
+
+Per una variabile aleaotria continua ( con funzione di ripartizione $F$ continua ) il quantile di livello $\alpha$ p l'unico punto $q_{\alpha}$ in cui :
+$$F(q_{\alpha})=\mathbb{P}[X\le q_{\alpha}]=\alpha$$
+
+Vari *quantili* particolari :
++ La *mediana* non è altro che il quantile di livello $\frac 1 2$
++ I *percentili* sono i quantili di livello $\frac k {100}$ con $k=1,2,\dots,99$
++ I *decili* sono i quantili di livello $\frac k {10}$ con $k=1,2,\dots,9$  
++ I *quartili* sono i quantili di livello $0.25$ ( primo quartile ) , $0.5$ ( mediana ) e $0.75$ ( terzo quantile )
+### Distribuzioni di probabilità
+
 >[!todo]
 
-### Distribuzioni di probabilità
 
 # Appunti
 #### R-Studio
