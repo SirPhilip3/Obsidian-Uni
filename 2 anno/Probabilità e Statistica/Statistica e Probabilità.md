@@ -527,7 +527,7 @@ La funzione che rappresenta la *densità di probabilità* deve seguire le seguen
 
 Una *funzione* $f(x)$ con le prorpietà precedenti viene chiamata *densità di probabilità* 
 
-Una volta assegnata uan densità di probabilità alla variabile aleatoria continua X si può determinare la probabilità di ogni evento A
+Una volta assegnata una densità di probabilità alla variabile aleatoria continua X si può determinare la probabilità di ogni evento A
 $$\mathbb{P}[X \in A]=\int_A f(x)\ dx$$
 
 ![[Pasted image 20231102164950.png]]
