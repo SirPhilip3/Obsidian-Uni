@@ -721,6 +721,13 @@ Vari *quantili* particolari :
 + I *percentili* sono i quantili di livello $\frac k {100}$ con $k=1,2,\dots,99$
 + I *decili* sono i quantili di livello $\frac k {10}$ con $k=1,2,\dots,9$  
 + I *quartili* sono i quantili di livello $0.25$ ( primo quartile ) , $0.5$ ( mediana ) e $0.75$ ( terzo quantile )
+
+## TEMP
+
+![[Acquisisci schermata Web_13-11-2023_9576_www.math.it.jpeg]]
+
+![[Acquisisci schermata Web_13-11-2023_95813_www.math.it.jpeg]]
+
 ### Distribuzioni di probabilità
 
 >[!todo]
