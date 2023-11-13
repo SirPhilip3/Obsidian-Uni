@@ -192,7 +192,52 @@ while (i <= A.legth and A[i].Key < K)
 ```
 La complessità del codice al suo interno è $\Theta(1)$ 
 Essendo che questo ciclo viene svolto $i$ volte avremo che la sua complessità risultante è : $i\cdot d$
+
+###### 2 
+
+```c
+reallocate(A,A.length + 1)
+```
+
+La *reallocate* ha un costo di $O(n)$
+
+###### 3
+
+```c
+for j = A.length down to i + 1
+	A[j]=A[j-1] 
+```
+
+Il ciclo *for* viene eseguito $(n+1)-(i+1)+1=n-i+1$  volte , il suo corpo ha un costo pari a $d$ , avremo quindi un costo complessivo pari a : $(n-i+1)\cdot d$
+
+$n+1$ poichè abbiamo scritto alla riga prima : `{cpp} A.length = A.length + 1`
+$i+1$ poichè dobbiamo spostare tutti i blocchi più grandi del blocco che dobbiamo inserire a destra di 1 blocco 
+
+###### 4 
+
+Le restanti istruzioni hanno complessità comparabile a $O(1)$
+
+La complessità finale sarà quindi la somma delle complessità dei vari elementi ossia :
+$$T(n)=O(1)+i\cdot d+O(n)+(n-i+1)\cdot d$$
+$$=O(1)+n\cdot d +d+O(n)$$
+$$=O(n)$$
+
+Infatti poichè l'algoritmo non potrà mai spostare più di $n$ elementi possiamo essere sicuri che $n$ rappresenta il limite superiore della complessità
 #### Delete
+
+##### Code
+
+```c
+delete(Dizionario A, Key K)
+	i = search_index(A , K , 1 , A.legth)
+	for j = i to A.length - 1
+		A[j] = A[j+1]
+	reallocate(A , A.length - 1)
+	A.length = A.length - 1
+```
+
+##### Complexity
+
 ## Implementazione attraverso Liste doppiamente concatenate
 
 
