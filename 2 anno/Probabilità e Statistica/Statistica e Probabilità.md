@@ -726,6 +726,8 @@ Vari *quantili* particolari :
 
 ![[Acquisisci schermata Web_13-11-2023_9576_www.math.it.jpeg]]
 
+![[Pasted image 20231113104441.png]]
+
 ![[Acquisisci schermata Web_13-11-2023_95813_www.math.it.jpeg]]
 
 ### Distribuzioni di probabilità
@@ -767,4 +769,5 @@ cumsum = funzione di ripartizione
 
 *quantili*
 
+???????????
 
