@@ -1530,3 +1530,33 @@ Vi sono 2 metodi per gestire la memoria libera :
 >[!todo]
 >memoria virtuale
 
+# Appunti 
+
+## 14/11/2023
+
+minor nujmero di page fault = seleziono pagina a cui verra fatto riferimento in futuro
+
++ Rand ( scielgo pagina random )
++ FIFO
++ LRU ( least recently used ) suppongo che la pagina a cui ho fatto riferimento più tardi non verrà riferita in futuro
++ LFU ( least frequently )
++ NFU ( not frequently )
++ Second-chance
+	+ FIFO , guarda bit di riferimento della pagina più vecchia , se è stata modificata allo viene tolta altrimenti viene considerata come appena arrivata , la mantengo
+	+ le pagine più riferite tendono a non essere mai sostituite
++ clock
+	+ come seconda chance ma utilizzo al posto della fifo una lista circolare
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

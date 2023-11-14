@@ -368,18 +368,72 @@ Dovremo quindi dimostrare l' :
 + **Inizializzazione** : l'invariante è vero prima della prima iterazione del ciclo 
 + **Conservazione** : 
 	se l'invariante è vero prima di un'iterazione del ciclo rimane vero prima della successiva iterazione :
-	$$INV \land \lnot\ \text{Guardia ( Condizione del ciclo )} \implies INV[\text{ dopo esecuzione del corpo del ciclo }]$$
+	$$INV \land \text{Guardia ( Condizione del ciclo )} \implies INV[\text{ dopo esecuzione del corpo del ciclo }]$$
 + **Conclusione** :
-	
+	Quando il ciclo termina l'*invarainte* fornisce una prorpietà che aiuta a dimostrare la correttezza dell'algoritmo :
+	$$INV \land \ \lnot \ \text{Guardia}\implies \text{Assegnazione Finale}$$
+	Ci deve permettere di dimostrare che alla fine ci venga restituito il valore corretto
 + **Funzione di Terminazione** : 
+	E' una funzione a valori naturali che decresce strettamente ad ogni iterazione del ciclo 
+	Questa ad un certo punto arriverà a 0 : il ciclo necessariamente termina
 
+###### Search
+
+Possiamo quindi indicare per il nostro caso come *invariante* :
+	Gli elementi da `L.head` ad `x` escluso hanno chiave differente da `K`
+Mentre come *funzione di terminazione* :
+	Il numero di elementi della lista non ancora visitati
+
++ **Inizializzazione** :
+	All'inizio viene posto `x=L.head` , l'*invariante* è vera poichè ci sono 0 elementi tra `L.head` e `x` non compreso , quindi non possiamo aver già trovato l'elemento con chiave `K` ( l'asserzione è vacuamente vera )
++ **Conservazione** :
+	$$INV\land\ \text{Guardia} \implies INV\bigg[\frac{x.next}{x}\bigg]$$
+	Per ipotesi sappiamo : 
+	1. *Invariante vero* : gli elementi da `L.head` ad `x` non compreso hanno chiave diversa da `K` 
+	2. *Guardia vera* : `x!=NIL && x.Key == K`
+	Dobbiamo quindi dimostrare la tesi :
+	3. $INV\big[\frac{x.next}{x}\big]$ : gli elementi da `L.head` ad `x.next` non compreso hanno chiave diversa da `K`
+
+	Per ipotesi ( 1. ) gli elementi da `L.head` a `x` non compreso hanno chiave divrsa da `K` , inoltre per ipotesi ( 2. ) l'elemento puntato da `x` ha chiave diversa da `K`
+	Abbiamo quindi dimostrato che tutti gli elementi da `L.head` ad `x` *compreso* hanno chiave diversa da `K`
++ **Conclusione** :
+	$$INV\land \ \lnot \text{Guardia}\implies \text{Asserzione finale}$$
+	Il ciclo termina quando : 
+	+ `x==NIL` : abbiamo terminato gli elementi della lista , alla fine l'*invarainte* rimane vero quindi possiamo concludere che l'elemento cercato non appartiene alla lista
+	+ `x!=NIL && x.Key == K` : siccome l'*invariante* ci assicura che `K` non è presente prima di `x` , `x` sarà dunque la prima occorrenza della chiave `K`
 #### Delete
 
 ##### Code
 
+```c
+delete(Dizionario L, Key K)
+	x = L.head
+	while x != NIL
+		if x.Key == K
+			if x.next != NIL
+				x.next.prev = x.prev
+			if x.prev != NIL
+				x.prev.next = x.next
+			else 
+				L.head = x.next
+			temp = x
+			x = x.next 
+			// rimuovi temp
+		else 
+			x=x.next
+```
+
 ##### Complexity
 
+Poichè l'`insert()` non aggiorna le occorrenza di `K` ci saranno più chiavi con `info` differenti , bisognerà quindi scorrere l'intero dizionario `L` per rimuovere tutte le occorrenze della chiave `K`
+
+Se lungo la ricerca si trova un elemento avente la chiave cercata , sistemeremo i puntatori degli elementi precedente e sucessivo ( se presenti ) e infine elimineremo l'elemento dalla lista
+
+Poichè l'algoritmo deve scorrere tutti gli elementi della lista la complessità risulterà lineare rispetto al numero degli elementi 
+$$T(n)=\Theta(n)$$
 # Alberi 
+
+# Alberi Binari di Ricerca
 
 # Esercizi 
 
