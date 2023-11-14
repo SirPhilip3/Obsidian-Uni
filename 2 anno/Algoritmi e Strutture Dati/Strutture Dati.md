@@ -199,7 +199,7 @@ Essendo che questo ciclo viene svolto $i$ volte avremo che la sua complessità r
 reallocate(A,A.length + 1)
 ```
 
-La *reallocate* ha un costo di $O(n)$
+La *reallocate* ha un costo di $O(n)$ 
 
 ###### 3
 
@@ -238,7 +238,151 @@ delete(Dizionario A, Key K)
 
 ##### Complexity
 
+###### 1
+
+```c
+i = search_index(A , K , 1 , A.legth)
+```
+
+Facciamo uso dell'algoritmo di `search_index()` ( ricerca binaria ) per trovare la chiave da eliminare all'interno dell'array
+
+Questa parte della `delete()` ha come complessità quella già calcolata in precedenza ossia $\Theta(\log n)$
+
+###### 2
+
+```c
+for j = i to A.length - 1
+	A[j] = A[j+1]
+```
+
+Il ciclo *for* si occupa di shiftare a sinistra gli elementi dell'array che si trovano dopo l'elemento da eliminare 
+
+Il ciclo *for* viene eseguito $(n-1)-i+1 = n-1$ volte , il suo corpo ha un costo arbitrario di esecuzione di $d$ , avremo quindi che la complessità totale del ciclo è : 
+$$(n-i)\cdot d$$
+###### 3
+
+```c
+reallocate(A , A.length - 1)
+```
+
+La reallocate ha come complessità $\Theta(n)$
+
+La *complessità* dell'intero algoritmo sarà quindi :
+$$T(n)=\Theta(\log n)+(n-i)\cdot d + O(n)=O(n)$$
+Poichè $n$ risulta essere il limite superiore della nostra coplessità ( bisogna sempre considerare il caso peggiore )
+
+#### Reallocate
+
+`reallocate(array A)`
+
+La *riallocazione* della memoria in un array avviene secondo la seguente tecnica :
+
+Si adotta la tecnica del *dimezzamento* e *raddoppiamento* , ossia si vuole mantenere in memoria un array la cui dimensione $h$ risulta essere :
+$$n\le h \lt 4\cdot n$$
+Avremo quindi un array nelle cui prime $n$ celle dell'array vengono contenuti gli elementi della collezione che vogliamo memorizzare , il contenuto delle altre celle è indefinito
+
+La dimensione $h$ dell'array si sviluppa nel seguente modo :
++ con $n=0$ , $h=1$
++ Ogni qualvolta che l'array supera $h$ elementi di dimensione , la dimensione dell'array viene raddoppia :  $h=h\cdot 2$ 
++ Se la dimensione dell'array diminuice e scende al di sotto di $\frac h 4$ allora la sua dimensione viene dimezzata : $h = \frac h 2$
+
+
+Lo spazio che quindi occupa risulta essere $\Theta(n)$
+
+### Analisi Ammortizzata
+
+L'*analisi ammortizzata* ci permette di determinare il costo medio di un insieme di $m$ operazioni su una struttura dati
+
+Esempio con `insert()`
+
+Assumiamo di partire con un vettore iniziale di dimensione $h=1$ ( $n=0$ di conseguenza ) , volgiamo svolgere $n$ `insert()` 
+
+Sia $C_i$ il costo dell'$i$-esimo `insert()` 
+$$T(n) = \begin{cases} i &\text{se } \exists \ k  : i=2^k+1 \\ 1 &\text{altimenti ( la maggior parte dei casi ) } \end{cases}$$
+
+>[!todo]
+
 ## Implementazione attraverso Liste doppiamente concatenate
 
+I dizionari si possono implementare attraverso una collezione L di $n$ record contenenti le seguenti informazioni : 
++ `Key` : La chiave
++ `Info` : L'infromazione relativa alla chiave
++ `next` : puntatore al record sucessivo
++ `prev` : puntatore al precedente record
+
+Inoltre la collezione L contiene un attributo `{c}L.head` contente un puntatore al primo elemento del dizionario , la lista vuota viene codificata con : `{c}L.head == NIL`
+
+La complessità spaziale sarà : $S(n)=\Theta(n)$
+
+#### Insert
+
+##### Code 
+
+```c
+insert(Dizionario L , Info v , Key K)
+	// creo nuovo record p con valore v e chiave k
+	p.next = L.head;
+	if(L.head!=NIL)
+		L.head.prev = p
+	p.prev = NIL
+	L.head = p
+```
+
+##### Complexity
+
+L'algoritmo aggiunge un elemento in testa ad una lista doppiamente concatenata , in questo caso a differeneza dell'`insert()` nel caso degli array non aggiorniamo il valore di una chiave se già presente nella lista
+
+L'algoritmo risulta avere complessità : $\Theta(1)$ 
+Poichè consiste in un insieme di operazioni di assegnamento 
+#### Search
+
+##### Code
+
+```c
+search(Dizionario L, Key K)
+	x = L.head
+	while x != NIL and x.Key != K
+		x = x.next
+	if x != NIL
+		return x.Info
+	else 
+		return NIL
+```
+
+##### Complexity
+
+L'algoritmo rappresenta una scansione lineare di tutti gli elementi della lista doppimente concatenata , ritornando l'informazione relativa alla key cercata se presente `NIL` altrimenti 
+
+La sua complessità risulterà essere :
+$$T(n)=O(n)$$
+Poichè nel caso peggiore ( non è presente la key cercata o è nell'ultimo nodo della lista ) dobbiamo scorrere l'intera lista con $n$ elementi 
+##### Correctness
+
+Verifichiamo ora la correttezza del precedente algoritmo :
+Perchè possiamo dichiarare che l'algoritmo è corretto esso ci deve garantire di ritornare la prima occorrenza della chiave $K$
+
+Questo può essere provato dimostrando la persistenza di un *invariante* all'interno del ciclo `while`
+Un'**invariante** è una formula che deve essere vera prima , dopo e durante tutta l'esecuzione del ciclo
+
+Dovremo quindi dimostrare l' :
++ **Inizializzazione** : l'invariante è vero prima della prima iterazione del ciclo 
++ **Conservazione** : 
+	se l'invariante è vero prima di un'iterazione del ciclo rimane vero prima della successiva iterazione :
+	$$INV \land \lnot\ \text{Guardia ( Condizione del ciclo )} \implies INV[\text{ dopo esecuzione del corpo del ciclo }]$$
++ **Conclusione** :
+	
++ **Funzione di Terminazione** : 
+
+#### Delete
+
+##### Code
+
+##### Complexity
 
 # Alberi 
+
+# Esercizi 
+
+## Complessità 
+
+## Alberi 
