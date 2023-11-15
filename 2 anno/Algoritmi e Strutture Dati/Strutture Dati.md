@@ -582,7 +582,71 @@ T(n)=\Theta(n)
 $$
 ### Vettore posizionale
 
+Supponiamo di avere un albero $k$-ario completo con $k\ge2$ , ogni nodo di questo albero avrà una posizione prestabilita all'interno dell'array
 
+Avremo quindi $P$ vettore di dimensione $n$ tale che `P[v]` contiene l'informazione associata al nodo $v$  
+
+#### Proprietà 
+
++ 0 è la posizione della radice 
++ L'$i$-esimo *figlio* di $v$ è in posizione $k\cdot v +1 +i ,\ \ i\in\{0,\dots,k-1\}$
++ Il *padre* del nodo $f$ ( con $f \not= 0$ ) è in posizione 
+	$$
+	k\cdot v +1\ \text{(primo figlio)}\le f\le k\cdot v +1 +(k-1)\ \text{(ultimo figlio)}
+	$$
+	$$
+	k\cdot v \le f -1 \le k\cdot v + k +1
+	$$
+	$$
+	v \le \frac{f-1}{v}\le v + \frac{k-1}{k}
+	$$
+	Poichè $\frac{k-1}{k}$ è minore di $1$ , la frazione potrà essere sostituita con 1 visto che essendo maggiore della frazione presente in precedenza il $\frac{f-1}{v}\le$ sarà ancora valido
+	$$
+	v \le \frac{f-1}{v}\le v + 1
+	$$
+
+
+	Essendo infine che $v$ è un indice e quindi un numero intero risulterà che :
+	$$
+	v =\bigg\lfloor \frac{f-1}{k} \bigg\rfloor
+	$$
+
+**Esempio** : 
+
+![[VettorePosizionale.excalidraw]]
+
+Vettore Posizione
+
+|Info|a|b|c|d|e|f|g|h|i|l|m|n|o|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Index|0|1|2|3|4|5|6|7|8|9|10|11|12|
+
+Gli indici dei figli di `a` ,`b,c,d` , possono essere calcolati attraverso la formula $k\cdot v +1 +i$ dove :
++ $k$ sono il numero di figli 
++ $v$ è l'indice del nodo per il quale vogliamo trovare i figli
++ $i$ è un indice che va da : $i \in \{0,\dots,k-1\}$
+
+Gli indici dei figli di `a` saranno quindi : $3\cdot 0 +1 +i$
+`b` = $3\cdot0+1+0=1$ 
+`c` = $3\cdot0+1+1=2$
+`d` = $3\cdot0+1+2=3$
+
+Gli indici dei figli di `c` saranno quindi : $3\cdot 2 +1 +i$
+`h` = $3\cdot2+1+0=7$ 
+`i` = $3\cdot2+1+1=8$
+`l` = $3\cdot2+1+2=9$
+
+Volendo invece calcolare l'indice del padre di `i` avremo la seguente formula :
+$$
+\bigg\lfloor \frac{f-1}{3} \bigg\rfloor
+$$
+Dove $f$ reppresenta l'indice del figlio ( per `i` $f=8$ ) , avremo quindi
+
+$$
+\bigg\lfloor \frac{8-1}{3} \bigg\rfloor = 2
+$$
+
+Lo spazio necessario 
 
 # Alberi Binari di Ricerca
 
