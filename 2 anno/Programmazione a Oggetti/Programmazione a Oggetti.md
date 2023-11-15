@@ -422,6 +422,9 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 >[!todo]
 >4 pwp
 
+^todo
+
+%%
 # Appunti
 ## 22/09/2023
 
@@ -893,8 +896,8 @@ ci permette di usare metodi della superclasse nella sottoclasse poichè hanno lo
 >[!todo]
 >ceck
 
-<: -> sottotipo
-Wizard <: Figure
+`<:` -> sottotipo
+Wizard `<:` Figure
 Wizard tipo più preciso rispetto al supertipo Figure
 
 ### Polimorfismo
@@ -904,6 +907,11 @@ accelerate su macchina consuma benzian su bici accelera solo
 tipo *dinamico* tipo :
 `{java} Vehicle v = new Car()`
 
+cambia da execution ad execution
+
+il tipo dinamico è un sottotipo lo stesso tipo del tipo statico 
+a livello statico posso sapere solo la "superclasse"
+
 v è una macchina ma ptrebbe essere un'altra classe che estende la superclasse 
 
 per vedere tipo dinamico  `{java} istanceof`
@@ -911,6 +919,69 @@ per vedere tipo dinamico  `{java} istanceof`
 un wizard è anche un figure
 
 posso castare il tipo `(tipo)`
+
+## 15/11/2023
+
+un qualcosa può essere più cose contemporanemaente
+un camion e un carello sono entrambi caricabili 
+
+multiple classes extensions creates diamond problem
+
+![[Pasted image 20231115092234.png]]
+
+
+**interfaces** 
+
+ha un nome , all'interno una serie di firme di metodi  , non sto definendo l'implemetnazione dei metodi 
+l'interfaccia è anche un *tipo* , non ha campi   
+
+una classe può implementare un'interfaccia 
+una classe eredita l'obbligo di implementare i metodi dell'interfaccia , se ne implementa solo alcuni o nessuno allora la classe deve essere astratta  
+
+es magic sia una weapon sia una protezione w
+
+```java
+
+interface protection {
+
+	public int getInfoDefence(){}
+
+}
+```
+
+`{java} default`
+
+per implementare metodi all'interno di interfaces 
+
+```java
+	// non serve default in campi di interface
+	// private , non può essere utilizzato poichè potrebbe non essere inizializzato
+	default public int getInfoDefence(){
+		return defence;
+	}
+```
+
+
+`final default` -> non può essere fatto 
+
+campi default sono campi statici -> proprietà dedl mio tipo 
+non si possono definire dei campi 
+sono final anche
+
+posso invocare degli altri metodi astratti che ogni classe deve definirlo 
+
+firme dei metodi sono sempre pubbliche nelle interface 
+
+interfacce che estendono altre interfacce  
+quando un'interfaccia è sottotipo di un'altra interfaccia -> extends
+
+quando 2 implemetazioni di default differenti da 2 interfaccie non posso ereditarle
+
+interfaces
+- senza campi
+
+abstract class
++ solo eresitarietà multiple
 
 
 
