@@ -433,6 +433,157 @@ Poichè l'algoritmo deve scorrere tutti gli elementi della lista la complessità
 $$T(n)=\Theta(n)$$
 # Alberi 
 
+**Albero radicato** :
+	è una coppia $T=(N,A)$ dove :
+		$N$ è un insieme finito di **nodi** fra cui si distingue un nodo $r$ detto radice 
+		$A \subseteq N \times N$ è un insieme di coppie di nodi detti *archi* 
+	In un albero ogni nodo $v$ ( eccetto la radice ) ha esattamente un *genitore* ( o *padre* ) $u$ tale che esiste un arco ( $u , v$ ) $\in A$
+
+## Definizioni
+
++ Un nodo $n$ può avere zero o più figli $v$ tali che esiste un arco $(u,v)\in A$
++ Il numero di figli di un nodo è detto *grado* del nodo
++ Un nodo senza figli ( grado 0 ) è detto *foglia*
++ Un nodo non foglia è detto *nodo interno*
++ Se due nodi hanno lo stesso padre sono detti *fratelli*
++ Il *cammino* da un nodo $u$ a un nodo $u'$ i un albero $T$ è una sequenza di nodi $<n_0,n_1,\dots,n_k>$ tali che : 
+	+ $u=n_0$
+	+ $u'=n_k$
+	+ $<n_{i-1},n_i>\ \in A\ \forall\ i = 1,\dots,k$
++ La *lunghezza* di un cammino è il numero degli archi del cammino , o il numero di nodi che formanoil cammino meno 1
+	+ Esiste sempre un cammino di lunghezza zero che va da $u$ a $u$
++ Sia $x$ un nodo in un albero radicato $T$ con radice $r$ . Un nodo qualsiasi , $y$ , in un cammino che parte da $r$ e arriva a $x$ è detto *antenato* di $x$
+	+ Ogni nodo è antenato di sè stesso
++ Se $y$ è antenato di $x$ , allora $x$ è *discendente* di $y$ 
+	+ Ogni nodo è discendendo di sè stesso
++ Se $y$ è un antenato di $x$ e $x$ è diverso da $y$ , allora $y$ è un *antenato proprio* di $x$ , e $x$ è un *discendente proprio* di $y$
++ Il *sottoalbero* con radice in $x$ è l'albero indotto dai discendenti di $x$ 
++ La *profondità* di un nodo $x$ è la lunghezza del cammino dalla radice a $x$
++ Un *livello* di un albero è costituito da tutti i nodi che stanno alla stessa profondità
++ L'*altezza* di un nodo è la lunghezza del più lungo cammino che scende dal nodo $x$ a una foglia
+	+ L'altezza di un albero è l'altezza della sua radice ed è anche uguale alla profondità massima di un qualsiasi nodo dell'albero
+
+## Alberi binari e alberi $k$-ari
+
+Un *albero binario* è un albero definito in modo ricorsivo 
+
+Caso Base :
++ Un albero vuoto è un albero binario
+Passo ricorsivo :
++ Un albero costituito da un nodo radice , da un albero binario ( sottoalbero sinistro della radice ) e da un albero binario ( sottoalbero destro della radice ) è un albero binario
+
+Un *albero $k$-ario* è un albero in cui i figli di un nodo sono etichettati con interi positivi distinti e le etichette maggiori di $k$ sono assenti ( ossia ogni nodo può avere al massimo $k$ figli )  
+
+>[!note]
+>Un albero binario è un caso particolare di un albero $k$-ario , avente $k = 2$
+>
+
+Un *albero $k$-ario completo* è un albero $k$-ario in cui vslgono le seguenti caratteristiche :
++ Tutte le foglie hanno la stessa profondità
++ Tutti i nodi interni hanno grado $k$ ( hanno esattamente $k$ figli )
+
+**Esempio** :
+
+![[Strutture Dati 2023-11-15 13.29.53.excalidraw]]
+
+### Esercizio
+
+Trovare il numero di foglie e il numero di nodi interni di un albero $k$-ario completo , la cui altezza risulta essere $h$ 
+
+>[!todo]
+>completa esercizi ( pag 59 60 pdf asd )
+
+## Tipo Albero
+
+### Dati
+
+Un insieme di nodi ( di tipo `Node` ) e un insieme di archi
+
+### Operazioni
+
+1. `{c} newtree() -> Tree`
+	+ Post-condizione : restituisce un albero vuoto
+2. `{c}treeEmpty(Tree P) -> bool`
+	+ Post-condizione : restituisce `true` se l'albero è vuoto `false` altrimenti
+3. `{c}padre(Tree P, Node v) -> Node U , {NIL}`
+	+ Pre-condizione : $v \in P$
+	+ Post-condizione : restituisce il padre di $v$ se $v$ è diverso dalla radice , `NIL` altrimenti
+1. `{c}figli(Tree P, Node v) -> List of Node`
+	+ Pre-condizione : $v \in P$
+	+ Post-condizione : restituisce una lista contenente i figli del nodo $v$
+
+## Alberi impementati con array
+
+### Vettore padri
+
+L'implementazione con gli array prevede l'utilizzo di un vettore di coppie che rappresentano i singoli nodi , coppie costituite da `(info , parent)` in cui :
++ `info` : informazione contenuta nel nodo
++ `parent` : indice del suo nodo padre
+
+**Esempio** :
+
+Sia $T=(N, A)$ un albero con $n$ nodi numerati da 0 a $n-1$ rappresentabile come segue :
+
+![[VettorePadri.excalidraw]]
+
+Questo può quindi essere rappresentato nel seguente modo :
+
+|P.info|A|B|C|D|E|F|G|H|I|
+|-|-|-|-|-|-|-|-|-|-|
+|P.parent|-1|0|0|0|1|1|3|6|6|
+|Indice|0|1|2|3|4|5|6|7|8|
+
+#### Proprietà 
+
++ $\forall\ v \in [0 , n-1]$
+	+ `P[v].info` : è l'informazione del nodo
+	+ `P[v].parent = u` se e solo se vi è un arco $(u,v)\in A$ 
++ Se $v$ è la radice avremo che : `P[v].parent = -1`
++ `P.length` contiene il numero di nodi dell'albero 
++ Spazio richiesto : $S(n)=\Theta(n)$ per un albero contenente $n$ nodi
+#### Operazioni
+
+##### padre
+
+**Code** :
+
+```c
+padre(Tree P, Node v)
+	if P[v].parent == -1
+		return NIL
+	else 
+		return P[v].parent
+```
+
+**Complessità** :
+
+Essendo solo operazioni di ritorno e if ( entrambi a complessità costante ) la comlessità totale sarà :
+$$
+T(n)=\Theta(1)
+$$
+##### figli
+
+**Code** :
+
+```c
+figli(Tree P, Node v)
+	l = crealista()
+	for i = 0 to P.length - 1
+		if P[i].parent == v
+			// inserisci i nella lista l
+	return l
+```
+
+**Complessità** :
+
+Il ciclo *for* viene svolto $n$ volte ( l'intera lunghezza dell'array ) , le altre operazioni sono a complessità costante ( consideriamo a complessità costante anche l'inserimento a righa 5 ) avremo quindi una complessità totale :
+$$
+T(n)=\Theta(n)
+$$
+### Vettore posizionale
+
+
+
 # Alberi Binari di Ricerca
 
 # Esercizi 
