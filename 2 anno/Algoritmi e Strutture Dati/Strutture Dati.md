@@ -646,7 +646,49 @@ $$
 \bigg\lfloor \frac{8-1}{3} \bigg\rfloor = 2
 $$
 
-Lo spazio necessario 
+Lo spazio necessario per un albero con $n$ nodi è $\Theta(n)$ , la struttura dati contiene i seguenti campi : 
++ `P.length` : il numero di nodi
++ `P.K` : il grado di tutti i nodi
+
+#### Operazioni
+
+##### padre
+
+```c
+padre(Tree P, Node v) // v è un indice
+	if v == 0
+		return NIL
+	else 
+		return floor((v-1)/P.K)
+```
+
+**Complessità** : $O(1)$  ( la funzione `floor` ha complessità costante )
+##### figli
+
+```c
+figli(Tree P, Node v)
+	l = createlista()
+	if v * P.K + 1 >= P.length
+		return l // lista vuota poichè il nodo non ha figli
+	else 
+		for i = 0 to P.K - 1
+			// inserici v*P.K+1+i in l
+		return l 
+```
+
+**Complessità** : $\Theta(\text{grado}(v))=O(K)$ 
+La complessità è $O$ poichè potremmo essere fortunati ed essere in una foglia 
+
+Le rappresentazioni con i vettori hanno lo svantaggio che le operazioni di inserimento e cancellazione sono costose poichè dobbiamo spostare degli elementi in memoria
+
+## Alberi implementati con strutture collegate
+
+Possiamo rappresentare un albero facilente attraverso la definizione di un record che contiene 
++ L'informazione associata 
++ Un puntatore al padre
++ Altri puntatori ( per accedere ai figli )
+
+
 
 # Alberi Binari di Ricerca
 
