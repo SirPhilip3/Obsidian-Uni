@@ -436,6 +436,7 @@ Un processo utente attiva le chiamate al sistema operativo ( modalità kernel ) 
 
 >[!todo]
 >completa tables
+>#todo
 
 Esempi di chiamate di sistema in Unix :
 
@@ -1016,6 +1017,8 @@ Questo permette di evitare ancor più maggiormente la monopolizzazione della CPU
 
 I processi contegono gli *handle* ( riferimenti ad oggetti ) , i *thread* con cui condividono le risorse e i programmi (??????)
 >[!todo]
+>completa
+>#todo
 
 Il *contesto di esecuzione* di un processo contiene :
 + Runtime stack
@@ -1529,6 +1532,7 @@ Vi sono 2 metodi per gestire la memoria libera :
 
 >[!todo]
 >memoria virtuale
+>#todo
 
 # Appunti 
 

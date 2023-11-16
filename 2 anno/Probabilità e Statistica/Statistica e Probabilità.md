@@ -366,6 +366,8 @@ $$\mathbb{P}[A_1\cap A_2\cap \dotsc \cap A_n]=\mathbb{P}[A_1]\cdot\mathbb{P}[A_2
 **Esempio** : 
 
 >[!todo]
+>Scrivi un esempio
+>#todo
 
 #### Eventi Indipendenti
 
@@ -385,6 +387,8 @@ $$\mathbb{P}[A_{i_k}\cap\dots \cap A_{i_k}]=\mathbb{P}[A_{1_k}]\cdot\dotsc\cdot\
 #### Esempi
 
 > [!todo]
+> fai un esempio
+> #todo
 
 #### Legge della Probabilità totale
 
@@ -398,6 +402,8 @@ La seconda uguaglianza deriva invece dalla definizione di *probabilità condizio
 **Esempio**
 
 > [!todo]
+> fai un esempio
+> #todo 
 #### Legge di Bayes
 
 Sia data la partizione $C_1, C_2, \dotsc$  ( con tutti i suoi elementi tale che abbiano probabilità positiva ) e un evento A ( con probabilità positiva ) Allora avremo che la probabilità condizionata da una qualsiasi partizione sarà :
@@ -556,6 +562,7 @@ $$x = \begin{cases}
 
 >[!todo]
 >grafico
+>#todo
 
 Come prima cosa verifichiamo che $f(x)$ sia davvero una densità :
 + $f(x)\ge 0, \forall x \in \mathbb{R}$  :  poichè è un esponenziale moltilicato per un numero positivo
@@ -570,6 +577,7 @@ $$\mathbb{P}[X\in B]=\mathbb{P}[X\in (-1,1) ]=\int_{-1}^0 0\ dx + \int_{0}^1 2e^
 
 >[!todo]
 >grafico
+>#todo
 
 #### Funzione di ripartizione
 
@@ -615,6 +623,7 @@ $$F(x)=\int_{-\infty}^{x} f(t) \ dt$$
 
 >[!todo]
 >Example
+>#todo
 
 #### Costanti Caratterisitiche 
 
@@ -705,6 +714,8 @@ $$F(m)=\mathbb{P}[X\le m]\ge \frac 1 2 $$
 **Esempio** :
 
 >[!todo]
+>fai un esempio
+>#todo
 
 ##### Quantili
 
@@ -728,6 +739,9 @@ Vari *quantili* particolari :
 ### Distribuzioni di probabilità
 
 >[!todo]
+>copia appunti su distribuzioni di probabilità discrete e continue
+>#todo
+
 
 
 # Appunti

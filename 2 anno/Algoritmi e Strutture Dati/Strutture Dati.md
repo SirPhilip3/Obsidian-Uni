@@ -298,6 +298,8 @@ Sia $C_i$ il costo dell'$i$-esimo `insert()`
 $$T(n) = \begin{cases} i &\text{se } \exists \ k  : i=2^k+1 \\ 1 &\text{altimenti ( la maggior parte dei casi ) } \end{cases}$$
 
 >[!todo]
+>completa ( pag 41 pdf asd )
+>#todo
 
 ## Implementazione attraverso Liste doppiamente concatenate
 
@@ -489,6 +491,7 @@ Trovare il numero di foglie e il numero di nodi interni di un albero $k$-ario co
 
 >[!todo]
 >completa esercizi ( pag 59 60 pdf asd )
+>#todo
 
 ## Tipo Albero
 
@@ -1231,13 +1234,71 @@ La complessià di questo algoritmo risulta quindi essere $O(h)$
 
 Per trovare il *predecessore* il ragionamento è analogo a quello fatto per trovare il *sucessore* ma invertito 
 
+Se $x$ ha un figlio sinistro allora il predecessore sarà il massimo del sottoalbero sinistro di $x$ altrimenti sarà l'antenato più prossimo di $x$ il cui figlio destro è anch'esso antenato di $x$ 
+Per trovarlo si risale da $x$ verso la radice fino a incontrare la prima svolta a sinistra 
+
+`{c}Tree_predecessor(Node x) -> Node`
+
+Pre-condizione : $x\in T$
+
+```c
+Tree_predecessor(Node x)
+	if x.left != NIL
+		return Tree_max(x.left)
+	else 
+		y = x.p
+		while y != NIL and x == y.left
+			x = y
+			y = y.p
+		return y
+```
+
+Analogamente allo studio del *sucessore* questo algoritmo ha *complessità* $O(h)$
 #### Inserimento
 
+L'idea iniziale è quella di ricercare finchè non trovo un `NIL` dove posso fare l'inserimento
+
+**Esempio** : 
+
+![[Insert.excalidraw]]
+
+**Code**
+
+`{c}Tree_insert(Tree T, Node z)`
+
++ Pre-condizione : 
+	$z$ è un nodo avente le seguenti caratteristiche `{c}z.Key = v , z.left = NIL , z.right = NIL`
++ Post-condizione : inserisce il nodo $z$ nell'albero $T$ mantendo la *proprietà di ricerca*
+
+```c
+Tree_insert(Tree T, Node z)
+	y = NIL    // variabile che usiamo per trovare il padre di z
+	x = T.root // varaibile che usiamo per scorrere l'albero 
+	while x != NIL
+		y = x
+		if z.Key < x.Key
+			x = x.left
+		else 
+			x = x.right
+	z.p = y 
+	if y == NIL // albero vuoto : la radice diventa il nodo z
+		T.root = z
+	else 
+		if z.Key < y.Key
+			y.left = z
+		else
+			y.right = z
+```
+
+**Complessità** : 
+	Il ciclo `{c}while` costa $O(h)$ , poichè sto scendendo dalla radice la profondità massima a cui potrei scendere è $h$ ; le altre istruzioni sono semplici assegnamenti e non influiscono nella complessità totale
+
+La complessità dell'algoritmo risulta quindi essere : $O(h)$
 # Esercizi 
 
 >[!todo]
 >copiare esercizi ( pag 63 -69 46 - 49 )
-
+>#todo
 ## Complessità 
 
 ## Alberi 

@@ -773,6 +773,7 @@ Ed in quanto `Libri` è una specializzazione di `Documenti` avremo :
 
 >[!todo]
 >svolgimento esercizi
+>#todo
 
 ## Modello Relazionale
 
@@ -946,6 +947,7 @@ Dopo :
 ![[Pasted image 20231025101009.png]]
 >[!todo]
 >svolgimento esercizi
+>#todo
 
 
 ## Algebra Relazionale
@@ -1293,9 +1295,6 @@ $$R-(R-S)$$
 + $R-S$ : indica le ennuple che stanno in R ma non in S
 Se poi sottraiamo a queste $R$ allora avremo l'*intersezione* tra $R$ ed $S$
 
->[!todo]
->UNDERSTAND
-
 Ora dimostriamo la precedente formula :
 
 partiamo quindi da :
@@ -1362,6 +1361,8 @@ Nelle *relazioni* abbiamo :
 $$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
 
 >[!todo]
+>completa dimostrazione
+>#todo
 
 **Esempio** :
 
@@ -1378,16 +1379,21 @@ $$ES\div ES\_AR$$
 
 >[!todo]
 >tabella di spiegazione
+>#todo
 
 L'operazione di $\div$ può essere scritta in termini di *operatori primitivi* nel seguente modo :
 $$R\div S=\pi_{X}(R)-\pi_{X}\big((\pi_X(R)\times S)-R\big)$$
 Spiegazione :
 
 >[!todo]
+>completa spiegazione
+>#todo
 
 
 **Dimostrazione** :
 >[!todo]
+>completa dimostrazione
+>#todo
 
 #### Proiezione generalizzata
 
@@ -1567,7 +1573,11 @@ Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazional
 	+ Un'interrogazione del DB è un'espressione che specifica oltre a cosa va recuperato anche le operazioni necessarie al loro recupero ( *procedurale* )
 
 >[!todo] 
+>completa algebra relazionale
+>#todo
 
 ### SQL
 
 >[!todo]
+>Copia powerpoint sql
+>#todo

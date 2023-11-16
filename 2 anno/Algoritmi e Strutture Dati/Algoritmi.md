@@ -6,6 +6,9 @@
 	Un algoritmo si dice corretto se per ogni input si ferma e da in output il risultato corretto ( si dice che l'algoritmo risolve il problema computazionale )
 + **Complessità computazionale** 
 >[!todo]
+>completa
+>#todo
+
 
 Esempio : 
 
@@ -245,6 +248,8 @@ $$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
 Quando è vera la precedente disequazione 
 
 >[!todo]
+>completa la dimostrazione
+>#todo
 ### $\Omega\Big(g(n)\Big)$
 
 Omega grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* :
@@ -270,6 +275,8 @@ $$\bigg(\frac{1}{2}-c\bigg)\cdot n\le3$$
 Quando è vera la precedente disequazione 
 
 >[!todo]
+>completa la dimostrazione
+>#todo
 ### $\Theta\Big(g(n)\Big)$
 
 Risulta la combinazione di *O-grande* e *Omega-grande* ossia :
@@ -950,3 +957,6 @@ Possiamo quindi conludere che la complessità risulta essere :
 $$T(n)=\Theta(n)$$
 Poichè deve essere che $T(n)=\Theta(f(n))\quad f(n)=n$
 
+>[!todo]
+>Aggiungi dimostrazione teorema Master
+>#todo

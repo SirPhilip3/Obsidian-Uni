@@ -420,9 +420,11 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 *javadoc* genera un documento *HTML* con tutta la documentazione dell'*API* , utilizzati dalle *IDE* per mostrare la documentazione per un certo metodo
 
 >[!todo]
->4 pwp
+>copia appunti 4° pwp
+>#todo
 
-^todo
+
+
 
 %%
 # Appunti
