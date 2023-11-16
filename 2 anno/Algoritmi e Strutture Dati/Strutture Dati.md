@@ -1091,25 +1091,152 @@ Albero fortemente sbilanciato in cui $h=n-1$
 
 **Esempio** :
 
+![[BinarySearchS.excalidraw]]
+Questo è un corretto albero binario di ricerca
 
+![[BinarySearchN.excalidraw]]
+Questo non è un albero binario di ricerca poichè la foglia con valore 11 e maggiore del valore del nodo radice
+
+La *proprietà di ricerca* ci permette di elencare in modo non decrescente ( strettamente crescente ) le chiavi di un albero binario di ricerca visitando l'albero in ordine *simmetrico*
+
+**Esempio**
+
+```c
+if u != NIL
+	visita(u->left)
+	print(u->Key)
+	visita(u->right)
+```
+
+![[Research.excalidraw]]
 
 ### Operazioni
 
 #### Ricerca
 
+`{c}Tree_search(Node x, Elem k) -> Node U NIL`
+
+Post-condizione : restituisce un nodo con chiave $k$ se estiste , $NIL$ altrimenti
+##### Versione ricorsiva
+```c
+Tree_search(Node x, Elem k)
+	if x == NIL or x.Key == k
+		return x
+	else 
+		if x.Key > k
+			return Tree_search(x.left, k)
+		else 
+			return Tree_search(x.rigth, k)
+```
+##### Versione iterativa
+```c
+Tree_search_iter(Node x, Elem k)
+	while x != NIL and x.Key != k
+		if k < x.Key
+			x = x.left
+		else 
+			x = x.rigth
+```
+
+##### Correttezza
+
+Possiamo tagliare lo spazio di ricerca perchè la proprietà degli alberi binari di ricerca assicura che nel sottoalbero destro non ci sono nodi con chiavi minori di `x.Key`.
+In maniera analoga si taglia il sottoalbero sinistro perchè la proprietà degli alberi binari di ricerca assicura che nel sottoalbero sinistro non ci sono nodi con chiavi maggiori di `x.Key`.
+##### Complessità
+
+I nodi incontrati durante la ricorsione formano un cammino verso il basso a partire dalla radice dell'albero quindi il tempo di esecuzione è al massimo l'altezza dell'albero ossia $O(h)$ 
++ Se l'albero è bilanciato : $T(n)=O(\log n)$
++ Se l'albero è fortemente sbilanciato ( catena di nodi ) : $T(n)=O(n)$
+
+La complessità è identica sia per il modello ricorsivo che iterativo , quest'ultimo però risulta più veloce in pratica poichè non vi sono chiamate a funzione da svolgere 
 #### Massimo
 
+`{c}Tree_max(Node x) -> Node`
+
++ Pre-condizione : $x\in T$
++ Post-condizione : ritorna il nodo con chiave più grande nel sottoalbero radicato in $x$
+
+```c
+Tree_max(Node x)
+	while x.right != NIL
+		x = x.right
+	return x
+```
+
+Il massimo si troverà andando sempre a destra nell'albero poichè il nodo finale dovrà per forza essere maggiore di tutti i nodi precedenti ( è sicuramente maggiore dei nodi di sinistra ) per via della *prorpietà di ricerca*
 #### Minimo
+
+`{c}Tree_min(Node x) -> Node`
+
++ Pre-condizione : $x\in T$
++ Post-condizione : ritorna il nodo con chiave più piccola nel sottoalbero radicato in $x$
+
+```c
+Tree_min(Node x)
+	while x.left != NIL
+		x = x.left
+	return x
+```
+
+Il minimo si troverà andando sempre a sinistra nell'albero poichè il nodo finale dovrà per forza essere minore di tutti i nodi precedenti ( è sicuramente minore dei nodi di destra ) per via della *prorpietà di ricerca*
+##### Correttezza
+
+Se un nodo $x$ non ha un sottoalbero sinistro allora poichè ogni chiave nel sottoalbero destro è almeno grande come `x.Key` la chiave minima è proprio `x.Key`
+
+Se $x$ ha un sottoalbero sinistro allora nessuna chiave nel sottoalbero destro può essere più piccola di `x.Key` e ogni chiave nel sottoalbero sinistro non è maggiore di `x.Key` . Dunque il minimo lo trovo nel sottoalbero sinistro
+##### Complessità
+
+Il tempo di esecuzione è $O(h)$ perchè la sequenza di nodi visitati forma un cammino che scende dalla radice e può avere lunghezza massim $h$
 
 #### Sucessore
 
+Dato un albero binario di ricerca, voglio determinare dato un nodo il suo sucessore nell'ordine stabilito in una visita simmetrica 
+Se tutte le chiavi sono distinte il sucessore di un nodo $x$ è il nodo con la più piccola chiave che è maggiore di `x.Key`
+
+Distinguiamo 2 casi : 
++ $x$ ha un figlio destro 
+	+ In questo caso il sucessore è il minimo del sottoalbero destro di $x$
+	**Esempio** :
+	![[SuccessorWithRChildren.excalidraw]]
++ $x$ non ha un figlio destro
+	+ In questo caso , se esiste ( perchè $x$ potrebbe essere il massimo ) , il *sucessore* è l'antenato più prossimo di $x$ il cui figlio sinistro è anch'esso antenato di $x$ .
+	+ Per trovarlo si risale da $x$ verso la radice fino ad incontrare la prima svolta a destra 
+	**Esempio** :
+	![[SuccessorWithoutChildrens.excalidraw]]
+**Code** :
+
+`{c}Tree_successor(Node x) -> Node`
+
+Pre-condizione : $x\in T$
+
+```c
+Tree_successor(Node x)
+	if x.right != NIL
+		return Tree_min(x.right)
+	else 
+		y = x.p
+		while y != NIL and x == y.right
+			x = y
+			y = y.p
+		return y
+```
+
+##### Complessità 
+
+Se `{c}x.right != NIL` viene chiamata `{c}Tree_min()` che ha complessità $O(h)$ 
+Altrimenti viene scielto un cammino partendo da $x$ andando vero la radice , anche questo può essere lungo al massimo come l'altezza dell'albero , quindi anche in questo caso la complessità risulta essere $O(h)$
+
+La complessià di questo algoritmo risulta quindi essere $O(h)$
 #### Predecessore
+
+Per trovare il *predecessore* il ragionamento è analogo a quello fatto per trovare il *sucessore* ma invertito 
 
 #### Inserimento
 
-#### Cancellazione
-
 # Esercizi 
+
+>[!todo]
+>copiare esercizi ( pag 63 -69 46 - 49 )
 
 ## Complessità 
 
