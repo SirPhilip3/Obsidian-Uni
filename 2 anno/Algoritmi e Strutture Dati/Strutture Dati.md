@@ -811,30 +811,303 @@ visitaDFS(Node r)
 			push(S, u.left)
 ```
 
-**Spiegazione** : 
-	Esempio di svolgimento sul seguente albero :
+**Complessità** : 
+	Poichè devo visitare tutti i nodi dell'albero avrò una complessità lineare ossia $\Theta(n)$
+###### Spiegazione :
+
+Esempio di svolgimento sul seguente albero :
+
 ![[TestTree.excalidraw]]
 
+Inizialmente avremo :
++ `{C}s = {'A'}`
 
+Entriamo nel `{c}while` poichè lo stack non è vuoto
 
+1° ciclo :
++ `{c}u='A'  // s = {NIL}`
++ `//visit 'A'`
++ `{c}s={'B'} // 1° push `
++ `{c}s={'B','L'} // 2° push`
 
+2° ciclo :
++ `{c}u='L'  // s = {'B'}`
++ `//visit 'L'`
++ `{c}s={'B','R'} // 1° push `
++ `{c}s={'B','R','E'} // 2° push`
 
+3° ciclo :
++ `{c}u='E'  // s = {'B','R'}`
++ `//visit 'E'`
++ `{c}s={'B','R'} // 1° push non ho figli dx`
++ `{c}s={'B','R'} // 2° push non ho figli sx`
+
+4° ciclo :
++ `{c}u='R'  // s = {'B'}`
++ `//visit 'R'`
++ `{c}s={'B'} // 1° push non ho figli dx`
++ `{c}s={'B'} // 2° push non ho figli sx`
+
+5° ciclo :
++ `{c}u='B'  // s = {NIL}`
++ `//visit 'B'`
++ `{c}s={'O'} // 1° push `
++ `{c}s={'O'} // 2° push non ho figli sx`
+
+6° ciclo :
++ `{c}u='O'  // s = {NIL}`
++ `//visit 'O'`
++ `{c}s={NIL} // 1° push non ho figli dx`
++ `{c}s={NIL} // 2° push non ho figli sx`
+
+7° ciclo :
+Il ciclo `{c}while` termina poichè lo stack è vuoto , abbiamo visitato tutti i nodi a partire dal nodo radice
+La vista finale sarà : `A,L,E,R,B,O`
 ##### Versione Ricorsiva
 
-
+```c
+visitaDFS_rec(Node r)
+	if r != NIL
+		// visita il nodo r
+		visitaDFS_rec(r.left)
+		visitaDFS_rec(r.rigth)
+```
 ##### Dimostrazione
 
+**Teorema** :
+	Se $x$ è la radice di un sottoalbero di $n$ nodi la chiamata di `visitaDFS_rec(x)` richiede un tempo $\Theta(n)$
+
+**Dimostrazione** :
+	$T(n)$ è il tempo di esecuzione della procedura quando è chiamata per la radice di un sottoalbero di $n$ nodi 
+	Poichè `visitaDFS_rec` visita tutti gli $n$ nodi del sottoalbero avremo che  $T(n)=\Omega(n)$ 
+	La complessità totale sarà :
+	$$
+	T(n) = \begin{cases} 0 & n=0 \\ T(k)+T(n-k-1)+d & n \gt 0 \end{cases}
+	$$
+Dove :
++ $k$ : è il numero di nodi del sottoalbero sinistro
++ $n-k-1$ : è il numero di nodi del sottoalbero destro
++ $d$ : tempo necessario per la visita del nodo ( costante )
+
+>[!warning]
+>$T(n)!=2\cdot T(\frac n 2)$
+>Questo avviene solo se i sotttoalberi destri e sinistri sono perfettamente distribuiti ( l'albero è bialanciato ) 
+
+Non essendo nella forma in cui la ricorsione può essere risolta con il teorema *Master* utilizziamo il *metodo di sostituzione*
+
+**Intuizione** :
+	La complessità è *lineare* ( $\Theta(n)$ )
+	Supponiamo quindi che $T(n)=a\cdot n +b$ ( se esistono degli assegnamenti per $a$ e $b$ allora possiamo dire che la complessità è *lineare* )
+
+Procediamo quindi alla dimostrazione per *induzione completa* su $n$
+
+**Caso Base** :
+	Con $n=0\implies T(0)=c$ per definizione possiamo dire che :
+	$$T(0)=a\cdot n + b=a\cdot 0 +b = b$$
+	Ponendo infine $b=c$ abbiamo verificato il *caso base*
+
+  **Passo induttivo** :
+	Assumiamo che per ogni $m\lt n$ vale che $T(m)=a\cdot m +b$ 
+	Lo dimostro per $n$ 
+	$$
+	T(n)=T(k)+T(n-k-1)+d
+	$$
+	$$
+	= ak+b+a(n-k-1)+b+d \quad \text{sostituendo}
+	$$
+	$$
+	=ak+b+an-ak-a+b+d
+	$$
+	$$
+	=an-a+2b+d
+	$$
+	Vogliamo dimostrare che $an-a+2b+d=an+b$
+	$$
+	an-a+2b+d=an+b
+	$$
+	$$
+	-a+b+d=0 \implies a=b+d
+	$$
+	$$
+	a=c+d\quad \text{poichè per il caso base abbiamo che $b=c$}
+	$$
+	Sostituendo infine nell'equazione originale abbiamo :
+	$$
+	T(n)=(d+c)n+c \quad \text{sostituendo b con c}
+	$$
+	Abbiamo così dimostrato che anche per $n\gt m$ è valido che il tempo di esecuzione è lineare
+
+La procedura `visitaDFS_rec` ha quindi tempo di esecuzione $T(n)=\Theta(n)$
 
 #### Visite di alberi binari
 
+In base alla posizione dell'operatore di visita all'interno di `visitaDFS_rec` abbiamo diverse tipologie di visite 
 ##### Visita anticipata ( in preordine )
+
+Si vista prima la radice poi si fanno le chiamate ricorsive
+
+**Code** :
+```c
+visitaDFS_rec(Node r)
+	if r != NIL
+		// visita il nodo r
+		visitaDFS_rec(r.left)
+		visitaDFS_rec(r.rigth)
+```
+
+**Esempio** :
+	Se applichiamo questo algoritmo sull'albero visto in precedenza avremo che verrà visitato nel seguente modo :
+	`A,L,E,R,B,O`
 
 ##### Visita simmetrica ( in ordine )
 
+Prima si fa la chiamata ricorsiva sul figlio sinistro , sucessivamente si visita la radice ed infine si fa la chiamata ricorsiva sul figlio destro
+
+**Code** :
+```c
+visitaDFS_rec(Node r)
+	if r != NIL
+		visitaDFS_rec(r.left)
+		// visita il nodo r
+		visitaDFS_rec(r.rigth)
+```
+
+**Esempio** :
+	Se applichiamo questo algoritmo sull'albero visto in precedenza avremo che verrà visitato nel seguente modo :
+	`E,L,A,R,B,O`
 ##### Visita posticipata ( in postordine )
 
+Prima si fa la chiamata ricorsiva sul figlio sinistro e destro ed infine si visita la radice
+
+**Code** :
+```c
+visitaDFS_rec(Node r)
+	if r != NIL
+		visitaDFS_rec(r.left)
+		visitaDFS_rec(r.rigth)
+		// visita il nodo r
+```
+
+**Esempio** :
+	Se applichiamo questo algoritmo sull'albero visto in precedenza avremo che verrà visitato nel seguente modo :
+	`A,L,B,E,R,O`
+
 #### Visita in ampiezza - Breadth-First Search ( BFS )
+
+Questo algoritmo ci permette di visitare tutti i nodi presenti alla corrente profondità di un albero prima di scendere e visitare i nodi delle profondità inferiori
+
+Verrà utilizzata una struttura dati queue con politica *FIFO*
+
+```c
+visitaBFS(Node r)
+	Queue C
+	C = newQueue()
+	enqueue(C, r)
+	while not queueEmpty(C)
+		u = dequeue(C)
+		if u != NIL
+			// visita il nodo u
+			enqueue(C, u.left)
+			enqueue(C, u.right)
+```
+
+**Complessità** : 
+	Per il teorema precedente la complessità è $\Theta(n)$
+
+##### Spiegazione
+
+Eseguiamo l'algoritmo sull'albero percedente
+
+Inizialmente avremo :
++ `{C}C = {'A'}`
+
+Entriamo nel `{c}while` poichè la queue non è vuota
+
+1° ciclo :
++ `{c}u='A'  // s = {NIL}`
++ `//visit 'A'`
++ `{c}s={'L'} // 1° enqueue `
++ `{c}s={'L','B'} // 2° enqueue`
+
+2° ciclo :
++ `{c}u='L'  // s = {'B'}`
++ `//visit 'L'`
++ `{c}s={'B','E'} // 1° enqueue `
++ `{c}s={'B','E','R'} // 2° enqueue`
+
+3° ciclo :
++ `{c}u='B'  // s = {'E','R'}`
++ `//visit 'B'`
++ `{c}s={'E','R','O'} // 1° enqueue `
++ `{c}s={'E','R','O'} // 2° enqueue non ho figli dx`
+
+4° ciclo :
++ `{c}u='E'  // s = {'R','O'}`
++ `//visit 'E'`
++ `{c}s={'R','O'} // 1° enqueue non ho figli sx`
++ `{c}s={'R','O'} // 2° enqueue non ho figli dx`
+
+5° ciclo :
++ `{c}u='R'  // s = {'O'}`
++ `//visit 'R'`
++ `{c}s={'O'} // 1° enqueue non figli sx`
++ `{c}s={'O'} // 2° enqueue non ho figli dx`
+
+6° ciclo :
++ `{c}u='O'  // s = {NIL}`
++ `//visit 'O'`
++ `{c}s={NIL} // 1° enqueue non ho figli sx`
++ `{c}s={NIL} // 2° enqueue non ho figli dx`
+
+7° ciclo :
+Il ciclo `{c}while` termina poichè lo stack è vuoto , abbiamo visitato tutti i nodi a partire dal nodo radice
+La vista finale sarà : `A,L,B,E,R,O`
+
 # Alberi Binari di Ricerca
+
+## Alberi binari bilanciati
+
+**Definizione** : 
+	Un albero binario è bilanciato se la sua altezza risulta essere limitata superiormente da $h=O(\log n)$ 
+
+Un albero *completo* è un albero *bilanciato* ma un albero bilanciato non è necessaraimente completo
+
+**Esempio** :
+
+![[BilanciatoNotComplete.excalidraw]]
+Albero bilanciato ma non completo
+
+![[Unbalanced.excalidraw]]
+Albero fortemente sbilanciato in cui $h=n-1$
+
+## Alberi binari di ricerca
+
+**Definizione** :
+	Un *albero binario di ricerca* è un albero binario che soddifa la *proprietà di ricerca*
+
+**Proprietà di ricerca** :
++ Sia $x$ un nodo di un albero binario di ricerca. Se $y$ è un nodo nel sottoalbero sinistro di $x$ , allora $y.Key \le x.Key$
++ Se $y$ è un nodo nel sottoalbero destro di $x$ allora $y.Key \ge x.Key$ 
+
+**Esempio** :
+
+
+
+### Operazioni
+
+#### Ricerca
+
+#### Massimo
+
+#### Minimo
+
+#### Sucessore
+
+#### Predecessore
+
+#### Inserimento
+
+#### Cancellazione
 
 # Esercizi 
 
