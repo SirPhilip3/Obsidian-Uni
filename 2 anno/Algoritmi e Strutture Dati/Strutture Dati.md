@@ -1,6 +1,3 @@
->[!todo]
->traduzione
-
 # Definizioni 
 
 ## Tipo di dato
@@ -688,8 +685,155 @@ Possiamo rappresentare un albero facilente attraverso la definizione di un recor
 + Un puntatore al padre
 + Altri puntatori ( per accedere ai figli )
 
+### Puntatori ai Figli 
+
+Se ogni nodo ha grado al più $k$ possiamo mantenre in ogni nodo un puntatore a ciascuno dei possibili $k$ figli 
+
+Supponendo di avere un albero binario ( $k=2$ ) ogni nodo dell'ablero avrà :
++ `x.p` : puntatore al padre 
++ `x.left` : puntatore al figlio sinistro
++ `x.rigth` : puntatore al figlio destro
++ `x.Key` : informazione del nodo
+
+**Esempio** :
+
+![[PointerFigli.excalidraw]]
+
+Definiamo un albero `T` avente come campo `T.root` , un puntatore puntatore alla radice dell'albero
+
+Lo spazio richiesto da questa implementazione è $\Theta(n\cdot k)$ , se $k$ è costante avremo $\Theta(n)$ 
+
+#### Operazioni
+
+##### Padre
+
+```c
+padre(Tree P, Node v)    // v è un puntatore
+	return v.p
+```
+
+**Complessità** : $O(1)$
+
+##### Figli
+
+```c
+figli(Tree P, Node v) // funziona per un albero binario
+	l = crealista()
+	if v.left != NIL
+		// inserisci v.left in l
+	if v.rigth != NIL
+		// inserisci v.rigth in l
+	return l
+```
+
+**Complessità** : $O(1)$  ( solo if )
+
+#### Svantaggi 
+
+In presenza di un $k$ grande la maggior parte dei puntatori ai figli saranno `NIL` , ciò comporta un grande spreco di memoria , infatti questa struttura si utilizza principalmente per alberi *binari*
+
+### Figlio sinistro - Fratello destro
+
+Questa struttura dati è più adatta ad alberi generali in quanto c'è meno spreco di spazio ( meno puntatori a `NIL` )
+
+Ogni nodo `x` ha i seguenti campi :
++ `x.Key` : contiene l'informazione del nodo
++ `x.p` : puntatore al padre
++ `x.left_child` : puntatore al figlio più a sinistra di `x` ( se è `NIL` `x` è un nodo foglia )
++ `x.rigth_sib` : puntatore al fratello di `x` immediatamente alla sua destra ( se è `NIL` `x` è il figlio più a destra del padre )
+
+**Esempio**
+
+![[FigliFratelli.excalidraw]]
+
+#### Operazioni
+
+##### Padre
+
+```c
+padre(Tree P, Node v)
+	return v.p
+```
+
+**Complessità** : $O(1)$
+##### Figli
+
+```c
+padre(Tree P, Node v)
+	l = crealista()
+	iter = v.left_child
+	while iter != NIL
+		// inserisci iter in l
+		iter = iter.rigth_sib
+	return l
+```
+
+**Complessità** : $\Theta(\text{grado}(v))=\Theta(k)$
+	Questo poichè il numero di volte che svolgiamo il corpo del `{c}while` dipende dal numero di figli ( o $\text{grado}$ del nodo $v$ )
+
+### Algoritmi di visita degli alberi
+
+#### Visita generica
+
+```c
+visitaGenerica(Node r)
+	S = {r}
+	while S != emptySet
+		// estrai un nodo n da S
+		// visita il nodo n
+		S = S U {figli di n}
+```
+
+**Teorema** :
+	L'algoritmo di visita applicato alla radice di un albero con $n$ nodi termina in $O(n)$ iterazioni , lo spazio necessario da allocare ad $S$ è $O(s)$
+
+**Dimostrazione** :
+	Assumiamo l'ipotesi che la cancellazione e l'inserimento da $S$ siano costanti
+	Ogni nodo verrà inserito ed estratto da $S$ *una sola volta* poichè in un albero non si può tornare ad un nodo a partire dai suoi figli se lo stiamo scorrendo di figlio in figlio 
+	Quindi le iterazioni del ciclo `{c}while` saranno al più $O(n)$
+	Poichè ogni nodo compare al più una volta in $S$ lo spazio richiesto è $O(n)$  
+#### Visita in profondità - Depth-First Search ( DFS )
+
+##### Versione Iterativa
+
+Per questo algoritmo utilizzeremo una struttura dati a pila/stack $S$ dotata di politica *LIFO*
+
+```c
+visitaDFS(Node r)
+	Stack s
+	s = newStack()
+	push(S, r)
+	while not stack.empty(S)
+		u = pop(S)  // estrazione
+		if u != NIL
+			// visita il nodo u
+			push(S, u.rigth)
+			push(S, u.left)
+```
+
+**Spiegazione** : 
+	Esempio di svolgimento sul seguente albero :
+![[TestTree.excalidraw]]
 
 
+
+
+
+##### Versione Ricorsiva
+
+
+##### Dimostrazione
+
+
+#### Visite di alberi binari
+
+##### Visita anticipata ( in preordine )
+
+##### Visita simmetrica ( in ordine )
+
+##### Visita posticipata ( in postordine )
+
+#### Visita in ampiezza - Breadth-First Search ( BFS )
 # Alberi Binari di Ricerca
 
 # Esercizi 
