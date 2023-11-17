@@ -451,7 +451,7 @@ javabytecode
 operand stack  , pila delle operazioni 
 
 i davanti a bytcode = int
-
+/git
 ## 27/09/2023
 
 [bytecode]([Java bytecode - Wikipedia](https://en.wikipedia.org/wiki/Java_bytecode))
@@ -985,6 +985,10 @@ interfaces
 
 abstract class
 + solo eresitarietà multiple
+
+## 17/11/2023
+
+
 
 
 
