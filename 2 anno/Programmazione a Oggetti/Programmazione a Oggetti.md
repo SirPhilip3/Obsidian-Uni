@@ -988,6 +988,42 @@ abstract class
 
 ## 17/11/2023
 
+**Dispatching method calls**
+
+reciever -> (this.speed ,, f.speed) che oggetto
+
+quale metodo invocare , posso scieglere tra statico e dinamico
+se mi baso sul tipo statico il metodo non cambierà a tempo di esecuzione 
+chiamate a funzione cambiano a seconda del tipo dinamico
+
+1 dal tipo dinamico guardo se ha implementaizione di quel metodo se è ereditata guardo nella superclasse 
+
+risoluzione invocazione di metodo at runtime
+
+risoluzione statica dei parametri ( con overloading scieglie quella con tipi statici soddisfatti ) 
+perf
+
+casting `figure->wizard` wizard è il tipo statico 
+
+con più impleemtazioni che può scigliere sciglie  quella con i tipi più vicini' ( non devo cambiare tipo )
+
+se ci sono 2 implemetazioni che hanno lo stesso 'costo' , priorità di scelta la stessa per il compiler
+
+metodi statici  fa static binding quindi anche se viene chiamato da un tipo `dinamico` figthre viene eseguito il metodo del tipo statico `figure`
+
+invocare metodo statico sempre su una classe no su un istanza , di base non viene ereditato quindi non può essere overridato
+
+invokespecial ( binding statico sia del reciever sia dei  ) per costructors
+
+`{java}return new Example(10)`
+
+a livello statico so già che metodo devo chiamare -> example è satico + con parametri so il costruttore
+
+![[Drawing 2023-11-17 11.48.03.excalidraw]]
+
+classi generiche -> può ricevere dei tipi come parametri
+
+
 
 
 
