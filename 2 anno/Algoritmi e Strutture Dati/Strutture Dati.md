@@ -977,7 +977,7 @@ visitaDFS_rec(Node r)
 
 **Esempio** :
 	Se applichiamo questo algoritmo sull'albero visto in precedenza avremo che verrà visitato nel seguente modo :
-	`E,L,A,R,B,O`
+	`E,L,R,A,B,O`
 ##### Visita posticipata ( in postordine )
 
 Prima si fa la chiamata ricorsiva sul figlio sinistro e destro ed infine si visita la radice
@@ -993,7 +993,7 @@ visitaDFS_rec(Node r)
 
 **Esempio** :
 	Se applichiamo questo algoritmo sull'albero visto in precedenza avremo che verrà visitato nel seguente modo :
-	`A,L,B,E,R,O`
+	`E,R,L,O,B,A`
 
 #### Visita in ampiezza - Breadth-First Search ( BFS )
 
