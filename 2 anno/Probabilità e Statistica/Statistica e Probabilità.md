@@ -852,9 +852,108 @@ Avremo che la funzione di probabilità risulterà essere :
 $$
 \mathbb{P}[X=x]=\binom n x p^x(1-p)^{n-x},\quad x=0,1,\dots,n 
 $$
+Dove $p$ risulta essere la probabilità di successo 
+##### Dimostrazione
 
+Possiamo dimostrare che la precedente funzione di probabilità risukta essere una distribuzione di probabilità poichè : 
+$$
+\sum_{x=0}^n\mathbb{P}[X =x] = \sum_{x=0}^n \binom n x p^x (1-p)^{n-x}
+$$
+Questo è equivalente al binomio di Newton nella seguente forma :
+$$
+(a+b)^n=\sum_{x=0}^n \binom n x a^x (b)^{n-x}
+$$
+Sostituendo avremo :
+$$
+\sum_{x=0}^n\mathbb{P}[X =x]=(p+(1-p))^x=1
+$$
+>[!note]
+> La *distribuzione di Bernuolli* è un caso particolare della binomiale con $n=1$
 
+##### Esempi
 
+###### 1
+Si consideri un'urna contenente 4 palline bianche e 3 nere . Sia $S_3$ la variabile che conta il numero di palline bianche ottenute in tre estrazioni con reinserimento 
+
+Calcolare $\mathbb{P}[S_3=2]$
+
+Consideriamo l'estrazione di una pallina bianca come un successo avremo che : $\mathbb{P}[\text{bianca}]=4/7$  si può affermare che $S_3 \sim Bin(3,4/7)$
+
+Avremo quindi che :
+$$\mathbb{P}[S_3=2]=\binom 3 2\bigg(\frac 4 7\bigg)^2\bigg(\frac 3 7\bigg)^{(3-2)}=0.4198$$
+###### 2
+
+La distribuzione binomiale is utilizza spesso nel caso di *campionamento da popolazioni infinite* quando si conosce la probabilità di successo $p$
+
+Se la popolazione viene considerata infinita non si distingue tra estrazioni con o senza reinserimento poichè si assume che la probabilità di successo in estrazioni sucessive non cambia 
+
+**Esempio** :
+
+Un motore di ricerca cerca una parola in una sequenza infinita di siti web bindipendenti , il 20% dei siti contentgono la parola cercata.
+Qual'è la probabilità che 5 dei primi 10 siti visitati contengono la parola cercata ?
+E la probabilità che *almeno* 5 dei primi 10 siti la contengano ? 
+
+Sia $Y$ la varaibile aleatoria che conta il numero di siti , fra i primi 10 visitati , che contengono la parola cercata.
+Allora $Y\sim Bin(n=10,p=0.2)$
+
+Avremo quindi :
+$$\mathbb{P}[Y=5]=\binom {10} 5 0.2^5(1-0.2)^{10-5}=0.0264$$
+$$\mathbb{P}[Y\le5]=\mathbb{P}[Y=0]+\mathbb{P}[Y=1]+\dots+\mathbb{P}[Y=5]=0.1074+0.2684+\dots+0.0264=0.9936$$
+##### Proprietà
+
+La forma della binomiale dipende di parametri di essa :
+![[Pasted image 20231122145127.png]]
+
+###### Media
+
+$$
+E[X]=\sum_{k=0}^n k\binom n k p^k (1-p)^{n-k}
+$$
+>[!todo]
+>completa dimostrazione 
+>#todo
+
+$$E[X]=n\cdot p$$
+###### Varianza
+
+La varianza si calcola tenendo conto che 
+$$
+E\big[X^2\big]=\sum_{k=0}^n k^2\binom n k p^k (1-p)^{n-k}
+$$
+>[!todo]
+>completa dimostrazione 
+>#todo
+
+$$E[X]=n(n-1)\cdot p^2+np$$
+
+Si ha dunque 
+$$Var[X]=E\big[X^2\big]-E[X]^2=np(1-p)$$
+#### Distribuzione di Poisson
+
+Una variabile $X$ che assume valori nell'insieme dei numeri naturali $\mathbb{N}$ ha *dsitribuzione di Posson* di parametro $\lambda\gt 0$ se :
+$$
+\mathbb{P}[X=k]=\frac{\lambda^k}{k!}\cdot e^{-\lambda}, \quad k=0,1,\dots
+$$
+
+Scriveremo allora 
+$$X\sim Po(\lambda)$$
+
+>[!todo]
+>inserici grafico
+>#todo
+
+##### Dimostrazione 
+
+Possiamo dimostrare che risulta essere una distribuzione vedendo che :
+$$\sum_{i=0}^{+\infty}\frac{\lambda^i}{i!}e^{-\lambda}=e^{-\lambda}\sum_{i=0}^{+\infty}\frac{\lambda^i}{i!}=e^{-\lambda}e^{\lambda}=1$$
+##### Utilizzo
+
+La vaiabile di *Poisson* viene utilizzata come modello per il conteggio di un certo fenomeno di interesse in un determinato intervallo ( tempo , spazio etcc... ) 
+Ad esempio : 
++ chiamate in arrivo ad un centralino in un certo intervallo di tempo
++ macchine transitanti ad un casello autostradale in un certo periodo del giorno 
++ difetti rilevati in un pezzo di filo d'acciaio 
++ terremoti manifestatisi in una data area nell'arco degli ultimi 10 anni
 
 # Appunti
 #### R-Studio
