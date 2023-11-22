@@ -1024,10 +1024,45 @@ $$\sum_{x=1}^\infty \mathbb{P}[X=x]=p\sum_{x=1}^\infty(1-p)^{x-1}=p\frac{1}{1-(1
 ###### Media
 
 $$\mathbb{E}[X]=1/p$$
+>[!todo]
+>dimostrazione
+>#todo
 ###### Varianza
 
 $$Var[X]=\frac{1-p}{p^2}$$
+>[!todo]
+>dimostrazione
+>#todo
+###### Mancanza di Memoria
 
+La probabilità non cambia sapendo che le precedenti ripetizioni siano state un *insuccesso* , per ogni nuovo elemento di cui si fa una prova di bernuolli la sua probabilità di essere un successo o insuccesso non dipende dalle precedenti probabilità ( è come se facessi l'esperimento di bernulli la prima volta , come se non fossero mai evvenute le precedenti )
+
+Questo può essere dimostrato nel seguente modo :
+$$\mathbb{P}[X\gt m + n| X\gt m]=\frac{\mathbb{P}[X\gt m + n]}{\mathbb{P}[X\gt m]}$$
+Come da definizione di *probabilità condizionata*
+Sostutiamo ora tenendo conto che $\mathbb{P}[X\gt k]=(1-p)^k$
+$$\frac{(1-p)^{m+n}}{(1-p)^m}=\frac{(1-p)^m(1-p)^n}{(1-p)^m}=(1-p)^n=\mathbb{P}[X\gt n]$$
+
+La probabilità quindi di $m+n$ sapendo la probabilità di $m$ ( gli elementi prima ) risulta essere la probablità di $n$ , ossia la probabilità risulta indipendente dalla probabilità degli elementi precedenti ( $m$ )
+
+##### Esempio
+
+Consideriamo che il 20% dei siti visitati contengono la parola cercata
+
+Supponiamo che $X$ conti il numero di pagine da visitare per trovare per la prima volta la parola cercata
+
+1. Qual'è la probabilità di dover visitare 15 siti per trovare la parola ?
+	$$
+	\mathbb{P}[X=15]=0.2\times0.8^{14}=0.0088
+	$$
+2. Dato che i primi 4 siti visitati non contenevano la parola cercata , qual'è la probabilità di doveren visitare più di 10 in tutto per trovvare la parola cercata ?
+	$$
+	\mathbb{P}[X\gt10|X\gt4]=\mathbb{P}[X\gt10-4]=\mathbb{P}[X\gt6]=0.8^6=0.2621
+	$$
+3. Qual'è il numero medio di siti da visitare per trovare la parola la prima volta
+	$$
+	\mathbb{E}[X]=\frac 1 {0.2} = 5
+	$$
 ### Distribuzioni di probabilità Continue
 
 # Appunti
