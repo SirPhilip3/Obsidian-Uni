@@ -733,14 +733,126 @@ Vari *quantili* particolari :
 + I *decili* sono i quantili di livello $\frac k {10}$ con $k=1,2,\dots,9$  
 + I *quartili* sono i quantili di livello $0.25$ ( primo quartile ) , $0.5$ ( mediana ) e $0.75$ ( terzo quantile )
 
-
-
-
 ### Distribuzioni di probabilità
 
 >[!todo]
 >copia appunti su distribuzioni di probabilità discrete e continue
 >#todo
+
+#### Distribuzione Uniforme Discreta 
+
+Consideriamo una varaibile aleatoria $X$ che assume un numero finito di valori , $\{x_1,\dots,x_n\}$ , tutti con la stessa probabilità $p_i=1/n, \ i=\ 1,\dots,n$
+
+Si dice allora che $X$ ha una *distribuzione uniforme* e si scrive :
+$$X \sim U\{x_1,\dots,x_n\}$$
+
+Graficamente :
+![[Pasted image 20231122123112.png]]
+
+**Esempi** :
+	$X$ descrive il risultato del lancio di un dado ( non truccato ). I valori possibili per $X$ sono gli interi fra $1$ e $6$ ciascuno con probabilità $\frac 1 6$ di verificarsi
+
+##### Proprietà
+
+###### Media 
+Se i valori di $x$ sono equidistanti tra di loro abbiamo :
+$$E[x]=\frac{x_{min}+x_{max}}{2}$$
+Altrimenti avremo :
+$$
+\sum_{i=1}^n x_i\cdot p_i = \frac 1 n \sum_{i=1}^n x_i 
+$$
+###### Varianza
+Se i valori di $x$ sono equidistanti tra di loro abbiamo che :
+	la varianza si può ricavare sapendo che $Var(X)=E[X^2]-E[X]^2$
+	Avremo quindi : 
+$$
+Var(X)=\frac{(x_{max}-x_{min})^2}{12}
+$$
+Altrimenti avremo che :
+$$\sum_{i=1}^n x_i^2\cdot p_i - E[X]^2$$
+$$= \frac 1 n \sum_{i=1}^n x^2_i-\frac 1 {n^2}(\sum_{i=1}^n x_i)^2$$
+#### Distribuzione Ipergeometrica 
+
+Sia $X$ la variabile aleatoria che conta il numero di successi su $n$ estrazioni senza reinserimento da una popolazione con $N$ elementi dei quali $K$ sono considerati successo. Si dice allora che che $X$ ha una *distribuzione ipergeometrica* di parametri $N$ , $K$ e $n$ , si scrive :
+$$
+X\sim Ig(N,K,n)
+$$
+Avremo che la probabilità di un evento sarà dato da :
+$$\mathbb{P}[X=k]=\frac{\binom{K}{k}\cdot\binom{N-K}{n-k}}{\binom{N}{n}}$$
+con : $k=max\{0,n-(N-K)\},\dots,min\{n,K\}$  con $n\le N$
+
+##### Proprietà
+###### Media
+
+$$E[X]=n\cdot \frac K N$$
+###### Varianza
+
+$$Var[X]=n\cdot\frac K N \cdot \frac{N-K}N\cdot \frac {N-n}{N-1}$$
+
+**Esempio** :
+
+Un software consiste di 12 programmi , 5 dei quali necessitano di upgrade. Se vengono scelti a caso 4 programmi per un test :
+1.  Qual'è la probabilità che almeno 2 di essi siano da aggiornare ?
+	Sia $X$ la variabile che conta il numero di programmi da aggiornare fra 4 scelti 
+	Allora $X \sim Ig(N=12,K=5,n=4)$ 
+	E la probabilità richiesta è :
+	$$
+	\mathbb{P}[X\ge 2] = 1 - \mathbb{P}[X \le 1]
+	$$
+	$$
+	=1-\mathbb{P}[X=0]-\mathbb{P}[X=1]
+	$$
+	$$
+	1 -\frac{\binom{5}{0}\cdot\binom{12-5}{4-0}}{\binom{12}{4}} -\frac{\binom{5}{1}\cdot\binom{12-5}{4-1}}{\binom{12}{4}}
+	$$
+2. Qual'è il numero medio di programmi da aggiornare fra i 4 scelti ?
+	Il numero atteso di programmi da aggiornare fra i 4 scelti è
+	$$
+	\mathbb{E}[X]=4\cdot\frac{5}{12}=\frac 5 3 
+	$$
+
+#### Distribuzione di Bernuolli
+
+Supponiamo di eseguire un esperimento i cui possibili risultati possono essere classificati come *successo* con probabilità $p$ o *insuccesso* con probabilità $1-p$ . Questo esperimento viene chiamato **Prova Bernulliana** 
+
+**Definizione** :
+	Sia $X$ la variabile casuale che prende il valore $X=1$ quando l'esito di una *prova bernulliana* è un *successo* e $X=0$ quando è un *insuccesso* . 
+	Si dice allora che $X$ ha una *distribuzione di Bernuolli* di parametro $p\in (0,1)$ e si scrive 
+	$$
+	X\sim Ber(p)
+	$$ 
+La funzione di probabilità è :
+$$
+\mathbb{P}[X=x]=p^x(1-p)^{1-x}\mathbb{1}_{\{0,1\}}(x) = \begin{cases}
+   1-p &\text{se } x=0; \\
+   p &\text{se } x=1; \\
+   0 &\text{altrimenti}
+\end{cases}
+$$
+##### Proprietà
+###### Media
+
+$$E[X]=p$$
+Avendo $K$ il numero di successi e $N$ il numero totale degli elementi avremo :
+$$E[X]=\frac K N$$
+###### Varianza
+$$Var[X]=p\cdot(1-p)$$
+Avendo $K$ il numero di successi e $N$ il numero totale degli elementi avremo :
+$$\frac K N\cdot\frac{N-K}{N}$$
+#### Distribuzione Binomiale
+
+Supponiamo di eseguire $n$ *prove bernulliane* indipendenti, ognuna con probabilità di successo $p$.
+Sia $X$ la variabile aleatoria che conta il nuemro totale di successi ottenuti in $n$ prove. 
+Si dice allora che $X$ ha una *distribuzione Binomiale* di parametri $n$ e $p\in(0,1)$ e si scrive :
+$$
+X\sim Bin(n,p)
+$$
+
+Avremo che la funzione di probabilità risulterà essere :
+$$
+\mathbb{P}[X=x]=\binom n x p^x(1-p)^{n-x},\quad x=0,1,\dots,n 
+$$
+
 
 
 
