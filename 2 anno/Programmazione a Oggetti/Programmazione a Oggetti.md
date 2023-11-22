@@ -1023,8 +1023,127 @@ a livello statico so già che metodo devo chiamare -> example è satico + con pa
 
 classi generiche -> può ricevere dei tipi come parametri
 
+## 22/11/2023
+
+"Templates" in java :
+
+quando classe generale viene utilizzata viene fatto il cast dinamico su tipo generico
+tipo generico o sulla classe o sui metodi
+
+```java
+public <T> identity(T param){
+	return param;
+} 
+
+public void foo(){
+	AlmostEmpty obj = new AlmostEmpty;
+	AlmostEmpty obj2 = obj.<AlmostEmpty>identity(new AlmostEmpty) ;
+}
+```
+
+```java
+obj.<AlmostEmpty>identity
+```
+indica su che tipo lavora il metodo
+
+tipi generici a livello di bytecode non esistono 
+invoca identity ritorna qualsisasi cosa ( non so il tipo di ritorno )
+
+checkcast si passa dal tipo "qualisasi" al tipo che gli indichiamo ( casting se il tipo coincide con quello indicato  ) 
+
+viene persa l'informazione di `{java}obj.<AlmostEmpty>` e viene fatto un cast dinamico `{java}(AlmostEmpty) obj.identity`
+
+genericità su una classe 
+```java
+public class List<T1,T2>{// per il compiler una lista di oggetti (Object)
+
+	//array list
+	//private T[] elements = ...;
+	// siccome non so il tipo a compile time non posso dichiarare un array con tipo T
+
+	private T[] elements = null;
+
+	public T get(int index){
+		return elements[index];
+	}
+
+	public int length(){
+		return elements.length;
+	}
+
+	public void add(T el){
+		if(elements == null){
+			ArrayList<T> list = new ArrayList<>();
+			list.add(el);
+			elements = list.toArrat(elements);
+			// elements = Array.newIstance(); // array che è istanza di questa classe , di lunghezza n
+		}
+		//creare array con 1 el in più 
+		elements = Arrays.copyOf(elements, elements.length+1);
+		elements[elements.length-1]=el;
+	}
+	
+}
+```
+
+```java
+
+List<Wizard> f= new List<Wizard>(); 
+Magic m = null;
+f.add(new Wizard(m));
+List<Figure> f2 = f; // non è possibile anche se la figure è suoerclasse di wizard 
+// questo poichè in java le liste sono costanti
+// se noi in f2 dopo l'aseganemnto aggiungiamo un wizard questi non sono compatibili
+
+```
+
+```java
+Wizard[] f= new Wizard[2]; 
+Magic m = null;
+f[0]=new Wizard(m);
+Sword s = null;
+Armor a = null;
+f[1]=new Fighter(s,a);
+Wizard w = f[1];
+```
+
+I tipi degli array sono covarianti
+ad un array di figure posso assegnare un array di wizard o figther
+errore a runtime
+
+tipi generici dei metodi sono legati ai metodi non alla classe 
+
+il tipo statico essendo legato alla classe in generale T non è accessibile nel contesto satico devo dire che il metodo è parametrizzato su qualche tipo generico 
+```java
+public static <T1> T1 getFirst(List<T1> k)
+```
+`
+`{java} new List<>()` il compiler assegan un tipo a seconda del contesto
 
 
+tipi generici ristetti a solo sottotipi di qualche tipo 
+`{java}public class ListFigure<T extends Figure> extends List<T>`
+accetto solamente figure , figther , wizard
+
+>[!note]
+|
+v
+
+*covarianza* :
+se ho lista di figure e una di figther se fosse covarainza figthrt sottotipo di figure va bene sui tipi di ritorno non sui parametri 
+
+*controvarainza* figure sottipo figther poichè figure è un supertipo di fighter 
+
+**Wildcards**
+```java
+List<?> listBoh = f;// f lista di figure
+Object kk = listBoh.get(0);
+// lista che è un supertipo di qualsiasi altra lista
+// posso mettere dei bound per limitare i tipi
+List<? extends Figure> listBoh = f;
+Fighter kk = listBoh.get(0);
+listBoh.add(new Wizard(null));// funziona so covarainza sul tipo di ritorno , nella controvarainza non funziona
+```
 
 
 
