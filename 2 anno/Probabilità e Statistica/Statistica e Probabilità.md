@@ -733,7 +733,7 @@ Vari *quantili* particolari :
 + I *decili* sono i quantili di livello $\frac k {10}$ con $k=1,2,\dots,9$  
 + I *quartili* sono i quantili di livello $0.25$ ( primo quartile ) , $0.5$ ( mediana ) e $0.75$ ( terzo quantile )
 
-### Distribuzioni di probabilità
+### Distribuzioni di probabilità Discrete
 
 >[!todo]
 >copia appunti su distribuzioni di probabilità discrete e continue
@@ -954,6 +954,81 @@ Ad esempio :
 + macchine transitanti ad un casello autostradale in un certo periodo del giorno 
 + difetti rilevati in un pezzo di filo d'acciaio 
 + terremoti manifestatisi in una data area nell'arco degli ultimi 10 anni
+
+##### Proprietà
+
+###### Media
+
+$$\mathbb{E}[X]=\sum_{i=0}^{+\infty}i\frac{\lambda^i}{i!}e^{-\lambda}$$
+>[!todo]
+>spiegazione
+>#todo
+
+$$\lambda\sum_{i=1}^{+\infty}\frac{\lambda^{i-1}}{(i-1)!}e^{-\lambda}=\lambda$$
+###### Varianza
+
+Similmente si può dimostrare che 
+$$Var[X]=\lambda$$
+##### Esempio 
+
+Ad un account di posta elettronica arrivano messaggi con una media di 10 ogni mezz’ora. 
+Si può inoltre supporre che il numero di messaggi in arrivo segua una distribuzione di Poisson. 
+
+Qual è la probabilità che nella prossima mezz’ora mi arrivino non più di 3 messaggi? E almeno 12?
+
+Quindi prendendo come variabile causale : $X=\text{"numero di messaggi ogni mezz'ora"}\sim Po(\lambda=10)$
+
+$$\mathbb{P}[X\le3]=\mathbb{P}[X=0]+\mathbb{P}[X=1]+\mathbb{P}[X=2]+\mathbb{P}[X=3]$$
+$$=\frac{10^0}{0!}e^{-10}+\frac{10^1}{1!}e^{-10}+\frac{10^2}{2!}e^{-10}+\frac{10^3}{3!}e^{-10}=0.0103$$
+##### Approssimazione Poisson per la Binomiale 
+
+Quando $n\rightarrow \infty$ e $p \rightarrow 0$ ma in modo tale che il prodotto $np\rightarrow \lambda$ rimane costante, allora la funzione di probabilità di una variabile aleatoria binomiale di parametri $n$ e $p$ si può approssimare con la funzione di probabilità di una *Poisson* di parametro $\lambda$ :
+$$\lim_{\substack{n \rightarrow \infty \\ p \rightarrow 0 \\ np \rightarrow \lambda}}
+\binom n x p^x(1-p)^{n-x}=e^{-\lambda}\frac{\lambda^x}{x!}$$
+Questa approssimazione viene utilizzata principalmente quando $n\ge 100$ e $p\le 0.05$ si sciegle allora $\lambda=\mathbb{E}[X]=np$
+
+Questa legge di sostituzione è nota come **legge degli eventi rari** poichè si può interpretare come la distribuzione del numero di eventi di tipo successo quando gli esperimenti bernulliani sono tanti ( $n \rightarrow \infty$ ) ma la possibilità di succeso è molto piccola ( $p \rightarrow 0$ ) ovvero i successi sono rari
+
+###### Esempio
+
+Una fabbrica di componenti elettronici fornisce il 3% dei chip acquistati da un produttore di telefoni cellulari. 
+Qual è la probabilità che su 100 chip acquistati ve ne siano al massimo 3 provenienti da quella fabbrica?
+
+$X$ = numero di chip provenienti dalla fabbrica su 100 avremo :
+$$X\sim Bin(100,0.03)$$
+Utilizzando la *binomiale* avremo :
+$$\mathbb{P}[X \le 3]=\sum_{k=0}^3\binom{100}{k}0.03^k0.97^{100-k}=0.64724921$$
+Dato che $n=100$ è grande e $p=0.03$ è piccolo si può utilizzare l'approssimazione di *Poisson* con parametro $\lambda = np = 100\cdot 0.03=3$ :
+$$\sum_{k=0}^{3} \frac{3^k}{k!}e^{-3}=0.64723189$$
+
+I risultati risultano uguali fino alla 4° cifra decimale
+#### Distribuzione Geometrica
+
+Sia $X$ una variabile aleatoria che conta il numero di ripetizioni indipendenti necessarie per osservare il primo successo in un esperimento binario che ha probabilità di successo singola $p$ . 
+Si dice allora che $X$ ha una *distribuzione geometrica* di parametro $p\in(0,1)$ e si scrive :
+$$X\sim Geo(p)$$
+Avremo che la funzione di probabilità sarà :
+$$\mathbb{P}[X=x]=(1-p)^{x-1}p, \quad x= 1,2,3,\dots$$
+
+##### Dimostrazione
+
+Possiamo facilmente dimostrare che si tratta di una distribuzione di probabilità nel solito metodo :
+$$\sum_{x=1}^\infty \mathbb{P}[X=x]=p\sum_{x=1}^\infty(1-p)^{x-1}=p\frac{1}{1-(1-p)}=1$$
+
+>[!todo]
+>spiegazione matematica
+>#todo
+
+##### Proprietà
+
+###### Media
+
+$$\mathbb{E}[X]=1/p$$
+###### Varianza
+
+$$Var[X]=\frac{1-p}{p^2}$$
+
+### Distribuzioni di probabilità Continue
 
 # Appunti
 #### R-Studio
