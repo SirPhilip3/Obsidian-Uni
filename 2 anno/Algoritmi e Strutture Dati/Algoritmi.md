@@ -960,3 +960,33 @@ Poichè deve essere che $T(n)=\Theta(f(n))\quad f(n)=n$
 >[!todo]
 >Aggiungi dimostrazione teorema Master
 >#todo
+
+##### Dimostrazione Teorema Master
+
+Come *prima* cosa dobbiamo trasformare la formula generale di un algoritmo divide et impera da una formula ricorsiva ad una formula non ricorsiva
+*Sucessivamente* dovremo dimostrare il Teorema per ogni suo caso
+###### Primo step
+
+Avendo una formula generale di un algoritmo divide et impera :
+$$
+T(n)=a\cdot T\Big(\frac n b\Big) + f(n)
+$$
+Esplicitiamo la ricorsione attraverso l'albero delle ricorsioni 
+
+![[RerTreeMaster.excalidraw]]
+
+Al livello $i$ avremo che : 
++ il numero di nodi persenti a quelli livello sono : $a^i$
++ la dimensione del problema risolto da ogni nodo è pari a : $\frac{n}{b^i}$
++ il tempo necessario per lo svolgimento di ogni nodo sarà quindi una funzione della dimensione del sottoproblema : $f\Big(\frac n {b^i}\Big)$ 
+
+Il tempo totale di svolgimento dell'algoritmo sarà quindi la somma delle complessità di ogni livello ossia il prodotto del numero di nodi per ogni livello e il loro contributo temporale :
+$$T(n)=\sum_{i=0}^{n°\ \text{livelli}}a^i\cdot f\Big(\frac{n}{b^i}\Big)$$
+Il tempo totale dipede ancora da una variabile $n°\ \text{livelli}$ , questa può essere dedotta capendo quando la ricorsione si ferma ( ossia i suoi *casi base* )
+
+
+
+
+
+
+###### Dimostrazione dei casi

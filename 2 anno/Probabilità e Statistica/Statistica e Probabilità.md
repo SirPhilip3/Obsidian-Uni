@@ -1057,13 +1057,79 @@ Supponiamo che $X$ conti il numero di pagine da visitare per trovare per la prim
 	$$
 2. Dato che i primi 4 siti visitati non contenevano la parola cercata , qual'è la probabilità di doveren visitare più di 10 in tutto per trovvare la parola cercata ?
 	$$
-	\mathbb{P}[X\gt10|X\gt4]=\mathbb{P}[X\gt10-4]=\mathbb{P}[X\gt6]=0.8^6=0.2621
+	\mathbb{P}[X\gt10|X\gt4]=\mathbb{P}[X\gt10-4]=\mathbb{P}[X\gt6]=(1-0.2)^6=0.2621
 	$$
 3. Qual'è il numero medio di siti da visitare per trovare la parola la prima volta
 	$$
 	\mathbb{E}[X]=\frac 1 {0.2} = 5
 	$$
 ### Distribuzioni di probabilità Continue
+
+#### Distribuzione uniforme
+
+$X$ è una variabile che può assumere qualsiasi valore nell'intervallo $(a,b)$ indifferentemente .
+La sua densità di probabilità è allora costante nell'intervallo $(a,b)$ e nulla al di fuori
+$$
+f(x)=\begin{cases}
+   \frac{1}{b-a} &\text{se } x\in(a,b); \\
+   0 &\text{altrove } 
+\end{cases}
+$$
+
+$X$ è quindi una variabile aleatoria *uniforme* e si scrive :
+$$
+X\sim U(a,b)
+$$
+
+La *funzione di ripartizione* è :
+$$
+F(x)=\int_a^x\frac 1 {b-a} dy=\frac{x-a}{b-a}; \quad x\in (a,b)
+$$
+##### Proprietà
+
+###### Media
+
+$$
+\mathbb{E}[X]=\frac{a+b}2
+$$
+###### Varianza
+
+$$
+Var[X]=\frac{(b-a)^2}{12}
+$$
+
+#### Distribuzione normale ( Gaussiana )
+
+Una variabile aleatoria $X$ ha *distribuzione normale* o *gaussiana* , indicata con :
+$$
+X\sim N(\mu,\sigma^2)
+$$
+La sua funzione di ripartizione è :
+$$f(x)=c\cdot e^{-\frac1 2\Big(\frac{(x-\mu)^2}{\sigma^2}\Big)}, \quad x\in \mathbb{R},\mu\in\mathbb{R},\sigma\gt 0$$
+
+La *distribuzione normale stadard* è :
+$$X\sim N(0,1)$$
+Avrà come funzione di ripartizione :
+$$f(x)=c\cdot e^{-\frac{x^2}{2}}$$
+Troviamo ora $c$ utilizzando la proprietà che è una funnzione di densità e quindi devve soddisfare la seguente equazione :
+$$
+c\int_{-\infty}^{+\infty} e^{-\frac{x^2}{2}}dx=1
+$$
+$$
+c\cdot\sqrt{2\pi}=1
+$$
+$$
+c=\frac 1 {\sqrt{2\pi}}
+$$
+Quindi avremo che :
+$$f(x)=\frac 1 {\sqrt{2\pi}}\cdot e^{-\frac{x^2}{2}}$$
+
+La *funzione di ripartizione* risulta essere :
+$$\int_{-\infty}^x\frac 1 {\sqrt{2\pi}}\cdot e^{-\frac{t^2}{2}}dt$$
+In questo caso non si può svolgere l'integrale ( non esiste una funzione analitica che la deriva ) e quindi la *funzione di riaprtizione* viene espressa come integrale
+
+#### Approssimazione normale per la Binomiale
+
 
 # Appunti
 #### R-Studio
