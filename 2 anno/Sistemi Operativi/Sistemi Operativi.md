@@ -1534,6 +1534,9 @@ Vi sono 2 metodi per gestire la memoria libera :
 >memoria virtuale
 >#todo
 
+
+
+%%
 # Appunti 
 
 ## 14/11/2023

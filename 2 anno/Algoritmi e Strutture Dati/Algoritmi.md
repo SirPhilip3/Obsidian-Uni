@@ -1,6 +1,4 @@
-# 20/09/2023
-
-## Definizioni
+# Definizioni
 
 + **Algoritmo corretto**
 	Un algoritmo si dice corretto se per ogni input si ferma e da in output il risultato corretto ( si dice che l'algoritmo risolve il problema computazionale )
@@ -12,12 +10,12 @@
 
 Esempio : 
 
-## Calcolo numeri di Fibonacci
+# Calcolo numeri di Fibonacci
 
 Definizione :
 $$F_n = \begin{cases} 1 &\text{if } n = 1&\text{or} &n=2  \\ F_{n-1} + F_{n-2} &\text{if } n\geq3 \end{cases}$$
 
-### Fib1
+## Fib1
 
 Definizione attraverso la *sezione aurea*
 Equazione fondamentale : 
@@ -34,7 +32,7 @@ Sviluppiamo un algoritmo che sfrutti queste formule :
 	```return``` $\frac{1}{\sqrt{5}}\cdot(\intop^n-\oint^n)$
 
 Dim *correttezza* per **induzione** :
-#### Casi Base : 
+### Casi Base : 
 + $n=1$ 
 	$$F_1=\frac{1}{\sqrt{5}}\cdot\Bigg(\intop-\oint\Bigg)$$
 	$$\frac{1}{\sqrt{5}}\cdot\Bigg(\frac{1+\sqrt5}{2}-\frac{1-\sqrt5}{2}\Bigg)$$
@@ -46,7 +44,7 @@ Dim *correttezza* per **induzione** :
 
 Siccome $F_1$ e $F_2$ sono equivalenti ai primi 2 numeri di *Fibonacci* i casi basi sono dimostrati
 
-#### Passo Induttivo
+### Passo Induttivo
 
 **Ipotesi Induttiva** : Assumiamo che la fromula di Binet sia vera per ogni $n-1$
 
@@ -67,7 +65,7 @@ $$\frac{\oint^{n}}{\oint^{n-2}} = \frac{\oint^{n-1}}{\oint^{n-2}}+\frac{\oint^{n
 $$\text{Quindi ho dimostrato per induzione che : }$$
 $$F_{n-1}+F_{n-2}==\frac{1}{\sqrt5}\cdot\Bigg(\intop^{n}-\oint^{n}\Bigg)$$
 
-#### Correttezza e Complessità
+### Correttezza e Complessità
 
 Quindi **Fib1** è **corretto** ? 
 	Matematicamente sì ma a livello computazionale *non risulta coretto* per via delle approsimazioni applicate ai numeri irrazionali in un compilatore infatti :
@@ -76,7 +74,7 @@ Quindi **Fib1** è **corretto** ?
 **Complessità** ?
 	La complessità non dipende dalla grandezza di $n$ in input per questo viene sempre svolta 1 sola istruzione ciò implica che la complessità è *costante*
 
-### Fib2
+## Fib2
 
 In *Fib2* utilizziamo la definizione di numero di *Fibonacci* rendendo così l'algoritmo *ricorsivo* :
 ``` c
@@ -111,19 +109,19 @@ Per calcolare le complessità possiamo affidarci a degli **alberi della ricorsio
 
 Per calcolare la *complessità* attraverso l'utilizzo di *alberi della ricorsione* bisogna sapere la quantità di *foglie* ( $f(T_n)$ ) e *nodi interni* ( $i(T_n)$ ) , osservando l'*albero* possiamo ottenere :
 $$T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$$
-#### Proposizione 1 :
+### Proposizione 1 :
 Se $T_n$ è l'*albero delle ricorsioni* di `Fib2(n)` allora vale che : 
 	$$\text{numero di foglie} \space f(T_n) = F_n\space \text{ennesimo numero di fibonacci}$$
 **Dimostrazione**
 >[!todo]
 
 
-#### Proposizione 2 :
+### Proposizione 2 :
 Se $T_n$ è un albero dove i *nodi interni* hanno esattamente 2 figli ( ossia è un albero binario ) allora : 
 	$$\text{numero di nodi interni }i(T_n) = f(T_n)-1 \implies F_n -1$$
 **Dimostrazione** 
 >[!todo]
-####
+###
 
 Sostituendo nella formula $T(n) = 2\cdot i(T_n) + 1\cdot f(T_n)$ avremo :
 $$T(n) = 2\cdot (F_n -1) + F_n \implies 3F_n-2 \approx F_n$$
@@ -158,7 +156,7 @@ $$F_n \ge 2^{\frac{n}{2}} \simeq \sqrt2^n$$
 	$$F_{n} \ge 2^\frac{n}{2}$$
 La soluzione *ricorsiva* del problema risulta quindi estremamente *inefficente* , principalmente poichè vengono *ripetute* moltissime operazioni già svolte in precedenza ( es il calcolo dei numeri di fibonacci $F_1$ e $F_2$ )
 
-### Fib3
+## Fib3
 
 Trasformando la soluzione ricorsiva in *iterativa* ed aggiungendo un *array* dove contenere i risultati precedentemente calcolati 
 
@@ -191,7 +189,7 @@ La *complessità* risulterà quindi essere **lineare**
 
 Questo algoritmo può essere ulteriormente migliorato diminuendo la *complessità spaziale* 
 
-### Fib4
+## Fib4
 
 ```c
 Fib4(n)
@@ -208,7 +206,7 @@ $$4n-5$$
 che rimane **lineare**
 
 Ovviamente è **corretto** poichè segue la definizione di numero di *fibonacci*
-###
+##
 Possiamo quindi riassumere le varie complessità dei precedenti algoritmi qui :
 
 |ver|correttezza|complessità Temporale|complessità Spaziale|
@@ -220,12 +218,12 @@ Possiamo quindi riassumere le varie complessità dei precedenti algoritmi qui :
 
 .* La complessità spaziale della soluzione è lineare poichè lo spazio allocato per ogni chiamata ricorsiva viene deallocato alla sua conclusione quindi il caso peggiore per la memoria utilizzata è la profondità dell'albero delle ricorsioni
 
-## Notazione O grande
+# Notazione O grande
 
 La notazione *O grande* viene utilizzata per rappresentare l'andamento della complessità asintotica di un algoritmo
 
 **Classi di Complessità** : 
-### $O\Big(g(n)\Big)$
+## $O\Big(g(n)\Big)$
 
 O grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* : 
 $$\bigg\{f(n)\mid\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(n)\le c\cdot g(n)\bigg\}$$
@@ -250,7 +248,7 @@ Quando è vera la precedente disequazione
 >[!todo]
 >completa la dimostrazione
 >#todo
-### $\Omega\Big(g(n)\Big)$
+## $\Omega\Big(g(n)\Big)$
 
 Omega grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* :
 $$\bigg\{f(n)\mid\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : c\cdot g(n)\le f(n)\bigg\}$$
@@ -277,7 +275,7 @@ Quando è vera la precedente disequazione
 >[!todo]
 >completa la dimostrazione
 >#todo
-### $\Theta\Big(g(n)\Big)$
+## $\Theta\Big(g(n)\Big)$
 
 Risulta la combinazione di *O-grande* e *Omega-grande* ossia :
 $$\bigg\{f(n)\mid\exists\space c_1\gt0\space \land\exists\space c_2\gt 0 , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : c_1\cdot g(n)\le f(n)\le c_2\cdot g(n)\bigg\}$$
@@ -326,9 +324,9 @@ $$c_2=\sqrt2$$
 $$n_0=10$$
 Abbiamo scielto $n_0=10$ poichè soddisfa entrambe le condizioni
 
-### Ulteriori Dimostrazioni
+## Ulteriori Dimostrazioni
 
-#### $log\space n=O(n)$
+### $log\space n=O(n)$
 
 Osservando il grafico si può capire il perchè 
 
@@ -348,38 +346,38 @@ grid: true
 Poichè $log(n)\le n-1 \implies log(n) \le n$
 
 ciò avviene per $c=1$ e $n_0=1$
-#### $n\cdot log\space n = O\big(n^2\big)$
+### $n\cdot log\space n = O\big(n^2\big)$
 
 Visto che 
 $$log(n)\le n$$
 Avremo che :
 $$n\cdot log(n)\le n^2$$
 Quindi è *O grande* per $c=1$ e $n_0=1$
-#### $n!=O\big(n^n\big)$
+### $n!=O\big(n^n\big)$
 
 Si può dimostrare dicendo che :
 $$1\cdot2\cdot3\cdot...\cdot n = n! \le n\cdot n\cdot...\cdot n = n^n$$
 Quindi :
 $$n!\le n^n$$
-#### $n!=\Omega\big(2^n\big)$
+### $n!=\Omega\big(2^n\big)$
 
 $$1\cdot2\cdot3\cdot...\cdot n\space \text{è maggiore di} \space 1\cdot2\cdot2\cdot...\cdot2 = 2^{n-1}$$
 Quindi avremo che :
 $$n!\ge2^{n-1}\implies n!\ge\frac{1}{2}2^n$$
 In questo caso $c$ diventa $\frac{1}{2}$ in questo modo abbiamo verificato che $n!=\Omega(2^n)$
-#### $log\space (n!) = O(n\cdot log\space n)$
+### $log\space (n!) = O(n\cdot log\space n)$
 
 $$log\big(n!\big)=log\Bigg(\prod_{i=1}^{n} i\Bigg)$$
 $$=\sum_{i=1}^{n} log(i)$$
 Essendo che $log(i)\le log(n)$ avremo che :
 $$\sum_{i=1}^{n} log(i)\le n\cdot log(n)$$
-#### $\sqrt n = O(n)$
+### $\sqrt n = O(n)$
 
 Possiamo facilmente dimostrarla :
 Essendo che :
 $$n\le n^2\space\space \forall n\ge1$$
 Avremo quindi che $\sqrt n \le n$
-### Proprietà
+## Proprietà
 
 $$f(n)=O\Big(g(n)\Big) \Leftrightarrow g(n) = \Omega\Big(g(n)\Big)$$
 Per dimostrare la precedente proprietà bisogna dimostrare sia $\Rightarrow$ che $\Leftarrow$
@@ -399,7 +397,7 @@ Ponendo $c'=\frac{1}{c}$ e sciegliendo $n_0'=n_0$ la proprietà è dimostrata
 
 La dimostrazione è equivalente per $\Leftarrow$
 
-#### Prorietà Transitiva
+### Prorietà Transitiva
 
 La seguente proprietà e valida per $O$ , $\Omega$ , $\Theta$
 
@@ -421,7 +419,7 @@ Sciegliamo un $n_3 = max\{n_1,n_2\}$ ( massimo tra $n_1$ e $n_2$ in modo tale ch
 Sostituendo nella prima ipotesi con la seconda ipotesi abbiamo :
 $$f(n)\le c_1\cdot c_2\cdot h(n)$$
 Poichè $c_1\cdot c_2 \ge c_3\gt0$ abbiamo dimostrato che : $f(n)=O\Big(h(n)\Big)$
-### $o\Big(g(n)\Big)$
+## $o\Big(g(n)\Big)$
 
 $$o\Big(g(n)\Big)=\Big\{f(n)\mid \forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : f(n) \lt c\cdot g(n)\Big\}$$
 
@@ -460,7 +458,7 @@ Avremo quindi che :
 $$log\ n =o(\sqrt n)$$
 poichè $o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$ avermo che :
 $$log\ n =O(\sqrt n)$$
-### $\omega \Big(g(n)\Big)$
+## $\omega \Big(g(n)\Big)$
 
 $$\omega\Big(g(n)\Big)=\Big\{f(n)\mid \forall\space c \gt 0 \space\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 :c\cdot g(n)\lt f(n)\Big\}$$
 Come per *o-piccolo* anche in questo caso abbiamo che :
@@ -493,12 +491,12 @@ Questo è evidentemente *assurdo* ; abbiamo quindi dimostrato che : $o(g(n))\ \c
 
 La stessa dimostrazione può essere svolta per $\omega(g(n))\ \cap \ O(g(n))=\emptyset$ 
 
-#### Proposizione 
+### Proposizione 
 
 Anche $\Theta (g(n))$ ha un simile comportamento a $o(g(n))$ e $\omega (g(n))$ per quanto riguarda i *limiti* , infatti possiamo scrivere che :
 $$\text{Se}\quad\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} = l \quad \text{con $0 \lt l \lt \infty$ } \quad \implies \quad f(n)=\Theta(g(n))$$
 
-### Lim e O notation riassunto
+## Lim e O notation riassunto
 
 $$\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} \begin{cases} 0 & \implies f(n) = O(g(n)) \\ l & \implies f(n)=\Theta(g(n)) \\ \infty & \implies f(n)=\Omega(g(n)) \end{cases}$$
 
@@ -515,7 +513,7 @@ Avremo quindi che $c=2$ e per definizione abbiamo dimostrato che : $(1+\sin(n))\
 Ora proviamo a fare lo stesso con la definizione di $\lim$
 $$\lim_{n\rightarrow \infty} \frac{(1+\sin(n))\cdot n}{n}=\lim_{n\rightarrow \infty} (1+\sin(n))=\emptyset$$
 Non è quindi sempre valida la definizione di limite per dimostra l'apparteneza ad una classe di complessità
-### Polinomi
+## Polinomi
 
 Per determinare la complessità di un polinomi bisogna considerare solo l'elemento che risulta più alto grado :
 Esempio :
@@ -548,7 +546,7 @@ grid: true
 3 y=x^(1/2)
 4 y=log(x^2)
 ```
-#### Proprietà
+### Proprietà
 
 Quindi per riassumere possiamo scrivere la seguente **Proprietà** :
 $$f(n)+o(f(n))=\Theta(f(n))$$
@@ -558,7 +556,7 @@ La precedente proprietà può anche essere riscritta nel seguente modo :
 $$\text{Considerando}\quad o(f(n))=h(n)\quad \text{e} \quad f(n)+h(n)=g(n) \quad \text{Avremo che :}$$
 $$g(n)=\Theta{f(n)}$$
 
-## Metodi per la stima della complessità di un Algoritmo
+# Metodi per la stima della complessità di un Algoritmo
 
 Facciamo un Esempio :
 
@@ -573,14 +571,14 @@ Avremo quindi diversi tipi di complessità :
 	Se volessimo calcolare il caso medio dovremmo effettuare uno studio probabilistico del nostro algoritmo ( nel nostro caso in termini di complessità risulta assimilabile al caso peggiore ma potrebbe essere diverso )
 
 A noi interessa studiare al caomplessità nel **caso peggiore** in vari costrutti standard per la costruzione di algoritmi
-#### Sequenza
+### Sequenza
 
 Se un algoritmo è formato da blocchi di codice che costituiscono nel complesso una *sequenza* di istruzioni
 
 ![[SequenzaCompl.excalidraw]]
 Avremo che la sua complessità può essere calcolata come :
 $$seq=O(f(n)+g(n))$$
-#### If then else
+### If then else
 
 Avendo un codice simile :
 ```c
@@ -601,7 +599,7 @@ Avremo 3 complessità che comongono l'*if then else* :
 Per via della condizione dell'*if* uno dei 2 rami dell'*if* non viene svolto per questo calcolando la complessità di un *if then else* prendiamo sempre in considerazione il ramo che ha la maggiore complessità.
 Avremo quindi :
 $$if=O(f(n)+max\{g(n),h(n)\})$$
-#### Ciclo For
+### Ciclo For
 
 Avendo un codice simile :
 ```c
@@ -611,7 +609,7 @@ for i to k
 
 Il `Block` verrà ripetuto $k$ volte quindi avremo come complessità ( considerando la complessità di `Block` come $O(f(n))$  ) :
 $$for=O(k\cdot f(n))$$
-#### Cicli For annidati
+### Cicli For annidati
 
 I cicli *for annidati* funzionano in modo simile ai normali cicli *for* quindi avendo un codice simile :
 ```c
@@ -627,7 +625,7 @@ Avremo che la complessità totale sarà :
 $$forA=O(k\cdot n \cdot f(n))$$
 Se avessimo anche $k$ in funzione dell'input della funzione $n$ avremo :
 $$forA=O(n^2 \cdot f(n))$$
-#### While
+### While
 
 Avendo un codice simile :
 ```c
@@ -640,7 +638,7 @@ In questo caso non sappiamo a priori il numero di volte che il ciclo verrà eseg
 Considerando quindi la complessità della `<cond>`  come $O(f(n))$ e la complessità del `Block` come $O(g(n))$
 Avremo quindi che la complessità totale sarà :
 $$while = O\Big(N(n)\cdot\big(f(n)+g(n)\big)\Big)$$
-#### Esempio
+### Esempio
 
 Abbiamo un il seguente algoritmo :
 ```c
@@ -677,21 +675,21 @@ La complessità totale dell'algoritmo sarà quindi la somma della complessità d
 $$T(n)=n^2+16\cdot T\bigg(\frac{n}{4}\bigg)\quad \text{con}\space n\gt1$$
 Abbiamo quindi una fromula ricorsiva che attraverso il *Teorema Master* può essere semplificata in : 
 $$T(n)=\Theta(n^2\log(n))$$
-### Risolvere le Ricorrenze
+## Risolvere le Ricorrenze
 
 Per risolvere le ricorrenze abbiamo 4 metodi principali :
 + Metodo degli *alberi della ricorsione*
 + Metodo dell'*intersezione*
 + Metodo della *sostituzione*
 + *Teorema Master*
-#### Metodo degli alberi della ricorsione
+### Metodo degli alberi della ricorsione
 
 Vedi [Fib2](#Fib2)
-#### Metodo dell'interazione
+### Metodo dell'interazione
 
 Si cerca di sviluppare la ricorsione fino all'identificazione di un *pattern*
 
-##### Esempio 1 :
+#### Esempio 1 :
 In un algoritmo che ha come complessità :
 $$T(n) = \begin{cases} c+T(\frac{n}{2}) & n\ge 2 \\ 1 & n=1 \quad\text{caso base}\end{cases}$$
 Sviluppando per $n\ge 2$ avremo :
@@ -714,7 +712,7 @@ $$T(n)=O(\log_2 n)$$
 Se consideriamo il *terema Master* potremmo dire :
 $$T(n)=\Theta(\log_2 n)$$
 
-##### Esempio 2 :
+#### Esempio 2 :
 
 $$T(n) = \begin{cases} 9\cdot T(\frac{n}{3})+n & n\ge 2 \\ 1 & n=1 \quad\text{caso base}\end{cases}$$
 
@@ -742,11 +740,11 @@ $$=3^{{\log_3 n}^2}+n\cdot \frac{n-1}{2}$$
 $$=n^2+\frac{n^2}{2}-\frac{n}{2}$$
 Possiamo quindi determinare che la complessità sarà :
 $$T(n)=\Theta(n^2)$$
-#### Metodo della sostituzione
+### Metodo della sostituzione
 
 Il metodo della *sostituzione* consiste nel fare una ipotesi sulla complessità dell'algoritmo ( grazie all'esperienza e alla conoscenza di altri teoremi ) e poi *dimostrarla* 
 
-##### Esempio
+#### Esempio
 
 $$T(n) = \begin{cases} 1 & n=1 \quad\text{caso base} \\ T(\lfloor\frac{n}{2}\rfloor)+n & n\ge 2  \end{cases}$$
 Faccio una ipotesi riguardante la sua *complessità* 
@@ -777,7 +775,7 @@ $$c\ge 2$$
 Avremo quindi che quando $c\ge2$ la complessità dell'algoritmo sara :
 $$T(n)\le c\cdot n$$
 Abbiamo quindi dimostrato che la complassità è : $O(n)$
-#### Teorema Master
+### Teorema Master
 
 Il *teorema Master* ci permette di risolvere le ricorrenze di algoritmi dividi et impera
 Possiamo infatti dividere questo tipo di algoritmi in tre parti :
@@ -802,7 +800,7 @@ Perchè il *teorema* possa essere applicato dobbiamo avere soddifatte le seguent
 Utilizzeremo inoltre un paramtro $d$ :
 $$d=\log_b a$$
 Il *teorema* comprende 3 casi : 
-##### $split+merge \gt \text{chiamate ricorsive}$
+#### $split+merge \gt \text{chiamate ricorsive}$
 
 La complessità di $split+merge$ è *maggiore* della complessità delle *chiamate ricorsive*
 $$f(n)=\Omega\Big(n^{d+\epsilon}\Big)$$
@@ -813,7 +811,7 @@ $$a\cdot f\bigg(\frac{n}{b}\bigg)\le c \cdot f(n)$$
 ( questo verifica che il secondo livello di ricorsione per le $split+merge$ sia minore di del tempo di $f(n)$ )
 Verificata la condizione ausiliaria possiamo concludere che la complessità sarà :
 $$T(n)=\Theta(f(n))$$
-##### $split+merge \lt \text{chiamate ricorsive}$
+#### $split+merge \lt \text{chiamate ricorsive}$
 
 La complessità di $split+merge$ è *minore* della complessità delle *chiamate ricorsive*
 
@@ -821,15 +819,15 @@ $$f(n)=O\Big(n^{d-\epsilon}\Big)$$
 Se $f(n)$ è $O(n^{d-\epsilon})$  allora per $\epsilon \gt 0$ avremo che 
 $$T(n)=\Theta\Big(n^d\Big)$$
 Ossia la parte ricorsiva domina sulla parte di $split+merge$ 
-##### $split+merge = \text{chiamate ricorsive}$
+#### $split+merge = \text{chiamate ricorsive}$
 
 La complessità di $split+merge$ è *uguale* a quella delle *chiamate ricorsive*
 $$f(n)=\Theta\Big(n^d\Big)$$
 Ossia $f(n)$ ha complessità simile allo $split+merge$  , avremo la complessità come :
 $$T(n)=\Theta(n^d\cdot \log n)$$
-##### Esempi
+#### Esempi
 
-###### 1
+##### 1
 
 $$T(n)=T\bigg(\frac{n}{2}\bigg)+c$$
 Si può applicare il *teorema master* ? :
@@ -853,7 +851,7 @@ Poichè asintoticamente 1 e c si comportano nello stesso modo siamo nel caso in 
 
 Quindi avremo che :
 $$T(n)=\Theta(n^0\cdot \log n)=\Theta(\log n)$$
-###### 2
+##### 2
 $$T(n)=9\cdot T\bigg(\frac{n}{3}\bigg)+n$$
 Si può applicare il *teorema master* ? :
 - [ ] La forma è simile a : $a\cdot T(\frac{n}{2})+c$
@@ -882,7 +880,7 @@ Per trovare $\epsilon$ dobbiamo consideare che $n$ deve avere la stessa compless
 Basterà quindi sciegliere $\epsilon\quad \text{t.c.}\quad 1=2-\epsilon$
 Scielgiendo quindi $\epsilon = 1$ la condizione sarà verificata e avremo che la complessità sarà :
 $$T(n)=\Theta(n^2)$$
-###### 3
+##### 3
 
 $$T(n)=3\cdot T\bigg(\frac{n}{9}\bigg)+1$$
 Si può applicare il *teorema master* ? :
@@ -913,7 +911,7 @@ $$\epsilon=\frac{1}2$$
 Abbiamo verificato la condizione 
 Avremo quindi che la complessità sarà :
 $$T(n)=\Theta(\sqrt n)$$
-###### 4
+##### 4
 $$T(n)=3\cdot T\bigg(\frac{n}{9}\bigg)+n$$
 Si può applicare il *teorema master* ? :
 - [ ] La forma è simile a : $a\cdot T(\frac{n}{2})+c$
@@ -957,15 +955,11 @@ Possiamo quindi conludere che la complessità risulta essere :
 $$T(n)=\Theta(n)$$
 Poichè deve essere che $T(n)=\Theta(f(n))\quad f(n)=n$
 
->[!todo]
->Aggiungi dimostrazione teorema Master
->#todo
-
-##### Dimostrazione Teorema Master
+#### Dimostrazione Teorema Master
 
 Come *prima* cosa dobbiamo trasformare la formula generale di un algoritmo divide et impera da una formula ricorsiva ad una formula non ricorsiva
 *Sucessivamente* dovremo dimostrare il Teorema per ogni suo caso
-###### Primo step
+##### Primo step
 
 Avendo una formula generale di un algoritmo divide et impera :
 $$
@@ -983,10 +977,112 @@ Al livello $i$ avremo che :
 Il tempo totale di svolgimento dell'algoritmo sarà quindi la somma delle complessità di ogni livello ossia il prodotto del numero di nodi per ogni livello e il loro contributo temporale :
 $$T(n)=\sum_{i=0}^{n°\ \text{livelli}}a^i\cdot f\Big(\frac{n}{b^i}\Big)$$
 Il tempo totale dipede ancora da una variabile $n°\ \text{livelli}$ , questa può essere dedotta capendo quando la ricorsione si ferma ( ossia i suoi *casi base* )
+In questo caso il *caso base* è quando la dimensione del sottoproblema risulta essere $1$ quindi troviamo il valore di $i$ ( $n° \text{livelli}$ )
+$$
+\frac{n}{b^i}=1 \iff n=b^i\iff i= \log_bn
+$$
+La funzione diventa quindi :
+$$
+T(n)=\sum_{i=0}^{\log_bn}a^i\cdot f\Big(\frac{n}{b^i}\Big)
+$$
+Calcoliamo ora il numero dei *nodi foglia* :
+$$
+n_{foglie}=a^{\log_bn}=a^{(\log_ba\cdot\log_an)}=(a^{\log_an})^{\log_bn}=n^{\log_bn}=n^d
+$$
+Il numero totale di nodi è invece :
+$$
+n_{nodi}=\sum_{i=0}^{\log_bn}a^i
+$$
+Essendo assimilabile ad una progressione geometrica possiamo semplificare nel seguente modo :
+$$\frac{a^{log_bn+1}-1}{a-1}=\frac{a\cdot a^{log_bn}-1}{a-1}=\frac{a\cdot n^d-1}{a-1}$$
+Essendo $a$ e $1$ costanti possiamo non considerarle nel calcolo finale , avremo quindi che 
+$$
+n_{nodi}=\Theta\big(n^d\big)
+$$
+Avremo quindi che il numero di vertici cresce asintoticamente come $n^d$ e rappresenta la dimensione complessiva dell'albero 
+##### Dimostrazione dei casi
 
+###### Caso 1
 
+Per *ipotesi* sappiamo che $\exists\ \epsilon\gt 0,\ f(n)=O(n^{d-\epsilon})$
+La *Tesi* che dobbiamo dimostrare è : $T(n)=\Theta(n^d)$
 
+Applichiamo l'*ipotesi* alla complessità totale del livello $i$-esimo :
+$$
+a^i\cdot f\Big(\frac{n}{b^i}\Big)=a^i\cdot O\Bigg(\Big(\frac{n}{b^i}\Big)^{d-\epsilon}\Bigg)
+$$
+$$
+=O\Bigg(a^i\cdot\Big(\frac{n}{b^i}\Big)^{d-\epsilon}\Bigg)
+$$
+$$
+=O\Bigg(a^i\cdot\bigg(\frac{n^{d-\epsilon}}{{(b^i)}^{d-\epsilon}}\bigg)\Bigg)
+$$
+$$
+=O\Bigg(a^i\cdot\bigg(\frac{n^{d-\epsilon}}{{(b^i)}^{d}{(b^i)}^{-\epsilon}}\bigg)\Bigg)
+$$
+Ora essendo che possiamo scambiare gli esponenti in ${(b^i)}^{d}\implies {(b^d)}^{i}$
+Ricordandoci ora che $d=\log_ba$ avremo che : ${b^i}^d=a^i$ questo si semplifica con l'$a^i$ che moltiplica la frazione 
+$$
+=O\Bigg(\frac{n^{d-\epsilon}}{{(b^i)}^{-\epsilon}}\Bigg)
+$$
+$$
+=O\bigg((b^i)^\epsilon\cdot n^{d-\epsilon}\bigg)
+$$
+Calcoliamo ora la sommatoria dei livelli per trovare la complessità totale :
+$$
+=\sum_{i=0}^{\log_bn}O\Big((b^\epsilon)^i\cdot n^{d-\epsilon}\Big)
+$$
+$$
+=O\Bigg(n^{d-\epsilon}\sum_{i=0}^{\log_bn}(b^\epsilon)^i\Bigg)
+$$
+La sommatoria risulta essere una progressione geometrica e si può quindi esprimere come :
+$$
+=O\Bigg(n^{d-\epsilon} \frac{(b^\epsilon)^{\log_bn+1}-1}{b^\epsilon-1}\Bigg)
+$$
+$$
+=O\Bigg(n^{d-\epsilon} \frac{b^\epsilon\cdot(b^\epsilon)^{\log_bn}-1}{b^\epsilon-1}\Bigg)
+$$
+$$
+=O\Bigg(n^{d-\epsilon} \frac{b^\epsilon\cdot(b^{\log_bn})^{\epsilon}-1}{b^\epsilon-1}\Bigg)
+$$
+$$
+=O\Bigg(n^{d-\epsilon} \frac{b^\epsilon\cdot n^{\epsilon}-1}{b^\epsilon-1}\Bigg)
+$$
+$b^\epsilon$ è trascurabile così come $1$ poichè costanti , avremo quindi :
+$$
+=O(n^{d-\epsilon}\cdot n^\epsilon)=O(n^d)
+$$
+Per verificare la *tesi* bisognerebbe verificare anche il caso in cui $\Omega(n^d)$ ma questo risulta vero poichè l'algoritmo dovrà visitare tutti i nodi foglia ( $n^d$ ) quindi ci vorra *almeno* un tempo uguale a $n^d$ di conseguenza possiamo concludere che :
+$$T(n)=\Theta(n^d)$$
+###### Caso 2 
 
+Per *ipotesi* sappiamo che $\exists\ \epsilon\gt 0,\ f(n)=O(n^{d})$
+La *Tesi* che dobbiamo dimostrare è : $T(n)=\Theta(n^d\cdot \log n)$
 
+Come prima applichiamo l'*ipotesi* alla complessità totale al livello $i$-esimo
+$$
+a^i\cdot f\Big(\frac{n}{b^i}\Big)=a^i\cdot \Theta\Bigg(\Big(\frac{n}{b^i}\Big)^{d}\Bigg)
+$$
+$$
+= \Theta\Bigg(a^i \cdot\Big(\frac{n}{b^i}\Big)^{d}\Bigg)
+$$
+$$
+= \Theta\Bigg(a^i \cdot\bigg(\frac{n^d}{{(b^i)}^d}\bigg)\Bigg)
+$$
+Come prima ${(b^i)}^d$ può essere semplificato con $a^i$ , avremo quindi
+$$
+= \Theta\big(n^d\big)
+$$
+Infine per dimostrare la *tesi* ci basterà svolgere la sommatoria :
+$$
+\sum_{i=0}^{\log_bn}\big(\Theta\big(n^d\big)\big)=
+\Theta\Bigg(\sum_{i=0}^{\log_bn}n^d\Bigg)
+$$
+$$
+=\Theta(n^d\cdot(\log_bn+1))=\Theta(n^d\cdot\log_bn)
+$$
+###### Caso 3
 
-###### Dimostrazione dei casi
+>[!todo]
+>completa 3° caso
+>#todo 
