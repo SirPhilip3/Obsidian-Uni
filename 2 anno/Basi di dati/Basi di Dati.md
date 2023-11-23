@@ -1578,6 +1578,135 @@ Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazional
 
 ### SQL
 
+Chiamato **Strucutred English QUEry Language** o **SEQUEL** o **SQL**
+
+Si utilizza lo standard SQL:2006
+I sistemi industriali utilizzano uno standard differente includendo funzionalità non previste , non includendone alcune o implementandole in modo differente
+
+#### Caratteristiche
+
+SQL è un linguaggio *dichiarativo* basato sul *calcolo relazionale su ennuple* e *algebra relazionale*
+Le relazioni diventano *tabelle* 
+Le ennuple diventano *record* o *righe*
+Gli attributi diventano *campi* o *colonne*
+
+Le tabelle possono avere righe duplicate per :
++ *efficenza* : eliminare i duplicati costa ( $n\cdot\log n$ )
++ *flessibilità* : può essere utile vedere i duplicati per svolgere correttamente le funzioni di aggregazione ed altro
+
+SQL comprende :
++ *DML* ( *Data Manipulation Language* ) $\rightarrow$ per svolgere query
++ *DDL* ( *Data Definition Language* ) $\rightarrow$ per definire una base di dati
+
+#### DML
+
+Il construtto base dell'*SQL* è il seguente 
+```SQL
+SELECT [DISTINCT] Attributi
+FROM Tabelle
+[WHERE Condizione]
+```
+##### SELECT
+
+La `{SQL}SELECT` ci permette di selezionare come sarà fatto la tabella risultante ( la *target list* in algebra relazionale ) 
+
+`{sql}SELECT *` significa selezionare per la tabella finale tutti gli attributi dati dalla `{sql}FROM` e `{sql}WHERE` 
+
+**Esempi** :
+
+```SQL
+SELECT *
+FROM Studenti;
+```
+Creo una tabella contenete tutti gli `Studenti`
+
+```SQL
+SELECT *
+FROM Esami
+WHERE Voto > 26;
+```
+Creo una tabella contente tutti gli esami che abbiano come `Voto > 26`
+
+```SQL
+SELECT DISTINCT Provincia
+FROM Studenti;
+```
+Creo una tabella nella quale ci sono le `Provincie` da dove provengono gli studenti 
+`{sql}DISTINCT` Rimuove i duplicati 
+
+```SQL
+SELECT *
+FROM Studenti JOIN Esami ON Matricola = Candidato;
+```
+Creo una tabella che è l'*equi-join* tra `Studenti` ed `Esami` ( l'attributo sul quale facciamo il *join* è `Candidato` e `Matricola` , equivale a fare $Studenti\underset{Matricola=Candidato}{\bowtie}Esami$ )
+##### FROM
+
+La `{SQL}FROM` ci permette di dire che tabelle e quale loro combinazione useremo per ottenere la tabella risultante
+
+##### WHERE
+
+La `{SQL}WHERE` ci permette di imporre delle condizioni sugli attributi che andremo a selezionare per costruire la tabella risultante   
+
+##### Disambiguazione
+
+Se ho tabelle che presentano gli stessi attributi devo specificare da che tabella provengono ( *Disanbiguazione* ) : `Esami.CodDoc` e `Docenti.CodDoc` 
+
+##### Alias
+
+Si associa un identificatore alle relazioni , essenziale se si opera su più copie della stessa relazione 
+
+**Esempio** :
+
+Generare una tabella che contenga cognomi e matricole degli studenti e dei tutor
+```sql
+SELECT s.Cognome, s.Matricola, t.Cognome, t.Matricola
+FROM Studenti s JOIN Studenti t ON s.Tutor = t.Matricola
+```
+
+Gli *Alias* permettono la ricorsività su un numero arbitrario di elementi 
+
+**Esempio** : 
+
+Cognome e Nome delle persone ( e dei Nonni ) che fanno lo stesso lavoro dei Nonni 
+
+Dove avremo la seguente tabella :
+`{sql}Persone(Id, Nome, Cognome, IdPadre, Lavoro)`
+`PK(Id) , IdPadre FK(Persone)`
+Avremo quindi che ci sarà una ricorsità su `Persone` che indica il Padre di ogni persona legando l'`Id` e il `IdPadre`
+Ad una Persona corrisponde un nonno se abbiamo una prima relazione con suo padre e una seconda relazione tra suo padre e il padre di suo padre ( il nonno ) 
+
+```sql
+SELECT n.Nome , n.Cognome , f.Nome , f.Cognome
+FROM Persone n , Persone p , Persone f
+WHERE f.IdPadre = p.Id AND p.IdPadre = n.Id AND n.Lavoro = p.Lavoro
+```
+
+##### AS
+
+
+##### Espressioni
+
+
+
+##### Giunzioni
+
+
+##### ORDER BY
+
+
+
+##### Operatori Insiemistici
+
+
+##### NULL
+
+
+##### BETWEEN
+
+
+##### Pattern Matching
+
+
 >[!todo]
->Copia powerpoint sql
+>Continua powerpoint sql
 >#todo
