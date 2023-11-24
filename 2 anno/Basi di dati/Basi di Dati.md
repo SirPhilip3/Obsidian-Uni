@@ -1680,8 +1680,8 @@ SELECT n.Nome , n.Cognome , f.Nome , f.Cognome
 FROM Persone n , Persone p , Persone f
 WHERE f.IdPadre = p.Id AND p.IdPadre = n.Id AND n.Lavoro = p.Lavoro
 ```
-
 ##### AS
+
 
 
 ##### Espressioni
