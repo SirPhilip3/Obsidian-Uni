@@ -1682,20 +1682,177 @@ WHERE f.IdPadre = p.Id AND p.IdPadre = n.Id AND n.Lavoro = p.Lavoro
 ```
 ##### AS
 
+```sql
+Expr AS Nome
+```
 
+Diamo il nome `Nome` alla colonna ottenuta come risultato dell'espressione `Expr`
 
+Usato per dare un nome ad un attributo calcolato :
+```sql
+SELECT Nome, Cognome, date_part('year', current_date)-Nascita AS Età
+FROM Studenti
+WHERE Provincia='VE'
+```
 ##### Espressioni
 
+Le *espressioni* possono includere operatori aritmetici ( o altri operatori e funzioni sui tipi degli attributi ) o funzioni di *aggregazione* 
 
+>[!warning]
+>Le funzioni di *aggregazione* **NON** possono essere usate nella clausola `{sql}WHERE`  
 
+Le funzioni di *aggregazione* sono :
+```sql
+SUM , COUNT , AVG , MAX , MIN
+```
+
+###### Esempi
+
+Numero di elementi della relazione Studenti
+```sql
+SELECT COUNT(*)
+FROM Studenti
+```
+
+Anno di nascita minimo , massimo e medio degli studenti 
+```sql
+SELECT MIN(Nascita) , MAX(Nascita), AVG(Nascita)
+FROM Studenti
+```
+
+è diverso da , questa quey infatti nel calcolo della media non considera i duplicati ( `{sql}DISTINCT` )
+```sql
+SELECT MIN(Nascita) , MAX(Nascita) , AVG( DISTINCT Nascita )
+FROM Studenti
+```
+
+>[!warning]
+Questa query non ha senso
+```sql
+SELECT Candidato, AVG(Voto)
+FROM Esami
+```
+
+Numero di Studenti che hanno un Tutor 
+```sql
+SELECT COUNT(Tutor)
+FROM Studenti
+```
+
+Numero di Studenti che fanno i Tutor
+```sql
+SELECT COUNT(DISTINCT Tutor)
+FROM Studenti
+```
 ##### Giunzioni
 
+Nel `{sql}FROM` si possono combinare le tabelle attraverso le *giunzioni* oppure facendo il prodotto attraverso la virgola : `{sql}FROM T1 , T2`
+
+Quindi il `{sql}FROM` può essere formato nel seguente modo :
+
+```sql
+Tabella  [Identificativo(Ide)] {, Tabella [Ide]}  |
+
+Tabella Giunzione Tabella [USING (Attributi) | ON Condizione]
+```
+
+Le *giunzioni* possono essere :
+
+```sql
+[CROSS|NATURAL] [LEFT|RIGTH|FULL] JOIN
+```
+
+###### CROSS JOIN
+
+Il `{sql}CROSS JOIN` realizza il prodotto tra 2 tabelle 
+
+**Esempio**
+
+```sql
+SELECT *
+FROM Esami CROSS JOIN Docenti
+```
+
+###### NATURAL JOIN
+
+Rappresenta la *giunzione naturale* ( se vi sono 2 attributi con lo stesso nome )
+
+**Esempio**
+
+```sql
+SELECT *
+FROM Esami NATURAL JOIN Docenti
+```
+
+###### JOIN ... ON Condizione
+
+Effettua il `{sql}JOIN` su una condizone ( esempio quali valori devono essere uguali ma si possono anche utilizzare : `{sql}=, <> ( diverso ), >, <, >= , <= , AND , OR` ) 
+
+**Esempio** :
+
+```sql
+SELECT *
+FROM Studenti s JOIN Studenti t ON s.Tutor = t.Matricola
+```
+Seleziono tutti i Tutor
+###### JOIN ... USING Attributi comuni
+
+Effettua il `{sql}NATURAL JOIN` ma solo sugli attributi comuni elencati
+
+**Esempio** :
+
+```sql
+SELECT s.Cognome AS CognomeStud, e.Materia, d.Cognome AS CognomeDoc
+FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato 
+	 JOIN Docenti d USING (CodDoc);
+```
+
+###### LEFT, RIGHT, FULL
+
+Se precede `{sql}JOIN` svolge la corrispondente *giunzione esterna* 
+
+**Esempio** : 
+
+Esami di tutti gli studenti , con congnome e nome relativo elencando anche gli studenti che non hanno fatto esami 
+
+```sql
+SELECT Nome, Cognome, Matricola, Data, Materia 
+FROM Studenti s LEFT JOIN Esami e ON s.Matricola=e.Candidato;
+```
+
+Risultato :
+
+|Nome|Cognome|Matricola|Data|Materia|
+|--|--|--|--|--|
+|Chiara|Scuri|71346|NULL|NULL
+|Giorgio|Zeri|71347|NULL|NULL
+|Paolo|Verdi|71523|2006-07-08|BD
+|Paolo|Verdi|71523|2006-12-28|ALG
+|Paolo|Poli|71576|2007-07-19|ALG
+|Paolo|Poli|71576|2007-07-29|FIS
+|Anna|Rossi|76366|2007-07-18|BD
+|Anna|Rossi|76366|2007-07-08|FIS
 
 ##### ORDER BY
 
+Utilizzato per ordinare la tabella secondo gli attributi indicati ( in ordine lessicografico ) in modo crescente ( `{sql}ASC` , ordinamento di default )  o decrescente ( `{sql}DESC` )
 
+**Esempio** :
 
+```sql
+SELECT Nome,Cognome 
+FROM Studenti 
+WHERE Provincia=’VE’ 
+ORDER BY Cognome DESC, Nome DESC
+```
+
+Quando inseriamo 2 ordinamenti su attributi differenti questi vengono utilizzati in caso di ambiguità nel primo ordinamento 
+
+>[!todo]
+>riscrivi meglio
+>#todo
 ##### Operatori Insiemistici
+
 
 
 ##### NULL
@@ -1709,4 +1866,6 @@ WHERE f.IdPadre = p.Id AND p.IdPadre = n.Id AND n.Lavoro = p.Lavoro
 
 >[!todo]
 >Continua powerpoint sql
+>Riguarda DML con appunti 
 >#todo
+
