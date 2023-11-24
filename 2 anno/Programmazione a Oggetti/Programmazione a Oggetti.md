@@ -1142,8 +1142,33 @@ Object kk = listBoh.get(0);
 // posso mettere dei bound per limitare i tipi
 List<? extends Figure> listBoh = f;
 Fighter kk = listBoh.get(0);
-listBoh.add(new Wizard(null));// funziona so covarainza sul tipo di ritorno , nella controvarainza non funziona
+listBoh.add(new Wizard(null));// funziona so covarainza sul tipo di ritorno , nella controvarianza non funziona
 ```
+
+## 24/11/2023
+
+Object superclasse di tutto , implicitamente una classe in genrale estende la classe object
+
+finalize sarebbe il free esplicito , viene invocato quando si libera la memoria , determinato dal gc non sappiamo se avviene e quando avviene
+
+per sincronizzare i threads utilizzo degli oggeti qualsiasi
+
+getClass oggetto che rappresenta il tipo dinamico dell'oggetto ( reflection )
+
+equals per determinare se 2 oggetti sono gli stessi , implementato con oveload per ogni classe ( non stiamo coperendo il comportamento do Object )
+
+>[!warning]
+
+`{java}==` confronta addresses dei 2 object
+
+equals proprietà matematiche :
+```java
+x.equals(y)
+y.equals(x)
+
+x.equals(y) > y.equals(z) -> x.equals(z)
+```
+
 
 
 
@@ -1157,29 +1182,3 @@ Encapsulation
 ## 04/11/2023
 
 ## 18/11/2023
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
