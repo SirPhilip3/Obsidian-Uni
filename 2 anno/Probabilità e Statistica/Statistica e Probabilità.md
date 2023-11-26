@@ -810,6 +810,36 @@ Un software consiste di 12 programmi , 5 dei quali necessitano di upgrade. Se ve
 	$$
 	\mathbb{E}[X]=4\cdot\frac{5}{12}=\frac 5 3 
 	$$
+###### Funzioni R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+phyper(x,K,N-K,n)
+```
+Dove :
+$x$ : numero di successi dall'estrazione
+$K$ : numero di successi dall'intera popolazione
+$N$ : intera popolazione
+$n$ : numero di estrazioni 
+
+Quindi nel caso del precedente problema potevamo usare :
+```R
+1-phyper(1,5,7,4)
+```
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dhyper(x,K,N-K,n)
+```
+
+Utilizzato per calcolare la probabilità di avere esattamente quel numero di successi
+
+Nel problema precedente potevamo scrivere :
+```R
+1-dhyper(1,5,7,4)-dhyper(0,5,7,4)
+```
 
 #### Distribuzione di Bernuolli
 
@@ -842,7 +872,7 @@ $$\frac K N\cdot\frac{N-K}{N}$$
 #### Distribuzione Binomiale
 
 Supponiamo di eseguire $n$ *prove bernulliane* indipendenti, ognuna con probabilità di successo $p$.
-Sia $X$ la variabile aleatoria che conta il nuemro totale di successi ottenuti in $n$ prove. 
+Sia $X$ la variabile aleatoria che conta il numero totale di successi ottenuti in $n$ prove. 
 Si dice allora che $X$ ha una *distribuzione Binomiale* di parametri $n$ e $p\in(0,1)$ e si scrive :
 $$
 X\sim Bin(n,p)
@@ -928,6 +958,35 @@ $$E[X]=n(n-1)\cdot p^2+np$$
 
 Si ha dunque 
 $$Var[X]=E\big[X^2\big]-E[X]^2=np(1-p)$$
+###### Funzioni R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+pbinom(x,N,p)
+```
+Dove :
+$x$ : numero di successi dall'estrazione
+$p$ : probabilità di un successo
+$N$ : intera popolazione 
+
+Quindi nel caso del precedente problema potevamo usare :
+```R
+pbinom(5,10,0.2)
+```
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dbinom(x,N,p)
+```
+
+Utilizzato per calcolare la probabilità di avere esattamente quel numero di successi
+
+Nel problema precedente potevamo scrivere :
+```R
+dbinom(0,10,0.2)+dbinom(1,10,0.2)+dbinom(2,10,0.2)+dbinom(3,10,0.2)+dbinom(4,10,0.2)+dbinom(5,10,0.2)
+```
 #### Distribuzione di Poisson
 
 Una variabile $X$ che assume valori nell'insieme dei numeri naturali $\mathbb{N}$ ha *dsitribuzione di Posson* di parametro $\lambda\gt 0$ se :
@@ -969,7 +1028,7 @@ $$\lambda\sum_{i=1}^{+\infty}\frac{\lambda^{i-1}}{(i-1)!}e^{-\lambda}=\lambda$$
 
 Similmente si può dimostrare che 
 $$Var[X]=\lambda$$
-##### Esempio 
+##### Esempio
 
 Ad un account di posta elettronica arrivano messaggi con una media di 10 ogni mezz’ora. 
 Si può inoltre supporre che il numero di messaggi in arrivo segua una distribuzione di Poisson. 
@@ -980,6 +1039,36 @@ Quindi prendendo come variabile causale : $X=\text{"numero di messaggi ogni mezz
 
 $$\mathbb{P}[X\le3]=\mathbb{P}[X=0]+\mathbb{P}[X=1]+\mathbb{P}[X=2]+\mathbb{P}[X=3]$$
 $$=\frac{10^0}{0!}e^{-10}+\frac{10^1}{1!}e^{-10}+\frac{10^2}{2!}e^{-10}+\frac{10^3}{3!}e^{-10}=0.0103$$
+###### Funzioni R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+ppois(x, lambda)
+```
+Dove :
+$x$ : numero di eventi
+$lambda$ : $\lambda$ 
+
+Quindi nel caso del precedente problema potevamo usare :
+```R
+ppois(3,10)
+```
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dpois(3,10)
+```
+
+Utilizzato per calcolare la probabilità di avere esattamente quel numero di successi
+
+Nel problema precedente potevamo scrivere :
+```R
+dpois(0,10)+dpois(1,10)+dpois(2,10)+dpois(3,10)
+```
+
+
 ##### Approssimazione Poisson per la Binomiale 
 
 Quando $n\rightarrow \infty$ e $p \rightarrow 0$ ma in modo tale che il prodotto $np\rightarrow \lambda$ rimane costante, allora la funzione di probabilità di una variabile aleatoria binomiale di parametri $n$ e $p$ si può approssimare con la funzione di probabilità di una *Poisson* di parametro $\lambda$ :
@@ -1063,6 +1152,23 @@ Supponiamo che $X$ conti il numero di pagine da visitare per trovare per la prim
 	$$
 	\mathbb{E}[X]=\frac 1 {0.2} = 5
 	$$
+###### Funzioni R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+pgeom(x,p)
+```
+Dove :
+$x$ : numero di fallimenti
+$p$ : probabilità di un successo
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dgeom(x,p)
+```
+
 ### Distribuzioni di probabilità Continue
 
 #### Distribuzione uniforme
