@@ -2208,8 +2208,48 @@ WHERE NOT EXISTS (SELECT *
 				  WHERE e.Candidato = s.Matricola AND e.Voto <> 30)
 ```
 
+Se abbiamo degli studenti che non hanno fatto alcun esame questi vengono compresi nella vista finale per evitare questo dobbiamo considerare solo gli studenti che hanno superato qualche esame , avremo quindi :
+```sql
+SELECT * 
+FROM Studenti s
+WHERE NOT EXISTS (SELECT * 
+				  FROM Esami e 
+				  WHERE e.Candidato = s.Matricola AND e.Voto <> 30)
+	  AND EXISTS (SELECT * -- solo gli studenti con almeno un esame svolto 
+				  FROM Esami e 
+				  WHERE e.Candidato = s.Matricola)
+```
 
+La query precente può essere scritta senza una sottoselect :
+```sql
+SELECT s.Matricola, s.Cognome
+FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato 
+GROUP BY s.Matricola, s.Cognome 
+HAVING MIN(e.Voto) = 30
+```
+
+>[!todo]
+>appunti
+>#todo 
 ###### Quantificazione universale ALL
+
+La precedente può essere scritta con l'`{sql}ALL` che è il parallelo dell'`{sql}ANY` per la quantificazione esistenziale 
+
+```sql
+SELECT * 
+FROM Studenti s 
+WHERE NOT(s.Matricola =ANY (SELECT e.Candidato 
+							FROM Esami e 
+							WHERE e.Voto <> 30))
+```
+Si trasforma in 
+```sql
+SELECT * 
+FROM Studenti s 
+WHERE s.Matricola <>ALL (SELECT e.Candidato 
+						 FROM Esami e 
+						 WHERE e.Voto <> 30)
+```
 
 ###### Raggruppamento
 

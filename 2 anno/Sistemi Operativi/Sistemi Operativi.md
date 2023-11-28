@@ -1638,3 +1638,44 @@ chiave di protezione -> se la chiave per il processore e il blocco richiesto son
 
 ## 28/11/2023
 
+blocco indice contengono un elenco di puntatori che indicano i blocchi di dati possiamo avere vari livelli di blocchi indice 
+
+blocchi indice vicini ai blocchi dati in modo da accedere velocemente tra i blocchi indice e  i blocchi dati
+
+in UNIX blocchi indice detti i-node hanno varie informazioni : 
++ Proprietario
++ dimensione
++ data creazione
++ data modifica
++ indirizzi blocchi dati
++ indirizzi blocchi indice
+
+-> NTFS
+
+gli attributi legati ai file sono contenuri direttamente nella riga delle directory (NTFS) o negli i-node in UNIX
+
+nomi dei file 
++ limite massimo ( perdita memoria se non lungo max )
++ lunghezza varaibile (carattere speciale indica la fine)
++ utilizzo dell' heap per memorizzare i nomi -> puntatori per nomi
+
+condivisione files 
+
+attraverso link ma necessito di un caounter per determinare il numero di utilizzatori , per evitare incoerenza se condividiamo il file questo non viene 'eliminato' alla sua cancellazione
+
+Gestione spazio libero
+
+collegati come per un file FIFO queue
+oppure utilizzo mappa di bit ogni bit corrisponde ad un blocco di memoria
+
+per diversi utenti  utilizzo di un record di quota per ogni utente 
+
+backup e recovery 
+
+backup -> copie ridondanti delle informazioni 
+recovery -> recupero delle informaizoni di sistema dopo un errore di sistema
+
+backup -> fisico copia bit a bit
+			-> logico memorizzare solo ciò che ha senso ( backup incrementali memorizzano solo i dati che sono cambiati )
+
+backup copresso 
