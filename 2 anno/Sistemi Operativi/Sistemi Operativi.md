@@ -1634,4 +1634,7 @@ chiave di protezione -> se la chiave per il processore e il blocco richiesto son
 
 
 
-  
+
+
+## 28/11/2023
+

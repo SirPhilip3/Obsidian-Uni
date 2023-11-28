@@ -2040,7 +2040,181 @@ Dove `Comp` : $\lt,=,\gt,<> (\text{not}),\le,\ge$
 
 ###### SELECT annidate
 
-Utili per estrarre dati dalla ba
+Utili per estrarre dati dalla base di dati per fare dei confronti 
+
+Possiamo eseguire confronti con l'insieme di valori ritornati dalla sottoselect ( sia quando questo è un singoletto sia quando contiene più elementi )
++ Se restituisce un solo valore posso semplicemente svolgere un'operazione di confronto
+	**Esempio** :
+	
+	Studenti che vivono nella stessa provincia di `{sql}'71346'` escluso lo studente stesso
+```sql
+SELECT *
+FROM Studenti
+WHERE (Matricola<> '71346') AND
+		Provincia = (SELECT Provincia
+					 FROM Studenti
+					 WHERE Matricola = '71346')
+ ```
+
+La sottoselect non è necessaria infatti si può tradurre nel seguente modo :
+```sql
+SELECT altri.*
+FROM Studenti altri, Studenti s
+WHERE altri.Matricola<>'71346' AND
+	  s.Matricola = '71346' AND altri.Provincia = s.Provincia
+```
+
+Oppure :
+```sql
+SELECT altri.* 
+-- utilizzo USING visto che hanno gli stessi attributi
+FROM Studenti altri JOIN Studenti s USING (Provincia)
+WHERE altri.Matricola <> '71346' AND s.Matricola = '71346’
+```
+
++ Se restituisce più di un valore ho 2 possibilità : 
+	+ `{sql}ANY` : utilizzato per confrontare solo alcuni elementi della relazione
+		Restituisce *true* se *qualsiasi* confronto con gli elementi della sottoselect restituiscono *true*
+	+ `{sql}ALL` : utilizzato per mettere in relazione tutti gli elementi della sottoselect
+		Restituisce *true* solo se *tutti* i confronti con gli elementi della sottoselect restituiscono *true*
+
+###### Quantificazione
+
+**Esempio** :
+
+Gli studenti che hanno preso 30 -> risulta essere ambiguo
+
+Possiamo invece detereminare la quantificazione delle seguenti query : 
++ Gli studenti che hanno preso sempre (solo, tutti) 30 : *universale*
++ Gli studenti che hanno preso qualche (almeno un) 30 : *esistenziale* 
++ Gli studenti che non hanno preso mai 30 (senza alcun 30) : *universale*
++ Gli studenti che non hanno preso sempre 30 : *esistenziale*
+
+Una query *universale* se viene negata diventa una *esistenziale* , il contrario per l'*esistenziale* :
++ $\lnot \forall x.P(x)== \exists x .\lnot P(x)$
++ $\lnot \exists x.\lnot P(x)== \forall x.P(x)$
+
+Visto che in sql non esiste un costrutto che ci permetta di fare il $\forall$ utilizziamo l'`{sql}EXISTS` 
+
+###### Quantificazione esistenziale EXISTS
+
+Può essere usata nel `{sql}WHERE` :
+`{sql}WHERE [NOT] EXISTS (Sottoselect)`
+
+Per ogni tupla o combinazione di tuple $t$ della select esterna : 
++ calcola la sottoselect
++ verifica se ritorna una tabella \[non] vuota e in quel caso seleziona $t$
+
+**Esempio** 
+
+Studenti con *almeno* un voto > 27
+
+```sql
+SELECT *
+FROM Studenti s
+WHERE EXISTS (SELECT * -- non mi interessa la tabella risultante ma solo se restituisce o no una tabella
+			  FROM Esami e
+			  WHERE e.Candidato = s.Matricola AND e.Voto > 27)
+			  -- con la EXISTS devo collegare la select superiore con la sottoselect
+```
+
+La stessa query può essere svolta con una giunzione :
+
+```sql
+SELECT DISTINCT s.* -- necessario il DISTINCT altrimenti se uno studente ha più esami con voto>27 ritorno più ennuple
+FROM Studenti s JOIN Esami e ON e.Candidato = s.Matricola
+WHERE e.Voto > 27
+```
+
+###### Quantificazione esistenziale ANY
+
+Il costrutto `{sql}ANY` permette la quantificazione universale :
+`{sql}Expr Comp ANY (Sottoselect)`
+
+Per ogni tupla o combinazione di tuple $t$ della select esterna :
++ calcola la sottoselect
++ verifica se `Expr` è in relazione con `Comp` con *almeno* uno degli elementi ritornati dalla select 
+
+**Esempio** :
+
+Studenti con *almeno* un voto > 27
+
+```sql
+SELECT *
+FROM Studenti s
+WHERE s.Matricola =ANY (SELECT e.Candidato
+						FROM Esami e
+						WHERE e.Voto > 27)
+```
+
+oppure :
+
+```sql
+SELECT *
+FROM Studenti s
+WHERE 27 <ANY (SELECT e.Voto
+			   FROM Esami e
+			   WHERE e.Candidato = e.Matricola)
+```
+
+La `{sql}ANY` è equivalente alla `{sql}EXISTS` nel seguente modo :
+
+```sql
+SELECT * 
+FROM Tab1 
+WHERE attr1 op ANY (SELECT attr2 
+					FROM Tab2 
+					WHERE C)
+```
+Si traduce in :
+```sql
+SELECT * 
+FROM Tab1 
+WHERE EXISTS (SELECT * 
+			  FROM Tab2 
+		      WHERE C AND attr1 op attr2)
+```
+
+###### Quantificazione esistenziale IN
+
+`{sql}IN` è uno zucchero sintattico per `{sql}=ANY` , la sua implementazione è quindi equivalente all'`{sql}=ANY` :
+
+```sql
+SELECT *
+FROM Studenti s
+WHERE s.Matricola IN (SELECT e.Candidato
+					  FROM Esami e
+					  WHERE e.Voto > 27)
+```
+
+`{sql}IN` può essere utilizzato anche elencando dei valori :
+
+```sql
+SELECT *
+FROM Studenti
+WHERE Provincia IN ('PD','VE','BL')
+```
+Ritornerà gli studenti di Padova , Venezia , Belluno
+###### Quantificazione universale NOT EXISTS
+
+**Esempio** :
+
+Gli studenti che hanno preso solo 30
+```sql
+SELECT * 
+FROM Studenti s
+WHERE NOT EXISTS (SELECT * 
+				  FROM Esami e 
+				  WHERE e.Candidato = s.Matricola AND e.Voto <> 30)
+```
+
+
+###### Quantificazione universale ALL
+
+###### Raggruppamento
+
+
+
 
 
 
