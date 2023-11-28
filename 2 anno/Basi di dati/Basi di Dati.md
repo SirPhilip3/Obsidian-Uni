@@ -1853,15 +1853,195 @@ Quando inseriamo 2 ordinamenti su attributi differenti questi vengono utilizzati
 >#todo
 ##### Operatori Insiemistici
 
+Operatori che possono essere applicate per combinare tabelle con colonne di ugual nome ( se le tabelle hanno attributi con lo stesso tipo ma nome differenti possiamo rinominarle con `{sql}AS` ) e tipo 
 
+Le operazioni insiemistiche rimuovono i duplicati a meno che non specificato con `{sql}ALL` 
 
+Gli operatori sono : `{sql}UNION` `{sql}INTERSECT` `{sql}EXCEPT` 
+
+>[!note]
+> Gli operatori insiemistici vengono sempre applicati su 2 tabelle
+
+**Esempi** :
+
+###### 1 
+
+Nome, cognome e matricola degli studenti di Venezia e di quelli che hanno preso più di 28 in *qualche* esame
+
+```sql
+SELECT Nome, Cognome, Matricola 
+FROM Studenti 
+WHERE Provincia='VE' 
+UNION 
+SELECT Nome, Cognome, Matricola 
+FROM Studenti JOIN Esami ON Matricola=Candidato 
+WHERE Voto>28
+```
+
+Può essere scritta senza gli operatori insiemistici :
+
+```sql
+-- necessario il distinct poichè gli operatori insiemistici tolgono i duplicati inplicitamente
+SELECT DISTINCT s.Nome , s.Cognome , s.Matricola
+-- left join poichè ci possono essere studenti che non hanno fatto esami di venezia , se non ci fosse il left non verrebbero inclusi nel risultato finale
+FROM Studenti s LEFT JOIN Esami e ON s.Matricola = e.Candidato 
+WHERE e.Voto > 28 OR s.Provincia = 'VE'
+```
+
+###### 2
+
+Matricole degli studenti che non sono tutor
+
+```sql
+SELECT Matricola
+FROM Student
+-- tutti gli studenti tranne i tutor
+EXCEPT
+-- tutor è lo stesso tipo di matricola ma diverso nome
+SELECT Tutor AS Matricola
+FROM Studenti
+```
+
+Equivalentemente 
+
+```sql
+SELECT s.Matricola
+-- Left join poichè devo matenere gli studenti che non sono tutor
+FROM Studenti s LEFT JOIN Studenti t ON s.Matricola = t.Tutor
+WHERE t.tutor IS NULL
+```
+
+###### 3
+
+Nome e cognome degli studenti che hanno preso in un esame 18 e in un altro esame 30
+
+```sql
+SELECT Nome, Cognome, Matricola 
+FROM Studenti JOIN Esami ON Matricola=Candidato
+WHERE Voto = 18
+-- ALL mantiene i duplicati minori tra i 2 insiemi , es 3 volte 18 e 4 volte 30 -> nella tabella finale 3 volte lo studente
+	INTERSECT ALL
+SELECT Nome, Cognome, Matricola
+FROM Studenti JOIN Esami ON Matricola=Candidato
+WHERE Voto = 30
+```
+
+Equivalentemente 
+
+```sql
+-- se non mi interessano i duplicati utilizzo il DISTINCT nella SELECT , altrimenti in questo caso avremmo avuto n*m linee dello stesso studente ( n=e.voto=18 , m = e.voto=30 )
+SELECT DISTINCT s.Nome , s.Cognome , s.Matricola
+FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato
+				JOIN Esami e2 ON s.Matricola = e2.Candidato
+WHERE e.Voto = 18 AND e2.Voto = 30
+```
+
+>[!todo]
+>spiegazione
+>#todo
 ##### NULL
 
+`{sql}NULL` è un valore speciale : `unknown = U` -> nè false nè true 
+Questo cambia i risultati delle espressioni , necessitiamo l'implementazione di una logica a 3 valori :
 
+| $p$ | $\lnot p$ |
+| --- | --------- |
+| U   | U         |
+
+| $p$ | $q$ | $p\land q$ | $p\lor q$ |
+| --- | --- | ---------- | --------- |
+| T   | U   | U          | T         |
+| F   | U   | F          | U         |
+| U   | T   | U          | T         |
+| U   | F   | F          | U         |
+| U   | U   | U          | U         |
+
+`{sql}NULL = 0` non è nè vero nè falso ma *unknown*
+`{sql}NULL = NULL` è *unknown*
+
+Per questo necessitiamo di un predicato specifico che svolga il *test di nullità* : `{sql}Expr IS [NOT] NULL` risulta vera se `{sql}Expr` è `{sql}NULL` o non è `{sql}NULL`
+
+**Esempi** :
+
+Gli Studenti che non hanno tutor
+
+```sql
+SELECT *
+FROM Studenti
+WHERE Tutor IS NULL
+```
+
+```sql
+SELECT *
+FROM Studenti 
+WHERE Tutor = NULL
+```
+Questa query non ritorna alcuna ennupla poichè `{sql}Tutor = NULL` risulta essere sempre falsa
+
+###### Altri operatori per NULL
+
++ `{sql}Expr1 IS [NOT] DISTINCT FROM Expr2`
+	Risulta *vero* se i due valori sono diversi o uno solo dei due è `NULL`
+	Se entrambi i valori sono uguali o entrambi `NULL` l'espressione risulta *falsa*
+	L'inverso con il `{sql}NOT`
++ `{sql}COALESCE(Expr1,...,Exprn)`
+	Viene utilizzato per traformare un valore `NULL` in un valore non nullo
+	Valuta le espressioni in sequenza da sinistra verso destra , restituisce il primo valore trovato differente da `NULL` , ritorna `NULL` se tutte le espressioni hanno valore `NULL`
 ##### BETWEEN
 
+`{sql} WHERE Expr BETWEEN Expr AND Expr`
 
+Restituisce i valori compresi tra 2 espressioni
+
+**Esempio** :
+
+Restituire gli studenti con matrocola compresa tra 71000 e 72000 
+```sql
+SELECT *
+FROM Studenti
+WHERE Matricola BETWEEN 71000 AND 72000
+```
 ##### Pattern Matching
+
+Utilizzato principalmente sulle stringhe 
+
+`{sql}WHERE Expr LIKE Pattern`
+
+Il `Pattern` può contenere dei caratteris speciali :
++ `%` : indica una sequenza di 0 o più caratteri
++ `_` : indica un carattere qualsiasi
+
+**Esempio** : 
+
+Tutti gli studenti con il nome di almento 2 caratteri che inizia per A
+```sql
+SELECT *
+FROM Studenti
+WHERE Nome LIKE 'A_%'
+```
+
+Tutti gli studenti con il nome che inizia per A e termina per a o per i
+```sql
+SELECT *
+FROM Studenti 
+WHERE Nome LIKE 'A%a' OR Nome LIKE 'A%i'
+```
+
+##### WHERE
+
+Può essere :
++ `{sql}Expr Comp Expr`
++ `{sql}Expr Comp (Sottoselect che ritorna esattamente un valore)`
++ `{sql}Expr [NOT] IN (Sottoselect)` oppure `{sql}IN (v1,...,vn)`
++ `{sql} [NOT] EXISTS (Sottoselect)`
++ `{sql}Expr Comp (ANY | ALL) (Sottoselect)`
+
+Dove `Comp` : $\lt,=,\gt,<> (\text{not}),\le,\ge$
+
+###### SELECT annidate
+
+Utili per estrarre dati dalla ba
+
 
 
 >[!todo]
