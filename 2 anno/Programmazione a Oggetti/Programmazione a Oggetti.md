@@ -1170,6 +1170,97 @@ x.equals(y) > y.equals(z) -> x.equals(z)
 ```
 
 
+## 29/11/2023
+
+clone metodo protected >>> copia l'oggetto 
+```java
+@Override
+protected Object clone(){
+	return new Wizard(...) // calls constructor with all the parameter
+} 
+```
+
+gli oggetti potrebbero non supportare il clone 
+
+```java
+protected Object clone() throws CloneNotSupportedException;
+```
+
+clone può essere fatto public (estensione della visibilità) , e cambiare return type 
+
+interfaccia clonable , se viene inmplemetnata allora posso clonare quell'oggetto altrimenti no
+
+per vedere se è cloanbile : 
+```java
+array[i] instanceof Clonable
+```
+
+Se lo clono non è detto che questo sia accessibile da ovunque ( clone potrebbe non essere pubblico -> potrebbe essere protected )
+
+oggetti clonati sono equals -> ( di base può fare solo shallow copy ) , ed hanno stessa classe 
+
+**hashCode**
+
+all'inerno di un indice metto tutti gli oggetti che *potenzialmente* sono uguali 
+se 2 oggetti sono == necessariamente devono avere lo stesso hashCode ( anche tra più objects )
+se sono diversi non è required che abbiano index differenti in hashCode
+
+`{java}Object.hash(el)` -> libreria che ci ritorna  un hash code adeguato 
+
+```java
+public int hasCode(){
+	return 0; // always ok 
+	// complessità pratica -> n object all'interno dell'indice 0
+	return id%37; // grups of objects
+	return id ; // tabella in cui ogni index 1 elemento memory duplication
+} 
+```
+
+hashCode deve essere sempre definito se ridefinisco equals 
+
+`{java}String` -> classe *final* sotto object 
+istruzioni specifiche per String -> non fa nessuna new se gli passiamo una string 
+`{bytecode}ldc "fff"` -> usando quei byte della variabile locale crea un oggetto di tipo stringa  
+se 2 stringhe == costante nello stesso punto del pool 
+
+```java
+String a = "cf";
+String b = "cf";
+
+a.equals(b) -> true ; 
+
+a==b -> true ; // stessa area di mem , aliasing 
+se a.replace('c','t'); // a="tf" 
+
+```
+
+classe string è immutabile , a.replace ritorna una nuova stringa modificata non modifica l'originale 
+`{java}a=a.replace()`
+
+-> in questo modo non devo invocare ogni volta il costruttoredella stringa
+
+operatori su stringhe -> 
++ concatenazione : `{java}a=a+"ceec"` in realtà non essendoci l'overload degli operatori è come fare `{java}a=a.concat("ceec")` -> in realtà invokedinamic ( non invoca la concat poichè è costoso ) nel bytecode 
+
+`{java}toString()` -> ci aiuta a visualizzare lo stato di un oggetto ( è presente nella classe Object  )
+
+```java
+@Override
+public String toString(){// public 
+
+	return "....."; // descr oggetto
+
+}
+```
+
+
+se non definisco un toString -> ritorna address ( posizione nel package + address ) di quell'oggetto 
+se concateno una stringa con un oggetto chiamato il toString su di esso -> dove ho dei dati da rappresentare  
+
+
+
+
+
 
 
 # Tutorati 
