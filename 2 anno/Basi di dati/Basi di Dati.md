@@ -2253,7 +2253,125 @@ WHERE s.Matricola <>ALL (SELECT e.Candidato
 
 ###### Raggruppamento
 
+Costrutto : 
+```sql
+SELECT ... FROM ... WHERE ...
+GROUP BY A1 ... An
+[HAVING condizione]
+```
 
+Semantica :
+
++ Esegue le clausole `{sql}FROM ... WHERE ...`
++ Partiziona la tabella risultante rispetto all'uguaglianza su tutti i campi `{sql}A1, ... ,An` 
++ Elimina i gruppi che non rispettano la clausola `{sql}HAVING` 
++ Da ogni gruppo estrae una riga usando la clausola `{sql}SELECT`
+
+**Esempio** :
+
+Per ogni materia trovare il nome della materia e voto medio degli esami in quella materia ( solo materie per le quali sono stati sostenuti più di 3 esami )
+
+```sql
+SELECT e.Materia, AVG(e.Voto)
+FROM Esami e
+GROUP BY e.Materia
+HAVING COUNT(*)>3 -- Seleziono solo i gruppi che hanno più di 3 righe (ossia che la materia abbia più di 3 esami svolti)
+```
+
+| Codice | Materia | Candidato | Data | Voto | Lode | CodDoc |
+| ------ | ------- | --------- | ---- | ---- | ---- | ------ |
+| B112 | BD | 71523 | 2006-07-08 | 27 | N | AM1 | 
+| A143 | ALG | 71523 | 2006-12-28 | 25 | N | NG2 | 
+| B247 | BD | 76366 | 2007-07-18 | 30 | L | AM1 | 
+| A213 | ALG | 71576 | 2007-07-19 | 21 | N | NG2 | 
+| F31 | FIS | 76366 | 2007-07-08 | 30 | N | GL1 | 
+| F45 | FIS | 71576 | 2007-07-29 | 22 | N | GL1 |
+|F56|FIS|73442|2007-07-23|25|N|GL1|
+
+Svolgimento del `{sql}GROUP BY` 
+
+| Codice | Materia | Candidato | Data | Voto | Lode | CodDoc |
+| ------ | ------- | --------- | ---- | ---- | ---- | ------ |
+| B112 | BD | 71523 | 2006-07-08 | 27 | N | AM1 | 
+| B247 | BD | 76366 | 2007-07-18 | 30 | L | AM1 | 
+
+| Codice | Materia | Candidato | Data | Voto | Lode | CodDoc |
+| ------ | ------- | --------- | ---- | ---- | ---- | ------ |
+| A143 | ALG | 71523 | 2006-12-28 | 25 | N | NG2 | 
+| A213 | ALG | 71576 | 2007-07-19 | 21 | N | NG2 | 
+
+| Codice | Materia | Candidato | Data | Voto | Lode | CodDoc |
+| ------ | ------- | --------- | ---- | ---- | ---- | ------ |
+| F31 | FIS | 76366 | 2007-07-08 | 30 | N | GL1 | 
+| F45 | FIS | 71576 | 2007-07-29 | 22 | N | GL1 |
+|F56|FIS|73442|2007-07-23|25|N|GL1|
+
+L'`{sql}HAVING` selezionerà solo il gruppo di fisica visto che è l'unico avente almeno 3 esami
+
+Calcoliamo quindi le condizinoni sul `{sql}SELECT`
+
+|Materia|AVG(Voto)|
+|--|--|
+|FIS|25.600|
+
+
+>[!note]
+>Gli attributi espressi non aggregati nella `{sql}SELECT` e in `{sql}HAVING` se presenti devono essere inclusi tra quelli citati nella `{sql}GROUP BY` 
+>Gli attributi aggregati (`{sql}AVG(e.Voto)`) vanno scelti tra quelli non raggruppati
+
+**Esempio** : 
+
+Per ogni studente restituire il suo Cognome e Voto medio : 
+
+```sql
+SELECT s.Cognome, AVG(e.Voto)
+FROM Studenti s, Esami e 
+WHERE s.Matricola = e.Candidato
+GROUP BY s.Matricola ,-- s.Cognome --devo aggiungere s.Cognome anche se non mi servirebbe nella GROUP BY ma mi serve nella SELECT
+```
+
+>[!note]
+>Nella clausola `{sql}HAVING` possiamo citare solo : 
+>- espressioni su attributi di raggruppamento 
+>- funzioni di aggregazione applicate ad attributi non di raggruppamento
+
+**Esempio** :
+
+Ritornare il Cognome e il Voto medio degli studenti che hanno svolto gli degli esami dopo il 2006
+
+```sql
+SELECT s.Cognome, AVG(e.Voto)
+FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato
+GROUP BY s.Matricola, s.Cognome , -- e.Data 
+HAVING YEAR(Data) > 2006; -- Data deve essere incluso nel GROUP BY
+```
+
+
+ Nel *raggruppamento* si assume che  `{sql}NULL=NULL`
+
+**Esempio** :
+
+Ritorna il numero di studenti assegnati ad ogni Tutor
+
+```sql
+SELECT Tutor, COUNT(*) AS NStud
+FROM Studenti
+GROUP BY Tutor
+```
+
+Il risultato è :
+
+|Tutor|NStud|
+|--|--|
+|NULL|2|
+|71347|2
+|71523|1
+
+In questo caso `{sql}NULL` indica che 2 studenti non hanno un Tutor assegnato
+
+Potrei far 'sparire' il `{sql}NULL` utilizzando un `{sql}COALESCE(Tutor, "Non ha tutor")`
+
+###### CASE
 
 
 
