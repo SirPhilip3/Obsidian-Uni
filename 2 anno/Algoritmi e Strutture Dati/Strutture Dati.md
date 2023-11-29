@@ -1294,6 +1294,17 @@ Tree_insert(Tree T, Node z)
 	Il ciclo `{c}while` costa $O(h)$ , poichè sto scendendo dalla radice la profondità massima a cui potrei scendere è $h$ ; le altre istruzioni sono semplici assegnamenti e non influiscono nella complessità totale
 
 La complessità dell'algoritmo risulta quindi essere : $O(h)$
+
+>[!todo]
+
+#### Cancellazione
+
+
+
+#### Costruzione
+
+
+
 # Esercizi 
 
 >[!todo]

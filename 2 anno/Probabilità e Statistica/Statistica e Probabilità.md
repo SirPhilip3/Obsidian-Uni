@@ -1212,6 +1212,8 @@ X\sim N(\mu,\sigma^2)
 $$
 La sua funzione di ripartizione è :
 $$f(x)=c\cdot e^{-\frac1 2\Big(\frac{(x-\mu)^2}{\sigma^2}\Big)}, \quad x\in \mathbb{R},\mu\in\mathbb{R},\sigma\gt 0$$
+![[Pasted image 20231129143220.png]]
+
 
 La *distribuzione normale stadard* è :
 $$X\sim N(0,1)$$
@@ -1232,11 +1234,68 @@ $$f(x)=\frac 1 {\sqrt{2\pi}}\cdot e^{-\frac{x^2}{2}}$$
 
 La *funzione di ripartizione* risulta essere :
 $$\int_{-\infty}^x\frac 1 {\sqrt{2\pi}}\cdot e^{-\frac{t^2}{2}}dt$$
-In questo caso non si può svolgere l'integrale ( non esiste una funzione analitica che la deriva ) e quindi la *funzione di riaprtizione* viene espressa come integrale
+In questo caso non si può svolgere l'integrale ( non esiste una funzione analitica che la deriva ) e quindi la *funzione di ripartizione* viene espressa come integrale
 
+##### Proprietà
+
+###### Media
+
+$$\mathbb{E}[X]=\mu$$
+###### Varianza
+
+$$Var[X]=\sigma^2$$
+
+#### Normale Standard
+
+La *normale standard* ( $Z\sim N(0,1)$ ) ha come funzione di  *ripartizione* viene indicata con $\Phi$ 
+Tutte le altre *normali* possono essere ricondotte alla standard attraverso la *standardizzazine*
+$$X\sim N(\mu,\sigma^2)\implies Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$
+Sappiamo anche che :
+$$\mathbb{P}[a<X<b]=\mathbb{P}\bigg[\frac{a - \mu}{\sigma}<Z<\frac{b-\mu}{\sigma}\bigg]=\Phi\bigg(\frac{b-\mu}{\sigma}\bigg)-\Phi\bigg(\frac{a-\mu}{\sigma}\bigg)$$
+
+Si può facilmente calcolare il valore della probabilità attraverso le tavole della normale :
+
+**Esempio** 
+
+$$\mathbb{P}[X\le 1] = 0.84134$$
+![[Pasted image 20231129143905.png]]
+
+Possiamo anche utilizzare la funzione di R `{r}pnorm(q)` per determinare questo valore
+
+**Esempio di Standardizzazione** :
+
+$$X\sim N(-1,4)\implies Z=\frac{X+1}{2}\sim N(0,1)$$
++ $\mathbb{P}[X\le 1]=\mathbb{P}\bigg[Z\le\frac{1+1}{2}\bigg]$ 
+	`{r}pnorm(q=1,mean=-1,sd=2) = 0.84134`
+	oppure
+	`{r}pnorm(q=(1+1)/2, mean=0,sd=1) = 0.84134`
++ $\mathbb{P}[0\le X\le 1]=\mathbb{P}\bigg[\frac{0+1}{2}\le Z\le\frac{1+1}{2}\bigg]$
+	`{r}pnorm(q=1,mean=-1,sd=2)-pnorm(q=0,mean=-1,sd=2) = 0.14988`
+	oppure
+	`{r}pnorm(q=(1+1)/2,mean=0,sd=1)-pnorm(q=(0+1)/2,mean=0,sd=1) = 0.14988`
 #### Approssimazione normale per la Binomiale
 
+Quando $n$ è grande allora la funzione di ripartizione di una variabile aleatoria binomiale di parametri $n$ e $p$ si può approssimare con la funzione di ripartizione di una normale di parametri $\mu = n\cdot p$  e  $\sigma^2 = n\cdot p(1-p)$ 
 
+Avremo che : 
+$$Bin(n,p)\approx N(np\ ,\ np(1-p))$$
+
+>[!attention]
+>L'approssimazione viene utilizzata nella pratica quando $np(1-p)\ge 10$
+>
+
+**Esempio** :
+
+>[!todo]
+>#todo
+
+#### Distribuzione Gamma
+
+#### Distribuzione Esponenziale
+
+
+>[!todo]
+>#todo
 # Appunti
 #### R-Studio
 

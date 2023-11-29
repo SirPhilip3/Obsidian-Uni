@@ -2373,11 +2373,102 @@ Potrei far 'sparire' il `{sql}NULL` utilizzando un `{sql}COALESCE(Tutor, "Non ha
 
 ###### CASE
 
-
-
+```sql
+CASE input_expression 
+	WHEN when_expression THEN result_expression 
+	...
+	[ ELSE Default ]
+```
 
 >[!todo]
->Continua powerpoint sql
->Riguarda DML con appunti 
+>incomplete
 >#todo
 
+
+###### Modifica dei Dati
+
+**INSERT**
+
+Sintassi :
+```sql
+INSERT INTO Tabella [(A1,...,An)]
+VALUES (V1,...,Vn) | AS Select
+```
+
+Vi sono vari modi di inserire dati in una tabella :
+
+```sql
+INSERT INTO Tabella 
+	VALUES (V1,...,Vn)
+```
+In questo caso tutti i valori che inserico in `{sql}VALUES` devono essere posti nel medesimo modo della tabella selezionata ( altrimenti si creano delle inconsistenze )
+
+```sql
+INSERT INTO Tabella [(A1,...,An)]
+```
+Specifico quali e che attributi inserico all'interno della Tabella , nel caso un attributo è un `{sql}NOT NULL` e non vi sono valori di *Default* allora sono costretto ad inserire un valore
+
+```sql
+INSERT INTO Tabella AS 
+	SELECT ...
+```
+Inserisco nella tabella i valori che vengono selezionati dalla `{sql}SELECT
+
+**UPDATE**
+
+Sintassi :
+
+```sql
+UPDATE Tabella
+SET attr1 = expr1 , ... , attrn = exprn;
+WHERE Condizione
+```
+
+**Esempio** :
+
+Aggiorna il tutor degli studenti 76366 e 76367 a 71523
+
+```sql
+UPDATE Studenti
+SET Tutor = '71523'
+WHERE Matricola = '76366' OR Matricola = '76367'
+```
+
+**DELETE**
+
+Sintassi
+
+```sql
+DELETE FROM Tabella
+WHERE Condizione
+```
+
+La *Delete* può far riferimento al massimo ad una tabella 
+
+Cancella quelle righe che soddisfano la *Condizione* , se non specifichiamo un `{sql}WHERE` la `{sql}DELETE` eliminerà tutte le righe della Tabella senza cancellare la Tabella stessa 
+
+**Esempio** :
+
+Elimina tutti gli Studenti che non hanno svolto alcun esame 
+
+```sql
+DELETE FROM Studenti
+WHERE Matricola NOT IN (SELECT Candidato 
+						FROM Esami)
+```
+
+Oppure :
+
+```sql
+DELETE FROM Studenti
+WHERE NOT EXISTS (SELECT * 
+				  FROM Esami
+				  WHERE s.Matricola = e.Candidato)
+```
+
+
+### Esercizi
+
+>[!todo]
+>riscrivi es
+>#todo
