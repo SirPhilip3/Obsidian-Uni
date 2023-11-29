@@ -1324,14 +1324,63 @@ $$Var[X]=\frac{\alpha}{\lambda^2}$$
 
 Se $X$ è una variabile aleatoria gamma di *media* 4 e *varianza* 4 allora :
 $$\alpha = 4 \quad e\quad \lambda=1$$
++ Si può calcolare allora ( itegrando ripetutamente per parti )
 
-
-
+$$\mathbb{P}[X<4]=\int_0^4 \frac{e^{-x}x^3}{6}dx$$
+$$=\frac 1 6 \Big[-(x^3+3x^2+6x+6)e^{-x}\Big]\Bigg|_0^4 =$$
+$$=0.567$$
+Possiamo infatti ricondurre $\Gamma(4)=\int_0^\infty x^{4-1}e^{-x}=(4-1)!=6$
+>[!note]
+La funzione gamma può quindi essere rincondotta a : $(\alpha-1)!$
 
 #### Distribuzione Esponenziale
 
+Un caso particolare di distribuzione gamma si verifica con $\alpha = 1$ è la *distribuzione esponenziale* : $$X\sim Exp(\lambda)$$
+La sua *densità* risulta essere :
+$$f(x)=\begin{cases} 
+   \lambda e^{-\lambda x} & x \in (0,\infty) \\
+   0 &\text{altrove } 
+\end{cases}$$
+La funzione di *ripartizione* diventa quindi :
+$$f(x)=\begin{cases} 
+   0 & x \lt 0 \\
+   1-e^{-\lambda x} & x \ge 0 
+\end{cases}$$
+>[!important]
+>La distribuzione esponenziale si usa per modellare tempi di attesa.
+>Esempi :
+>+ La vita di un certo componente elettronico di un'automobile
+>+ La lunghezza fra 2 difetti consecutivi di una fibra ottica
+>+ Il tempo che passa fra l'arrivo di un treno in stazione e il sucessivo
+##### Proprietà 
+
+###### Media
+$$\mathbb{E}[X]=\frac{1}{\lambda}$$
+###### Varianza
+$$Var[X]=\frac{1}{\lambda^2}$$
+###### Mancanza di Memoria
+
+La *distribuzione esponenziale* è l'unica distribuzione continua a possedere questa proprietà
+
+Quindi se abbiamo :
+$$\mathbb{P}[X\gt t +s|X\gt t]=\frac{\mathbb{P}[X\gt t+s]}{\mathbb{P}[X>t]}=\mathbb{P}[X>s]$$
+Questa proprietà può essere dimostrata, come per quella della dimostrazione *geometrica*, trenendo conto che :
+$$\mathbb{P}[X>x]=e^{-\lambda x}, \quad x>0$$
+**Esempio** : 
+
+Il tecnico di un laboratorio dell’università in un’*ora* *installa* un certo software in media su *30* *pc*. Assumendo che il tempo di installazione su ogni pc segua una *distribuzione esponenziale*. 
+
+Calcolare la *probabilità* che il tecnico impieghi *più* *di* *5* *minuti* per *installare* il software nel *prossimo* *pc*
+
+Possiamo definire la variabile aleatoria in 2 modi :
++ $X$ = tempo di attesa in ore $\sim Exp(30)$
+	$\mathbb{P}[X\gt 1/12] = e^{-30/12}$
++ $X$ = tempo di attesa in minuti $\sim Exp(1/2)$
+	$\mathbb{P}[X>5]=e^{-5/2}$
+
 
 >[!todo]
+>rivisita distribuzione esponenziale e gamma
 >#todo
 # Appunti
 #### R-Studio
