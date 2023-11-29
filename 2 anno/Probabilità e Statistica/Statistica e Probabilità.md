@@ -1286,10 +1286,47 @@ $$Bin(n,p)\approx N(np\ ,\ np(1-p))$$
 
 **Esempio** :
 
->[!todo]
->#todo
+Un certo virus danneggia un file con probabilità 0.35, indipendentemente dagli altri file. Il virus attacca una cartella con 2400 file. Qual è la probabilità che vengano danneggiati fra gli 800 e gli 850 file ( *inclusi* ) ?
 
+Sia $X$ la variabile che conta il numero di file danneggiati 
+Allora avremo $X\sim Bin(2400,0.35)$ e la probabilità richiesta sarà :
+$$\mathbb{P}[800\le X \le 850]=\sum_{k=800}^{850}\binom{2400}{k}0.35^k(1-0.35)^{2400-k}=0.632893$$
+
+Possiamo però approssimare $X$ con una *normale* con parametri :
+$$\mu=2400\cdot0.35=840$$
+$$\sigma=\sqrt{2400\cdot0.35\cdot(1-0.35)}=\sqrt{546}=23.36664$$
+Ora dobbiamo applicare la *correzione per continuità* infatti poichè stiamo convertendo da una distribuzione discreta ad una continua infatti poichè nel caso discreto $\mathbb{P}[X=x]$ potrebbe essere positivo nel caso continuo risulta essere sempre 0
+In generale : 
+$$\mathbb{P}[X=x]=\mathbb{P}[x-0.5\lt X \lt x+0.5]$$
+
+Corregiamo quindi così la nostra probabilità :
+
+$$\mathbb{P}[800\le X \le850]=\mathbb{P}[799.5\lt X \lt 850.5]$$
+$$\approx\Phi\bigg(\frac{850.5-840}{23.36664}\bigg)-\Phi\bigg(\frac{799.5-840}{23.36664}\bigg)$$
+$$=\Phi(0.4493586)-\Phi(-1.73324)=0.631887$$
 #### Distribuzione Gamma
+
+Si dice che $X$ ha *distribuzione gamma* di parametri $\alpha \gt 0$ e $\lambda \gt 0$ e si scrive :
+$$X\sim Ga(\alpha,\lambda)$$
+La sua *densità* di probabilità è della forma :
+$$f(x)=\begin{cases} 
+   \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x} & x \in (0,\infty) \\
+   0 &\text{altrove } 
+\end{cases}$$
+Dove $\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}{e^{-x}}dx$ è la *funzione gamma* 
+##### Proprietà
+###### Media 
+$$\mathbb{E}[X]=\frac{\alpha}{\lambda}$$
+###### Varianza
+$$Var[X]=\frac{\alpha}{\lambda^2}$$
+
+**Esempio** :
+
+Se $X$ è una variabile aleatoria gamma di *media* 4 e *varianza* 4 allora :
+$$\alpha = 4 \quad e\quad \lambda=1$$
+
+
+
 
 #### Distribuzione Esponenziale
 
