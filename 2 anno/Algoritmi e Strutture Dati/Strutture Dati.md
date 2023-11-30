@@ -1299,7 +1299,64 @@ La complessità dell'algoritmo risulta quindi essere : $O(h)$
 
 #### Cancellazione
 
+Prima di costruire un algoritmo teniamo presente la seguente *proprietà* :
+##### Proprietà
 
+Se un nodo $x$ in un *albero binario di ricerca* ha 2 figli allora il *sucessore* non ha un figlio sinistro e il suo *predecessore* non ha un figlio destro
+
+###### Dimostrazione
+
+Sia $x$ un nodo con 2 figli allora in una visita simmetrica i nodi del sottoalbero *sinistro precedono* $x$ mentre quelli de sottoalbero *destro seguono* $x$ 
+
+Se $s$ è il sucessore di $x$ assumiamo per assurdo che $s$ abbia un figlio sinistro ( $y$ ) , allora $y$ seguirà $x$ poichè si trova nel sottoalbero destro ma precede $s$ poichè si trova nel suo sottoalbero sinistro .
+Questo è assurdo poichè $s$ non sarebbe più il sucessore di $x$ ma lo sarebbe $y$
+
+In modo simmerico questa *proprietà* può essere verificata per il predecessore
+
+##### Algoritmo 
+
+Analizziamo il problema :
+Abbiamo il seguente albero :
+
+![[DeleteTree.excalidraw]]
+
+Vogliamo eliminare il nodo $z$ : ci sono 3 casi che possiamo individuare :
+
+1. Se $z$ non ha figli modifichiamo suo padre ( $z.p$ ) per sostituire $z$ con $NIL$ , un esempio sarebbe l'eliminazione del nodo $z=10$ 
+	![[TreeDelete1case.excalidraw]]
+2. se $z$ ha un unico figlio stacchiamo $z$ creando un collegamento tra suo figlio e suo padre ( `{c}z.figlio.p = z.p` ) , un esempio sarebbe l'eliminazione del nodo $z=18$
+	![[TreeDelelte2case.excalidraw]]
+3. se $z$ ha 2 figli troviamo il *sucessore* $y$ di $z$ che deve trovarsi nel sottoalbero destro di $z$ e facciamo in modo che $y$ la posizione di $z$ nell'albero , un esempio sarebbe l'eliminazione del nodo $z=15$
+	![[TreeDelete3case.excalidraw]]
+
+Dobbiamo avvalerci di una funzione **ausiliaria** che mi permetta di spostare dei sottoalberi all'interno di un albero 
+
+```c++
+// sostituisce il sottoalbero con radice nel nodo u con il sottoalbero con radice nel nodo v
+Transplant(Tree T, Node u, Node v){
+	if u.p == NIL
+		T.root = v // se il nodo che volgio sostituire è root cambio il root dell'albero
+	else 
+		if u == u.p.left // u figlio sx di suo padre 
+			u.p.left = v // v diventa figlio sx di suo padre
+		else 
+			u.p.rigth = v // u figlio dx
+	if v != NIL
+		 v.p = u.p
+}
+```
+
+![[Transplant.excalidraw]]
+
+**Complessità**
+$O(1)$ : sono solo assegnamenti 
+
+**Tree_delete**
+
+```c++
+Tree_delete(Tree T, Node z)
+	
+```
 
 #### Costruzione
 
