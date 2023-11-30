@@ -423,7 +423,155 @@ La documentazione è scritta attraverso commenti , ci sono 2 tipi di commenti :
 >copia appunti 4° pwp
 >#todo
 
+## Inheritance
 
+### Aggregazione
+
+Un *oggetto* può riferire altri oggetto 
+
+**Esempio** :
+
+```java
+class Car{
+	double speed;
+	FuelType fuelType; // oggetto 
+	double fuel;
+}
+```
+
+### Ereditarietà
+
+Un *oggetto* estende le funzionalità di un'altro , ci consente di partire da una classe più astratta via via specilizzandola , un esempio sarebbe creare una classe `{java}class Vehicle` che implementa le caratteristiche comuni a tutti i veicoli ( come la velocità e l'accelerazione ) e sucessivamente specializzandola implementando varie classi che identificano vari tipi di viecoli 
+
+**Esempio** 
+
+```java
+class Vehicle {
+	double speed;
+	void accelerate(double a){...}	
+}
+
+class Car extends Vehicle{
+	FuelType fuelType;
+	double fuel;
+	void refuel( FuelTank tank ){...}
+}
+```
+
+In questo caso la classe `{java}Car` erediterà `{java}double speed` e `{java}void accelerate(double a){...}	`
+
+#### Proprietà
+
+Ogni classe può estendere al massimo un'altra classe ( questa può essere già estesa )
+
+**Esempio**
+
+```java
+public class Vehicle{...}
+public class Car extends Vehicle{...}
+public class Bicycle extends Vehicle{...}
+public class Truck extends Car{...}
+```
+
+La gerarchia delle classi può essere rappresentata come un albero :
+
+![[ClassExtends.excalidraw]]
+
+>[!note]
+>I metodi e campi che possono essere acceduti dalle sottoclassi devono essere `{java}default` o `{java}public`
+>Questi fanno parte dell'*intefaccia* della classe
+
+La *classe* che viene *estesa* viene detta **superclasse** , una classe che estende da una *superclasse* eredita tutti i componenti della *superclasse* che può accedere
+
+Quando estendiamo una classe nel costruttore di quella classe dobbiamo chiamare il costruttore della superclasse attraverso `{java}super(...)` passandogli tutti i campi del costruttore che vogliamo chiamare .
+Il costruttore di default della *superclasse* ( quello senza parametri ) viene chiamato implicitamente
+
+Per accedere ai componenti della *superclasse* utilizziamo la keyword `{java}super.`
+
+`{java}protected` ora ci permette di rendere visibile un metodo o campo alle suo sottoclassi ma non a tutti :
+
+|-|Same class|Same package|Subclasses|Everywhere|
+|--|--|--|--|--|
+|public|ok|ok|ok|ok|
+|protected|ok|ok|ok|no|
+|\<default>|ok|ok|no|no|
+|private|ok|no|no|no|
+
+#### Abstract class
+
+>[!todo]
+>#todo
+
+#### Method Overriding
+
+#### Method Overloading
+
+#### Final Methods and Classes
+
+## Subtyping
+
+### Tipi statici e dinamici
+
+### Casting di tipi
+
+### instanceof
+## Polimorfismo
+
+## Interfacce
+
+### implementation
+
+### estensione di intefacce 
+
+## Method Dispatching
+
+### invocations and field accesses
+
+### overriding
+
+### resolution
+
+### dispatching
+
+#### static
+
+#### dynamic
+
+#### overloading
+
+#### metodi
+
+### java algorithm
+
+## Generic types
+
+### subtyping with generics
+
+### generic methods
+
+### deduzione dei tipi
+
+### restricted generics
+
+### wildcards
+
+### esempio
+
+## Object class 
+
+### equals
+
+### clone
+
+### hashCode
+
+### toString
+
+## String class
+
+>[!todo]
+> arrivati a slide 17 pwp Lecture11
+> #todo 
 
 
 
