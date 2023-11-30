@@ -1331,7 +1331,7 @@ Vogliamo eliminare il nodo $z$ : ci sono 3 casi che possiamo individuare :
 
 Dobbiamo avvalerci di una funzione **ausiliaria** che mi permetta di spostare dei sottoalberi all'interno di un albero 
 
-```c++
+```cpp
 // sostituisce il sottoalbero con radice nel nodo u con il sottoalbero con radice nel nodo v
 Transplant(Tree T, Node u, Node v){
 	if u.p == NIL
@@ -1353,12 +1353,135 @@ $O(1)$ : sono solo assegnamenti
 
 **Tree_delete**
 
-```c++
+```cpp
 Tree_delete(Tree T, Node z)
-	
+	if z.left == NIL
+		Transplant ( T , z , z.right ) // comprene il caso in cui z è una foglia  
+	else 
+		if z.right == NIL
+			Transplant ( T , z , z.left ) // ha un solo figlio
+		else
+			y = Tree_minimun ( z.right ) // trovo il successor
+				if y.p != z 
+					Transplant ( T , y , y.right ) 
+					y.right = z.right 
+					z.right.p = y 
+				Transplant ( T , z , y ) 
+				y.left = z.left 
+				y.left.p = y
 ```
 
+###### Spiegazione
+
+>[!todo]
+>add explanation
+>#todo
+
+###### Complessità
+
+Poichè tutte le operazioni sono degli assegnamenti dobbiamo considerare la complessità delle funzioni chimate :
++ `{cpp}Transplant(...)` ha complessità $O(1)$
++ `{cpp}Tree_minimum(...)` ha complessità $O(h)$
+
+`{cpp}Transplant(...)` risulta trascurabile come le altre operazioni , la complessità risultante sarà quindi quella relativa alla `{cpp}Tree_minimum(...)` : $O(h)$
+
+Tutti i seguenti algoritmi hanno complessità $O(h)$ : `{cpp}search(...) , minimum(...) , maximum(...) , insert(...) , successor(...) , predecessor(...) , delete_node(...)` risultano avere complessità dipendente dall'altezza dell'albero che se :
++ L'albero è *bilanciato* : $O(h)=O(\log n)$
++ L'albero è molto *sbilanciato* ( linked list ) : $O(h)=O(n)$
+Dove $n$ è il numero dei nodi
 #### Costruzione
+
+Per evitare di avere un albero fortemente sbilanciato dobbiamo creare opputunamente l'albero .
+
+Utilizzando questo algoritmo :
+```cpp
+Arr A = [1, 3, 5, 7, 9]
+
+buildBST (Arr A) -> Tree
+	t = newTree() 
+	for i = 1 to A.length
+		u = creaNodo(A[i]) // u.Key = A[i], u.left = u.right = NIL
+		Tree_insert(t,u)
+	return t
+```
+
+Se assumiamo che l'input sia un array ordinato l'albero risultante sarà *fortemente sbilanciato* , non ottimale per tutte le operazioni che operano in $O(h)$
+
+Calcoliamo la **Complessità** dell'algoritmo :
+Supponendo che `{cpp}creaNodo(...)` abbia una complessità $O(1)$ , la complessità sarà dipendente dalla complessità di `{cpp}Tree_insert(...)` che verrà chiamate per $n$ volte , ossia quanti sono i nodi da inserire presenti nell'array di input 
+
+La complessità di `{cpp}Tree_insert(...)` è $O(h)$ , ma essendo che viene costruito un albero fortemente sbilanciato la sua complessità risulterà essere $\Theta(n)$ poichè dovremo inserire il nuovo nodo sempre alla fine dell'albero 
+
+Il tempo complessivo d'esecuzione di `{cpp}buildBST` risulterà quindi essere $n\cdot \Theta(n) = \Theta(n^2)$
+>[!question]
+>$\Theta\ o \ O$
+>
+
+La *complessità* può ance essere dimostrata nel seguente modo 
+
+$$T(n)=\sum_{i=0}^{n-1}(c+d\cdot i)$$
+Dove : 
++ $c$ = costo di `{cpp}createNode(...)`
++ $d$ = costo della `{cpp}treeInsert(...)`
++ $i$ = numero di ripetizioni della chiamata a `{cpp}treeInsert(...)`
+
+Avremo :
+$$=\sum_{i=0}^{n-1}c+\sum_{i=0}^{n-1} d \cdot i$$
+$$=c\cdot n + d\cdot\sum_{i=0}^{n-1}i$$
+Poichè $\sum_{i=0}^{n-1}i$ può essere ricondotta ad una serie geometrica possiamo scrivere : 
+$$=c\cdot n + d\cdot\bigg(\frac{(n-1)(n-1+1)}{2}\bigg)$$
+$$=c\cdot n + d\cdot\bigg(\frac{(n-1)n}{2}\bigg)$$
+Cosiderando solo la parte più complessa avremo che 
+$$T(n)=\Theta(n^2)$$
+
+Si può fare un'**ottimizzazione** all'algoritmo :
+Possiamo infatti considerare l'esatta metà del vettore ordinato come la radice dell'albero , a questo punto nella metà sinistra e destra avremo i rispettivi sottoalberi destri e sinistri della radice , inolte essendo l'array diviso esattamente a metà sicuramente creeremo un albero binario di ricerca **bilanciato** 
+
+L'**Algoritmo** sarà quindi :
+
+```cpp
+Arr A = [1, 3, 5, 7, 9] 
+
+buildBSTott (Arr A)
+	t = newTree() 
+	t. root = buildBSTottAux(A, 1, A.length, NIL)
+	return t
+	
+buildBSTottAux (Arr A ,int inf ,int sup ,Node padre) 
+	if inf > sup 
+		return NIL 
+	else 
+		med = ( inf + sup ) / 2
+		r = creaNodo (A[med])
+		r.p = padre 
+		r.left = buildBSTottAux(A, inf, med - 1, r) 
+		r.right = buildBSTottAux(A , med + 1, sup , r) 
+		return r
+```
+
+In questo caso la complessità risulta essere : 
+
+$$
+T(n)=\begin{cases}
+0 &\text{se } n=0 \\
+2\cdot T(\frac{n}{2}) + d &\text{se } n>0\\
+\end{cases}
+$$
+
+La ricorrenza può essere risolta con il teorema *Master*
+Infatti avremo che :
++ $a=2$
++ $b=2$
++ $f(n)=d$
++ $g(n)=n^{\log_2^2}=n$ 
+
+Saremo quindi nel caso in cui $split+merge \lt \text{chiamate ricorsive}$ 
+Possiamo quindi porre che : $f(n)=O(n^{1-\epsilon})$ 
+Sciegliendo $\epsilon=1$ possiamo concludere che :
+$$T(n)=\Theta(n)$$
+
+>[!note]
+>Se avessimo in input un array non ordinato è sufficente ordinarlo e applicare l'algoritmo ottimizzato , questo avrà complessità : $\Theta(n\cdot \log n )$ 
 
 
 
