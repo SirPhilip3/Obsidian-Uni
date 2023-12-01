@@ -2472,3 +2472,92 @@ WHERE NOT EXISTS (SELECT *
 >[!todo]
 >riscrivi es
 >#todo
+
+#### 1/12/2023
+
+##### 1 
+
+nome delle pizze per cui almeno 1 ingrediente ha quantità magazzino = 0
+
+```sql
+SELECT DISTINCT pi.codpizza, pi.nome -- omonimia
+-- joins 
+-- 1 natural su codpizza
+-- 2 using ( c'è nome sia in pizza che ingrediente )
+FROM pizze pi NATURAL JOIN ricette r JOIN ingredienti i USING(codingrediente)
+WHERE i.quantitamagazzino = 0
+```
+
+algebra relazionale : 
+
+##### 2
+```sql
+-- nome , prezzo pizze sia mozzarella che prosciutto
+SELECT pi.nome , pi.prezzo -- ogni ingrediente nella pizza 1 sola volta non serve il distinct
+FROM pizze pi NATURAL JOIN ricette r1 JOIN ingredienti i1 USING(codingrediente)
+	-- devo rifare join con le ricette 
+	-- devo avere 2 ricette
+	JOIN ricette r2 USING(codpizza) -- devono essere della stessa pizza iniziale
+	JOIN ingredienti i2 ON i2.codingrediente = r2.codingrediente
+WHERE i1.nome='Mozzarella' AND i2.nome='Prosciutto'
+```
+
+##### 3
+```sql
+-- trovare n pizze in cui non c'è il pomodoro
+SELECT COUNT(*)
+-- nessun ingrediente deve essere pomodoro
+FROM pizze pi NATURAL JOIN ricette r JOIN ingredienti i USING(codingrediente)
+WHERE i.nome<>'Pomodoro'
+-- così controlla solo ogni singolo ingrediente -> non universale 
+```
+
+con not existis 
+
+```sql
+-- trovare n pizze in cui non c'è il pomodoro
+SELECT COUNT(*)
+-- nessun ingrediente deve essere pomodoro
+FROM pizze pi
+-- non esiste un elemento che sia pomodoro 
+WHERE NOT EXISTS (SELECT *
+				  -- mi interessa ingrediente 
+				 FROM ricette r NATURAL JOIN ingredienti i
+				  -- non deve esistere in questa pizza un ing pomodoro
+				 WHERE i.nome='Pomodoro' AND pi.codpizza = r.codpizza)
+```
+
+not in
+
+-----
+
+##### 4
+
+```sql
+-- per ogni pizza nome pizze e quante volte ordinata da mario rossi 
+-- mai stata ordinata count = 0
+-- ordine decrescente m°pizze ordinata
+-- per restituire 0 codpizze dalla tabella ordini
+SELECT pi.nome , COUNT(o.codpizza) AS numOrdini
+-- left per restituire gli 0
+-- se pizza mai ordianta da mario rossi aggiunti come null
+FROM pizze pi LEFT JOIN ordini o ON pi.codpizza = o.codpizza AND o.nomecliente='Mario Rossi' 
+-- WHERE o.nomecliente = 'Mario Rossi' -- solo ordini di mario rossi , non compaiono le pizze non ordinate da mario xxx 
+GROUP BY pi.codpizza, pi.nome
+ORDER BY numOrdini DESC
+```
+
+se condizine nella tebella di dx devo mettere condizione nel join 
+count dove ci sono dei null se vogliamo ritornare i null 
+
+##### 5
+
+```sql
+-- clienti che hanno ordinato almeno 3 pizze di tipo diverso
+SELECT o.nomecliente --distinct prb
+FROM ordini o 
+ORDER BY o.nomecliente 
+-- condizione sul gruppo
+HAVING 
+```
+
