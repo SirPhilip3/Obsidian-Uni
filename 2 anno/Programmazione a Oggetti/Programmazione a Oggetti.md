@@ -1406,9 +1406,65 @@ se non definisco un toString -> ritorna address ( posizione nel package + addres
 se concateno una stringa con un oggetto chiamato il toString su di esso -> dove ho dei dati da rappresentare  
 
 
+## 01/12/2023
 
+**Sets**
 
+Set tipo generico  ( insieme di elementi differenti tra loro ) 
 
+hashset ->set che utilizza un hash table
+
+ieteratori possiamo chiamarli esplicitamente per iterare in insieme di set 
+altrimenti utilizziamo cicli for each
+```java
+for(T el : this)
+```
+
+il for each nel bytecode comunque chiama l'iterator 
+
+con hash set non abbiamo nessuna garanzia dell'ordine in cui eseguiamo l'iterator per hashset
+i treeset ci danno invece la garanzia di avere un ordine di iterazione
+
+hashset estende direttametne abstract set 
+tree set invece implementa navigable set -> ci da la caratteristica dell'ordine di iterazione
+
+per fare treeset devo avere un modo per confrontare gli oggetti poichè li compara e poi li mette in ordine in modo da dare un ordine alla iterazione
+quindi l'oggetto deve estendere il comparable
+
+compareto -> ritorna un valore che ci permetta di capire se 
+1 se ritorno 0 allora sono equals 
+
+```java
+// un oggetto e < di un'altro se il suo damage è minore il contrario se >
+public int compareTo(OffensiveObject o){
+	if(this.equels(o))
+		return 0;
+	int result = this.damage-o.getInfoDamage(); // se così se 2 oggetti differenti hanno damage == risulterano = anche se non lo sono
+	if ( result != 0 )
+		return result;
+	return 1; // todo 
+}
+```
+
+natural and total ordering 
+se abbiamo un valore positivo l'oggetto è maggiore se diamo un valore negativo l'oggetto è minore
+
+tutti gli oggetti che estendono offensiveobject devono implementare il compareto 
+
+equals funziona con l'object mentre il comparable è parametrizzato 
+
+il magi che compare to implementa quello di defensive object o quello di offensive object visto che entrambi hanno magic come sottoclasse
+quando eredito 2 contratti con 2 tipi generici differenti , il compare to è definito su object e poi il compiler decide
+
+aggiungo un interfaccia vuota comune ad entrambi ( estesa da entrambu ) che estenderà il comparable che lo farà su un oggetto generico 
+
+implementazioni di default -> se abbaimo 2 che hanno stessa firma se sono ereditati -> non posso farlo per il problema di prima 
+
+**classe collection**
+
+collezione di oggetti
+
+factory -> usa random per avere oggetti random
 
 
 # Tutorati 
