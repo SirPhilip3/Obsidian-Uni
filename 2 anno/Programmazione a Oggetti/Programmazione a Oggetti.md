@@ -499,13 +499,124 @@ Per accedere ai componenti della *superclasse* utilizziamo la keyword `{java}sup
 
 #### Abstract class
 
->[!todo]
->#todo
+Sono classi che implementano solo parte dei metodi che definiscono , quelli non definiti sono *abstract*
 
+>[!warning] 
+>Una classe *abstract* non può essere istanziata ma può definire dei costruttori
+
+Le sottoclassi che la ereditano possono :
++ implementare **tutti** i metodi *abstract* e quindi poter essere istanziata 
++ implementare solo alcuni metodi , non implementando tutti i metodi *abstract* essa stessa deve essere definita *abstract*
+
+**Esempio**
+
+```java
+abstract class test{
+	abstract int foo1();
+	abstract int foo2(int b);
+}
+
+abstract class test2 extends test{
+	int foo1() { return 0; }
+	// non implemento foo2 quindi devo dichiarare la classe astratta
+}
+
+class test3 extends test2{
+	int foo2(int a) { return a; }
+	// avendo ereditato foo1 da test2 questo è già implementato mi basta implementare foo2 per potre creare una classe istanziabile
+}
+```
 #### Method Overriding
 
+le *sottoclassi* di una *superclasse* possono sovrascivere metodi della superclasse
+
+Anche dopo aver sovrascritto un metodo abbiamo l'accesso al metodo della supercalsse attraveros il comando : `{java}super.<components>`
+
+**Esempio** :
+
+```java
+public class Vehicle{
+	
+	private double speed;
+	public void accelerate(double a){
+		this.speed += a;
+	}
+	
+}
+
+public class Car extends Vehicle {
+	
+	private FuelType fuelType;
+	private double fuel;
+	// overriding
+	public void accelerate(double a){
+		super.accelerate(a);
+		this.fuel -= a*fuelType.fuelConsumption;
+	}
+	
+}
+```
+
+#### Method definition and signature
+
+Un metodo è descritto da 2 parti : 
++ firma del metodo : 
+	La *firma* contiene tutto quello che sappiamo quando chiamiamo un metodo :
+	+ Tipo del ricevitore 
+	+ Nome del metodo
+	+ Numero e tipi *statici* dei parametri 
++ *definizione* del metodo :
+	+ la *firma* del metodo +
+	+ Il tipo di ritorno 
+	+ visibiltà
+	+ altri modificatori ( static , abstract  )
 #### Method Overloading
 
+L'overloading di un metodo è differente dall' overriding in quanto abbiamo diversi metodi con lo stesso nome ma con *firme* ed *implementazioni* differenti
+
+**Esempio** :
+
+```java
+public class Vehicle{
+	
+	private double speed;
+	public void accelerate(double a){
+		this.speed += a;
+	}
+	
+}
+
+public class Car extends Vehicle {
+	
+	private FuelType fuelType;
+	private double fuel;
+	// overriding
+	@Override
+	public void accelerate(double a){
+		super.accelerate(a);
+		this.fuel -= a*fuelType.fuelConsumption;
+	}
+	
+	public void refuel(double amount){
+		fuel += amount;
+	}
+	// overloading
+	public void refuel(FuelTank tank){
+		fuel += tank.getAmount();
+	}
+
+}
+```
+
+La *firma* di un metodo definisce un **Contratto** 
+
+Se una *firma* definisce un contratto meno restrittivo ( modificatori di visibilità meno restrittivo ) in una sottoclasse allora viene **Sovrascitto** ( *overrides* )
+
+Viene **Overloadato** se :
++ Il *nome* è lo stesso
++ e la *firma* è differente
+
+>[]
 #### Final Methods and Classes
 
 ## Subtyping
