@@ -616,7 +616,10 @@ Viene **Overloadato** se :
 + Il *nome* è lo stesso
 + e la *firma* è differente
 
->[]
+>[!todo]
+>slide 22 inheritance
+>#todo
+
 #### Final Methods and Classes
 
 ## Subtyping
