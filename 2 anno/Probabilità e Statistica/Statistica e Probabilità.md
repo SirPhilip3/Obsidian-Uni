@@ -1378,10 +1378,38 @@ Possiamo definire la variabile aleatoria in 2 modi :
 + $X$ = tempo di attesa in minuti $\sim Exp(1/2)$
 	$\mathbb{P}[X>5]=e^{-5/2}$
 
-
 >[!todo]
 >rivisita distribuzione esponenziale e gamma
 >#todo
+
+#### Processo di Poisson
+
+Il processo di Poisson è una sucessione di variabili aleatorie $\{X_t\}_{t\ge 0}$ con distribuzione di Poisson il cui parametro dipende dall'indice $t$ :
+$$X_t\sim P(\lambda\times t)$$
+Si utilizza per contare il numero di manifestazioni di un fenomeno di interesse in un qualsiasi intervallo di tempo di ampiezza $t$ , quando il tempo medio di queste manifestazioni dipende soltanto dall'ampiezza ( e non dalla posizione ) dell'intervallo considerato
+
+Si può quindi scrivere che :
+$\lambda$ : numero medio di eventi nell'unità di tempo
+$X_t$ : numero di eventi in un intervallo di tempo $t$
+
+**Esempio** : 
+
+Il numero di messaggi in arrivo ad un casella di posta elettronice segue un processo di Poisson nel tempo con una media di 12 messaggi ogni 10 minuti
+
+Se sciegliamo il minuto come unità di misura del tempo abbiamo :
+$\lambda$ : numero medio di messaggi in un minuto = $12/10$
+$X_t$ : numero di messaggi in $t$ minuti $\sim Po\Big(\frac {12}{10} t\Big)$ 
+
+Possiamo allora calcolare : 
+$$\mathbb{P}[\text{più di 20 messaggi in mezz'ora}]= \mathbb{P}[X_{30}>20] = 1-\mathbb{P}[X_{30}\le20]$$
+Può essere calcolata utilizzando la seguente distribuzione : 
+$$X_{30}\sim Po\bigg(\frac{12}{10}30\bigg)=Po(36)$$
+
+##### Relazione con esponenziale
+
+Associata ad ogni processo di Poisson c'è una variabile aleatoria esponenziale che misura il tempo tra 2 manifestazioni sucessive del fenomeno in questione
+
+
 # Appunti
 #### R-Studio
 
