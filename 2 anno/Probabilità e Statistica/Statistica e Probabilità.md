@@ -1204,6 +1204,31 @@ $$
 Var[X]=\frac{(b-a)^2}{12}
 $$
 
+###### Funzioni R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+punif(x, min , max)
+```
+Dove :
+$x$ : elemento di cui si vuole calcolare la probabilità
+$min$ : intervallo inferiore della variabile aleatoria
+$max$ : intervallo superiore della variabile aleatoria
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dunif(x, min , max)
+```
+
+**Esempio** :
+
+La variabile aleatoria $B$ ha distribuzione uniforme compresa tra $5.1\le B \le 5.8$ , si calcoli : $\mathbb{P}[5.1<Y<5.7]$
+```R
+punif(5.7,5.1,5.8)-punif(5.1,5.1,5.8) = 0.8571
+```
+
 #### Distribuzione normale ( Gaussiana )
 
 Una variabile aleatoria $X$ ha *distribuzione normale* o *gaussiana* , indicata con :
@@ -1244,7 +1269,32 @@ $$\mathbb{E}[X]=\mu$$
 ###### Varianza
 
 $$Var[X]=\sigma^2$$
+###### Funzioni R
 
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+pnorm(x, mean , sd)
+```
+Dove :
+$x$ : valore di cui volgiamo calcolare $\mathbb{P}[X\le x]$
+$mean$ : media della normale $\mu$
+$sd$ : deviazione standard ( $\sqrt{Var}$ ) 
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dnorm(x, mean , sd)
+```
+
+Si può inoltre calcolare il *quantile* relativo ad una determinata probabilità con il seguente comando : 
+
+```R
+qnorm(p, mean , sd)
+```
+
+>[!note] 
+>Gli stessi comandi sono utilizzati per la normale standard con $mean=0$ e $sd=1$
 #### Normale Standard
 
 La *normale standard* ( $Z\sim N(0,1)$ ) ha come funzione di  *ripartizione* viene indicata con $\Phi$ 
@@ -1320,6 +1370,25 @@ $$\mathbb{E}[X]=\frac{\alpha}{\lambda}$$
 ###### Varianza
 $$Var[X]=\frac{\alpha}{\lambda^2}$$
 
+###### Funzoni R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+pgamma(x, alpha , lambda)
+```
+Dove :
+$x$ : valore di cui volgiamo calcolare $\mathbb{P}[X\le x]$
+$\alpha$ : parametro alpha della distribuzione
+$\lambda$ : parametro rate 
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dgamma(x, alpha , lambda)
+```
+
+
 **Esempio** :
 
 Se $X$ è una variabile aleatoria gamma di *media* 4 e *varianza* 4 allora :
@@ -1366,6 +1435,23 @@ Quindi se abbiamo :
 $$\mathbb{P}[X\gt t +s|X\gt t]=\frac{\mathbb{P}[X\gt t+s]}{\mathbb{P}[X>t]}=\mathbb{P}[X>s]$$
 Questa proprietà può essere dimostrata, come per quella della dimostrazione *geometrica*, trenendo conto che :
 $$\mathbb{P}[X>x]=e^{-\lambda x}, \quad x>0$$
+###### Funzione R
+
+Per calcolare : $\mathbb{P}[X\le x]$
+
+```R
+pexp(x, lambda)
+```
+Dove :
+$x$ : valore di cui volgiamo calcolare $\mathbb{P}[X\le x]$
+$\lambda$ : parametro rate 
+
+Per calcolare : $\mathbb{P}[X= x]$
+
+```R
+dexp(x, lambda)
+```
+
 **Esempio** : 
 
 Il tecnico di un laboratorio dell’università in un’*ora* *installa* un certo software in media su *30* *pc*. Assumendo che il tempo di installazione su ogni pc segua una *distribuzione esponenziale*. 
@@ -1407,9 +1493,19 @@ $$X_{30}\sim Po\bigg(\frac{12}{10}30\bigg)=Po(36)$$
 
 ##### Relazione con esponenziale
 
-Associata ad ogni processo di Poisson c'è una variabile aleatoria esponenziale che misura il tempo tra 2 manifestazioni sucessive del fenomeno in questione
+Associata ad ogni processo di Poisson c'è una variabile aleatoria esponenziale che misura il tempo tra 2 manifestazioni successive del fenomeno in questione 
 
+$$T=\text{"tempo trascorso fra 2 eventi sucessivi"}\sim Exp(\lambda)$$
+**Esempio** 
 
+Riprendendo l'esempio precedente calcoliamo la probabilità che non arrivi nessun messaggio in 15 minuti :
+
+Questa si può calcolare in 2 modi differenti 
++ Cosiderando che il numero di messaggi arrivati in 15 minuti devono essere uguali a 0
+	$\mathbb{P}[X_{15}=0]\sim Po(12/10 \cdot 15) = Po(18)$
+	$\mathbb{P}[X_{15}=0] = \frac{(12/10\times 15)^0}{0!}e^{-12/10\times 15}=e^{-18}$ 
++ Considerando che il primo messaggio che deve arrivare deve arrivare dopo 15 minuti
+	$\mathbb{P}[T>15]\sim Exp(12/10) = e^{-12/10\times 15}= e^{-18}$
 # Appunti
 #### R-Studio
 
