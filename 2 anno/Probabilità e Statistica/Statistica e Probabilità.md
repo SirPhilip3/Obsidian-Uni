@@ -1191,6 +1191,9 @@ La *funzione di ripartizione* è :
 $$
 F(x)=\int_a^x\frac 1 {b-a} dy=\frac{x-a}{b-a}; \quad x\in (a,b)
 $$
+
+Per calcolare $\mathbb{P}[c\le X \le d] = \frac{d-c}{b-a}$
+
 ##### Proprietà
 
 ###### Media

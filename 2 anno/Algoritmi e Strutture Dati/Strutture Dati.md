@@ -1483,6 +1483,34 @@ $$T(n)=\Theta(n)$$
 >[!note]
 >Se avessimo in input un array non ordinato è sufficente ordinarlo e applicare l'algoritmo ottimizzato , questo avrà complessità : $\Theta(n\cdot \log n )$ 
 
+# Ulteriori alberi di ricerca 
+
+## AVL
+
+Sono alberi *binari di ricerca bilanciati*
+
+Per mantenere il bilanciamento per ogni nodo viene mantenuta un'informazione in più , il *fattore di bianciamento* ( $h_{sx}-h_{dx}$ ) di quel nodo
+
+In un albero *AVL* il valore assoluto del *fattore di bialnciamento* è $\le$ ad 1 per ogni suo nodo 
+
+Per mantenere questa proprietà in caso di operazioni di cancellazione o inserimento necessitiamo di eseguire delle operazioni di rotazione per mantenere il bilanciamento
+## B_alberi
+
+Sono alberi generali di ricerca bilanciati con grado minimo $t\ge 2$  aventi le seguenti caratteristiche :
++ Tutte le foglie hanno la stessa profondità
++ Ogni nodo $v \neq root$ mantiene un numero di $K(v)$ chiavi ordinate
+	$$key_1(v)\le key_2(v)\le\cdots\le key_K(v)$$
+	tali che il numero di chiavi all'interno di un nodo sia : 
+	$$t-1\le K(v)\le2t-1$$
+	se il numero di chiavi cade al di sotto di $t-1$ allora queste devono essere fuse con un'altro nodo , se il numero di chiavi supera $2t-1$ dobbiamo splittare il nodo in sottonodi
+
+
+## Black - Red Trees
+
+# Ordinamento
+
+## Insertion Sort
+
 
 
 # Esercizi 
