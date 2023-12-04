@@ -1503,9 +1503,19 @@ Sono alberi generali di ricerca bilanciati con grado minimo $t\ge 2$  aventi le 
 	tali che il numero di chiavi all'interno di un nodo sia : 
 	$$t-1\le K(v)\le2t-1$$
 	se il numero di chiavi cade al di sotto di $t-1$ allora queste devono essere fuse con un'altro nodo , se il numero di chiavi supera $2t-1$ dobbiamo splittare il nodo in sottonodi
++ La radice mantiene almeno una chiave e al più $2t-1$ chiavi *ordinate*
++ Ogni nodo interno $v$ ha $K(v)+1$ ( numero di chiavi dentro il nodo +1 ) figli 
++ Le chiavi $Key_i(v)$ separano gli intervalli di chiavi memorizzate in ciascun sottoalbero 
 
+**Esempio** :
 
+![[B_albero.excalidraw]]
 ## Black - Red Trees
+
+Sono alberi binari di riceca che contengono un'informazione aggiuntiva in ogni nodo ossia il suo colore : rosso o nero 
+
+Vincolando in modo oppurtuno come si alternano i nodi rossi e i nodi neri possiamo mantere la seguente proprietà : 
+Il cammino più lungo nell'albero è lungo al massimo il doppio del cammino più basso , ne deriva un albero *bilanciato*
 
 # Ordinamento
 

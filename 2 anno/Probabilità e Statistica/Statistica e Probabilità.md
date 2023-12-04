@@ -735,10 +735,6 @@ Vari *quantili* particolari :
 
 ### Distribuzioni di probabilità Discrete
 
->[!todo]
->copia appunti su distribuzioni di probabilità discrete e continue
->#todo
-
 #### Distribuzione Uniforme Discreta 
 
 Consideriamo una varaibile aleatoria $X$ che assume un numero finito di valori , $\{x_1,\dots,x_n\}$ , tutti con la stessa probabilità $p_i=1/n, \ i=\ 1,\dots,n$
@@ -885,7 +881,7 @@ $$
 Dove $p$ risulta essere la probabilità di successo 
 ##### Dimostrazione
 
-Possiamo dimostrare che la precedente funzione di probabilità risukta essere una distribuzione di probabilità poichè : 
+Possiamo dimostrare che la precedente funzione di probabilità risulta essere una distribuzione di probabilità poichè : 
 $$
 \sum_{x=0}^n\mathbb{P}[X =x] = \sum_{x=0}^n \binom n x p^x (1-p)^{n-x}
 $$
@@ -989,7 +985,7 @@ dbinom(0,10,0.2)+dbinom(1,10,0.2)+dbinom(2,10,0.2)+dbinom(3,10,0.2)+dbinom(4,10,
 ```
 #### Distribuzione di Poisson
 
-Una variabile $X$ che assume valori nell'insieme dei numeri naturali $\mathbb{N}$ ha *dsitribuzione di Posson* di parametro $\lambda\gt 0$ se :
+Una variabile $X$ che assume valori nell'insieme dei numeri naturali $\mathbb{N}$ ha *distribuzione di Posson* di parametro $\lambda\gt 0$ se :
 $$
 \mathbb{P}[X=k]=\frac{\lambda^k}{k!}\cdot e^{-\lambda}, \quad k=0,1,\dots
 $$
@@ -1058,7 +1054,7 @@ ppois(3,10)
 Per calcolare : $\mathbb{P}[X= x]$
 
 ```R
-dpois(3,10)
+dpois(x, lambda)
 ```
 
 Utilizzato per calcolare la probabilità di avere esattamente quel numero di successi
@@ -1313,7 +1309,7 @@ Si può facilmente calcolare il valore della probabilità attraverso le tavole d
 $$\mathbb{P}[X\le 1] = 0.84134$$
 ![[Pasted image 20231129143905.png]]
 
-Possiamo anche utilizzare la funzione di R `{r}pnorm(q)` per determinare questo valore
+Possiamo anche utilizzare la funzione di R `{r}qnorm(q)` per determinare questo valore
 
 **Esempio di Standardizzazione** :
 
