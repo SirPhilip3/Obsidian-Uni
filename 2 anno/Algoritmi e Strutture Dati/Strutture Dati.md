@@ -1519,10 +1519,95 @@ Il cammino più lungo nell'albero è lungo al massimo il doppio del cammino più
 
 # Ordinamento
 
+Il problema dell'ordinamento è fondamentale nell'algortmica poichè risulta essere l'algoritmo più frequentemente utilizzato
+
+Generalmente gli algoritmi di ordinamento hanno 2 caratteristiche :
++ In **Input** abbiamo una sequenza di $n$ numeri  $< a_1, a_2,\dots, a_n>$ 
++ In **Output** abbiamo una permutazione $< a_1', a_2',\dots, a_n'>$ della sequenza di $n$ numeri in input tale che $a_1'\le a_2' \le \dots \le a_n'$
+
+Il metodo principale per implementare questo tipo di algoritmi è basarsi su *confronto* 
+
+La complessità quindi di questi algoritmi risulta essere in funzione del numero di confronti che svolgo 
+
+>[!note]
+>La complessità minima che un algoritmo del genere può avere è $O(n\log n)$
+
+## Definizioni
+
+### Algoritmo in Loco
+
+Un algoritmo si dice *in loco* ( o *sul posto* ) se in ogni istante al più un numero costante di elementi dell'array di input sono memorizzati all'esterno dell'array  
+### Metodo stabile
+
+Gli elementi con lo stesso valore si presentano nell'output nello stesso ordine rispetto all'input 
+
+**Esempio** :
+
+![[Pasted image 20231205112704.png]]
+
 ## Insertion Sort
 
+L'*Insertion Sort* è un algoritmo che sfrutta la tecnica incrementale ossia avendo $k$-elementi già ordinati vogliamo espandere questo insieme al $(k+1)$-esimo elemento   
 
+![[Pasted image 20231205105508.png]]
 
+**Algoritmo** :
+
+```cpp
+Insertion_sort(Array A)
+	for j=2 to A.length // l'array in questo caso parte dall'indice 1
+	// il primo elemento è ordinato per se stesso quindi parto dal secondo elemento dell'array
+		Key = A[j] // Key -> l'elemento che voglio ordinare
+		i = j - 1 // scorro a ritroso la parte già ordinata per inserire nel posto corretto il nuovo elemento
+		while i > 0 AND Key < A[i] // finchè ho un indice valido dell'array e la Key è minore del valore all'interno di quell'indice 
+			A[i + 1] = A[i] // sposto a destra gli elementi > di Key
+			i = i - 1
+		A[i + 1] = Key // all'uscita del ciclo precedente indice sarà dove tutti gli elementi sucessivi alla key saranno > del suo valore 
+```
+
+**Esempio** di esecuzione : 
+
+![[EsempioInsertion.excalidraw]]
+>[!todo]
+>copleta esempio
+>#todo
+
+### Dimostrazione di Correttezza 
+
+**Invariante** : Il sottoarray $A[1,\dots,j-1]$ è formato dagli elementi ordinati originariamente nelle posizioni $A[1,\dots,j-1]$ ( quella parte dell'array è ora ordinata )
+L'invariante può essere quindi espresso : 
+$$INV=\Big[\frac{n+1}{j}\Big]$$ 
+**Prima del ciclo** : 
+	Con $j=2$ abbiamo che ovviamente il sottoarray $A[1,\dots,1]$ risulta ordinato poichè è composto da un solo elemento 
+
+**Conservazione** : 
+	L'esecuzione del corpo del for posiziona correttamente l'elemento $j$ nella porzione del vettore già ordinato $A[1,\dots,j-1]$ rendendo la porzione di elementi ordintati $A[1,\dots,j]$ 
+	Gli elementi presenti all'interno del vettore $A[1,\dots,j]$ sono esattamente gli elementi presenti nell'array orignario alle posizioni $A[1,\dots,j]$ 
+
+**Conclusione del ciclo** : 
+	Quando il ciclo `{cpp}for` termina , l'indice $i$ ha valore $A.length+1=n+1$ , avremo quindi che il sottoarray $A[1,\dots, n+1-1]$ è formato da elementi ordinati i quali valori origniale risiedono in posizione : $A[1,\dots,n]$
+	Quindi al temine del ciclo l'invariante ci garantice che tutti gli elementi all'interno dell'array $A$ sono ordinati  
+
+### Complessità
+
+Nel caso *migliore* ( l'array originale è ordinato in modo crescente ) il tempo di esecuzione è $\Theta(n)$ poichè scorro tutto l'array ma non svolgo nessuna operazione di scambio ( il ciclo `{cpp}while` non viene mai eseguito )
+
+Nel caso *peggiore* ( l'array originale è ordinato in modo decrescente ) il tempo di esecuzione è $\Theta(n^2)$ poichè ad ogni elemento svolgo $n$ confronti 
+Questa complessotà può essere calcolata :
+$$\sum_{j=2}^{n-1}j-1$$
+Sostituiamo con $k=j-1$
+$$\sum_{k=1}^{n-1}k$$
+Risulta essere al serie aritmetica 
+$$\frac{(n-1)(n-1+1)}{2}=\frac{n(n-1)}{2}\sim \Theta(n^2)$$
+### Conclusioni
+
+**Vantaggi** :
++ è in *loco*
++ è un *metodo stabile*
++ è sensibile all'ordinamento dell'input : se trova un elemento maggiore dell'array già ordinato lo capisce e non va ad eseguire il ciclo interno
+
+**Svantaggi**
++ Nel caso peggiore la complessità risulta essere $O(n^2)$ , infatti l'*insertion sort* viene utilizzato solo per l'ordinamento di array di piccole dimensioni
 # Esercizi 
 
 >[!todo]

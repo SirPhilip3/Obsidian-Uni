@@ -2466,8 +2466,11 @@ WHERE NOT EXISTS (SELECT *
 				  WHERE s.Matricola = e.Candidato)
 ```
 
+#### DDL
 
-### Esercizi
+
+
+## Esercizi
 
 >[!todo]
 >riscrivi es
