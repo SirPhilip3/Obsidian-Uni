@@ -1,5 +1,3 @@
-# 18/09/2023
-
 ## Sistema Informativo
 
 Sistema per la : 
@@ -2468,6 +2466,61 @@ WHERE NOT EXISTS (SELECT *
 
 #### DDL
 
+L'SQL è anche un linguaggio per la *definizione* di basi di dati ( *Data Definition Language* , DDL ) 
+
+##### Creazione di uno schema
+
+Uno schema di dati può viene creato da :
+
+```sql
+CREATE SCHEMA Nome AUTHORIZATION Utente
+```
+
+Questo crea un database con Nome ed asseggna come possesore della base di dati l'utente indicato , se non specifichiamo `{sql}AUTHORIZATION` l'utente che sta eseguendo l'operazione viene scielto come possessore
+
+Uno schema può essere eleminato attraverso il comando : 
+`{sql} DROP SCHEMA Nome [CASCADE | RESTRICT]`
+
+Dove :
++ `{sql}CASCADE` indica che verranno rimossi tutti i contenuti dello schema
++ `{sql}RESTRICT` indica che se lo schema contiene delle tabelle l'operazione di eliminazione non viene eseguita 
+
+Nel caso in cui non si specifica una di queste politiche di eliminazione viene scielta la più restrittiva ( `{sql}RESTRICT` )
+
+>[!warning]
+>Ad ogni `{sql}CREATE` deve corrispondere un `{sql}DROP`
+
+##### Tabelle
+
+Uno schema può contenere 2 tipi di tabelle : 
++ *tabelle base* ( *base tables* )
+	- I metadati appartengono allo schema 
+	- I dati *sono* fisicamente memorizzati 
++ *viste*
+	- I metadati appartengono allo schema 
+	- I dati *non sono* fisicamente memorizzati ( prodotti dalla valutazione di un'espressione ( query ) )
+		- Alle viste posso dare un nome e quindi referenziarle 
+
+###### Creazione Tabella
+
+Una tabella viene creata con il comando : 
+```sql
+CREATE TABLE Nome (
+	NomeAttr1 TipoAttr1
+	...
+	NomeAttrn TipoAttrn
+) 
+```
+
+Specificando per ogni colonna il 
++ *nome*
++ *tipo di dato* può essere :
+	+ *predefinito* 
+	+ *definito dall'utente* ( *dominio* )
+
+>[!todo]
+>completa DDL 7 ->
+>#todo
 
 
 ## Esercizi
