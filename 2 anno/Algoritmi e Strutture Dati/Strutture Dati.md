@@ -1611,6 +1611,55 @@ $$\frac{(n-1)(n-1+1)}{2}=\frac{n(n-1)}{2}\sim \Theta(n^2)$$
 
 ## Merge Sort
 
+Il *merge sort* è un algoritmo di ordianmento basato sulla tecnica del divide et impera 
+
+Inizialmente avremo un array $A[p\ ...\ r]$ dove inzialmente $p=1$ e $r = A.length$
+
+### Passi dell'algoritmo
+
+1. **Divide** : Divide l'array in 2 sottoarray $A[p\ ...\ q]$ e $A[q+1 \ \dots \ r]$ dove $q$ è l'indice di mezzo $q=\lfloor\frac{p+r}{2}\rfloor$ 
+2. **Impera** :  Ordina i 2 sottoarray in modo ricorsivo utilizzando l'algoritmo *mergesort* . Se il problema è sufficentemente piccolo ( 0 e 1 elemento ) si risolve direttamente
+3. **Combina** : fonde i 2 sottoarray che sappiamo essere ordinati per generare un singolo vettore ordinato $A[p \ \dots \ r]$ 
+
+### Algoritmo 
+
+```cpp
+ mergesort ( array A , int p , int r )
+	if p < r // l'array deve contenere almeno 2 elementi 
+		med = (p + r) / 2 
+		mergesort (A , p , med)
+		mergesort (A , med + 1, r) 
+		merge (A , p , q , r) 
+
+ merge ( array A , int p , int q , int r ) 
+	n1 = q - p + 1
+	n2 = r - q 
+	crea due array di appoggio L [1 ... n1 + 1] e R [1 ... n2 + 1] 
+	for i = 1 to n1 // inserisco in L la parte bassa dell'array tagliato in q
+		L[i] = A[p + i - 1] 
+	for j = 1 to n2 // inserisco in R la parte alta dell'array tagliato in q
+		R[j] = A[q + j] 
+	L[n1 + 1] = infinito // infinito nel nostro caso valore sentinella per      non dover controllare che L è finito e R no e il contrario 
+	R[n2 + 1] = infinito 
+	i = 1, j = 1 
+	for k = p to r 
+		if L[i] <= R [j] // TODO TODO TODO TODO
+			A[k] = L[i]  
+			i++ 
+		else 
+			A[k] = R[j] 
+			j++
+```
+
+>[!todo]
+>completa spiegazione algoritmo
+>#todo
+
+### Analisi Correttezza
+
+### Complessità
+
+### Conclusioni
 
 
 ## Quick Sort
