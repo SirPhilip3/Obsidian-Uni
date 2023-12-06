@@ -1608,6 +1608,13 @@ $$\frac{(n-1)(n-1+1)}{2}=\frac{n(n-1)}{2}\sim \Theta(n^2)$$
 
 **Svantaggi**
 + Nel caso peggiore la complessità risulta essere $O(n^2)$ , infatti l'*insertion sort* viene utilizzato solo per l'ordinamento di array di piccole dimensioni
+
+## Merge Sort
+
+
+
+## Quick Sort
+
 # Esercizi 
 
 >[!todo]

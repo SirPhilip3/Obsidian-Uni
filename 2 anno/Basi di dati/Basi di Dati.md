@@ -1,4 +1,4 @@
-## Sistema Informativo
+# Sistema Informativo
 
 Sistema per la : 
 + Acquisizione
@@ -8,18 +8,18 @@ Sistema per la :
 delle informazioni necessarie alle attività dell'azienda
 
 ![[Immagine 2023-09-19 130447.png]]
-## Sistema Informatico
+# Sistema Informatico
 
 + Sistema informatico : insieme delle tecnologie infromatiche a supporto delle attività di un organizzazione
 + Sistema informativo automatizzato : parte del sistema informatico che raccoglie, elabora , archivia e scambia le informazioni usando un sistema informatico
 
-## Informazioni 
+# Informazioni 
 
 Nei sistemi informatici le **informazioni** vengono rappresentate in modo essenziale attraverso i **dati**
 + **Informazioni** : elemento che consente di a vere conoscenza più o meno esatta di situazioni
 + **Dato** : ciò che è immediatamente presente alla conoscenza , priva di ogni elaborazione
 
-## Storia 
+# Storia 
 
 + **'60** : Sistemi informatici settoriali 
 	+ **Autorizzazione di operazioni ripetute** : Elaborazione sistematica e ripetuta di grandi quantità di dati  es : calcolo paghe, emeissione fatture
@@ -45,7 +45,7 @@ Difficoltà :
 	+ Supporto alla direzione
 	+ Data Warehouse, Data Mining
 
-## Sistemi informatici operativi
+# Sistemi informatici operativi
 
 Attività strutturate e ripetitive ( calcolo paghe, emissione fatture , magazzino )
 
@@ -55,7 +55,7 @@ Operazioni svolte da processi operativi :
 + Coinvolge pochi dati
 + Dati in dettaglio , aggiornati
 
-## Sistemi informatici direzionali
+# Sistemi informatici direzionali
 
 Necessari per la direzione medio-alta dell'azienda
 + **analisi storiche**
@@ -78,11 +78,7 @@ Elaborazioni su **DW** : **OLAP** ( **On-Line Analytical Processing** )
 + Dati aggregati, storici, anche non attuali
 
 ![[Pasted image 20230920155522.png]]
-
----
-# 22/09/2023
-
-## Base di Dati
+# Base di Dati
 
 In generale : una qualsiasi raccolta di dati permanenti gestiti tramite un elaboratore elettronico
 
@@ -331,8 +327,6 @@ Strumenti per l'amministrazione della base di dati :
 	dati per valutare le prestazioni del database con come obbiettivo il miglioramento delle performance
 + Strumenti per stabilire i diritti di accesso ai dati
 + Strumenti per ripristinare la base di dati in caso di malfunzionamenti del sistema o di disastri
-
-# 25/09/2023
 ## DBMS Vantaggi / Svantaggi
 
 **Vantaggi** : 
@@ -385,7 +379,7 @@ Aspetti del problema :
 + **aspetto pragmatico** :
 	come si procede per lo sviluppo del modello
 
-#### Aspetto ontologico
+### Aspetto ontologico
 
 Ciò che vogliamo rappresentare sono : 
 + **Conoscenza concreta** :
@@ -397,14 +391,14 @@ Ciò che vogliamo rappresentare sono :
 + **Comunicazioni** :
 	Come si comunicherà con il sistema informatico
 
-##### Conoscenza Concreta
+#### Conoscenza Concreta
 
 Per modellare la *conoscenza concreta* dobbiamo modellare 3 tipologie di fatti :
 + **Entità** : es studente , libro , prova d'esame
 + **Collezioni** : es insieme degli studenti , insieme dei libri
 + **Associazioni** : es un esame è associato ad uno studente
 
-###### Entità 
+##### Entità 
 
 Le **entità** sono ciò di cui ci interessa rappresentare alcuni fatti ( o *proprietà* )
 	Es : un libro , una descrizione bibliografica , un prestito
@@ -442,7 +436,7 @@ Esempi :
 |Auto|Modello,Colore,Cilindrata,Targa
 |Decrizione bibliografica|Autori,Titolo,Editore,Anno,...
 
-###### Collezione
+##### Collezione
 
 Una **Collezione ( classe )** è un insieme variabile nel tempo di *entità* omogenee ( dello stesso *tipo* )
 	Es : `Studenti` è un insieme di tutti gli *Studenti* 
@@ -468,7 +462,7 @@ Due importanti caratteristiche delle gerarchie :
 	+ **matricole** e **laureandi**
 	+ **studenti in corso** e **studenti fuori corso**
 	+ **sudenti locali** e **studenti fuori sede**
-###### Associazioni
+##### Associazioni
 
 Una *Istanza di Associazione* è un fatto che correla due o più *entità* stabilendo un legame logico tra di loro 
 	Es : l'utente `Tizio` *ha in prestito* una copia della `Divina Commedia`
@@ -515,7 +509,7 @@ Esempi :
 	ha *cardinalità* ( **1 : 1** ) ( *una persona* è sindaco di una *sola città* , *una citta* può avere un *solo sindaco*)
 	è *parziale* su `Persone` e `Città` ( una persona può non essere sindaco di nessuna città , una città può non avere nessun sindaco ( durante le elezioni ) )
 
-##### Conoscenza Astratta
+#### Conoscenza Astratta
 
 La *conoscenza astratta* sono i fatti generali che descrivono :
 + la struttura della *conoscenza concreta* : 
@@ -535,9 +529,6 @@ La *conoscenza astratta* sono i fatti generali che descrivono :
 
 + **Fatti derivabili** : 
 	Es : media dei voti ( da tutti i voti ) , età di una persona ( dalla data di nascita )
-
-# 29/09/2023
-
 ## Modello dei dati ad Oggetti
 
 Un **Modello dei dati** è un insieme di meccanismi di astrazione per descrivere la struttura della conoscenza concreta ciò avviene attraverso *schemi* simili ai diagrammi ER ( entità-relazione )
@@ -1574,14 +1565,14 @@ Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazional
 >completa algebra relazionale
 >#todo
 
-### SQL
+## SQL
 
 Chiamato **Strucutred English QUEry Language** o **SEQUEL** o **SQL**
 
 Si utilizza lo standard SQL:2006
 I sistemi industriali utilizzano uno standard differente includendo funzionalità non previste , non includendone alcune o implementandole in modo differente
 
-#### Caratteristiche
+### Caratteristiche
 
 SQL è un linguaggio *dichiarativo* basato sul *calcolo relazionale su ennuple* e *algebra relazionale*
 Le relazioni diventano *tabelle* 
@@ -1596,7 +1587,7 @@ SQL comprende :
 + *DML* ( *Data Manipulation Language* ) $\rightarrow$ per svolgere query
 + *DDL* ( *Data Definition Language* ) $\rightarrow$ per definire una base di dati
 
-#### DML
+### DML
 
 Il construtto base dell'*SQL* è il seguente 
 ```SQL
@@ -1604,7 +1595,7 @@ SELECT [DISTINCT] Attributi
 FROM Tabelle
 [WHERE Condizione]
 ```
-##### SELECT
+#### SELECT
 
 La `{SQL}SELECT` ci permette di selezionare come sarà fatto la tabella risultante ( la *target list* in algebra relazionale ) 
 
@@ -1637,19 +1628,19 @@ SELECT *
 FROM Studenti JOIN Esami ON Matricola = Candidato;
 ```
 Creo una tabella che è l'*equi-join* tra `Studenti` ed `Esami` ( l'attributo sul quale facciamo il *join* è `Candidato` e `Matricola` , equivale a fare $Studenti\underset{Matricola=Candidato}{\bowtie}Esami$ )
-##### FROM
+#### FROM
 
 La `{SQL}FROM` ci permette di dire che tabelle e quale loro combinazione useremo per ottenere la tabella risultante
 
-##### WHERE
+#### WHERE
 
 La `{SQL}WHERE` ci permette di imporre delle condizioni sugli attributi che andremo a selezionare per costruire la tabella risultante   
 
-##### Disambiguazione
+#### Disambiguazione
 
 Se ho tabelle che presentano gli stessi attributi devo specificare da che tabella provengono ( *Disanbiguazione* ) : `Esami.CodDoc` e `Docenti.CodDoc` 
 
-##### Alias
+#### Alias
 
 Si associa un identificatore alle relazioni , essenziale se si opera su più copie della stessa relazione 
 
@@ -1678,7 +1669,7 @@ SELECT n.Nome , n.Cognome , f.Nome , f.Cognome
 FROM Persone n , Persone p , Persone f
 WHERE f.IdPadre = p.Id AND p.IdPadre = n.Id AND n.Lavoro = p.Lavoro
 ```
-##### AS
+#### AS
 
 ```sql
 Expr AS Nome
@@ -1692,7 +1683,7 @@ SELECT Nome, Cognome, date_part('year', current_date)-Nascita AS Età
 FROM Studenti
 WHERE Provincia='VE'
 ```
-##### Espressioni
+#### Espressioni
 
 Le *espressioni* possono includere operatori aritmetici ( o altri operatori e funzioni sui tipi degli attributi ) o funzioni di *aggregazione* 
 
@@ -1704,7 +1695,7 @@ Le funzioni di *aggregazione* sono :
 SUM , COUNT , AVG , MAX , MIN
 ```
 
-###### Esempi
+##### Esempi
 
 Numero di elementi della relazione Studenti
 ```sql
@@ -1742,7 +1733,7 @@ Numero di Studenti che fanno i Tutor
 SELECT COUNT(DISTINCT Tutor)
 FROM Studenti
 ```
-##### Giunzioni
+#### Giunzioni
 
 Nel `{sql}FROM` si possono combinare le tabelle attraverso le *giunzioni* oppure facendo il prodotto attraverso la virgola : `{sql}FROM T1 , T2`
 
@@ -1760,7 +1751,7 @@ Le *giunzioni* possono essere :
 [CROSS|NATURAL] [LEFT|RIGTH|FULL] JOIN
 ```
 
-###### CROSS JOIN
+##### CROSS JOIN
 
 Il `{sql}CROSS JOIN` realizza il prodotto tra 2 tabelle 
 
@@ -1771,7 +1762,7 @@ SELECT *
 FROM Esami CROSS JOIN Docenti
 ```
 
-###### NATURAL JOIN
+##### NATURAL JOIN
 
 Rappresenta la *giunzione naturale* ( se vi sono 2 attributi con lo stesso nome )
 
@@ -1782,7 +1773,7 @@ SELECT *
 FROM Esami NATURAL JOIN Docenti
 ```
 
-###### JOIN ... ON Condizione
+##### JOIN ... ON Condizione
 
 Effettua il `{sql}JOIN` su una condizone ( esempio quali valori devono essere uguali ma si possono anche utilizzare : `{sql}=, <> ( diverso ), >, <, >= , <= , AND , OR` ) 
 
@@ -1793,7 +1784,7 @@ SELECT *
 FROM Studenti s JOIN Studenti t ON s.Tutor = t.Matricola
 ```
 Seleziono tutti i Tutor
-###### JOIN ... USING Attributi comuni
+##### JOIN ... USING Attributi comuni
 
 Effettua il `{sql}NATURAL JOIN` ma solo sugli attributi comuni elencati
 
@@ -1805,7 +1796,7 @@ FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato
 	 JOIN Docenti d USING (CodDoc);
 ```
 
-###### LEFT, RIGHT, FULL
+##### LEFT, RIGHT, FULL
 
 Se precede `{sql}JOIN` svolge la corrispondente *giunzione esterna* 
 
@@ -1831,7 +1822,7 @@ Risultato :
 |Anna|Rossi|76366|2007-07-18|BD
 |Anna|Rossi|76366|2007-07-08|FIS
 
-##### ORDER BY
+#### ORDER BY
 
 Utilizzato per ordinare la tabella secondo gli attributi indicati ( in ordine lessicografico ) in modo crescente ( `{sql}ASC` , ordinamento di default )  o decrescente ( `{sql}DESC` )
 
@@ -1849,7 +1840,7 @@ Quando inseriamo 2 ordinamenti su attributi differenti questi vengono utilizzati
 >[!todo]
 >riscrivi meglio
 >#todo
-##### Operatori Insiemistici
+#### Operatori Insiemistici
 
 Operatori che possono essere applicate per combinare tabelle con colonne di ugual nome ( se le tabelle hanno attributi con lo stesso tipo ma nome differenti possiamo rinominarle con `{sql}AS` ) e tipo 
 
@@ -1862,7 +1853,7 @@ Gli operatori sono : `{sql}UNION` `{sql}INTERSECT` `{sql}EXCEPT`
 
 **Esempi** :
 
-###### 1 
+##### 1 
 
 Nome, cognome e matricola degli studenti di Venezia e di quelli che hanno preso più di 28 in *qualche* esame
 
@@ -1886,7 +1877,7 @@ FROM Studenti s LEFT JOIN Esami e ON s.Matricola = e.Candidato
 WHERE e.Voto > 28 OR s.Provincia = 'VE'
 ```
 
-###### 2
+##### 2
 
 Matricole degli studenti che non sono tutor
 
@@ -1909,7 +1900,7 @@ FROM Studenti s LEFT JOIN Studenti t ON s.Matricola = t.Tutor
 WHERE t.tutor IS NULL
 ```
 
-###### 3
+##### 3
 
 Nome e cognome degli studenti che hanno preso in un esame 18 e in un altro esame 30
 
@@ -1937,7 +1928,7 @@ WHERE e.Voto = 18 AND e2.Voto = 30
 >[!todo]
 >spiegazione
 >#todo
-##### NULL
+#### NULL
 
 `{sql}NULL` è un valore speciale : `unknown = U` -> nè false nè true 
 Questo cambia i risultati delle espressioni , necessitiamo l'implementazione di una logica a 3 valori :
@@ -1976,7 +1967,7 @@ WHERE Tutor = NULL
 ```
 Questa query non ritorna alcuna ennupla poichè `{sql}Tutor = NULL` risulta essere sempre falsa
 
-###### Altri operatori per NULL
+##### Altri operatori per NULL
 
 + `{sql}Expr1 IS [NOT] DISTINCT FROM Expr2`
 	Risulta *vero* se i due valori sono diversi o uno solo dei due è `NULL`
@@ -1985,7 +1976,7 @@ Questa query non ritorna alcuna ennupla poichè `{sql}Tutor = NULL` risulta esse
 + `{sql}COALESCE(Expr1,...,Exprn)`
 	Viene utilizzato per traformare un valore `NULL` in un valore non nullo
 	Valuta le espressioni in sequenza da sinistra verso destra , restituisce il primo valore trovato differente da `NULL` , ritorna `NULL` se tutte le espressioni hanno valore `NULL`
-##### BETWEEN
+#### BETWEEN
 
 `{sql} WHERE Expr BETWEEN Expr AND Expr`
 
@@ -1999,7 +1990,7 @@ SELECT *
 FROM Studenti
 WHERE Matricola BETWEEN 71000 AND 72000
 ```
-##### Pattern Matching
+#### Pattern Matching
 
 Utilizzato principalmente sulle stringhe 
 
@@ -2025,7 +2016,7 @@ FROM Studenti
 WHERE Nome LIKE 'A%a' OR Nome LIKE 'A%i'
 ```
 
-##### WHERE
+#### WHERE
 
 Può essere :
 + `{sql}Expr Comp Expr`
@@ -2036,7 +2027,7 @@ Può essere :
 
 Dove `Comp` : $\lt,=,\gt,<> (\text{not}),\le,\ge$
 
-###### SELECT annidate
+##### SELECT annidate
 
 Utili per estrarre dati dalla base di dati per fare dei confronti 
 
@@ -2076,7 +2067,7 @@ WHERE altri.Matricola <> '71346' AND s.Matricola = '71346’
 	+ `{sql}ALL` : utilizzato per mettere in relazione tutti gli elementi della sottoselect
 		Restituisce *true* solo se *tutti* i confronti con gli elementi della sottoselect restituiscono *true*
 
-###### Quantificazione
+##### Quantificazione
 
 **Esempio** :
 
@@ -2094,7 +2085,7 @@ Una query *universale* se viene negata diventa una *esistenziale* , il contrario
 
 Visto che in sql non esiste un costrutto che ci permetta di fare il $\forall$ utilizziamo l'`{sql}EXISTS` 
 
-###### Quantificazione esistenziale EXISTS
+##### Quantificazione esistenziale EXISTS
 
 Può essere usata nel `{sql}WHERE` :
 `{sql}WHERE [NOT] EXISTS (Sottoselect)`
@@ -2124,7 +2115,7 @@ FROM Studenti s JOIN Esami e ON e.Candidato = s.Matricola
 WHERE e.Voto > 27
 ```
 
-###### Quantificazione esistenziale ANY
+##### Quantificazione esistenziale ANY
 
 Il costrutto `{sql}ANY` permette la quantificazione universale :
 `{sql}Expr Comp ANY (Sottoselect)`
@@ -2173,7 +2164,7 @@ WHERE EXISTS (SELECT *
 		      WHERE C AND attr1 op attr2)
 ```
 
-###### Quantificazione esistenziale IN
+##### Quantificazione esistenziale IN
 
 `{sql}IN` è uno zucchero sintattico per `{sql}=ANY` , la sua implementazione è quindi equivalente all'`{sql}=ANY` :
 
@@ -2193,7 +2184,7 @@ FROM Studenti
 WHERE Provincia IN ('PD','VE','BL')
 ```
 Ritornerà gli studenti di Padova , Venezia , Belluno
-###### Quantificazione universale NOT EXISTS
+##### Quantificazione universale NOT EXISTS
 
 **Esempio** :
 
@@ -2229,7 +2220,7 @@ HAVING MIN(e.Voto) = 30
 >[!todo]
 >appunti
 >#todo 
-###### Quantificazione universale ALL
+##### Quantificazione universale ALL
 
 La precedente può essere scritta con l'`{sql}ALL` che è il parallelo dell'`{sql}ANY` per la quantificazione esistenziale 
 
@@ -2249,7 +2240,7 @@ WHERE s.Matricola <>ALL (SELECT e.Candidato
 						 WHERE e.Voto <> 30)
 ```
 
-###### Raggruppamento
+##### Raggruppamento
 
 Costrutto : 
 ```sql
@@ -2369,7 +2360,7 @@ In questo caso `{sql}NULL` indica che 2 studenti non hanno un Tutor assegnato
 
 Potrei far 'sparire' il `{sql}NULL` utilizzando un `{sql}COALESCE(Tutor, "Non ha tutor")`
 
-###### CASE
+##### CASE
 
 ```sql
 CASE input_expression 
@@ -2383,9 +2374,9 @@ CASE input_expression
 >#todo
 
 
-###### Modifica dei Dati
+##### Modifica dei Dati
 
-**INSERT**
+###### INSERT
 
 Sintassi :
 ```sql
@@ -2412,7 +2403,7 @@ INSERT INTO Tabella AS
 ```
 Inserisco nella tabella i valori che vengono selezionati dalla `{sql}SELECT
 
-**UPDATE**
+###### UPDATE
 
 Sintassi :
 
@@ -2432,7 +2423,7 @@ SET Tutor = '71523'
 WHERE Matricola = '76366' OR Matricola = '76367'
 ```
 
-**DELETE**
+###### DELETE
 
 Sintassi
 
@@ -2464,11 +2455,11 @@ WHERE NOT EXISTS (SELECT *
 				  WHERE s.Matricola = e.Candidato)
 ```
 
-#### DDL
+### DDL
 
 L'SQL è anche un linguaggio per la *definizione* di basi di dati ( *Data Definition Language* , DDL ) 
 
-##### Creazione di uno schema
+#### Creazione di uno schema
 
 Uno schema di dati può viene creato da :
 
@@ -2490,7 +2481,7 @@ Nel caso in cui non si specifica una di queste politiche di eliminazione viene s
 >[!warning]
 >Ad ogni `{sql}CREATE` deve corrispondere un `{sql}DROP`
 
-##### Tabelle
+#### Tabelle
 
 Uno schema può contenere 2 tipi di tabelle : 
 + *tabelle base* ( *base tables* )
@@ -2501,7 +2492,7 @@ Uno schema può contenere 2 tipi di tabelle :
 	- I dati *non sono* fisicamente memorizzati ( prodotti dalla valutazione di un'espressione ( query ) )
 		- Alle viste posso dare un nome e quindi referenziarle 
 
-###### Creazione Tabella
+##### Creazione Tabella
 
 Una tabella viene creata con il comando : 
 ```sql
@@ -2517,6 +2508,112 @@ Specificando per ogni colonna il
 + *tipo di dato* può essere :
 	+ *predefinito* 
 	+ *definito dall'utente* ( *dominio* )
+
+###### Domini
+
+Un *dominio* può essere creato con il comando :
+```sql
+CREATE DOMAIN NomeDominio AS TipoDiDato
+	[ValoreDiDefault]
+	[Vincolo]
+```
+
+**Esempio** :
+
+```sql
+CREATE DOMAIN Voto AS SMALLINT
+	CHECK ( VALUE <= 30 AND VALUE >= 18 )
+```
+Dominio *Voto* che ha tipo `{sql}SMALLINT` e che può avere valore compreso tra 18 e 30
+
+###### Tipi Predefiniti
+
++ **Interi** : `{sql} INTEGER , SMALLINT , ...`
++ **Decimali** : 
+	+ *fissi* : `{sql}NUMERIC(p,s)` , `p` e `s` indicano il numero massimo di numeri prima e dopo la virgola rispettivamente
+	+ *virgola mobile* : `{sql}REAL , FLOAT(p)`
++ **Bit** : 
+	+ `{sql}BIT(x)` , stringa di bit di lunghezza fissa `x` 
+	+ `{sql} BIT VARYING(x)` , la lunghezza massima della stringa di bit è `x` ma può anche essere di lunghezza minore
++ **Booleani** : `{sql}BOOLEAN`
++ **Stringhe** : 
+	+ `{sql}CHAR(x) ( o CHARACTER(x) )` , stringa di caratteri di lunghezza `x`
+	+ `{sql}VARCHAR(x) ( o CHAR VARYING(x) o CHARACTER VARYING(x) )`, la lunghezza massima della stringa di char è `x` ma può anche essere di lunghezza minore
++ **Date** : 
+	+ `{sql} DATE` : con attributi : `{sql} year , month , day`
+	+ `{sql}TIME` : con attributi : `{sql} hour , minute , second `
+	+ `{sql}TIMESTAMP` : contiene  gli attributi sia di `{sql}DATE` che di `{sql}TIME`
++ **Intervalli** : `{sql}INTERVAL {YEAR, MONTH, DAY, HOUR, MINUTE, SECOND}`
++ **Testo o oggetti binari** :
+	+ `{sql}BLOB` Binary Large Object
+	+ `{sql}CLOB` Character Large Object
+	In questi tipi di dati non posso performare operazioni di uguaglianza o confronto
++ *Identificatore* :
+	`{sql}SERIAL` serve per creare una colonna che costituisca un identificare unico 
+	**Esempio** :
+```sql
+CREATE TABLE tablename ( 
+	colname SERIAL,
+	name VARCHAR(10) )
+```
+Per inserire righe all'interno di questa tabella posso :
++ Assegnare come valore a questa righa quando faccio un `{sql}INSERT`  il valore `{sql}DEFAULT` , in questo modo il `{sql}SERIAL` creerà un identificatore unico per quella righa
+*Esempio*
+```sql
+INSERT INTO tablename
+VALUES (DEFAULT, ...) 
+```
+
++ Non seleziono la colonna contente `{sql}SERIAL` quando faccio `{sql}INSERT`
+*Esempio*
+```sql
+INSERT INTO tablename(...) -- non inserico la colonna con SERIAL
+VALUES (...)
+```
+
+###### Vincoli di ennupla
+
+Per ogni colonna posso specificare : 
++ Un valore di *default* :
+	+ Questo può essere un valore costante o `{sql}NULL` 
+	+ oppure il risultato di una chiamata a funzione che non richiede elementi come input ( *0-aria* ) es : `{sql}CURRENT_DATE`
+```sql
+CREATE TABLE Province (
+	Provincia CHAR(2) DEFAULT 'VE'
+)
+```
++ Un eventuale *vincolo* es : `{sql}NOT NULL , CHECK (<CONDIZIONE>)`
+```sql
+CREATE TABLE Studenti ( 
+	...
+	Cognome VARCHAR(10) NOT NULL,
+	Sesso CHAR(1) CHECK(Sesso IN (‘M’, ‘F’))
+	...
+	)
+```
+
+###### Vincoli intra- e inter-relazionali
+
++ *intrarelazionali* :
+	+ `{sql}PRIMARY KEY` : Degnia un insieme di attributi come *chiave primaria*
+	+ `{sql}UNIQUE` : designa un insieme di attributi come chiave ( non primaria ) ( a differenza della *primary key* queste possono assumere valori `{sql}NULL` )
+	+ `{sql}CHECK` : specifica un'espressione che produce un valore booleano
++ *interrelazionali* :
+	+ `{sql}FOREING KEY` : 
+		+ rappresenta un insieme di attributi come *chiave esterna*
+		+ designa un eventuale azione ( `{sql}NO ACTION , SET NULL , SET DEFAULT , CASCADE` ) da intraprendere se il voncolo di chiave esterna viene violato a causa di *cancellazione* ( `{sql}ON DELETE` ) o *modifica* ( `{sql}ON UPDATE` ) della riga riferita
+
+>[!note]
+>Ai vincoli di tabella può essere dato un nome ( per poterli eliminare )
+
+**ON DELETE** : 
++ `{sql}CASCADE` : tutte le righe della tabella interna corrispondenti alla righa cancellata vengono cancellate
++ `{sql}SET NULL` : all'attributo referente viene assegnato il valore `{sql}NULL` al posto del valore cancellato nella tabella esterna
++ `{sql}SET DEFAULT` : all'attributo referente viene assegnato il valore di `{sql}DEFAULT` al posto del valore cancellato nella tabella esterna ( se esite )
++ `{sql}NO ACTION`
+
+**ON UPDATE** : 
+
 
 >[!todo]
 >completa DDL 7 ->
