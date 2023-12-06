@@ -1580,6 +1580,101 @@ collezione di oggetti
 
 factory -> usa random per avere oggetti random
 
+## 6/12/2023
+
+### Sets
+
+iterable -> non è detto che itero nella stessa sequenza 
+
+classi ed interfacce con lettera maiuscola all'inizio -> tipi con lettera minuscola non sono sottoipo di object :
+int , long , double , char
+
+lista -> solo di sottotipi di object ( non tipi primitivi )
+
+bytecode -> 
+se variabile da 64 -> 2 address occupati il compiler lavora a 32 bit
+
+regole di conversione impleicita 
+int assegno un long -> int diventa un  long
+float assegno duble -> float diventa double
+al contario error
+
+casting a long to int -> -1
+errori di conservazione dell'info 
+
+boolean non può essere castato esplicitamente -> booleano a se 
+
+se assegno int  a char -> numero della tabella ascii 
+da valore numeri a carattere non va
+
+*boxing*
+*unboxing*
+
+sotto object abbiamo classe che rappresenta 
++ Bool
++ Char
++ Number
+	+ Long
+	+ Float
+	+ Double
+	+ -....-
+
+valueof -> prende intero e crea un'istanza di integer ( wrapper per int )
+ci permette di utilizzarli nei generics e farle interagire con altre classi
+
+
+literals : costante -> di default un valore con . -> duble , non può essere castato a float -> devo indicare che è float -> 3.0F double->3.0D
+
+valueof essendo che lo uso spesso creo una cache che contiene tutti i gli oggetti compresi tra min e max -> se creo 2 oggetti con stesso valueof indica a stesso address di memoria -> essendo che la classe è immutabile non ho problemi di aliasing 
+
+posso fare :
+
+```java
+Integer i1 = 10 ; // 10 trasformata in istanza di integer Integer.valueof(10)
+```
+questo vale solo per queste classi 
+posso fare 
+`{java}Object o = 10; // integer è sottotipo di object quindi posso assegnarlo`
+
+```java
+String s = "Il valore è";
+int i = 1;
+String s2 = "halo";
+String s1 = s+i; // works 
+String s3 = s2+s1; // quando sommi = concatenzione
+
+(i + i2)// interi -> somma inter + s1 // concat stringa
+(s1 + i)// concatena 2 stringhe + i2 // non somma 2 int ma conact a stringa
+```
+
+### Exceptions
+
+nullpointerexception -> classe
+le eccezioni sono una classe
+
+metodo che causa errore esce al primo momento in cui trovo eccezione , esce da tutte le chiamate che non gestiscono quell'errore
+
+**Throwable** exceptions 
+
+classe throwable passa messaggio e causa se causiamo una eccezione passiamo cmessaggio e causa es ho passatto personaggio null
+
+messaggi esplicativi 
+
+c'è stack delle invocazioni di metodo
+
+esteso da error ed exception
+
+error -> problema per cui il programma non puù riprendere l'esecuzione
+exception -> posso tornare all'esecuzione normale 
+
+runtime exceptions -> problemi durante esecuzione della jvm , problemi aritmetici , indexoutof bunds 
+
+
+
+
+
+
+
 
 # Tutorati 
 ## 14/10/2023
