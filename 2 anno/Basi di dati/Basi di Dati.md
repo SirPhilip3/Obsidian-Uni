@@ -2609,14 +2609,134 @@ CREATE TABLE Studenti (
 **ON DELETE** : 
 + `{sql}CASCADE` : tutte le righe della tabella interna corrispondenti alla righa cancellata vengono cancellate
 + `{sql}SET NULL` : all'attributo referente viene assegnato il valore `{sql}NULL` al posto del valore cancellato nella tabella esterna
-+ `{sql}SET DEFAULT` : all'attributo referente viene assegnato il valore di `{sql}DEFAULT` al posto del valore cancellato nella tabella esterna ( se esite )
-+ `{sql}NO ACTION`
++ `{sql}SET DEFAULT` : all'attributo referente viene assegnato il valore di `{sql}DEFAULT` al posto del valore cancellato nella tabella esterna ( se non esiste il `{sql}DEFAULT` assegniamo il valore di `{sql}DEFAULT` del tipo della colonna )
++ `{sql}NO ACTION` : la cancellazione *non* viene consentita
 
 **ON UPDATE** : 
++ `{sql}CASCADE` : Il nuovo valore dell'attributo della tabella esterna viene riportato su tutte le corrispondenti righe della tabella interna
++ `{sql}SET NULL` : all'attributo referente viene assegnato il valore `{sql}NULL` al posto del valore modificato nella tabella esterna
++ `{sql}SET DEFAULT` : all'attributo referente viene assegnato il valore di `{sql}DEFAULT` al posto del valore modificato nella tabella esterna ( se non esiste il `{sql}DEFAULT` assegniamo il valore di `{sql}DEFAULT` del tipo della colonna )
++ `{sql}NO ACTION` : la modifica *non* viene consentita
+
+##### Modifica Tabelle
+
+Ciò che viene creato con una `{sql}CREATE` può essere *modificato* con il comando `{sql}ALTER` e *eliminato* con il comando `{sql}DROP` 
+
+###### Aggiungere nuovi attributi
+```sql
+ALTER TABLE Studenti
+	ADD COLUMN Nazionalità VARCHAR(10) DEFAULT 'Italiana'
+```
+
+###### Eliminare attributi
+```sql
+ALTER TABLE Studenti
+	DROP COLUMN Provincia
+```
+
+###### Modificare il tipo di una colonna 
+```sql
+ALTER TABLE Studenti
+	ALTER COLUMN Nazionalità TYPE VARCHAR(15) 
+```
+
+###### Aggiungere ed eliminare voncoli
+```sql
+ALTER TABLE Docenti
+	ADD UNIQUE(RecapitoTel) -- ora RecapitoTel è UNIQUE
+```
+
+```sql
+ALTER TABLE Studenti
+	ADD CONSTRAINT nome_vincolo [vincolo]
+```
+
+##### Eliminare tabelle
+
+Le tabelle possono essere distrutte utilizzando il comando `{sql}DROP TABLE` , con il quale si rimuovono dallo schema la definizione della tabella e i dati al suo interno ( le righe )
+
+Vi sono 2  politiche per fale la `{sql}DROP TABLE` :
++ `{sql}CASCADE` : provoca la rimozione automatica di tutte le righe e di tutte le viste che utilizzano la tabella ( o la vista ) cancellata
++ `{sql}RESTRICT` : non viene rimossa se la tabella possiede delle righe o se è utilizzata in altre viste 
+
+##### Tabelle Inizializzate
+
+Per create tabelle aventi come contenuti elementi di altre viste o tabelle 
+
+```sql
+CREATE TABLE Nome [AS] EspressioneSELECT 
+```
+
+**Esempio** :
+
+```sql
+CREATE TABLE EsamiFino2006 AS (
+		SELECT *
+		FROM Esami e
+		WHERE e.Dara <= '31/12/2006')
+```
+Crea una tabella `{sql}EsamiFino2006` contente tutte le ennuple di `{sql}Esami` con data minore o uguale `{sql}'31/12/2006'`
+
+##### Viste
+
+Le *viste* vengono create dal seguente comando
+```sql
+CREATE VIEW Nome [(Attributi)]
+		AS EspressioneSELECT
+```
+
+I dati delle *viste* non vengono memorizzati fisicamente ( se non in cache per velociazzare l'esecuzione delle query ) ma vengono ricalcolati ad ogni query ( se presente in cache query ricalcolata solo se i dati in input cambiano )
+
+Per ottimizzare il *DBMS* potrebbe decidere di sostiutire una vista all'interno di una query con la query direttamente dalle tabelle
+
+**Utilità** :
++ Per nascondere certe modifiche dell'organizzazione logica dei dati ( *indipendenza logica* )
+	Es voglio mantenere `Studenti` sapendo che li abbiamo divisi in `Matricole` e `NonMatricole`
++ Per *proteggere i dati* 
+	In modo da dare ad un utente accesso solo ad una determinata vista ( parte limitata dei dati )
++ Per offrire visioni diverse degli stessi dati senza ricorrere a duplicazioni ( es vista con i voti medi senza avere una tabella con i voti medi visto che sono calcolabili )
++ Per rendere più *semplici* o *possibili* certe interrogazioni
+
+**Esempio** :
+
+Interrogazioni impossibili senza viste : 
+
+Trovare la media dei voti massimi ottenuti nelle varie province 
+
+>[!danger]
+>Non si può fare :
+```sql
+SELECT AVG(MAX(e.Voto)) -- non si può fare 
+FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato 
+GROUP BY s.Provincia
+```
+
+Invece possiamo fare :
+
+```sql
+CREATE VIEW ProvMax(Provincia, Max) AS 
+	SELECT s.Provincia, MAX(e.Voto)
+	FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato 
+	GROUP BY s.Provincia;
+	
+SELECT AVG(Max) FROM ProvMax
+```
+
+###### Viste Modificabili
+
+Le *viste* si interrogano come le tabelle ma in generale non si possono modificare,
+
+Perchè si possano modificare le *viste* devono valere le seguenti proprietà : 
++ `{sql}SELECT` senza `{sql}DISTINCT` e solo di attributi ( non calcolati nè funzioni di aggregazione )
++ `{sql}FROM` con una sola tabella modificabile
++ `{sql}GROUP BY` e `{sql}HAVING` non devono essere presenti nella definizione
++ Non deve contenere operatori insiemistici
+
+
 
 
 >[!todo]
->completa DDL 7 ->
+>completa DDL 29 ->
 >#todo
 
 
