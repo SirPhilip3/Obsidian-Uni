@@ -1537,7 +1537,13 @@ Allo stesso modo $\lim_{x\rightarrow \infty}F(x,y)$
 Il calcolo delle probabilità su una *distribuzione congiunta* può essere sempre calcolata usando la *funzione di ripartizione congiunta* $F(x,y)$ :
 $$\mathbb{P}[a_1<X\le a_2, b_1 < Y \le b_2]=F(a_2,b_2)+F(a_1,b_1)-F(a_1,b_2)-F(a_2,b_1)$$
 
+#### Funzione di probabilità congiunta
 
+##### Per variabili aleatorie discrete
+
+
+
+##### Per variabili aleatorie continue
 
 
 
