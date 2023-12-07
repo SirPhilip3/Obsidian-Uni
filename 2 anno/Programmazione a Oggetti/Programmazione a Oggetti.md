@@ -612,7 +612,7 @@ La *firma* di un metodo definisce un **Contratto**
 
 Se una *firma* definisce un contratto meno restrittivo ( modificatori di visibilità meno restrittivo ) in una sottoclasse allora viene **Sovrascitto** ( *overrides* )
 
-Viene **Overloadato** se :
+Viene fatto l'**Overload** se :
 + Il *nome* è lo stesso
 + e la *firma* è differente
 

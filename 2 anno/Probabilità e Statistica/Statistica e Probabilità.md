@@ -1505,6 +1505,42 @@ Questa si può calcolare in 2 modi differenti
 	$\mathbb{P}[X_{15}=0] = \frac{(12/10\times 15)^0}{0!}e^{-12/10\times 15}=e^{-18}$ 
 + Considerando che il primo messaggio che deve arrivare deve arrivare dopo 15 minuti
 	$\mathbb{P}[T>15]\sim Exp(12/10) = e^{-12/10\times 15}= e^{-18}$
+
+### Distribuzioni Congiunte
+
+Distribuzioni costituite da due o più *variabili aleatorie* 
+
+Quando abbiamo solo una *coppia* di variabili aleatorie si dice che abbiamo una **Distribuzione Bivaria** 
+
+Quando abbiamo un numero di variabili maggiore di 1 si dice sempre che stiamo parlando di **Distribuzioni Multivarie**
+
+#### Funzioni di Ripartizione
+
+La *funzione di ripartizione congiunta* di una coppia di variabili aleatorie $(X,Y)$ è una funzione $F : \mathbb{R}^2\rightarrow [0,1]$ definta nel seguente modo :
+$$F(x,y)=\mathbb{P}[X\le x, Y\le y], \quad \forall(x,y)\in \mathbb{R}$$
+Si possono trovare le *funzioni di ripartizione* delle singole variabili aleatorie nel seguente modo :
+$$F_X(x)=\mathbb{P}[X\le x]$$
+$$=\mathbb{P}[X\le x, Y\le \infty]$$
+Ponendo $Y\le \infty$ è come se dicessi che quella variabile non mi interessa considerarla nel risultato finale
+$$=\mathbb{P}\bigg[\lim_{y\rightarrow\infty}\{X\le x, Y\le y\}\bigg]$$
+$$=\lim_{y\rightarrow \infty}\mathbb{P}[X\le x, Y\le y]$$
+$$=\lim_{y\rightarrow\infty}F(x,y)$$
+
+Allo stesso modo $\lim_{x\rightarrow \infty}F(x,y)$
+
+>[!note]
+>La funzione di ripartizione congiunta $(X,Y)$ contiene tutte le informazioni riguardante le distribuzioni di probabilità delle singole varaibili aleatorie $X$ e $Y$ ovvero le *distribuzioni marginali*
+
+>[!warning]
+>Il viceversa non è vero , ossia dalle *distribuzioni marginali* non posso ricavare la *funzione di ripartizione congiunta* a meno che non si abbia un'ulteriore informazione riguardante la relazione tra le due varaibili
+
+Il calcolo delle probabilità su una *distribuzione congiunta* può essere sempre calcolata usando la *funzione di ripartizione congiunta* $F(x,y)$ :
+$$\mathbb{P}[a_1<X\le a_2, b_1 < Y \le b_2]=F(a_2,b_2)+F(a_1,b_1)-F(a_1,b_2)-F(a_2,b_1)$$
+
+
+
+
+
 # Appunti
 #### R-Studio
 
