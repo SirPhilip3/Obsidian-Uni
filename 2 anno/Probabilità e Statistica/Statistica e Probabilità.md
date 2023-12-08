@@ -1541,9 +1541,49 @@ $$\mathbb{P}[a_1<X\le a_2, b_1 < Y \le b_2]=F(a_2,b_2)+F(a_1,b_1)-F(a_1,b_2)-F(a
 
 ##### Per variabili aleatorie discrete
 
+La *funzione di probabilità congiunta* :
+$$p(x,y)=\mathbb{P}[X=x,Y=y],\quad \forall(x,y)\in \mathbb{R}^2$$
 
+Le *funzioni di probabilità marginali* si ottengono sommando rispetto a tutti i valori possibili dell'altra variabile :
+$$p_X(x)=\sum_{y : p(x,y)>0}p(x,y)$$
+$$p_Y(y)=\sum_{x : p(x,y)>0}p(x,y)$$
 
+Alternativiamente le funzioni di probabilità *congiunte* e *marginali* si possono rappresentare nella stessa tabella a 2 entrate :
+
+![[Pasted image 20231208161937.png]]
+
+**Esempio** :
+
+Un programma consiste in 2 moduli , indichiamo con :
++ $X$ il numero di errori nel primo modulo
++ $Y$ il numero di errori nel secondo modulo
+Questi hanno la seguente *distribuzione congiunta* :
+$$p(0,0)=p(0,1)=p(1,0)=0.2$$
+$$p(1,1)=p(1,2)=p(1,3)=0.1$$
+$$p(0,2)=p(0,3)=0.5$$
+Possiamo rappresentare la probabilità congiunta e le probabilità marginali attraverso una tabella : 
+![[Pasted image 20231208162532.png]]
+
+Possiamo ora calcolare le seguenti probabilità :
++ Probabilità che non ci siano errori nel primo modulo 
+	Questa si calcola sommando tutte le probabilità congiunte della riga corrispondente a $X=0$ :
+	$$\mathbb{P}[X=0]=\sum_{y=0}^3p(0,y)=0.20+0.20+0.05+0.05=0.5$$
++ Probabilità che nel primo modulo ci siano meno errori che nel secondo 
+	$$\mathbb{P}[X<Y]=1-\mathbb{P}[X\ge Y]$$
+	$$=1-\mathbb{P}[X=0,Y=0]-\mathbb{P}[X=1,Y=0]-\mathbb{P}[X=1,Y=1]$$
+$$=1-(0.2+0.2+0.1)=0.5$$
 ##### Per variabili aleatorie continue
+
+Si dice che $X$ e $X$ sono *congiunte continue* se esiste una funzione $f:\mathbb{R}^2\rightarrow \mathbb{R}$ integrabile e tale che abbia le seguenti caratteristiche :
++ $f(x,y)\ge 0, \quad \forall(x,y) \in \mathbb{R}^2$
++ $\int\int_{\mathbb{R}^2}f(x,y)dxdy=1$
+
+$f$ è la *funzione di densità congiunta* di $(X,Y)$ e si utilizza per calcolare probabilità riguardanti le due varaibili congiuntamente 
+
+**Esempio**
+
+Se $A,B \subset \mathbb{R}$
+$$\mathbb{P}[X\in A,Y\in B]=\int_B\Bigg(\int_A f(x,y)dx \Bigg)dy$$
 
 
 
