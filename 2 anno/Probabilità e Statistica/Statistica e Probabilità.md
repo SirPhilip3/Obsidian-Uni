@@ -1580,10 +1580,33 @@ Si dice che $X$ e $X$ sono *congiunte continue* se esiste una funzione $f:\mathb
 
 $f$ è la *funzione di densità congiunta* di $(X,Y)$ e si utilizza per calcolare probabilità riguardanti le due varaibili congiuntamente 
 
-**Esempio**
-
 Se $A,B \subset \mathbb{R}$
 $$\mathbb{P}[X\in A,Y\in B]=\int_B\Bigg(\int_A f(x,y)dx \Bigg)dy$$
+
+In particolare dalla *densità congiunta* si può ricavare la *funzione di ripartizione congiunta* : 
+$$F(x,y)=\mathbb{P}[X\le x, Y\le y]=\int_{-\infty}^y\int_{-\infty}^{x}f(s,t)ds\ dt$$
+Dalla *funzione di riaprtizione* si ottiene la *funzone di densità* : 
+$$f(x,y)=\frac{d^2F(x,y)}{dx\ dy}$$
+
+Le *funzioni di densità marginali* si ricavano integrando la *densità congiunta* rispetto all'altra variabile :
+
+$$f_X(x)=\int_{\mathbb{R}}f(x,y)dy$$
+$$f_Y(y)=\int_{\mathbb{R}}f(x,y)dx$$
+**Esempio** :
+
+La densità congiunta di $X$ e $Y$ è :
+$$f(x,y)=\begin{cases} 2e^{-x}e^{-2y} & x>0 , y>0 \\ 0 & \text{altrove} \\ \end{cases}$$
+Allora :
+$$\mathbb{P}[X>1,Y<1]=\int_0^1\Bigg(\int_1^{+\infty}2e^{-x}e^{-2y}dx\Bigg)dy$$
+$$=\int_0^12e^{-2y}(-e^{-x})_1^{+\infty}dy=e^{-1}\int_0^12e^{-2y}dy$$
+$$e^{-1}(-e^{-2y})_0^1=e^{-1}(1-e^{-2})$$
+>[!todo]
+>continua esempi
+>#todo
+
+#### Varaibili aleatorie indipendenti
+
+
 
 
 
