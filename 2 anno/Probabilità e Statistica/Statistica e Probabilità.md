@@ -1606,9 +1606,88 @@ $$e^{-1}(-e^{-2y})_0^1=e^{-1}(1-e^{-2})$$
 
 #### Varaibili aleatorie indipendenti
 
+Si dice che due *varaibili aleatorie* sono *indipendenti* se :
+$$\mathbb{P}[X\in A,Y\in B]=\mathbb{P}[X\in A]\mathbb{P}[Y\in B], \quad \forall A, B \subset \mathbb{R}$$
+Possiamo dismostrare che è equivalente a :
+$$F(x,y)=F_X(x)F_Y(y), \quad \forall (x,y)\in \mathbb{R}^2$$
+Suddividendo nei casi in cui le varaibli sono :
++ *Discrete* : $p(x,y)=p_X(x)p_Y(y),\quad \forall(x,y)\in \mathbb{R}^2$ 
++ *Continue* : $f(x,y)=f_X(x)f_Y(y), \quad \forall(x,y)\in \mathbb{R}^2$
+
+**Esempio** :
+
+1. 
+$$f(x,y)=\begin{cases} 24xy & x,y\in(0,1), x+y \in (0,1)\\ 0 & \text{altrove}\end{cases}$$
+$X$ e $Y$ sono indipendenti ?
+Poichè abbiamo che $x+y\in(0,1)$ per il dominio , sicuramente se modifichiamo $x$ anche $y$ cambierà di conseguenza , avremo quindi che $X$ e $Y$ *non sono indipendenti*
+
+
+```functionplot
+---
+title: 
+xLabel: x
+yLabel: y
+bounds: [-1,4,-1,3]
+disableZoom: true
+grid: true
+---
+f(x)=1-x
+```
+
+2.
+
+![[Pasted image 20231208162532.png]]
+
+Cosiderando questo esempio con 2 varaibili aleatorie *discrete* , per verficiare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddifino la seguente proprietà :
+$$p(x,y)=p_X(x)p_Y(y)$$
+Nel nostro caso però non tutte le coppie soddisfano questa proprietà :
+$$p(1,1)=0.10\ne p_X(1)p_Y(1)=0.50\cdot 0.30$$
+Quindi $X$ e $Y$ *non sono indipendenti*
+
+3. 
+Considerando il caso in cui $X$ e $Y$ sono *variabili aleatorie indipendenti*  con funzioni di probabilità marginali : 
+
+![[Pasted image 20231209163104.png]]
+
+Sapendo le marginali e che queste sono indipendenti possiamo ricostriìuire la distribuzione congiunta , possiamo infatti calcolare :
+$$p(0,0)=\mathbb{P}[X=0,Y=0]=\mathbb{P}[X=0]\cdot\mathbb{P}[Y=0]=0.5\cdot 0.7=0.35$$
+$$p(0,1)=\mathbb{P}[X=0,Y=1]=\mathbb{P}[X=0]\cdot\mathbb{P}[Y=1]=0.5\cdot 0.2=0.10$$
+Così via per tutte le coppie di $x$ e $y$ otteniamo :
+
+![[Pasted image 20231209163407.png]]
+
+Aquato punto potremmo calcolare :
+
+$$\mathbb{P}[X+Y=1]=\mathbb{P}[X=0,Y=1]+\mathbb{P}[X=1,Y=0]=0.21+0.10=0.31$$
+**Esempio** :
+
+Un programma è formato da due blocchi che vengono processati sequenzialmente durante la compilazione.
+Ogni blocco viene processato in un tempo medio di 5 minuti e si assume che i tempi di compilazione dei due blocchi, $X$ e $Y$ , siano *indipendenti* e con *distribuzione esponenziale*.
+
+Poichè $X$ e $Y$ sono *indipendenti* la densità congiunta $X$ e $Y$ è :
+$$f(x,y)=f_X(x)f_Y(y)=\frac15e^{-x/5} \mathbb{I}_{(0,+\infty)}(x)\cdot\frac15e^{-y/5} \mathbb{I}_{(0,+\infty)}(y)$$
+Allora la probabilità che l'intero programma venga compilato in meno di 12 minuti sarà :
+$$\mathbb{P}[X+Y\lt 12]=\int\int_{(x,y):x+y<12}f(x,y)dx\ dy$$
+$$\int_0^{12}\Bigg(\int_0^{12-x}\frac15e^{-y/5}dy\Bigg)\frac15e^{-x/5}\ dx$$
+$$\int_0^{12}\Bigg(\int_0^{12-x}\frac15e^{-y/5}dy\Bigg)\frac15e^{-x/5}\ dx$$
+$$\int_0^{12}\bigg(1-e^{-(12-x)/5}\bigg)\frac15e^{-x/5}dx$$
+$$\bigg(1-e^{-(12-x)/5}\bigg)-\frac{12}{5}e^{-12/5}=0.69156$$
+
+#### Probabilità condizionata
+
+##### Discrete
+
+Siano $X$ e $Y$ due variabili aleatorie *discrete* con funzione di probabilità congiunta $p(x,y)$
+
+La funzione di *probabilità condizionata* di $X$ dato $Y=y$ è :
+$$p_{X|Y}(x|y)=\frac{p(x,y)}{p_Y(y)},\quad \forall y\ \text{ t.c.  }\ p_Y(y)>0$$
+Allo stesso modo la funzione di probabilità condizionata di $Y$ dato $X=x$ è :
+$$p_{Y|X}(y|x)=\frac{p(x,y)}{p_X(x)},\quad \forall x\ \text{ t.c.  }\ p_X(x)>0$$
 
 
 
+
+#### Valore atteso
 
 # Appunti
 #### R-Studio
