@@ -1684,6 +1684,29 @@ $$p_{X|Y}(x|y)=\frac{p(x,y)}{p_Y(y)},\quad \forall y\ \text{ t.c.  }\ p_Y(y)>0$$
 Allo stesso modo la funzione di probabilità condizionata di $Y$ dato $X=x$ è :
 $$p_{Y|X}(y|x)=\frac{p(x,y)}{p_X(x)},\quad \forall x\ \text{ t.c.  }\ p_X(x)>0$$
 
+Possiamo verificare infatti che .
+$$p_{X|Y}(x|y)=\mathbb{P}[X=x|Y=y]$$
+$$=\frac{\mathbb{P}[X=x,Y=y]}{\mathbb{P}[Y=y]}=\frac{p(x,y)}{p_Y(y)}$$
+
+Se $X$ e $Y$ sono **Indipendenti** allora :
+$$p_{X|Y}(x|y)=p_X(x)\quad p_{Y|X}(y|x)=p_Y(x)$$
+
+**Esempio** :
+
+Siano $X$ e $Y$ due varaibili aleatorie *discrete* :
+
+![[Screenshot 2023-12-09 175636.png]]
+
+Calcoliamo la funzione di probabilità di $X$ dato $Y=1$ utilizzando le informazioni contenute nella colonna corrispondente a $Y=1$
+$$p_{X|Y}(0|1)=\frac{p(0,1)}{p_Y(1)}=0.2/0.5=0.4$$
+$$p_{X|Y}(1|1)=\frac{p(1,1)}{p_Y(1)}=0.3/0.5=0.6$$
+Dobbiamo avere che : 
+$$X|Y=1\sim p_{X|Y}(x|1)=\begin{cases}0.4 &\text{se $x=0$} \\ 0.6 &\text{se $x=1$}\end{cases}$$
+Essendo questa distribuzione differente dalla marginale di $X$ concludiamo che le due varaibili *non sono indipendenti* 
+
+##### Continue
+
+Siano $X$ e $Y$ due variabili aleatorie *continue* con funzione di probabilità congiunta $f(x,y)$
 
 
 
