@@ -1417,7 +1417,7 @@ Il tempo complessivo d'esecuzione di `{cpp}buildBST` risulterà quindi essere $n
 >$\Theta\ o \ O$
 >
 
-La *complessità* può ance essere dimostrata nel seguente modo 
+La *complessità* può anche essere dimostrata nel seguente modo 
 
 $$T(n)=\sum_{i=0}^{n-1}(c+d\cdot i)$$
 Dove : 
