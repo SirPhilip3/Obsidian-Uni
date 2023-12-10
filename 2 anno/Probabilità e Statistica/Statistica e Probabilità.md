@@ -1707,10 +1707,46 @@ Essendo questa distribuzione differente dalla marginale di $X$ concludiamo che l
 ##### Continue
 
 Siano $X$ e $Y$ due variabili aleatorie *continue* con funzione di probabilità congiunta $f(x,y)$
+La *funzione di densità condizionata* di $X$ dato $Y=y$ è :
+$$f_{X|Y}(x|y)=\frac{f(x,y)}{f_Y(y)}\quad \forall y \ \text{t.c.} \ f_Y(y)>0$$
+Allo stesso modo per $Y$ dato $X=x$
+$$f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}\quad \forall x \ \text{t.c.} \ f_X(x)>0$$
+**Esempio** :
+$$\mathbb{P}[X\in A|Y=y]=\int_{A}f_{X|Y}(x|y)\ dx$$
+$$\mathbb{P}[Y\in B|X=x]=\int_{B}f_{Y|X}(y|x)\ dy$$
+Se $X$ e $Y$ sono indipendenti allora :
+$$f_{X|Y}(x|y)=f_X(x)$$
+$$f_{Y|X}(y|x)=f_Y(y)$$
+**Esempio** :
 
-
-
+Sia $f(x,y)=\frac{15}{2}x(2-x-y)\mathbb{I}_{(0,1)\times(0,1)}(x,y)$ , calcoliamo la funzione di densità condizionata di $X$ dato $Y=y$
+$$f_{X|Y}(x|y)=\frac{f(x,y)}{f_Y(y)}, \quad \forall y\in (0,1)$$
+Calcoliamo $f_Y(y)$ ( *densità marginale* ) :
+$$f_Y(y)=\int_0^1\frac{15}{2}(2x-x^2-xy)\mathbb{I}_{(0,1)}(y)\ dx=\dots =\frac{15}2\bigg(\frac23-\frac y 2\bigg)\mathbb{I}_{(0,1)}(y)$$
+Infine :
+$$f_{X|Y}(x|y)=\frac{x(2-x-y)\mathbb{I}_{(0,1)}(x)}{\Big(\frac23-\frac y2\Big)}, \quad \forall y\in (0,1)$$
 #### Valore atteso
+
+Il valore atteso di una trasformazione $g(X,Y)$ è :
+$$E[g(X,Y)]=\begin{cases} \sum_y\sum_x g(x,y)p(x,y) & \text{caso discreto} \\ \int\int_{\mathbb{R}^2}g(x,y)f(x,y)\ dx \ dy & \text{caso continuo} \end{cases}$$
+##### Somma
+$$\mathbb{E}[X+Y]=\mathbb{E}[X]+\mathbb{E}[Y]$$
+In generale nel caso avessimo delle somme avremmo :
+
+$$\mathbb{E}\Bigg[\sum_{i=1}^n a_iX_i\Bigg]=\sum_{i=1}^na_i\mathbb{E}[X_i]$$
+##### Prodotto
+
+Se $X$ e $Y$ sono indipendenti aloora avremo che :
+$$\mathbb{E}[X\cdot Y]=\mathbb{E}[X]\cdot\mathbb{E}[Y]$$
+
+**Esempio** :
+
+Avendo :
+![[Pasted image 20231208162532.png]]
+
+>[!todo]
+>correggi ?????
+>#todo
 
 # Appunti
 #### R-Studio
