@@ -1686,3 +1686,23 @@ Encapsulation
 ## 04/11/2023
 
 ## 18/11/2023
+
+## 11/12/2023
+
+Generics 
+
+```java
+List<? extends Superhero> se = new ArrayList<>();
+// con extends non posso inserire elementi all'interno della lista
+// posso fare il get poichè so che mi ritornerà un superhero
+// non posso add poichè non so il tipo della lista , la lista ha solo 1 tipo 
+
+List<? super MarvelSuperhero> se = new ArrayList<>();
+
+// non posso fare il get 
+// posso inserire sottotipi di marvelsuperhero
+```
+
+
+
+
