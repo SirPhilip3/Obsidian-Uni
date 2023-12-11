@@ -2834,4 +2834,30 @@ ORDER BY o.nomecliente
 HAVING 
 ```
 
+##### 6
 
+per ogni cliente, trovare il numero dei suoi ordini e il numero di pizze di tipo diverso che ha ordinato. Il risultato deve essere ordinato per il numero degli ordini in senso decrescente;
+
+```sql
+SELECT o.nomecliente, COUNT(*) AS numeroOrdini , COUNT(DISTINCT o.codpizza) AS numeroPizze 
+FROM ordini o  -- mi basata ordini a meno che non volevo info relative al cliente
+GROUP BY o.nomecliente
+ORDER BY numeroOrdini DESC
+```
+
+##### 8
+
+rovare il nome e il tempo di preparazione delle pizze che contengono almeno quattro ingredienti e non hanno alcun tipo di Funghi;
+
+```sql
+SELECT pi.nome , pi.tempoprep
+FROM pizze pi NATURAL JOIN ricette r  
+-- conto quanti sono gli ingredienti
+WHERE NOT EXISTS (SELECT * 
+				  FROM ricette r1 NATURAL JOIN ingredienti i  
+				  WHERE i.nome LIKE 'Funghi%' AND pi.codpizza = r1.codpizza ) -- deve essitere nella pizza che sto selezionando abbiano funghi
+GROUP BY pi.codpizza, pi.nome, pi.tempoprep -- nome prep devono essere presenti poichè devono essere restituiti
+HAVING COUNT(*) >= 4
+```
+
+sull'having meglio vincoli sul gruppo 
