@@ -2701,7 +2701,7 @@ Per ottimizzare il *DBMS* potrebbe decidere di sostiutire una vista all'interno 
 
 Interrogazioni impossibili senza viste : 
 
-Trovare la media dei voti massimi ottenuti nelle varie province 
+1. Trovare la media dei voti massimi ottenuti nelle varie province 
 
 >[!danger]
 >Non si può fare :
@@ -2722,6 +2722,54 @@ CREATE VIEW ProvMax(Provincia, Max) AS
 SELECT AVG(Max) FROM ProvMax
 ```
 
+2. Le provincie dove la media dei voti degli studenti è massima , restituire tali province e la media
+
+```sql
+CREATE VIEW ProvMedia (Provincia, Media) 
+AS SELECT s.Provincia, AVG(e.Voto) 
+   FROM Studenti s JOIN Esami e ON s.Matricola=e.Candidato 
+   GROUP BY s.Provincia; 
+   
+SELECT Provincia, Media 
+FROM ProvMedia 
+WHERE Media = ( SELECT MAX(Media) 
+			   FROM ProvMedia)
+```
+
+Equivale a : 
+
+```sql
+SELECT s.Provincia, AVG(e.Voto) 
+FROM Studenti s JOIN Esami e ON s.Matricola=e.Candidato 
+GROUP BY s.Provincia 
+HAVING AVG(e.voto) >=ALL (SELECT AVG(e.Voto) 
+						  FROM Studenti s JOIN Esami e 
+										  ON s.Matricola = e.Candidato 
+						  GROUP BY s.Provincia)
+```
+
+3. Ritornare il nome di ogni cane che ha entrambi i genitori e i loro genitori della sua stessa razza
+
+Consideriamo avere una tabella costruita nel seguente modo :
+`Cani(_Cod_, Nome , Razza* , Padre* , Madre* , AnnoNasc , AnnoMorte , Istruttore* )`
+
+Dove `Cod PK` , `Madre FK(Cani)` , `Padre FK(Cani)` , `Razza FK(Razze)` , `Istruttore FK(Istruttori)`
+
+Visto che dobbiamo legare un cane con i suoi genitori creiamo una vista per rappresentare ciò , inoltre visto che ci interessa solo i cani che hanno i geniroi con la stessa sua razza modelliamo questo nella clausola `{sql}WHERE` della vista :
+
+```sql
+CREATE VIEW GenStessaRazza(Figlio, Padre, Madre, Razza) 
+AS SELECT c.Cod, p.Cod, m.Cod, c.Razza 
+   FROM Cani c JOIN Cani p ON c.Padre = p.Cod -- lega al padre
+			   JOIN Cani m ON c.Madre = m.Cod -- lega alla madre
+   WHERE m.Razza = p.Razza AND m.Razza = c.Razza; -- solo se sono della stessa razza
+
+SELECT c.Nome 
+FROM GenStessaRazza f JOIN GenStessaRazza m ON f.Madre = m.Figlio -- link padre e madre di 1 cane con i loro genitori che anchessi hanno le caratterisitche di stessa razza 
+					  JOIN GenStessaRazza p ON f.Padre = p.Figlio 
+					  JOIN Cani c ON c.Cod = f.Figlio -- per aver il nome
+```
+
 ###### Viste Modificabili
 
 Le *viste* si interrogano come le tabelle ma in generale non si possono modificare,
@@ -2731,6 +2779,27 @@ Perchè si possano modificare le *viste* devono valere le seguenti proprietà :
 + `{sql}FROM` con una sola tabella modificabile
 + `{sql}GROUP BY` e `{sql}HAVING` non devono essere presenti nella definizione
 + Non deve contenere operatori insiemistici
+
+##### WITH
+
+Il construtto `{sql}WITH` fornisce un modo alternativo per specificare sottoquery di query più complesse , questa a differenza di una *vista* è temporanea per quella query sucessiva
+
+**Esempio** :
+
+Le provincie dove la media dei voti degli studenti è massima , restituire tali province e la media
+
+```sql
+WITH ProvinceMedia AS ( 
+	SELECT s.Provincia, AVG(e.Voto) AS Media 
+	FROM Studenti s JOIN Esami e ON s.Matricola=e.Candidato 
+	GROUP BY s.Provincia 
+	) 
+SELECT Provincia, Media 
+FROM ProvinceMedia 
+WHERE Media = (SELECT MAX(Media) FROM ProvinceMedia)
+```
+
+##### Associazioni Simmetriche 
 
 
 
