@@ -2801,13 +2801,92 @@ WHERE Media = (SELECT MAX(Media) FROM ProvinceMedia)
 
 ##### Associazioni Simmetriche 
 
+Abbiamo una associazione simmetrica su `Persone` che indica i `Fratelli` :
 
+![[Pasted image 20231212150911.png]]
 
+Questa viene tradotta in schema realzionale nel seguente modo : 
 
->[!todo]
->completa DDL 29 ->
->#todo
+![[Pasted image 20231212150938.png]]
 
+Ci sono 2 moetodi per riempire la tabella `Fratelli` :
+1. Inserire anche i duplicati nella tabella 
+	**Esempio** :
+
+|id1|id2|
+|--|--|
+|13|21|
+|21|13|
+
+2. Inserise solo una ennupla per ciascuna coppia di fratelli :
+	**Esempio** :
+
+|id1|id2|
+|--|--|
+|13|21|
+
+Entrambe le soluzioni hanno problematiche :
+
+1. Nel caso dell prima soluzione vi è ridodanza all'interno dei dati , per ottenere una tabella senza ripetizioni dobbiamo escludere una delle due coppie 
+
+**Esempio** :
+```sql
+SELECT p1.* , p2.*
+FROM Persone p1 JOIN Fratelli f ON pi.Id = f.Id1
+				JOIN Persone p2 ON p2.Id = f.Id2
+WHERE f.Id1 < f.Id2 -- necessario per restituire solo una copia dei fratelli 
+```
+
+2. Nel secondo caso le query diventano più complicate
+
+**Esempio** : 
+```sql
+SELECT p.*
+FROM Persone p, Fratelli f
+WHERE (f.Id1 = 21 AND p.Id = f.Id2) OR
+	  (f.Id2 = 21 AND p.Id = f.Id2) -- per rappresentare la possibilità che l'indice si trovi in Id1 e Id2
+```
+
+Generalmente si preferisce la seconda versione in quanto non si introducono duplicazioni all'interno dei dati
+##### For all senza For all
+
+Modi per scrivere la `{sql}NOT IN` senza la sottoselect
+
+**Esempio** :
+
+Gli studenti che hanno preso solo 30
+
+```sql
+SELECT s.* 
+FROM Studenti s 
+WHERE s.Matricola NOT IN (SELECT e.Candidato 
+						  FROM Esami e 
+						  WHERE e.Voto <> 30)
+```
+
+###### Complemento
+
+Si può scrivere con l'operatore insiemistico `{sql}EXCEPT`
+
+```sql
+SELECT s.* 
+FROM Studenti s 
+	EXCEPT 
+SELECT s.* 
+FROM Studenti s JOIN Esami e ON s.Matricola=e.Candidato 
+WHERE e.Voto <> 30;
+```
+
+###### Giunzione Esterna
+
+Si può scrivere attraverso una `{sql}LEFT JOIN` , prendiamo con il `{sql}LEFT` tutti gli studenti che non hanno preso 30 , in questo modo le colonne in cui il voto degli esami è `{sql}NULL` saranno gli studenti che non hanno mai preso un voto differente da 30
+
+```sql
+SELECT s.* 
+FROM Studenti s LEFT JOIN Esami e 
+	ON s.Matricola = e.Candidato AND e.Voto <> 30 
+WHERE e.Voto IS NULL;
+```
 
 ## Esercizi
 
