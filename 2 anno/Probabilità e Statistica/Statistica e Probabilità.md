@@ -1748,6 +1748,21 @@ Avendo :
 >correggi ?????
 >#todo
 
+
+>[!danger]
+>8 punti di differenza massimi per 0.7
+>7 11
+8 8
+8 10
+8 8
+7 9
+.. ..
+38 46
+
+
+
+
+
 # Appunti
 #### R-Studio
 
@@ -1783,4 +1798,6 @@ cumsum = funzione di ripartizione
 *quantili*
 
 ???????????
+
+
 
