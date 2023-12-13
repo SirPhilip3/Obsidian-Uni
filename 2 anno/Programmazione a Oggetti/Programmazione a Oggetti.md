@@ -1668,6 +1668,119 @@ error -> problema per cui il programma non puù riprendere l'esecuzione
 exception -> posso tornare all'esecuzione normale 
 
 runtime exceptions -> problemi durante esecuzione della jvm , problemi aritmetici , indexoutof bunds 
+## 13/12/2023
+
+Exceptions -> 
+
+classi che estendono sotto exception se riguarada il nostro codice 
+
+**Example**
+
+```java
+public class MissinFigureException extends Exception{
+
+	// exception ha un supercostruttore senza parametri 
+
+	public missinFigureException(String m){
+		super(m);
+	}
+
+}
+```
+
+```java
+throw new MissinFigureException("...")  // esce dal metodo corrente e lancia un'eccezione
+```
+
+la throw deve essere aggiunta anche nella firma del metodo -> indica che eccezioni può lanciare 
+
+```java
+public RandomMethod() throws missinFigureException
+```
+
+metodi che invocano metodi che lanciano eccezioni devono anchessi includere `{java}throws` 
+
+se controllo a priori che non può accadere l'eccezione prima di chimaare il metodo 
+
+```java
+try {
+
+...
+
+} catch ( MissinFigureException e) {
+	// non posso fare recovery dal'errore
+}
+
+// una o più espressioni catch per diverse exception 
+
+```
+
+se catcho l'eccezione non serve che la dichiaro
+
+Errors 
+
+```java
+public class UnexpectedError extends Error{
+
+	UnexpectedError(String m ){
+		super(m)
+	}
+
+	UnexpectedError(String m , Throwable couse){
+		super(m,cause)
+	}
+
+}
+```
+
+2 classi di Throwable per le quali non necessitiamo dichoarare che la classe lancia questa eccezzionie 
+`{java}RuntimeException , Errors`
+
+questi tipi di errori possono accaderer ovunque
+
+eccezioni unchekd
+
+in javadoc @throws -> fa parte dell'interfaccia esterna
+
+metodi overridati con exception in cui non lancia eccezione
+posso fare override lanciando un numero inferiore di eccezioni
+
+tutte le eccezioni di un metodo overridato devono esssere un sottoinsieme di eccezioni di metodo originale 
+
+per principio di sostituzione non posso farlo 
+
+catturare sempre un'eccezione specifica non generale
+
+```java
+finally // svolge sempre e comunque quello che specifico
+// quando il catch non è di un erroe compatibile ( sottoclasse )
+```
+
+finally usato quando ho bisogno di chiudere in qualsiasi caso qualcosa -> sockets , files
+```java
+try ( tipo closable s = nuovo oggetto sottipo ){
+
+... closes everytinh	
+
+}
+```
+
+in bytecode tabella delle eccezzioni  
+
+Assertion -> assicurrsi che una espressione si a vera 
+se vogliamo che l'esecuzione si fermi all'assaertion falsa devo autorizzare assertion a execution time ( ne complier )
+
+-ea 
+
+testing interno
+
+`{java}assert .... : "messaggio"`
+
+in bytecode c'è un campo nascosto Z che ha bool che indica se ho le assertion enabled o no
+
+throw in bytecode athrow -> ferma esecuzione normale del codice 
+
+@ sono annotazioni che applico al metodo
 
 
 
@@ -1702,7 +1815,3 @@ List<? super MarvelSuperhero> se = new ArrayList<>();
 // non posso fare il get 
 // posso inserire sottotipi di marvelsuperhero
 ```
-
-
-
-
