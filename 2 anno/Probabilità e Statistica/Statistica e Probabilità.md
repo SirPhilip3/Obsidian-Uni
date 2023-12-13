@@ -1331,7 +1331,7 @@ $$Bin(n,p)\approx N(np\ ,\ np(1-p))$$
 
 >[!attention]
 >L'approssimazione viene utilizzata nella pratica quando $np(1-p)\ge 10$
->
+>Oppure quando $n$ è molto grande e $0.05\le p \le 0.95$
 
 **Esempio** :
 
@@ -1390,7 +1390,7 @@ dgamma(x, alpha , lambda)
 
 **Esempio** :
 
-Se $X$ è una variabile aleatoria gamma di *media* 4 e *varianza* 4 allora :
+Se $X$ è una variabile aleatoria gamma di *media* 4 e *varianza* 1 allora :
 $$\alpha = 4 \quad e\quad \lambda=1$$
 + Si può calcolare allora ( itegrando ripetutamente per parti )
 
