@@ -1744,9 +1744,55 @@ $$\mathbb{E}[X\cdot Y]=\mathbb{E}[X]\cdot\mathbb{E}[Y]$$
 Avendo :
 ![[Pasted image 20231208162532.png]]
 
+Possiamo trovare :
+$E[X]=0\cdot0.5+1\cdot0.5=0.5$
+$E[Y]=0\cdot0.4+1\cdot0.3+2\cdot0.25+3\cdot0.15=1.05$
+
+Possiamo quindi dire che $E[X+Y]=E[X]+E[Y]=0.5+1.05=1.55$
+
+##### Covarianza
+
+La *covarianza* fra die variabili aleatorie $X$ e $Y$ è il valore atteso della particolare traformazione :
+$g(x,y)=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]$
+
+Avremo quindi :
+$$Cov[X,Y]=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]$$
+Che può essere scritto come :
+$$Cov[X,Y]=\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]$$
+Se abbiamo che $Cov[X,Y]=0$ diciamo che $X$ e $Y$ sono **incorrelate**
+
+**Esempio** :
+Consideriamo : 
+$$X = \begin{cases} &-1 & 0 &1 \\ p(x)  :& 1/3 & 1/3 & 1/3\end{cases}$$
+$$Y = \begin{cases}0  & X \ne 0\\ 1 & X =0  \end{cases}$$
+La *covarainza* può essere trovata anche semplicemente osservando come la funzione si rappresenta in un grafico :
+
+![[Drawing 2023-12-14 11.37.11.excalidraw]]
+
+Si può notare che la funzione si bilancia tra il suo ramo destro e sinistro per questo la *covarianza* sarà : $Cov[X,Y]=0$ , questà può anche essere semplicemente calcolata 
+
+Visto che la *covarianza* è 0 possiamo concludere che $X$ e $Y$ sono incorrelate
+
+###### Proprietà della Covarianza :
+
+1. $Cov[X,Y]=Cov[Y,X]$
+2. $Cov[X,X]=Var[X]$
+3. $Cov[aX,Y]=a\cdot Cov[X,Y]$
+4. $Cov[X,a]=0$
+5. $Cov[\sum_i X_i,\sum_j Y_j]=\sum_i \sum_j Cov[X_i,Y_j]$
+
+##### Varianza di una Somma 
+
+$$Var\bigg[\sum_i X_i\bigg]=Cov\bigg[\sum_i X_i,\sum_j X_j \bigg]=\sum_i \sum _jCov\bigg[X_i,X_j\bigg]$$
+
+
 >[!todo]
 >correggi ?????
 >#todo
+
+
+
+
 
 
 >[!danger]
