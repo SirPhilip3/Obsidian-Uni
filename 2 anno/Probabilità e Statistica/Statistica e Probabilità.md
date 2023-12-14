@@ -1750,7 +1750,7 @@ $E[Y]=0\cdot0.4+1\cdot0.3+2\cdot0.25+3\cdot0.15=1.05$
 
 Possiamo quindi dire che $E[X+Y]=E[X]+E[Y]=0.5+1.05=1.55$
 
-##### Covarianza
+#### Covarianza
 
 La *covarianza* fra die variabili aleatorie $X$ e $Y$ è il valore atteso della particolare traformazione :
 $g(x,y)=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]$
@@ -1784,30 +1784,48 @@ Visto che la *covarianza* è 0 possiamo concludere che $X$ e $Y$ sono incorrelat
 ##### Varianza di una Somma 
 
 $$Var\bigg[\sum_i X_i\bigg]=Cov\bigg[\sum_i X_i,\sum_j X_j \bigg]=\sum_i \sum _jCov\bigg[X_i,X_j\bigg]$$
+$$\sum_i Var [X_i]+\sum_i\sum_{j\ne i}Cov[X_i,X_j]$$
+$$\sum_i Var [X_i]+2\cdot \sum_i\sum_{j\gt i}Cov[X_i,X_j]$$
 
+Se $X_i$ sono *a due a due indipendenti* allora : 
++ $Cov[X_i,X_j]=0$ per $i \ne j$   
++ $Var\bigg[\sum_i X_i\bigg]= \sum_i Var[X_i]$
+#### Correlazione
 
->[!todo]
->correggi ?????
->#todo
+La *correlazione* fra due variabili aleatorie $X$ e $Y$ è definita come :
+$$Cor[X,Y]=\frac{Cov[X,Y]}{\sqrt{Var[X]\cdot Var[Y]}}$$
+Sempre che $Var[X]$ e $Var[Y]$ siano diverse da 0
 
+La *correlazione* risulterà essere :
+$$-1\le Cor[X,Y]\le 1$$
+>[!note]
+>Se $Y=a +b X$ allora $Cor[X,Y]=\pm1$ a seconda del segno di $b$
 
+Per questo si dice che la $Cor[X,Y]$ misura l'intensità del legame lineare fra $X$ e $Y$  
 
+**Esempio** : 
 
+Calcoliamo la $Cov[X,Y]$ e $Cor[X,Y]$
 
+$$Cov[X,Y]=\mathbb{E}[X\cdot Y]-\mathbb{E}[X]\cdot\mathbb{E}[Y]$$
+$$=1\cdot1\cdot0.1+1\cdot2\cdot0.1+1\cdot3\cdot0.1-0.5\cdot1.05=0.075$$
 
->[!danger]
->8 punti di differenza massimi per 0.7
->7 11
-8 8
-8 10
-8 8
-7 9
-.. ..
-38 46
+Essendo $Var[X]=0.5^2$ e $Var[Y]=1.0712^2$ avremo :
+$$Cor[X,Y]=\frac{0.075}{0.5\cdot 1.0712}=0.14$$
 
+#### Distribuzione normale bivariata 
 
+Siano $X \sim \mathcal{N}(\mu_X , \sigma^2_X), Y \sim \mathcal{N}(\mu_Y , \sigma^2_Y)$ con $Cor[X,Y]=\rho$ 
 
+Allora possiamo scrivere in termini matriciali la distribuzione bivariata nel seguente modo 
+$$\begin{bmatrix} X \\ Y \end{bmatrix}\sim \mathcal{N_2 \Bigg(\begin{bmatrix} \mu_X \\ \mu_Y  \end{bmatrix}, \begin{bmatrix} \sigma^2_X & \sigma_{X,Y} \\ \sigma_{X,Y} & \sigma^2_{Y}\end{bmatrix}\Bigg)}\sim \mathcal{N}_2(\mu, \sum)$$
+La densità di $\textbf{W}(X,Y)$ posot $(x,y)=\textbf{w}$ è 
+$$f(\textbf{w}=\frac{1}{2\pi \sqrt{|\sum|}}e^{-\frac{1}{2}(\textbf{w}-\mu)^T\sum^{-1}(\textbf{w}-\mu)}$$
+Svolgendo i calcoli abbiamo :
 
+$$f(x,y)=\frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}$$
+
+La *correlazione* indica quanto la distribuzione si "restringe"
 
 # Appunti
 #### R-Studio
