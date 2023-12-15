@@ -1643,19 +1643,21 @@ Inizialmente avremo un array $A[p\ ...\ r]$ dove inzialmente $p=1$ e $r = A.leng
 	R[n2 + 1] = infinito 
 	i = 1, j = 1 
 	for k = p to r 
-		if L[i] <= R [j] // TODO TODO TODO TODO
+		if L[i] <= R [j] // posiziono in k l'elemento minore tra L[i] e R[j] questo fa sì che alla fine del for avremo un array completamente ordinato 
 			A[k] = L[i]  
 			i++ 
 		else 
 			A[k] = R[j] 
 			j++
 ```
-
->[!todo]
->completa spiegazione algoritmo
->#todo
-
 ### Analisi Correttezza
+
+Per verificare la correttezza del nostro algoritmo dobbiamo dimostrare la correttezza del seguente **Invariante** : Il sottoarray `A[p ... k-1]` contiene *ordinati* i `k-p` elementi più piccoli di `L[1 ... n1 + 1]` e `R[1 ... n2 + 1]` , inoltre  `L[i]` e `R[j]` sono i più piccoli elementi dei loro rispettivi array che non sono ancora stati copiati in `A` 
+
+Verifichiamo quindi che l'*invariante* è verificato anche per la conclusione
+
+Alla fine del cic
+
 
 ### Complessità
 
