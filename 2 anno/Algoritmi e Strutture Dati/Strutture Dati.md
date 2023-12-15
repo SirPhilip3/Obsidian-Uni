@@ -1729,7 +1729,6 @@ partition(array A, int p, int r) -> int
 	return i + 1  
 ```
 
-
 ### Analisi Correttezza
 
 ### Complessità
