@@ -3009,3 +3009,17 @@ HAVING COUNT(*) >= 4
 ```
 
 sull'having meglio vincoli sul gruppo 
+
+##### 9
+
+restituire nome delle pizze più costose 
+
+```sql
+SELECT nome
+FROM pizze
+WHERE prezzo = (SELECT MAX(prezzo)
+				FROM pizze)
+```
+
+##### 10
+
