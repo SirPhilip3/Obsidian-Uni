@@ -1656,15 +1656,87 @@ Per verificare la correttezza del nostro algoritmo dobbiamo dimostrare la corret
 
 Verifichiamo quindi che l'*invariante* è verificato anche per la conclusione
 
-Alla fine del cic
+Alla fine del ciclo , ossia quando l'*invariante* è valido e la guardia del ciclo for non è verificata ( siamo usciti dal ciclo ) $INV\land \lnot \text{Guardia}$ , avremo `k = r + 1` , dovremo quinid vedere se il nostro invariante è valido :
+$$INV\bigg[\frac{r+1}{k}\bigg]$$
+Sostituendo quindi all'interno dell'*invariante* : 
+	Il sottoarray `A[p ... r]` contiene *ordinati* i `r+1-p` ( quelli iniziali ) elementi più piccoli di `L[1 ... n1 + 1]` e `R[1 ... n2 + 1]` , inoltre  `L[i]` e `R[j]` sono i più piccoli elementi dei loro rispettivi array che non sono ancora stati copiati in `A` 
+Questo vuol dire che il vettore `A[p ... r]` è ordinato , gli unici elementi non copiati sono le due sentinelle
+### Complessità
 
+Il tempo di esecuzione del `merge()` si può ricavare nel seguente modo :
++ $\Theta(n_1)$ per il ciclo `{c}for` per riempire l'array `L`
++ $\Theta(n_2)$ per il ciclo `{c}for` per riempire l'array `R`
++ $\Theta(r-p+1)$ per il ciclo `{c}for` che unisce i due array
++ $O(1)$ per tutte le altre operazioni costanti
+
+Possiamo quindi calcolare :
+$$T(n)=O(1)+\Theta(n_1)+\Theta(n_2)+\Theta(r-p+1)$$
+$$=\Theta(n_1+n_2)+\Theta(r-p+1)$$
+Dove $n_1=q-p+1$ e $n_2=r-q$
+$$=\Theta(q-p+1+r-q)+\Theta(r-p+1)$$
+$$=\Theta(r-p+1)+\Theta(n)$$
+$$=\Theta(n)+\Theta(n)=\Theta(n)$$
+
+Ora il tempo di esecuzione del `mergesort()` è il seguente :
+$$T(n)=\begin{cases}O(1) & n \le1 \\ 2T\Big(\frac{n}{2}\Big)+\Theta(n) & n \gt 1\end{cases}$$
+Dove :
++ $2T\Big(\frac n 2\Big)$ : è la complessità delle 2 chiamate ricorsive ( poichè divo l'array in 2 parti uguali )
++ $\Theta(n)$ : per via del `merge()`
+
+La ricorrenza può essere risolta con il teorema *Master*
+$$f(n)=\Theta(n)$$
+$$n^{\log_2 2}=n=\Theta(n)$$
+Poichè siamo nel caso in cui il tempo di $split+merge=\text{chiamate ricorsive}$ possiamo dire che :
+$$T(n)=\Theta(n\cdot\log n)$$
+
+### Conclusioni
+
+#### Vantaggi
+
++ $T(n)=\Theta(n\cdot \log n)$  complessità efficente
++ Risulta essere un metodo *stabile* , questo è garantito dal `<=` presente a righa 20 
+#### Svantaggi
+
++ *Non è in loco* , visto che utilizzamo dei vettori ausiliari 
++ Non è *sensibile* all'ordinamento del vettore in entrata , un eventuale ottimizzazione sarebbe quella di riordinare l'array attraverso un `InsertionSort` appena raggiungo una certa soglia di elementi ( tipicamente $5\lt el \lt 25$ ) 
+## Quick Sort
+
+Si basa sulla tecnica *divide et impera* , abbiamo un array `A[p ... r]` in cui inizialmente `p = 1` e `r = A.length`
+
+### Passi dell'Algoritmo
+
+1. **Divide** : Pertizioniamo l'array orignale `A[p ... r]` in 2 sottoarray `A[p ... q-1]` e `A[q+1 ... r]` eventualmente vuoti tale che $A[p\ ...\ q-1]\le A[\ q\ ] \le A[q+1\ ...\ r]$ , l'indice `q`  è risultato di questa procedura di partizionamento , questo indice è chiamato *pivot* 
+2. **Impera** : Ordino i due sottoarray `A[p ... q-1]` e `A[q+1 ... r]` chiamando ricorsivamente la procedura `quicksort()` , se il problema è sufficentemente piccolo riolvo direttamente il problema 
+3. **Combina** : Non devo combinare nulla per via di ciò che abbiamo descritto nel *divide* e sucessivamente nell' *impera*
+
+### Algoritmo
+
+```cpp
+quicksort(array A, int p, int r)
+	if p < r // altrimenti non ho el da ordinare 
+		q = partition(A, p, r)
+		quicksort(A, p, q-1)
+		quicksort(A, q+1, r)
+
+partition(array A, int p, int r) -> int
+	x = A[r] // il pivot è l'ultimo elemento
+	i = p - 1
+	for j = p to r - 1
+		if A[j] <= x
+			i = i + 1
+			scambia A[i] e A[j]
+	scambia A[i + 1] e A[r]
+	return i + 1  
+```
+
+
+### Analisi Correttezza
 
 ### Complessità
 
 ### Conclusioni
 
-
-## Quick Sort
+### Ottimizzazioni
 
 # Esercizi 
 
