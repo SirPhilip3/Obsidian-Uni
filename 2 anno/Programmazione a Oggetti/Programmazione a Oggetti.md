@@ -1782,11 +1782,87 @@ throw in bytecode athrow -> ferma esecuzione normale del codice
 
 @ sono annotazioni che applico al metodo
 
+## 15/12/2023
+
+Annotazioni -> aggiunta di informazioni in modo che aiuti il compiler 
+posso dire che un metodo è deprecated -> non è possibileeliminarlo 
+warning -> utilizzi deprecated 
+
+per @deprecated posso aggiungerci uno stato
+es @deprecated(since = 0.2)
+posso anche dire for_removal -> lo voglio elminare prima o poi
+
+se faccio @override -> non compila se non ho fatto un override 
+
+posso creare annotazioni custom 
+interfaccia annotation 
+
+definire un'annotazione in un java separato : 
+```java
+@interface Speed{
+	String type() default "km/h"; 
+	boolean forward() ; 
+}
+
+// come una struttura con solo campi -> attributi del'annotazione
+
+```
+
+record con metodi standard già compilati
+
+**ES**
+
+```java
+public @interface Restore{
+	int percentage() default 100;
+	int amount();
+}
+```
+poicgè estende interfaccia in realtà sono metodi per fare in modo che possano essre modificati da 
 
 
+se voglio che venga utilizzato solo : 
+```java
+@Target{ // annotando l'annotazione che vogliamo retringere
+	ElementType.FIELD // annotazione solo su field,method,parameter
+	ElementType.METHOD
+	ElementType.PARAMETER
+	// messi in value -> non mi serve definire il field se ne ho solo 1
 
+}
+```
 
+@retention -> SOURCE eliminato come un commento
+CLASS nel bytecode eliminato ad esecuzione
+RUNTIME mantenuto anche a runtime
 
+@documented se l'annotazione fa parte dell'interfaccia pubblica della libreria 
+es @override non è documented 
+
+@SuppressWarnings -> non far calcoalre warining al compiler -> per un metodo -> devo indicargli che tipo di warning sopprimere
+```java
+@SuppressWarnings({"unused","...."})
+```
+
+junit
+
+directory di test contiente metodi di test 
+```java
+@Test
+public void test1(){
+	Sword s1 = new Sword();
+	Armor a1 = new Armor();
+	Figure Figure1 = new Figure(w1,a1);
+
+	Assertions.assertTrue(Figure1.isAlive()); // deve sempre essere vera utilizzo assert di @Test Junit
+	
+
+}
+```
+
+junit esegue tutti i metodi con @Test 
+
+utilizza reflection per eseguire il codice 
 
 
 
