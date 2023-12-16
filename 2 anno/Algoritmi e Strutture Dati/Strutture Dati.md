@@ -1735,13 +1735,47 @@ La chiamata iniziale a `partition()` suddivide l'array iniziale in 2 parti avent
 	Selezioniamo come *pivot* l'elemento finale dell'array , scorriamo l'array indicando con : 
 + `i` l'indice dove termina la parte in cui i valori sono `<=` del *pivot*
 + `j` l'indice dove termina la parte in cui i valori sono `>=` del *pivot*
-	Scorriamo quindi l'array partendo da `{c}i=0` e `{c}j=1` 
+	Scorriamo quindi l'array partendo da `{c}i=0` e `{c}j=1` ( scorrendo con `{c}for j = p to r - 1` )
 	Se `{c}A[j]<=` *pivot* :
 	+ `{c}i=i+1` poichè abbiamo trovato un valore `<=` del *pivot*
+	+ Scambio i valori di `{c}A[i]` e `{c}A[j]` poichè il valore minore è in posizione `j`
+	Alla fine del ciclo `{c}for` dovremo pozionare il *pivot* nel posto corretto ossia `{c}A[i + 1]` 
 
+**Esempio** :
+
+![[Sorting_quicksort_anim.gif]]
 ### Analisi Correttezza
 
+Per analizzare la correttezza del nostro algoritmo innanzitutto individuiamo l'*invariante* : 
+$$INV\sim x=A[r]\land\forall k \in [p\dots i]\rightarrow A[k]\le x\ \land$$
+$$\land\ \forall \ k \in [i+1\dots j-1]\rightarrow A[k]> x\ \land$$
+$$\land \ p\le j\le r \land p -1 \le i \le j-1$$
+
+Consideriamo la conclusione : $j=r$
+$$INV\bigg[\frac{r}{j}\bigg]\sim x=A[r]\land\forall k \in [p\dots i]\rightarrow A[k]\le x\ \land$$
+$$\land\ \forall \ k \in [i+1\dots r-1]\rightarrow A[k]> x\ \land$$
+$$\land \ p\le r\le r \land p -1 \le i \le r-1$$
+Questo ci consente di dire che abbiamo ripartito l'array correttamente in 3 parti 
+![[Pasted image 20231216165036.png]]
+Basterà eseguire l'ultima operazione di scambio per inserire il *pivot* nella posizione corretta 
 ### Complessità
+
+Per analizzare la complessità dell'algoritmo determiniamo innanzitutto la complessità di `partition()` : 
+	Sia $n$ il numero di elementi dell'array che `partition()` riceve in input , allora la complessità sarà $\Theta(n)$ poichè il ciclo `{c}for` al suo interno svolge $r-p+1=n$ iterazioni
+
+Ora calcoliamo la complessità del `quicksort()` 
+	Siano : 
++ $k$  il numero di elementi del sottoarray che va da $p$ a $q-1$
++ $n-1-k$ il numero di elementi del sottoarray che va da $q+1$ a $r$
+	Allora la complessità totale del `quicksort()` sarà :
+	$$T(n)=\begin{cases} O(1) & n \le 1 \\ T(k)+T(n-1-k)+\Theta(n) & n>1 \end{cases}$$
+	Dove $\Theta(n)$ è la complessità di `partition()`
+
+Per indicare correttamente la complessità dobbiamo separare diversi casi : 
+
+#### Caso peggiore
+#### Caso migliore 
+#### Caso medio 
 
 ### Conclusioni
 
