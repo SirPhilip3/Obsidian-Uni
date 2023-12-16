@@ -1892,3 +1892,25 @@ List<? super MarvelSuperhero> se = new ArrayList<>();
 // non posso fare il get 
 // posso inserire sottotipi di marvelsuperhero
 ```
+
+## 16/12/2023
+
+Annotations 
+
+costruttore può essere privato , può essere solo chiamato da altri costruttori all'interno della stessa classe 
+
+metodi final -> non possono essere sovrascritti 
+
+campi di una classe final possono essere modificati ma non può essere estesa la classe  
+
+overloaded metodo + imple stessa classe 
+
+chiamando un metodo su un oggetto imlementazione a tipo dinamico 
+
+invarianza dei generics
+
+producer extends consumer s pecs
+
+per modificare la stringa se ne crea una nuova e poi viene modificata la reference.
+
+
