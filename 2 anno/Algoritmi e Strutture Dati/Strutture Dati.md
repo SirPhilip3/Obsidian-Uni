@@ -1729,6 +1729,16 @@ partition(array A, int p, int r) -> int
 	return i + 1  
 ```
 
+La chiamata iniziale a `partition()` suddivide l'array iniziale in 2 parti aventi le caratteristiche descritte prima ( nella parte *divide* ) , questa ritornerà l'indice `q` , del *pivot* , di separazione dei 2 array , a questo punto vengono fatte le 2 chiamate ricorsive sui due sottarray creati
+
+`partition()` funziona nel seguente modo : 
+	Selezioniamo come *pivot* l'elemento finale dell'array , scorriamo l'array indicando con : 
++ `i` l'indice dove termina la parte in cui i valori sono `<=` del *pivot*
++ `j` l'indice dove termina la parte in cui i valori sono `>=` del *pivot*
+	Scorriamo quindi l'array partendo da `{c}i=0` e `{c}j=1` 
+	Se `{c}A[j]<=` *pivot* :
+	+ `{c}i=i+1` poichè abbiamo trovato un valore `<=` del *pivot*
+
 ### Analisi Correttezza
 
 ### Complessità
