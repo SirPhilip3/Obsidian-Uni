@@ -775,7 +775,7 @@ $$c\ge 2$$
 Avremo quindi che quando $c\ge2$ la complessità dell'algoritmo sara :
 $$T(n)\le c\cdot n$$
 Abbiamo quindi dimostrato che la complassità è : $O(n)$
-### Teorema Master
+### Teorema Master o Teorema fondamentale delle ricorrenze
 
 Il *teorema Master* ci permette di risolvere le ricorrenze di algoritmi dividi et impera
 Possiamo infatti dividere questo tipo di algoritmi in tre parti :

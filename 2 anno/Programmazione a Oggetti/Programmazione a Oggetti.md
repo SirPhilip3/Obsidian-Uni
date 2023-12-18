@@ -1864,6 +1864,21 @@ junit esegue tutti i metodi con @Test
 
 utilizza reflection per eseguire il codice 
 
+## 18/12/2023
+
+JAXB
+
+java architecture for xml binding
+oggetto voglio salvarlo in un file attraverso XML 
+
+fino a java 8 parte delle librerie di default 
+
+**Reflection**
+
+
+
+
+
 
 
 # Tutorati 
@@ -1912,5 +1927,3 @@ invarianza dei generics
 producer extends consumer s pecs
 
 per modificare la stringa se ne crea una nuova e poi viene modificata la reference.
-
-

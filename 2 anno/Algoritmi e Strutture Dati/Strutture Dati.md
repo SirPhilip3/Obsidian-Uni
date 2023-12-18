@@ -1859,7 +1859,7 @@ randomized_partition(array A, int p , int r) -> int
 	return partition(A, p, r)
 ```
 
-###### Conclusioni
+##### Conclusioni
 
 + **Vantaggi**
 	+ $T(n)$ è indipendente dal'ordinamento dell'input 
@@ -1867,6 +1867,133 @@ randomized_partition(array A, int p , int r) -> int
 	+ Nessuno specifico input può portare al caso peggiore poichè il caso peggiore è determinato del generatore di numeri casuali
 
 #### Miglioramenti vari 
+
+##### Insertion Sort
+
+Possiamo utilizzare all'interno di algoritmi di ordinamento altri algoritmi di ordinamento più efficenti per diversi tipi di input 
+
+Possiamo per esempio utilizzare l'*insertion sort* per ordinare array piccoli in quanto in questo caso risulta essere più efficente   
+
+**Esempio** : 
+
+```cpp
+if r - p < M
+	insertion_sort(A, p, r)
+```
+
+Dove $M$ è un valore prestabilito di solito $5\le M\le 25$  
+
+Un'altro modo per sfruttare l'efficenza dell'*insertion sort* è quello di fornirgli un input parzialmente ordinato 
+In questo caso poniamo all'interno del `quicksort()` la seguente condizione :
+
+```cpp
+if r - p <= M
+	return
+```
+In questo modo avremo che ci verrà restituito un array semi ordinato , questo array andremo a darlo in pasto all'*insertion sort*
+
+```cpp
+void sort(array A, int p, int r)
+	quicksort(A, p, r)
+	insertion_sort(A, p, r)
+```
+##### Mediana
+
+Un altro metodo per migliorare la complessità del *quicksort* è quello di scigliere il *pivot* come la mediana di 3 elementi ( es il centro , l'inizio e la fine ) dell'array da ordinare 
+##### Duplicate Keys
+
+Se abbiamo tutte le chiavi uguali con o senza randomizzazione ci porterà sempre ad avere una partizione vuota e una contenente $n-1$ elementi
+
+Per risolvere il problema dividiamo in 3 il vettore iniziale , aggiungendo una partizione contenente tutte le chiavi uguali al *pivot*
+
+`partition()` a questo punto non ritorna solo l'indice del *pivot* ma anche un ulteriore indice $t$ che indica la fine degli elementi uguali ad $x$
+
+L'array sarà quindi suddiviso nel seguente modo :
+
+![[partition.excalidraw]]
+
+dove :
++ $p\le q\le t\le r$
++ Tutti gli elementi di $A[q...t]$ sono uguali a *pivot*
++ Tutti gli elementi di $A[p ... q-1]$ sono minori di $A[q]$
++ Tutti gli elementi di $A[t+1 ...r]$ sono maggiori di $A[q]$
+
+Il tempo di esecuzione della partition diventa : $T(n)=\Theta(r-p)$
+
+```cpp
+partition (array A , int p , int r)
+	x = A[r]
+	min = eq = p 
+	mag = r 
+	while eq < mag 
+		if A[eq] < x 
+			scambia A[eq] con A[min] 
+			min = min + 1 
+			eq = eq + 1 
+		else 
+			if A[eq] == x 
+				eq = eq + 1
+			else 
+				mag = mag - 1 
+				scambia A[eq] con A[mag] 
+	scambia A[r] con A[mag] 
+	return <min,mag>
+```
+
+**Spiegazione**
+
+Ad ogni iterazione del ciclo `{c}while` viene controllato il valore presente all'interno dell'indice `eq` e confrontato con il valore del *pivot* :
++ Se minore del *pivot* vengono aumentati gli indici `eq` e `min`
++ Se uguale al *pivot* viene incrementato solo `eq`
++ Se maggiore del *pivot* viene decrementato `mag` e si scambiano gli elementi puntati dagli indici `eq` e `mag` 
+
+Il ciclo prosegue finchè `eq` e `mag` non raggiungono lo stesso valore 
+Infine scambiamo il *pivot* ( che è l'ultimo elemento ) con l'elemento in posizione `mag`
+###### Correttezza 
+
+L'*invariante* di ciclo è il seguente 
+
+$$INV \sim x = A[r]\ \land$$
+$$\land \ \forall k \in [p... min),\ A[k]<x\ \land$$
+$$\land \ \forall k \in [min... eq),\ A[k]=x\ \land$$
+$$\land \ \forall k \in [mag... r),\ A[k]>x\ \land$$
+$$\land \ p\le min \le eq\le mag \le r$$
+
+Verifichiamo la *conclusione* ( ossia quando $eq = mag$ ) 
+
+$$INV\bigg[\frac{mag}{eq}\bigg] \sim x = A[r]\ \land$$
+$$\land \ \forall k \in [p... min),\ A[k]<x\ \land$$
+$$\land \ \forall k \in [min... mag),\ A[k]=x\ \land$$
+$$\land \ \forall k \in [mag... r),\ A[k]>x\ \land$$
+$$\land \ p\le min \le mag \le r$$
+Con lo scambio finale il vettore sarà nel seguente modo :
+![[pertitionEQ.excalidraw]]
+
+Possiamo quindi implementare la precedene ottimizzazione nel seguente modo : 
+
+```cpp
+quicksort(array A, int p, int r)
+	if p < r
+		<q,t> = partition(A, p ,r)
+		quicksort(A, p, q-1)
+		quicksort(A, t+1, r)
+```
+###### Complessità
+
+Il tempo di esecuzione di `partition()` è $\Theta(r-p)$ , nel caso in cui abbiamo un array di elementi identici la `partition()` verrà eseguita sull'intero array $\Theta(n)$ , mentre le chiamate ricorsive verrano svolte su 2 array vuoti ( visto che tutti gli elemenit stanno tra $q$ e $t$ ) avranno quindi complessità costante ,
+
+La complessità finale sarà quindi la complessità di `partition()` ossia $\Theta(n)$
+
+###### Conclusioni
+
+**Vantaggi** :
++ Risulta essere *in loco*
++ Nal caso medio il tempo di esecuzione è $O(n \log n)$
+
+**Svantaggi** :
++ Non è *stabile*
++ Nel caso peggiore la complessità risulta essere $O(n^2)$
+## Heap e Heap sort
 
 
 
