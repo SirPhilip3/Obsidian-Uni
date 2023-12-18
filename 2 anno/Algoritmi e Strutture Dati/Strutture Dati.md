@@ -1772,14 +1772,103 @@ Ora calcoliamo la complessità del `quicksort()`
 	Dove $\Theta(n)$ è la complessità di `partition()`
 
 Per indicare correttamente la complessità dobbiamo separare diversi casi : 
-
 #### Caso peggiore
+
+In questo caso abbiamo che una partizione contiene $n-1$ elementi mentre l'altra è vuota 
+Sostituendo nella formula ricorsiva abbiamo : 
+$$T(n)=T(n-1)+T(0)+\Theta(n) \rightarrow T(n-1)+\Theta(n)\rightarrow T(n-1)+c\cdot n$$
+Ora risolviamo questa ricorrenza con il metodo dello srotolamento o albero delle ricorsioni :
+$$T(n)=T(n-1)+cn = T(n-2)+c(n-1)+cn= \dots$$
+$$T(n)=\sum_{i=1}^n ci=c \frac{n(n+1)}{2}=\Theta(n^2)$$
+Essendo che $\sum_{i=1}^n ci$ è una serie aritmetica
+
+Ciò significa che se abbiamo un vettore ordinato o ordinato nel senso opposto la complessità risulterà essere $\Theta(n^2)$
+
 #### Caso migliore 
+
+In questo caso abbiamo che un vettore contiene $\lfloor \frac{n}{2} \rfloor$ elementi metre l'altro vettore conterrà $\lceil \frac{n}{2} \rceil-1$ elementi 
+
+Sostituendo quindi nella ricorsione abbiamo ( più o meno )
+$$T(n)=2T\bigg(\frac n 2\bigg)+\Theta(n)$$
+In questo caso la ricorrenza può essere risolta con il teorema *Master* :
++ $f(n)=\Theta(n)$
++ $n^{\log_2 2}=n=\Theta(n)$
+
+Siamo nel caso in cui il tempo di $split+merge$ equivale al tempo delle $\text{Ricorsioni}$ , avremo quindi :
+$$T(n)=\Theta(n\cdot\log n)$$
 #### Caso medio 
 
+Per lo studio del caso medio vogiamo verificare se siamo più vicini al caso *peggiore* o *migliore* 
+
+Studiamo quindi il caso in cui i 2 sottoarray sono divisi con un a proporzione 9-a-1 costante durante l'esecuzione dell'algoritmo , ciò significa che avremo una ricorsione del seguente tipo :
+$$T(n)=T\bigg(\frac{n}{10}\bigg)+T\bigg(\frac{9\cdot n}{10}\bigg)+cn$$
+Risolviamo le ricorrenenze attraverso l'albero delle ricorrenze 
+![[Drawing 2023-12-18 08.52.34.excalidraw]]
+
+Possiamo notare che ogni livello ha un costo $cn$ fino a che non viene raggiunta la condizione di ritorno della funzione , ossia quando la dimensione del sottoarray arriva ad $1$ .
+
+Per verificare le lunghezze dei cammini poniamo la condiozione di terminazione per i nodi dell'albero che decresono in modo omogenero ( il cammino destro e sinistro )
+
+Per il cammino sinistro :
+$$\frac n {10^i} = 1 \implies n=10^i \implies i = \log_{10} n$$
+dove $i$ indica il livello del nodo dell'albero 
+
+Per il cammino destro :
+$$\bigg(\frac{9}{10}\bigg)^i n = 1 \implies n = \bigg(\frac{10}{9}\bigg)^i\implies i = \log_{\frac {10}9} n$$
+L'altezza massima tra i 2 è quindi quella per cui vogliamo calcolare la complessità ( visto che sarebbe il caso peggiore )
+
+Consideriamo quindi l'altezza dell'albero come $\log_{\frac {10}9} n$ e visto che il costo massimo di quei livelli è $cn$ possiamo dire che la complessità risulta essere : 
+$$T(n)\le cn \cdot \log_{\frac {10}9}  n = O(n \log n)$$
+Questa complessità può essere generalizzata per qualsiasi proporzionalità :
+$$T(n)=T(\alpha n)+T((1-\alpha)n)+cn \quad 0<\alpha<1, c>0$$
+
+Possiamo quindi concludere che la complessità risulterà essere $T(n)=O(n \log n)$ quando le ripartizioni hanno proporzionalità costante 
+
+##### Caso Medio : proporzioni alterne
+
+Supponiamo che le partizioni si alternano tra partizioni $Lucky\ L(n)$ , se esiste una proprozione bilanciata tra gli elementi dell'array , e $Unlucky\ U(n)$ altrimenti 
+$$L(n)=2\cdot U\bigg(\frac{n}{2}\bigg)+\Theta(n)$$
+$$U(n)=L(n-1)+\Theta(n)$$
+
+Sostiutendo all'interno di $L(n)$ :
+$$L(n)=2\bigg(L\bigg(\frac{n}{2}-1\bigg)+\Theta\bigg(\frac n 2\bigg)\bigg)+\Theta(n)$$
+$$L(n)=2L\bigg(\frac{n}{2}-1\bigg)+2\Theta\bigg(\frac n 2\bigg)+\Theta(n)$$
+$$L(n)=2L\bigg(\frac{n}{2}-1\bigg)+\Theta(n)$$
+Ora risolvendo con il teorema *Master*
+$$L(n)=\Theta(n \log n)$$
 ### Conclusioni
 
+La complessità del quicksort è quindi $\Theta(n^2)$ nel caso peggiore , ma la complessità nel caso medio rimane $\Theta(n \log n)$ per questo è usato spesso 
+
+Inoltre si tratta di un ordinamento *in loco* , mal'algoritmo *non* è *stabile*
 ### Ottimizzazioni
+#### Randomize quicksort
+
+Ciò che mette in difficolatà il quicksort sono gli array ordinati per fare in modo che non abbiano un impatto nella complessità finale prendiamo un *pivot* casuale , questo abbasserà la probabilità che avvenga il caso peggiore 
+
+```cpp
+randomized_quicksort(array A, int p, int r)
+	if p < r 
+		q = randomized_partition(A, p, r)
+		randomized_quicksort(A, p, q-1)
+		randomized_quicksort(A, q+1, r)
+
+randomized_partition(array A, int p , int r) -> int
+	i = random(p, r)
+	scambia A[i] con A[r]
+	return partition(A, p, r)
+```
+
+###### Conclusioni
+
++ **Vantaggi**
+	+ $T(n)$ è indipendente dal'ordinamento dell'input 
+	+ Non posso fare nessuna assunzione su come sono distribuiti gli input 
+	+ Nessuno specifico input può portare al caso peggiore poichè il caso peggiore è determinato del generatore di numeri casuali
+
+#### Miglioramenti vari 
+
+
 
 # Esercizi 
 
