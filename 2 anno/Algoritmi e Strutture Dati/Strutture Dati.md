@@ -1995,6 +1995,82 @@ La complessità finale sarà quindi la complessità di `partition()` ossia $\The
 + Nel caso peggiore la complessità risulta essere $O(n^2)$
 ## Heap e Heap sort
 
+L'*Heap Sort* è un algoritmo di ordinamento basato sul confronto che fa uso di una strutta dati *Heap* 
+### Heap
+
+Un *heap binario* è un albero quasi completo ossia un albero in cui tutti i suoi livelli sono riempiti tranne eventualmente l'ultimo in cui tutte le foglie sono addossate a sinistra 
+
+**Esempio** :
+
+![[Heap.excalidraw]]
+
+Un *heap* può essere memorizzato attraverso un *array posizionale* contente 2 attributi :
++ `A.length` indica il numero di elementi dell'array 
++ `A.heap_size` il numero di elementi dell'*heap* che sono memorizzati nell'array , è possibile che $A.length\ge A.heap_size$
+
+La radice dell'albero è memorizzata alla prima posizione dell'array 
+
+Possiamo ricavare : 
+
+**Padre** :
+```cpp
+parent(Node i) -> Node
+	return floor(i/2)
+```
+
+Può anche essere espresso attraverso uno shift a destra di un bit dell'address di `i` 
+
+**Figlio Sinistro** :
+```cpp
+left(Node i) -> Node
+	return 2 * i
+```
+
+Può anche essere espresso attraverso uno shift a sinistra di un bit dell'address di `i` 
+
+**Figlio Destro** :
+```cpp
+right(Node i) -> Node
+	return 2 * i + 1
+```
+
+Può anche essere espresso attraverso uno shift a sinistra di un bit e la somma di 1 all'address di `i` 
+
+Esistono due tipi di *heap*
+#### max_heap
+
+Per ogni nodo differente dalla radice abbiamo la seguente proprietà :
+$$A[parent(i)]\le A[i]$$
+Questa proprietà garantisce che il massimo elemento di un *max_heap* si trova nella radice e che il sottoalbero di un nodo contiene valori non maggiori rispetto al valore del nodo stesso
+#### min_heap
+
+Per ogni nodo differente dalla radice abbiamo la seguente proprietà :
+$$A[parent(i)]\ge A[i]$$
+Questa proprietà garantisce che il minimo elemento di un *min_heap* si trova nella radice e che il sottoalbero di un nodo contiene valori non minori rispetto al valore del nodo stesso
+
+#### Proprietà 
+
+##### Lemma 1
+
+L'altezza di un *heap* di $n$ elementi è dato dal $\lfloor \log n \rfloor$
+
+**Dimostrazione** : 
+
+Un heap è un albero quasi completo , se ha altezza $h$ allora il numero di nodi può essere limitato superiormente e inferiormente nel seguente modo : 
+$$n\le\sum_{i=0}^h 2^i = \frac{2^{h+1}-1}{2-1}=2^{h+1}-1 \quad \text{se l'albero è completo}$$
+$$n\ge\sum_{i=0}^{h-1} 2^i +1= 2^{h+1-1}-1 +1= 2^{h} \quad \text{altrimenti}$$
+Avremo quindi che :
+$$2^h\le n \le 2^{h+1} -1 $$
+$$2^h\le n < 2^{h+1}$$
+$$h \le \log n < h+1$$
+Visto che $h$ è un intero allora $h=\lfloor \log n \rfloor$
+##### Lemma 2
+
+Nell'array che rappresenta un *heap* di $n$ elementi le foglie sono i nodi con indici :
+$$\bigg\lfloor \frac{n}{2} \bigg\rfloor + 1, \ \bigg\lfloor \frac{n}{2} \bigg\rfloor + 2 , \dots \ ,\bigg\lfloor \frac{n}{2} \bigg\rfloor + n  $$
+
+##### Lemma 3
+
 >[!todo]
 >#todo
 
