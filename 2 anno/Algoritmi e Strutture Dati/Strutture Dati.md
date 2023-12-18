@@ -1995,7 +1995,8 @@ La complessità finale sarà quindi la complessità di `partition()` ossia $\The
 + Nel caso peggiore la complessità risulta essere $O(n^2)$
 ## Heap e Heap sort
 
-
+>[!todo]
+>#todo
 
 # Esercizi 
 

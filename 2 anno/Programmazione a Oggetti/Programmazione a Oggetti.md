@@ -1873,10 +1873,118 @@ oggetto voglio salvarlo in un file attraverso XML
 
 fino a java 8 parte delle librerie di default 
 
+@XmlRootElement , inizio classe che può essere salvata
+@XmlType -> dico che deve essere salvato come xml
+
+per ogni campo della classe che volgio salvare devo dirgli xml element o attribute
++ element più verbosa
++ attribute più concisa
+
+marshal , unmarshal -> metti in xml , prendi da xml
+
+JAXB context classe generica per istanzaiare marshall e unmarshall , è la classe che fa la new non l'utente
+
+tutto questo crea eccezioni , dobbiamo avere una eccezione  per prendere eventuali eccezioni es leggo sword al posto di magic , + ioexception
+
+marshal deve essere statico , non ha un this 
+
+metodo main deve anche avere eccezzioni che possono essere lanciate
+
+per usare jaxp devo avere un costruttore public senza parametri
+
+attributo dentro tag , element compreso tra tag
+```xml
+<magic damage="5"> // attribute
+	<defense>3<\defense> // element
+<\magic>
+```
+
+encoding per sapere come leggere 
+l'unmarshall creare un magic , legge l'xml e lo mette all'interno del nuovo oggetto 
+```java 
+Magic.class
+```
+
+xmlattributee xmlelement può essere utilizzato sui getter o setter 
+
 **Reflection**
 
+pezzo di codice che può accedere dovunque 
 
+informazioni sul programma , come è fatto se stesso che sono già state caricate in memoria 
+anche per eseguire parti del programma , non mi serve usare constriìoctors stetters etccc, poichè tramite codice devo sapere che esiste etcc mentre con reflection non ho bisogno di sapere 
 
+potrei rompere l'encapsulation 
+
+java.lang.reflect
+
+classi che rappresentano parti del programma + exceptions
+
+In classe Object
+```java
+getClass
+```
+ritorna un oggetto di tipo class 
+
+in java lang 
+`{java}Class Class<T>` 
+
+Classe rappresenta la struttura delle classi 
+dammi l'oggetto che rappresenta la tua struttura 
+posso chiederti le interfaccie che implementi , la sua superclasse etcc
+posso vedere tutte le annotations 
+
+```java
+Magic m = new Magic();
+Class cls = m.getClass();
+for(Constructors c : cls.getConstructors)
+	println;
+for(Mathods met : cls.getMethods)
+	println;
+for(Field fl : cls.getFields())
+	println;
+```
+
+Stampa tutti i costruttori , metodi ( anche quelli ereditati ) , non tira fuori campi private solo public 
+se uso `{java}getDecleradeFiled()` ritorna tutti i campi senza visibilità
+
+se è presente assert vedo $sssertionDisabled del bytecode
+
+vediamo stato del programma dopo compilazione
+
+se non ho un oggetto dichiarato posso fare `{java}Class cls = Magic.class`
+so come è strutturata la classe 
+
+posso assegnare un valore ad un campo 
+```java
+set(Object obj, Object value)
+```
+setta il valore del field obj con il valore di value
+illegal access -> potrebbe essere che il campo sia privato se uso declaredfields
+
+posso rendere un campo sempre accessibile anche se private con `{java}setAccessible(true)`
+e  scriverci dentro 
+
+moduli ci permettono di fare reflection solo in un certo modulo
+
+metodi , posso eseguire il metodo attraverso la reflection 
+invoke -> istanza dove voglio chiamare il metodo , posso pasasgli altri valori dei parametri dei valori del metodo , ritorna un object 
+
+```java
+Magic m1 = cls.getDeclaredMethod("getInfoDefense")
+Object result = m1.invoke(m); // su un oggetto magia
+```
+
+se il metodo ritorna void in result abbiamo null 
+
+costruttore lo invochiamo solo quando creiamo l'area di memoria 
+
+getConstructro , devo passargli l'istanza di calss che rappresenta quel tipo  int.class 
+```java
+Constructors c = cls.getConstructor(int.class, int.class, int.class)
+```
+
+c non ha invoke , ha il newInstance ceh crea un nuovo oggetto con il costruttore selezionato , ritorna sempre un oggetto dove mette la nuova istanza creata
 
 
 

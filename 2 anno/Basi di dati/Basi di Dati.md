@@ -3023,3 +3023,4 @@ WHERE prezzo = (SELECT MAX(prezzo)
 
 ##### 10
 
+sulle risposte aperte mettere query
