@@ -2104,10 +2104,93 @@ max_heapify(Heap A, Node i)
 		max_heapify(A , massimo) 
 ```
 
+Avendo l'indice $i$ ricaviamo innanzitutto i figli destri e sinistri di $i$ , se $i$ non è foglia allora lo confrontiamo con i valori dei suoi figli e scambiamo il valore di $i$ con il valore del figlio massimo trovato , se il valore massimo trovato è $i$ allora abbiamo finito ( poichè sappiamo che il sottoalbero sinistro e destro sono *max_heap* per pre-condizione ) , lo stesso se il valore massimo è una foglia 
+
+**Esempio** :
+
+![[Pasted image 20231219104328.png]]
+
+###### Complessità
+
+Il tempo di esecuzione è $T(n)=O(h)$ dove $h$ è l'altezza del nodo su cui chiamiamo la procedura , $O(\log n)$ se chiamiamo la procedura sulla radice , $1$ se la chiamiamo su una foglia 
 
 
->[!todo]
->#todo
+##### Costruzione di un max_heap
+
+Dato un vettore disordinato trasformarlo in un *max_heap*
+
+###### Algoritmo
+
+```cpp
+build_max_heap(array A)
+	A.heap_size = A.length
+	for i = floor(A.length/2) down to 1 // poichè da A.length/2 -> A.length abbiamo già foglie per lemma 2
+		max_heapify(A, i)
+```
+
+###### Analisi della correttezza
+
+L'*invariante* è : $$INV \sim \text{ogni nodo $i+1$ , $i+2$, $\dots$ , $n$ è radice di un max\_heap con $n=A.length$} $$
+L'*invariante* ci assicura che la pre-condizione di *max_heapify* sia verificata poichè i figli di $i$ si trovano in posizioni $2 \cdot i$ e $2\cdot i +1$ entrambe maggiori di $i$
+
+**Conclusione** : 
+	Alla conclusione del ciclo avremo che $i=0$ : 
+	$$INV\bigg[\frac 0 i\bigg]\sim \text{ogni nodo $1$ , $2$, $\dots$ , $n$ è radice di un max\_heap con $n=A.length$} $$
+	In particolare il nodo $1$ contiene la radice del nostro albero che è dunque *max_heap*
+
+###### Analisi della complessità
+
+La procedura compi $O(n)$ interazioni , più precisamente $\frac n 2$  , in ognuna delle quali viene chiamata la funzione `max_heapify()` che ha come costo temporale $O(\log n)$ .
+Quindi il tempo di esecuzione risulterebbe essere $O(n \log n)$ tuttavia questo non risulta essere un *limite stretto*
+
+Uno più stretto può essere ricavato osservando che il tempo di esecuzione dipende da quello di *max_heapify* : $O(h)$ , dove possiamo notare che l'altezza della maggior parte dei nodi risulta essere 
+$$\sum_{h=0}^{\lfloor \log n  \rfloor} \bigg\lceil \frac{n}{2^{h+1}} \bigg\rceil O(h) = O\Bigg(n \sum_{h=0}^{\lfloor \log n \rfloor} \frac{h}{2^h}\Bigg)$$
+Sfruttiamo una serie nota :
+$$\sum_{h=0}^{\infty} h x^h = \frac{x}{(1-x)^2} \text{per |x|<1}$$
+Poniamo $x=\frac{1}{2}\lt 1$ Allora 
+$$\sum_{h=0}^\infty \frac{h}{2^h}=\frac12 \frac1{(\frac 1 2)^2}=\frac  42=2$$
+Quindi 
+$$O\Bigg(n \sum_{h=0}^{\lfloor\log n \rfloor} \frac h {2^h}\Bigg)=O\Bigg(n \sum_{h=0}^{\infty} \frac h {2^h}\Bigg)=O(2n)=O(n)$$
+Quindi il tempo di esecuzione di *build_max_heap* è $O(n)$
+### Heap sort
+
+#### Algoritmo 
+
+```cpp
+heapsort(array A)
+	build_max_heap(A)
+	for i = A.length down to 2 // la radice si trova già nel posto corretto è sicuramente  minore di tutti gli elementi prima
+		scambio A[i] con A[1]
+		A.heap_size = A.heap_size - 1
+		max_heapify(A, i) // potrebbe verificarsi una violazione delle proprietà del max_heap solo sulla radice poichè è quello che abbiamo scambiato
+```
+
+#### Analisi della correttezza
+
+*Invariante* : 
+	$INV \sim$  il sottoarray `A[1 ... i]` è un *max_heap* che contiene gli $i$ elementi più piccoli di `A[1 ... n]` e il sottoarray `A[i+1 ... n]` contiene gli $(n-1)$ elementi più grandi di `A[1 ... n]`  *ordinati*
+
+  ![[Pasted image 20231219114910.png]]
+
+*Conculsione* :
+	Alla conclusione del ciclo $i=1$ avremo che l'*invariante* sarà :
+	$INV\big[\frac 1 i\big] \sim$ il sottoarray `A[1 ... 1]` è un *max_heap* che contiene l'emento più piccolo di `A[1 ... n]` e il sottoarray `A[2 ... n]` contiene gli $(n-1)$ elementi più grandi di `A[1 ... n]`  *ordinati*
+ 
+#### Complessità
+
+La costruzione del *max_heap* ha complessità $O(n)$ , sucessivamente viene eseguita *max_heapify* con costo $O(\log n)$ per un totale di $n-1$ volte
+
+Il tempo di esecuzione totale sarà  : 
+$$T(n)=O(n)+O(n)\cdot O(\log n)=O(n \cdot \log n)$$
+#### Conclusioni
+
+L'*heap sort* è **in loco** 
+
+La complessità nel caso peggiore è : $O(n \log n)$ 
+La sua complessità risulta quindi essere uguale al *marge sort* ma applicando le varie ottimizzazioni ( randomize , utilizzo di algoritmi più efficenti per array di piccole dimensioni etcc ) l'*heap sort* risulta essere più veloce 
+
+>[!warning]
+> Tranne nel caso peggiore
 
 # Esercizi 
 
