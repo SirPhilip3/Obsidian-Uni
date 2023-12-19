@@ -1530,6 +1530,36 @@ Vi sono 2 metodi per gestire la memoria libera :
 
 ![[Pasted image 20231105151011.png]]
 
+### Memoria Virtuale
+
+La *memoria virtuale* crea l'illusione che esista più memoria di quella realmente disponibile nel sistema
+
+Nei sistemi di *memoria virtuale* possiamo trovare 2 tipi di address :
++ indirizzi **virtuali**
+	+ riferiti ai processi
+	+ L'intervallo di indirizzi virtuali ai quali un processo può fare riferimento viene detto :
+		+ **Spazio di indirizzamento virtuale** $V$
++ indirizzi **fisici**
+	+ descrivono indirizzi nella memoria principale
+	+ L'intervallo di indirizzi fisici disponibili su un particolare computer :
+		+ **Spazio di indirizzamento reale** $R$
+
+Spesso $V>>R$
+	Per questo spesso il sistema operativo deve memorizzare parti di $V$ al di fuori della memoria principale
+
+La **MMU** ( *Memory managment unit* ) è quella componente che ha come compito quello di tradurre gli indirizzi virtuali in indirizzi fisici 
+
+![[Pasted image 20231219151155.png]]
+
+La **DAT** ( *Dynamic Address Translation* ) invece è un meccanismo di traduzione degli indirizzi virtuali in fisici durante l'esecuzione di un programma
+
+Per collegare gli indirizzi *virtuali* con quelli *fisici* esiste la **tabella delle pagine** : 
+
+![[Pasted image 20231219151848.png]]
+
+Per tradurre l'indirizzo virtuale in indirizzo fisico 
+
+
 >[!todo]
 >memoria virtuale
 >#todo
