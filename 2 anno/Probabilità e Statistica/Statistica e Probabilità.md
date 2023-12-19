@@ -1827,6 +1827,10 @@ $$f(x,y)=\frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}$$
 
 La *correlazione* indica quanto la distribuzione si "restringe"
 
+>[!todo]
+>completa -> 
+>#todo
+
 # Appunti
 #### R-Studio
 
