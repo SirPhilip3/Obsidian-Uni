@@ -2067,9 +2067,44 @@ Visto che $h$ è un intero allora $h=\lfloor \log n \rfloor$
 ##### Lemma 2
 
 Nell'array che rappresenta un *heap* di $n$ elementi le foglie sono i nodi con indici :
-$$\bigg\lfloor \frac{n}{2} \bigg\rfloor + 1, \ \bigg\lfloor \frac{n}{2} \bigg\rfloor + 2 , \dots \ ,\bigg\lfloor \frac{n}{2} \bigg\rfloor + n  $$
-
+$$\bigg\lfloor \frac{n}{2} \bigg\rfloor + 1, \ \bigg\lfloor \frac{n}{2} \bigg\rfloor + 2 , \dots \ , n  $$
+Questo comporta che le foglie dell'*heap* costituiscono al più la metà degli elementi dell'*heap*
 ##### Lemma 3
+
+Ci sono al massimo $\big\lceil \frac{n}{2^{h+1}} \big\rceil$ nodi di altezza $h$ in un qualsiasi *heap* di $n$ elementi
+
+Se $h=0$ ci sono al più $\lceil \frac{n}{2} \rceil$ nodi ( i nodi foglia )
+
+Se $h=\log n$ allora 
+$$\bigg\lceil \frac{n}{2^{\log n+1}} \bigg\rceil=\bigg\lceil \frac{n}{2^{\log _2 n}\cdot 2} \bigg\rceil=\bigg\lceil \frac{n}{n\cdot 2} \bigg\rceil=\bigg\lceil \frac{1}{2} \bigg\rceil=1$$  Ossia la radice dell'albero , è infatti l'unico elemento ad avere altezza $\log n$
+
+#### Operazioni
+
+##### max_heapify
+
+è una procedura per riparare l'ordine all'interno di un *max_heap*
+
++ Pre-Condizione : gli alberi binari con radice in `left(i)` e `right(i)` sono *max_heap*
++ Post-Condizione : l'abero radicato in `i` è un *max_heap*
+
+###### Algoritmo
+
+```cpp
+max_heapify(Heap A, Node i)
+	l = left(i) 
+	r = right(i) 
+	if l <= A.heap_size AND A[l] > A[i]
+		massimo = l
+	else 
+		massimo = i 
+	if r <= A.heap_size AND A[r] > A[massimo]
+		massimo = r 
+	if i != massimo 
+		scambia A[i] e A[massimo] 
+		max_heapify(A , massimo) 
+```
+
+
 
 >[!todo]
 >#todo
