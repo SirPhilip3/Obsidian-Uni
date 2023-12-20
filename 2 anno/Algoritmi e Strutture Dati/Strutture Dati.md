@@ -2217,14 +2217,14 @@ L'*inserimento* di un nodo $x$ all'interno della coda $S$ $\implies S\ \cup \ \{
 maximum(S)
 ```
 
-Restituisce l'elemento di $S$ con la chiave più grande ( non rimuove $S$ )
+Restituisce l'elemento di $S$ con la chiave più *grande* ( non rimuove $S$ )
 #### Estrazione del Massimo
 
 ```cpp
 extract_max(S)
 ```
 
-Restituisce ed elimina da $S$ l'elemento di $S$ con chiave più grande
+Restituisce ed elimina da $S$ l'elemento di $S$ con chiave più *grande*
 #### Increase
 
 ```cpp
@@ -2237,12 +2237,109 @@ Post-condizione : Aumenta il valore della chiave di $x$ al nuovo valore $k$ che 
 
 #### Inserimento
 
+```cpp
+insert(S ,x)
+```
+
+L'*inserimento* di un nodo $x$ all'interno della coda $S$ $\implies S\ \cup \ \{x\}$ 
 #### Minimo
 
+```cpp
+minimum(S)
+```
+
+Restituisce l'elemento di $S$ con la chiave più *piccola* ( non rimuove $S$ )
 #### Estrazione del Minimo
 
+```cpp
+extract_min(S)
+```
+
+Restituisce ed elimina da $S$ l'elemento di $S$ con chiave più *piccola*
 #### Decrease 
 
+```cpp
+decrease(S, x,k)
+```
+
+Pre-condizione : $x$ deve esistere in $S$ , $x \in S$
+Post-condizione : *Decrementa* il valore della chiave di $x$ al nuovo valore $k$ che si suppone si al più pari al valore corrente della chiave di $x$ ( $k\le$ chiave di $x$ )
+
+### Implementazione di code di massima priorità con max_heap
+
+#### Massimo
+
+```cpp
+heap_maximum(Heap A)
+	if A.heap_size < 1
+		error "heap underflow"
+	return A[1]
+```
+
+L'algoritmo ritorna il primo elemento dell'heap in quanto , per via delle caratteristiche del *max_heap* , questo sarà il valore massimo presente all'interno dell'heap , avendo prima controllato ovviamente che la dimensione dell'array sia $\ge 1$ 
+
+**Complexity** : $O(1)$
+#### Estrazione del massimo
+
+```cpp
+heap_extract (Heap A) 
+	if A.heap_size < 1
+		error "heap underflow"
+	max = A[1] 
+	A[1] = A[A.heap_size] // tolgo la foglia più a destra e la sostituisco alla root , in questo modo la poprietà di albero quasi completo è ancora rispettata  
+	A.heap_size = A.heap_size - 1
+	max_heapify(A , 1) // per mantere le proprietà di max_heap 
+	return max
+```
+
+L'algoritmo sostituisce il massimo con l'ultimo elemento del *max_heap* , in modo da mantere la proprietà di albero quasi completo , aggiornando la lunghezza dell'heap e chiamando `max_heapify()` sulla root per ripristinare la proprietà di *max_heap*
+
+**Complexity** : $O(\log n)$ data dalla chiamata e `max_heapify()` applicata sulla radice dell'albero
+#### Increase
+
+```cpp
+heap_increase_key(Heap A , Node i , Elem Key ) // i è un indice 
+	if Key < A[i] 
+		error "nuova chiave più piccola di quella corrente" 
+		// per via della precondizine che Key >= A[i]
+	A[i] = Key // assegno nuovo valore a A[i]
+		while i > 1 and A[parent(i)] < A[i]
+			scambia A[i] e A[parent(i)] 
+			i = parent(i)
+```
+
+L'algoritmo controlla che la pre-condizione sia soddisfatta ( $Key \ge A[i]$ ) 
+Aggiorna il nodo con la $Key$ , poiche la $Key$ soddisfa la pre-condizione l'unica violazione delle prorpietà del *max_heap* può avvenire solo verso la root ( ossia potrebbe essere maggiore del suo parent )
+##### Correttezza
+
+**Invariante** : $INV\sim$ L'array `A[1 ... A.heap_size]` soddisfa la proprietà *max_heap* tranne una possibile violazione in posizione `A[i]` poichè potrebbe essere $\ge$ di `parent(i)`
+
+**Conclusione** : 
+	Abbiamo 2 casi in cui $\lnot Guardia$ è `{cpp}true` :
++ `{cpp}i==1`
+	Se $i$ è la radice non ci può essere nessuna violazione
++ `{cpp}A[parent(i)]>=A[i]`
+	L'unica violazione potrebbe essere in $i$ , non è possibile poichè la negazione della guardia ci garantisce che non si è verificata nessuna violazione
+##### Complessità
+
+Il tempo di esecuzione è $O(\log n)$ poichè il caso peggiore in cui dobbiamo verificare che potrebbe esserci stata una violazione è quando abbiamo modificato un nodo folgia per il quale al massimo dovremmo correggere la violazione fino alla root dell'albero , percorrendo un percorso di lunghezza $h=\log n$  
+
+#### Insert
+
+```cpp
+max_heap_insert(Heap A , Elem Key)
+	A.heap_size = A.heap_size + 1
+	A[A.heap_size] = -infinito
+	heap_increase_key(A, A.heap_size, Key)
+```
+
+Aumentiamo la size dell'heap di 1 elemento , poniamo nell'ultimo elemento dell'array un elemento sentinella ( $-\infty$ ) , sul quale chiameremo `heap_increase_key()` ( se non mettessimo $-\infty$ la funzione uscirebbe subito poichè non rispetta la condizione $Key\ge A[i]$ ) con `Key` il valore che vogliamo sostituire , `heap_increase_key()` rispistinerà quindi in caso lo stato di *max_heap* in caso di violazioni
+
+**Complexity** : $O(\log n)$ per via della chiamata di `heap_increase_key()`
+
+#### Conclusione
+
+Un *heap* può svolgere le operazioni delle code di priorità con complessità $O(\log n)$
 
 # Esercizi 
 

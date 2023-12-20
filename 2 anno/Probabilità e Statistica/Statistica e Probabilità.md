@@ -1831,6 +1831,21 @@ La *correlazione* indica quanto la distribuzione si "restringe"
 >completa -> 
 >#todo
 
+### Catene di Markov
+
+Una *catena di Markov* è un modello per descrivere un sequenza di eventi per i quali la probabilità per ogni evento dipende dalla probabilà del precedente
+
+Sia $X_0,X_1,X_2,\dots$  una sucessione di variabili casuali ( discrete ) a valori in un insieme finito $S = \{1,2,\dots,M\}$ detto *spazio degli stati*
+Allora $X=\{X_n\}_{n\ge0}$ è una *catena di Markov* omogenea se : 
+$$P(X_{n+1}=j\ | \ X_n = i,X_{n-1} = i_{n-1},\dots,X_0 = i_0 )\implies P(X_{n+1}=j\ |X_n=i)=p_{ij}$$
+In pratice se la probabilità di $X_{n+1}$ dipende solo dalla probabilità del suo precedente $X_n$
+
+$P=(p_{ij})_{ij}$  viene detta *matrice di transizione* ed ogni $p_{ij}$ sono le *probabilità di transizione*
+
+**Esempio** : 
+$$P=\begin{pmatrix} p_{11} & p_{12} & \dots & p_{1M} \\ p_{21} & p_{22} & \dots & p_{2M} \\ \vdots & \vdots & \ddots & \vdots \\ p_{M1} & p_{M2} & \dots & p_{MM}\end{pmatrix}$$
+
+
 # Appunti
 #### R-Studio
 
