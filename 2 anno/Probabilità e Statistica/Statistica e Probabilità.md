@@ -1862,6 +1862,45 @@ Se oggi c'è il sole come sarà il tempo tra due giorni ?
 Il modello che descrive il nostro problema è una catena di markov , scriviamo quindi la matrice di transizione con stati $S=\{1,2,3\}$ :
 $$P=\begin{pmatrix} 1/2 & 1/4 & 1/4 \\ 1/2 & 0 & 1/2 \\ 1/4 & 1/4 & 1/2 \end{pmatrix}$$
 
+Lo stato iniziale è $X_0=2$ ci domandiamo quanto vale $P(X_2=j| X_0=2), \ j=1,2,3$
+
+Essendo che dobbiamo trovare le probabilità tra 2 giorni , necessitiamo di trovare una matrice a 2 passi , per trovarala abbiamo che :
+
+$$\sum_{k\in S} P(X_2=j|X_1=k)P(X_1 = k|X_0=i)$$
+$$=\sum_{k\in S}p_{kj}p_{ik}=p_{ij}^{(2)}$$
+Dove $p_{ij}^{(2)}$ è l'elemento $ij$ della matrice $P^2=P\cdot P$ , che rappresenta una *matrice di transizione a 2 passi*
+
+Per il nostro esempio siamo solo interessati alla seconda riga della matrice di transizione poichè sappiamo che lo stato iniziale è $X_0=2$ avremo quindi :
+$$p_{21}^{(2)}=P(X_2=1| X_0=2)=\begin{pmatrix}1/2 & 0 & 1/2\end{pmatrix}\begin{pmatrix}1/2\\1/2\\1/4\end{pmatrix}=\frac 3 8$$
+$$p_{22}^{(2)}=P(X_2=2| X_0=2)=\begin{pmatrix}1/2 & 0 & 1/2\end{pmatrix}\begin{pmatrix}1/4\\0\\1/4\end{pmatrix}=\frac 1 4$$
+$$p_{23}^{(2)}=P(X_2=3| X_0=2)=\begin{pmatrix}1/2 & 0 & 1/2\end{pmatrix}\begin{pmatrix}1/4\\1/2\\1/2\end{pmatrix}=\frac 3 8$$
+
+Reiterando l'operazione a due passi possiamo ottenere la matrice ad $n$ passi :
+$$P^n=P\cdot P\cdot \dots\ \cdot P$$
+I cui elementi sono le probabilità condizionate a $n$ passi 
+$$p_{ij}^{(n)}=P(X_n=j|X_0=i)$$
+
+#### Distribuzioni Marginali
+
+Le distribuzioni marginali della catena si ottengono dalla funzione di probabilità iniziale della catena $\pi^{(0)}$ e dalla matrice di transizione a $n$ passi 
+$$\pi_i^{(n)}=P(X_n=i)=\sum_{k\in S}P(X_n=i|X_0=k)P(X_0=k)=\sum_{k\in S}p_{ki}^{(n)}\pi_k^{(0)}$$
+Perciò 
+$$\pi^{(n)}=\pi^{(0)}\cdot P^n$$
+**Esempio** :
+Qual'è la distribuzione del tempo tra 2 giorni sapendo che oggi c'è il sole 
+
+$$\pi^{(0)}=\begin{pmatrix}0 & 1 & 0\end{pmatrix}$$
+$$\pi^{(2)}=\pi^{(0)}\cdot P^2$$
+$$=\begin{pmatrix}0 & 1 & 0\end{pmatrix}\cdot\begin{pmatrix} 1/2 & 1/4 & 1/4 \\ 1/2 & 0 & 1/2 \\ 1/4 & 1/4 & 1/2 \end{pmatrix}\cdot\begin{pmatrix} 1/2 & 1/4 & 1/4 \\ 1/2 & 0 & 1/2 \\ 1/4 & 1/4 & 1/2 \end{pmatrix}$$
+$$=\begin{pmatrix}0 & 1 & 0\end{pmatrix}\cdot\begin{pmatrix} 7/16 & 3/16 & 3/8 \\ 3/8 & 2/8 & 3/8 \\ 3/8 & 3/16 & 7/16 \end{pmatrix}$$
+$$=\begin{pmatrix}3/8 & 2/8 & 3/8\end{pmatrix}$$
+
+#### Catene regolari 
+
+Una catena di *Markov* si dice regolare se esiste un
+#### Catena stazionaria
+
+#### Passeggiata aleatoria
 
 # Appunti
 #### R-Studio
