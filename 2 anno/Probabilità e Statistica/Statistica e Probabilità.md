@@ -1841,9 +1841,26 @@ $$P(X_{n+1}=j\ | \ X_n = i,X_{n-1} = i_{n-1},\dots,X_0 = i_0 )\implies P(X_{n+1}
 In pratice se la probabilità di $X_{n+1}$ dipende solo dalla probabilità del suo precedente $X_n$
 
 $P=(p_{ij})_{ij}$  viene detta *matrice di transizione* ed ogni $p_{ij}$ sono le *probabilità di transizione*
+ $$P=\begin{pmatrix} p_{11} & p_{12} & \dots & p_{1M} \\ p_{21} & p_{22} & \dots & p_{2M} \\ \vdots & \vdots & \ddots & \vdots \\ p_{M1} & p_{M2} & \dots & p_{MM}\end{pmatrix}$$
+Tale che :
++ $p_{ij}\ge 0 ,\ i,j=1,\dots,M$
++ $\sum_{j=1}^M p_{ij}=1, \ i=1,\dots,M$
+
+Conoscere la matrice di transizione e la funzione di probabilità dello stato iniziale $\pi^{(0)}$ permette di calcolare le probabilità condizionate , congiunte e marginali della catena
 
 **Esempio** : 
-$$P=\begin{pmatrix} p_{11} & p_{12} & \dots & p_{1M} \\ p_{21} & p_{22} & \dots & p_{2M} \\ \vdots & \vdots & \ddots & \vdots \\ p_{M1} & p_{M2} & \dots & p_{MM}\end{pmatrix}$$
+	Ci sono 3 possibili situazioni metereologiche : 
+	1 = pioggia , 2 = sole , 3 = neve
+
+Inoltre abbiamo le seguenti restrizioni :
++ non ci sono mai due giorni consecutivi di sole
++ se oggi c'è sole domani deniva o piove con la stessa probabilità
++ se nevica o piove , con probabilità 0.5 domani rimane invariato, con probabilità 0.5 domani cambia a caso  
+
+Se oggi c'è il sole come sarà il tempo tra due giorni ? 
+
+Il modello che descrive il nostro problema è una catena di markov , scriviamo quindi la matrice di transizione con stati $S=\{1,2,3\}$ :
+$$P=\begin{pmatrix} 1/2 & 1/4 & 1/4 \\ 1/2 & 0 & 1/2 \\ 1/4 & 1/4 & 1/2 \end{pmatrix}$$
 
 
 # Appunti
