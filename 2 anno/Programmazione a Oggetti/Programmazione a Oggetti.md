@@ -1986,6 +1986,56 @@ Constructors c = cls.getConstructor(int.class, int.class, int.class)
 
 c non ha invoke , ha il newInstance ceh crea un nuovo oggetto con il costruttore selezionato , ritorna sempre un oggetto dove mette la nuova istanza creata
 
+## 20/12/2023
+
+unchechecked exceptions :
+```java
+extends RuntimeExceptions
+```
+
+no need to declere in method
+
+dobbiamo passare una cause
+```java
+catch(type1|type2|type3 e)
+```
+può catturare più eccezioni specifiche assieme per 
+
+dall'annotazione posso vedere amount -> a lovello dinamico posso accedervi all'interno del metodo
+
+getAnnotation ritorna istanza dell'annotazione , posso fare .amount
+
+istanziare tutti i possibili perosnaggi che sono dichiarati 
+
+classpath -> tutto l'ambiente di esecuzione
+
+se trovo tutte le classi solamente quelle che sono state istanziate fino ad ora 
+
+**Gradle**
+
+classpath -> indica tutto il bytecode java utilizzato 
+se eseguo classi che hanno bibsogno di altri calsspath devo metterle nel calsspath
+
+nuova versione di una libreria deve essere retrocompatibile , 
+
+building automation
+
+DSL domain specific language -> per impostazioni
+
+gradlew execute gradle
+
+plugins
+
+SNAPHOT -> in sviluppo
+
+repositories da dove prendo dep
+
+dependencies
+
+testImplementatio -> only when testing
+testRuntimeOnly -> quando eseguo il codice
+
+
 
 
 

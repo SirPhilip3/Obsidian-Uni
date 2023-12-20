@@ -2192,6 +2192,58 @@ La sua complessità risulta quindi essere uguale al *marge sort* ma applicando l
 >[!warning]
 > Tranne nel caso peggiore
 
+## Code di Priorità
+
+Una *coda di priorità* è una struttura dati che serve a memorizzare un inseme dinamico di elementi , ciascuno dei quali ha un valore  *key* o *peso*
+
+2 tipologie di code :
++ **Code di massima priorità**
+	+ Usate per l'implementazione dello scheduling dei processi 
++ **Code di minima priorità**
+	+ Usate nella teoria dei grafi , Djikstra
+
+### Operazioni su code di massima priorità
+
+#### Inserimento
+
+```cpp
+insert(S , x)
+```
+
+L'*inserimento* di un nodo $x$ all'interno della coda $S$ $\implies S\ \cup \ \{x\}$ 
+#### Massimo
+
+```cpp
+maximum(S)
+```
+
+Restituisce l'elemento di $S$ con la chiave più grande ( non rimuove $S$ )
+#### Estrazione del Massimo
+
+```cpp
+extract_max(S)
+```
+
+Restituisce ed elimina da $S$ l'elemento di $S$ con chiave più grande
+#### Increase
+
+```cpp
+increase(S, x, k)
+```
+
+Pre-condizione : $x$ deve esistere in $S$ , $x \in S$
+Post-condizione : Aumenta il valore della chiave di $x$ al nuovo valore $k$ che si suppone si almeno pari al valore corrente della chiave di $x$ ( $k\ge$ chiave di $x$ )
+### Operazioni su code di minima priorità
+
+#### Inserimento
+
+#### Minimo
+
+#### Estrazione del Minimo
+
+#### Decrease 
+
+
 # Esercizi 
 
 >[!todo]
