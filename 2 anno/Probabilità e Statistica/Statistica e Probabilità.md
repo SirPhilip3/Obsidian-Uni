@@ -1897,10 +1897,58 @@ $$=\begin{pmatrix}3/8 & 2/8 & 3/8\end{pmatrix}$$
 
 #### Catene regolari 
 
-Una catena di *Markov* si dice regolare se esiste un
+Una catena di *Markov* si dice regolare se esiste un indice $n$ per cui $P^n$ ha tutti elementi strettamente positivi 
+
+Nell'esempio precedente in $P^2$ non c'è nessuno 0 quindi la catena sarà regolare 
 #### Catena stazionaria
 
+Se $P$ è regolare allora esiste $\pi = (\pi_1, \dots ,\pi_M)$ tale che 
+$$\lim_{n\rightarrow\infty}P^{n}=\begin{pmatrix} \pi_{1} & \pi_{2} & \dots & \pi_{M} \\ \pi_{1} & \pi_{2} & \dots & \pi_{M} \\ \vdots & \vdots & \ddots & \vdots \\ \pi_{1} & \pi_{2} & \dots & \pi_{M}\end{pmatrix}$$
+Si dimostra che $\pi$ è l'unica *distribuzione stazionaria* della catena , ovvero tale che 
+$$\pi P=\pi, \quad \sum_{i=1}^M\pi_i=1$$
+Se la distribuzione iniziale di $X_0$ è la *distribuzione stazionaria* $\pi$ allora 
+$$\pi P^{n}=\pi, \quad \forall n$$
+e tutte le distribuzioni marginali della catena sono uguali a $\pi$
+Si dice allora che la catena di *Markov* è una *catena stazionaria*
+
+**Esempio** :
+
+Avendo la catena vista in precedenza possiamo calcolare una sua distribuzione stazionaria nel seguente modo :
+
+Dobbiamo porre la condizione : $\pi P = \pi$ con $\sum_{i=1}^3\pi_i=1$ 
+$$\begin{cases}1/2\pi_1+1/2\pi_2+1/4\pi_3=\pi_1 \\ 1/4\pi_1 + 0pi_2 + 1/4\pi_3=\pi_2 \\ 1/4\pi_1+1/2\pi_2+1/2\pi_3=\pi_3 \\ \pi_1+\pi_2+\pi_3=1\end{cases}$$
+Risolvendo il sistema abbiamo :
+$$\pi = \begin{pmatrix}2/5 & 1/5 & 2/5\end{pmatrix}$$
 #### Passeggiata aleatoria
+
+Una *passeggiata aleatoria* è una catena di *Markov* con spazio degli stati $S=\mathbb{Z}$ che ad ogni istante si muove di un passo a destra o a sinistra con probabilità $p$ e $1-p$ dove :
+$$p_{ii+1}=p \quad\quad p_{ii-1}=1-p,\quad \quad p_{ij}=0\ \text{ altrimenti }$$
+In questo modo se :
++ $p>1/2$ il sistema andrà verso $+\infty$
++ $p<1/2$ il sistema andrà verso $-\infty$
++ $p=1/2$ il suo andamento è meno prevedibile ( per la *legge dei grandi numeri* se parte da 0 tende a 0 )
+
+Per simulare una traiettoria della passegiata aleatoria :
+1. Si simulano $n$ valori $x_1, \dots ,x_n$ da una variabile aletoria di *Bernuolli* $X\sim Be(p)$
+2. Si trasformano i valori simulati in $y_i=2x_i-1$ in modo da avere tutti valori $\pm1$
+3. Si calcolano le somme cumulate parziali del vettore $y_1, \dots , y_n$
+##### Passeggiata aleatoria con barriere
+
+###### Barriere non assorbenti
+
+Si possono aggiungere alla passeggiata aleatoria delle *barriere non assorbenti* in modo che , una volta raggiunte , il sistema rimbalzi allo stato precedente
+
+>[!todo]
+>completa
+>#todo
+
+###### Barriere assorbenti
+
+Si possono aggiungere alla passeggiata aleatoria delle *barriere assorbenti* in modo che , una volta raggiunte , il sistema non si muova più da lì
+
+>[!todo]
+>completa
+>#todo
 
 # Appunti
 #### R-Studio
