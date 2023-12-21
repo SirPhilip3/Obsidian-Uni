@@ -610,7 +610,16 @@ public class Car extends Vehicle {
 
 La *firma* di un metodo definisce un **Contratto** 
 
-Se una *firma* definisce un contratto meno restrittivo ( modificatori di visibilità meno restrittivo ) in una sottoclasse allora viene **Sovrascitto** ( *overrides* )
+Se una *firma* definisce un contratto meno restrittivo ( modificatori di visibilità meno restrittivo ) in una sottoclasse allora viene **Sovrascitto** ( *overrides* ) 
+
+La *firma* contiene :
++ la classe contenente la definizione del metodo
++ il suo nome
++ il numero e tipop dei suoi parametri
+
+>[!warning]
+>Non comprende i modificatori
+
 
 Viene fatto l'**Overload** se :
 + Il *nome* è lo stesso
@@ -622,14 +631,136 @@ Viene fatto l'**Overload** se :
 
 #### Final Methods and Classes
 
+Per evitare che vengano *overridden* alcuni metodi questi possono essere dichiarati **Final** o **Static** 
+
+Un metodo **Final** nello specifico rimane lo stesso sempre ( garantito dal modificatore )
+
+>[!warning]
+>Costruttori e metodi astratti non possono essere **Final** 
+
+**Esempio** :
+
+```java
+public class Vehicle{
+
+	public void accelerate(double a){
+		this.speed += a ;
+	}
+
+}
+
+public class Car extends Vehicle {
+
+	final public boolean accelerate(double a){
+		super.accelerate(a);
+		this.fuel -= a*fuelType.fuelConsumption
+	}
+
+}
+
+
+public class Truck extends Car {...} // non posso sovrascrivere accelerate poichè final nella sua superclasse
+```
+
+
+Anche una *classe* può essere dichiarata *final* questo fa in modo che non possa essere estesa 
+
+>[!note] 
+>Una classe non può essere dichiarata `{java}protected` o `{java}private` 
+
+>[!todo]
+>completa spiegazione
+
+#### Modificatori consentiti 
+
+|-|Class|Method|Field|
+|--|--|--|--|
+|public|YES|YES|YES|
+|protected|NO|YES|YES|
+|\<default>|YES|YES|YES|
+|private|NO|YES|YES|
+
+|-|Class|Method|Field|
+|--|--|--|--|
+|static|NO|YES|YES|
+|final|YES|YES|YES|
+|abstract|YES|YES|NO|
+
 ## Subtyping
 
+Java ha i tipi dichiarati , per questo possiamo svolgere solo operazioni che sono constentite in quel tipo 
+
+**Esempio** :
+
+```java
+Vehicle v1 , Vehicle v2;
+v1 + v2 // not allowed
+v1.getSpeed() // allowed
+```
+
+Java è un linguaggio *fortemente tipato* $\implies$ quando chiamiamo una funzione i tipi che gli passiamo devono essere compatibili con i tipi che sono dichiarati nella firma della funzione
+
+Java è un linguaggio *digitato staticamente* ( *statically typed* ) $\implies$ i tipi sono verificati a compile time infatti ogni espressione ha un tipo conosciuto durante la compilazione 
+Alcuni tipi sono dichiarati ( es `{java}Vehicle v1` ) , altri sono inferiti ( es \<int>+\<int> = int )  
+#### Principio di sostituzione
+
+Se una classe C1 espone un interfaccia che è più grande ( ossia definisce tutti i campi e metodi di C2 più qualcos'altro ) di C2 allora quando ci aspettiamo C2 possiamo metterci un'istanza di C1
+
+**Esempio**
+
+```java
+race(new Car(), new Truck(), 100); // posso passare una sottoclasse alla superclasse poichè le sottoclassi implementano tutti i metodi e campi della superclasse  
+
+int race(Vehicle v1, Vehicle v2, double length){
+
+	... // solo operazioni consentite in vehicle
+
+}
+```
+
+Se una classe C1 estende un'altra classe C2 allora le sue istanze hanno una interfaccia più grande , tutte le occorrenze di C2 possono essere sostituite da C1
 ### Tipi statici e dinamici
+
+Ogni espressione ha una tipo *static* determinato a compile time e un tipo *dinamico* determinato a execution time 
+
+Il tipo *dinamico* può solo essere un sottotipo del tipo *statico* esponendo gli stessi o più membri 
+
+Il tipo *statico* determinato a compile time ci consente di dire che a runtime questi membri esistono
 
 ### Casting di tipi
 
+Possiamo fare *casting* di un'espressione ad un sottotipo del suo tipo *statico* , se il tipo che castiamo non è compati
+
 ### instanceof
 ## Polimorfismo
+
+Ciò che abbiamo definito in precedenza : *Inheritance* , *Subtyping* permettono il polimorfismo infatti ciamiamo uno stesso metodo `{java}accelerate(100)` su diverse istanze della classe `{java}Vehicle` portando a comportamenti differenti a seconda su quale istanza viene chiamato 
+
+**Esempio** :
+
+```java
+class Vehicle{
+	public void accelerate(double a){...}
+}
+
+class Car extends Vehicle { 
+	public void accelerate(double a) {...} 
+}
+
+class Truck extends Car {...} 
+
+Vehicle v1 = new Vehicle();
+Vehicle v2 = new Car();
+Vehicle v3 = new Truck();
+
+v1.accelerate(100); // svolge l'implementazione di Vehicle
+v2.accelerate(100); // svolge l'implementazione di Car
+v3.accelerate(100); // svolge l'implementazione di Truck che eredita l'implementazione di Car
+
+```
+
+
+
 
 ## Interfacce
 
