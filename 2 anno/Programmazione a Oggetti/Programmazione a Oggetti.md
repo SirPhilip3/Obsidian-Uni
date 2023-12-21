@@ -938,6 +938,26 @@ Per chiamare un metodo usiamo la seguente sintassi : `{java}<reciever>.<method_n
 
 Per questo dobbiamo decidere da quale classe vogliamo iniziale la ricerca dell'implementazione del metodo , ovviamente se la classe non contiene l'implementazione dobbiamo controllare per la sua superclasse  
 
+Se però abbiamo dei metodi *sovrascritti* ( *override* ) questi nascondono il comportamento della superclasse 
+
+>[!note]
+>Possiamo accedere all'implementazione della superclasse nel seguente modo :
+>`{java}super.<component>` 
+>Questo ci permette di evitare la duplicazione di codice , in quanto se parte del metodo *sovrascitto* è già implementato nella superclasse ci basterà chiamare l'implementazione della super classe
+>Ci permette inoltre di nascondere l'implementazione di parte del codice alle sottoclassi 
+
+### Prima Implementazione
+
+1. Estraiamo il tipo *dinamico* del `{java}<reciever>` della chiamata del metodo ( è sempre presente anche se implicito )
+2. Cerca un metodo in questa classe che he la stessa *firma* 
+	1. Se trovato ritorna il metodo
+	2. Se non trovaro ripeti passo 2 con la superclasse della classe corrente 
+
+### Supportare overriding dei metodi
+
+
+
+ 
 
 ### invocations and field accesses
 
