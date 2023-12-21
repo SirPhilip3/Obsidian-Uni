@@ -727,11 +727,84 @@ Il tipo *dinamico* può solo essere un sottotipo del tipo *statico* esponendo gl
 
 Il tipo *statico* determinato a compile time ci consente di dire che a runtime questi membri esistono
 
+**Esempio** : 
+
+```java
+class Vehicle {...} 
+class Car extends Vehicle {...} 
+class Truck extends Car {...} 
+class Bicycle extends Vehicle {...} 
+
+int race(Vehicle v1, Vehicle v2) {...} 
+
+// il tipo dinamico corrisponde allo statico
+Car c1 = new Car(), c2 = new Car(); 
+Truck t = new Truck();
+
+// il tipo dinamico è un sottotipo dello statico
+Vehicle v = new Car();
+
+// il tipo passato è un sottotipo del tipo dichiarato
+race(c1, c2);
+race(c1, t);
+race(t, v);
+```
+
 ### Casting di tipi
 
-Possiamo fare *casting* di un'espressione ad un sottotipo del suo tipo *statico* , se il tipo che castiamo non è compati
+`{java}(<type>) <expression>`
 
-### instanceof
+Possiamo fare *casting* di un'espressione ad un sottotipo del suo tipo *statico* , se il tipo che castiamo non è compatibile errore at execution time
+
+>[!warning]
+>Non possiamo castare ad un tipo non sottotipo
+
+**Esempio** :
+
+```java
+Vehicle v = new Car();
+
+Car c = (Car) v; // consentito 
+
+Car c1 = new Car();
+
+((Vehicle)c1).accelerate(...); // inutile 
+
+Bicycle b = (Bicycle) c1; // non è possibile una macchina non può essere una bicicletta
+
+Bicycle b1 = (Bicycle) v; // consentito ma crasha a runtime pichè v è veicolo con new Car() -> posso castarlo perè il tipo statico è veicolo ma il tipo dinamico è Car che non è compatibile con Bicycle
+```
+
+### insta
+nceof
+
+Per verificare il tipo *dinamico* usiamo la seguente espressione : `{java}<expr> instanceof <type>` 
+Ritorna `{java}true` se e solo se il tipo dinamico dell'espressione è un *sottotipo* del *tipo* dato
+
+>[!warning] 
+>Non posso controllare un tipo che non è sottotipo
+
+**Esempio** :
+
+```java
+Vehicle v = null; 
+if(Math.random()>0.5) 
+	v = new Car(); 
+else v = new Bicycle(); 
+
+((Car) v).refuel(...); // potrebbe non essere vero se prima ho dichiarato una bicycle
+
+if(v instanceof Car) 
+	((Car) v).refuel(...); // svolto solo se il tipo dinamico è Car quindi safe 
+
+Car c = new Car();
+if(c instanceof Vehicle) 
+	c.fullStop(); // inutile Car è sempre un veicolo 
+	
+if(c instanceof Bicycle) // non possibile è sempre falsa 
+	c.fullStop();
+```
+
 ## Polimorfismo
 
 Ciò che abbiamo definito in precedenza : *Inheritance* , *Subtyping* permettono il polimorfismo infatti ciamiamo uno stesso metodo `{java}accelerate(100)` su diverse istanze della classe `{java}Vehicle` portando a comportamenti differenti a seconda su quale istanza viene chiamato 
@@ -759,16 +832,112 @@ v3.accelerate(100); // svolge l'implementazione di Truck che eredita l'implement
 
 ```
 
+### Limiti di extend
 
+Ogni classe può al massimo estendere un'altra classe ( *single inheritance* )
 
-
+Potrebbe essere che più calssi possano condividere delle caratteristiche per esempio :
++ `{java}class Truck extends Car` 
++ `{java}class HorseCart extends Vehicle` 
+Ma in entrambi i casi possiamo caricare un camion con tot kg di qualcosa come possiamo caricare un carrello trainato da cavalli con tot kg di qualcosa , abbiamo una ripetizione di codice 
 ## Interfacce
 
-### implementation
+Per coprite i limiti della *single inheritance* si possono utilizzare le **Interfacce** , queste definiscono solo firme di metodi ( non la loro implementazione ) 
 
-### estensione di intefacce 
+Un *interfaccia* definisce un nuovo tipo come le classi 
+
+Se voglio implementare i metodi definiti in una interfaccia all'interno di una classe uso la seguente sintassi :
+
+```java
+interface Loadable{
+	public void changeLoad(double l);
+}
+
+class Truck extends Car implements Loadable{
+
+	private double load;
+	public void changeLoad(double l){
+		load += l;
+	}
+
+}
+```
+
+>[!warning]
+>implementare una interfaccia significa implementare *tutti* i metodi
+
+
+>[!note]
+>in una classe posso implementare più interfaccie
+
+Se ho più classi che implementano lo stesso metodo nello stesso modo posso dichiarare come `{java}default` una implementazione del metodo nella interfaccia in modo tale che se implemeto una interfaccia in una classe posso non ridefinire il metodo ed avere la sua implentazione di `{java}default` 
+
+>[!note] 
+>L'implementazione all'interno della interfaccia può dipendere solo da metodi pubblici
+
+**Esempio** : 
+```java
+interface Loadable { 
+	default public void chargeLoad(double l) {                              
+		this.setLoad(this.getLoad()+l); } 
+	} 
+	
+class Truck extends Car implements Loadable {}
+```
+
+>[!note]
+>Le interfaccie possono avere dei campi ma solo *static* , *public* e *final*
+
+In questo modo il tipo di una *classe* è definito come :
++ *sottotipo* delle superclassi che estende
++ *sottotipo* delle interfacce che implementa
+
+>[!warning]
+>Implementare due interfaccie che hanno metodi con la stessa firma e implementazione di default è *proibito* ( detto *diamond problem* )
+
+![[DiamondProblem.excalidraw]]
+
+### Estensione di intefacce 
+
+Una interfaccia può *estendere* un'altra interfaccia 
+
+Le regole per l'*eredità* dei tipi sono le stesse rispetto alle classi :
++ Sottointerfacce devono garantire una interfaccia più grande
+
+**Esempio** : 
+```java
+interface Loadable{
+	public void changeLoad(double l);
+}
+
+interface LoadableUnloadable{
+	public void unchageLoad(double l);
+}
+
+class Truck extends Car implements LoadableUnloadable {
+	private double load;
+	public void chargeLoad(double l) { 
+		load += l;
+	}
+	public void unchargeLoad(double l) { 
+		load -= l;
+	}
+}
+```
+
+### Classi Astratte vs Interfaccie
+
+|-|pros|cons|
+|--|--|--|
+|abstract classes|hanno un stato , possiamo implementare alcuni metodi|possiamo estendere al massimo una classe|
+|interfaces|non possono avere uno stato , non possiamo implementare i metodi tranne tramite implementazioni di default ma hanno dei limiti ( posso utilizzare solo metodi pubblici )| possiamo estendere\implementare più interfaccie|
 
 ## Method Dispatching
+
+Per chiamare un metodo usiamo la seguente sintassi : `{java}<reciever>.<method_name>(<parameters>)` , il codice che si vuole eseguire è collegato alla *classe* del `{java}<reciever>` ( alcune volte può essere implicito es `{java}this` , la classe dove siamo ) 
+
+Per questo dobbiamo decidere da quale classe vogliamo iniziale la ricerca dell'implementazione del metodo , ovviamente se la classe non contiene l'implementazione dobbiamo controllare per la sua superclasse  
+
 
 ### invocations and field accesses
 
