@@ -955,15 +955,29 @@ Se però abbiamo dei metodi *sovrascritti* ( *override* ) questi nascondono il c
 
 ### Supportare overriding dei metodi
 
+Visto che se un metodo sovrascrive un metodo della superclasse nasconde la sua firma andremo a selezionare l'implementazione più specifica che troviamo per quel metodo ( ossia quello al livello più basso all'interno della gerarchia dei tipi )
 
+Utilizzare il tipo *statico* non funzionerebbe poichè necessiterei del tipo di ogni oggetto a compile time ma questo può cambiare a runtime
 
- 
+**Esempio** :
 
-### invocations and field accesses
+```java
+Vehicle v1 = new Vehicle();
+Vehicle v2 = new Car();
+Vehicle v3 = new Truck();
 
-### overriding
+v1.accelerate(100); // in v1 iniziamo a cercare dal tipo dinamico Vehicle che ha il metodo implementato e quindi lo eseguiamo
+v2.accelerate(100); // in v2 iniziamo a cercare da Car che ha il metodo implementato e quindi lo eseguiamo
+v3.accelerate(100); // in v3 iniziamo a cercare da Truck che però non ha il metodo implementato cerchiamo quindi il metodo nella sua superclasse Car che ha il metodo e quindi lo eseguiamo
+```
 
-### resolution
+### In presenza di Overloading
+
+Le firme delle funzioni potrebbero avere stesso nome ma argomenti differenti ( con *sottotipi* ) 
+
+Svolgiamo quindi lo *static dispatiching* degli argomenti del metodo , sciegliendo l'implementazione con i tipi statici più vicini 
+
+Questo limita ancora il polimorfismo , per questo necessitiamo di svolgere *dinamic dispatching* anche dei tipi dei metodi 
 
 ### dispatching
 
@@ -977,19 +991,132 @@ Se però abbiamo dei metodi *sovrascritti* ( *override* ) questi nascondono il c
 
 ### java algorithm
 
+>[!todo]
+>correggi method dispatching
+>#todo
+
 ## Generic types
 
-### subtyping with generics
+Utilizzati per generalizzare l'implementazione di metodi parametrizzando il suo tipo ( es : una lista può essere di interi , float , double etcc )
 
-### generic methods
+Possiamo specificare tipi generici per *matodi* e *classi*
 
-### deduzione dei tipi
+Questo tipo di polimorifismo viene detto *parametric polymorphis* in quanto utilizziamo un unico simbolo per rappresentare più tipi differenti  
 
-### restricted generics
+Un tipo *generico* può essere visto come un parametro che sostituiamo con il tipo che vogliamo quando gli passiamo un tipo 
 
-### wildcards
+**Esempio** :
 
-### esempio
+```java
+public class List<V> { 
+	private V[] elements;
+	
+	public void add(V el) { 
+		int n = elements.length+1;
+		elements = Arrays.copyOf(elements, n); 
+		elements[n-1] = el; 
+	} 
+	
+	public boolean contains(V el) { 
+		for(int i=0; i < elements.length; i++)
+			if(elements[i]==el) return true; 
+		return false; 
+	} 
+
+	public V get(int i) { 
+		return elements[i];
+	}
+}
+```
+
+I generics di java sono *invarianti* :
+	Non posso assegnare un espressione con un tipo generico ad una variabile con un tipo generico differente anche se uno è sottotipo dell'altro
+
+**Esempio** : 
+
+```java
+public class List<V> { 
+	public void add(V el) {...} 
+	public boolean contains(V el) {...} 
+	public V get(int i) {...} 
+} 
+
+List v = new List(); 
+v.add(new Car(...)); 
+List b = new List(); 
+v.add(new Bicycle()); 
+
+// ----- //
+v = b; // errore 
+b = v; // errore
+```
+
+>[!note]
+>Gli array sono *covarianti*
+>Posso eseguire : `{java}Vehicle[] v = new Bicycle[10]`
+
+I generici nei *metodi* possono essere utilizzati come : 
++ tipo dei parametri 
++ tipo di ritorno
++ tipo delle varibili locali 
+
+**Esempio** :
+
+```java
+public static <T> T getFirst(List<T> list){
+	return list.get(0);
+}
+```
+
+### Deduzione dei tipi
+
+Non dobbiamo passare esplicitamente il tipo generico quando istanziamo la classe , l'inferenza dei tipi lo fa per noi 
+
+```java
+List<Vehicle> v1 = new List<>() // verrà creata una lista di veicoli anche se non lo abbiamo specificato nella new , viene dedotto dalla dichiarazione di v1 
+```
+
+### Restricted generics
+
+Se vogliamo che vengano assegnati solo un determinato *tipo* o sottotipi di un tipo possiamo scrivere nel seguente modo :
+
+```java
+<T extends Vehicle> T race(T v1, T v2, double length) { ... }
+```
+
+In questo modo `{java}T` può essere solo un *sottotipo* di `{java}Vehicle` , a patto che vengano utilizzati solo componenti *sottotipi* di `{java}Vehicle` nell'implementazione
+
+Quando istanziamo la classe o chiamiamo il metodo viene controllato che il tipo sia compatibile 
+### Wildcards
+
+Invece di passare un tipo generico passiamo `{java}?` per cui : `{java}List<?>` è supertipo di `{java}List<T>` per un qualsiasi `{java}T`
+
+Anche le *wildcards* possono essere limitate usando `{java}extends` , in questo caso gli `{java}extends` sono *covarianti* 
+
+**Esempio** :
+
+```java
+List<? extends Car> // è un sottotipo di 
+List<? extends Vehicle>
+```
+
+```java
+public class List<V> { 
+	public void add(V el) {...} 
+	public boolean contains(V el) {...} 
+	public V get(int i) {...} 
+} 
+
+List<Car> v = new List<Car>(); 
+List<?> q = v;
+List<? extends Vehicle> w = v; 
+
+Vehicle e = q.get(0); // error 
+q.add(new Car(...));  // error 
+Vehicle e = w.get(0); // OK 
+w.add(new Car(...));  // error 
+v.add(new Truck(...));// OK
+```
 
 ## Object class 
 
