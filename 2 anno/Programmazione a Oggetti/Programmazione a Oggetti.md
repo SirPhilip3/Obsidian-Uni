@@ -1201,6 +1201,9 @@ Ritorna un valore di *hash* per quell'oggetto , questo metodo è implementato pe
 Il codice computato serve per unire oggetti che potrebbero essere *potenzialmente* `{java}equals()` 
 
 Quando *sovrascriviamo* `{java}equals()` dobbiamo necessariamente anche sovrascrivere `{java}hashCode()` , e viceversa
+### toString()
+
+Il metodo `{java}toString()` presente nella classe `{java}Object` ritorna la rappresentazione in formato `{java}String` di un oggetto 
 ## String class
 
 La classe `{java}String` rappresenta una stringa di caratteri in java 
@@ -1209,21 +1212,120 @@ Contiene come campo un array di caratteri , ogni volta che dichiariamo una strin
 
 >[!note] 
 >Le stringhe sono *immutabili* , per questo ogni qualvolta chiamiamo un metodo di `{java}String` questo non modifica la stringa stessa 
->
+>Questo per fare in modo che abbiamo degli effetti indesiderati per l'*aliasing*
 
-Questa qualità delle stringhe fa in modo che le stringhe possano essere scambiate tra vari oggetti ( questo viene fatto per ragioni di performance in quanto le stringhe sono uno degli oggetti più usati )
+Questa qualità delle stringhe fa in modo che le stringhe possano essere scambiate tra vari oggetti ( questo viene fatto per ragioni di performance in quanto le stringhe sono uno degli oggetti più usati ) 
 
 La classe `{java}StringBuffer` supporta invece stringhe *mutabili*
 
 La classe stringa supporta la concatenzione di stringhe attravero l'operatore `{java}+` , questo corrisponde alla chiamata a funzione `{java}s1.concat(s2)` che restituisce una nuova stringa ( `{java}s1` non viene modificata ) creata aggiungendo ad un `{java}StringBuffer` i char presenti in `{java}s1` e `{java}s2`
 
-### toString()
-
-Il metodo `{java}toString()` presente nella classe `{java}Object` ritorna la rappresentazione in formato `{java}String` di un oggetto 
-
 >[!todo]
 > arrivati a slide 17 pwp Lecture11
 > #todo 
+
+## Sets
+
+Un `{java}Set` è una collezione di oggetti *iterabili* che non contengono elementi duplicati
+
+Vi sono vari tipo di `{java}Set` un esempio è l'`{java}HashSet` , questo implementa l'intefaccia `{java}Set` utilizzando le *hash tables*
+
+Un `{java}HashSet` non garantisce nessun ordine specifico per l'iterazione dei suoi elementi , non garantisce inoltre che questo rimanga costate nel tempo
+>[!warning]
+All'interno di una *collection* non possono essere inseriti due oggetti identici , possiamo però aggiungere due oggetti diversi e sucessivamente modificarli per farli diventare gli stessi
+La soluzione sarebbe rendere gli oggetti immutabili oppure adottare altre librerie
+### Iterare lungo collections
+
+Iterare lungo una collezione di oggetti deve avvenire per un oggetto che risulti essere *iterabile*
+
+**Esempio** :
+
+Ciclo *for-each*
+```java
+for(<t> <v1> : <v2>)
+```
+
+>[!note]
+>Il tipo della variabile locale deve essere lo stesso del tipo generico della collezione
+
+L'ordine in cui leggiamo gli elementi della collezione dipende dalle caratteristiche della collezione stessa ( per esempio `{java}HashSet` non ha un ordine specifico mentre `{java}TreeSet` lo ha )
+
+Un ulteriore tipo di `{java}Set` è il `{java}TreeSet` appunto che invece ordina gli elementi che riceve attraverso *Natural Ordering* o attraverso un *Comparator* fornito alla creazione del `{java}Set`
+
+Per fare in modo che avvenga il *Natural Ordering* all'interno di un `{java}Set` dobbiamo implementare l'interfaccia `{java}Comparable` per la classe di oggetti che inseriamo nel `{java}Set` , dobbiamo inoltre definire il metodo `{java}compareTo()` 
+
+## Tipi Primitivi
+
+I tipi primitivi non sono sottotipi di `{java}Object` e sono :
++ `{java}boolean` 
+	+ valori : `{java}true , false`
++ `{java}byte`
++ `{java}char`
+	+ valori : `{java}'a','b','\n','\t',...`
++ `{java}short`
++ `{java}int`
+	+ valori : `{java}12,075,0x123`
++ `{java}long`
++ `{java}float`
+	+ valori : `{java}12.5,7.24e2`
++ `{java}double`
+
+Su questi tipi possiamo svolgere operazioni standard come : 
++ `{java}+ - * / %` per i valori numerici
++ `{java}&& || !` per i valori booleani
+### Boxing and Unboxing
+
+Per ogni tipo primitivo esiste un *wrapper* che lo rappresenta come oggetto 
+Questo risulta essere poco efficente ma più strutturato
+
+![[Wrapper.excalidraw]]
+
+Questi *wrapper* forniscono vari metodi di utilità come : 
++ Conversione di tipo
++ Conversione da `{java}String` ad un valore numerico
++ Valori minimi e massimi
+
+Questi *wrapper* non vengono costruiti automaticamente alla creazione di una variabile dichiarata con un tipo *primitivo* ma dovremmo fare una cosa del genere :
+
+```java
+int a = 42;
+Integer A = Integer.valueOf(a);
+```
+### Implicit type convertion
+
+Ogni tipo numeri può essere assegnato a qualsiasi altro tipo numerico a patto che supporti un range di valori maggiore ( abbia più bit a disposizione )
+
+Non è presente però una traduzione implicita tra tipi questa deve essere fatta esplicitamente 
+
+**Esempio** :
+
+```java
+byte a = 3; //int -> byte 
+char b = 'a'; // char -> char 
+int c = b; //char -> int 
+c = a; // byte -> int 
+a = c; // int -> byte NON PUSSO FARLO
+long d = c; //int -> long 
+c = d; //long -> int NON PUSSO FARLO
+float e = c; // int -> float 
+e = d; //long -> float 
+double f = e; //float -> double 
+e = f; //double -> float NON PUSSO FARLO
+```
+
+```java
+// traduzione esplicita
+a = Integer.valueOf(c).byteValue(); // int -> byte 
+c = Long.valueOf(d).intValue(); //long -> int 
+e = Double.valueOf(f).floatValue(); //double -> float
+```
+
+## Eccezioni
+
+Esempio di errori in java : 
++ Accedere ad una reference nulla
++ Divisione per 0
++ Accedere all'array in un indice 
 
 
 
