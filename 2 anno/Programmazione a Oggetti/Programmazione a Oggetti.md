@@ -1120,15 +1120,92 @@ v.add(new Truck(...));// OK
 
 ## Object class 
 
-### equals
+La classe *Object* è una classe universale , se una classe non estende esplicitamente una classe questo vuol dire che implicitamente estende la classe *Object* 
 
-### clone
+La classe *Object* fornisce dei metodi comuni a tutte le classi :
++ `{java}protected Object clone()`
++ `{java}boolean equals(Object obj)`
++ `{java}int hashCode()`
++ `{java}String toString()`
 
-### hashCode
+### equals()
 
-### toString
+Indica quando un altro oggetto equivale a questo 
 
+**Proprietà** :
++ Riflessiva : `{java}x.equals(x)`
++ Simmetrica : `{java}x.equals(y)` $\iff$ `{java}y.equals(x)`
++ Transitiva : `{java}x.equals(y)&&y.equals(z)` $\implies$ `{java}x.equals(z)` 
+
+Fare `{java}==` è diffrente , in fatti questo confronta solo se gli indirizzi dei due oggetti sono gli stessi , non che i valori al loro interno siano gli stessi 
+
+**Esempio** :
+
+```java
+Car car1 = new Car(0,fuelType,100);
+Car car2 = new Car(0,fuelType,100);
+car1.equals(car2) // true
+car1==car2 // false
+```
+
+**Implementazione standard** :
+
+```java
+public class Car {
+	private double speed; 
+	private FuelType fuelType; 
+	private double fuel; 
+	public boolean equals(Object o) { 
+		if(o != null && o instanceof Car) { 
+			Car o1= (Car) o;
+			return o1.speed == this.speed && 
+				   o1.fuel == this.fuel && 
+				   this.fuelType.equals(fuelType); 
+		} 
+		else return false; 
+	} 
+}
+```
+
+### clone()
+
+Ritorna una copia dell'oggetto :
++ Oggetto differente ( refence differente )
+	`{java}o.clone() != o`
++ Stesso contenuto
+	`{java}o.equals(o.clone())==true`
+
+>[!warning]
+>Oggetti dei campi non sono contenuti nella `{java}clone()` , vengono solo copiate la reference per loro
+
+>[!note]
+>`{java}clone()` è `{java}protected` , posso solo clonare la classe stessa o le sue sottoclassi
+
+**Esempio** :
+
+```java
+class FuelTank{
+	private FuelType type;
+	private double amount; 
+	public FuelTank(FuelType t, double a) {...}; 
+	protected Object clone() { 
+		return new FuelTank(type, amout); 
+	}
+} 
+```
+
+### hashCode()
+
+Ritorna un valore di *hash* per quell'oggetto , questo metodo è implementato per sfruttare i vantaggi dati in termini di complessità computazionale dalle *hash* *tables* 
+
+Il codice computato serve per unire oggetti che potrebbero essere *potenzialmente* `{java}equals()` 
+
+Quando *sovrascriviamo* `{java}equals()` dobbiamo necessariamente anche sovrascrivere `{java}hashCode()` , e viceversa
 ## String class
+
+La classe `{java}String` rappresenta una stringa di caratteri in java 
+
+
 
 >[!todo]
 > arrivati a slide 17 pwp Lecture11
