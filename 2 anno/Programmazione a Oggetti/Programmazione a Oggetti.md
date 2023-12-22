@@ -1325,7 +1325,43 @@ e = Double.valueOf(f).floatValue(); //double -> float
 Esempio di errori in java : 
 + Accedere ad una reference nulla
 + Divisione per 0
-+ Accedere all'array in un indice 
++ Accedere all'array in un indice fuori dai limiti 
++ Allocare memoria quando non ne abbiamo disponibile
+
+Vi sono differenti livelli di severità dipendenti dal contesto
+
+Gli errori sono rappresentati da *eccezzioni* che vengono lanciate quando non possiamo procedere con l'esecuzione normale
+
+**Esempio** 
+
+1. Viene lanciata un'eccezzione 
+2. La normale esecuzione è sospesa 
+3. L'eccezzione attraversa tutti lo stack delle chiamate 
+4. Un errore con un messaggio viene riportato oltre che al completo stack delle chiamate 
+
+### Throwable
+
+Lo statement `{java}throw` ( usato per lanciare un'eccezione ) può lanciare solo oggetti `{java}Throwable` 
+
+Gli oggetti che estendo `{java}Throwable` rappresentano i diversi tipi di errori che si possono presentare durante l'esecuzione 
+
+La *classe* `{java}Throwable` ha un metodo per creare un messaggio , stamparlo etc...
+
+Si possono definire nuove eccezzioni estendendo `{java}Throwable` direttamente o indirettamente che possono implementare la propria interfaccia  
+
+Per dichiarare una eccezione all'interno di un metodo dobbiamo : 
++ dichiarare che quel metodo lancia una determinta eccezione
+	`{java}int race(...) throws <exc1>, <exc2>`
+
+Anche i metodi che chiamano questo metodo devono dichiarare che lanciano le eccezioni del metodo chiamato
+
+
+
+**Commenting**
+
+Essendo che le eccezioni fanno parte dell'interfaccia queste devono essere documentate all'interno del *javadoc*
+
+`{java} @throws <exception>`  
 
 
 
