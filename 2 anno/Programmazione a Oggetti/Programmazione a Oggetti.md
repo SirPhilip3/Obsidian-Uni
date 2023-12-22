@@ -1205,7 +1205,21 @@ Quando *sovrascriviamo* `{java}equals()` dobbiamo necessariamente anche sovrascr
 
 La classe `{java}String` rappresenta una stringa di caratteri in java 
 
+Contiene come campo un array di caratteri , ogni volta che dichiariamo una stringa con `{java}" "`  istanziamo un oggetto di tipo `{java}String`
 
+>[!note] 
+>Le stringhe sono *immutabili* , per questo ogni qualvolta chiamiamo un metodo di `{java}String` questo non modifica la stringa stessa 
+>
+
+Questa qualità delle stringhe fa in modo che le stringhe possano essere scambiate tra vari oggetti ( questo viene fatto per ragioni di performance in quanto le stringhe sono uno degli oggetti più usati )
+
+La classe `{java}StringBuffer` supporta invece stringhe *mutabili*
+
+La classe stringa supporta la concatenzione di stringhe attravero l'operatore `{java}+` , questo corrisponde alla chiamata a funzione `{java}s1.concat(s2)` che restituisce una nuova stringa ( `{java}s1` non viene modificata ) creata aggiungendo ad un `{java}StringBuffer` i char presenti in `{java}s1` e `{java}s2`
+
+### toString()
+
+Il metodo `{java}toString()` presente nella classe `{java}Object` ritorna la rappresentazione in formato `{java}String` di un oggetto 
 
 >[!todo]
 > arrivati a slide 17 pwp Lecture11
@@ -2558,6 +2572,12 @@ dependencies
 
 testImplementatio -> only when testing
 testRuntimeOnly -> quando eseguo il codice
+
+per evitare clutterning del codice qunado in production
+
+## 22/12/2023
+
+cache delle librerie pef fare in modo di non dovrer riscaricare ogni volta se non funziona delete form cache
 
 
 
