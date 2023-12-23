@@ -1488,6 +1488,65 @@ public double getFuelType(){
 }
 ```
 
+Si possono creare nuove *annotations* attraverso la seguente sintassi : 
+```java
+public @interface Speed{
+	String type() default "kmh";
+	boolean forward();
+}
+```
+
+Se non specifichiamo `{java}default` quando dichiariamo un'eccezione siamo costretti a definirne un valore
+
+```java
+@Speed(forward = true) private double speed;
+```
+
+### Target
+
+Se vogliamo applicare le annotazioni solo su una parte del codice possiamo specificarlo con `{java}@Target`
+
+**Esempio** :
+
+```java
+@Target{
+	ElementType.METHOD,
+	ElementType.FIELD,
+	ElementType.PARAMETER
+}
+public @interface Speed{...}
+```
+
+### Retention
+
+Possiamo determinare a che livello dobbiamo mantenere l'annotazione 
+
+Ci sono tre livelli di retention :
++ SOURCE
+	+ Se vogliamo che l'annotazione rimanga solo nel codice sorgente
++ CLASS
+	+ Se vogliamo che rimanga solo nel file .class
++ RUNTIME
+	+ Se vogliamo che rimanga anche a runtime
+
+**Esempio** :
+```java
+@Retention(RetentionPolicy.SOURCE)
+public @interface Speed{...}
+```
+
+>[!todo]
+>continue
+>#todo
+### JUnit
+
+Le annotazioni sono anche utilizzate da librerie esterne 
+
+### JAXB
+
+## Reflection
+
+## Library managment
 
 %%
 # Appunti
