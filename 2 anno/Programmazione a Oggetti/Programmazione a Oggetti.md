@@ -1355,14 +1355,138 @@ Per dichiarare una eccezione all'interno di un metodo dobbiamo :
 
 Anche i metodi che chiamano questo metodo devono dichiarare che lanciano le eccezioni del metodo chiamato
 
-
-
 **Commenting**
 
 Essendo che le eccezioni fanno parte dell'interfaccia queste devono essere documentate all'interno del *javadoc*
 
-`{java} @throws <exception>`  
+`{java} @throws <exception>`   o `{java}@exception <exception>`
 
+#### Ovveriding
+
+Quando sovrascrivo un metodo devo assicurarmi che le eccezioni che lancia il metodo sovrascritto siano le stesse , un sottoinsieme o un sottotipo delle eccezzioni del metodo originale 
+
+#### Checked and unchecked exceptions 
+
+Vi sono 2 tipi di eccezioni che possono essere lanciate :
++ *Unchecked* : non devono essere dichiarate ed estendono `{java}Error` e `{java}RuntimeException`
++ *Checked* : devono essere dichiarate all'interno del metodo , estendono `{java}Exception` ma non `{java}RuntimeExcception` 
+
+Le eccezioni *uncheched* vengono usate quando c'è un errore all'interno della logica del programma dalla quale *non possiamo recuperare* e dovrebbero causare la terminazione del progamma poichè il runtime environment potrebbe essere compromesso
+
+>[!warning] 
+>Le eccezioni *unchecked* non dovrebbero essere mai lanciate dal programma solo dalla JVM o la standard library
+
+#### Catching exceptions
+
+Si le eccezioni *checked* che le *unchecked* devono essere *catturate* ( *caught* ) 
+
+Il blocco `{java}try{...} catch(...){...}` specifica il codice da eseguire se un'eccezione viene lanciata all'interno del codice controllato dal `{java}try` 
+
+`{java}catch{<exc-type> e}` viene eseguito solamente se il blocco `{java}try` lancia un'eccezione sottotipo di `{java}<exc-type>` 
+
+>[!note]
+>Mai catturare eccezioni generiche come : `{java}Throwable , Exception , Error , ...` 
+>I blocchi `{java}catch` non dovrebbero essere vuoti
+
+
+Esiste inoltre il blocco `{java}finally` che viene eseguito in qualunque caso , sia che un'eccezione sia stata lanciata che no
+
+Normalmente utilizzato per riportare lo stato del sistema ad punto accettabile , es chiudere le risorse IO aperte 
+
+>[!note] 
+>Il `{java}finally` viene eseguito anche se è presente un `{java}return` all'interno di un `{java}catch`
+>Se però `{java}finally` contiene un `{java}return` oppure lancia esso stesso un'eccezione gli altri valori di ritorno o le altre eccezioni lanciate vengono scartate
+
+**Esempio** :
+
+```java
+try{
+	<body>
+}
+catch( <exc-type> e ){
+	<catch-body>
+}
+finally{
+	<finally-body>
+}
+```
+
+Esecuzione : 
+1. Esegui il body del `{java}try`
+2. Se viene lanciata un'eccezione che è un sottotipo di `{java}exc-type`
+	1. Esegui `{java}catch-body`
+	2. Esegui `{java}finally-body` sia in caso di esecuzione normale che eccezionale
+	3. Continua la normale esecuzione del programma o rilancia l'eccezione in base a cosa succede nel `{java}catch-body`
+3. Se viene lanciata un'eccezione che non è sottotipo
+	1. Esegui `{java}finally-body`
+	2. L'eccezione viene propagata al livello superiore
+4. Se non viene lanciata nessuna eccezione esegui `{java}finally-body` e continua l'esecuzione normale
+
+#### Chains
+
+Se un'eccezione è causata da un'altra eccezione si può creare una catena di eccezioni passando per parametro alla eccezione causata l'eccezione che la causa 
+
+**Esempio** : 
+```java
+try {
+	...
+}catch( NegativeSpeedException e ){
+	throw new IllegalArgumentException("msg" , e); // ho passato come causa NegativeSpeedException
+}
+```
+
+>[!warning]
+>La causa di un'eccezione può essere settata solo una volta , la seconda volta fallirà
+## Assertions
+
+Le *Assertions* controllano se una condizione è vera , il codice può continuare l'esecuzione anche se l'*asserzione* non è verificata 
+
+**Esempio** :
+
+`{java}assert <condition> :<message>`
+
+Di default le *assertion* non sono controllate , vengono abilitate attraverso il flag `{java}-ea` nel compiler 
+Quando sono abilitate se l'asserzione fallisce viene generata l'eccezione `{java}AsserionError` 
+
+## Annotations
+
+Le *annotazioni* consentono l'aggiunta di informazioni strutturate al codice 
+A differenza dei commenti possono essere trattenuti dal compilatore 
+
+Le *annotazioni* possono essere aggiunte a : 
++ Classi 
++ Campi
++ Metodi e Costruttori
++ Parametri e Variabili locali
+
+**Esempio**
+
+`{java}@Override`
+
+L'informazione che stiamo *overridando* questo metodo è disponibile al compilatore e questo gli consente di lanciare un *warning* nel caso in cui in realtà non stiamo realmente *overridando* quel metodo ;
+```java
+public class Vehicle{
+	@Override
+	public int hashCode(int i){...}// questo metodo non overrida hashCode in quanto hashCode non deve avere argomenti
+}
+```
+
+`{java}@Deprecated`
+
+Viene utilizzato per indicare che un elemento dell'intefaccia non dovrebbe essere utilizzato , questo è necessario poichè se viene eliminato il programma che utilizza il metodo non compilerebbe più :
+```java
+@Deprecated(since: '2.0') // indica la versione dalla quale è deprecated
+```
+
+`{java}@SuppressedWarnings`
+
+Viene utilizzata per fare in modo che alcuni warning non vengano riprodotti per quel pezzo di codice :
+```java
+@SuppressWarnings("unused")
+public double getFuelType(){
+	return this.fuelType.getFuelCost();
+}
+```
 
 
 %%
