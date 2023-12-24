@@ -1453,6 +1453,8 @@ Quando sono abilitate se l'asserzione fallisce viene generata l'eccezione `{java
 Le *annotazioni* consentono l'aggiunta di informazioni strutturate al codice 
 A differenza dei commenti possono essere trattenuti dal compilatore 
 
+Le annotazioni vanno separate in un file .java differente
+
 Le *annotazioni* possono essere aggiunte a : 
 + Classi 
 + Campi
@@ -1496,12 +1498,15 @@ public @interface Speed{
 }
 ```
 
+Gli attributi vanno definiti come metodi senza attributi con come tipo di ritorno il tipo della variabile
+
 Se non specifichiamo `{java}default` quando dichiariamo un'eccezione siamo costretti a definirne un valore
 
 ```java
 @Speed(forward = true) private double speed;
 ```
 
+Una *annotazione* può essere ispezionata dalla *reflection* a runtime
 ### Target
 
 Se vogliamo applicare le annotazioni solo su una parte del codice possiamo specificarlo con `{java}@Target`
@@ -1523,11 +1528,11 @@ Possiamo determinare a che livello dobbiamo mantenere l'annotazione
 
 Ci sono tre livelli di retention :
 + SOURCE
-	+ Se vogliamo che l'annotazione rimanga solo nel codice sorgente
+	+ Se vogliamo che l'annotazione rimanga solo nel codice sorgente ( eliminato dal compilatore )
 + CLASS
-	+ Se vogliamo che rimanga solo nel file .class
+	+ Se vogliamo che rimanga solo nel file .class ma non a runtime
 + RUNTIME
-	+ Se vogliamo che rimanga anche a runtime
+	+ Se vogliamo che rimanga anche a runtime ( potrebbero modificare il comportamento del programma a runtime )
 
 **Esempio** :
 ```java
@@ -1540,11 +1545,116 @@ public @interface Speed{...}
 >#todo
 ### JUnit
 
-Le annotazioni sono anche utilizzate da librerie esterne 
+*JUnit* è una libreria esterna di testing del codice che utilizza le *annotazioni*
+
+**Esempio** :
+
++ `{java}@Test` : Specifica un metodo di test , questo viene eseguito solo quando eseguiamo dei test ( testano il programma )
++ `{java}@BeforeEach` , `{java}@AfterEach` : Specifica cosa eseguire prima e dopo ogni singolo test ( utilizzato per preparare o resettare lo stato del programma )
++ `{java}@BeforeAll` , `{java}@AfterAll` : Specifica cosa eseguire prima e dopo tutti i test
 
 ### JAXB
 
+Acronimo per *Java Architecture for XML Binding* , faceva parte della libreira standard di java fino alla versione 8 poi separata con una libreria esterna : `{java}jaxb-core`
+
+Viene utilizzata per salvare in memoria classi sotto forma di file XML 
+
+Utilizza *annotazioni* per specificare che classi devono essere mantenute all'interno di un file XML 
+
+**Esempio** :
+
++ `{java}@XmlType` : Mappa un classe ad uno schema XML
++ `{java}@XmlRootElement` : Indica la classe come radice del file XML 
++ `{java}@XmlAttribute` : Mappa un campo o metodo getter / setter ad un attributo XML  
++ `{java}@XmlElement` : Mappa un campo o metodo getter / setter ad un elemento XML
+
+Per fare in modo che dei dati vengano salvati all'interno di un file XML dobbiamo definire anche un metodo *marshal* e *unmarshall* per la classe che vogliamo salvare in XML 
++ *marshal* : scarica lo stato dell'oggetto in un file XML
++ *unmarshall* : legge lo stato di un oggetto da un file XML e ritorna un oggetto con quello stato
+
+**Esempio** :
+
+```java
+static void marshal(FuelType fuelType) throws JAXBException {
+	JAXBContext context = JAXBContext.newInstance(FuelType.class);
+	Marshaller mar = context.createMarshaller(); 
+	mar.marshal(fuelType, new File("./fuelType.xml")); 
+} 
+
+static FuelType unmarshall() throws JAXBException, IOException {
+	JAXBContext context = JAXBContext.newInstance(FuelType.class);
+	return (FuelType) context.createUnmarshaller() 
+		.unmarshal(new FileReader("./fuelType.xml")); 
+}
+```
+
+>[!note]
+>JAXB ha bisogno di un costruttore senza nessun argoemento definito per funzionare 
+>Deve essere esposto all'interfaccia pubblica per funzionare ( non la best practice )
 ## Reflection
+
+La *riflessione* permette di accedere e usare programmaticamente i campi , metodi e costruttori delle classi caricate fino a quel momento in memoria 
+
+La riflessione è implementata da `{java}java.lang.reflect` che forniace varie classi per accedere alle diverse parti di una classe 
+### Class class
+
+`{java}java.lang.class` è il principale punto di inizio della *reflection* , questa classe ha il compito di rappresentare tutti i tipi presenti all'interno del nostro programma 
+
+Per ottenere un'istanza di `{java}Class` possiamo utilizzare :
++ `{java}Object.getClass` : ci permette di ottenere oggetti `{java}Class` che rappresentano tipi concreti di oggetti istanziati
++ `{java}<type_name>.class` : ci permette di ottenere oggetti `{java}Class` anche di oggetti non istanziabili ( es : tipi primitivi , interfacce , classi astratte etcc )  
+
+La classe `{java}Class` fornisce diversi metodi : 
++ `{java}isPrimitive` , `{java}isInterface` , `{java}isAnnotation` , `{java}getModifiers` , etcc
+	Ci permettono di ottenere informazioni riguradanti la *definizione* del tipo
++ `{java}getInterface` , `{java}getSuperclass` , `{java}getPackage` , etcc
+	Ci permettono di ottenere informazioni riguardanti alla *gerarchia* del tipo
++ `{java}getField` , `{java}getMethods` , `{java}getConstructors` , etcc
+	Ritornano tutti i campi , metodi e costruttori accessibili ( public )
++ `{java}getDeclaredFields` , `{java}getDeclaredMethods` , `{java}getDeclaredConstructors` 
+	Ritornano tutti i campi , metodi e costruttori definiti ( anche quelli private )
+
+**Esempio** : 
+
+```java
+Class<Vehicle> c = Vehicle.class; 
+for(Constructor t : c.getDeclaredConstructors()) 
+	System.out.println(t); // prints all declared constructors of Vehicle
+for(Method m : c.getDeclaredMethods()) 
+	System.out.println(m); // prints all declared methods of Vehicle
+for(Field f : c.getDeclaredFields()) 
+	System.out.println(f); // prints all declared fields of Vehicle
+	// stamperà anche il campo $assertionAnabled se abbiamo abilitato le assertion dal compiler , questo campo viene aggiunto dal compiler per indicare che le assertion sono attivate
+System.out.println(c.getSuperclass()); // get the superclass of Vehicle
+System.out.println(c.getPackage()); // get the package of Vehicle 
+```
+
+### Field class
+
+Questa classe ci dà accesso sia in lettura che scrittura di un campo 
+
+Possiamo leggere i campi attraverso dei getters per i vari tipi : `{java}get` , `{java}getDouble/Int/..`
+Possiamo scrivere i vari campi con : `{java}set` , `{java}setDouble/Int/..`
+
+Posso inoltre ricavare altre informazioni come : `{java}getModifiers` , `{java}getType` etcc
+
+Se un campo è settato privato e non possiamo scriverlo possiamo renderlo accessibile attraverso `{java}setAccessible` 
+
+**Esempio** :
+
+```java
+Car c = new Car(0 , null);
+Class classCar = c.getClass();
+Class classVehicle = classCar.getSuperclass();
+Field speed = classVehicle.getDeclaredField("speed"); // se non torvato NoSuchFieldException
+// se speed è private possiamo scrivere speed.setAccessible(true) per renderlo accessibile
+speed.setDouble(c,10.0);
+```
+### Method class
+
+Questa classe ci permette di accedere ad 
+
+### Constructor class
 
 ## Library managment
 
