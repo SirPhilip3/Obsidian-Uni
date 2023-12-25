@@ -1864,7 +1864,18 @@ In generale velgono i seguenti risultati :
 
 ### Media Campionaria
 
+Siano $X_1,\dots,X_n$ variabili aleatorie indipendenti e tutte con la stessa distribuzione 
 
+La *media campionatoria* si definisce come :
+$$\overline X_n = \frac{\sum_iX_i}{n}$$
+**Media**
+$$\mathbb{E}[\overline X_n]=\mathbb{E}\bigg[\frac{\sum_iX_i}{n}\bigg]=\frac{\sum_i\mathbb{E}[X_i]}{n}=\frac{n\mu}{n}=\mu$$
+**Varianza**
+$$Var[\overline X_n]=Var\bigg[\frac{\sum_iX_i}{n}\bigg]=\frac{\sum_iVar[X_i]}{n^2}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}$$
+
+### Disuguaglianza di Chebyshev
+
+Sia $X$ una variabile aleatoria con valore atteso $\mathbb{E}[X]$ e $Var[X]<+\infty$ allora $\forall \epsilon > 0$
 
 ### Catene di Markov
  
