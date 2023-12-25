@@ -1875,8 +1875,77 @@ $$Var[\overline X_n]=Var\bigg[\frac{\sum_iX_i}{n}\bigg]=\frac{\sum_iVar[X_i]}{n^
 
 ### Disuguaglianza di Chebyshev
 
-Sia $X$ una variabile aleatoria con valore atteso $\mathbb{E}[X]$ e $Var[X]<+\infty$ allora $\forall \epsilon > 0$
+Sia $X$ una variabile aleatoria con valore atteso $\mathbb{E}[X]$ e $Var[X]<+\infty$ allora $\forall \epsilon > 0$ :
+$$\mathbb{P}[|X-\mathbb{E}[X]|>\epsilon]\le \frac{Var[X]}{\epsilon^2}$$
+**Esempio** :
 
+Il numero di richieste giornaliere di collegamento ad un server è una variabile aleatoria $Y$ con valore atteso 130 e varianza 50 .
+Qual'è la probabilità che in un giorno si colleghino fra i 100 e i 160 clienti ?  
+$$\mathbb{P}[100\le Y\le160]=\mathbb{P}[|Y-130|\le 30]\ge 1-\frac{50}{30^2}=0.9444$$
+### Convergenza di variabili aleatorie
+
+Sia $X_1,\dots,X_n$ una sequenza di variabili aleatorie con funzioni di ripartizione $F_n$ e $X$ un'ulteriore variabile aleatoria con funzione di ripartizione $F$ 
+
++ **Converge in probabilità** : 
+	Diciamo che $\{X_n\}$ *converge in probabilità* a $X$ e scriviamo $X_n\overset{p}\rightarrow X$ se : 
+	$$\mathbb{P}[|X_n-X|>\epsilon] \rightarrow 0, \quad \forall\epsilon>0$$
++ **Converge in distribuzione**
+	Diciamo che $\{X_n\}$ *converge in distribuzione* a $X$ e scriviamo $X_n\overset{d}\rightarrow X$ se in ogni punto $x$ di continutà per $F$ :
+	$$F_n(x)\rightarrow F(x)$$
++ **Converge in quasi ceramente o con probabilità 1**
+	Diciamo che $\{X_n\}$ *converge in quasi certamente o con probabilità 1* a $X$ e scriviamo $X_n\rightarrow X$ se:
+	$$\mathbb{P}[X_n\rightarrow X]=1$$
+>[!todo]
+>Recheck
+### Legge dei grandi numeri ( LGN )
+
+#### Legge debole
+
+Sia $X_1,\dots,X_n$ una sequenza di varaibili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ e $Var[X_i]=\sigma^2 < +\infty$ allora :
+$$\overline X_n \overset{p}\rightarrow \mu$$
+Ossia la media campionatoria di $n$ variabili aleatorie identicamente distribuite corrisonde al valore atteso della distribuzione dalla quale sono campionate 
+
+Questo può essere trovato utilizzando la disuguaglianza di *Chebyshev* applicata alla media campionatoria :
+$$\mathbb{P}\Big[|\overline X_n - \mu |>\epsilon\Big]\le \frac{Var\Big[\overline X_n \Big]}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2}\rightarrow 0$$
+#### Legge forte
+
+Sia $X_1,\dots,X_n$ una sequenza di varaibili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ allora : 
+$$\overline X_n \rightarrow \mu \quad \text{quasi certamente}$$
+**Esempio** : 
+
+Siamo interessati all'evento che venga estratto il 53 alla roulette . Indichiamo con $X_i$ la variabile binaria che vale 1 se all'$i$-esima estrazione esce il numero 53 e 0 altrimenti , abbiamo qundi :
+$$X_i\sim\mathcal{B}(1, p = 1/90)$$
+Per la lagge dei grandi numeri ci aspettiamo che la frequenza realtiva delle volte che si estrae il 53 si avvicini sempre più a $p$ al crescere del numero di estrazioni $n$ . Infatti :
+$$\frac{\sum_{i=1}^nX_i}{n}\overset{p}\rightarrow\mathbb{E}[X_i]=p=1/90$$
+>[!note]
+>La probabilità di estrarre un 53 ad ogni estrazione non cambia acnche quando non si osserva il 53 per molto tempo
+### Teorema del limite centrale ( TLC )
+
+Sia $X_1,\dots,X_n$ una sequenza di varaibili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ e $Var[X_i]=\sigma^2 < +\infty$ allora : 
+$$\frac{\overline X_n - \mu}{\sigma/\sqrt{n}}\overset{d}\rightarrow \mathcal{N}(0,1)$$
+Oppure :
+$$\frac{\sum_{i=1}^nX_i- n\mu}{\sigma\cdot \sqrt{n}}\overset{d}\rightarrow \mathcal{N}(0,1)$$
+Ci permette nella pratica di approssimare la distribuzione della media campionaria ( o di una somma ) con la distribuzione normale : 
+$$\overline X_n\sim \mathcal{N}(\mu, \sigma^2/n)$$
+Ovvero :
+$$\sum_{i=1}^nX_i \sim \mathcal{N}(n\mu, n \sigma^2)$$
+>[!note]
+>L'approssimazione normale della binomiale altro non è che l'applicazione del TLC alla somma di variabili aleatorie di Bernuolli 
+
+**Esempio** :
+Per la *Poisson*
+
+Il numero di studenti iscritti a un corso di laurea segue una distribuzione di Poisson di media 100 
+Se gli iscritti superano i 120 bisogna sdoppiare i corsi , qual'è la probabilità che ciò accada ?
+
+$X\sim Po(100)$ perciò :
+$$\mathbb{P}[X\ge 120] = 1 - \text{ppois(119 , 100) = 0.0282}$$
+Possiamo anche vederla come una somma di 100 variabili aleatoria $Po(1)$ e la sua distribuzione si può dunque approssimare con quella normale in virtù del TLC
+
+Con la correzione per continuità otteniamo :
+$$\mathbb{P}[X\ge 120]=\mathbb{P}[X\ge 119.5] = \mathbb{P}\bigg[\sum_{i}X_i\ge 119.5 \bigg]$$
+$$=\mathbb{P}\Bigg[\mathbb{Z}\ge \frac{119.5-100}{\sqrt{100}}\Bigg]$$
+$$=1-\Phi(1.95)=0.0256$$
 ### Catene di Markov
  
 Una *catena di Markov* è un modello per descrivere un sequenza di eventi per i quali la probabilità per ogni evento dipende dalla probabilà del precedente
