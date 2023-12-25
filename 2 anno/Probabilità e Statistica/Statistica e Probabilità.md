@@ -1820,19 +1820,54 @@ Siano $X \sim \mathcal{N}(\mu_X , \sigma^2_X), Y \sim \mathcal{N}(\mu_Y , \sigma
 Allora possiamo scrivere in termini matriciali la distribuzione bivariata nel seguente modo 
 $$\begin{bmatrix} X \\ Y \end{bmatrix}\sim \mathcal{N_2 \Bigg(\begin{bmatrix} \mu_X \\ \mu_Y  \end{bmatrix}, \begin{bmatrix} \sigma^2_X & \sigma_{X,Y} \\ \sigma_{X,Y} & \sigma^2_{Y}\end{bmatrix}\Bigg)}\sim \mathcal{N}_2(\mu, \sum)$$
 La densità di $\textbf{W}(X,Y)$ posot $(x,y)=\textbf{w}$ è 
-$$f(\textbf{w}=\frac{1}{2\pi \sqrt{|\sum|}}e^{-\frac{1}{2}(\textbf{w}-\mu)^T\sum^{-1}(\textbf{w}-\mu)}$$
+$$f(\textbf{w})=\frac{1}{2\pi \sqrt{|\sum|}}e^{-\frac{1}{2}(\textbf{w}-\mu)^T\sum^{-1}(\textbf{w}-\mu)}$$
 Svolgendo i calcoli abbiamo :
 
-$$f(x,y)=\frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}$$
+$$f(x,y)=\frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}\dots$$
+
+![[Pasted image 20231225121101.png]]
 
 La *correlazione* indica quanto la distribuzione si "restringe"
+
+![[Pasted image 20231225121114.png]]
+
+### Distribuzione della somma di variabili aleatorie
+
+Il calcolo della distribuzione della somma di variabili aleatorie è complessa
+#### Somma di Poisson indipendenti
+
+Siano $X$ e $Y$ due variabili aleatorie *indipendenti* con distribuzione di *Poisson* di media rispettivamente $\lambda$ e $\mu$
+
+Troviamo la distribuzione di $Z=X+Y$
+$$\mathbb{P}[Z=z]=\sum_{x=0}^z\mathbb{P}[X=x,Y=z-x]=\sum_{x=0}^z\mathbb{P}[X=x]\mathbb{P}[Y=z-x]$$
+$$=\sum_{x=0}^z \frac{\lambda^x}{x!}e^{-\lambda}\frac{\mu^{z-x}}{(z-x)!}e^{-\mu}=\frac{e^{-(\lambda+\mu)}}{z!}\sum_{x=0}^z\frac{z!}{x!(z-x)!}\lambda^x\mu^{z-x}$$
+$$=\frac{e^{-(\lambda+\mu)}}{z!}(\lambda+\mu)^z$$
+Che equivale a $Z\sim \mathcal{P}(\lambda +\mu)$
+
+#### Somma di esponenziali indipendenti
+
+Siano $X$ e $Y$ due variabili aleatorie *indipendenti* con distribuzione *Esponenziale* di parametro $\lambda$ 
+
+Troviamo la distribuzione di $Z=X+Y$
 
 >[!todo]
 >completa -> 
 >#todo
 
-### Catene di Markov
+#### In generale
 
+In generale velgono i seguenti risultati :
++ La somma di $n$ variabili aleaotrie $Bin(1,p)$ indipendenti è una binomiale $Bin(n,p)$
++ La somma di $n$ variabili aleatorie $Po(\lambda_i)$ , $i=1,\dots,n$ indipendenti è una $Po(\sum_i \lambda_i)$ 
++ La somma di $n$ variabili aleaotrie $Exp(\lambda)$ idipendenti è una $Ga(n,\lambda)$
++ La somma di $n$ variabili aleatorie $N(\mu_i , \sigma_i^2)$ indipendenti è una Normale $N(\sum_i \mu_i , \sum_i \sigma_i^2)$ 
+
+### Media Campionaria
+
+
+
+### Catene di Markov
+ 
 Una *catena di Markov* è un modello per descrivere un sequenza di eventi per i quali la probabilità per ogni evento dipende dalla probabilà del precedente
 
 Sia $X_0,X_1,X_2,\dots$  una sucessione di variabili casuali ( discrete ) a valori in un insieme finito $S = \{1,2,\dots,M\}$ detto *spazio degli stati*
