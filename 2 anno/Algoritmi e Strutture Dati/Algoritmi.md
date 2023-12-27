@@ -762,7 +762,7 @@ $$c\ge 1$$
 Quindi se vogliamo che la proprietà valga da 1 in poi la costante $c$ deve essere $\ge$ 1
 
 Passando quindi al caso con $n\ge 2$ abbiamo che :
-$$T(n)=T(\lfloor\frac{n}{2}\rfloor)+n$$
+$$T(n)=T\bigg(\bigg\lfloor\frac{n}{2}\bigg\rfloor\bigg)+n$$
 Questo vale se consideriamo che l'ipotesi induttiva vale per tutti gli $n-1$
 
 Sostituendo quindi all'interno dell'*ipotesi induttiva* abbiamo :
@@ -901,7 +901,7 @@ Come si confronta $n^d$ a $f(n)$
 + $g(n)=n^{\frac{1}{2}}=\sqrt n$
 + $f(n)=1$ 
 
-Poichè $\sqrt n$ ( parte ricorsiva ) domina su $f(n)=1$ ( parte di $split+merge$ ) siamo nel caso in cui la parte ricorsiva domina sullo $split+merge$
+Poichè $\sqrt n$ ( parte ricorsiva ) domina su $f(n)=1$ ( parte di $split+merge$ ) siamo nel caso in cui la parte *ricorsiva* domina sullo $split+merge$
 
 Troviamo quindi $\epsilon$
 $$1=O(n^{\frac{1}{2}-\epsilon})$$

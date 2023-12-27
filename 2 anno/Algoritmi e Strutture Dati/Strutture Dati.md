@@ -893,7 +893,7 @@ Dove :
 + $d$ : tempo necessario per la visita del nodo ( costante )
 
 >[!warning]
->$T(n)!=2\cdot T(\frac n 2)$
+>$T(n)\ne2\cdot T(\frac n 2)$
 >Questo avviene solo se i sotttoalberi destri e sinistri sono perfettamente distribuiti ( l'albero è bialanciato ) 
 
 Non essendo nella forma in cui la ricorsione può essere risolta con il teorema *Master* utilizziamo il *metodo di sostituzione*
@@ -909,7 +909,7 @@ Procediamo quindi alla dimostrazione per *induzione completa* su $n$
 	$$T(0)=a\cdot n + b=a\cdot 0 +b = b$$
 	Ponendo infine $b=c$ abbiamo verificato il *caso base*
 
-  **Passo induttivo** :
+**Passo induttivo** :
 	Assumiamo che per ogni $m\lt n$ vale che $T(m)=a\cdot m +b$ 
 	Lo dimostro per $n$ 
 	$$
@@ -1294,9 +1294,6 @@ Tree_insert(Tree T, Node z)
 	Il ciclo `{c}while` costa $O(h)$ , poichè sto scendendo dalla radice la profondità massima a cui potrei scendere è $h$ ; le altre istruzioni sono semplici assegnamenti e non influiscono nella complessità totale
 
 La complessità dell'algoritmo risulta quindi essere : $O(h)$
-
->[!todo]
-
 #### Cancellazione
 
 Prima di costruire un algoritmo teniamo presente la seguente *proprietà* :
