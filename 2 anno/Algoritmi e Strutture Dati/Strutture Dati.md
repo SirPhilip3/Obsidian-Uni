@@ -528,11 +528,10 @@ Sia $T=(N, A)$ un albero con $n$ nodi numerati da 0 a $n-1$ rappresentabile come
 
 Questo può quindi essere rappresentato nel seguente modo :
 
-|P.info|A|B|C|D|E|F|G|H|I|
-|-|-|-|-|-|-|-|-|-|-|
-|P.parent|-1|0|0|0|1|1|3|6|6|
-|Indice|0|1|2|3|4|5|6|7|8|
-
+| P.info | A | B | C | D | E | F | G | H | I |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| P.parent | -1 | 0 | 0 | 0 | 1 | 1 | 3 | 6 | 6 |
+| Indice | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 #### Proprietà 
 
 + $\forall\ v \in [0 , n-1]$
