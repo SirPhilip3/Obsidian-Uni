@@ -761,7 +761,7 @@ padre(Tree P, Node v)
 ##### Figli
 
 ```c
-padre(Tree P, Node v)
+figli(Tree P, Node v)
 	l = crealista()
 	iter = v.left_child
 	while iter != NIL
