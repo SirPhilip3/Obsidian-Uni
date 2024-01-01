@@ -661,7 +661,7 @@ $$\mathbb{E}[X]=\int_\mathbb{R}xf(x)\ dx$$
 Abbiamo una variabile aleatoria continua $X$ con densità : $$f(x)=2e^{-2x}\mathbb{1}_{(0, +\infty)}(x)$$
 si ha :
 $$\mathbb{E}[X]=\int_0^{+\infty} 2xe^{-2x}\ dx = \frac1 2$$
-###### Propri
+###### Proprietà
 
 Il *valore atteso* ha le seguenti proprietà :
 + $\mathbb{E}[a]=a$   dove $a$ è una costante
