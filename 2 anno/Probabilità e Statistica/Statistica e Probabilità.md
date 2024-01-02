@@ -2031,7 +2031,7 @@ Si dice allora che la catena di *Markov* è una *catena stazionaria*
 Avendo la catena vista in precedenza possiamo calcolare una sua distribuzione stazionaria nel seguente modo :
 
 Dobbiamo porre la condizione : $\pi P = \pi$ con $\sum_{i=1}^3\pi_i=1$ 
-$$\begin{cases}1/2\pi_1+1/2\pi_2+1/4\pi_3=\pi_1 \\ 1/4\pi_1 + 0pi_2 + 1/4\pi_3=\pi_2 \\ 1/4\pi_1+1/2\pi_2+1/2\pi_3=\pi_3 \\ \pi_1+\pi_2+\pi_3=1\end{cases}$$
+$$\begin{cases}1/2\pi_1+1/2\pi_2+1/4\pi_3=\pi_1 \\ 1/4\pi_1 + 0\pi_2 + 1/4\pi_3=\pi_2 \\ 1/4\pi_1+1/2\pi_2+1/2\pi_3=\pi_3 \\ \pi_1+\pi_2+\pi_3=1\end{cases}$$
 Risolvendo il sistema abbiamo :
 $$\pi = \begin{pmatrix}2/5 & 1/5 & 2/5\end{pmatrix}$$
 #### Passeggiata aleatoria
