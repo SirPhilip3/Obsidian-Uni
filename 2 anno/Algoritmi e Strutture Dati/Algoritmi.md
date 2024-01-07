@@ -800,7 +800,21 @@ Perchè il *teorema* possa essere applicato dobbiamo avere soddifatte le seguent
 Utilizzeremo inoltre un paramtro $d$ :
 $$d=\log_b a$$
 Il *teorema* comprende 3 casi : 
-#### $split+merge \gt \text{chiamate ricorsive}$
+#### $split+merge \lt \text{chiamate ricorsive}$ 1 caso
+
+La complessità di $split+merge$ è *minore* della complessità delle *chiamate ricorsive*
+
+$$f(n)=O\Big(n^{d-\epsilon}\Big)$$
+Se $f(n)$ è $O(n^{d-\epsilon})$  allora per $\epsilon \gt 0$ avremo che 
+$$T(n)=\Theta\Big(n^d\Big)$$
+Ossia la parte ricorsiva domina sulla parte di $split+merge$ 
+#### $split+merge = \text{chiamate ricorsive}$ 2 caso
+
+La complessità di $split+merge$ è *uguale* a quella delle *chiamate ricorsive*
+$$f(n)=\Theta\Big(n^d\Big)$$
+Ossia $f(n)$ ha complessità simile allo $split+merge$  , avremo la complessità come :
+$$T(n)=\Theta(n^d\cdot \log n)$$
+#### $split+merge \gt \text{chiamate ricorsive}$ 3 caso
 
 La complessità di $split+merge$ è *maggiore* della complessità delle *chiamate ricorsive*
 $$f(n)=\Omega\Big(n^{d+\epsilon}\Big)$$
@@ -811,20 +825,6 @@ $$a\cdot f\bigg(\frac{n}{b}\bigg)\le c \cdot f(n)$$
 ( questo verifica che il secondo livello di ricorsione per le $split+merge$ sia minore di del tempo di $f(n)$ )
 Verificata la condizione ausiliaria possiamo concludere che la complessità sarà :
 $$T(n)=\Theta(f(n))$$
-#### $split+merge \lt \text{chiamate ricorsive}$
-
-La complessità di $split+merge$ è *minore* della complessità delle *chiamate ricorsive*
-
-$$f(n)=O\Big(n^{d-\epsilon}\Big)$$
-Se $f(n)$ è $O(n^{d-\epsilon})$  allora per $\epsilon \gt 0$ avremo che 
-$$T(n)=\Theta\Big(n^d\Big)$$
-Ossia la parte ricorsiva domina sulla parte di $split+merge$ 
-#### $split+merge = \text{chiamate ricorsive}$
-
-La complessità di $split+merge$ è *uguale* a quella delle *chiamate ricorsive*
-$$f(n)=\Theta\Big(n^d\Big)$$
-Ossia $f(n)$ ha complessità simile allo $split+merge$  , avremo la complessità come :
-$$T(n)=\Theta(n^d\cdot \log n)$$
 #### Esempi
 
 ##### 1
