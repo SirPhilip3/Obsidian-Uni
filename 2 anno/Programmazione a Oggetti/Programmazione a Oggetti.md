@@ -206,7 +206,7 @@ In *byte code* il costruttore è identificato con `init` , `clinit` per i costru
 	class FuelTank{
 		double amount;
 		static int numberOfTanks;
-
+		
 		static void resetTanksCount(){
 			numberOfTanks=0;
 		}
@@ -280,12 +280,12 @@ Esistono anche i *modules* , sono un file con all'interno il nome delle classe w
 
 Riassunto :
 
-|-|Same class|Same package|Sottoclassi|Dappertutto|
-|---|---|---|---|---|
-|public|yes|yes|yes|yes|
-|protected|yes|yes|yes|no|
-|\<default\>|yes|yes|no|no|
-|private|yes|no|no|no|
+| - | Same class | Same package | Sottoclassi | Dappertutto |
+| ---- | ---- | ---- | ---- | ---- |
+| public | yes | yes | yes | yes |
+| protected | yes | yes | yes | no |
+| \<default\> | yes | yes | no | no |
+| private | yes | no | no | no |
 
 Esempio :
 
@@ -572,7 +572,7 @@ Un metodo è descritto da 2 parti :
 	+ altri modificatori ( static , abstract  )
 #### Method Overloading
 
-L'overloading di un metodo è differente dall' overriding in quanto abbiamo diversi metodi con lo stesso nome ma con *firme* ed *implementazioni* differenti
+L'overloading di un metodo è differente dall'overriding in quanto abbiamo diversi metodi con lo stesso nome ma con *firme* ed *implementazioni* differenti
 
 **Esempio** :
 
@@ -775,8 +775,7 @@ Bicycle b = (Bicycle) c1; // non è possibile una macchina non può essere una b
 Bicycle b1 = (Bicycle) v; // consentito ma crasha a runtime pichè v è veicolo con new Car() -> posso castarlo perè il tipo statico è veicolo ma il tipo dinamico è Car che non è compatibile con Bicycle
 ```
 
-### insta
-nceof
+### instanceof
 
 Per verificare il tipo *dinamico* usiamo la seguente espressione : `{java}<expr> instanceof <type>` 
 Ritorna `{java}true` se e solo se il tipo dinamico dell'espressione è un *sottotipo* del *tipo* dato
