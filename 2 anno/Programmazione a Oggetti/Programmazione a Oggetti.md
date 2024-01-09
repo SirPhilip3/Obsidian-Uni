@@ -1375,6 +1375,30 @@ Le eccezioni *uncheched* vengono usate quando c'è un errore all'interno della l
 >[!warning] 
 >Le eccezioni *unchecked* non dovrebbero essere mai lanciate dal programma solo dalla JVM o la standard library
 
+#### Custom Exception
+
+```java
+public class CustomException extends Exception{
+
+	public CustomException(){
+		super();
+	}
+	
+	public CustomException(String message){
+		super(message);
+	}
+	
+	public CustomException(String message, Throwable cause){
+		super(message, cause);
+	}
+	
+	public CustomException(Throwable message){
+		super(cause);
+	}
+
+}
+```
+
 #### Catching exceptions
 
 Si le eccezioni *checked* che le *unchecked* devono essere *catturate* ( *caught* ) 
