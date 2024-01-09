@@ -560,7 +560,7 @@ public class Car extends Vehicle {
 #### Method definition and signature
 
 Un metodo è descritto da 2 parti : 
-+ firma del metodo : 
++ *firma* del metodo : 
 	La *firma* contiene tutto quello che sappiamo quando chiamiamo un metodo :
 	+ Tipo del ricevitore 
 	+ Nome del metodo
