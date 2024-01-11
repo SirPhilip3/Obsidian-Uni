@@ -141,8 +141,6 @@ Una partizione *numerabile* può essere definita come :
 $$C_i\cap C_j = \emptyset\quad \forall i, j;\quad \bigcup_{i=1}^{\infty} C_i=\Omega$$
 Sciegliendo un qualsiasi *evento* A come unione *numerabile* delle sue intersezioni con gli elementi di una partizione abbiamo :
 $$A=\bigcup_{i=1}^{\infty}\space (A\cap C_i)$$
-
-
 #### Esempio
 
 **Fenomeno Aleatorio** : Studio del lancio di un dado 
@@ -483,7 +481,7 @@ Una variabile aleatoria associata ad un esperimento definisce dunque un nuovo *s
 Una variabile aleatoria *discreta* $X$ assume valori in un insieme numerabile ( o finito ) di punti : 
 $$\{x_1,x_2,\dots,x_i,\dots\}$$
 
-Ad ogni elemento del nuovo spazio campionatorio viene quindi asseganta una probabilità :
+Ad ogni elemento del nuovo spazio campionatorio viene quindi assegnata una probabilità :
 $$\mathbb{P}[X=x_i]=p_i, \quad \forall i =1,2,\dots$$
 Ogni probabilità $p_i$ deve rispettare le seguenti proprietà :
 + $0\le p_i \le 1$ : la probabilità per ogni evento deve essere compresa tra 0 e 1 
