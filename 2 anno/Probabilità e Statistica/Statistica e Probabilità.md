@@ -628,7 +628,7 @@ $$F(x)=\int_{-\infty}^{x} f(t) \ dt$$
 Una *costante caratteristica* o indice è un numero associato ad una variabile aleatoria o alla sua distribuzione di probabilità e sintetizza l'infromazione di interesse sul fenomeno rappresentato dalla variabile 
 
 Alcune *costanti caratteristiche* sono :
-+ Il *valore atteso* che è unindice di posizione ( media )
++ Il *valore atteso* che è un indice di posizione ( media )
 + La *varianza* che è un indice di dispersione
 + I *quantili* di una variabile aleatoria contengono informazioni sia sulla posizione che sulla forma di una distribuzione di probabilità
 
@@ -670,7 +670,7 @@ In particolare $\mathbb{E}[X-\mathbb{E}[X]]=0$
 
 ###### Varianza di una variabile aleatoria discreta
 
-Se $X$ è una varaibile aleatoria discreta con valori $\{x_1,x_2,\dots \}$ e funzione di probabilità $P(x_i)=p_i$ allora la *varianza* di $X$ è :
+Se $X$ è una variabile aleatoria discreta con valori $\{x_1,x_2,\dots \}$ e funzione di probabilità $P(x_i)=p_i$ allora la *varianza* di $X$ è :
 $$\text{Var}[X]=\sum_ix^2_ip_i-[\mathbb{E}[X]]^2$$
 **Esempio** :
 
@@ -704,7 +704,7 @@ La *moda* di una variabile aleatoria $X$ è il punto ( o i punti ) in cui la fun
 
 **Esempio** :
 
-La varaibile $X$ con densità $f(x)=2e^{-2x}\mathbb{1}_{(0, +\infty)}(x)$  ha come *moda* 0 , ha infatti il suo massimo nel limite destro di 0
+La variabile $X$ con densità $f(x)=2e^{-2x}\mathbb{1}_{(0, +\infty)}(x)$  ha come *moda* 0 , ha infatti il suo massimo nel limite destro di 0
 ##### Mediana
 
 La *mediana* di una variabile aleatoria $X$ è il minimo valore $m$ per cui 
@@ -1001,7 +1001,7 @@ Possiamo dimostrare che risulta essere una distribuzione vedendo che :
 $$\sum_{i=0}^{+\infty}\frac{\lambda^i}{i!}e^{-\lambda}=e^{-\lambda}\sum_{i=0}^{+\infty}\frac{\lambda^i}{i!}=e^{-\lambda}e^{\lambda}=1$$
 ##### Utilizzo
 
-La vaiabile di *Poisson* viene utilizzata come modello per il conteggio di un certo fenomeno di interesse in un determinato intervallo ( tempo , spazio etcc... ) 
+La variabile di *Poisson* viene utilizzata come modello per il conteggio di un certo fenomeno di interesse in un determinato intervallo ( tempo , spazio etcc... ) 
 Ad esempio : 
 + chiamate in arrivo ad un centralino in un certo intervallo di tempo
 + macchine transitanti ad un casello autostradale in un certo periodo del giorno 
@@ -1583,7 +1583,7 @@ $$\mathbb{P}[X\in A,Y\in B]=\int_B\Bigg(\int_A f(x,y)dx \Bigg)dy$$
 
 In particolare dalla *densità congiunta* si può ricavare la *funzione di ripartizione congiunta* : 
 $$F(x,y)=\mathbb{P}[X\le x, Y\le y]=\int_{-\infty}^y\int_{-\infty}^{x}f(s,t)ds\ dt$$
-Dalla *funzione di riaprtizione* si ottiene la *funzone di densità* : 
+Dalla *funzione di ripartizione* si ottiene la *funzone di densità* : 
 $$f(x,y)=\frac{d^2F(x,y)}{dx\ dy}$$
 
 Le *funzioni di densità marginali* si ricavano integrando la *densità congiunta* rispetto all'altra variabile :
@@ -1636,7 +1636,7 @@ f(x)=1-x
 
 ![[Pasted image 20231208162532.png]]
 
-Cosiderando questo esempio con 2 varaibili aleatorie *discrete* , per verficiare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddifino la seguente proprietà :
+Cosiderando questo esempio con 2 variabili aleatorie *discrete* , per verficiare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddifino la seguente proprietà :
 $$p(x,y)=p_X(x)p_Y(y)$$
 Nel nostro caso però non tutte le coppie soddisfano questa proprietà :
 $$p(1,1)=0.10\ne p_X(1)p_Y(1)=0.50\cdot 0.30$$
@@ -1730,11 +1730,10 @@ $$E[g(X,Y)]=\begin{cases} \sum_y\sum_x g(x,y)p(x,y) & \text{caso discreto} \\ \i
 ##### Somma
 $$\mathbb{E}[X+Y]=\mathbb{E}[X]+\mathbb{E}[Y]$$
 In generale nel caso avessimo delle somme avremmo :
-
 $$\mathbb{E}\Bigg[\sum_{i=1}^n a_iX_i\Bigg]=\sum_{i=1}^na_i\mathbb{E}[X_i]$$
 ##### Prodotto
 
-Se $X$ e $Y$ sono indipendenti aloora avremo che :
+Se $X$ e $Y$ sono indipendenti allora avremo che :
 $$\mathbb{E}[X\cdot Y]=\mathbb{E}[X]\cdot\mathbb{E}[Y]$$
 
 **Esempio** :
