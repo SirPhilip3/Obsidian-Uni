@@ -1563,3 +1563,10 @@ Per tradurre l'indirizzo virtuale in indirizzo fisico
 >[!todo]
 >memoria virtuale
 >#todo
+## File System
+
+## Ottimizzazione prestazioni memoria secondaria
+
+## Caso di studio Linux
+
+## Caso di studio Windows 8
