@@ -1557,7 +1557,9 @@ Per collegare gli indirizzi *virtuali* con quelli *fisici* esiste la **tabella d
 
 ![[Pasted image 20231219151848.png]]
 
-Per tradurre l'indirizzo virtuale in indirizzo fisico 
+Per tradurre l'indirizzo virtuale in indirizzo fisico la *MMU* ( *memory managment unit* ) riferisce alla tabella delle pagine per  
+
+
 
 
 >[!todo]
