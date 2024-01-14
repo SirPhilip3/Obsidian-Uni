@@ -1557,14 +1557,46 @@ Per collegare gli indirizzi *virtuali* con quelli *fisici* esiste la **tabella d
 
 ![[Pasted image 20231219151848.png]]
 
-Per tradurre l'indirizzo virtuale in indirizzo fisico la *MMU* ( *memory managment unit* ) riferisce alla tabella delle pagine per  
+Per tradurre l'indirizzo virtuale in indirizzo fisico l'*MMU* ( *memory managment unit* ) prende i bit relativi al numero di pagina e lo utilizza come indice per andare a cercare nella tabella delle pagine i bit corrispondenti alla pagina fisica ( viene aggiunto un bit per indicare se la pagina è presente o assente in memoria ( se assenente il sistema deve caricarla ) ) i bit trovati vengono quindi aggiunti all'offset presente nell'address iniziale ( 16 bit , 4 di pagina e 12 di offset ) 
 
+![[Pasted image 20240114180249.png]]
 
+Una righa della tabella delle pagine è costruita nel seguente modo :
+1. Numero di pagina fisica 
+2. Bit presenza , assenza in memoria 
+3. Bit di protezione ( che tipi di accesso sono permessi ) 
+	Si utilizzano 3 bit ( lettura , scrittura , esecuzione )
+4. Bit di modifica viene posto a 1 quando si scrive quella pagina 
+5. Bit usata indica quando si fa un riferimento ad una pagina 
+6. Bit per disabilitare la cache 
+### Mapping dei blocchi
 
+### TLB
 
->[!todo]
->memoria virtuale
->#todo
+### Tabella delle Pagine multilivello
+
+### Tabella inversa delle pagine
+
+### Condivisione in un sistema di paginazione
+
+### Sostituzione 
+
+### Paginazione a richiesta
+
+### Paginazione a previsione
+
+### Sostituzione di pagina
+
+#### RAND
+
+#### FIFO
+
+#### LRU
+
+#### NFU
+
+#### NRU
+
 ## File System
 
 ## Ottimizzazione prestazioni memoria secondaria
