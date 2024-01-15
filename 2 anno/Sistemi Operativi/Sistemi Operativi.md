@@ -1729,11 +1729,129 @@ Gli elementi che una *directory* memorizza sono quindi :
 + File name
 + Location ( *pathname* ( posizione logica ) o blocco fisico )
 + Dimensione
-+ Tipo (  )
++ Tipo ( data file / directory )
 + Tempo ultimo accesso
 + Tempo di ultima modifica e creazione 
 
+Operazioni che posso svolgere : 
++ Create 
++ Delete ( cancella una directory se vuota )
++ Opendir
++ Closedir
++ Readdir
++ Rename
++ Link ( permette di far apparire un file in diverse directory )
++ Unlink ( se non ci sono altri link il file viene cancellato )
 
+#### File System a livello singolo ( flat )
+
+Memorizza tutti i *file* in una sola *directory* 
+>[!warning]
+>Non possono esserci file con lo stesso nome
+
+Per trovare un file necessitiamo di svolgere una ricerca lineare ( scorrendo tutti i file presenti nella directory ) questo può portare a scarse prestazioni
+
+![[Pasted image 20240115171809.png]]
+
+#### File System gerarchico
+
+La *root* indica dove inizia la directory principale all'interno del dispositivo 
+La *directroy* *root* punta alle varie directory , ognuna delle quali contiene una riga per ciauscuno dei suoi *file*
+
+>[!warning]
+>Il nome dei file deve essere unico *solamente* all'interno di una determinata directory poichè il nome del file è formato dal *pathname* dalla *root* al file
+
+Es :
++ Windows : C:\\dir1\\nome_file
++ Unix : /dir1/nome_file
+
+![[Pasted image 20240115172600.png]]
+
+#### Working directory
+
+Semplifica la navigazione 
+Infatti fa in modo che se siamo all'interno di una directory tutti i nostri movimenti sono relativi al pathname della directory dove ci troviamo ( cammino *relativo* )
+
+#### Link
+
+Rappressenta un entry di una directory che fa riferimento ad un file o directory situata in un directory differente
+
+Vi sono 2 tipi di *Link* : 
++ **Soft Link** : la entry contiene il pathname per il file a cui vogliamo fare riferimento
+	Quando un file viene spostato nella memoria fisica non occorre aggiornare il link 
++ **Hard Link** : la entry specifica la posizione del file ( il numero di blocco ) sul dispositivo fisico di memoria 
+	Se cambia la posizione fisica di questi dati faremo riferimento a dati non validi mentre lo spostamento in una directory differente non influenzia il link
+
+>[!warning] 
+>Nel caso dei soft link se spostiamo il file in una nuova directroy dovremo aggiornare il link  
+
+![[Pasted image 20240115174732.png]]
+
+#### Metadata
+
+I metadata sono informazioni che proteggono l'integrità del file system ( non possono essere modificate direttamente dagli utenti )  
+
+**Super-blocco** :
++ Contiene tutte le infomazioni critiche per proteggere l'integrità del file system :
+	+ File System Identifier
+	+ Posizione dei blocchi di meoria liberi all'interno del dispositvo di memrizzazione
+	+ Posizione delle directory *root*
+	+ Tempo dall'ultima modifica 
+
+Per ridurre il rischio di perdita di dati i file system distribuiscono varie copie del *super-blocco* all'interno del dispositivo di memorizzazione 
+
+##### Open
+
+L'operazione di *open* di un file restituisce un descrittore di file 
+
+
+#### Mounting
+
+L'operazione *mount* 
++ combina più file system in un unico namespace in modo che possano essere riferiti da una singola directory radice 
++ Assegna una directory chiamato punto di mount presente nel file system originario alla *root* del file system montato 
+
+Per gestire i *mount* esistono tabelle di mount che contengono informazioni sulla posizione dei punti di mount e dei dispositivi ai quali puntano
+
+>[!note]
+>Quando un file system incontra un punto di mount si riferisce alla tabella di mount per determinare il dispositivo e il tipo di file system montato
+
+>[!warning]
+>Gli utenti possono creare solo *soft link* ai file di un file system montato ( non si possono creare *hard link* tra file systems )
+
+**Esempio** :
+![[Pasted image 20240115183622.png]]
+
+#### Organizzazione dei File
+
+Come sono disposti i record di un file in memoria secondaria ?
+
+Il disco è diviso in partizioni :
++ Settore 0 : *MBR* ( *master boot record* ) utilizzato per l'avvio del computer
++ *Tabella delle partizioni* : Una sola partizione è attiva alla volta 
+	+ Il primo blocco della partizione contiene codice per avviare il sistema operativo ( *blocco di boot* )
+
+![[Pasted image 20240115184147.png]]
+
+#### Allocazione dei File
+
+Problema dell'allocazione dei file simile a quello dell'allocazione nella memoria principale con multiprogrammazione a partizioni variabili
+
+Poichè i file tendono a crescere o ridursi nel tempo tendiamo a utilizzare sistemi di allocazione *non contigui* 
+
+##### Allocazione contigua
+
+Alloca i dati dei file ad indirizzi *contigui* sul dispositivo di memoria 
+
+| Vantaggi | Svantaggi |
+| ---- | ---- |
+| record logici sucessivi sono tipicamente fisicamente adiacenti l'uno all'altro | Frammentazione esterna |
+| Semplice memorizzazione | Scarse prestazioni se i file crescono o si riducono nel tempo |
+| Conviene nel caso in cui abbiamo memorizzazione statica ( DVD , CD ) | Se un file cresce oltre le dimensioni specificate necessitiamo di spostarlo in un'altra area libera di memoria ( operazionie di I/O necessarie ) |
+**Esempio** :
+![[Pasted image 20240115185445.png]]
+
+##### Allocazione non contigua con liste collegate 
 ## Ottimizzazione prestazioni memoria secondaria
 
 ## Caso di studio Linux
