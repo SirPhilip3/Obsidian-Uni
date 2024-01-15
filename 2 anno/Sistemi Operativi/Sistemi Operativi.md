@@ -1569,6 +1569,9 @@ Una righa della tabella delle pagine è costruita nel seguente modo :
 4. Bit di modifica viene posto a 1 quando si scrive quella pagina 
 5. Bit usata indica quando si fa un riferimento ad una pagina 
 6. Bit per disabilitare la cache 
+
+>[!todo]
+>#todo
 ### Mapping dei blocchi
 
 ### TLB
@@ -1598,6 +1601,138 @@ Una righa della tabella delle pagine è costruita nel seguente modo :
 #### NRU
 
 ## File System
+
+Compiti di un file system : 
++ *Controllo degli accessi* : Questo gestisce i vari permessi per scrivere , leggere ed eseguire ( nel caso di file eseguibili ) i vari file memorizzati da parte degli utenti
++ Utilizzato per *organizzare* e *gestire* i *dati* e lo *spazio libero* in un dispositivo di memoria secondario
++ *Trattamento dei guasti* : Implementazione di un meccanismo di backup , recovery e controllo / mantenimento dell'integrità di un file system
+
+### Introduzione 
+
+#### Gerarchia dei dati 
+
+Il livello più basso sono i singoli *bit* , la creazione di pattern con questi *bit* ci consentono di rappresentare tutti i dati di interesse all'interno del nostro sistema 
++ *Byte* : 8 *bit*
++ *Word* : Il numero di *bit* che un processore può elaborare alla volta 
++ *Char* : mappano i *byte* a simboli ( lettere , numeri etc.. ) come ASCII , EBCDIC , Unicode
++ *Field* : un gruppo di *caratteri* 
++ *Record* : un gruppo di *campi*
++ *File* : un gruppo di *record* *correlati*
++ *File System* : insieme di file
++ *Database* : insieme di dati 
+
+#### Volume
+
+Un **Volume** è un'unità di memorizzazione dei dati che può contenere anche più file
+
+2 tipi di volumi : 
++ *Fisico* : un solo dispositivo di memoria
++ *Logico* : più dispositivi di memoria
+#### Files
+
++ Raccolte di dati *denominati* e trattati come un'unità
++ Risiedono in memoria secondaria ( ??? e non solo )
++ Per la gestione di grandi quantità di dati condivisi si utilizzano *database* in alternativa ai file
+
+Le operazioni che si possono svolgere sono : 
++ Open
++ Close 
++ Create
++ Destroy
++ Copy
++ Rename
++ List
+
+I singoli elementi di dati all'interno di un file possono essere manipolati da operazioni come :
++ Create
++ Delete
++ Open
++ Close
++ Read
++ Write
++ Append
++ Seek
++ Get Attributes
++ Set Attributes
++ Rename
+
+**Caratterisitche** :
++ Locazione
++ Accessibilità
++ Tipo
++ Volatilità
++ Attività
+
+I *file* possono includere uno o più record 
+2 tipi di *record* :
++ *fisici* : Il record è mappato interamente in memoria
++ *logici* : Insieme di dati trattati dal software come unità logica 
+
++ *File con record non bloccati* :
+	+ Sono file per cui ogni blocco ( record ) fisico corrisponde ad un solo blocco logico 
++ *File con record bloccati*
+	+ Sono file per cui ogni blocco fisico può corrispondere a più blocchi logici 
+
+Inoltre il *record* può essere di dimensioni fisse o variabili
+##### Nome
+
+I nomi dei file sono suddivisi in 2 parti :
++ *nome_file* : rappresenta il nome vero e proprio del file
++ *.estensione* : Indica di che tipologia è il file ( .pdf documento in formato Adobe PDF ( portable document format ) ) 
+
+##### Struttura
+
+3 tipi principali di strutture :
++ Sequenza di *byte*
++ Sequenza di *record*
++ Albero di record ( utilizzato per accedere velocemente a parti del file visto che ogni record contiene una *key* secondo la quale effettuare la ricerca )
+
+##### Tipi
+
++ *File regolari* : contengono le informazioni dell'utente
++ *Directory* : sono file di sistema che contengono tutte le informazioni riguardanti il file system
++ *File speciali*
+	+ A *caratteri* : utilizzati per modellare l'input/output come terminali , stampanti etcc
+	+ A *blocchi* : utilizzati per modellare dischi
+
+##### Accesso
+
++ **Accesso sequenziale** : ( nastri magnetici )
+	+ Legge tutti i bytes/records dall'inizio del file
+	+ Non può fare salti , riavvolgere o tornare indietro
++ **Accesso casuale** : 
+	+ Leggono byte/record in qualsiasi ordine
+	+ Per spostarsi all'interno del file si utilizza un puntatore che viene spopstato nella posizione in cui vogliamo leggere ( operazione di *seek* )
+
+Un file possiede dei *flag* ( attributi ) per settare alcune caratteristiche che avrà il file es : 
+
+![[Pasted image 20240115162751.png]]
+
+#### File System 
+
+Il *File System* dovrebbe essere indipendente dal dispositivo : 
+	Gli utenti dovrebbero esser ein grado di fare rifermento ai propri file grazie a nomi simbolici invece di nomi legati ai dispositivi in cui sono immagazzinati i dati
+
+Responsabile per :
++ *gestione dei file*
++ *gestione della memoria ausiliaria*
++ meccanismi di *integrità* dei file
+	+ Fornisce funzionalità di *backup* e *ripristino* per prevenire la predita accidentale o distruzione malevola dei dati
+	+ Potrebbe fornire funzionalità di *crittografia* e de-crittografia
++ gestione degli accessi
+
+#### Directories
+
+Sono file che contengono i nomi e le posizioni di altri file in moda da organizzarli 
+
+Gli elementi che una *directory* memorizza sono quindi : 
++ File name
++ Location ( *pathname* ( posizione logica ) o blocco fisico )
++ Dimensione
++ Tipo (  )
++ Tempo ultimo accesso
++ Tempo di ultima modifica e creazione 
+
 
 ## Ottimizzazione prestazioni memoria secondaria
 
