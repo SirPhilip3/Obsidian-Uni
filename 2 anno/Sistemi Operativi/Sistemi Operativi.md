@@ -1852,6 +1852,123 @@ Alloca i dati dei file ad indirizzi *contigui* sul dispositivo di memoria
 ![[Pasted image 20240115185445.png]]
 
 ##### Allocazione non contigua con liste collegate 
+
+Un file è suddiviso in *settori* :
++ Una riga della directory punta al primo settore di un file
+	+ La porzione dati contiene la prima porzione del file
+	+ La porzione puntatore punta al secondo settore del file
+
+I settori appartenenti ad un file formano una *lista collegata* 
+
+Questo permette di eliminare la *frammentazione esterna* mentre si può avere *frammentazione interna* solo all'ultimo blocco
+
+![[Pasted image 20240115215027.png]]
+
+Quando necessito di un nuovo blocco semplicemente assegno l'indirizzp del primo blocco libero che trovo al puntatore dell'ultimo blocco del file
+
+>[!note]
+>Quando vogliamo cercare un blocco siamo costretti a cercarlo dall'inizio della lista collegata di blocchi
+
+Ulteriori *svantaggi* sono l'utilizzo di ulteriore spazio per immagazzinari i puntatori e la possibilità di creazioni di liste doppi 
+
+###### Dimensione dei Blocchi
+
++ *Grande*
+	+ Può portare a frammentazione interna
+	+ Necessito di meno operazioni di I/O ( caricamento , scrittura , ricerca )
++ *Piccola*
+	+ Dispersione dei dati dei file all'interno del dispositivo di memorizzazione
+	+ Scarse prestazioni poichè devo fare molte ricerche per trovare tutti i blocchi di un file all'interno di un dispositivio di memoria
+
+##### Allocazione dei file non contigua tabellare
+
+Utilizza tabelle che memorizzano punatori ai blocchi dei file 
+	Riduce il numero di ricerche lunghe per accedere ai un record particolare 
+
+Le righe della directory indicano il primo blocco di un file
+
+Il numero di blocco viene utilizzato come un indice nella tabella di allocazione blocco per determinare la posizione del blocco sucessivo 
+
+Se il blocco attuale è terminale allora il valore nella tabella di allocazione è nullo 
+
+**Esempio** :
+
+![[Pasted image 20240115220602.png]]
+
+>[!note]
+>I puntatori non sono memorizzati all'interno dei blocchi ma in una posizione centrale , questo ci permette di memorizzare la tabella nella cache in modo che possiamo attraversare i blocchi dei file più velocemente
+
+>[!warning]
+>Per individuare l'ultimo blocco necessitiamo di seguire tutti i puntatori questo richiede un tempo significativo
+
+>[!warning]
+>Quando un dispositivo contiene molti blocchi :
+>+ La tabella di allocazione dei blocchi può diventare grande e frammentata ( peggiorazione prestazioni del sistema operativo )
+
+Dimesioni tabella = \#blocchi * lunghezza indirizzo di blocco
+
+**Esempio** : 
+
+Una implementazione è : *FAT* ( *File Allocator Table* ) 
+
+Varie versioni a seconda del numero di bit utilizzati come indirizzo del blocco :
+ + FAT32 : consente di avere blocchi piccoli anche per dischi di gradi dimensioni questo però aumenta il costo per accedere ai blocchi 
+
+##### Aloocazione dei file non contigua e indicizzata 
+
+Ogni file ha un *blocco indice* o più blocchi indice 
+
+I *blocchi indice* contengono un elenco di puntatori che puntano ai blocchi di dati dei file 
+
+Le righe delle directory puntano ai blocchi indice del file 
+
+>[!note]
+>Un blocco indice può riservare gli ultimi elementi per puntatori ad altri blocchi indice ( *chaining* ) 
+
+![[Pasted image 20240115222445.png]]
+
+I vantaggi dei *blocchi indice* ( *i-node* ) sono : 
++ La ricerca può avvenire nei blocchi indice stessi 
++ Utilizzo della cache
++ Il *file system* tipicamente colloca i blocchi indice vicino ai blocchi dati a cui fanno riferimento in modo che sia possibile accedere rapidamente ai blocchi di dati dopo che è stato caricato il loro blocco indice 
+
+Gli *i-node* contengono ulteriori informazioni come : 
++ Proprietario
++ Dimensione
++ Data di creazione
++ Data di ultima modifica
++ Si possono concatenare un massimo di 3 *i-node* ( max 4 puntatori )
+
+Gli *i-node* sono implementati da *NTFS*
+
+**Esempio** :
+![[Pasted image 20240115223328.png]]
+
+#### Organizzazione delle directories
+
+Gli attributi dei file possono essere contenute in :
++ Nelle righe della directory
+![[Pasted image 20240115223636.png]]
++ Negli *i-node* 
+![[Screenshot 2024-01-15 223656.png]]
+
+##### Memorizzazione dei nomi dei file 
+
+Diverse soluzioni : 
++ Lunghezza limite ( es 255 ) questo potrebbe creare un possibile spreco di memoria ( blocchi vuoti dove non metto dei char )
++ Lunghezza variabile e si pone il nome all'interno dell'header ( a lunghezza fissa ) seguito dal resto con carattere speciale per delimitare la fine ( occorrono caratteri di riempimento )
+![[Pasted image 20240115224745.png]]
++ Si lasciano righe della directory di lunghezza fissa e si usa l'heap per memorizzare i nomi dei file alla fine della directory
+![[Pasted image 20240115224811.png]]
+>[!note]
+>+ Evita i problemi di riuso dopo la cancellazione di un file
+>+ Evita l'utilizzo dei caratteri di riempiemento
+>+ Richiede la gestione dell'heap
+
+#### Condivisione dei file
+
+
+
 ## Ottimizzazione prestazioni memoria secondaria
 
 ## Caso di studio Linux
