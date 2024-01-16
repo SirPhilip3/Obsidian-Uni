@@ -1967,17 +1967,112 @@ Diverse soluzioni :
 
 #### Condivisione dei file
 
-La condivisione di file attraverso *link*
+La condivisione di file attraverso *link* ( si copia l'indirizzo del disco )
 
->[!todo]
->#todo
+Se però si fanno degli append al file *linkato* , le modifiche potranno essere viste solo dalla directory che ha fatto le modifiche non ovunque il file sia condiviso
+
+2 metodi per risolvere questo : 
++ Utilizzo di una struttura dati ( *i-node* in UNIX ) cotenente gli address dei blocchi , il *link* poi punteranno a questa struttura dati ( contiene un contatore per contare il numero di proprietari )
+>[!warning]
+>Quando condivido il file con un nuovo utente questo viene registrato come proproietario del file
+>Se il proprietario del file lo elimina il secondo proprietario ( colui a cui lo sto condividendo ) avrà un indirizzo che punterà ad un file non valido 
+>**Soluzione**
+>Quando il proprietario elimina il file in realtà l'*i-node* rimane intatto e questo verrà eliminato solo quando il nuovo proprietario deciderà di eliminarlo  
+
+![[Pasted image 20240116120107.png]]
+
++ Si crea un nuovo file di tipo *LINK* che contiene il pathname del file originale , quando vogliamo leggere il file andremo a cercare il suo pathname non l'indirizzo ( *symbolic linking* )
+>[!note]
+>+ Con i *link simblici* non vi è il problema precedente 
+>+ Problema del sovraccarico dovuto alla necessità di leggere il path , trovare l'*i-node* ed accedere infine al file 
+>+ Inoltre necessitiamo di un *i-node* in più per memorizzare il path ( sovraccarico per il disco )
+>+ Potrebbe verificarsi che si possano effettuare più copie dello stesso file quando si vuole copiare un intero volume ( copia del file originale + copia della risoluzione del link )
 #### Gestione dello spazio del file system
+
+La dimensione dei blocchi all'interno dei dispositivi di memorizzazione secondaria sono di solito costanti in dimensione 
+
+Che dimensione utilizzare ? :
++ *grandi* : possibile spreco di spazio
++ *piccoli* : utilizzazione di molti blocchi , questo potrebbe portare a uno spreco di tempo 
+
+Per leggere un blocco di $k$ byte in un disco con tracce da 1 MB infatti avremo : 
+$$S + R/2 + ( k\cdot 10^{-6} )\cdot R$$
+Dove : 
++ $S$ : tempo medio di *seek* del disco ( ms )
++ $R$ : tempo medio di rotazione ( ms )
+
+Velocità di trasferimento e utilizzo del disco in relazione alla dimensione dei blocchi :
+
+![[Pasted image 20240116121043.png]]
 
 ##### Gestione dello spazio libero
 
-#### Protezione dell'integrità dei dati
+###### Lista libera
 
+Utilizzo di una *linked list* per contenere le posizioni dei blocchi liberi 
++ I blocchi a cui volgiamo assegnare dei dati sono scelti dall'inizio della lista
++ I nuovi blocchi liberi sono assegnati alla fine della lista 
+
+Questa soluzione comporta un *basso overhead* per eseguire le operazioni sulla lista ma comporta la possibile frammentazione dei dati ( i blocchi liberi contigui non sono contigui nella lista )
+
+>[!note]
+>La dimensione della lista libera dipende dal numero di blocchi presente nella memoria secondaria , potrebbe essere molto grande 
+
+
+![[Pasted image 20240116121834.png]]
+
+###### BitMap
+
+Una *bitmap* contiene un *bit* per ogni blocco in memoria 
++ il *bit* viene posto a 1 se il blocco è in uso a 0 se è libero
++ l'*i*-esimo bit corrisponde all'*i*-esimo blocco sul dispositivo di memoria
+
+**Vantaggio** :
++ Risulta essere più facile e veloce dtereminare se blocchi contigui sono liberi 
+
+**Svantaggio**
++ Per trovare un blocco libero necessitiamo di cercare l'intera *bitmap* ( aumento dell'*overhead* )
+
+![[Pasted image 20240116122951.png]]
+
+>[!note] 
+>Risparmio di spazio , n blocchi = n bit per la *bitmap*
+
+###### Memoria per gli Utenti
+
+Ogni utente del file system avrà delle quote del disco su cui può memorizzare file , queste sono assegnate dall'amministratore di sistema
+
+Ogni utente avrà 2 tabelle : 
++ Tabella dei *file aperti*
++ Tabella delle *quote* ( contiene i limiti hard ( non possono essere superati ) e i limiti soft associati ad ogni utente ( se superati danno un warning ) )
+
+![[Pasted image 20240116123539.png]]
 #### Backup e Recovery
+
+I sistemi operativi e i sistemi di memorizzazione dei dati devono essere *fault tolerant* 
+
+Per questo devono fornire tecniche di backup , recupero e ripristino ( *recovery* ) dopo un guasto 
+
+Per far sì che un sistema di memoria sia *fault tolerant* si utilizzano varie tecniche : 
++ Tecniche di *Backup* : conservare copie ridondanti delle informazioni
++ Tecniche di *Recovery* : consente il ripristino dei dati del sistema dopo un errore di sistema 
++ Protezione fisica dei dati 
+
+##### Backup
+
+Vi sono 2 principali tipi di *backup* : 
+
+**Fisico** : Duplicazione completa di un dispositivo di memoria bit per bit
+
+**Logico** :
++ Memorizzazione dei dati del file system e la sua struttura logica 
++ Permette di diminuire il numero di dati che dobbiamo copiare : controlliamo la struttura dei dati nel backup per determinare cosa è stato modificato e eseguire il backup solo di quello , questo ci permette di eseguire backup con più frequenza
+
+Il backup *logico* utilizza una *bitmap* per memorizzare lo schema dell file system indicando per ogni bit l'*i-node* con l'indice corrisponente 
+Ogni *bit* viene inizialmente marcato indicando un nuovo elemento è stato aggiunto , sucessivamente si ripercorre il file system smarcando i file che non sono stati modificati e maracando quelli modificati , infine si farà il *backup* dei file marcati 
+
+##### File system strutturato a log
+
 ## Ottimizzazione prestazioni memoria secondaria
 
 ## Caso di studio Linux
