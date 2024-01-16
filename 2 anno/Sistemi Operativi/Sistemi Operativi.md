@@ -2381,23 +2381,71 @@ Per fare in modo che il controllore abbia il tempo di copiare un settore dal buf
 ##### Scheduling del disco 
 
 Ci sono tre criteri per misurare le strategie : 
-+ *Throughput*
++ *Throughput* : 
+	+ Numero di richieste servite per unità di tempo 
 + *Tempo medio di risposta*
-+ **
+	+ Tempo medio di attesa percui la richiesta sia servita 
++ *Varianza del tempo di risposta*
+	+ Misura della prevedibilità del tempo di risposta
 
+Obbiettivi generali : 
++ Massimizzazione del *throughput*
++ Minimizzare il tempo di risposta e la varianza di tempi di risposta
+
+![[Pasted image 20240116221056.png]]
 ###### Fist-Come-First-Served ( FCFS )
 
+Richieste servite in ordine di arrivo 
 
-
+| Vantaggi | Svantaggi |
+| ---- | ---- |
+| Equo | Modello di *seek* casuale questo può portare ad un notevole ritardo nel servizio |
+| Previene l'attesa infinita |  |
+| Basso overhead |  |
+![[Pasted image 20240116221547.png]]
 ###### Shortest-Seek-Time-First ( SSTF )
 
+Richiesta di servizio più vicina alla testina di lettura-scrittura 
+
+| Vantaggi | Svantaggi |
+| ---- | ---- |
+| throughput maggiore e tempi di risposta inferiori rispetto a *FCFS* | Non garantisce equità |
+| Soluzione ragionevole per sistemi di elaborazione batch | Possibilità di attesa infinita |
+|  | Alta varianza dei tempi di risposta |
+|  | Il tempo di risposta generalmente inaccettabile per sistemi interattivi |
+![[Pasted image 20240116223548.png]]
 ###### SCAN
 
+Tempo più breve di *seek* in una direzione preferita
++ Non cambia direzione fino a quando non si è raggiunto il limite del disco 
++ Caratteristiche simili a *SSTF*
++ Attesa infinita possibile
++ Non equo le tracce centrali sono favorite
++ Migliora la varianza dei tempi di risposta
+
+![[Pasted image 20240116223945.png]]
 ###### C-SCAN
 
-###### FSSCAN e N-Step SCAN
+Alla fine di una scansione verso l'interno il braccio del disco salta ( senza servire richieste ) al cilindro più esterno ( si muove sempre nella stessa direzione per servire le richieste )
 
+Riduzione della varianza dei tempi di risposta a scapito del throughput e del tempo medio di risposta
+
+![[Pasted image 20240116224431.png]]
+###### FSCAN e N-Step SCAN
+
+**FSCAN** : congela periodicamente la coda di richieste al disco e serve solo le richieste in coda in quel momento
+
+![[Pasted image 20240116225608.png]]
+
+**N-Step SCAN** : serve solo le prime $n$ richieste nella coda in quel momento 
+
+![[Pasted image 20240116225628.png]]
+
+Entrambe le strategie prevengono l'attesa infinita 
+Entrambe riducono la varianza dei tempi di risposta rispetto a **SCAN**
 ###### LOOK e C-LOOK
+
+Continua fino al termine dell'attraversamento attuale per servire richieste se non ci sono cambi di direzione 
 
 ##### Ottimizzazione rotazionale
 
