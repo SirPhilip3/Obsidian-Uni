@@ -2071,7 +2071,180 @@ Vi sono 2 principali tipi di *backup* :
 Il backup *logico* utilizza una *bitmap* per memorizzare lo schema dell file system indicando per ogni bit l'*i-node* con l'indice corrisponente 
 Ogni *bit* viene inizialmente marcato indicando un nuovo elemento è stato aggiunto , sucessivamente si ripercorre il file system smarcando i file che non sono stati modificati e maracando quelli modificati , infine si farà il *backup* dei file marcati 
 
-##### File system strutturato a log
+>[!note]
+>+ Siccome la lista dei blocchi liberi non è un file questa deve essere ricreata ad ogni ripristino ( è semplicemente il complementare della *bitmap* )
+>+ Bisogna assicurarsi che i link vengano copiati una sola volta 
+>+ I file contenti buchi non devono contenere questi buchi all'interno del backup ( altrimenti per esempio in file eseguibili questi potrebbero essere grandi come tutto lo spazio di indirzzamento virtuale )
+>+ I file speciali non dovrebbero essere mai scaricati
+
+##### File system strutturato a log e Integrità
+
+In sistemi in cui non possiamo tollerare la predita dei dati possiamo sciegliere : 
++ RAID ( *Redundant Array of Indipendent Disks* )
++ Registrazione ( *logging* ) delle transazioni
+
+File system basati sulle transazioni riducono la perdita di dati poichè :
++ Eseguono un gruppo di istruzioni atomiche , se una parte della transizione fallisce l'intera transazione viene ripristinata allo stato precedente all'inizio della transazione ( *rollback* ) 
+
+**Implementazione** : 
+Il meccanismo della transazione viene implementato grazie ad un file di *log* : 
++ Le operazioni prima di essere svolte sui dati vengono svolte all'interno di un file di *log* 
++ Una volta completata in modo definitivo questa viene *committata* registrando un valore sentinella nel *log*
+
+**Checkpoints**
+
+Per ridurre il tempo per le operazioni di ri-esecuzione nel *log* vengono mantenuti dei *checkpoints* che puntano all'ultima transizione che è stata trasferita alla memoria in modo permanente in modo tale che se il sistema si blocca solo le transazioni dopo il *checkpoint* debbano essere ri-eseguite
+
+**Paginazione shadow**
+
+Implementa la *transazione* scrivendo i dati modificati in un'area libera della memoria : 
++ Terminata la transazione i metadati sono aggiornati al nuovo blocco liberando il vecchio 
++ Se la transazione viene annullata si libera il nuovo blocco mantendo quello vecchio
+
+Un tipo di file system che implementa le transazione sono i : 
+
+###### Log-Structured File Systems ( LFS )
+
+Anche chiamato *journaling file system* ( NTFS , ext3 )
+
+Esegue tutte le operazioni di un file system come transazioni 
+L'intero disco serve come un file di *log* 
+
+I nuovi dati sono scritti in sequenza nello spazio libero del file di *log*
+
+Le directory e i metadai sono sempre scritti alla fine del log 
+
+>[!note]
+>Per individuare un file in particolare un LFS potrebbe aver bisogno di leggere l'intero registro $\implies$ scarse prestazioni in lettura
+
+Per aumentare le prestazioni in lettura : 
++ Memorizza nella cache le posizioni dei metadati del file system
++ Ogni tanto scrive le mappe degli *i-node* o i super-blocchi nel log per indicare la posizione di altri metadati
++ Quando il registro si riempie lo spazio libero risulta frammentato per questo si utilizza un thread pulitore che periodicamente passa per il log e compatta i file alla fine del log
+
+##### File Servers e Sistemi ditribuiti 
+
+In una rete di calcolatori si utilizza un *file server* :
++ Un sistema dedicato alla risoluzione dei riferimenti ai file tra sistemi 
++ Controllo centralizzato di questi riferimento 
+
+>[!note]
+>Il file server potrebbe diventare un collo di bottiglia se tutti i clienti inviano richieste al server
+
+In una rete di calcolatori un'altro approccio è quello *distribuito* lasciando che i sistemi siano separati e comunichino direttamente tra loro ( NFS , AFS )
+
+#### Controllo degli accessi 
+
+Per controllare l'accesso ai dati : 
++ Matrice di controllo di accesso 
++ Controllo di accesso per classi di utenti 
+
+##### Matrice degli accessi
+
+Si utilizza una matrice bidimensionale in cui l'indice $i$ rappresenta l'i-esimo utente metre l'indice $j$ rappresenta il j-esimo file 
+
+*Esempio* : 
+$a_{ij}=1$ all'utente $i$ è consentito l'accesso al file $j$ 
+
+Se il sistema ha un numero molto grande di utenti e file potrebbe risultare molto grande 
+
+![[Pasted image 20240116162328.png]]
+
+##### Controllo degli accessi per classi di utenti
+
+Si dividono gli utenti secondo determinati gruppi :
++ Proprietari ( possono cambiare i permessi )
++ Gruppo
++ Progetto
++ Pubblico ( generalmente in sola lettura )
+
+Possono essere memorizzati all'interno del *File Control Block* richiedendo poco spazio
+##### Diritti di accesso
+
+Utilizzati per proteggere le risorse e i servizi di sistema da utenti potenzialmente dannosi limitando le azioni che possono essere eseguite 
+
+Questo viene gestito da : 
++ *access control lists*
++ *capability lists*
+
+I diritti più comuni sono : 
++ Lettura 
++ Scrittura 
++ Esecuzione
+
+*Dominio di protezione* : insieme di diritti di accesso applicati ad un oggetto 
+
+Per la gestione dei diritti di accesso si utilizzano le seguenti tecniche : 
++ Matrici di controllo degli accessi
++ Lista di controllo degli accessi
++ Liste di capacità 
+
+###### Modello di sicurezza 
+
+Definisce soggetti , oggetti e privilegi di un sistema
+
++ *Discretionary Accesso Control*
+	+ Regole di accesso definite dal proprietario del file 
++ *Mandatory Access Control*
+	+ Regole di accesso predefinite dal sistema
+
+###### Politica di sicurezza
+
+Specificato dall'amministratore di sistema
+
+Definisce che privilegio possiamo assegnare 
+
+La maggior parte incorporano il concetto di *privilegio minimo* 
+	Al soggetto viene concesso l'accesso solo aglio oggetti di cui ha strettamente bisogno per svolgere i suoi compiti
+###### Meccanismo di sicurezza 
+
+Metodo con il quale il sistema implementa la *politica di sicurezza* 
+
+**Matrici di controllo degli accessi**
+
+Associa ai soggetti e ai corrispondenti oggetti i *diritti di accesso* appropriati
+
+>[!note]
+>Con molti soggetti e oggetti potrebbe essere una matrice di grandi dimensioni ( con numerosi duplicati ) 
+>Può diventare quindi *inefficente*
+
+Diventa inoltre un elemento critico da proteggere all'interno del file system
+
+![[Pasted image 20240116170752.png]]
+
+**Lista dei controlli degli accessi**
+
+Contiene informazioni riguardanti solo i diritti esplicitamente attributi ( riduzione dello spazio necessario )
+
+Formata da File e lista di utenti e diritti 
+
+>[!note]
+>Inefficente nella ricerca 
+
+![[Pasted image 20240116171044.png]]
+
+**Lista di capability**
+
+Viene fornita da un puntatore o token che garantisce l'insieme di capacità che può possedere ad un soggetto che lo possiede
+
+#### Tecnice di accesso ai dati
+
+##### Metodi di accesso a coda
+
+Viene utilizzato quando la sequanza di accesso ai record può essere prevista ( es accesso sequenziale )
+
+Esegue il *caching* ( manteniamo copie dei dati più usati nella cache ) e lo scheduling delle operazioni di I/O
+
+##### Metodi di accesso di base
+
+Utilizzato quando non può essere prevedibile la squenza di accesso ai record ( es accesso diretto )
+##### File mappati in memoria
+
+I dati dei file vengono mappati nello spazio di indirizzamento virtuale di un processo invece di usare la cache del file system 
+
+Il gestore della memoria virtuale avrà quindi il compito di gestire quello spazio di memoria
+
+
 
 ## Ottimizzazione prestazioni memoria secondaria
 
