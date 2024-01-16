@@ -2330,19 +2330,64 @@ Il numero di settori all'interno di un cilindro può essere determinato dalla :
 
 Utilizzato per aumentare l'affidabilità e prestazioni dei dischi 
 
-Si utilizzano più dischi collegati a cui si accede in parellelo 
+RAID gestisce un insieme di dischi a cui si accede in parallelo 
+I dischi gestiscono la distribuzione di parte dei dati ( con copie ridondanti ) sui vari dischi
 
-Si distribuiscono varie copie dei dati all'interno di più dischi a seconda del'impostazione
+Vi sono diversi schemi di organizzazione dei RAID : 
 
->[!todo]
->WTFFFFF
++ Livello 0 : 
+Divisione dei dati in diversi dischi tramite sezionamento ( *striping* ) senza nessuna informazione di parità o ridondanza
+![[Pasted image 20240116212609.png]]
++ Livello 1 :
+Copia esatta di tutti i dati 
+![[Pasted image 20240116212818.png]]
++ Livello 2 :
+Divide i dati al livello di bit e utilizza codici di *Hamming* per correggere errori 
+![[Pasted image 20240116213141.png]]
++ Livello 3 :
+Divisione al livello di Byte con un disco dedicato interamente alla parità
+![[Pasted image 20240116213156.png]]
++ Livello 4 : 
+Divisione dei dati a livello di blocchi e mantiene su uno dei dischi i valori di parità
+![[Pasted image 20240116213211.png]]
++ Livello 5 : 
+Distribuisce i dati di parità su tutti i dischi
+![[Pasted image 20240116213227.png]]
+
 ##### Formattazione dei dischi
 
+###### Formattazione a basso livello
 
+Viene svolta via software definendo ogni settore del disco attraverso un preambolo i dati ed infine l'*ECC* contenente informazioni ridondanti per il recupero degli errori ( 16 byte normalmente )
 
+Lo spazio del disco formattato si riduce del 20% 
+
+*Cylinder Skew* : Il settore 0 si sposta di una certa distanza rispetto al settore 0 della traccia precedente ( in modo che alla fine della lettura di una traccia la testina si trova all'inizio della seconda traccia )
+![[Pasted image 20240116214930.png]]
+
+Si utilizza una tabella delle partizioni e la dimensione di ogni partizione per indicare il partizionamento del disco
+###### Formattazione ad alto livello
+
+Relativa ad ogni partizione questa definisce il blocco di avvio , la gestione dello spazio libero , directroy principale ( root ) e il file system ( vuoto )
+###### Interleaving
+
+Per fare in modo che il controllore abbia il tempo di copiare un settore dal buffer in memoria principale si utilizza l'*interleaving* 
++ Interleaving *singolo* : 
+	Si sposta di un settore tutti i settori del disco
++ Interleaving *doppio*
+	Si sposta di due settori tutti i settori del disco
+
+![[Pasted image 20240116215646.png]]
 ##### Scheduling del disco 
 
+Ci sono tre criteri per misurare le strategie : 
++ *Throughput*
++ *Tempo medio di risposta*
++ **
+
 ###### Fist-Come-First-Served ( FCFS )
+
+
 
 ###### Shortest-Seek-Time-First ( SSTF )
 
