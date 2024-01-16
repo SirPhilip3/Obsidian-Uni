@@ -1967,8 +1967,17 @@ Diverse soluzioni :
 
 #### Condivisione dei file
 
+La condivisione di file attraverso *link*
 
+>[!todo]
+>#todo
+#### Gestione dello spazio del file system
 
+##### Gestione dello spazio libero
+
+#### Protezione dell'integrità dei dati
+
+#### Backup e Recovery
 ## Ottimizzazione prestazioni memoria secondaria
 
 ## Caso di studio Linux
