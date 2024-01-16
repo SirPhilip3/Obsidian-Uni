@@ -2227,6 +2227,8 @@ Formata da File e lista di utenti e diritti
 
 Viene fornita da un puntatore o token che garantisce l'insieme di capacità che può possedere ad un soggetto che lo possiede
 
+>[!todo]
+>controlla ?????
 #### Tecnice di accesso ai dati
 
 ##### Metodi di accesso a coda
@@ -2244,9 +2246,129 @@ I dati dei file vengono mappati nello spazio di indirizzamento virtuale di un pr
 
 Il gestore della memoria virtuale avrà quindi il compito di gestire quello spazio di memoria
 
+#### Prestazioni di un file system
 
+Siccome stiamo gestendo la memoria secondaria questa è molto meno performante rispetto alla memoria principlae per questo di devono utilizzare diverse tecniche per migliorarne le prestazioni :
 
++ uso della *cache* : utilizzo di buffer all'interno della memoria pincipale ( soprattuto per la scrittura da principale a secondaria )
++ *read ahead* : lettura del blocco successivo anticipatamente
++ riduzione del tempo di *seek* del disco
++ diminuzione della frammentazione all'interno del disco
 ## Ottimizzazione prestazioni memoria secondaria
+
+### Dispositivi di I/O
+
+#### Comunicazione con I/O
+
+Può avvenire in vari modi :
+
++ **Registri** ai quali è assegnata una porta di I/O da gestire
++ **I/O mappato in memoria** : ad ogni registro che gestisce l'I/O è assegnato un indirizzo di memoria 
++ **Ibrido** : Utilizzo di un buffer di dati per i dispositivi di I/O mappato in memoria e porte I/O sperate per i registri di controllo 
+
+![[Pasted image 20240116174646.png]]
+
+##### I/O mappato in memoria
+
+| **Vantaggi** | **Svantaggi** |
+| ---- | ---- |
+| Il driver può essere scritto in un linguaggio ad alto livello | Non è possibile utilizzare la cache per velocizzare gli accessi  |
+| Protezione semplice ( basta controllare l'accesso agli indirizzi ) |  |
+| Le istruzioni possono riferirsi direttamente ai registri di controllo  |  |
+>[!todo]
+>WTFFFFFF
+##### DMA ( Direct Memory Access )
+
+Il controllore *DMA* ha accesso diretto alla memoria indipendentemene dalla CPU 
+
+Ha molti più registri rispetto a quelli che potevano essere forniti dalla CPU :
++ Registri di *controllo* ( per il controllo del flusso di dati )
++ Registri di *conteggio* ( per fare in modo da stanziare la giusta area di memoria )
+
+Sono possibili trasferimenti multipli simultanei grazie all'utilizzo di diversi canali 
+
+#### Livelli di software di I/O
+
+>[!todo]
+>Fino a slide 26
+
+
+### Dispositivi di memoria secondaria
+
+La maggior parte dei dispositivi di memorizzazione secondaria si basano su *supporti magnetici* 
+
+L'accesso ai dati avviene attraverso una testina che ci permette la lettura e scrittura dei dati 
+
+Le prime tecnologie utilizzavano l'accesso sequenziale : le informazioni erano accessibili in modo ordinato uno per volta ( inefficente per applicazioni ad accesso diretto )
+
+Memorizzazione ad accesso casuale : 
++ Anche detto memoria ad accesso diretto
++ Accesso ai record in qualsiasi ordine 
+
+#### Disco
+
+Insieme di dischi magnetici ( piatti ) che ruotano su un perno ( rotore )
+
+Composto da *tracce* che a loro volta contengono *settori*
+Un insieme di gruppi verticali di tracce formano un *cilindro*
+
+La lettura avviene grazie ad un braccio mobile con in fondo una testina per la lettura e scrittura
+
+Gli indici di prestazione del disco sono : 
++ Tempo di ricerca ( *seek* )
+	Tempo per la testina di lettura-scrittura per spostarsi su un nuovo cilindro
++ Latenza rotazionale 
+	Tempo perchè il cilindro ruoti in posizione
++ Tempo di trasmissione
+	Tempo pechè i dati cercati scorrino sotto la testina
+
+Il numero di settori all'interno di un cilindro può essere determinato dalla :
++ *geometria fisica* 
++ *geometria virtuale* : la più diffusa nei dischi moderni consiste nella numerazione dei settori senza considerare la geometria fisica del disco
+
+##### RAID
+
+Utilizzato per aumentare l'affidabilità e prestazioni dei dischi 
+
+Si utilizzano più dischi collegati a cui si accede in parellelo 
+
+Si distribuiscono varie copie dei dati all'interno di più dischi a seconda del'impostazione
+
+>[!todo]
+>WTFFFFF
+##### Formattazione dei dischi
+
+
+
+##### Scheduling del disco 
+
+###### Fist-Come-First-Served ( FCFS )
+
+###### Shortest-Seek-Time-First ( SSTF )
+
+###### SCAN
+
+###### C-SCAN
+
+###### FSSCAN e N-Step SCAN
+
+###### LOOK e C-LOOK
+
+##### Ottimizzazione rotazionale
+
+###### Shortest-latency-time-first ( SLTF )
+
+###### Shortest-positioning-time-first ( SPTF )
+
+###### Shortest-access-time-first ( SATF )
+
+##### Caching e Buffering
+
+##### Gestione degli errori
+
+##### Altre tecniche di ottimizzazione
+
+### Software per I/O
 
 ## Caso di studio Linux
 
