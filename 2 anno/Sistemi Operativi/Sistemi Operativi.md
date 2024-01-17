@@ -1753,22 +1753,93 @@ Maggior overhead di sistema :
 ![[Pasted image 20240117181943.png]]
 #### LFU ( Least-Frequently-Used )
 
->[!todo]
->#todo
+Sostituisce la che è meno *intensamente* riferita
+
+Basato du l'*euristica* di una pagina alla quale non si fa riferimento spesso è probabile che non sia riferita in futuro
 
 #### NFU ( Not-Frequently-Used )
 
+Sostituisce la pagina che *non è stata recentemente* riferita 
+
+Ogni volta che si fa riferimento ad una pagina si somma uno al contatore che conta il numero di riferimento 
+
+Si scieglie la pagina da sostituire a seconda del contatore minimo sfuttando la caratteristica che una pagina alla quale non si fa riferimento spesso è probabile che non sia riferita in futuro
 #### NRU ( Not-Recently-Used )
 
+Approssima la strategia *LRU* con un overhead minimo utilizzando i bit di riferimento e modifica   
+
+La pagina da sostituire sarà : 
++ Pagina non riferita ( bit di riferimenot a 0 ) 
++ Se non si trova una pagina non riferita si cerca una pagina non modificata 
+
+Con molti utenti le pagine vengono spesso tutte riferite , periodicamente si possono quindi azzerare i bit di riferimento
+
+![[Pasted image 20240117214123.png]]
 #### FIFO Second-Chance
+
+Esamina il bit di riferimento della pagina più vecchia : 
++ Se è 0 la strategia seleziona la pagina per la sostituizione 
++ Se è 1 la stategia azzera il bit e sposta la pagina in coda *FIFO* e si considera come un nuovo inizio 
+
+Assicura che le pagine attive siano quelle con minor probabilità di essere sostituite
+
+![[Pasted image 20240117215414.png]]
+
+I numeri sopra alle pagine sono i tempi di caricamento 
+
+- a) pagine ordinate secondo FIFO
+- b) la lista delle pagine se il fault accade al tempo 20 , A ha bit R=1 
 
 #### FIFO Clock
 
+Organizza le pagine in una lista circolare invece che lineare 
+
+Quando si verifica un page fault viene analizzata la pagina a cui sta puntando la lancetta , l'azione intrapresa dipende dal bit R : 
++ R = 0 rimuovi la pagina 
++ R = 1 azzera R e fa avanzare la lancetta 
+
+![[Pasted image 20240117215807.png]]
 #### Far
 
+Crea un grafo di accesso che rappresenta il modello dei riferimenti di un processo ( nodi -> pagine , archi -> riferimenti  )
+
+Sostituisce la pagina non referenziata che è più lontana nel grafo di accesso rispetto a qualsiasi pagina riferita
+
+>[!note]
+>Prestazioni quasi ottimali 
+>Non implementata perchè la ricerca e gestione del grafo complessa senza un supporto hardware 
+
+![[Pasted image 20240117220439.png]]
 ### Working Set
 
+Per eseguire un programma in modo efficente il sistema deve mantenere in memoria principale quel sottoinsieme favorito dal programma
+Altrimenti si potrebbe verificare eccesive richieste in memoria secondaria per la paginazione ( *thrashing* )
+
+Poichè i processi mostrano località aumentare il numero di page frame oltre una certa soglia non ha nessun effetto sul tasso di page fault
+
+![[Screenshot 2024-01-17 221149 2.png]]
+
+Il **Working Set** delle pagine di un processo : $W(t,w)$ rappresenta l'insieme delle pagine alle quali un processo fa riferimento
+
+![[Pasted image 20240117221521.png]]
+
+>[!note]
+>La dimensione del working set del processo aumenta asintoticamente con la dimensione del programma all'aumentare della finestra del working set
+
+![[Pasted image 20240117221710.png]]
+
+Allo spostarsi tra working sets di processo il sistema mantiene temporaneamente in memoria le pagine che non sono più nel working set corrente del processo :
++ L'obbiettivo è ridurre la cattiva allocazione della memoria ( deallocazione e riallocazione successiva delle stesse pagine )
++ Se teniamo traccia del working set al momento di un page fault possiamo sciegliere di eliminare una pagina al di fuori del working set
++ Per determinare che pagina da sostituire si utilizza invece del numero di riferimenti il tempo di esecuzione 
++ Il working set a questo punto corrisponde all'insieme di pagine referenziate negli ultimi $t$ secondi ( tempo virtuale trascorso dall'avvio del processo )
+
+![[Pasted image 20240117224934.png]]
+
+![[Pasted image 20240117225010.png]]
 #### Working Set Clock
+
+Utilizzo dell'algoritmo clock unito al working set
 
 #### PFF ( Page-Fault-Frequency )
 
