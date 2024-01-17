@@ -1570,15 +1570,108 @@ Una righa della tabella delle pagine è costruita nel seguente modo :
 5. Bit usata indica quando si fa un riferimento ad una pagina 
 6. Bit per disabilitare la cache 
 
->[!todo]
->#todo
-### Mapping dei blocchi
+**Esempio** :
 
-### TLB
+![[Pasted image 20240117152127.png]]
 
+Si utilizza una mappa di traduzione degli indirizzi per indicare quali regioni dello spazio di indirizzamento virtuale di un processo $V$ sono attualmente in memoria principale e dove si trovano
+
+Una caratterristica degli indirizzi virtuali è che gli indirizzi contigui di un processo potrebbero non corrispondere ad indirizzi contigui nella memoria fisica 
+
+![[Pasted image 20240117153359.png]]
+
+Il mapping può avvenire in due modi principali : 
++ *Paginazione*
+	In cui tutti i blocchi hanno dimensione fissa 
++ *Segmentazione*
+	In cui i blocchi possono avere dimensioni differenti
++ *Mappa dei blocchi*
+	Rappresentazione degli indirizzi come coppie ordinate
+
+#### Mappa Dei Blocchi
+
+Formato dell'indirizzo virtuale in un sistema con mapping dei blocchi 
+
+![[Pasted image 20240117154743.png]]
+
+Indirizzo virtuale  $v=(b,d)$
+###### Traduzione
+
+Ogni processo possiede una tabella della mappa dei blocchi che contiene una riga per blocco del processo 
+L'indirizzo $a$ rappresenta l'indirizzo della tabella legata al processo 
+
+Per tradurre l'indirizzo $v$ in un indirizzo reale : 
++ Si aggiunge ad $a$ il numero di blocco $b$ per individuare la riga nella tabella dei blocchi 
++ La riga produce l'indirizzo $b'$ 
++ Si aggiunge lo spostamento $d$ per creare l'indirizzo reale $r$
+
+![[Pasted image 20240117155846.png]]
+
+### Paginazione
+
+La paginazione utilizza il *mapping di blocchi* a dimensione fissa 
+
+L'indirizzo virtuale è una coppia $v=(p,d)$ dove :
++ $p$ è il numero della pagina in memoria virtuale 
++ $d$ è lo spostamento dall'inizio della pagina $p$ in cui si trova il blocco
+
+![[Pasted image 20240117160249.png]]
+
+**Page frame**
+
+I *page frame* sono blocchi della memoria principale a dimensione fissa destinati a contenere delle pagine 
+
+Inizia ad un indirizzo che è multiplo intero della dimensione fissa della pagina
+
+Le pagine possono essere caricate in un qualsiasi *page frame* libero
+
+La tabella delle pagine spesso non risiede completemante in memoria principale 
+
+**Page table entry** ( **PTE** ) : 
++ Indica che la pagina virtuale $p$ è nel page frame $p'$
++ Contiene un bit di residenza $r$ per indicare se la pagina è in memoria principale :
+	+ $r=1$ : **PTE** memorizza il numero di page frame $p'$ ( pagina in memoria principale )
+	+ $r=0$ : **PTE** memorizza la posizione della pagina in memoria secondaria
+
+![[Pasted image 20240117161700.png]]
+
+##### Traduzione 
+
+La traduzione dell'indirizzo dipende da come abbiamo implementato il mapping : 
+###### Mapping diretto
+
+Simile alla traduzione di indirizzi 
+
+**DAT** ( *Dynamic Address Translation* ) aggiunge l'indirizzo base della tabella delle pagine $b$ al numero di pagina riferito $p$ ( riga della tabella ) 
+$b+p$ forma l'indirizzo di memoria principale della **PTE** per la pagina $p$ 
+Concateniamo quindi il page frame $p'$ con lo spostamento $d$ per formare l'indirzzo reale $r$
+
+![[Pasted image 20240117164113.png]]
+###### Mapping associativo
+
+Per aumentare le prestazioni si potrebbe porre la tabella delle pagine nella *memoria associativa* con indirizzamento per contenuto in cui ogni posizione della memoria associativa è cercata *contemporaneamente* ( nella cache )
+
+![[Pasted image 20240117164322.png]]
+
+Come memoria associativa si può utilizzare una **TLB** ( *Translation Lookaside Buffer* ) , siccome non è abbastanza grande per tutta la tabella si mettono solo alcuni **PTE** se non è presente nella **TLB** allora si ricerca nella tabella nella memoria principale 
+
+![[Screenshot 2024-01-17 164902.png]]
 ### Tabella delle Pagine multilivello
 
+Ci interessano solo quelle parti della tabella che il processo sta utilizzando non tutta , ci permette di ridurre il numero di righe della tabella necessarie in memoria principale
+
+Ogni livello della tabella contiene dei puntatori alle tabelle di livello inferiore , questi livelli hanno tabelle con le traduzioni di indirizzi
+
+![[Pasted image 20240117165706.png]]
+
+**Traduzione di indirizzi**
+
+![[Pasted image 20240117165749.png]]
 ### Tabella inversa delle pagine
+
+La tabella inversa memorizza un **PTE** in memoria per ogni *page frame* 
+
+Il numero di pagine della tabell in memoria dipende dal numero di *page frame* 
 
 ### Condivisione in un sistema di paginazione
 
