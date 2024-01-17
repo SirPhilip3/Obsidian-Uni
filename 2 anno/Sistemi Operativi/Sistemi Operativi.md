@@ -1673,25 +1673,124 @@ La tabella inversa memorizza un **PTE** in memoria per ogni *page frame*
 
 Il numero di pagine della tabell in memoria dipende dal numero di *page frame* 
 
+>[!todo]
+>#todo
 ### Condivisione in un sistema di paginazione
 
+Possiamo ridurre la memoria consumata dai programmi che utilizzano i dati e itruzioni in comune
+
+Il sistema deve identificare come condivisibile o non condivisibile
+
+![[Pasted image 20240117172633.png]]
 ### Sostituzione 
 
+Poichè la memoria principale finisce dobbiamo identificare delle strategie per la sostituzione delle pagine presenti in memoria 
+
+Determina *dove* caricare in memoria principale una pagina
+
+Strategie di **Fetch** : 
++ Determinano *quando* le pige o segmenti devono essre caricati nella memoria principale 
++ Strategie a *richiesta*
+	+ Determino cosa e dove quando mi è richiesto
++ Strategie a *previsione*
+	+ Determino cosa e dove prevedendo con l'uso di euristiche 
+
+Per migliorare le prestazioni si utilizza i principi di : 
++ Località *sapaziale*
++ Località *temporale*
 ### Paginazione a richiesta
 
+Quando un processo inizia l'esecuzione il sistema carica in memoria princiaple la pagina che contiene la sua prima istruzione 
+
+Caricheremo la seguente pagina solo quando il processo vi fa esplicito riferimento
 ### Paginazione a previsione
 
+Il sistema operativo cerca di prevedere di quali pagine un processo avrà bisogno e le carica in previsione nella memoria principale 
 ### Sostituzione di pagina
 
+Quando un processo genera un *page fault* il gestore della memoria deve : 
++ *individuare* la pagina di memoria secondaria a cui fa riferimento
++ *caricarla* nel page frame della memoria principale
++ *aggiornare* la riga corrispondente della tabella delle pagine 
+
+Per individuare la pagina modifica si aggiunge un *dirty bit* che viene settato a 1 se la pagina è stata modificata a 0 altrimenti 
 #### RAND
 
-#### FIFO
+Sostituzione casuale delle pagine 
 
-#### LRU
++ Basso overhead semplice
++ Veloce 
++ Non discrimina tra i processi ( *equa* )
 
-#### NFU
+Potrebbe selezionare come prossima pagina da sostituire anche la pagina del prossimo riferimento
+#### FIFO ( First-In-First-Out )
 
-#### NRU
+Sostituisce la pagina che è stata nel sistema più a lungo ( in base al tempo di arrivo )
+
+Può sostituire anche pagine molto utilizzate 
+
+Non conviene per la maggior parte dei sistemi
+
+![[Pasted image 20240117181023.png]]
+
+>[!note]
+>Anomalia di Belady
+>Aumento del numero di errori di pagina all'aumentare del numero di page frame assegnati a un processo
+#### LRU ( Least-Recently-Used )
+
+Sfrutta la località *temporale* sostituendo la pagina che ha trascorso più tempo in memoria senza essere riferita
+
+>[!note]
+>Prestazioni migliori rispetto a FIFO
+
+Maggior overhead di sistema : 
++ devo aggiornare dei contatori per determinare la pagina LRU
+
+>[!note]
+>Possiamo avere scarse prestazioni se la pagina meno utilzzata è la prossima pagina a cui fa riferimento un programma all'interno di un ciclo 
+>Questa verrà sostituita e poi ricaricata il prossimo ciclo
+
+![[Pasted image 20240117181943.png]]
+#### LFU ( Least-Frequently-Used )
+
+>[!todo]
+>#todo
+
+#### NFU ( Not-Frequently-Used )
+
+#### NRU ( Not-Recently-Used )
+
+#### FIFO Second-Chance
+
+#### FIFO Clock
+
+#### Far
+
+### Working Set
+
+#### Working Set Clock
+
+#### PFF ( Page-Fault-Frequency )
+
+### Rilascio delle pagine
+
+### Dimensione della pagina
+
+### Comportamento del programma con paginazione
+
+### Segmentazione
+
+#### Traduzione dell'indirizzo
+
+#### Condivisione 
+
+#### Partizione e Controllo degli Accessi
+
+### Confronto fra paginazione e segmentazione
+
+### Segmentazione + Paginazione
+
+#### Traduzione dell'indirizzo
 
 ## File System
 
