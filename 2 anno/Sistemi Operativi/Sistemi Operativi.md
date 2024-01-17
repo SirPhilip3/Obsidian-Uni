@@ -2445,19 +2445,107 @@ Entrambe le strategie prevengono l'attesa infinita
 Entrambe riducono la varianza dei tempi di risposta rispetto a **SCAN**
 ###### LOOK e C-LOOK
 
-Continua fino al termine dell'attraversamento attuale per servire richieste se non ci sono cambi di direzione 
+**LOOK** ( miglioramento di SCAN )
 
+Serve tutte le richieste in una direzione e al raggiungimento dell'estremità del disco o alla fine delle richieste in quella direzione inverte sucessivemente la direzione 
+
+Porta ad un throughput elevato evitando operazioni inutili di ricerca
+
+![[Pasted image 20240117101049.png]]
+
+**C-LOOK** ( miglioramento di C-SCAN )
+
+Quando non ci sono richieste dell'attraversamento vero l'interno si sposta verso le richieste posizionate più all'esterno senza servire quelle in mezzo iniziando un nuovo attraversamento del disco 
+
+MIgliora la varianza dei tempi di risposta del LOOK a discapito del throughput
 ##### Ottimizzazione rotazionale
 
+Ottimizzare la latenza di rotazione è molto utile quando si cerca di accedere a piccole porzioni di dati distribuiti casualemente in tutto il disco
 ###### Shortest-latency-time-first ( SLTF )
 
+In un dato cilindro si servono richieste con la minima latenza di rotazione 
+
+>[!note]
+>Prestazioni quasi ottimali per la latenza rotazionale
+
+![[Pasted image 20240117102556.png]]
 ###### Shortest-positioning-time-first ( SPTF )
+
+Si basa sul tempo di *posizionamento* = somma del tempo di ricerca e la latenza di rotazione
+
+Serve quindi richieste a seconda del minimo tempo di posizionamento
+
+>[!note]
+>Può causare attesa infinita ( la testina vorrà restare vicino alla sua posizione attuale )
 
 ###### Shortest-access-time-first ( SATF )
 
+Si basa sul tempo di *accesso* = tempo di posizionamento + tempo di trasferimento
+
+>[!note]
+>Può causare attesa infinita
+
+>[!note]
+>Sia *SPTF* che *SATF* possono implementare *LOOK* per mmigliorare le prestazioni
+
+>[!note]
+>Entrambi gli algoritmi richiedono la conoscenza pregressa delle caratteristiche prestazionali del disco , questi dati potrebbero non essere disponibili
+
+![[Pasted image 20240117103954.png]]
+
+##### Considerazioni sullo Scheduling
+
+Lo scheduling dei dischi potrebbe non essere sempre utile :
++ Nei sistemi processor bound
++ Richieste al disco in sequenze imprevedibili
++ Per distribuzioni non uniformi delle richieste l'overhead dello scheduling potrebbe ridurre le prestazioni
++ Le tecniche di organizzazione dei file possono contrastare lo scheduling dei dischi
++ *geometria reale* e *virtuale* possono vanificare i vantaggi degli algoritmi di scheduling 
+
 ##### Caching e Buffering
 
+Il disco può spesso beneficiare di un buffer che mantenga una copia di dati presenti sul disco 
+
+Spesso questa cache viene situata in memoria principale , onboard cache ( situata su un chip ) o sul controller del disco 
+
+Viene utilizzato come buffer per ritardare la scrittura dei dati finchè il carico sul disco non è leggero 
+
+>[!note]
+>Potrebbero verificarsi delle *incoerenze* 
+>Potremmo perdere dati se i dati presenti nel buffer non vengono scritti nel disco in caso di mancanza di corrente o guasto al sistema
+
+Per gestire le *incoerenze* si utilizzano 2 tecniche :
++ *cache write-back* :
+	I dati non vengono scritti immediatamente sul disco 
+	Periodicamente scritti sul disco ( fino a quando non strettamente necessario )
++ *write-throught caching*
+	Scrittura contemporanea sul disco e sulla cache ( garantisce la coerenza dei dati )
+
+Per aumentare le prestazione si può effettuare il *caching preventivo* di più settori da parte del controller ( in lettura salvando più settori in cache in scrittura mantenendo più dati all'interno della cache prima di passarli al disco )
 ##### Gestione degli errori
+
+Una traccia di un cilindro possiede dei settori di riserva utilizzati per sostituire quelli difettosi all'interno della traccia , ci sono 2 modi per sostituirli :
++ Rimappare il settore difettoso ad uno di riserva ( si utilizza delle tabelle interne per il mapping )
++ Spostare tutti i settori per ignorare quello difettoso
+
+![[Screenshot 2024-01-17 113119.png]]
+
+Per minimizzare problemi di affidabilità si utilizza il *RAID* 
+
+*Memorizzazione stabile* : la scrittura avviene in modo corretto o non avviene
+
+In un sistema a memorizzazione stabile con due dischi avremo :
++ Operazione di scrittura stabile
+	Scrive il blocco nel primo disco se non avviene in modo corretto l'operazione viene ripetuta $n$ volte 
+	Se l'operazione fallisce $n$ volte il blocco viene mappato con un blocco di riserva del disco 
++ Operazione di lettura stabile
+	Lettura di un blocco dal primo disco se non risulta corretto si ripete $n$ volte 
+	Se fallisce $n$ volte si legge dal secondo disco
++ Ripristino da un *crash*
+	Scanzione e confronto dei blocchi dai due dischi
+	Se risultano essere identici e validi abbiamo completato il ripristino
+	Se un blocco risulta essere errato si utilizza il secondo disco per sovrascrivere il blocco 
+	Se risultano essere validi ma differenti il primo disco sovrascrive il secondo
 
 ##### Altre tecniche di ottimizzazione
 
