@@ -2547,9 +2547,65 @@ In un sistema a memorizzazione stabile con due dischi avremo :
 	Se un blocco risulta essere errato si utilizza il secondo disco per sovrascrivere il blocco 
 	Se risultano essere validi ma differenti il primo disco sovrascrive il secondo
 
+Cosa succede se un *crash* avviene durante una scrittura stabile ? 5 casi : 
++ crash avviene prima che entrambe le coppie del blocco siano scritte , i vecchi valori continueranno ad esistere
++ crash avviene durante la scrittura del drive 1 , ripristino del blocco sul drive 1 da parte del drive 2 ( ritorno allo stato precedente )
++ crash avviene dopo che abbiamo scritto sul drive 1 ma prima della scrittura sul drive 2 , il programma di ripristino copia il blocco dal drive 1 al drive 2 in modo che la scrittura abbia successo 
++ crash alla scrittura sul drive 2 semplicemente si scrive il blocco dal drive 1 al drive 2 in modo da avere i nuovi valori in entrambi
++ crash avviene dopo la scrittura sul drive 2 , la scrittura ha avuto successo
+
+![[Pasted image 20240117120523.png]]
+
 ##### Altre tecniche di ottimizzazione
 
+**Deframmentazione**
+
+A seguito di modifiche ai dati si possono creare delle frammentazioni dei dati all'interno del disco
+
+Periodicamente si sivolge la *deframmentazione* :
++ Si inseriscono i dati in relazione in settori contigui
++ Inseriamo dati in espansione vicino a spazi liberi 
++ Il partizionamento del disco aiuta a ridurre la frammentazione ( posizionamento strategico dei dati es separare i dati temporanei da quelli che cambiano meno spesso )
+
+>[!note]
+>La *deframmentazione* diminuisce il numero delle operazioni di ricerca da efettuare 
+
+**Compressione**
+
+Compressione dei dati in modo che occupino meno spazio all'interno del disco
+
+| Vantaggi | Svantaggi |
+| ---- | ---- |
+| Miglioramento del tempo di trasferimento | Maggior overhead dovuto al processo di compressione e decompressione dei dati |
+| Miglioramento del tempo di accesso |  |
+
+**Copie di dati richieste più frequentemente**
+
+Creazione di copie dei dati più richieste in diverse parti del disco in modo che si diminuisca il tempo medio di accesso ( mino tempo di ricerca e rotazione ) a quei dati
+
+Adatta per dati in sola lettura o con rare modifiche
+
+>[!warning]
+>Può comportare overhead significativi di memoria 
+>+ Mantenimento della coerenza
+>+ Maggiore occupazione di spazio 
+
+**Accorpamento dei record**
+
+Lettura e scrittura di più record come un unico blocco di dati 
+
+**Anticipazione del braccio del disco**
+
+Quando il disco è inattvo si sposta il braccio nella posizione dove è maggiore la probabilità del prossimo accesso oppure al centro ( media )
+
+>[!warning]
+>Se non prevediamo in modo corretto potremmo subire degradazioni nelle prestazioni
+
+Minore efficenza con la multiprogrammazione
 ### Software per I/O
+
+>[!todo]
+>#todo
 
 ## Caso di studio Linux
 
