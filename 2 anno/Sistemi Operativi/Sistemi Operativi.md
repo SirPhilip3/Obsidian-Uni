@@ -3268,24 +3268,161 @@ Lo scheduler avvia il task in testa alla lista nel livello più alto del vettore
 >[!note]
 >Per evitare attesa infinita ogni task nella coda *RUN* è eseguito almeno una volta all'interno di un periodo detto *epoca* ( $10\cdot n$ ( $n$ indica numero di task nella coda *RUN* ) )
 
+Inoltre vi sono due liste : *active* e *expired* 
++ Vengono eseguiti solo task nella lista *active*
++ Quando viene raggiunto il limite di attesa infinita , raggiunta dell'*epoca* , insierito nella lista *expired* ( quelli eseguiti maggiormente raggiungono prima la fine dell'epoca facendo in modo che i processi con minore priorità vengano eseguiti )
++ Quando tutti sono in *expired* sposta i task in *active* ed inizia una nuova *epoca*
+
+La priorità è assegnata ad ogni task attravero il valore *nice* ( 0 di default ) che vada -20 a 19 ( valore basso = alta priorità )
++ I task I/O ricevono priorità alta
++ I task processor-bound priorità bassa 
+Alla scadenza dell'*epoca* si può riassegnare la priorità ( massimo differenza 5 rispetto alla precedente )
+
+![[Screenshot 2024-01-18 171626.png]]
+##### Scheduler O(1)
+>[!todo]
+>#todo
+##### Scheduler per sistemi multiprocesssore
+
+##### Scheduler real-time
+
 ### Gestione della memoria
 
+Gestore della memoria supporta indirizzi a 32 e 64 bit
+Supporta *NUMA* ( *Not Uniform Memory Access* )
+
+La memoria viene logicamente divisa in 3 *segmenti* : testo , dati ( dati inizializzati e non inizializzati ( *BSS block started by symbol* ) ) e stack 
+
+*Page frame* di dimensione fissa 
+Infomazioni relative alle pagine mantenute all'interno di una struttura dati **page** ( dirty bit , indicatori di stato etcc )
 #### Memoria Virtuale
 
-##### Schedulazione di Pagine
+Utilizzo esclusivo della *paginazione* : 
++ nel sistema a 32 bit : indirizzare 4GB
++ 64 bit : indirizzare fino a 2 Petabyte
 
+Presenza di 3 o 4 livelli di tabelle di pagina :
++ directory globale di pagina
++ ( directory alta di pagina )
++ directory intermedia di pagina
++ tabelle di pagina
+
+Su sistemi che suppostano solo 2 livelli di tabelle la directroy intermedia ha solo una riga
+
+Per un processo lo spazio di indirizzamento virtuale è diviso in aree in modo da raggruppare le infromazioni con le stesse autorizzazioni
+
+![[Pasted image 20240118173837.png]]
+
+###### Linux nell'architettura IA-32
 ##### Sostituzione di Pagine
 
+>[!note] 
+>Posso sostituire solo le pagine degli utenti 
+
+La paginazione avviene su *richiesta*
+
+Le pagine quando vengono lette vengono caricate all'interno della *cache delle pagine* : 
++ Se le pagine sono sporche vengono salvate con la tecnica del *cache write-back*
++ Se sono associate ad un dispositivo di memoria secondaria ( o ad un i-node ) vongono scaricate all'interno di esso ( in uno spazio apposito di *swap* )
+
+Utilizza una variante dell'algoritmo dell'orologio per approssimare una strategia *LRU* 
+
+Utilizza due liste collegate : 
++ *lista attiva* 
+	+ Contiene le pagine attive 
+	+ Le pagine usate più di recente sono in cima alla lista
++ *lista inattiva*
+	+ Contiene le pagine inattive
+	+ Le pagine meno usate di recente sono in fondo alla lista 
+
+Una nuova pagina entra in testa alla lista *attiva* con il bit di riferimento a 1 
+Se la pagina è *attiva* o inattiva e il suo bit di riferimento è 0 viene posto a 1
+Se la pagina è *inattiva* ed è stato fatto riferimento per la seconda volta ( bit di riferiemento = 1 ) la pagina viene spostata in testa alla lista attiva e il bit viene posto a 0 
+
+Si scielgono le pagine da sostituire solo dalla lista *inattiva*
+
+![[Pasted image 20240118111027.png]]
 #### Memoria Fisica
 
+Vi sono tre zone all'interno della memoria fisica : 
++ Memoria *DMA* : primi 16 MB di memoria principale ( utilizzato per l'hardware legacy )
++ Memoria normale : 16 MB - 896 MB ( in IA-32 ) memorizza i dati utente e il nucleo
++ Memoria alta : > 896 MB contiene memoria per i processi utente e memoria che il nucleo non mappa in modo permanente 
+
+*Bounce buffer* viene utilizzato per disopsitivi che non possono indirizzare la memoria alta si alloca una piccola parte della memoria DMA e alla fine dell'operazione di I/O la si scrive nella memoria alta
+##### Allocazione e deallocazione 
+
+*Allocazione di Zona*
++ Ai processi :
+	+ page frame ( dimensione $2^n$ ) di memoria alta 
+	+ altrimenti page frame di memoria normale 
+	+ memoria bassa se nient'altro disponibile
++ Utilizzo di un vettore *free_area* per indicare i blocchi liberi
++ Algoritmo *binary buddy* per trovare i blocchi di page frame contigui adatti al processo all'interno del vettore *free_area* 
+	+ Cerca un blocco delle dimensioni corrette , se non esiste inizia da un blocco più grande e progressivamente lo dimezza fino a trovare un blocco corretto
+	+ Alla fine riunisce i blocchi liberi vicini
+
+*Allocazione di Slab*
+Utilizzata per strutture più piccole di una pagina 
+
+*Memory pool* : area di memoria sempre disponibile per un thread nucleo o driver di periferica in modo da evitare page fault critici
+
+![[Pasted image 20240118175826.png]]
 ##### Swapping
 
+*kswapd* è il demone che gestice lo *swapping* : 
++ Svuota periodicamente le pagine sporche ( modificate ) sul disco 
++ Se la pagina ha una riga all'interno della cache di *swap* possiamo liberare immediatamente le pagine non modificate 
+
+Non può liberare pagine libere se : 
++ La pagina è condivisa
++ La pagina è modificata : bisogna scaricarla sul disco 
++ la pagina è locked ( in fase di I/O ) : dovremo aspettare finchè la pagina è sbloccata
 ### File System
 
 #### Virtual File System
 
-##### Directroies
+Strato per supportare diversi file systems
 
+Caratteristiche : 
++ Astrazione dai dettagli di accesso ai file consentendo agli utenti di visualizzare tutti i file e directory in un unico albero di directory
++ Tutte le richieste relative ad un file vengono inviate al *VFS* che fornisce l'interfaccia per l'accesso ai dati
++ Per ogni richiesta il *VFS* determina il file system a cui corrisponde e richiama la routine corrispondente al driver di quel file system che eseguirà quelle operazioni 
+
+>[!note]
+>+ *Trasparenza*
+>+ *Flessibilità*
+>+ *Espandibilità*
+
+![[Pasted image 20240118183513.png]]
+
+*VFS i-node* : 
++ Descrive la locazione di ogni file del file system utilizzato in quel momento
++ Possiamo riferire ad ogni file grazie ad un numero di *i-node* e numero di file system
+
+*Descrittore di file* : 
++ informazioni sul *i-node* a cui si accede
++ informazioni sulla *posizione* del file a cui si accede
++ Flag che descrivono come accere i dati ( permessi )
+
+*Dentry* ( *Directory entry* ) :
++ Mappa i descrittori di file negli i-node corrispondenti
++ Contiene il nome della direcotry o file che un i-node rappresenta
+
+![[Pasted image 20240118184106.png]]
+
+**Montaggio di un file system** 
+
+>[!todo]
+>#todo
+##### Directories
+| Directory | Contenuti |
+| ---- | ---- |
+| bin | Programmi eseguibili |
+| dev | File speciali per I/O |
+| etc | File di sistema |
+| lib | Librerie |
+| usr | Directory utente |
 #### Secondo File System esteso
 
 #### Proc File System
