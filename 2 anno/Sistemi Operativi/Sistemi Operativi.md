@@ -1974,17 +1974,108 @@ La condivisione con segmentazione può causare meno overhead rispetto alla condi
 + Potenzialmente pochi elementi della tabella della mappa dei segmenti devono essere condivise 
 
 ![[Pasted image 20240118115320.png]]
+#### Protezione e Controllo degli Accessi
 
+Si utilizzano le **chiavi di protezione della memoria**
 
+Ogni chiave possiede un valore associato ad un processo 
 
-#### Partizione e Controllo degli Accessi
+Se la chiave di protezione per il prcesso e il blocco richiesto sono gli stesso il processo può accedere al segmento
 
+Le chiavi sono manipolabili solo da istruzioni provilegiate 
+
+![[Pasted image 20240118115805.png]]
+
+Un ulteriore schema di protezione sono i **Bit di protezione** , questi specificano se un processo è autorizzato a compiere determinate azioni 
+
+| Type of Acces | Abbreviatio | Description |
+| ---- | ---- | ---- |
+| Read | R | This segment may be read |
+| Write | W | This segment may be modified |
+| Execute | E | This segment may be executed |
+| Append | A | This segment may have information added to its end |
+
+Vi sono varie combinazione di diritti di accesso in lettura , scrittura ed esecuzione in modo da definire modalità di controllo dell'accesso
+
+![[Pasted image 20240118120238.png]]
+
+I *bit di protezione* vengono aggiunti alle righe della tabella dei segmenti , vengono controllati quando un processo ne fa riferimento
+
+![[Pasted image 20240118121815.png]]
+
++ Se il segmento non è in memoria viene generato un *missing-segment fault*
++ Se $d>l$ generata eccezione di overflow *overflow-segment exception*
++ Se non è consentia l'operazione si genera *segment-protection exception*
+
+#### Segmentazione e frammentazione esterna
+
+Quando si tolgono dalla memoria dei segmenti riamangono dei buchi , questi a differenza della paginazione possono essere di dimensione differente e quindi un nuovo blocco potrebbe non trovare un buco dove essere caricato 
+
+Vi si pone rimedio con la *compattazione*
+
+![[Pasted image 20240118122240.png]]
 ### Confronto fra paginazione e segmentazione
+
+![[Pasted image 20240118121919.png]]
 
 ### Segmentazione + Paginazione
 
+Si possono sfruttare i vantaggi sia della *paginazione* che della *segmentazione* assieme 
+
+I *segmenti* occupano una o più pagine ( tutte le pagine del segmento non devono necessariamente essere in memoria principale contemporaneamente )
+
+pagine contigue in memoria virtuale possono non essere contigue in memoria principale
+
+L'*indirizzo* è rappresentato da $v=(s,p,d)$ dove :
++ *s* è il numero del segmento
++ *p* è il numero di pagina all'interno del segmento
++ *d* è lo spostamento all'interno della pagina
+
+![[Pasted image 20240118123241.png]]
 #### Traduzione dell'indirizzo
 
+Utilizzo della *TLB* per contenere le pagine più usate
+
+Si cerca nella *TLB* la pagina $( s,p )$ :
++ Se trovata si ottiene il page frame *p'* che concatenato con *d* forma l'indirizzo reale 
++ Se non si trova si applica la mappatura diretta
+
+Nella mappatura diretta avermo : 
+Il *DAT* aggiunge l'indirizzo base della tabella dei segmenti *b* al numero del segmento *s* 
+La riga corrispondente a *b+s* contiene l'indirizzo base della tabella delle pagine *s'* 
+Il numero di pagina *p* è aggiunto a *s'* per individiuare la *PTE* per la pagina *p* che memorizza il page frame *p'*
+Si concatena *p'* con *d* per formare l'indirizzo reale
+
+![[Screenshot 2024-01-18 123811.png]]
+
+>[!note]
+>Potrebbero verificarsi un *segment-overflow* o eccezzioni riguardanti la protezione 
+>+ In caso di *segment-missing fault* il sistema operativo cerca il segmento in memoria secondaria
+>+ In caso di *page-fault* cercae carica la pagina dalla memoria secondaria
+
+#### Condivisione e Protezione
+
+Due processi condividono la stessa memoria quando ogni processo ha una riga ella tabella di mappa dei segmenti che punta alla stessa tabella delle pagine 
+
+La condivisione è facilitata dalla paginazione
+
+>[!warning]
+>La condivisione richiede una gestione attenta rispetto alle modifiche delle pagine 
+>Utilizzo di liste *PTE* che mappano una pagina condivisa per facilitare l'aggiornamento in caso di modifica
+
+Il controllo degli accessi avviene come spiegato nella segmentazione
+
+![[Screenshot 2024-01-18 124655.png]]
+
+### Architettura di Memoria Virtuale di IA-32
+
+Supporta sia la segmentazione pura che la segmentazione e paginazione della memoria virtuale
+
+I segmenti sono posizionati in un qualsiasi punto disponibile nello spazio di indirizzzamento lineare del sistema
+
+La traduzione degli indirizzi è effettuata attraverso il *mapping diretto* , questa utilizza i registri del processore per memorizzare il descrittore della tabella dei segmenti ( globale ( *GDT* ) o locale ( *LDT* ) ) in modo da trovare il registro base velocemente
+
+Supporta la paginazione a più livelli
 ## File System
 
 Compiti di un file system : 
