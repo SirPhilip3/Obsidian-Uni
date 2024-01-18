@@ -3413,8 +3413,14 @@ Caratteristiche :
 
 **Montaggio di un file system** 
 
->[!todo]
->#todo
+*Superblocco* VFS : 
++ Contiene informazioni su un file system montato : 
+	+ Tipo di file system
+	+ Posizione del suo *i-node* root all'interno del disco
+	+ Informazioni che proteggono l'integrità del file system
++ Viene memorizzato solo in memoria principale quando viene creato al montaggio del file system
+
+*VFS* richiede ad ogni file system di implementare per ogni operazione supportata
 ##### Directories
 | Directory | Contenuti |
 | ---- | ---- |
@@ -3423,11 +3429,66 @@ Caratteristiche :
 | etc | File di sistema |
 | lib | Librerie |
 | usr | Directory utente |
-#### Secondo File System esteso
+#### Secondo File System esteso ( ext2fs )
 
+Obbiettivi : 
++ elevate prestazioni 
++ funzioni avanzate 
+
+Tipiche dimensioni dei blocchi : 1Kb , 2Kb , 4Kb , 8Kb
+
+Di default 5% dei blocchi sono riservati esclusivamente agli utenti con privilegi root quando il disco è formattato 
+
+*i-node* : 
++ Contiene informazioni rilevanti per il singolo file o directory ( data e ora , autorizzazioni  , identità del prorpietario e puntatori ai blocchi di dati ) :
+	+ I primi 12 puntatori individuano i primi 12 blocchi di dati 
+	+ 13° è un puntatore indiretto che individua un blocco contenente i puntatori ai blocchi di dati 
+	+ 14° è un puntatore doppiamente indiretto e individua un blocco di punatori indiretti 
+	+ 15° è un puntatore a triplo indirizzamento indiretto e individua un blocco di puntatori doppiamente indiretti 
+
+![[Pasted image 20240118205928.png]]
+
+La memoria è divisa in gruppi di blocchi :
++ Clusters di blocchi contigui 
++ Il file system tenta di memorizzare i dati correlati nello stesso gruppo di blocchi 
++ Contiene
+	+ *Superblocco* contiene :
+		+ n° totale di blocchi e *i-node* 
+		+ dimensione dei gruppi di blocchi  
+		+ tempo di montaggio del file system
+		+ Una copia rindondante del superblocco è antenuta in alcuni gruppi di blocchi
+	+ Tabella degli *i-node*
+		+ Una riga per ogni *i-node* nel gruppo di blocchi
+	+ Bitmap degli *i-node*
+		+ Traccia l'uso degli *i-node* all'interno di un gruppo di blocchi
+	+ Bitmap di allocazione dei blocchi 
+		+ Traccia l'uso dei blocchi di ogni gruppo 
+	+ Descritture di gruppo 
+		+ Contiene i numeri di blocco corrispondenti alla posizione della bitmap degli *i-node* dei blocchi e informazioni di accounting
+
+![[Pasted image 20240118210700.png]]
+
+I blocchi rimanenti in ogni blocco contengono i dati di file e directory 
+Le informazioni delle directory sono memorizzate in righe della directory ( numero di *i-node* , lunghezza della directory , lunghezza del nome del file , tipo di file e nome del file ) 
+
+*Sicurezza* : 
++ Enforced attraverso permessi del file specificando i privilegi read , write e execute per le tre categorie di utente : Owner , group , other
++ Attributi del file ( ci consentono di controllare cosa si può fare su un file )
 #### Proc File System
 
+Utilizzato per fornire infomazioni in tempo reale sullo stato del nucleo e dei processi di sistema
+
+Consente agli utenti di ottenere informazioni dettagliate che descrivono il sistema 
+
+Esiste solo nella memoria principale :
++ I dati del file proc sono creati su richiesta 
++ Le chiamate *procfs* read e write possono accedere ai dati del nucleo permette quindi agli utenti di inviare i dati al nucleo
 #### Network File System ( NFS )
+
+Utilizza l'architettura client server 
+
+Possiamo creare directory esportabili `/etc/export`
+Possiamo fare il mount di dierctory remote
 
 ### Gestione I/O
 
