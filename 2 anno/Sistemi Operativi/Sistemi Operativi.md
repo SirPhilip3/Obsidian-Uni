@@ -1839,21 +1839,143 @@ Allo spostarsi tra working sets di processo il sistema mantiene temporaneamente 
 ![[Pasted image 20240117225010.png]]
 #### Working Set Clock
 
-Utilizzo dell'algoritmo clock unito al working set
+Utilizzo dell'algoritmo clock unito al working set come politica di sostituzione delle pagine invece dell'algoritmo basico pichè quello ad ogni sostituzione deve scandire l'intera tabella delle pagine 
+
+Le pagine man mano che vengono caricate vengono inserite nella lista circolare , quando necessitiamo di sostituire una pagina esaminiamo la pagina che è indicata dalla lancetta :
++ Se il bit R=1 la pagina è stata usata nel ciclo precedente quindi non è una buona candidata per essere sostituita , gli viene quindi impostato R=0 e si passa ad esaminare la pagina sucessiva
++ Se il bit R=0 
+	+ Se l'età è maggiore di $t$ e la pagina non è modificata questa non fa parte del working set e c'è una una copia valida in memoria , può essere quindi sostituita
+	+ Se la pagina è stata modificata dobbiamo prima scriverla sul disco ma visto che questo comporterebbe un cambiamento di processo la si schedula per la scrittura e si ri-esegue l'algoritmo per la pagina sucessiva 
+
+Se si ritorna al punto di partenza ? 2 casi : 
++ è stata schedulata almeno una scrittura 
+	+ La lancetta continua a scorrere finchè non si trova una pagina con R=0
++ Altrimenti vuol dire che tutte le pagine sono nel working set e se ne sceglie una qualunque da sostituire 
+
+![[Pasted image 20240118103347.png]]
 
 #### PFF ( Page-Fault-Frequency )
 
+Regola l'insieme delle pagine di un processo residenti in memoria principale basandosi sulla :
++ Frequenza in cui il processo ha un fault
++ Tempo tra *page fault* ( tempo di *interfault* del processo )
+
+**Vantaggi** : 
++ *PFF* regola l'insieme delle pagine solo dopo ogni page fault
++ Il meccanismo del working set deve operare dopo ogni riferimento alla memoria 
++ Si seleziona la pagina da sostituire che ha svolto più page fault
 ### Rilascio delle pagine
 
+Problema : le pagine inattive possono rimanere in memoria a lungo prima di essere sostituite dalla strategia di gestione delle pagine 
+
+Soluzione : 
+	Il processo stesso potrebbe chiedere una sostituzione volontaria di pagina 
 ### Dimensione della pagina
 
+Per migliorare le prestazioni si potrebbero fornire diverse dimensioni di pagina 
+
+Pagina *piccola* : 
+Vantaggi :
++ Minor frammentazione interna
+	![[Pasted image 20240118104935.png]]
++ Riduzione della memoria necessaria per menatenere il working set di un processo
+Svantaggio :
++ Tabella delle pagine più grande
+
+Pagina *grande* :
+Vantaggi :
++ Riduce la memoria sprecata dalla frammentazione della tabella 
++ Abilita la *TLB* a mappare una regione della memoria più grande 
++ Riduce il numero di operazioni di I/O per caricare il working set di un processo in memoria
+
+Dimensione *multipla* di pagina :
++ Potrebbe causare frammentazione esterna
 ### Comportamento del programma con paginazione
 
+I processi tendono a fare riferimento a una parte significativa delle loro pagine entro un breve periodo di tempo dopo l'inizio dell'esecuzione 
+
+![[Pasted image 20240118105128.png]]
+
+Il tempo medio di *interfaut* aumenta monotonicamente in qunto più page frame un processo carica più lungo sarà il tempo tra *page faults*
+
+![[Pasted image 20240118105301.png]]
+
+### Strategie di sostituzione Globali e Locali
+
+Strategie **Globali** : applicate a tutti i processi come unità
++ Tendono ad ignorare caratteristiche individuali di ogni processo
+
+*Esempio* : 
++ *gLRU* :
+	Sostituisce la pagina meno utilizzata di recente in tutto il sistema 
++ *SEQ* : 
+	Usa la strategia *LRU* per sostituire le pagine fino a quando non viene rilevato una sequenza di errori di pagina su pagine contigue a quel punto si utilizza la strategia *most-recently-used* ( **MRU** )
+
+Strategie **Locali** : considera ogni processo individuale 
++ Consente di regolare il ssitema di allocazione della memoria in base alla rilevanza di ciascun processo
+
+![[Pasted image 20240118110733.png]]
+
+### Sostituzione di pagina il Linux
+
+Utilizza una variante dell'algoritmo dell'orologio per approssimare una strategia *LRU* 
+
+Utilizza due liste collegate : 
++ *lista attiva* 
+	+ Contiene le pagine attive 
+	+ Le pagine usate più di recente sono in cima alla lista
++ *lista inattiva*
+	+ Contiene le pagine inattive
+	+ Le pagine meno usate di recente sono in fondo alla lista 
+
+Si scielgono le pagine da sostituire solo dalla lista inattiva
+
+![[Pasted image 20240118111027.png]]
 ### Segmentazione
 
+Ogni segmento contiene una parte significativa del programma ( procedure , array etcc )
+
+Ogni segmento è composto da posizioni contigue 
+
+I segmenti non devono essere necessariamente della stessa dimensione nè devono essere adiacenti in memoria principale 
+
+Il segmento è un concetto logico non fisico 
+
+Se il processo fa riferimento a dati in memoria secondatia il segmento corrispondente va caricato
+
+![[Pasted image 20240118112435.png]]
+
+l'indirizzo virtuale è composto da : 
++ *s* : numero di segmento in memoria virtuale
++ *d* : spostamento all'interno del segmento *s*
 #### Traduzione dell'indirizzo
 
+Con *mapping diretto* : 
+
+Il *DAT* aggiunge l'indirizzo base della *tabella dei segmenti* del processo *b* al numero di segmento riferito *s* 
+*b+s* costituisce l'indirizzo di memoria principale della riga nella tabella dei segmenti per il segmento *s* 
+
+La riga contiene l'indirizzo iniziale del segmento in memoria *s'* , il sistema aggiunge *s'* allo sostamento *d* per formare l'indirizzo reale *r*
+
+![[Pasted image 20240118113010.png]]
+
+Ogni riga della tabella della mappa dei segmenti :
++ Contiene un bit di residenza :
+	+ Se $r=1$ *s'* memorizza l'indirizzo di base del segmento
+	+ Se $r=0$ *a* memorizza la posizione del segmento in memoria secondaria
++ Contiene $l$ che indica la dimensione del segmento ( utilizzato per fare in modo che un processo non accedi ad indirizzi al di fuori del segmento )
++ Contiene dei bit di protezione del segmento per controllare se un'operazione è ammessa 
+
+![[Pasted image 20240118113721.png]]
 #### Condivisione 
+
+La condivisione con segmentazione può causare meno overhead rispetto alla condivisione con paginazione pura e con mapping diretto
+
++ Potenzialmente pochi elementi della tabella della mappa dei segmenti devono essere condivise 
+
+![[Pasted image 20240118115320.png]]
+
+
 
 #### Partizione e Controllo degli Accessi
 
