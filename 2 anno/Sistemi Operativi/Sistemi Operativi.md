@@ -3085,4 +3085,218 @@ Minore efficenza con la multiprogrammazione
 
 ## Caso di studio Linux
 
+### Introduzione
+
+Il kernel di *Linux* è open source 
+
+#### Storia
+
+Inizialmente chiamato *CTSS* poi *Multics* ( *MULTIplexed information and Computing Services* ) sviluppato dal MIT , Bell Labs , General Electrics 
+
+Supporta *POSIX*
+
+1991 evoluzione di *UNIX* da parte di Linus Torwards ( Università di Helsinki )
+
+1994 : 
++ Multiprogrammazione
++ Memoria virtuale
++ Supporto TCP/IP
+
+**Distribuzioni Linux** : 
+
+Software che include : 
++ kernel di Linux ( forse modificato per aggiungere driver specifici )
++ applicazioni di sistema
++ applicazioni utente GUI
++ Strumenti per semplificare il processo di installazione
+
+#### Struttura kernel
+
+![[Pasted image 20240118154649.png]]
+
+**Levels** :
+
+![[Pasted image 20240118154736.png]]
+
+#### Versioning
+
+Ogni versione maggiore del nucleo aggiunto 1 alla cifra dominante
+
+Numero pari prima cifra dopo punto se il numero è *pari* indica verisione stabile , *dispari* in via di sviluppo 
+
+Secondo numero dopo la virgola indica versioni minori in via di sviluppo
+
+Quando un nucleo si avvicina al completamento : 
++ *feature-freeze* : non si aggiungono nuove funzionalità del nucleo
++ *code-freeze* : accettate solo correzioni al codice
+
+Pubblicato sotto **GPL**  ( *GNU Public License* ) 
+### Overview
+
++ Kernel è a livelli
++ Utilizzo di *thread del nucleo* per eseguire i servizi
+	+ Implementati come *demoni* che si svegiano quando un componente del nucleo necessita il loro servizio
++ Servizio multiutente
+	+ Implementazione diritti di accesso
+	+ Utilizzo di privilegi di *root* ( *superutente* ) per operazioni importanti
+
+### Interfaccia GUI
+
+Si può accedere al sistema attraverso un terminale come *bash* , *csh* e *esh*
+
+Livelli dell'interfaccia : 
++ *X Window System* 
+	+ Interfaccia a basso livello , fornisce gli strumenti ai livelli GUI più alti
++ *Window manager* 
+	+ Utilizza *X Window* per posizionare , ridimensionare finestre etcc
++ *Desktop Environment*
+	+ Interfaccia utente completa 
+![[Pasted image 20240118160538.png]]
+
+### Standard
+
+*Linux* implementa lo standard *POSIX* 
+
+*SUS* ( *Single UNIX Specification* ) : 
++ Standard che combina diversi standard : POSIX , ISO e versioni precedenti di SUS 
++ Le *shell* e *utilities*
+
+Sviluppato il *Linux Standard Base* ( **LSB** ) per standardizzare le distribuzioni di Linux
+
+### Archiettura del Nucleo
+
+Nucleo **monolitico** ma contiene componenti *modulari*
+
+Principali sottoinsiemi :
++ Gestione dei processi
++ Interprocess communication
++ Gestione della memoria
++ Gestione del File System 
+	+ Utilizza **VFS** ( *Virtual File System* ) che fornisce un'interfaccia per interagire con più file systems 
++ Gestione dei dispositivi di I/O
++ Gestione della rete
+
+![[Pasted image 20240118161151.png]]
+
+#### Piattaforme Hardware 
+
+Utilizzo di codice specifico per ogni architettura 
+
+**Porting** : 
++ Processo di modifica del nucleo per supportare una nuova piattaforma 
++ Il codice per i nuovi codici sorgente nella cartella `/arch`
+
+*User-Mode Linux* ( *UML* ) utilizzato per il debugging del nucleo
+#### Moduli caricabili del nucleo
+
+Utilizzo di moduli caricabili per integrare le funzionalità del nucleo 
+
+*Modulo kernel* : contiene il codice oggetto che una volta caricato è collegato dinamicamente al nucleo in esecuzione 
+
+Consente il caricamento a richiesta del codice in modo da ridurre l'occupazione di memoria del nucleo 
+
+Processi in modalità nucleo hanno permessi speciali 
+
+*Kmod* sottosistema del nucleo che gestisce i moduli senza l'intervento dell'utente , determina le dipendenze dei moduli e li carica su richiesta
+### Gestione dei processi e Thread
+
+Gestore di processi : *scheduler dei processi* 
++ Responsabile innazitutto di assegnare i processori ai processo 
++ Spedisce anche i segnali 
++ Carica i moduli del nucleo 
++ Riceve gli interrupt
+
+Processi e *thread* sono chiamati **Tasks** ( rappresentati dalla struttura *task_struct* ) 
+
+Il gestore di processi mantiene i riferimenti a tutti i task tramite :
++ *lista circolare* doppia di task
++ *tabella hash*
+#### Creazione di Processi
+
+Alla creazione del task si asseggna un *PID* ( *Process IDentifier* ) usato per determinare con funzione hash la posizione nella tabella dei processi 
+
+Stati dei processi : 
+
+![[Screenshot 2024-01-18 164945.png]]
+
+Descrittore di processo *task_struct* : 
++ parametri di Scheduling
++ Memoria
++ Segnali
++ Registri
++ Stato della chiamata di sistema
++ Tabella dei descrittori di file
++ Accounting
++ Stack del nucleo
++ Altro
+
+**Init** : Processo iniziale che usa il nucleo per creare tutti gli altri task 
+
++ *clone*
++ *fork*
+
+Tre classi di Thread : 
++ Real-time FIFO : massima priorità
++ Real-time Round Robin : con quanto di tempo entrambe hanno priorità in 0 a 99
++ time-sharing : priorità tra 100 e 139
+#### Scheduling dei Processi
+
+Obbiettici dello scheduler : 
++ Eseguire tutte le attività entro un ragionevole lasso di tempo 
++ Rispettare la priorità dei task
++ Mantenere un elevato utilizzo delle risorse 
++ Alto throughput
+
+Scheduler a *prelazione* : 
+Ogni task è eseguito fino a :
++ allo scadere del suo quanto o intervallo di tempo
++ Oppure diventa eseguibile un processo di priorità maggiore
++ Oppure il processo di blocca
+
+I task sono nella coda *RUN* ( simili alle code multilivello con feedback )
+
+Il vettore di priorità mantiene un puntatore a ogni livello della coda *RUN* 
+
+una task con priorità *i* è posta nella coda all'*i*-esima posizione del vettore di priorità della coda **RUN** 
+
+Lo scheduler avvia il task in testa alla lista nel livello più alto del vettore di priorità 
++ Le code con più di un elemento gestite dallo scheduler *Round-Robin* 
++ Quando un task viene *bloccato* o *sleeping* viene rimosso dalla coda 
+
+![[Screenshot 2024-01-18 170650.png]]
+
+>[!note]
+>Per evitare attesa infinita ogni task nella coda *RUN* è eseguito almeno una volta all'interno di un periodo detto *epoca* ( $10\cdot n$ ( $n$ indica numero di task nella coda *RUN* ) )
+
+### Gestione della memoria
+
+#### Memoria Virtuale
+
+##### Schedulazione di Pagine
+
+##### Sostituzione di Pagine
+
+#### Memoria Fisica
+
+##### Swapping
+
+### File System
+
+#### Virtual File System
+
+##### Directroies
+
+#### Secondo File System esteso
+
+#### Proc File System
+
+#### Network File System ( NFS )
+
+### Gestione I/O
+
+#### Network Device I/O
+
+### Drivers dei dispositivi
+
 ## Caso di studio Windows 8
+
