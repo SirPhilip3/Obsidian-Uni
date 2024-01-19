@@ -3900,14 +3900,173 @@ Ottimizzazioni :
 
 32bit : 4gb di spazio virtuale per processo 
 
-Un processo p
+Un processo può accedere solo allo spazio utente 
+le tabelle delle pagine e altri dati nello spazio di sistema 
+2gb spazio utente e 2g spazio di sistema
 
+Pagine a dimensione fissa 4kb ( altri casi 2mb )
+
+La memoria è mappata a *due livelli* 
+
++ **Tabella di Directory di Pagina** ( *PDE* )
+	+ Le righe di *PDE* indicano una tabella delle pagine
+	+ Una *PDE* per processo
+	+ Indicata dal registry directory di pagina
+	+ 4 bit per indicare a che pagefile ci si riferisce 
+	+ 20 bit offset del pagefile o page frame in memoria
++ **Tabella delle Pagine** ( *PTE* ) 
+	+ Le righe della tabella puntano ai page frame o alla locazione su disco
+	+ 5 bit di protezione ( Read , Write , Execute , Copy-on-Write , Exception )
+	+ Se abbiamo pagine in memoria 3 bit di stato ( valida , modificata , transizione ) 
++ *Page Frame*
+	+ Una pagine di dati
+
+Una pagina degli indirizzi virtuali può avere 3 stati :
+ + *Non valida* : non è mappata ad alcun oggetto se riferita errore
+ + *Riservata* : indirizzi non possono essere allocati
+ + *Committed* : è assegnata ad un oggetto
+
+Possiede la *TLB*
+
+![[Pasted image 20240119103543.png]]
+
+Possiamo considerare molte pagine come una sola ( pagine contigue ) , utile se usiamo le stesse pagine ripetutamente ( le pagine però devono essere consecutive sia nella virtuale che fisica , consentono l'accesso sempre in lettura e scrittura , dimensione minima 2MB )
+
+*Pagine Copy-on-write* : 
++ page frame condivisi in modo trasparente tra processi
+
+Tabella delle pagine *prototipo* :
++ La PTE per una pagina copy-on-write punta alla PPTE ( pagina prototipo )
++ Le righe della PPTE puntano ai page frame che contengono pagine copy-on-write 
+
+>[!note]
+>Risparmio di energia
+>Un livello in più di indirizzamento ( più complesso )
 #### Allocazione di memoria
 
+3 stadi di allocazione di memoria : 
++ *Reserce* : 
+	+ Un processo riserva lo spazio nel proprio spazio di indirizzamento virutale
++ *Commit* :
+	+ Alla scrittura VMM crea la tabella delle pagine e verifica la che possa essere fatto
++ *Access* :
+	+ VMM scrive i dati in una pagina azzerata e aggiorna la tabella delle pa
+
+![[Pasted image 20240119104903.png]]
+
+**Ottimizzazioni** : 
++ Vietate le richieste che venivano soddisfatte in versioni precedenti
++ Se scarseggiano i page frame il sistema rallenta *throttling*
+
+**Page frame database** : 
++ Traccia lo stato della memoria
++ Liste delle pagine per ogni rispettivo stato ( libere , azzerate , ... )
++ Linked list
+
+**Descrittore di indirizzi virtuali** ( *VAD* )
++ Descrive l'intevallo di memoria allocata 
++ Gestione dello spazio di indirizzamento dei porcessi
+
+*Cluster* : 
++ Spazio del disco suddiviso in gruppi di pagine -> parti dello stesso file ( max 1 file per cluster )
+
+*Prefetching* : 
++ Utilizzato di solito durante lo start up visto che più probabile che prendo le pagine corrette
 #### Sostituzione di Pagina
+
+*Working set* : set di pagine assegnate a processo attualmente in memoria principale 
+*Balance set Manager* : responsabile per la scielta del working set 
+Utilizza *LRU* localizzata sul singolo processo 
+
+Le pagine non nel working set ( page *trimming* ) mette le pagine eliminate in : 
++ lista di *pagine standby*
++ lista di *pagine modificate*
++ lista di pagine modificate e da non scrivere No-Write
+
+Se un processo richiede una pagina se non è nella lista delle pagine valide la sposta nella lista delle pagine libere , imposta il bit di stato a non valido e la posta nella lista di pagine azzerate , questa verrà poi allocata ad un processo che richiede una nuova pagina
+
+![[Pasted image 20240119110448.png]]
+
+![[Pasted image 20240119110514.png]]
+
+La memoria princiaple è suddivisa in 2 : 
++ *Paged pool*
+	+ Da cui VMM può spostare le pagine nel pagefile
++ *Nonpaged pool*
+	+ VMM non sposta mai le pagine nel pagefile
+	+ Spazio limitato utilizzato da driver , codice del VMM , codice del gestore di interrupt
+	+ Il codice all'interno di questo pool non può accede al pool paged
 
 ### File System
 
+Utilizza tre livelli di driver : 
++ *Volume drivers*
+	+ Livello più basso
+	+ Interagisce con i dispositivi hardware 
++ *File system drivers*
+	+ NTFS ( new tecnology file system )
+	+ FAT16 e 32 ( fiel allocation table )
+	+ CDFS ( compact disk file system ) e UDF ( universal disk format )
++ *File system filter drivers* 
+	+ Funzioni ad alto livello 
+	+ scanzione virus 
+	+ crittografia 
+	+ comepressione
 #### File System Drivers
 
++ *Driver del file system locale* 
+	• Interagisce con i dispositivi hardware collegati al computer 
+	• Disco rigido 
+	• DVD
+ +  *Driver di sistema di file remoto* 
+	 • Interagisce con driver del file system sul computer remoto 
+	 • Utilizza protocolli di rete
+
+Esempio richiesta : 
++ Thread utente inizia richiesta tramite API 
++ Object manager passa il puntatore dei file al driver del file system
++ Il driver di file system passa richiesta al driver del dispositivo 
++ La richiesta raggiunge il disco , esegue richiesta di I/O
 ### NTFS
+
+File system nativo di windows , più sicuro di FAT 
+
+La dimensione dei cluster dipende dalla dimensione del disco 
+address dei puntatori a 64 bit
+indirizzazione massima 16 esabyte
+
+Supporta compressione e crittografia
+
+possiede un *MFT* ( *Master File Table* ) , ogni riga corrisponde ad un file , informazioni relativi ad un file memorizzati come attributi 
+
+Attributi *residenti* ( dentro una riga di MFT )
+Attributi *non residenti* : intestazione in una riga del MFT , dati memorizzati altrove nel disco , address composto da VCN , LCN e Run
++ VCN Virtual cluste number
+	+ numero di cluster virtuale del file
++ LCN Logical cluster number 
+	+ numero di cluster logico del disco
++ Run : quanti cluster occupa il file 
+
+**Directories** : 
+ + Contiene un elenco alfabetico di file  
+ + Memorizzato come B-albero
+
+![[Pasted image 20240119112410.png]]
+
+**Hard links** : 
++ Puntano al file corretto anche se qeullo originale è stato cancellato o spostato
++ *hard links* come un pathname originale
+
+*implementazione* : 
++ file_name : attributo di un file MFT , uno per ogni pathname del file
++ hard_link : attributo di un file MFT , conta il numero di attributi del file_name , file viene cancellato quando sono stati cancellati tutti gli hard_link 
+
+*Data stream* : il contenuto del file è memorizzato in uno o più data stream
+
++ *default* data stream : flusso di dati senza nome ( testo ) 
++ *alternate* data stream : flusso di dati con nome ( utilizzato per memorizzare metadati ( autore etcc ) )
+
+**Compressione** : 
++ Trasformazione dei file per ridurre lo spazio occupato
++ il sistema si occupa della compressione e decompressione il file ignora il fatto che sia compresso 
++ 
