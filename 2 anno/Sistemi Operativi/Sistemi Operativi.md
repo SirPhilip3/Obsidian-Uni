@@ -3490,11 +3490,151 @@ Utilizza l'architettura client server
 Possiamo creare directory esportabili `/etc/export`
 Possiamo fare il mount di dierctory remote
 
+![[Pasted image 20240118212638.png]]
+
+![[Pasted image 20240118212706.png]]
 ### Gestione I/O
 
+Il kernel fornisce una interfaccia comune per le chiamate di sistema di I/O 
+
+Le periferche sono raggruppate in classi ( dispositivi con funzioni simili )
+
+*Device Driver* : interfaccia sw tra chiamate di sistema e un dispositivo hardware , identificano i loro dispositivi attraverso i numeri di identificazione principali e secondari , i dispositivi con lo stesso numero di identificazione principali sono controllati dallo stesso driver
+Numeri di identificazione secondari consentono al sistema di distinguere tra i dispositivi della stessa classe 
+
+La maggior parte dei dispositivi di I/O sono rappresentati da file speciali 
+Le righe in `/dev` forniscono l'accesso ai dispositivi 
+La lista dei dispositivi del sistema può essere ottenuta leggendo il contenuto di `/proc/devices`
+
+File speciali di dispositivi sono accessibili tramite il virtual file system :
++ Le chiamatedi sistema passano al *VFS* che a sua volta chiama il driver di periferica 
++ La maggior parte dei driver imlpementano operazioni di file comuni come read , write e seek
+
+Per operazioni specifiche ad un device si utilizza l'istruzione `ioctl` ( es espellere un CD-ROM )
+
+![[Pasted image 20240118214118.png]]
 #### Network Device I/O
 
-### Drivers dei dispositivi
+Si può accedere all'interfaccia di rete solo indirettamente da un processo utente *IPC* e l'interfaccia *socket*
 
+Il traffico di rete può arrivare in qualsiasi momento : 
++ Utilizziamo strutture *net_device* per descrivere i dispositivi di rete  
+
+una volta che il nucleo ha preparato pacchetti da trasmettere a un altro host li passa al driver di periferica per pa propria scheda di interfaccia di rete ( *NIC* )
+
+Il nucleo esamina una tabella di routing interna per abbinare l'indirizzo di destinazione del pacchetto all'interfaccia appropriata nella tabella di routing ( il nucleo sveglia il dispositivo )
+
+Quando i pacchetti arrivano il dispositivo di rete lancia un'interrupt ed il nucleo copia il pacchetto e lo passa al sottosistema di rete 
 ## Caso di studio Windows 8
 
+### Introduzione
+
+Sistema Operativo proprietario di Microsoft
+
+SO per : server , commerciale , utenti privati , desktop , tablet , smartphone 
+### Storia
+
+Quattro frasi : 
++ MS-DOS 
+	+ 16 bit
+	+ utente singolo
+	+ un solo processo per volta
+	+ accesso diretto a memoria princiaple
++ Windows basato su MS-DOS
+	+ con GUI 
+	+ modalità protetta per memoria DOS
++ Windows basato su NT
+	+ New Technology File System ( NTFS )
+	+ a 32 bit
+	+ API a 32 bit Win32 ( programmi possono essere eseguiti su diverse versioni di Windows )
++ Modern Windows
+	+ Linea consumer ( Windows 95 ... )
+	+ DirectX
+	+ Multithreading 
+### Architettura di sistema 
+
+Utilizza le API *Win32* per le chiamate di sistema 
+
+*NTOS* nucleo del sistema operativo NT che fornisce le chiamate di sistema 
+
+Le interfaccie utente sono implementate dai sotto sistemi che sono eseguiti sopra *NTOS* , NT ha tre personalizzazioni : 
++ OS/2 
++ POSIX
++ Win32
+
+Oggi tutte le applicazioni scritte con API sopra *Win32*
+
+Da Windows 8 introduzione delle API *WinRT* e *Modern Software Developmente Kit* ( *MSDK* ) ( utilizzano comunque *Win32* ) 
+
+Installazione di Applicazioni tramite un programma che fa parte dello stesso programma 
+
+*AppContainer* isola il codice in una sandbox che comunica con API *WinRT* che comunicano con processi *broker* che accedono alle risorse  
+#### Livelli di programmazione
+
++ *Processo* del sottosistema avviato da smss.exe a seguito della richiesta di `CreateProcess` di *Win32*
++ *Librerie* : funzioni di alto livello e funzioni di routine di comunicazione `stub` 
++ *Hook* a `CreateProcess` per quale sottosistema usare
+
+![[Pasted image 20240118224936.png]]
+#### Interfaccia di programmazione
+
+##### NT
+
+Chiamate di sistema che Windows può eseguire sono implementate nel livello Executive NTOS eseguito in modalità nucleo 
+
+Le chiamate si riferiscono ad oggetti e restituiscono un *handle* che possono essere usati 
+
+Descrittore di sicurezza degli oggetti per stabilire i diritti di accesso 
+
+Gli oggetti in modalità nucleo hanno un nome , protezione e possono essere condivisi 
+
+##### Oggetti
+
+Gli *oggetti* in Windows rappresentano nomi di una : 
++ risorsa fisica
++ risorsa logica 
+
+*Object Manager* gestisce gli oggetti 
+
+Rappresentato da una struttura dati in memoria 
+
+Associati ad un tipo 
+
+Un'istanza di tipo di oggetto : 
++ Definisce gli *attributi* dell'oggetto
++ Definisce le procedure standard dell'oggetto 
+
+Esempio di tipi di oggetti : processi , thread , pipe , file 
+
+![[Pasted image 20240118230349.png]]
+##### Win32
+
+#### Gestore degli oggetti
+
+#### Archiettura di sistema
+
+### Meccanismi di gestione del sistema
+
+### Registry
+
+### Livelli di richiesta di Interrupt
+
+### Threat di Sistema
+
+#### Gestione di Processi e Thread
+
+#### Organizzazione di Processi e Thread
+
+#### Scheduling di Thread
+
+### Gestore della memoria
+
+#### Allocazione di memoria
+
+#### Sostituzione di Pagina
+
+### File System
+
+#### File System Drivers
+
+### NTFS
