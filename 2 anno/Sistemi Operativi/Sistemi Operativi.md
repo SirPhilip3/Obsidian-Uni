@@ -3591,8 +3591,8 @@ Gli oggetti in modalità nucleo hanno un nome , protezione e possono essere cond
 ##### Oggetti
 
 Gli *oggetti* in Windows rappresentano nomi di una : 
-+ risorsa fisica
-+ risorsa logica 
++ risorsa fisica ( periferica ) 
++ risorsa logica ( processo )
 
 *Object Manager* gestisce gli oggetti 
 
@@ -3609,25 +3609,298 @@ Esempio di tipi di oggetti : processi , thread , pipe , file
 ![[Pasted image 20240118230349.png]]
 ##### Win32
 
+Utilizzo di chiamate *API Win32*
 #### Gestore degli oggetti
 
+Per gestire gli oggetti abbiamo i : 
++ *Pointer*
+	+ Puntatore referenziato per contare i riferimenti
++ *Handle*
+	+ Utilizzati da processi utente e componenti del nucleo 
+	+ Permette il controllo del sistema 
+	+ Possono essere duplicati e passati ad altri processi 
+	+ *Handle di kernel* : possiamo accedere allo spazio di un processo solo in modalità nucleo 
+	+ Contenutu enlla tabella degli handle dei processi di sistema
+
+Un oggetto può essere con o senza nome
+
+Solo i thread del nucleo possono aprire un *handle* per un oggetto senza nome 
+
+Spazio dei nomi : 
++ dell'*Object Manager*
++ *generico* ( NT namespace )
+
+Il *gestore degli oggetti* implementa directory e link simbolivi 
+
+Esistono nomi permanenti che rimangono finchè non è cancellato anche se non collegato 
+
+*Eliminazione* di oggetti : 
++ Senza handle : oggetti sono cancellati solo dallo spazio dei nomi
++ Senza handle e puntatori : oggetti cancellati dalla memoria 
 #### Archiettura di sistema
 
+*Kernel NTOS* a 2 livelli  : 
++ *Esecutivo* : offre la maggior parte dei servizi ( sotto il kernel )
+	+ Eseguito in modalità kernel 
+	+ Indipendente dall'architettura ( eccetto gestione memoria )
+	+ Offre : 
+		+ Gestore di oggetti
+		+ Gestore di I/O
+		+ Gestore di Porcessi
+		+ Gestore di memoria ( memoria virtuale con paginazione a richiesta )
+		+ Gestore della cache
+		+ implementa registro di sistema
++ *Kernel* : offre : ( sopra ececutive )
+	+ *Scheduling* dei *Thread* , *interrupt* dispatching
+	+ Sevizi di base del sistema 
+	+ Sincronizzazione dei thread
+	+ Gestione delle trap e interruzioni 
+	+ Fornisce oggetti di controllo per gestire la CPU ( strutture dati ) 
+	+ Oggetti dispatcher : usano una comune struttura dati per la sincronizzazione
+
+Altri componenti : 
++ *HAL* ( *Hardware Abstraction Layer* )
+	+ Gestisce l'hardware 
++ *Driver dei dispositivi*
+	+ DMA e controllo delle periferiche
++ *Hypervisor* 
+	+ Schedula processori virtuali su processori fisici
+	+ Virtualizza l'hardware permette la concorrenza di diversi SO
+![[Pasted image 20240119084042.png]]
+
+**DLL** ( *Dynamic Link Library* ) 
++ moduli in modalità utenti che i processi possono utilizzare in modo dinamico
++ Punti di ingresso per il nucleo per gestire eccezioni 
+
+**Sevizi** di sistema: 
++ sono processi speciali in modalità utente ( Task Scheduler , IPSec )
 ### Meccanismi di gestione del sistema
 
+Ambiente in cui si gestiscono le componenti di Windows
++ Oggetto
++ Priorità , Interrupt
++ Thread
++ Come sono conservati e recuperati i dati ( registry )
 ### Registry
 
+*Database* centrale che memorizza dati di configurazione 
+
+Accessibili a tutti i processo in modalità nucleo :
++ dati utente
++ dati di sistema
++ dati hardware
++ dati di appllicazione 
+
+Struttura ad albero i cui nodi sono le chiavi ( ogni chiave può contenere sottochiavi , valori , nome e dato )
++ Chiave predefinita HKEY_LOCAL_MACHINE radice dei dati della macchina locale 
++ L'utilizzo del *registry* avviene navigando la struttura dell'albero dalle chiavi alle sottochiavi
++ GUI per la modifica dei vialor `regedit`
+
+*Configuration Manager* gestore delle configurazioni ( executive )
+
+I dati del registry sono salvati all'interno dei *hives* : porzioni dell'albero  
 ### Livelli di richiesta di Interrupt
+
+Gestore delle interruzioni : *Interupt Service Routine* ( *ISR* ) : 
++ Ogni interruzione possiede un parametro di *priorità*  ( *Interrupt Request Level* ( *IRQL* )  )
++ Se l'interrupt lanciato ha una maggiore priorità di un corrente questo viene mascherato 
+
+Livelli di priorità : 
++ *Passivo* : nessun interrupt
+Interrup Software
+$\downarrow$
++ *APC* : lanciato da una procedura asincorna ( legata a therad )
++ *DPC* / *dispatch* : chiamate di procedura differite , scheduling dei thread  
+Interrup Hardware
+$\downarrow$
++ *ISR* di dispositivo : interrupt da parte di una periferica
++ *ciritci* : Power , Profiler , Debugger , Clock , Request , High 
+
+![[Pasted image 20240119090328.png]]
 
 ### Threat di Sistema
 
+Utilizzato da componenti in modalità nucleo che devono eseguire azioni in risposta alla richiesta dell'utente 
++ Gestione della cache
++ driver di periferica 
+
+Approcci : 
++ *Thread del nucleo* : 
+	+ Creato da componenti in modalità nucleo 
+	+ appartengono al sistema
+	+ si comportano e vengono schedulati come thread utente 
+	+ Eseguibili a livello *IRQL* passivo
++ *System worker thread* : 
+	+ Forniti dal micorkernel all'inizio o creati in base alla quantità di richieste 
+	+ Dormienti finchè un comenente in modlaità nucleo non richiede un lavoro 
+	+ 3 tipi : delayed , ciritcal , hypercritical
+
 #### Gestione di Processi e Thread
 
+**Processi** : 
++ hanno un contesto di esecuzione ( spazio di indirizzamento viruale , attributi )
++ codice del programma
++ risorse allocate
++ thread associati
+
+**Thread** : unità di esecuzione 
+
+Processi e Thread sono degli *oggetti*
+
+*job* raccolta di processo con quote e limiti simili 
+
+*fiber* : thread leggero
 #### Organizzazione di Processi e Thread
+
+**Strutture Dati** che descrivono un *processo* : 
++ *Blocco di ambiente del processo* ( *PEB* )
+	+ Informazioni del processo disponibili all'utente 
+	+ DLL collegate al processo  
+	+ heap
++ *Blocco EPROCESS* ( usato in *excecutive* ) 
+	+ ID del processo , token di accesso , tabella degli handle
+	+ Punta a PEB
+	+ Descrive il processo 
+	+ contiene un blocco KRPOCESS
+	+ memorizzato in linked list
++ *Blocco KPROCESS* ( usate dal *kernel* ) 
+	+ informazioni di scheduling
+	+ infromazioni di sincronizzazione
+
+**Strutture Dati** che descrivono un *Thread* : 
++ *Blocco di ambiente del Thread* ( *TEB* )
+	+ Informazioni del thread disponibili all'utente 
+	+ Sezioni critiche che appartengono al thread
+	+ memorizza il thread ( thread local storage )
+	+ memorizzato all'interno del processo al quale il thread appartiene
++ *Blocco ETHREAD* ( usato in *excecutive* ) 
+	+ ID del processo , richieste di I/O , indirizzo di inizio del thread
+	+ Descrive il thread 
+	+ contiene un blocco KTHREAD
+	+ punta al blocco EPROCESS del processo del thread
++ *Blocco KTHREAD* ( usate dal *kernel* ) 
+	+ informazioni di scheduling
+	+ punta al blocco TEB
+
+I thread che appartengono ad un processo condividono lo spazio di indirizzamento virtuale
+
+*Memoria locale del Thread* ( *TLS* )
++ area dove i thread possono imagazzinare dati locali 
++ un thread può allocare un indice TLS per il processo , l'indice contiene uno slot TLS per ogni thread di processo , questo punta alla locazione dei dati locali
++ Il processo può possedere molti indici TLS ( varie DLL )
+
+**Creazione e Terminazione** di processi 
+
+*creazione* : 
++ chiamata a Win32 API
++ Processo genitore e figli sono indipendenti 
++ possono ereditare degli attributi dal padre al figlio ( handle , variabili d'ambiente )
++ Un processo ha un thread principale che può crearne altri interni al processo 
+
+*terminazione* : 
++ Se tutti i thread del processo terminano
++ Se un thread di processo dirige la terminazione 
++ Se l'utente che possiede il processo si disconnette
++ La terminazione di processi genitore e figlio sono indipendenti
+
+**Jobs** : 
++ Gruppo di processi trattati come unità 
++ Gestisce le risorse consumate dai processi 
++ Termina tutti i processi in una sola volta 
++ Ogni processo può fare parte di un solo job
++ Gli attributi del job sono ereditati dai suoi processi 
+
+**Fibers**
++ Unità di esecuzione , possono essere schdulati dal thread che li crea 
++ Allocazione di uno stack e struttura dati in modalità utente 
++ Eseguiti nel contesto del thread 
++ overhead minore di cambio contesto tra fiber 
++ contengono una memoria locale come TLS ( FLS )
+
+**Thread Pooling** : 
++ Sono thread che dormono in attesa di lavoro 
++ Ogni processo riceve un pool di thread da utilizzare 
+
+![[Pasted image 20240119094452.png]]
 
 #### Scheduling di Thread
 
+Per ogni thread visto a livello utente c'è un : 
++ thread eseguito in modalità kernel
++ thread eseguito in modalità utente 
+
+*User-mode scheduling* utilizzato per passare tra thread utente senza attivare il kernel 
+
+La gestione dei thread avviene attraverso API Win32 
+
+Stati di un *thread* : 
+
+![[Pasted image 20240119095134.png]]
+
+I thread sono schedulati senza considerare i processi 
+
+hanno 31 livelli di priorità ( 0-31 )
+
+abbiamo 32 code che vengono schedulate con *Round-robin* 
+
+![[Screenshot 2024-01-19 095327.png]]
+
+*Prelazione* : può accadere quando : 
++ cambia la priorità del thread 
++ il thread entra nello stato ready 
++ il thread esce dallo stato running
+
+I thread che subiscono il prerilascio tornano in coda ready
+I thread *real-time* ottengono un nuovo quanto 
+Agli altri thread non viene riassegnato il quanto
+
+*Priorità* : 
++ Thread *dinamici* : livelli di priorità 0-15
++ Thread *in tempo reale* : livello di priorità 16-31 ( *statica* )
+
+*Processo* : 
++ Possiede una *classe base di priorità* ( determina un intervallo limitato per la priorità dei suoi thread )
+*Thread* : 
++ Possiede un *livello base di priorità*
++ Determina l'esatta priorità del thread = classe di priorità + livello base di priorità
+
+*Cambiamenti di priorità* : 
++ Solo per thread dinamici
++ *Aumento* : 
+	+ All'uscita dello stato wait
+	+ Se non è stato eseguito da molto tempo 
++ *Diminuzione*
+	+ Non può diminuire oltre la priorità di base 
+	+ Ritorna al livello precedente quando l'ho aumentata perchè non eseguito da molto tempo alla fine del quanto
+
+Altri algoritmi di scheduling 
++ *Fair share* ( priorità di gruppo )
++ Scheduling interattivo per terminal server
+
+Scheduling di *multiprocessor* : 
++ Maschera di affinità : insieme di processori dove poter eseguire i thread 
++ Last processor : processore sul quale il thread è stato eseguito l'ultima volta
++ Processore ideale :
+	+ Per massimizzare il parallelismo -> thread in relazione su diversi processori 
+	+ Per massimizzare i cache hit -> thread in relazione su stesso processore 
+
+Il dispatcher scieglie dalla coda run con massima priorità basandosi sul tempo di attesa , last processor e processore ideale
 ### Gestore della memoria
+
+*Virtual Memory Manager* ( *VMM* ) 
++ componente executive responsabile della gestione della memoria 
+
+Ottimizzazioni : 
++ copy on write
++ allocazione solo fino a che non strettamente necessario 
+
+*Prefetching* : pagine dal disco a memoria principale prima che siano richieste 
+
+*Pagefile* : pagine che non entrano in memoria principale
+
+32bit : 4gb di spazio virtuale per processo 
+
+Un processo p
 
 #### Allocazione di memoria
 
