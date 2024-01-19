@@ -4069,4 +4069,8 @@ Attributi *non residenti* : intestazione in una riga del MFT , dati memorizzati 
 **Compressione** : 
 + Trasformazione dei file per ridurre lo spazio occupato
 + il sistema si occupa della compressione e decompressione il file ignora il fatto che sia compresso 
-+ 
+
+>[!todo]
+>#todo
+>LAST 3 slide
+
