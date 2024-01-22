@@ -1906,13 +1906,13 @@ Questo può essere trovato utilizzando la disuguaglianza di *Chebyshev* applicat
 $$\mathbb{P}\Big[|\overline X_n - \mu |>\epsilon\Big]\le \frac{Var\Big[\overline X_n \Big]}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2}\rightarrow 0$$
 #### Legge forte
 
-Sia $X_1,\dots,X_n$ una sequenza di varaibili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ allora : 
+Sia $X_1,\dots,X_n$ una sequenza di variabili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ allora : 
 $$\overline X_n \rightarrow \mu \quad \text{quasi certamente}$$
 **Esempio** : 
 
 Siamo interessati all'evento che venga estratto il 53 alla roulette . Indichiamo con $X_i$ la variabile binaria che vale 1 se all'$i$-esima estrazione esce il numero 53 e 0 altrimenti , abbiamo qundi :
 $$X_i\sim\mathcal{B}(1, p = 1/90)$$
-Per la lagge dei grandi numeri ci aspettiamo che la frequenza realtiva delle volte che si estrae il 53 si avvicini sempre più a $p$ al crescere del numero di estrazioni $n$ . Infatti :
+Per la legge dei grandi numeri ci aspettiamo che la frequenza realtiva delle volte che si estrae il 53 si avvicini sempre più a $p$ al crescere del numero di estrazioni $n$ . Infatti :
 $$\frac{\sum_{i=1}^nX_i}{n}\overset{p}\rightarrow\mathbb{E}[X_i]=p=1/90$$
 >[!note]
 >La probabilità di estrarre un 53 ad ogni estrazione non cambia acnche quando non si osserva il 53 per molto tempo
