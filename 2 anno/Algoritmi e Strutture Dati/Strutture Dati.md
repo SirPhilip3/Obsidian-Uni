@@ -1440,7 +1440,7 @@ Arr A = [1, 3, 5, 7, 9]
 
 buildBSTott (Arr A)
 	t = newTree() 
-	t. root = buildBSTottAux(A, 1, A.length, NIL)
+	t.root = buildBSTottAux(A, 1, A.length, NIL)
 	return t
 	
 buildBSTottAux (Arr A ,int inf ,int sup ,Node padre) 
