@@ -855,7 +855,7 @@ Come prima se vi sono attributi nella relazione si aggiungono dove vi sono le *f
 
 ![[Pasted image 20231023132301.png]]
 
-Le associazioni ricorsive parziali si risolvono come nelle univoche e parziali , abbiamo quindi 2 scielte riguardanti la traduzione come nelle univoche e parziali
+Le associazioni ricorsive parziali si risolvono come nelle univoche e parziali , abbiamo quindi 2 scelte riguardanti la traduzione come nelle univoche e parziali
 Seguono le stesse regole delle univoche e parziali
 #### 1 : 1
 
