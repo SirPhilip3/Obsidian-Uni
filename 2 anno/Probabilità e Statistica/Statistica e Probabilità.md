@@ -1937,7 +1937,7 @@ Se gli iscritti superano i 120 bisogna sdoppiare i corsi , qual'è la probabilit
 
 $X\sim Po(100)$ perciò :
 $$\mathbb{P}[X\ge 120] = 1 - \text{ppois(119 , 100) = 0.0282}$$
-Possiamo anche vederla come una somma di 100 variabili aleatoria $Po(1)$ e la sua distribuzione si può dunque approssimare con quella normale in virtù del TLC
+Possiamo anche vederla come una somma di 100 variabili aleatoria $Po(1)$ e la sua distribuzione si può dunque approssimare con quella normale in virtù del *TLC*
 
 Con la correzione per continuità otteniamo :
 $$\mathbb{P}[X\ge 120]=\mathbb{P}[X\ge 119.5] = \mathbb{P}\bigg[\sum_{i}X_i\ge 119.5 \bigg]$$
@@ -2061,4 +2061,3 @@ Si possono aggiungere alla passeggiata aleatoria delle *barriere assorbenti* in 
 >[!todo]
 >completa
 >#todo
-
