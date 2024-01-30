@@ -869,7 +869,7 @@ Seguono le stesse regole delle univoche e parziali
 
 ![[Pasted image 20231024131718.png]]
 >[!todo] 
-##### ricorsione
+##### Ricorsione
 
 ![[Pasted image 20231024131731.png]]
 >[!todo] 
