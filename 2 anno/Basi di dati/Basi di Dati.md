@@ -1472,7 +1472,7 @@ $$\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Bi
 |76366|2|26|28|27
 
 >[!info]
->count(\*)
+>`{SQL}count(*)`
 >significa che conta tutte le ennuple presenti nel gruppo
 
 #### Multinsiemi
@@ -2670,9 +2670,9 @@ CREATE TABLE Nome [AS] EspressioneSELECT
 
 ```sql
 CREATE TABLE EsamiFino2006 AS (
-		SELECT *
-		FROM Esami e
-		WHERE e.Dara <= '31/12/2006')
+	SELECT *
+	FROM Esami e
+	WHERE e.Dara <= '31/12/2006')
 ```
 Crea una tabella `{sql}EsamiFino2006` contente tutte le ennuple di `{sql}Esami` con data minore o uguale `{sql}'31/12/2006'`
 
