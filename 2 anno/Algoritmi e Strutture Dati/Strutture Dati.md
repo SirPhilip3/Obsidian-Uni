@@ -2337,11 +2337,48 @@ Aumentiamo la size dell'heap di 1 elemento , poniamo nell'ultimo elemento dell'a
 
 Un *heap* può svolgere le operazioni delle code di priorità con complessità $O(\log n)$
 
-# Esercizi 
+## Ordinamenti Lineari
 
->[!todo]
->copiare esercizi ( pag 63 -69 46 - 49 )
->#todo
-## Complessità 
+### Limiti degli algoritmi basati sui confronti
 
-## Alberi 
+Gli algoritmi visti in precedenza hanno complessità : 
++ *Insertion Sort* : $O(n^2)$
++ *Merge Sort* : $O(n\ \log n)$
++ *Quick Sort* : $O(n^2)$ nel caso peggiore , $O(n\ \log n)$ nel caso medio 
++ *Heap Sort* : $O(n\ \log n)$
+
+Possiamo trovare algoritmi di ordinamento più efficenti ? 
+
+Dipende dal modello di computazionale , gli algoritmi fin'ora incontrati usano come modello computazionale il *confronto* , cerchiamo di definire il limite inferiore del tempo di esecuizione per questo tipo di algoritmi 
+
+Partiamo da delle intuizioni : 
+Il limite inferiore *ideale* sarebbe $\Omega(n)$ in quanto almeno tutti gli elementi dobbiamo visitarli , questo però non corrisponde alla realtà 
+
+Cerchiamo ora di trovare il *limite inferiore* per gli algoritmi basati sul confronto ( scopriremo che sarà $\Omega(n\ \log n)$ )
+
+Questo possiamo dimostrarlo attraverso gli **alberi di decisione** , questi sono una struttura dati che ci permette di astrarre gli algoritmi basati sul confronto
+
+Ogni *nodo* è composto dai confronti che dobbiamo svolgere tra 2 indici ( $i$ , $j$ ) di un array 
+Ogni *foglia* è composta da una permutazione degli indici dell'array di partenza tale per cui l'array in input risulti ordinato
+Il *sottoalbero sinistro* da i sucessivi confronti se $a_i \le a_j$
+Il *sottoalbero destro* da i sucessivi confronnti se $a_i \gt a_j$ 
+
+Facciamo un esempio per l'ordinamento di un array di tre elementi : 
+
+![[DecisionTree.excalidraw]]
+
+Se vogliamo per esempio ordinare l'array $<6,8,5>$ eseguiremo i seguenti confronti :
+
+![[DecisionTree(6,8,5).excalidraw]]
+
+1. Confrontiamo il $6$ e l' $8$ , essendo che $6 \le 8$ si va sul sottoalbero *destro*
+2. Confrontiamo l'$8$ e il $5$ , essendo che $8>5$ si va sul sottoalbero *sinistro*
+3. Confrontiamo il $6$ con il $5$ , essendo che $6>5$ si va sul sottoalbero *sinistro* dove troviamo al soluzione : $<5 , 6 , 8>$
+
+Possiamo dire che dato un qualsiasi algoritmo di ordinamento per confronti : 
++ Possiamo costruire un albero di decisione per ogni $n$ ( lunghezza dell'input )
++ L'albero modella tutte le possibili *tracce d'esecuzione* ( ossia ciascun cammino che parte dalla radice ed arriva ad una foglia ) 
++ Il tempo d'esecuzione ( il numero di confronti ) è la lunghezza della traccia
++ Il tempo d'esecuzione nel caso peggiore è quindi l'altezza dell'albero ( la traccia più lunga )
+
+Per determinare il limite inferiore degli algoritmi basati sul confronto è il limite inferiore sulle altezze di tutti gli alberi
