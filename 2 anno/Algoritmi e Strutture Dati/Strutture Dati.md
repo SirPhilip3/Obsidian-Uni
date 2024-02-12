@@ -2379,6 +2379,89 @@ Possiamo dire che dato un qualsiasi algoritmo di ordinamento per confronti :
 + Possiamo costruire un albero di decisione per ogni $n$ ( lunghezza dell'input )
 + L'albero modella tutte le possibili *tracce d'esecuzione* ( ossia ciascun cammino che parte dalla radice ed arriva ad una foglia ) 
 + Il tempo d'esecuzione ( il numero di confronti ) è la lunghezza della traccia
-+ Il tempo d'esecuzione nel caso peggiore è quindi l'altezza dell'albero ( la traccia più lunga )
++ Il tempo d'esecuzione nel caso peggiore è quindi l'*altezza dell'albero* ( la traccia più lunga )
 
-Per determinare il limite inferiore degli algoritmi basati sul confronto è il limite inferiore sulle altezze di tutti gli alberi
+Per determinare il limite inferiore degli algoritmi basati sul confronto è sufficente trovare il limite inferiore sulle altezze di tutti gli alberi di decisione
+
+Il numero di *foglie* presenti su di un albero devono essere *almeno* le permutazioni di $n$ elementi , per definizione di permutazioni allora il numero di foglie è $\ge n!$ 
+
+>[!note]
+>Se il numero di foglie fosse $< n!$ significherebbe che per un determinato input non c'è una soluzione e questo è impossibile
+
+**Lemma** : Un qualsiasi albero binario di altezza $h$ ha *al più* $2^h$ foglie 
+
+Questo *lemma* può essere dimostrato per induzione su $h$ 
+
+**Caso Base** : 
+	Un albero di altezza uguale a 0 ( $h=0$ ) rappresenta un albero che ha un solo nodo , la radice che è anche l'unica foglia
+	 Allora : $f = 1 \le 2^0 = 1\quad \text{c.v.d.}$ 
+
+**Passo Induttivo** : 
+	Assumiamo che per alberi binari di altezza $k < h$ il numero di foglie è $\le 2^k$ e lo dimostro per $h$Sia $r$ la radice dell'albero $T$ di altezza $h$ : 
+		Se $r$ ha un solo figlio allora il numero di foglie di $T$ è uguale al numero di foglie dell'albero $T_1$ ( il suo unico sottoalbero ) , avremo quindi : 
+		$$f=f_{T_1}\le2^{h-1}\le 2^h \quad \text{c.v.d.}$$ ![[Pasted image 20240212144342.png]]
+		Se invece $r$ ha due figli allora il numero di foglie di $T$ è uguale alla somma delle foglie di $T_1$ e $T_2$ e poichè $T_1$ ha altezza $h_1<h$ e $T_2$ ha altezza $h_2<h$ 
+		![[AltezzaAlberoDecidione.excalidraw]]
+	Quindi $f\le 2^h\ ,\quad \text{c.v.d.}$
+
+Possiamo ora esprimere il seguente **Teorema** : 
+
+Qualsiasi Algoritmo di ordinamento per confronti richiede $\Omega(n \log n)$ confronti nel caso peggiore
+
+**Dimostrazione** :  
+Dobbiamo determinare l'altezza di un albero di decisione dove ogni permutazione appare come foglia 
+Si cosideri un albero che abbia $h$ come altezza e $l$ come numero di foglie 
+
+Avremo che : $$n!\le l \le 2^h$$ Applichiamo il logaritmo : 
+$$\log n! \le \log l \le h$$
+Da qui possiamo ricavare che $h \ge \log n!$
+
+Per semplificare $n!$ utilizziamo l'approssimazione di *Sterling* , questa ci dice che :
+$$n! = \sqrt{2\pi}\bigg(\frac n e\bigg)^n\bigg(1+\Theta\bigg(\frac 1n\bigg)\bigg)$$
+Di questa formula ci interessa solamente il termine che asintoticamente domina ossia $\big(\frac n e\big)^n$ 
+Possiamo quindi sostituire :
+$$h\ge \log \bigg(\frac n e\bigg)^n\ge n \log \bigg(\frac n e\bigg)\ge n (\log n - \log e)\ge n \log n$$
+Abbiamo quindi dimostrato che $h$ è limitato inferiormente da $n \log n$ 
+
+Possiamo concludere che il limite inferiore di complessità per gli algoritmi basati sul confronto è $\Omega(n \log n)$
+
+**Corollario** : 
+	*HeapSort* e *MergeSort* sono algoritmi di ordinamento per confronti asintoticamente *ottimali* , questo poichè il limite superiore di esecuzione ( $O(n \log n)$ ) di questi algoritmi coincide con il limite inferiore degli algoritmi basati sul confronto 
+### Counting Sort
+
+Per ricavare una complessità minore di degli algoritmi basati sul confronto non possiamo svolgere confronti all'interno dell'algoritmo di sorting , per evitare ciò abbiamo bisogno di fare delle *assunzioni* 
+
+Nel caso del **Counting Sort** , esso è applicabile solo se i dati in input rispettano la seguente *assunzione* : I numeri da ordinare sono interi in un intervallo che va da 0 a $k$ per qualche intero $k$
+
++ **Input** : $A[\ 1, \dots , n\ ]$ dove $A[\ j\ ]\in[\ 0,\dots,k \ ]$ ; $n$ e $k$ sono parametri dell'algoritmo    
++ **Output** : $B[\ 1,\dots, n \ ]$ una permutazione ordinata di $A$ 
++ **Memoria ausiliaria** : $C[\ 0,\dots, k \ ]$ , vettore delle occorrenze
+
+```c++
+countingsort(array A, array B, int n, int k)
+	creo C[0,...,k]
+	for i = 0 to k
+		A[i] = 0
+	for j = 1 to n
+		C[A[j]]++ // popola vettore delle occorrenze
+	for i = 1 to k
+		C[i] = C[i] + C[i - 1] // popola vettore delle somme prefisse 
+	for j = n down to 1 
+		B[C[A[j]]] = A[j] // spostiamo nella posizione corretta 
+		C[A[j]]-- // evita sovrapposizioni nel caso di duplicati
+```
+
+#### Spiegazione
+
+L'algoritmo ha 3 array : 
++ $A$ : l'array da ordinare 
++ $B$ : l'array risultato , contenente gli elementi di $A$ ordinati in modo crescente 
++ $C$ : un vettore ausiliario delle occorrenze , contenente $k+1$ elementi ( da $0$ a $k$ )
+
+Il secondo ciclo for incrementa gli elementi del vettore delle ricorrenze , alla fine di questo ciclo l'elemento in posizione $i$-esima del vettore $C$ contiene il numero di colte che il numero $i$ compare in $A$ 
+$$C[\ i\ ]=|\{ x\in \{1,\dots,n\} \ \text{t.c.} \ A[\ x \ ]= i \ \}|$$
+Il terzo ciclo compie il calcolo delle *somme prefisse* sugli elementi del vettore delle occorrenze : somma ad ogni elemento del vettore delle occorrenze il numero di occorrenze dell'elemento precedente
+Questo ci permette di capire quanti elementi minori o uguali di $i$ sono presenti in $A$ dove $i$ è l'indice che scorre il vettore delle occorrenze e quindi assume tutti i valori contenuti in $A$ 
+$$C[\ i\ ]=| \{ x\in \{ 1,\dots,n \}| \ A[\ x\ ]\le i\ \} |$$
+L'ultimo ciclo è quello che riempie l'array di output
+#### Complessità
