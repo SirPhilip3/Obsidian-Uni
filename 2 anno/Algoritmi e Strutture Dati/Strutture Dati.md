@@ -2463,5 +2463,30 @@ $$C[\ i\ ]=|\{ x\in \{1,\dots,n\} \ \text{t.c.} \ A[\ x \ ]= i \ \}|$$
 Il terzo ciclo compie il calcolo delle *somme prefisse* sugli elementi del vettore delle occorrenze : somma ad ogni elemento del vettore delle occorrenze il numero di occorrenze dell'elemento precedente
 Questo ci permette di capire quanti elementi minori o uguali di $i$ sono presenti in $A$ dove $i$ è l'indice che scorre il vettore delle occorrenze e quindi assume tutti i valori contenuti in $A$ 
 $$C[\ i\ ]=| \{ x\in \{ 1,\dots,n \}| \ A[\ x\ ]\le i\ \} |$$
-L'ultimo ciclo è quello che riempie l'array di output
+L'ultimo ciclo è quello che riempie l'array di output 
+Abbiamo a questo punto un vettore delle occorrenze che contiene la somma comulativa delle occorrenze dei valori minori o uguali all'indice in cui ci posizioniamo 
+Scorriamo quindi il vettore in input $A$ dalla fine all'inizio , sia $x$ il numero $i$-esimo presente in $A$ e $y$ il numero di occorrenze in $A$ di valori minori o uguali ad $x$ , possiamo quindi inserire $x$ nel vettore $B$ in posizione $y$ ( poichè sono sicuro che avremo almeno $y$ altri numeri prima di $x$ minori o uguali a $x$ ) 
+
+>[!note]  
+>per assicurarci che inseriamo correttamente occorrenze ulteriori di $x$ ci basterà decrementare di $1$ $y$  
 #### Complessità
+
++ Il primo ciclo compie $k$ interazioni : ha costo $\Theta(k)$
++ Il secondo ciclo compie $n$ interazioni : ha costo $\Theta(n)$
++ Il terzo ciclo compie $k$ interazioni : ha costo $\Theta(k)$
++ Il quarto ciclo compie $n$ interazioni : ha costo $\Theta(n)$
+
+Il tempo complessitvo d'esecuzione é : 
+$$T(n)=\Theta(k)+\Theta(n)+\Theta(k)+\Theta(n) = \Theta(k+n)$$
+>[!note]
+>Per poter utilizzare in modo efficente questo algoritmo è importante notare che $k=O(n)$ in questo modo $T(n)=\Theta(n)$ 
+>Altrimenti se all'interno dell'array originale abbiamo un numero come : $k=n^3$ la complessità diventa $T(n)=\Theta(n^3+n)=\Theta(n^3)$ che non e efficente
+
+#### Osservazioni
+
++ Per rendere *stabile* l'algoritmo dobbiamo iniziare la lettura di $A$ dalla fine
++ Se l'intervallo contiene valori negativi possiamo ricondurci alla assunzione iniziale traslando l'array ( tenendo sempre presente la nota precedente )
+	$$[-n,M]\rightarrow[0,M+n]$$
+#### Esempio di Esecuzione
+
+![[CountingSort.excalidraw]]
