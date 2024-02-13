@@ -2553,5 +2553,15 @@ Spezziamo quindi ogni *word* in 4 parti ognuna costituita da 8 bit ( $r=8$ ) , a
 >Dati $n$ numeri di $b$ bit e un intero positivo $r\le b$ la procedura di *radixsort( )* ordina in correttamente i numeri in tempo  :
 >$$\Theta\bigg(\frac b r \cdot( n + 2^r )\bigg)$$  
 
->[!todo]
+Come sciegliamo $r$ in modo da minimizzare il tempo di esecuzione :
++ Sicuramente $r\le b$ 
++ Vogliamo che $r$ sia grande ( per minimizzare il moltiplicatore ) ma non grande al punto da rendere $2^r \gg n$
+
+Distinguiamo quindi in 2 casi : 
++ Se $b \lt \lfloor \log n \rfloor$ allora per qualche valore $r\le b$ si ha $(n+2^r)=O(n)$
+	In questo caso conviene sciegliere $r$ il più grande possibile cioè $b$ , si ottiene il seguente tempo di esecuzione : 
+	$$\frac b b (n+2^b)=\Theta(n) \quad 2^b \lt n$$
++ Il caso più frequente , però , vede la seguente condizione $b\ge \lfloor\log n\rfloor$ 
+	In questo caso conviene scegliere $r$ tale che sia massimo ma sotto la condizione che $n\ge 2^r \implies r = \lfloor\log n \rfloor$ , otteniamo quindi il tempo di esecuzione risultante :
+	$$\frac b {\log n}(n + 2 ^{\log n})=\frac b {\log n}(n+n)=\frac b {\log n}(2n)=\Theta\bigg(\frac b {\log n} n\bigg)$$
 
