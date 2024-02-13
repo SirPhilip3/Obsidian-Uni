@@ -2493,3 +2493,65 @@ $$T(n)=\Theta(k)+\Theta(n)+\Theta(k)+\Theta(n) = \Theta(k+n)$$
 
 ### Radix Sort
 
+Il *Radix Sort* ci permette di estendere i casi di utilizzo del *Counting Sort*
+
+**Assunzione** : Tutti i numeri da ordinare sono composti da $d$ cifre dove la cifra in posizione 1 è la cifra meno significativa mentre la cifra in posizione $d$ è la più significativa
+
+*Intuizione* : Per ogni colonna di cifre ( l'array è posto in verticale ) si applica un algoritmo di ordinamento *stabile*
+
+```c++
+radixsort(array A, int d)
+	for i = 1 to d
+		// usa un algoritmo di ordinamento stabile per ordinare l'array A sulla cifra i
+```
+
+Come algoritmo *stabile* si utilizza una *Counting Sort*
+
+**Esempio** : 
+
+![[RadixSort.excalidraw]]
+
+Per la correttezza dell'algoritmo è *necessario* che l'algoritmo ausiliario sia *stabile*
+#### Correttezza 
+
+La *dimostrazioni* avviene per induzione sulla colonna da ordinare 
+
+**Caso Base** : 
+	se $i=1$ ordino l'unica colonna e non devo fare altro poichè i numeri sono costituiti da una sola cifra ( l'array finale risulta ordinato )
+
+**Passo Induttivo** : 
+	*Assumiamo* ( **Ipotesi Induttiva** ) che le cifre delle colonne da $1,\dots,i-1$ siano ordinate e dimostriamo che un algoritmo *stabile* sulla colonna $i$ lascia le colonne da $1$ a $i$ ordinate
+
+Dobbiamo considerare 2 casi : 
++ Se due cifre in posizione $i$ sono uguali per la *stabilità* rimangono nello stesso ordine e per l'ipotesi induttiva sono ordinate ( poichè le colonne $1,\dots,i-1$ sono ordinate )
++ Se due cifre in posizione $i$ sono differenti allora l'algoritmo di ordinamento sulla colonna $i$ le ordina e le mette in posizione corretta ( risultano ordinate )
+
+In entrambi i casi il risultato finale è ordinato abbiamo quindi dimostrato che l'algoritmo è corretto 
+#### Complessità
+
+>[!lemma]
+>Dati $n$ numeri costituiti da $d$ cifre , dove ogni cifra può avere fino a $k$ valori possibili
+
+La complessità della procedura *radixsort( )* sarà quindi $\Theta(d\cdot(n+k))$ se l'ordinamento *stabile* utilizzato dalla procedura impiega un tempo $\Theta(n+k)$
+
+**Dimostrazione** :
++ Per ogni iterazione il costo è dato da $\Theta(n+k)$
++ Il ciclo `{c}for` compie $d$ iterazioni
++ Di conseguenza il costo totale è $\Theta(d\cdot(n+k))$
+
+##### Osservazioni
+
+L'algoritmo viene eseguito in tempo lineare se $k=O(n)$ ( il tempo di esecuzione diventa quindi $\Theta(d\cdot n)$ ) e se $d$ è costante questo porta la complessità a $\Theta(n)$
+
+#### Caso di Studio
+
+Consideriamo una *word* ( un numero intero rappresentato da $b$ bit ) di lunghezza $b=32$ bit se applicassimo il *Radix Sort* alla *word* questo eseguirebbe il *Counting Sort* 32 volte su cifre che possono avere come valore solo $0$ o $1$ , questo risulta **costoso**
+
+Spezziamo quindi ogni *word* in 4 parti ognuna costituita da 8 bit ( $r=8$ ) , avremo quindi 4 cifre ( $d=4$ ) ognuna delle quali varia tra $[0,\dots,2^k-1]$ , in questo caso avremo $k=255$ 
+
+>[!lemma]
+>Dati $n$ numeri di $b$ bit e un intero positivo $r\le b$ la procedura di *radixsort( )* ordina in correttamente i numeri in tempo  :
+>$$\Theta\bigg(\frac b r \cdot( n + 2^r )\bigg)$$  
+
+>[!todo]
+

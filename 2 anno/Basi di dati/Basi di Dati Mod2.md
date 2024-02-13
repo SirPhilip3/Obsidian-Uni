@@ -138,13 +138,24 @@ Se $X \rightarrow Y$ e $X \rightarrow Z$ allora $X \rightarrow YZ$
 
 **Dimostrazione** :
 
+1. $X \rightarrow Y$  per ipotesi
+2. $X \rightarrow YX$  per arricchimento su 1 ( aggiungo $X$ ) ( $XX$ da $X$ , l'unione degli stessi insiemi da l'insieme stesso )  
+3. $X \rightarrow Z$  per ipotesi
+4. $XY \rightarrow YZ$  per arrichimento su 3 ( aggiungo $Y$ )
+5. $X \rightarrow YZ$  per transitività da 2 a 4
 
+Rappresentazione ad albero :
 
+![[UnioneBD2.excalidraw]]
 ###### Decomposizione
-
 Se $X \rightarrow YZ$ allora $X \rightarrow Y$ e $X \rightarrow Z$
 
+**Dimostrazione** : 
+>[!todo]
 ###### Indebolimento
+Se $X \rightarrow Y$ allora $XZ \rightarrow Y$
 
+**Dimostrazione** : 
+>[!todo]
 ### Implicazione
 ### Chiusura
