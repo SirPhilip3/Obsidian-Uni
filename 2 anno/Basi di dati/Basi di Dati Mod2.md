@@ -67,11 +67,18 @@ Se invece utilizziamo come *foreing key* Telefono lo schema non sarebbe equivale
 La teoria della normalizzazione fornisce un insieme di strumenti e algoritmi per stabilire in modo rigoroso la bontà di uno schema relazionale e per migliorare ( normalizzare ) schemi relazionali esistenti 
 
 *Intuizione* dei concetti : 
-+ **Dipendenze Funzionali**
-+ **Assiomi di Armstrong**
-+ **Implicazione**
-+ **Chiusura**
++ **Dipendenze Funzionali** :
+	Stabiliscono le dipendenze tra gli attributi della relazione 
+	Esempio : l'attributo *Titolo* dipende da *CodiceLibro* , ossia ogni volta che *CodiceLibro* è uguale lo è anche *Titolo* ( ogni volta che troviamo un *CodiceLibro* necessariamente dobbiamo avere quel *Titolo* )
++ **Assiomi di Armstrong** :
+	Regole per derivare altre dipendenze funzionali
++ **Implicazione** :
+	Per verificare se una certa dipendenza funzionale può essere derivata in una relazione
++ **Chiusura** : 
+	Rappresenta l'insieme di tutti gli attributi derivsbile da un insieme di uno o più attributi ( come le chiavi ) secondo le regole di derivazione
 
+>[!todo]
+>#todo
 ### Dipendenze Funzionali
 
 ### Assiomi di Armstrong
