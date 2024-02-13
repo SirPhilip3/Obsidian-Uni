@@ -81,6 +81,70 @@ La teoria della normalizzazione fornisce un insieme di strumenti e algoritmi per
 >#todo
 ### Dipendenze Funzionali
 
+>[!note] Definizione
+>Sia $R(T)$ uno schema di relazione e siano $X$ e $Y$ due insiemi di attributi non vuoti tali che $X\cup Y \subseteq T$ una *dipendenza funzionale* è un qualsiasi vincolo della forma $X\rightarrow Y$  ( $X$ determina $Y$ )
+
+>[!note] Soddisfazione
+>Un'istanza $r$ di $R(T)$ soddisfa la *dipendenza funzionale* $X\rightarrow Y$ se e solo se ogni coppia di ennuple in $r$ che coincide su $X$ ( ha gli stessi valori su $X$ ) coincide anche su $Y$
+>$$\forall t_1, t_2 \in r : t_1[X]=t_2[X]\implies t_1[Y]=t_2[Y]$$
+
+Indichiamo con $R(T,F)$ uno schema relazionale $R(T)$ con le dipendenze funzionali $F$ che tutte le sue istanze ( dello schema relazionale ) valide devono soddisfare 
+( In pratica $R(T,F)$ indica uno schema relazionale $R(T)$ all'interno del quale sono definite delle dipendenze funzionali $F$ che devono essere soddisfatte per tutte le istanze ( schemi relazionali completi di dati ) dello schema relazionale )
+
+**Esempio** :
+>[!todo]
+#### Dipendenze Derivate
+
+>[!note] Definizione ( *Implicazione Logica* )
+>Sia $R(T,F)$  uno schema relazionale . Diciamo che $F$ *implica logicamente* la dipendenza funzionale $X\rightarrow Y$ , $F \models X\rightarrow Y$ se e solo se **ogni** istanza valida di $R(T,F)$ soddisfa anche $X\rightarrow Y$ 
+
+>[!example]
+>Sia $F=\{ CodiceLibro \rightarrow Titolo , CodiceLibro \rightarrow NomeUtente \}$ avremo che :
+>+ $F \models CodiceLibro \rightarrow Titolo,NomeUtente$
+>+ $F \models CodiceLibro \rightarrow CodiceLibro$ 
+
+Sia $RI$ un insieme di regole di *inferenza* ( regole di deduzione ) per $F$ , indichiamo con $F\vdash X \rightarrow Y$ il fatto che $X \rightarrow Y$ *sia derivabile da* $F$ utilizzando $RI$  ( in pratica è come se dicessimo $X \rightarrow Y \ \text{è derivabile da}\ F$ )
+
+>[!todo]
+>clarify
+
+L'insieme di regole $RI$ possono essere *corrette* ( $F\vdash X \rightarrow Y\implies F\models X \rightarrow Y$ ) o *complete* ( $F\models X \rightarrow Y\implies F\vdash X \rightarrow Y$ )
 ### Assiomi di Armstrong
+
+Gli *assiomi di Armstrong* sono un insieme di regole di inferenza della forma $F\vdash X \rightarrow Y$
+
++ **Riflessività** ( *REFL* ) :
+	Se $Y\subseteq X$ allora $X \rightarrow Y$
++ **Arricchimento** ( *AUGM* ) :
+	Se $X \rightarrow Y$ e $W \subseteq T$ allora $XW \rightarrow YW$ 
++ **Transitività** ( *TRANS* ) :
+	Se $X \rightarrow Y$ e $Y \rightarrow Z$ allora $X \rightarrow Z$
+
+Gli *assiomi di Armstrong* sono dimostrati essere *corretti* e *completi* ( $\vdash$ vale $\models$ ossia la deduzione logica implica la validità logica )
+#### Derivazioni
+
+>[!note] Definizione di $F\vdash X \rightarrow Y$
+>Una derivazione di $X \rightarrow Y$ da $F$ una sequenza finita di *dipendenze funzionali* ( $f_1,\dots,f_n$ ) tale per cui l'ultima ( $f_n$ ) risulti essere $X \rightarrow Y$ , ogni passo è un elemento di $F$
+>Oppure può essere ottenuta da $f_1,\dots,f_{i-1}$ usando una regola di inferenza
+
+>[!warning]
+>Risulta utile rappresentare una *derivazione* come albero rovesciato la cui radice è $X \rightarrow Y$ e ogni nodo è giustificato dall'insieme di dipendenze funzionali $F$  o da una regola di inferenza
+
+##### Regole Derivative
+
+###### Unione
+
+Se $X \rightarrow Y$ e $X \rightarrow Z$ allora $X \rightarrow YZ$ 
+
+**Dimostrazione** :
+
+
+
+###### Decomposizione
+
+Se $X \rightarrow YZ$ allora $X \rightarrow Y$ e $X \rightarrow Z$
+
+###### Indebolimento
+
 ### Implicazione
 ### Chiusura
