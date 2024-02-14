@@ -2619,6 +2619,106 @@ Complessità : $O(1)$
 
 Le *tabelle Hash* sono un'alternativa alle tabelle ad indirizzamento diretto senza ereditare però l'elevata complessità spaziale ( in questo caso sarà proporzionale al numero di elementi memorizzati non al dominio )
 
->[!todo]
->#todo
+Non utilizziamo la *key* come indice ma applico una funzione *hash* ( $h$ ) che ritorna un indice che riduce il range di variabilità dell'*indice* 
 
+La funzione *hash* è una funzione definita nel seguente modo : $h= U \rightarrow \{ 0,1,\dots, m-1 \}$ 
+Significa che ha come dominio l'universo $U$ e restituisce un intero compreso nell'intervallo $[\ 0,m-1\ ]$ dove $m$ la dimensione della tabella è generalmente molto più piccola di $|U|$ 
+
+![[Pasted image 20240214170244.png]]
+
+Potrebbe però avvenire che $2$ *key* differenti vengano mappate nella stessa cella ( **collisione** ) 
+
+Quando avvengono le *collisioni* : 
++ $|U|\gt m$ : in questo caso possono avvenire delle collisioni
++ $|K|\gt m$ : in questo caso sicuramente ci sono collisioni ( ossia ci sono più chiavi che elementi dell'array della hash table )
+
+Le collisioni si possono risolvere in 2 modi :
++ **Concatenamento** : Ad ogni cella corrisponde una lista di elementi contenenti tutte le chiavi mappate con lo stesso indice
++ **Indirizzamento aperto** : Mappiamo una chiave già occupata un una cella differente
+
+#### Concatenamento
+
+Inseriamo tutti gli elementi associati ad una stessa cella in una lista concatenata 
+La cella $j$ contiene un puntatore alla testa della lista se sono memorizzati degli elementi , altrimenti si memorizza $NIL$ 
+
+##### Operazioni con il concatenamento 
+
+**Inserimento** :
+```c++
+chained_hash_insert(T, x)
+	// inserice x in testa alla lista T[h(x.Key)]
+```
+Tempo di esecuzione : $O(1)$ poichè :
++ L'inserimento in testa in una lista concatenata è *costante*
++ Assumiamo che il calcolo della funzione *hash* sia costante
++ Si suppone che l'elemento da inserire non sia già presente nella lista
+>[!note]
+	>Se potesse essere presente dobbiamo per forza *cercare* l'elemento all'interno della lista concatenata e sucessivamente fare un update del suo valore se presente o un insert altrimenti , il costo totale sarebbe dato dal costo della ricerca
+
+**Ricerca** : 
+```c++
+chained_hash_search(T, k)
+	// ricerco un elemento con chiave k nella lista T[h(k)]
+```
+Il tempo di esecuzione nel caso peggiore è proporzionale alla lunghezza della lista nella cella $h(k)$ ( see [[#Analisi dell'Hashing con concatenamento]] )
+
+**Cancellazione** :
+```c++
+chained_hash_delete(T, x)
+	// cancella x della lista T[h(x.Key)]
+```
+
+In questa implementazione $x$ è un puntatore all'elemento , non è quindi necessario svolgere un'operazione di *search* ( se fosse una *key* allora sarebbe necessaria ) 
+Inoltre , per fare sì che la complessità sia costante dobbiamo utilizzare una *lista doppiamente concatenata* , questa ci permette di non dovere trovare il predecessore per cambiare i puntatori 
+
+##### Analisi dell'Hashing con concatenamento
+
+Studiamo il tempo medio di ricerca di un elemento con *chiave* $K$ 
+
+Il *caso peggiore* si verifica quando tutte le chiavi sono mappate su una stessa cella , questa avrà una lista di lunghezza $n$ e il tempo di esecuzione di conseguenza è $O(n)$ più il tempo necessario allo svolgimento della funzione di hashing 
+
+La complessità per il *caso medio* dipende da come la funzione di hashing distribuisce le chiavi tra le $m$ celle 
+
+**Hasing Uniforme e Indipendente** : 
+	Qualsiasi elemento ha la stessa probabilità di essere mandato in una qualsiasi delle $m$ celle indipendentemente dalle celle in cui sono mandati gli altri elementi 
+	$$\forall i \in [0,\dots,m-1], \quad Q(i)=\frac1m$$
+Dove $Q(i)$ indica la *probabilità* ( ideale ) che una chiave finisca nell'$i$-esima cella 
+
+**Fattore di carico** di una tabella hash costituita da $m$ celle e $n$ chiavi è $\alpha=\frac nm$ ( può essere : $\alpha < 1$ , $\alpha = 1$ o $\alpha > 1$ , in questo caso potrebbero degradare le prestazioni )
+
+Ora calcoliamo con le precedenti osservazioni la lunghezza media di una lista $T[\ j\ ]$ indicando con $n_j$ la sua lunghezza : 
+$$
+E[n_j] = \frac{n_0+n_1+\dots + n_{m-1}}{m} = \frac n m = \alpha 
+$$
+Possiamo dire quindi che il *fattore di carico* rappresenta il n° medio di elementi memorizzati in una lista
+
+Ora *ipotizziamo* che la funzione di hash sia calcolata in tempo $O(1)$ 
+
+>[!Important] **Teorema**
+>In una tabella hash in cui le collisioni sono risolte con il metodo del concatenamento una *ricerca senza successo* richiede tempo $\Theta(1+\alpha)$ nel caso medio utilizzando l'ipotesi di *hashing uniforme e indipendente*
+
+**Dimostrazione** ( intuizione ) : 
++ Calcolare $j=h(k)$ costa $O(1)$ ( per ipotesi )
++ Accedo alla lista $T[\ j\ ]$ , costo $O(1)$
++ Scorro la lista $T[\ j \ ]$ , questa operazione costa $\Theta(\alpha)$ ( visto che è senza successo devo scorrere la lista completamente )
+
+Il tempo complessivo di esecuzione è quindi $\Theta(1+\alpha)$ ( l'1 deriva dal calcolo della funzione hash )
+
+>[!Important] **Teorema**
+>In una tabella hash in cui le collisioni sono risolte con il metodo del concatenamento una *ricerca con successo* richiede tempo $\Theta(1+\alpha)$ nel caso medio utilizzando l'ipotesi di *hashing uniforme e indipendente*
+
+**Dimostrazione** ( intuizione ) : 
++ Calcolare $j=h(k)$ costa $O(1)$ ( per ipotesi )
++ Accedo alla lista $T[\ j\ ]$ , costo $O(1)$
++ Scorro la lista fino a trovare $k$ , questa operazione *mediamente* costa $\Theta(\frac \alpha 2 )$
+
+Il tempo complessivo di esecuzione sarà quindi : $\Theta(1+\frac \alpha 2)=\Theta(1+\alpha)$
+
+**Interpretazione** 
+	Essendo il tempo di esecuzione del caso medio di ricerca $\Theta(1+\alpha)$ 
+	Se $n=O(m)$ il numero delle celle è *proporzionale* al numero di elementi da memorizzare :
+	$$\alpha = \frac n m = \frac {O(m)}{m}=O(1)$$
+	Avremo quindi che anche la ricerca è *costante* ( $\Theta(1+ \alpha)=\Theta(1+O(1))=\Theta(1)$ )
+
+>[!warning]
+>Quando $\alpha$ cresce oltre una certa soglia ( $\gt2$ ) dobbiamo raddopiare le dimensioni della tabella hash e reinserire le *chiavi* ripassate attraverso la funzione hash in modo da recuperare la complessità $\Theta(1)$ , altrimenti la complessità potrebbe diventare maggiore : $\Theta(1+\frac {3m}{m}) = \Theta(4)$ che è ovviamente inefficente rispetto a $\Theta(1)$
