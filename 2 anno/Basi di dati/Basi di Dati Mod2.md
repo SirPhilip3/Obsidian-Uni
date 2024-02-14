@@ -76,9 +76,6 @@ La teoria della normalizzazione fornisce un insieme di strumenti e algoritmi per
 	Per verificare se una certa dipendenza funzionale può essere derivata in una relazione
 + **Chiusura** : 
 	Rappresenta l'insieme di tutti gli attributi derivsbile da un insieme di uno o più attributi ( come le chiavi ) secondo le regole di derivazione
-
->[!todo]
->#todo
 ### Dipendenze Funzionali
 
 >[!note] Definizione
