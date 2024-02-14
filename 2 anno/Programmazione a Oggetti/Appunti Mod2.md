@@ -33,7 +33,7 @@ linguaggio ad oggetti se offre il subtyping ->
 sottotipi stanno in supertipi
 dinamic dispatching -> 
 
-subsunmption consci cosa precisa ma la dai per generale
+subsunmption conosci cosa precisa ma la dai per generale
 	nei binding ( costruisco dog metto dentro animal )
 	in passaggio di argomento
 	assegnamento
