@@ -2565,3 +2565,60 @@ Distinguiamo quindi in 2 casi :
 	In questo caso conviene scegliere $r$ tale che sia massimo ma sotto la condizione che $n\ge 2^r \implies r = \lfloor\log n \rfloor$ , otteniamo quindi il tempo di esecuzione risultante :
 	$$\frac b {\log n}(n + 2 ^{\log n})=\frac b {\log n}(n+n)=\frac b {\log n}(2n)=\Theta\bigg(\frac b {\log n} n\bigg)$$
 
+## Tabelle Hash
+
+### Tabelle ad indirizzamento diretto
+
+Una tabella ad unduruzzamento diretto viene utilizzata per memorizzare dati indicizzati da una *chiave* ( un numero ) 
+
+**Caratteristiche** : 
++ Sono costituite da un insieme dinamico al fine dell'implementazione delle operazioni di *inserimento* , *ricerca* e *cancellazione*
++ Ogni elemento ha una *chiave* estratta dall'universo $U=\{ 0,1,\dots,w-1 \}$ dove $w$ non è troppo grande
++ Nessun elemento ha la stessa *chiave*
+
+La struttura dati che ci permette di gestire questo tipo di dato è un *array* $T$ con posizioni $[\ 0,\dots ,w-1\ ]$ dove $w$ corrisponde alla dimensione dell'universo delle chiavi rappresentato da $U$
+
+![[Pasted image 20240214123718.png]]
+
+Ogni posizione dell'array corrisponde ad una *chiave* in $U$ , se nella tabella è presente l'elemento $x$ con *chiave* $k$ allora $T[\ k\ ]$ contiene un puntatore a $x$ altrimenti se la tabella non contiene l'elemento $x$ avremo che $T[\ k\ ]=NIL$ 
+#### Operazioni
+
+Vediamo ora l'implementazione delle operazioni di *ricerca* , *inserimento* e *cancellazione* :
+
+**Ricerca** :
+```c++
+direct_access_search(T, k)
+	return T[k]
+```
+Complessità : $O(1)$
+
+**Inserimento** :
+```c++
+direct_access_insert(T, x)
+	T[x.Key] = x
+```
+Complessità : $O(1)$
+
+**Cancellazione** :
+```c++
+direct_access_delete(T, x)
+	T[x.Key] = NIL
+```
+Complessità : $O(1)$
+
+#### Conclusioni
+
+**Vantaggi** : 
++ Il tempo di esecuzione delle operazioni disponibili sulle tabelle ad indirizzamento direttoè $O(1)$
+
+**Svantaggi** : 
++ Elevato spreco di memoria 
+	Lo spazio utilizzato è legato alla dimensione del dominio universale ( $w$ ) non ad $n$ ( i dati memorizzati ) 
+	Il dominio è molto grande ma il numero di dati da memorizzare è piccolo $n\ll w$
+### Tabelle Hash
+
+Le *tabelle Hash* sono un'alternativa alle tabelle ad indirizzamento diretto senza ereditare però l'elevata complessità spaziale ( in questo caso sarà proporzionale al numero di elementi memorizzati non al dominio )
+
+>[!todo]
+>#todo
+
