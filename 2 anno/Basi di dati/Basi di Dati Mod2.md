@@ -162,13 +162,125 @@ Se $X \rightarrow Y$ allora $XZ \rightarrow Y$
 >Dato un insieme $F$ di dipendenze funzioneli la *chiusura* di $F$ ( $F^+$ ) è definita come l'insieme di tutte le dipendenze funzionali logicalmente implicate da $F$ attraverso gli assiomi di *Armstrong*  
 $$F^+=\{ X \rightarrow Y | F\vdash X \rightarrow Y \}$$
 
+In pratica : l'insieme di tutte le dipendenze funzionali derivabili da $F$ 
+
 **Problema dell'implicazione** : 
 
->[!todo]
->#todo
+Il problema dell'implicazione corrisponde a decidere , dati $F$ e $X \rightarrow Y$ se $X \rightarrow Y\in F^+$ ( ossia se una determinata dipendenza funzionale appartiene a $F^x$ ) oppure no  
+Calcolare $F^+$ applicando gli *assiomi di Armstrong* risulta avere una complessità **esponenziale** ( questo poichè se abbiamo $a$ attributi allora avremo almeno $2^a-1$ possibili dipendenze funzionali ) rispetto al numero di attributi . Calcolare $F^+$ risulta quindi essere un modo algoritmicamente *inefficente* per risolvere il problema dell'implicazione 
 
-#### Chiusura di X
+Una soluzione per ridurre la complessità è controllare che $Y\subseteq X^+$ , per dimostrare la veridicità di questo algoritmo dobbiamo definire $X^+$
+
+>[!important] Chiusura di X
+> Sia $R(T, F)$ uno schema relazionale. Dato $X \subseteq T$ la *chiusura* di $X$ rispetto ad $F$ è definita come l'insieme $X_F^+ = \{ A\in T | F \vdash X \rightarrow A \}$ 
+
+Ossia $X^+_F$ è l'insieme degli attributi di $X+F$ che sono dipendenti da $X$ applicando le dipendenze di $F$ 
+
+Da questo possiamo ricavare il seguente teorema : 
+>[!Important] Theorem
+>$F\vdash X \rightarrow Y$ se e solo se $Y \subseteq X_F^+$ 
+
+Pertanto per decidere se $X \rightarrow Y\in F^+$ si può controllare se $Y \subseteq X_F^+$ 
+Che può essere svolto in tempo polinomiale 
+#### Calcolo di $X_F^+$
+
+```pseudo
+	\begin{algorithm}
+	\caption{Algo Caption}
+	\begin{algorithmic}
+	\Function{CLOSURE}{X,F}
+	\State X
+	\While{de}
+    \EndWhile
+    \EndFunction
+    \end{algorithmic}
+	\end{algorithm}
+```
+
+**Esempio** :  
+Abbiamo $X=AB$ e $F=\{ A \rightarrow C, AC \rightarrow D , E \rightarrow F \}$
+
+1. $X_0^+=AB$
+2. $X_1^+=AB \cup C = ABC$ ( poichè un sottoinseme di $AB$ ( $A$ ) è presente nella prima dipendenza , dobbiamo aggiungere a $X^+$ $C$  )
+3. $X_2^+=ABC \cup A = ABCD$ ( poichè un sottoinseme di $ABC$ ( $AC$ ) è presente nella seconda dipendenza , dobbiamo aggiungere a $X^+$ $D$ )
+4. Da qui in poi non è più possibile aggiungere altri attributo , l'algoritmo termina
+
+**Complessità**
+
+Siano $a$ il numero totale di attributi di $T$ e $d$ il numero di dipendenze funzionali $F$ allora : 
++ Il *while* esterno viene eseguito al più $a$ volte
++ Il *for* interno viene eseguito al più $d$ volte
++ Per verificare se $Y\subseteq X_{new}^+$ ha costo $O(a)$
+
+Il costo totale dell'algoritmo sarà quindi : $O(a^2 d)$
+
+### Chiavi e Attributi primi
+
+>[!important] Definizione Superchiave
+>Dato uno schema relazionale $R(T,F)$ , un insieme di attributi $X\subset T$ è una **superchiave** di $R$ se e solo se $X \rightarrow T \in F^+$
+
+Ossia : $X$ ( un sottoinsieme degli attributi $T$ ) è una **superchiave** se da essi possiamo ricavare tutti i restanti attributi 
+
+>[!important] Definizione Chiave
+>Una *chiave* è un superchiave minimale ossia una superchiave tale per cui nessun suo sottoinsieme sia una superchiave 
+
+>[!important] Definizione Attributi Primi
+>Un attributo è *primo* se e solo se appartiene ad *almeno* una chiave
+
+#### Verifica di Superchiave
+
+Per determinare se un sottoinseme degli attributi di $R(T,F)$ è una *superchiave* possiamo utilizzare il seguente algoritmo ( dal costo polinomiale ) :
+1. Calcolo la *chiusura* $X_F^+$
+2. Verifico se $X_F^+=T$
+
+>[!example]
+>Consideriamo lo schema relazionale $R(T, G)$ con $T=ABCDEF$ e $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$
+>Verifichiamo che $ABD$ è superchiave : 
+>1. $ABD_0^+=ABD$ 
+>2. $ABD_1^+=ABCD$ ( poichè $AB \rightarrow C$ )
+>3. $ABD_2^+=ABCDE$ ( poichè $A \rightarrow E$ )
+>4. $ABD_3^+=ABCDEF$ ( poichè $B \rightarrow F$ )
+
+#### Verifica di Chiave
+
+Per determinare se un sottoinsieme degli attributi di $R(T,F)$ è una *chiave* possiamo utilizzare il seguente algoritmo ( dal costo polinomiale )
+1. Verifica se $X$ è una *superchiave* , se non lo è allora non è nemmeno una *chiave*
+2. Verifica che per ogni $A\in X$ si abbia che la *copertura* di $X$ meno $A$ non sia $T$
+>[!example]
+>Consideriamo lo schema relazionale $R(T,F)$ con $T=ABCDEF$ e $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ 
+>Verifichiamo che $ABD$ sia una chiave tenendo presente che abbiamo dimostrato che è una *superchiave* :
+>1. Proviamo a rimuovere $A$ : 
+>	$BD_G^+ = BDF$ , non essendo $T$ non è un chiave
+>2. Proviamo a rimuovere $B$ : 
+>	$AD_G^+=ADE$ , non essendo $T$ non è un chiave
+>3. Proviamo a rimuovere $D$ : 
+>	$AB_G^+=ABCEF$ , non essendo $T$ non è un chiave
+>Possiamo quindi concludere che $ABD$ è una *chiave*
+
+#### Trovare una Chiave
+
+Dato $R(T,F)$ è possibile trovare una sua chiave in tempo *polinomiale* , possiamo infatti partire da $T$ e togliere uno ad uno gli attributi finchè non troviamo gli attributi indispensabili per derivare $T$ ( quando la *copertura* è $T$ )
+
+**Algoritmo** : 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Algo Caption}
+	\begin{algorithmic}
+
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!example]
+>Dato $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ costruiamo una chiave 
+>1. Partiamo da $K_0=ABCDEF$
+>2. Rimouviamo $A$ da $K_0$ : $BCDEF_G^+=ABCDEF$ poichè siamo tornati a $T$ dobbiamo rimuovere $A$ , $K_1=BCDEF$ 
+>3. Rimouviamo $B$ da $K_1$ : $CDEF_G^+=ACDEF$ dobbiamo quindi mantenere $B$
+>4. Rimuoviamo $C$ da $K_1$ : $BDEF_G^+=ABCDEF$ quindi $C$ deve essere rimosso , aggiorniamo $K_2=BDEF$
+>5. Rimuoviamo $D$ da $K_2$ : $BEF_G^+=ABCEF$ quindi dobbiamo mantenere $D$
+>6. Rimuoviamo $E$ da $K_2$ : $BDF_G^+=BDF$ quindi dobbiamo mantenere $E$
+>7. Rimuoviamo $F$ da $K_2$ : $BDE_G^+=ABCDEF$ quindi $F$ deve essere rimosso , aggiorniamo $K_3=BDE$
+>La *chiave* è quindi $BDE$ , questa però non è l'unica chiave , infatti la *chiave* che troviamo dipende dall'ordine con il quale togliamo gli attributi
 
 
-
-### Chiusura

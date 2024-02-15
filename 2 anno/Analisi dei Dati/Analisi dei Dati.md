@@ -36,3 +36,4 @@ Dovuti ad una scorretta costruzione del campione o all'utilizzo di uno stimatore
 Possono non diminuire al crescere della dimensione campionaria
 
 >[!example]
+
