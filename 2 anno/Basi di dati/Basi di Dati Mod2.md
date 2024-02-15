@@ -196,6 +196,9 @@ Che può essere svolto in tempo polinomiale
     \end{algorithmic}
 	\end{algorithm}
 ```
+>[!todo]
+>#todo 
+>scrivi algo
 
 **Esempio** :  
 Abbiamo $X=AB$ e $F=\{ A \rightarrow C, AC \rightarrow D , E \rightarrow F \}$
@@ -271,6 +274,9 @@ Dato $R(T,F)$ è possibile trovare una sua chiave in tempo *polinomiale* , possi
 	\end{algorithmic}
 	\end{algorithm}
 ```
+>[!todo]
+>#todo 
+>scrivi algo
 
 >[!example]
 >Dato $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ costruiamo una chiave 
@@ -282,5 +288,65 @@ Dato $R(T,F)$ è possibile trovare una sua chiave in tempo *polinomiale* , possi
 >6. Rimuoviamo $E$ da $K_2$ : $BDF_G^+=BDF$ quindi dobbiamo mantenere $E$
 >7. Rimuoviamo $F$ da $K_2$ : $BDE_G^+=ABCDEF$ quindi $F$ deve essere rimosso , aggiorniamo $K_3=BDE$
 >La *chiave* è quindi $BDE$ , questa però non è l'unica chiave , infatti la *chiave* che troviamo dipende dall'ordine con il quale togliamo gli attributi
+
+#### Trovare tutte le Chiavi 
+
+Trovare tutte le *chiavi* ha complessità *esponenziale* poichè ogni sottoinsieme di $T$ è potenzialmente una chiave
+Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi : 
+
+>[!important] Intuizione
+>+ Generiamo le possibili chiavi dalle più piccole alle più grandi
+>+ Rappresentiamo i candidati da testare nella forma $X::(Y)$ dove $X$ è l'insieme degli attributi da testare come *chiave* e $Y$ l'insieme dei possibili attributi da aggiungere a $X$ qualora $X_F^+\neq T$
+>+ Se $X_F^+ = T$ allora $X$ è una chiave e possiamo scartare $X::(Y)$
+>+ Altrimenti calcoliamo $Y-X_F^+=\{ A_1,\dots, A_n \}$ e generiamo i nuovi candidati : $XA_1::(A_2,\dots,A_n), \quad XA_2::(A_3,\dots,A_n),\dots,XA_n::()$
+
+>[!warning]
+>Se un attributo non compare mai alla destra di una dipendenza funzionale allora esso deve fare parte di tutte le chiavi
+>L'insieme di questi attributi saranno i primi testati
+
+```pseudo
+	\begin{algorithm}
+	\caption{Algo Caption}
+	\begin{algorithmic}
+
+	\end{algorithmic}
+	\end{algorithm}
+```
+>[!todo]
+>#todo 
+>scrivi algo
+
+>[!example]
+>Sia $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ :
+>1. 
+>	+ $Cand=[BD::(ACEF)]$
+>	+ $Keys=[]$
+>	+ $X::(Y)=BD::(ACEF)$ 
+>	+ $X_G^+ = BD^+_G=BDF$ quindi $BD$ non è una chiave
+>	+ $Y-X_G^+ = ACE$
+>2. 
+>	+ $Cand=[BDA::(CE), BDC::(E), BDE::()]$
+>	+ $Keys=[]$
+>	+ $X::(Y)=BDA::(CE)$
+>	+ $X_G^+=BDA^+_G=ABCDEF$ quindi $BDA$ è una chiave
+>3. 
+>	+ $Cand=[BDC::(E), BDE::()]$
+>	+ $Keys=[BDA]$
+>	+ $X::(Y)=BDC::(E)$
+>	+ $X_G^+=BDC^+_G=BDCF$ quindi $BDC$ non è una chiave
+>	+ $Y-X_G^+=E$
+>4. 
+>	+ $Cand=[BDE::(), BDCE::()]$
+>	+ $Keys=[BDA]$
+>	+ $X::(Y)=BDE::()$
+>	+ $X_G^+=BDE_G^+=BDEACF$ quindi $BDE$ è una chiave
+>5.
+>	+ $Cand=[BDCE::()]$
+>	+ $Keys=[BDA,BDE]$
+>	+ $X::(Y)=BDCE::()$
+>	+ $X$ contiene già la chiave $BDE$ quindi non viene considerato
+>
+>Poichè $Cand$ ora è vuoto l'algoritmo termina 
+
 
 
