@@ -28,7 +28,11 @@ Vi sono due diverse tipologie di errore :
 
 Sono dovuti al fatto che osserviamo solo un campione dei dati
 Questi diminuiscono al crescere della dimensione campionaria se lo *stimatore* $\hat\theta$ è ragionevole ( se stima correttamente il parametro )
+
+>[!example]
 #### Errori non campionari
 
 Dovuti ad una scorretta costruzione del campione o all'utilizzo di uno stimatore non approriato
 Possono non diminuire al crescere della dimensione campionaria
+
+>[!example]

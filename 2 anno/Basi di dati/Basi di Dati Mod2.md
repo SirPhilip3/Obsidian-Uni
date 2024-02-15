@@ -155,4 +155,20 @@ Se $X \rightarrow Y$ allora $XZ \rightarrow Y$
 **Dimostrazione** : 
 >[!todo]
 ### Implicazione
+
+#### Chiusura
+
+>[!important] Definition
+>Dato un insieme $F$ di dipendenze funzioneli la *chiusura* di $F$ ( $F^+$ ) è definita come l'insieme di tutte le dipendenze funzionali logicalmente implicate da $F$ attraverso gli assiomi di *Armstrong*  
+$$F^+=\{ X \rightarrow Y | F\vdash X \rightarrow Y \}$$
+
+**Problema dell'implicazione** : 
+
+>[!todo]
+>#todo
+
+#### Chiusura di X
+
+
+
 ### Chiusura
