@@ -2722,3 +2722,4 @@ Il tempo complessivo di esecuzione sarà quindi : $\Theta(1+\frac \alpha 2)=\The
 
 >[!warning]
 >Quando $\alpha$ cresce oltre una certa soglia ( $\gt2$ ) dobbiamo raddopiare le dimensioni della tabella hash e reinserire le *chiavi* ripassate attraverso la funzione hash in modo da recuperare la complessità $\Theta(1)$ , altrimenti la complessità potrebbe diventare maggiore : $\Theta(1+\frac {3m}{m}) = \Theta(4)$ che è ovviamente inefficente rispetto a $\Theta(1)$
+

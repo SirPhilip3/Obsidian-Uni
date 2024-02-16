@@ -18,7 +18,6 @@
 	Valore dello *stimatore* corrispondente al particolare campione osservato
 
 Il *campione* ha di per s'è un *errore* rispetto al *parametro* 
-
 ### Errori
 
 Vi sono due diverse tipologie di errore :
@@ -37,3 +36,15 @@ Possono non diminuire al crescere della dimensione campionaria
 
 >[!example]
 
+### Campionamento Casuale
+
+Per evitare gli errori non campionari il metodo più efficace è estrarre le unità del campione *casualmente* dalla popolazione
+
+Questo ci permette di evitare l'introduzione di *distorsioni* dovute ad aspetti della popolazione che non conosciamo ( il nostro obbiettivo è evitare di avere un campione rappresentativo solo di un sottoinsieme della popolazione )
+
+Esistono diversi *disegni di campionamento* ( schemi ) per estrarre casualmente le unità del campione 
+
+#### Campionamento causale semplice
+
+Le unità sono estratte dalla popolazione con la seguenti caratteristiche : 
++ indipenden
