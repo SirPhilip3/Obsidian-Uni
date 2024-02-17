@@ -47,4 +47,8 @@ Esistono diversi *disegni di campionamento* ( schemi ) per estrarre casualmente 
 #### Campionamento causale semplice
 
 Le unità sono estratte dalla popolazione con la seguenti caratteristiche : 
-+ indipenden
++ Le unità sono indipendenti l'una dall'altra
++ Le unità hanno tutte la stessa probabilità di essere selezionate
+
+>[!todo]
+>fino a slide 25
