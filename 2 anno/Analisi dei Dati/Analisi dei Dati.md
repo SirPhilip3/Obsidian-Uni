@@ -84,25 +84,71 @@ Quando applico una statistica ad una variabile casuale sarà essa stessa una var
 Supponiamo che le osservazioni $X_i$ siano variabili *i.i.d.* con valore atteso $E[X]=\mu$ e varianza $Var[X]=\sigma^2$ 
 
 La media campionaria sarà allora : 
-$$\hat X=\frac 1 n \sum_{i=1}^n X_i$$
+$$\overline X=\frac 1 n \sum_{i=1}^n X_i$$
 $\hat X$ è uno stimatore della media di popolazione $\mu=E[X]$
 
-Per l'esempio precedente la media campionatoria sarà : $\hat x=48.23$ 
+Per l'esempio precedente la media campionatoria sarà : $\overline x=48.23$ 
 
 La notazione che useremo sarà : 
-+ $\hat X$ è la variabile casuale media campionaria ( è uno *stimatore* di $\mu$ )
-+ $\hat x$ è il particolare valore osservato della media campionaria nel campione ( è una *stima* di $\mu$ ) 
++ $\overline X$ è la variabile casuale media campionaria ( è uno *stimatore* di $\mu$ )
++ $\overline x$ è il particolare valore osservato della media campionaria nel campione ( è una *stima* di $\mu$ ) 
 
 Sia la stima che lo stimatore è rappresentato dal simbolo $\hat\theta$ , siccome $\hat\theta$ ( stima ) è calcolata su un campione della popolazione difficilmente sarà uguale al valore di popolazione $\theta$ 
 
 Se il campione è ben costruito allora al crescere di $n$ lo stimatore $\hat\theta$ convergerà a $\theta$ 
 ##### Distorsione
 
+Uno *stimatore* $\hat\theta$ è *non distorto* se :
+$$E[\ \hat\theta\ ]=\theta$$
+per tutti i possibili valori di $\theta$  
 
+La distorsione di $\hat\theta$ è :
+$$Bias(\hat\theta)=E(\hat\theta)-\theta$$
+Uno stimatore non distorto è uno stimatore *corretto* in media se in media non sottostima o svrastima il parametro 
 
+La *media campionaria* è uno *stimatore non distorto* della media di popolazione , questo può essere dimostrato nel seguente modo : 
+$$E(\overline X)=E\Bigg(\frac 1n \sum_{i=1}^n X_i\Bigg)=\frac 1n \sum_{i=1}^n E(X_i)=\frac 1n \sum_{i=1}^n \mu = \mu$$
 ##### Consistenza
 
+Uno stimatore $\hat\theta$ è *consistente* se al crescere della dimensione campionaria $n$ il suo errore campionario converge a zero :
+$$Probailità(|\hat\theta-\theta|>\epsilon)\rightarrow 0$$
+Ossia la probabilità che la *distorsione* di $\hat\theta$ sia maggiore di un certo $\epsilon>0$ per $n\rightarrow \infty$ tende a $0$
 
+Questo si può scrivere nel seguente modo ( *convergenza in probabilità* ) :
+$$\hat\theta\stackrel{p}\rightarrow\theta, \quad \text{per}\ n\rightarrow \infty$$
+>[!assioma]
+>La media campionaria è uno *stimatore consistente* della media di popolazione 
+
+Questo poichè la *legge dei grandi numeri* ci assicura che ( solo per campionamenti casuali ) : 
+$$\overline X \stackrel{p}\rightarrow\mu, \quad \text{per} \ n\rightarrow \infty$$
+La *consistenza* di $\overline X$ può essere verificata anche attraverso la *disuguaglianza di Chebyshev*
+$$Probabilità(|\overline X -\mu|>\epsilon)\le \frac{Var(\overline X)}{\epsilon^2}$$
+$$Var(\overline X)=Var\Bigg(\frac1n \sum_{i=1}^nX_i\Bigg)=\frac1{n^2}\sum_{i=1}^nVar(X_i)=\frac{\sigma^2}n$$
+Sostituendo avremo quindi che : 
+$$Probabilità(|\overline X -\mu|>\epsilon)\le \frac{\sigma^2/n}{\epsilon^2}\rightarrow 0 , \quad \text{per} \ n\rightarrow \infty$$
+
+###### Consistenza di stimatori distorti
+
+La *consistenza* non richiede che lo stimatore sia *non distorto*
+
+Risulta essere sufficente che lo *stimatore* sia :
++ *asintoticamente non distorto* :
+$$Bias(\hat\theta)=E(\hat\theta)-\theta \rightarrow 0, \quad \text{per} \ n\rightarrow \infty $$
++ con *varianza che svanisce asintoticamente* :
+$$Var(\hat\theta)\rightarrow 0,\quad \text{per} \ n\rightarrow \infty $$
+Se valgono queste due propietà asintotiche allora lo stimatore $\hat\theta$ converge in *media quadratica* a $\theta$ , la *convergenza* in media quadratica implica la convergenza in probabilità
+
+#### Normalità asintotica
+
+Il *teroma del limite centrali* assicura che :
+$$Z = \frac{\sqrt{n}(\overline X - \mu)}\sigma \stackrel{d}\rightarrow N(0,1), \quad \text{per}\ n\rightarrow \infty$$
+( *convergenza a distribuzione* )
+Oppure informalmente : 
+$$\overline X\sim N\bigg(\mu , \frac{\sigma^2}{n}\bigg) \quad \ \text{per $n$ sufficentemente grande} $$
+
+##### Valori anormali
+
+#### Mediana
 
 
 >[!todo]
