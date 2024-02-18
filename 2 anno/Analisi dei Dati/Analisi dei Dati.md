@@ -145,11 +145,49 @@ $$Z = \frac{\sqrt{n}(\overline X - \mu)}\sigma \stackrel{d}\rightarrow N(0,1), \
 ( *convergenza a distribuzione* )
 Oppure informalmente : 
 $$\overline X\sim N\bigg(\mu , \frac{\sigma^2}{n}\bigg) \quad \ \text{per $n$ sufficentemente grande} $$
+>[!note]
+>Lo stimatore $\overline \mu = \overline X$ è approssimativamente distribuito come una variabile casuale normale al crescere della dimesione del campione
 
+Più in generale uno stimatore $\hat\theta$ la cui distribuzione al crescere di $n$ è via via meglio approssimata da una distribuzione normale si dice *asintoticamente normale*
+
+La normalità asintotica ci dice che : 
++ al crescere di $n$ è improbabile osservare valori $\overline x$ che distano da $\mu$
++ è altrettanto probabile osservare valori che distano da $\mu$ di almeno una certa quantità in positivo o in negativo
 ##### Valori anormali
 
+La *media* ha il difetto di essere *sensibile* ad osservazioni estreme
+
+Se modifichiamo solo un dato su 30 dei tempi di elaborazione in modo estremo a 30 minuti la media campionaria passa da 48.23 a 105.9 secondi 
+
+>[!warning]
+>Non è chiaramente accettabile che uno stimatore diepnde così tanto da poche osservazioni estreme 
 #### Mediana
 
+La *mediana campionaria* stima la mediana di popolazione 
 
->[!todo]
->fino a slide 25
+La mediana è una misura di posizione molto meno sensibile alle osservazioni estreme rispetto alla media 
+
+La *mediana di popolazione* $M$ suddivide la distribuzione della variabile casuale $X$ in due parti uguali ovvero : 
+$$Probabilità(X>M)\le 0.5 \quad \text{e} \quad Probabilità(X<M)\le 0.5$$
+La *mediana campionaria* $\hat M$ è :
++ inferiore al più a metà dei dati campionari e
++ superiore al più a metà dei dati campionari
+##### Asimmetrie
+
+La relazione tra media e mediana determina la forma di una distribuzione :
++ *distribuzione simmetrica* : $M=\mu$
++ *asimmetria destra* :           $M<\mu$
++ *asimmetria sinistra* :         $M>\mu$
+
+![[Pasted image 20240218155336.png]]
+##### Calcolo della mediana di popolazione
+
+Nel caso di **distribuzioni continue** la mediana si ottiene risolvendo l'equazione : $F(M)=Probabilità(X\le M)=0.5$
+
+![[Pasted image 20240218155440.png]]
+
+Nel caso di **distribuzioni discrete** l'equazione $F(M)=0.5$ :
++ ha un intervallo di valori come soluzione , oppure
++ non ha nessuna soluzione
+
+![[Pasted image 20240218155639.png]]
