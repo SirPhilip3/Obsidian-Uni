@@ -452,4 +452,7 @@ Utilizziamo il seguente algoritmo per ricavare una *copertura canonica* :
 >	Calcoliamo la *chisura* del rimanente : $B_G^+=BC$ , visto che $C$ è presente all'interno della *chiusura* possiamo togliere l'attributo $A$ ( era la stessa cosa se toglievamo prima $B$ )
 >	Dato che $B\rightarrow C$ era già presente in $G$ otteniamo : $H=\{A\rightarrow C,B\rightarrow C,A\rightarrow B\}$
 >3. Verifichiamo che l'unica dipendenza è ridondante ( è possibile vedere che la possiamo ricavare per transitività tra $A\rightarrow B$ e $B\rightarrow C$ ) possiamo verificarlo dato che : 
->	$C\in A_{H-{A\rightarrow C}}^+=ABC$ ( ossia abbiamo calcolato la copertura di $A$ utilizzando $\{A\rightarrow B,B\rightarrow C\}$ ossia $H-\{A\rightarrow C\}$ e verificato che la chius )
+>	$C\in A_{H-\{A\rightarrow C\}}^+=ABC$ ( ossia abbiamo calcolato la copertura di $A$ utilizzando $\{A\rightarrow B,B\rightarrow C\}$ ossia $H-\{A\rightarrow C\}$ e verificato che la chiusura contiene la parte sinistra )
+>Concludendo possiamo dire che una *copertura canonica* di $F$ è l'insieme $\{ B\rightarrow C ,A\rightarrow B \}$
+
+
