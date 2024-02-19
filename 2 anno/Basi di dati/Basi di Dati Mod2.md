@@ -268,15 +268,20 @@ Dato $R(T,F)$ è possibile trovare una sua chiave in tempo *polinomiale* , possi
 
 ```pseudo
 	\begin{algorithm}
-	\caption{Algo Caption}
+	\caption{FindKey}
 	\begin{algorithmic}
-
+	\Function{FindKey}{R(T,F)}
+    \State $K \gets T$
+	\ForAll{$A\in T$}
+		\If{$(K-\{ A \})_F^+=T$}
+			\State $K \gets K-\{ A \}$
+        \EndIf
+    \EndFor
+    \Return $K$
+    \EndFunction
 	\end{algorithmic}
 	\end{algorithm}
 ```
->[!todo]
->#todo 
->scrivi algo
 
 >[!example]
 >Dato $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ costruiamo una chiave 
@@ -306,9 +311,22 @@ Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi :
 
 ```pseudo
 	\begin{algorithm}
-	\caption{Algo Caption}
+	\caption{FindAllKeys}
 	\begin{algorithmic}
-
+	\Function{FindAllKeys}{R(T,F)}
+	\State $Z=\{ B\in T | \forall X \rightarrow Y \in F : B \notin Y  \}$
+	\State $Cand=[Z::(T-Z)]$
+	\State $Keys=[]$
+	\While{$Cand\neq []$}
+		\State $X::(Y)=Head(Cand)$
+		\State $Cand=Tail(Cand)$
+		\If{$\nexists K \in Keys : K \subset X $}
+			\If{$X_F^+=T$}
+				\State $Keys$
+            \EndIf
+        \EndIf
+    \EndWhile
+    \EndFunction
 	\end{algorithmic}
 	\end{algorithm}
 ```
