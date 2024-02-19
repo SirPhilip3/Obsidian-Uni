@@ -2670,7 +2670,6 @@ chained_hash_delete(T, x)
 
 In questa implementazione $x$ è un puntatore all'elemento , non è quindi necessario svolgere un'operazione di *search* ( se fosse una *key* allora sarebbe necessaria ) 
 Inoltre , per fare sì che la complessità sia costante dobbiamo utilizzare una *lista doppiamente concatenata* , questa ci permette di non dovere trovare il predecessore per cambiare i puntatori 
-
 ##### Analisi dell'Hashing con concatenamento
 
 Studiamo il tempo medio di ricerca di un elemento con *chiave* $K$ 
@@ -2723,3 +2722,86 @@ Il tempo complessivo di esecuzione sarà quindi : $\Theta(1+\frac \alpha 2)=\The
 >[!warning]
 >Quando $\alpha$ cresce oltre una certa soglia ( $\gt2$ ) dobbiamo raddopiare le dimensioni della tabella hash e reinserire le *chiavi* ripassate attraverso la funzione hash in modo da recuperare la complessità $\Theta(1)$ , altrimenti la complessità potrebbe diventare maggiore : $\Theta(1+\frac {3m}{m}) = \Theta(4)$ che è ovviamente inefficente rispetto a $\Theta(1)$
 
+>[!todo]
+>#todo
+##### Funzioni hash
+
+Una *funzione hash* è una funzione che spezzetta la nostra chiave e la ricompone casualmente in modo tale da ottenere un intero che risulti più casuale possibile 
+Lo scopo è quello di *distribuire* in modo *uniforme* gli elementi nella nostra tabella 
+
+>[!example]
+>Le chiavi sono numeri reali $k$ *casuali* e distribuiti in modo *uniforme* nell'intervallo $0\le k < 1$ 
+>Se abbiamo queste condizioni allora la seguente *funzione hash* offre *prestazioni ottimali* : $$h(k)=\lfloor k\cdot m \rfloor$$
+>Funzione che soddisfa la condizione di *hashing uniforme semplice*
+
+Questa però è una condizione ottimale , utilizzeremo quindi delle euristiche
+###### Metodo della divisione
+$$h(k)=k\ \text{mod} \ m \quad \ \text{resto della divisione tra $k$ e $m$}$$
+Dove $m$ è la dimensione della tabella 
+
++ **Vantaggi** : 
+	Semplice da realizzare 
++ **Svantaggi** : 
+	La dimensione della tabella risulta essere un *dato critico*
+>[!warning]
+>I valori di $m$ devono essere scelti in modo accurato
+>+ $m$ non può assumere valori pari a potenze di 2 : 
+>	Se $m=2^p$ allora $h(k)$ rappresenta i $p$ bit meno significativi di $k$ , questo potrebbe portare ad un maggior numero di collisioni 
+
+Una buona scielta per $m$ è un *numero primo* non troppo vicino a una potenza esatta di 2 o di 10
+
+>[!example]
+>Vogliamo memorizzare $n=2000$ chiavi prevedendo una media di 3 collisioni 
+>Poniamo come dimensione della tabella un numero primo vicino a $\frac {2000}3=666.\overline6$ mantenendo le caratteristiche menzionate prima 
+>Scegliamo quindi $m=701$ che ci permette di spargere in modo opportuno e ben distribuito gli elementi della tabella 
+###### Metodo della moltiplicazione
+$$h(k)=\lfloor m \cdot k \rfloor , \quad \ \text{con $0\le k <1$}$$
+Data una chiave $k\in U$ decidiamo di trasformarla in un numero $\overline k \in [ 0,1 [$ per poi applicarci la funzione hash
+
+>[!note] Algoritmo
+>+ Fisso una costante $A$ , $0<A<1$
+>+ Calcolo $k\cdot A$ ( restituisce una parte intera e una frazionaria )
+>+ Estraiamo la parte frazionaria calcolata precedentemente : 
+>$$k\cdot A\mod{1}=k\cdot A -\lfloor k\cdot A \rfloor \in [0,1]$$
+
+La funzione di hashing diventerà quindi : 
+$$h(k)=\lfloor m\cdot (k\cdot A \mod 1) \rfloor$$
++ **Vantaggi** : 
+	+ Il valore di $m$ non è critico 
+	+ Potenzialmente funzionano bene tutti i valori di $A$
+	+ In particolare si utilizza il valore inverso del rapporto aureo ( scoperto da Donald Knuth )
+	$$A\simeq \frac{\sqrt5 -1}{2}=0.618033\simeq \hat\Phi$$
+
+**Semplificare il calcolo della funzione hash** : 
+
+Sia $w$ la lunghezza di una parola di memoria e $k$ entri in una singola parola di memoria ( al più $2^w$ ) 
+Scielgo un intero $q$ , $0<q<2^w$ , e $m=2^p$ ( $0\le p\le w$ ) , poniamo quindi $A=\frac q {2^w}<1$
+Calcoliamo quindi : 
+$$\overline k=k\cdot A=\frac{k\cdot q}{2^w}$$
+$A$ è un numero con una parte frazionaria e una parte decimale
+
+![[Pasted image 20240219133805.png]]
+
+Chiamiamo ora la parte intera con il nome di $r_1$ e $r_0$ la parte decimale , a questo punto possiamo riscrivere 
+$$k\cdot q=r_1+\frac{r_0}{2^w}$$
+Visto che siamo interessati alla parte frazionaria possiamo scrivere la funzione hash nel seguente modo : 
+$$h(k)=\bigg\lfloor 2^p\cdot\bigg(\frac{k\cdot q}{2^w} \mod 1\bigg) \bigg\rfloor$$
+Ossia sono i $p$ bit più significativi della parola meno significativa del prodotto di $k\cdot p$ 
+Possiamo quindi riscriverla più semplicemente : 
+$$h(k)=(k\cdot q \mod 2^w)>> (w-p)$$
+Eseguiamo lo shift a destra di $w-p$ posizioni in modo da inserire degli 0 nelle posizioni lasciate libere in modo che i $p$ bit più significativi di $r_0$ si spostino nelle posizioni $p$ più a destra
+###### Hashing Randomizzato
+
+Esistono insieme di *funzioni hash* ben costruite tra le quali il programma scieglie casualmente quale utilizzare durante l'esecuzione , in questo modo non è possibile che un attacante sappia la funzione di hash utilizzata per protare a pessime prestazioni  
+#### Indirizzamento aperto
+
+Le tabelle hash ad indirizzamento aperto non utilizzano una struttura dati esterna per gestire le collisioni
+
+>[!note] Idea
+>Tutti gli elementi vengono memorizzati nella tabella hash stessa 
+
+Ogni cella contiene un elemento dell'insieme oppure $NIL$ 
+##### Cercare un elemento 
+
+Per cercare un elemento con $key=k$ : 
+1. Calcolo

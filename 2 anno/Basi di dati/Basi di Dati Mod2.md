@@ -183,22 +183,26 @@ Da questo possiamo ricavare il seguente teorema :
 Pertanto per decidere se $X \rightarrow Y\in F^+$ si può controllare se $Y \subseteq X_F^+$ 
 Che può essere svolto in tempo polinomiale 
 #### Calcolo di $X_F^+$
-
 ```pseudo
 	\begin{algorithm}
 	\caption{Algo Caption}
 	\begin{algorithmic}
 	\Function{CLOSURE}{X,F}
-	\State X
-	\While{de}
+	\State $X_{old}^+ \leftarrow 0$
+	\State $X_{new}^+ \leftarrow X$
+	\While{$X_{new}^+\neq X_{old}^+$}
+		\State $X_{old}^+ \leftarrow X_{new}^+$
+		\Forall{$Y \rightarrow Z \in F$}
+			\If{$Y \subseteq X_{new}^+$}
+				\State $X_{new}^+ \leftarrow X_{new}^+ \cup Z$
+            \EndIf
+		\EndFor
     \EndWhile
+    \Return $X_{new}^+$
     \EndFunction
     \end{algorithmic}
 	\end{algorithm}
 ```
->[!todo]
->#todo 
->scrivi algo
 
 **Esempio** :  
 Abbiamo $X=AB$ e $F=\{ A \rightarrow C, AC \rightarrow D , E \rightarrow F \}$
@@ -322,17 +326,19 @@ Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi :
 		\State $Cand=Tail(Cand)$
 		\If{$\nexists K \in Keys : K \subset X $}
 			\If{$X_F^+=T$}
-				\State $Keys$
-            \EndIf
+				\State $Keys=Keys+X$
+			\Else
+				\State $A_1,\dots,A_n=Y-X_F^+$
+				\For{$i \in 1,\dots,n$}
+					\State $Cand = Cand + XA_i::(A_{i+1},\dots,A_n)$
+                \EndFor
+			\EndIf
         \EndIf
     \EndWhile
     \EndFunction
 	\end{algorithmic}
 	\end{algorithm}
 ```
->[!todo]
->#todo 
->scrivi algo
 
 >[!example]
 >Sia $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ :
@@ -365,6 +371,14 @@ Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi :
 >	+ $X$ contiene già la chiave $BDE$ quindi non viene considerato
 >
 >Poichè $Cand$ ora è vuoto l'algoritmo termina 
+
+>[!todo]
+>#todo
+#### Varifica di Primalità
+
+#### Forma Canonica
+
+##### Copertura Canonica
 
 
 
