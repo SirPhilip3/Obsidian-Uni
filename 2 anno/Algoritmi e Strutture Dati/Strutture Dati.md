@@ -2721,9 +2721,6 @@ Il tempo complessivo di esecuzione sarà quindi : $\Theta(1+\frac \alpha 2)=\The
 
 >[!warning]
 >Quando $\alpha$ cresce oltre una certa soglia ( $\gt2$ ) dobbiamo raddopiare le dimensioni della tabella hash e reinserire le *chiavi* ripassate attraverso la funzione hash in modo da recuperare la complessità $\Theta(1)$ , altrimenti la complessità potrebbe diventare maggiore : $\Theta(1+\frac {3m}{m}) = \Theta(4)$ che è ovviamente inefficente rispetto a $\Theta(1)$
-
->[!todo]
->#todo
 ##### Funzioni hash
 
 Una *funzione hash* è una funzione che spezzetta la nostra chiave e la ricompone casualmente in modo tale da ottenere un intero che risulti più casuale possibile 
@@ -2801,7 +2798,68 @@ Le tabelle hash ad indirizzamento aperto non utilizzano una struttura dati ester
 >Tutti gli elementi vengono memorizzati nella tabella hash stessa 
 
 Ogni cella contiene un elemento dell'insieme oppure $NIL$ 
-##### Cercare un elemento 
+
+**Cercare un elemento**
 
 Per cercare un elemento con $key=k$ : 
-1. Calcolo
+1. Calcolo $h(k)$ ed esamino la cella con indirizzo $h(k)$ : *ispezione*
+2. Se la cella $h(k)$ contiene la chiave la ricerca ha *successo* . Se la cella contiene $NIL$ la ricerca termina con *insuccesso*
+3. Se la cella dovesse contenere una chiave che non è $k$ allora bisogna calcolare l'indice di un'altra cella in base alla chiave $k$ e all'*ordine di ispezione* cioè il numero di *ispezioni* compiute fino a questo momento ( al massimo $m$ ispezioni , ho scorso tutta la tabella ) 
+4. Si continua la scansione della tabella finchè : 
+	1. Non si trova la chiave $k$ ( *successo* )
+	2. Si trova una cella che contiene $NIL$
+	3. Ho eseguito $m$ ispezioni senza successo ( *insuccesso* ) ( ho scorso l'intera tabella )
+
+La funzione hash ora deve prendere 2 argomenti : $h(k,i)$ rappresenta la posizione della chiave $k$ dopo $i$ ispezioni fallite dove inizialmente avremo $i=0$ 
+$$h(k,i):U\times \{ 0,1,\dots,m-1 \}\rightarrow \{ 0,1,\dots,m-1 \}$$
+>[!note] Precondizione
+>Per ogni possibile chiave $k\in U$ la sequenza di ispezioni $<h(k,0),h(k,1),\dots,h(k,m-1)>$ deve essere una permutazione di $<0,1,\dots,m-1>$ ossia gli indici della tabella , in modo che ogni posizione della tabella hash possa essere considerata come possibili cella in cui inserire una nuova chiave mentre la tabella si riempie
+
+##### Operazioni
+
+>[!note] Ipotesi
+>Per semplificare il codice supponiamo che gli elementi contengono solo la chiave , ossia che non abbiano dati satellite
+###### Insert
+
+```c++
+hash_insert(T, k)
+	i = 0
+	trovata = false
+	repeat // tipo un ciclo do while
+		j = h(k, i)
+		if T[j] == NIL
+			T[j] = k
+			trovata = true
+		else 
+			i++
+	until trovata or i == m
+	if trovata
+		return j
+	else error "overflow della tabella hash"
+```
+
+**Post-condizione** :
+	Restituisce l'indice della cella dove ha memorizzato $k$ oppure segnala un errore se la tabella è piena
+
+###### Ricerca
+
+```c++
+hash_search(T, k)
+	i = 0
+	trovata = false
+	repeat 
+		j = h(k, i)
+		if T[j] == k
+			trovata = true
+		else 
+			i++ // ispezione sucessiva
+	until trovata or i == m or T[j] == NIL
+	if trovata
+		return j
+	else 
+		return NIL // non ho trovato la key
+```
+
+**Post-condizione** :
+	Retituisce $j$ se la cella $j$ contiene la chiave $k$ oppure $NIL$ se la chiave $k$ non si trova nella tabella $T$
+

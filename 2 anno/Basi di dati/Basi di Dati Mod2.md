@@ -233,7 +233,6 @@ Ossia : $X$ ( un sottoinsieme degli attributi $T$ ) è una **superchiave** se da
 
 >[!important] Definizione Attributi Primi
 >Un attributo è *primo* se e solo se appartiene ad *almeno* una chiave
-
 #### Verifica di Superchiave
 
 Per determinare se un sottoinseme degli attributi di $R(T,F)$ è una *superchiave* possiamo utilizzare il seguente algoritmo ( dal costo polinomiale ) :
@@ -371,14 +370,86 @@ Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi :
 >	+ $X$ contiene già la chiave $BDE$ quindi non viene considerato
 >
 >Poichè $Cand$ ora è vuoto l'algoritmo termina 
-
->[!todo]
->#todo
 #### Varifica di Primalità
 
+Dato $R(T,F)$ , il problema di verificare se un attributo $A\in T$ è *primo* ha complessità *esponenziale* :
++ Si può dimostrare che il problema è *NP-completo* 
++ Ciò implica che non esistono soluzioni significativamente più efficenti dell'apporoccio ovvio di generare tutte le possibili chiavi
 #### Forma Canonica
+
+Vogliamo portare l'insieme delle *dipendenze funzionali* ad una forma più standard , detta *forma canonica* equivalente all'originale 
+
+>[!important] Definizione Equivalenza
+>Due insiemi di *dipendenze funzionali* $F$ e $G$ sono *equivalenti* ( indicato con $F \equiv G$ ) se e solo se $F^+=G^+$ 
+
+>[!note]
+>Se $F=G$ allora $F\equiv G$ ma in generale non vale il contrario
+
+>[!important] Definizione Attributo Estraneo
+>Sia $X\rightarrow Y \in F$ . L'attributo $A\in X$ è *estraneo* se e solo se $(X-{A})\rightarrow Y \in F^+$
+
+Ossia se rimuoviamo questi attributi estranei la dipendenza fa ancora parte della chiusura ( ossia non contribuiscono nel determinare univocamente la dipendenza )
+
+>[!important] Definizione Dipendenza Ridondante
+>La dipendenza $X\rightarrow Y \in F$ è *ridondante* se e solo se $X \rightarrow Y\in (F-\{ X \rightarrow Y \})^+$  
+
+In parole povere una dipendenza è ridondante se questa può essere dedotta da altre dipendenze  
+
+>[!important] Definizione Forma Canonica
+>$F$ è in *forma canonica* se e solo se per ogni $X \rightarrow Y \in F$ avremo :
+>+ $|X|=1$
+>+ $X$ non contiene *attributi* *estranei*
+>+ $X \rightarrow Y$ non è *ridondante*
 
 ##### Copertura Canonica
 
+>[!important] Definizione Copertura Canonica
+>$G$ è una *copertura canonica* di $F$ se e solo se $F\equiv G$ e $G$ è in forma canonica
 
+>[!note] Teorema
+>Per ogni insieme di dipendenze $F$ esiste una copertura canonica , uno stesso insieme di dipendenze può avere più coperture canoniche
+>
 
+Utilizziamo il seguente algoritmo per ricavare una *copertura canonica* : 
++ Decompone tutte le *dipendenze funzionali* che hanno più attributi a destra :
+	$X\rightarrow Y \implies \{ X\rightarrow A | A \in Y \}$
++ Toglie dalla parte sinistra delle dipendenze gli attributi che non contribuiscono alla dipendenza ( attributi estranei ) :
+	$X\rightarrow A \implies X -Z|A \in (X-Z)_F^+$
++ Toglie le *dipendenze funzionali* non essenziali per derivare la dipendenza stessa ( toglie le dipendenze *ridondanti* ) :
+	$X\rightarrow A \implies F^{new} = F-\{ X\rightarrow A \} | A\in X_{F-\{ X\rightarrow A \} }^+$
+
+```pseudo
+	\begin{algorithm}
+	\caption{Canonize}
+	\begin{algorithmic}
+	\Function{Canonize}{F}
+	\State $G \leftarrow \{X\rightarrow A | \exists Y : X\rightarrow Y \in F \land A \in Y\}$
+	\Forall{$X \rightarrow A \in G\ \text{such that}\ |X|>1 $}
+		\State $Z \leftarrow X$
+		\Forall{$B \in X$}
+			\If{$A\in ( Z - \{B \} )^+_G$}
+				\State $Z \leftarrow Z - \{B \}$
+            \EndIf
+        \State $G \leftarrow ( G -\{ X \rightarrow A \} )\cup \{ Z \rightarrow A \}$
+        \EndFor
+    \Forall{$X \rightarrow A \in G$}
+	    \If{$A\in X_{G-\{ X \rightarrow A \}^+}$}
+		    \State $G \leftarrow G - \{ X \rightarrow A \}$
+        \EndIf
+    \EndFor
+    \EndFor
+    \Return G
+    \EndFunction
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!example]
+>Sia $F=\{A\rightarrow BC , B\rightarrow C , A\rightarrow B , AB\rightarrow C  \}$
+>1. *Decomponiamo* $A\rightarrow BC$ in $A\rightarrow B$ e $A\rightarrow C$ , dato che $A\rightarrow B$ è giaà presente otteniamo $G=\{A\rightarrow C , B\rightarrow C , A\rightarrow B , AB\rightarrow C  \}$
+>2. L'unica dipendenza che può contenere attributi estranei è $AB\rightarrow C$ 
+>	Proviamo a togliere $A$ :
+>	Calcoliamo la *chisura* del rimanente : $B_G^+=BC$ , visto che $C$ è presente all'interno della *chiusura* possiamo togliere l'attributo $A$ ( era la stessa cosa se toglievamo prima $B$ )
+>	Dato che $B\rightarrow C$ era già presente in $G$ otteniamo : $H=\{A\rightarrow C,B\rightarrow C,A\rightarrow B\}$
+>3. Verifichiamo che l'unica dipendenza è ridondante ( è possibile vedere che la possiamo ricavare per transitività tra $A\rightarrow B$ e $B\rightarrow C$ ) possiamo verificarlo dato che : 
+>	$C\in A_{H-{A\rightarrow C}}^+=ABC$ ( ossia abbiamo calcolato la copertura di $A$ utilizzando $\{A\rightarrow B,B\rightarrow C\}$ ossia $H-\{A\rightarrow C\}$ e verificato che la chius )
