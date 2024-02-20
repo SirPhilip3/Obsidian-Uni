@@ -212,5 +212,5 @@ public interface Iterable<T>{ // è un parametro , analogo a n
 
 strutture dati eterogenee (senza tipo) per fare get posso gettare solo object , non sai cos'è e non posso fare nulla e ti assumi il richio di castarlo potresti castarlo ad un tipo sbagliato 
 
-
+compiler non ti obbliga a bindare un risultato
 
