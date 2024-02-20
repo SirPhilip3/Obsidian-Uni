@@ -100,7 +100,6 @@ In questo modo non necessitiamo di conoscere il nome dei processi ma solo quello
 
 >[!note]
 >In Unix le *pipe* implementano un meccanismo di scambio di messaggi a nominazione indiretta
-
 #### Comunizazione sincrona e asincrona 
 
 L'invio e ricezione dei messaggi può essere *sincroni* o *asincroni* , vediamo le varie combinazioni
@@ -120,3 +119,23 @@ L'invio e ricezione dei messaggi può essere *sincroni* o *asincroni* , vediamo 
 >La comunicazione a scambio di messaggi è molto adatta nelle situazione in cui un processo *produce* un dato e un altro lo *consuma*
 >UNIX inoltre utilizza nominazione indiretta con send asincrona e recieve sincrona
 
+## Creazione di processi 
+
+La creazione di un processo richiede alcune operazioni da parte del sistema operativo : 
++ Creazione di un nuovo ID ( *PID* - *Process Identifier* )
++ Allocazione di Memoria ( per il codice e i dati )
++ Allocazione di altre risorse ( stdin , stdout , dispositivi di I/O )
++ Gestione delle informazioni sul nuovo processo ( es. la priorità )
++ Creazione del *PCB* ( *Processo Control Block* ) contenente le informazioni del processo
+### Processi in UNIX
+
+Un processo è sempre creato da un'altro processo tramite una chiamata di sistema ( `{c}fork` ) 
+Fa eccezione il processo `init` ( $pid=1$ ) che viene creato al momento del boot ( non ha un padre)
+
+Il processo creante è detto *parent* mentre il processo creato *child* , questo crea una struttura di parentela ad albero :
+
+![[ParentelaProcessiUNIX.excalidraw]]
+
+#### Relazioni Dinamiche
+
+>[!todo]

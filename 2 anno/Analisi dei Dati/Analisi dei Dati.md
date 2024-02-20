@@ -290,10 +290,48 @@ Usando le propietà delle trasformazioni possiamo dire che :
 $$\sqrt{E(S^2)}\neq E(\sqrt{S^2})\implies \sigma \neq E(S)$$
 	Quindi sappiamo che :
 	$$Bias(S)=E(S)-\sigma\neq0$$
-+ $S$ è uno *stimatore* consistente di $\sigma$ 
+>[!note]
+>$S$ divente *non distorto* asintoticamente
++ $S$ è uno *stimatore* consistente di $\sigma$ ( per la seconda regola delle trasformazioni ) 
 $$S\stackrel{p}\to\sigma, \quad \text{per} \ n\to \infty$$
++ $S$ è uno stimatore asintoticamente normale
+$$S\stackrel{d}\to N\bigg(\sigma , \frac{1}{4\sigma^2}Var(S^2)\bigg),\quad \text{per}\ n\to\infty$$
+>[!todo]
+>spiega
 ### Errore standard
 
+La qualità di uno *stimatore* si misura anche in termini della sua variabilità , questa corrisponde alla *deviazione standard* dello stimatore
+$$SE(\hat\theta)=SD(\hat\theta)$$
+Dove : 
++ $SE$ : standard error
++ $SD$ : standard deviation
+
+*Stimatori* molto variabili portano a stime che differiscono fra loro eccessivamente in campioni differenti 
+
+Anche l'*errore standard* può dipendere dai parametri della popolazione e quindi anchesso deve essere stimato
 #### Errore standard della media campionaria
 
+L'*errore standard* dello stimatore media campionaria è ( con la deviazione standard non stimata ) :
+$$SE(\hat\mu)=SE(\overline X)=\frac{\sigma}{\sqrt n}$$
+$SE(\hat\mu)$ viene *stimato* con la deviazione standard campionaria ( stimata ) : 
+$$\widehat{SE}(\hat\mu)=\frac{S}{\sqrt n}$$
+Le proprietà delle *trasformazioni* ci dicono che $\widehat{SE}(\hat\mu)$ è uno stimatore di $SE(\hat\mu)$ con le seguenti caratteristiche : 
++ asintoticamente non distorto
++ consistente
++ asintoticamente normale
 ### Precisione e Accuratezza
+
+La qualità di uno stimatore viene valutata in termini di :
++ *accuratezza* :
+	Uno stimatore è tanto più accurato quanto meno è distorto
++ *precisione* : 
+	Uno stimatore è tanto più preciso quanto meno è variabile
+
+Le misure di *accuratezza* e *precisione* sono combinate nell'*errore quadratico medio* ( mean square error ) : 
+$$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]$$
+Aggiungo e sottraggo $E(\hat\theta)$
+$$=E[(\hat\theta-E(\hat\theta)+E(\hat\theta)-\theta)^2]$$
+Sviluppiamo il quadrato
+$$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+[E(\hat\theta)-\theta]^2$$
+Visto che il doppio prodotto può essere eliminato visto che il primo termine da 0 avremo che 
+$$=E[(\hat\theta-E(\hat\theta))^2]+[E(\hat\theta)-\theta]^2\implies Var(\hat\theta)+Bias(\hat\theta)^2$$
