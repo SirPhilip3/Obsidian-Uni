@@ -251,4 +251,49 @@ $$S^2=\frac 1{n-1}\bigg(\sum_{i=1}^n X^2_i-n\overline X^2\bigg)$$
 Ossia : $E[X^2]-E[X]^2$ approssimativamente ( per grandi valori di $n$ )
 ##### Proprietà della varianza campionaria
 
-Per assicurare la *non distorsione* della varianza campionaria il coeffi
+Per assicurare la **non distorsione** della varianza campionaria il coefficente deve essere $\frac 1{n-1}$
+>[!todo]
+>Questo deve essere poichè la somma degli scarti dalla media deve essere sempre 0 quindi l'ultimo elemento è già determinato ed avremo quindi solo $n-1$ elementi "liberi" nel campione
+>*ricontrolla spiegazione!!!!!!!!*
+
+Si dice spesso infatti che : 
++ $S^2$ sia la *varianza campionaria corretta*
++ $\widetilde S^2$ = $\frac{n-1}n S^2$ la *varianza campionaria*
+
+Si può vedere che $\widetilde S^2$ è *distorto* poichè se abbiamo che $E[S^2]=\sigma^2$ allora avremo che $E[\widetilde S^2]=\frac{n-1}n \sigma^2 < \sigma^2$ possiamo anche notare che $E[\widetilde S^2]$ sottostima $E[S^2]$
+
+Si può comunque notare che la distorsione svanisce asintoticamente infatti : 
+$$\lim_{n\rightarrow \infty} \frac{n-1}n \to 1 \quad \text{questo ci porta a dire che : }\quad S^2\sim \widetilde S^2$$
+
+La varianza campionaria ( $S^2$ ) è inoltre uno stimatore **consistente** di $\sigma^2$ 
+$$S^2\stackrel{p}\to \sigma^2 \quad \text{per} \ n\to\infty$$
+La varianza campionaria ( $S^2$ ) è anche uno stimatore **asintoticamente normale** 
+$$S^2\stackrel{d}\to N\{ \sigma^2,Var(S^2) \}, \quad \text{per} \ n \to\infty$$
+### Trasformazioni
+
+ Una traformazione è l'applicazione di una funzione $g()$ ad una variabile casuale $X$ , di seguito abbiamo varie proprietà :
+ + *valore atteso* : 
+	 $$E\{ g(X) \}\neq g\{ E(X) \}$$
+	 L'uguaglianza vale solo se $g()$ è una funzione lineare ( es $aX+b$ )
++ *convergenza in probabilità* : 
+	$$\text{Se}\quad X\stackrel{p}\to \theta \implies g(X)\stackrel{p}\to g(\theta)$$
+	Questo vale solo se $g()$ è continua ( esempio vale con $\sqrt{\dots}$ )
++ *normalità asintotica*
+	$$\text{Se} \quad X \stackrel{d}\to N(\theta,\psi^2) \implies g(X)\stackrel{d}\to N(g(\theta),g'(\theta)^2\psi^2)$$
+	Questo vale solo se $g'(\theta)$ esiste e non è nulla 
+### Deviazione standard campionaria
+
+La *deviazione standard* $S$ è una funzione di $S^2$ : 
+$$S=g(S^2), \quad \text{con} \ g(\dots)=\sqrt\dots$$
+Usando le propietà delle trasformazioni possiamo dire che : 
++ $S$ è uno *stimatore* distorto di $\sigma$ infatti :
+$$\sqrt{E(S^2)}\neq E(\sqrt{S^2})\implies \sigma \neq E(S)$$
+	Quindi sappiamo che :
+	$$Bias(S)=E(S)-\sigma\neq0$$
++ $S$ è uno *stimatore* consistente di $\sigma$ 
+$$S\stackrel{p}\to\sigma, \quad \text{per} \ n\to \infty$$
+### Errore standard
+
+#### Errore standard della media campionaria
+
+### Precisione e Accuratezza
