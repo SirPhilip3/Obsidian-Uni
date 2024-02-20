@@ -186,3 +186,31 @@ utilizzo for each ( utilizza iterator )
 ```java
 
 ```
+
+# 20/02/2024
+
+package 
+
+iterable deve fornire l'iteratore almeno
+ogni file una sola entità ( se volessi solo nested nessuna relazione con classe al cui è all'interno )
+se interfaccia dentro interfaccia dovrei riferirmi `{java}Iterable.Iterator` meglio creare una nuova interface
+
+differenza type parameter e type argument : 
+
+```java
+void f(int n) // n parametro type parameter
+
+f(7) // 7 è un argomento type argument
+// n non esiste nello scope del chiamante
+```
+
+```java
+public interface Iterable<T>{ // è un parametro , analogo a n 
+	// all'interno dello scope posso utilizzare T , argument quando faccio new
+}
+```
+
+strutture dati eterogenee (senza tipo) per fare get posso gettare solo object , non sai cos'è e non posso fare nulla e ti assumi il richio di castarlo potresti castarlo ad un tipo sbagliato 
+
+
+
