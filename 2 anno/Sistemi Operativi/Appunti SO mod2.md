@@ -57,3 +57,21 @@ processi in esecuzione in parallelo ( o time sharing o su più core )
 la terminazione prima figlio o padre potrebbero alternarsi il finire dei processi
 
 fork2 
+
+se fossero in timesharing in blocchi , se sono alternati vanno in core differenti
+
+non possiamo assumere nulla sullo scheduler
+
+la fork può fallire -> quando sono finite le risorse , se fallisce pericolosa per sistema operativo ( saturazione risorse del kernel ) se le risorse del kernel finiscono sonon problemi
+ulimit e cgroups limitano il numero di rsorse allocate a quel terminale , non finisce le risorse del kernel
+
+processi orfani e zombie
+
+se il genitore termina prima del figlio -> processi orfani
+il figlio termina prima del genitore , il genitore dovrebbe accorgersi della morte e raccoglierne le info ( se è stato terminato etcc mantenuto nella PCB ) se il padre non lo fa il processo rimane come processo zombie
+
+il processo init adotta tutti gli orfani del sistema
+
+processi zombie segnati come `{bash}<defunct>` 
+
+cosa succede se termina il genitore diventa zombie orfano , adottato da init , ciclicamente legge le informazioni ciclicamente per i suoi figli adottati

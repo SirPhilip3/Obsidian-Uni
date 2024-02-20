@@ -191,3 +191,15 @@ Nel caso di **distribuzioni discrete** l'equazione $F(M)=0.5$ :
 + non ha nessuna soluzione
 
 ![[Pasted image 20240218155639.png]]
+
+##### Calcolo della mediana campionatoria 
+
+Si ordinano le osservazioni del campione dalla più piccola alla più grande , quindi : 
++ Se $n$ è *dispari* allora $\hat M$ è l'osservazione del campione ordinato in posizione $(n+1)/2$ 
++ Se $n$ è *pari* allora $\hat M$ è un *qualsiasi* valore nell'intervallo fra le osservazioni di posizione $n/2$ e $(n+2)/2$ ( per semplicità si scieglie l'esatta metà )
+
+Anch'essa come la mediana di popolazione è meno sensibile alle osservazioni estreme
+#### Quantili, percentili e quartili
+
+Il **quantile** di ordine $p$ è il numero $x$ tale che :
+$$$$
