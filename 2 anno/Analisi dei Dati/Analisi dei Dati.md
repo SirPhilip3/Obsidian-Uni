@@ -202,4 +202,53 @@ Anch'essa come la mediana di popolazione è meno sensibile alle osservazioni est
 #### Quantili, percentili e quartili
 
 Il **quantile** di ordine $p$ è il numero $x$ tale che :
-$$$$
+$$Probabilià(X<x)\le p \quad \text{e} \quad Probabilià(X>x)\le 1-p$$
+Il **quantile campionario** di ordine $p$ è :
++ maggiore al più del $100\cdot p \%$ delle osservazioni e
++ minore al più del $100\cdot (1-p) \%$ delle osservazioni
+
+Il **percentile** di ordine $\gamma$ corrisponde al *quantile* di ordine $0.01 \cdot \gamma$ ( divide la distribuzione in multipli di $0.01$ )
+
+Il **quartile** divide la distribuzione in in quattro parti : primo , secondo e terzo *quartile* che corrispondono al 25-esimo , 50-esimo e 75-esimo *percentile* ( la mediana coincide con il *quantile* di ordine $0.5$ , il 50-esimo *percentile* , il secondo *quartile* ) 
+
+Per trovare un *quartile* ci sono diversi metodi uno di questi è calcolare $n\cdot p$ ed utilizzare come valore l'elemento trovato o per eccesso oppure il valore a metà 
+>[!example]
+>Troviamo il *quartile* $p=0.25$ nell'esempio precedente dei tempi di esecuzione ; avremo $n\cdot p=0.25\cdot30=7.5$ quindi prenderemo come valore l'ottavo oppure calcoliamo il valore che si trova a metà tra il settimo e l'ottavo 
+
+Un'altro è trovare la mediana della metà corrispondente al quantile del campione
+#### Varianza e deviazione standard campionarie
+
+>[!important]
+>La **varianza campionaria** è definita nel seguente modo : 
+$$S^2=\frac 1 {n-1}\sum_{i=1}^n(X_i-\overline X)^2$$
+
+Dove le quantità $X_i-\overline X$ sono dette *scarti dalla media* ( distanza dalla media )
+
+La *varianza campionaria* misura la dispersione attorno alla media campionatoria 
+
+La *varianza campionaria* è uno stimatore della varianza di popolazione $\sigma^2 =Var(X)$ 
+
+>[!note]
+>La varianza campionaria non può essere :
+>$$\frac1n \sum_{i=1}^n(X_i-\overline X)$$
+>Poichè questo darebbe come risultato sempre 0 :
+>$$\frac1n \sum_{i=1}^n(X_i-\overline X)=\frac1n\sum_{i=1}^nX_i-\frac1n\sum_{i=1}^n\overline X=\overline X - \frac1n n\cdot \overline X = \overline X -\overline X =0$$
+
+>[!important]
+>La **deviazione standard campionaria** è la radice quadrata della varianza campionaria : 
+>$$S=\sqrt {S^2}$$
+
+Se stiamo considerando un'unità di misura per i nostri dati allora la *deviazione standard* è la scielta migliore per rappresentare la vairazione dei dati poichè possiede la stessa unità di misura dei dati
+
+Un'altra misura che rappresenta la varianza di un insieme di dati è la *deviazione media assoluta* ( *DMA* ) che ha la seguente formula : 
+$$\frac1n \sum_{i=1}^n(|X_i-\overline X|)$$
+Questa viene spesso utilizzata quando lo *scarto dalla media* è molto grande , altrimenti infatti la *varianza* è ancora più sensibile della *media* ai valori anomali in quanto questa eleva gli scarti alla seconda e quindi valori estremi vengono amplificati 
+
+##### Calcolo della varianza campionaria
+
+La varianza può essere calcolata con la formula : 
+$$S^2=\frac 1{n-1}\bigg(\sum_{i=1}^n X^2_i-n\overline X^2\bigg)$$
+Ossia : $E[X^2]-E[X]^2$ approssimativamente ( per grandi valori di $n$ )
+##### Proprietà della varianza campionaria
+
+Per assicurare la *non distorsione* della varianza campionaria il coeffi
