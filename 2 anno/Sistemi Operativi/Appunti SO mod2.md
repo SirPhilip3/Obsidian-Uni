@@ -1,0 +1,59 @@
+# 20/02/2024
+
+**Creazione di processi**
+
+Alla creazione del processo si assegna un ID , memoria  , 
+
+processi sono in relazione tra loro -> gerarchia padre figli , processo init con id=1 nasce in modo spontaneo gli altri tutti figli di un genitore ( relazioni statiche )
+
+shell crea processo figlio lo esegue , aspetta fine della sua esecuzione , continua , 
+
+cntr+C termina il processo in esecuzione o può essere gestito dal processo
+
+
+
+relazioni dinamiche 
+
+
+per dire esplicitamente che il processo deve essere eseguito in background `{bash}sleep 5 &`
+il processo che ha terminato viene segnalato solo se interagisco con la shell 
+
+`{bash}ps` fa vedere processin in esecuzione 
+`{bash}ps -o` che campi voglio visualizzare
+
+qunado lancio comando in shell la shell è il genitore del processo
+
+cntr+Z sospende il processo in foreground , bg in background, fg continua in foreground
+
+
+
+relazioni di contenuto
+
++ unix figlio *duplicato* da genitore ( fork )
++ figlio esegue un programma differente ( win )
+
+**fork**
+
+creo il processo figlio :
++ condivide il codice ( immutabile in read only )
++ dati possono essere modificati quindi vengono "copiati" ( quella read-write )
+
+per sapere che è differente dal padre si capisce poichè la fork ritorna un valore differente 
+
+se valore di ritorno fork negativo = errore
+
+se fork = 0 so di essere processo figlio se >0 allora è il pid del figlio , il padre non può scoprire il pid del figlio poichè potrebbe avere molti figli e se non glielo diamo subito non lo saprà mai
+
+dopo la fork sono 2 processi ad eseguire il codice :
+
+```c
+pid = fork();
+// da qui in poi codice eseguito da entrambi
+```
+
+getpid = proprio codice id , getppid codice id del padre
+processi in esecuzione in parallelo ( o time sharing o su più core )
+
+la terminazione prima figlio o padre potrebbero alternarsi il finire dei processi
+
+fork2 
