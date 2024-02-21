@@ -135,7 +135,42 @@ Fa eccezione il processo `init` ( $pid=1$ ) che viene creato al momento del boot
 Il processo creante è detto *parent* mentre il processo creato *child* , questo crea una struttura di parentela ad albero :
 
 ![[ParentelaProcessiUNIX.excalidraw]]
-
 #### Relazioni Dinamiche
+
+Dopo la creazione di un nuovo processo il genitore *attende* l'esecuzione del figlio
+
+>[!example]
+>`{bash}sleep 5` 
+>L'esecuzione di `{bash}sleep` all'interno di una shell questa sarà il suo genitore e quindi dovremmo attenddere 5 secondi per continuare ad utilizzare la shell
+
+>[!note]
+>`ctrl+c` termina il processo in esecuzione ( metodo standard ) oppure il comando viene gestito dal programma
+
+Il processo genitore potrebbe continuare l'esecuzione mandando il processo figlio ad eseguire in background 
+
+>[!example]
+>`{bash}sleep 5 &`
+>`{bash}&` indica che il processo deve essere messo in esecuzione in background 
+
+In questo caso i due processi sono in esecuzione in modo concorrente ( o per *time-sharing* in single core o su più core in un CPU multicore )
+
+Il processo che termina verrà comunicato solo se interagiamo con la shell : 
+```bash
+-> sleep 5 &
+[1] 234                       // -> indica il pid del processo in background 
+-> ps                         // -> ci fa vedere i processi in esecuzione
+PID TTY          TIME CMD
+14695 pts/1    00:00:00 bash
+17589 pts/1    00:00:00 sleep
+17590 pts/1    00:00:00 ps
+-> ls
+[1]+ done      sleep 5        // -> indica il comando che è terminato
+```
+
+>[!note]
+>`{bash}ps`
+>Indica di default solo i processi associati al terminale da cui viene lanciato
+
+
 
 >[!todo]
