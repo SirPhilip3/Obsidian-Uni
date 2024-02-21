@@ -119,7 +119,7 @@ L'invio e ricezione dei messaggi può essere *sincroni* o *asincroni* , vediamo 
 >La comunicazione a scambio di messaggi è molto adatta nelle situazione in cui un processo *produce* un dato e un altro lo *consuma*
 >UNIX inoltre utilizza nominazione indiretta con send asincrona e recieve sincrona
 
-## Creazione di processi 
+# Creazione di processi 
 
 La creazione di un processo richiede alcune operazioni da parte del sistema operativo : 
 + Creazione di un nuovo ID ( *PID* - *Process Identifier* )
@@ -127,7 +127,7 @@ La creazione di un processo richiede alcune operazioni da parte del sistema oper
 + Allocazione di altre risorse ( stdin , stdout , dispositivi di I/O )
 + Gestione delle informazioni sul nuovo processo ( es. la priorità )
 + Creazione del *PCB* ( *Processo Control Block* ) contenente le informazioni del processo
-### Processi in UNIX
+## Processi in UNIX
 
 Un processo è sempre creato da un'altro processo tramite una chiamata di sistema ( `{c}fork` ) 
 Fa eccezione il processo `init` ( $pid=1$ ) che viene creato al momento del boot ( non ha un padre)
@@ -135,7 +135,7 @@ Fa eccezione il processo `init` ( $pid=1$ ) che viene creato al momento del boot
 Il processo creante è detto *parent* mentre il processo creato *child* , questo crea una struttura di parentela ad albero :
 
 ![[ParentelaProcessiUNIX.excalidraw]]
-#### Relazioni Dinamiche
+### Relazioni Dinamiche
 
 Dopo la creazione di un nuovo processo il genitore *attende* l'esecuzione del figlio
 
@@ -180,13 +180,13 @@ Potrebbe essere utile che un processo si dissocia dal suo genitore , ad esempio 
 
 >[!note]
 >Possiamo utilizzare `ctrl+Z` per sospendere il processo in *foreground* e sucessivamente utilizzare `{bash}bg` per rimandarlo in esecuzione in *background* , `{bash}fg` per riprendere l'esecuzione in *foreground*
-#### Relazione di contenuto
+### Relazione di contenuto
 
 Ci sono due possibilità :
 + Il figlio è un duplicato del genitore ( in UNIX )
 + Il figlio esegue un programma differente ( in Windows )
 
-#### Fork
+### Fork
 
 La chiamate a sistema `fork` permette di creare un processo duplicato del processo genitore 
 
@@ -195,6 +195,105 @@ La chiamate a sistema `fork` permette di creare un processo duplicato del proces
 
 La chiamata `fork` crea un nuovo processo che :
 + condivide l'area codice del processo genitore ( essendo immutable , read-only )
-+ Utilizza una *copia* dell'area dati del processo genitore ( potrebbero essere modificati dal processo se non facessimo una copia potrebbe portare ad infonsiste )
++ Utilizza una *copia* dell'area dati del processo genitore ( potrebbero essere modificati dal processo se non facessimo una copia potrebbe portare ad infonsistenze )
+
+Per sapere che abbiamo creato un processo figlio basta osservare il valore dato in ritorno dalla chiamata `fork` :
++ se il valore è $0$ allora so di essere il processo figlio
++ se il valore è $>0$ allora sappiamo che siamo il padre poichè il valore di ritorno sarà il *pid* del figlio
+
+>[!note]
+>Il padre di un figlio non ha alcun modo per sapere il *pid* del figlio se non al momento della creazione attraverso il valore ritornato dalla `fork`
+
+![[Pasted image 20240221181800.png]]
+
+Lo schema di base per l'utilizzo di una `fork` è il seguente : 
+```c
+pid_t pid = fork(); // pid del figlio
+if ( pid < 0 )
+	perror("fork error");
+else if ( pid == 0 ){
+	// codice del figlio
+} else {
+	// codice del genitore
+	//^ codici eseguiti contemporanemente
+}
+// codice svolto sia dal genitore che il figlio
+```
+
+>[!example]
+>Esempio concreto
+```c
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+
+int main() {
+  pid_t pid;
+  
+  printf("Prima della fork. pid = %d, pid del genitore = %d\n",getpid(), getppid());
+  
+  pid = fork();
+  if ( pid < 0 )
+    perror("fork error"); // stampa la descrizione dell'errore
+  else if (pid == 0) { 
+    // figlio
+    printf("[Figlio] pid = %d, pid del genitore = %d\n",getpid(), getppid());
+  } else { 
+    // genitore
+    printf("[Genitore] pid = %d, pid del mio genitore = %d\n",getpid(), getppid());
+    printf("[Genitore] Mio figlio ha pid = %d\n",pid);
+    sleep(1); // attende 1 secondo
+  }
+  // entrambi i processi
+  printf("PID %d termina.\n", getpid());
+}
+```
+>[!example] .
+>Questo dà il seguente output : 
+```bash
+$ ./fork
+ Prima della fork. pid = 25267, pid del genitore = 329
+ [Genitore] pid = 25267, pid del mio genitore = 329
+ [Genitore] Mio figlio ha pid = 25268
+ [Figlio] pid = 25268, pid del genitore = 25267
+ PID 25268 termina.
+ PID 25267 termina.
+$
+```
+
+>[!note]
+>`{c}pid_t` è un signed integer in molti sistemi ma potrebbe essere un altro tipo in altri sistemi
+
+>[!note]
+>`{c}getpid` è una funzione per ricevere il proprio *pid*
+>`{c}getppid` è una funzione per ricavare il *pid* del padre ( ossia il *ppid* )
+
+>[!warning]
+>La `fork` può fallire , in questo caso ritorna un numero negativo
+>Fallisce quando finiscono le risorse , questo è molto pericoloso per il sistema operativo perchè potrebbe significare che non ci sono risorse nemmeno per il sistema operativo stesso 
+>Per questo esistono dei limiti ( `{bash}ulimit` , `{bash}cgroups` ) di processi in esecuzione in modo da mantenere sempre delle risorse minimi per il sistema operativo
+>>[!example]
+>>Questo potrebbe causare un fallimento ( fork-bomb )
+```c
+int main() {
+	while(1)
+		if (frok() < 0)
+			perror("errore fork") // il numero di processi è esponenziale poichè ogni processo crea altri processi
+}
+```
+
+Cosa succede alla terminazione di un processo figlio o padre ? : 
+
++ Se il genitore termina prima del figlio , i figli diventano processi **orfani** 
++ Se il figlio termina prima del genitore questo dovrebbe accorgersi della sua terminazione e raccogliere le informazioni del suo *PCB* ( *Process Control Block* ) , se questo non viene svolto dal processo genitore si dice che il processo figlio è un processo **zombie** ( questi vengono segnati come `<defunct>` se facciamo un `{bash}ps` )
+
+I processi *orfani* vengono "adottati" dal processo `init` che ciclicamente raccoglie le loro informazioni e libera la memoria 
+Se il genitore di un processo *zombie* termina questo diventa *zombie orfano* che viengono anch'essi "adottati" dal processo `init`  
+
+#### Esempi
+
+Visto che 
+
 
 >[!todo]
+
