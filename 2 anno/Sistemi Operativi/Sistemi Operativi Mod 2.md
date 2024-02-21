@@ -170,7 +170,31 @@ PID TTY          TIME CMD
 >[!note]
 >`{bash}ps`
 >Indica di default solo i processi associati al terminale da cui viene lanciato
+>`{bash}-o` indica chè output vogliamo
+>>[!example]
+>>se vogliamo osservare il *pid* o *ppid* ( *Parent Process Identifier* ) utilizzeremo il comando
+>>`{bash} ps -o pid,ppid`
+>>Questo ci farà osservare che la shell sarà padre sia di `{bash}ps` che di `{bash}sleep`
 
+Potrebbe essere utile che un processo si dissocia dal suo genitore , ad esempio i processi *Daemon* sono processi che devono rimanere attivi fino allo shutdown del sistema , necessitano quindi dissociarsi dalla shell per non essere terminati alla chisura del terminale
 
+>[!note]
+>Possiamo utilizzare `ctrl+Z` per sospendere il processo in *foreground* e sucessivamente utilizzare `{bash}bg` per rimandarlo in esecuzione in *background* , `{bash}fg` per riprendere l'esecuzione in *foreground*
+#### Relazione di contenuto
+
+Ci sono due possibilità :
++ Il figlio è un duplicato del genitore ( in UNIX )
++ Il figlio esegue un programma differente ( in Windows )
+
+#### Fork
+
+La chiamate a sistema `fork` permette di creare un processo duplicato del processo genitore 
+
+>[!note]
+>`fork` appartiene allo standard *POSIX* ( *Portable Operating System Interface* ) di *IEEE* ( *Institute of Eletrical and Elctronics Engineers* ) sraà quindi utilizzabile in tutti i sistemi che supportano *POSIX* 
+
+La chiamata `fork` crea un nuovo processo che :
++ condivide l'area codice del processo genitore ( essendo immutable , read-only )
++ Utilizza una *copia* dell'area dati del processo genitore ( potrebbero essere modificati dal processo se non facessimo una copia potrebbe portare ad infonsiste )
 
 >[!todo]
