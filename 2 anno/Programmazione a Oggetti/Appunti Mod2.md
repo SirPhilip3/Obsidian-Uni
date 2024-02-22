@@ -216,3 +216,8 @@ compiler non ti obbliga a bindare un risultato
 
 # 22/02/2024
 
+il tipo di null subsume a tutto ( sottotipo di chiunque )
+
+un metodo usato tantissime volte -> scomodo fare sempre try cach
+
+jdk mette unchecked 
