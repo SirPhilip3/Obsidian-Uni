@@ -93,3 +93,13 @@ int main() {
 }
 ```
 
+*exec*
+
+codice e dati rimpiazzate con un codice nuovo e dei dati nuovi -> copy-on-write per evitare di copiare tutti i dati e poi eliminare , si fa quindi una copia ?virtuale che diventa fisica solo quando mi serve ( copia della pagetable ) e le marca come read only solo quando scrivo allora faccio la copia , finchè entrambi leggono non ho una copia dei dati
+
+exec non ritorna mai, ritorna solo se la exec va in errore 
+exec p con path non completo 
+
+devo raccogliere gli zombie dopo che 
+
+>[!todo]
