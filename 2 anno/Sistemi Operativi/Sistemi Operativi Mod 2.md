@@ -185,7 +185,6 @@ Potrebbe essere utile che un processo si dissocia dal suo genitore , ad esempio 
 Ci sono due possibilità :
 + Il figlio è un duplicato del genitore ( in UNIX )
 + Il figlio esegue un programma differente ( in Windows )
-
 ### Fork
 
 La chiamate a sistema `fork` permette di creare un processo duplicato del processo genitore 
@@ -288,12 +287,44 @@ Cosa succede alla terminazione di un processo figlio o padre ? :
 + Se il figlio termina prima del genitore questo dovrebbe accorgersi della sua terminazione e raccogliere le informazioni del suo *PCB* ( *Process Control Block* ) , se questo non viene svolto dal processo genitore si dice che il processo figlio è un processo **zombie** ( questi vengono segnati come `<defunct>` se facciamo un `{bash}ps` )
 
 I processi *orfani* vengono "adottati" dal processo `init` che ciclicamente raccoglie le loro informazioni e libera la memoria 
-Se il genitore di un processo *zombie* termina questo diventa *zombie orfano* che viengono anch'essi "adottati" dal processo `init`  
+Se il genitore di un processo *zombie* termina questo diventa *zombie orfano* che viengono anch'essi "adottati" dal processo `init`
 
+>[!example]
+>>[!todo]
 #### Esempi
 
-Visto che 
+Visto che non possiamo fare alcuna assunzione sullo scheduler che utilizza il sistema non possiamo nemmeno fare alcuna assunzione sul modo in cui due processi vengono eseguiti in modo parallelo : 
 
+Per visualizzare come i processi si alternano nell'esecuzione possiamo scrivere il seguente programma : 
+
+```c
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+
+int main() {
+  pid_t pid;
+  int i;
+  
+  pid = fork();
+  if ( pid < 0 )
+    perror("fork error"); // stampa la descrizione dell'errore
+  else if (pid == 0) { 
+    while(1) {
+      for (i=0;i<10000;i++) {} // riduce il numero di printf
+      printf("Figlio: pid = %d, pid del genitore = %d\n",getpid(), getppid());
+    }
+  } else { 
+    while(1) {
+      for (i=0;i<10000;i++) {} // riduce il numero di printf
+      printf("genitore: pid = %d, pid di mio genitore = %d\n",getpid(), getppid());
+    }
+  }
+}
+```
+
+Se eseguiamo questo codice in un sistema *multicore* questi verrano eseguiti in modo parallelo su due core differenti , per questo gli output saranno alternati ( a meno di buffering dell'output ) 
+Mentre se il sistema è *single-core* i due processi vengono eseguiti in time-sharing portando ad un output suddiviso in blocchi di esecuzione dei due processi  
 
 >[!todo]
 
