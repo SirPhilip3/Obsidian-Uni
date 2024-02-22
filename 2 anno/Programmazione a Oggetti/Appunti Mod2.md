@@ -214,3 +214,5 @@ strutture dati eterogenee (senza tipo) per fare get posso gettare solo object , 
 
 compiler non ti obbliga a bindare un risultato
 
+# 22/02/2024
+
