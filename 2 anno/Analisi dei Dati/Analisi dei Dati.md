@@ -332,6 +332,10 @@ $$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]$$
 Aggiungo e sottraggo $E(\hat\theta)$
 $$=E[(\hat\theta-E(\hat\theta)+E(\hat\theta)-\theta)^2]$$
 Sviluppiamo il quadrato
-$$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+[E(\hat\theta)-\theta]^2$$
+$$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+E[(E(\hat\theta)-\theta)^2]$$
+Visto che il valore medio del valore medio è sempre il valore medio originale abbiamo : 
+$$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+(E(\hat\theta)-\theta)^2$$
+Ora possiamo trovare che il doppio prodotto può essere eliminato attraverso i seguenti passaggi : 
+$$2\cdot E[\hat\theta-E(\hat\theta)]\cdot Bais(\hat\theta)$$
 Visto che il doppio prodotto può essere eliminato visto che il primo termine da 0 avremo che 
 $$=E[(\hat\theta-E(\hat\theta))^2]+[E(\hat\theta)-\theta]^2\implies Var(\hat\theta)+Bias(\hat\theta)^2$$
