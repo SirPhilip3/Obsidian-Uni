@@ -328,3 +328,41 @@ Mentre se il sistema è *single-core* i due processi vengono eseguiti in time-sh
 
 >[!todo]
 
+### Exec
+
+Per eseguire un programma differente da quello che ha effettuato la `frok` si utilizzala chiamata di sistema `exec`
+
+Questa chiamata **sostituisce** *codice* e *dati* di un processo con quelli di un programma differente
+
+![[Pasted image 20240222165718.png]]
+
+#### Copy-on-Write
+
+Da notare come la `exec` "butta via" la copia dei dati creata dalla `fork` , questo è chiaramente *inefficente* soprattutto quando l'`exec` viene eseguita subito dopo una `fork`
+
+Per rendere questa operazione più efficente viene copiata inizialmente dalla `fork` solo la *page-table* e le pagine contententi i dati sono etichettate come *read-only*
+Quando si tenta di scrivere queste pagine genrea un errore che verrà gestito dal kernel :
++ Copia al volo la pagina fisica e aggiorna la *page-table* in modo da farla puntare alla nuova copia
++ Imposta le pagine a *read-write* in quanto da ora in poi le due copie sono indipendenti 
+
+>[!note] 
+>Se si esegue la `fork` e subito `exec` non avviene nessuna scrittura e quindi nessuna pagina viene effettivamente copiata ( avviene solo quando facciamo una scrittura )
+
+#### Sintassi
+
+L'`exec` ha diverse varianti che si differiscono in base al : 
++ formato degli argomenti ( lista o array `argv[]` )
++ utilizzo o meno del path della shell 
+
+```c
+execl("/full/shell/path/command", arg0, arg1, ..., NULL) 
+execlp("command", arg0, arg1, ..., NULL)
+execv("/full/shell/path/command", argv[])
+execvp("command", argv[])
+```
+
+>[!note] 
+>La presenza della `p` alla fine del nome della `exec` indica che viene utilizzato il path della shell ( non necessitiamo di scrivere l'intero path ) 
+
+>[!todo]
+>#todo

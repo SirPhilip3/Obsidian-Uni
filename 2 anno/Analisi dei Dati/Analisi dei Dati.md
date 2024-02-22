@@ -481,4 +481,18 @@ I *boxplot* appaiati si utilizzano per confrontare diverse popolazioni o sottopo
 ![[Pasted image 20240222163241.png]]
 ### Grafici a dispersione
 
-I 
+I grafici a dispersione sono utilizzati per rappresentare la relazione tra due variabili casuali 
+
+>[!example]
+>Prendiamo il numero di scansioni svolte da un programma antivirus durante un mese ( $X$ ) e il numero di worms rilevati ( $Y$ )
+>![[Pasted image 20240222164617.png]]
+>Queste due variabili possono essere messe in relazione tra di loro
+>![[Pasted image 20240222164118.png]]
+>Ogni pallino rappresenta un tot di occorrenze di quella coppia di valori all'interno dei dati , per discriminare per quantità tra questi valori si può assegnare al numero di occorrenze una lettera dell'alfabeto che andrà a sostituire il pallino corrispondente nel grafico
+>![[Pasted image 20240222164312.png]]
+
+>[!note]
+>Vi sono altre soluzioni per rappresentare il numero di volte che occorre una coppia di valori all'interno dei dati :
+>+ Aumentare le dimensioni del punto a seconda del numero di occorrenze
+>+ Aggiungere più punti ( il numero di occorrenze ) vicino al punto originale distanziati da un errore randomizzato
+
