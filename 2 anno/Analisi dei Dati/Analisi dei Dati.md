@@ -385,3 +385,100 @@ Questi limiti vengono utilizzati poichè se i dati fossero normalmente distribui
 >[!example]
 >Per l'esempio dei tempi di elaborazione abbimao che : 
 >+ Limite inferiore : $-3.5$ ( essendo che stiamo parlando di tempi questo significa che il limite inferore è in realtà 0 )
+>+ Limite superiore : $96.5$ ( il valore $139$ è un *outlier* )
+>>[!note]
+>>Generalmente i tempi non seguono una distribuzione normale ( spesso esponenziale o gamma ) e quindi la probabilità $<1\%$ potrebbe non essere veritiera 
+
+#### Azioni contro i valori anomali
+
+Una volta individuato un valore anomalo è importante capire cosa lo rende *estremo* rispetto agli altri
+
+I valori anomali vengono rimossi dal dataset se :
++ corrispondono ad errori ( di trascrizione , di misurazione etcc... )
++ corrispondono ad osservazioni che provengono da un'altra popolazione
+	![[DoublePopulation.excalidraw]]
+
+Se non si rientra in questi due casi bisogna studiare gli *outlier* e comprendere se è necessario il proprio modello statistico o no
+
+### Analisi grafiche
+
+I grafici possono essere utilizzati per individuare : 
++ un modello probabilistico per descrivere i dati
++ un motodo statistico per analizzare i dati
++ osservazioni *anomale* ( *outliers* )
++ fonti di eterogeneità ( i dati hanno *non* una varianza costante ) ( *omoschedasticità* è il contrario )
++ particolari *andamenti* ( *patterns* ) o *tendenze* ( *trend* )
++ relazioni fra due o più variabili
+
+Ci sono tre tipi di grafici di base : 
++ *istogrammi*
++ *grafici a scatola*
++ *grafici a dispersione*
+### Istogrammi
+
+Gli istogrammi servono per visualizzare la *forma di una distribuzione* , questi sono costruiti da un insieme di rettangoli *adiacenti*
+
+>[!note]
+>Se non sono adiacenti allora si parla di grafico a barre 
+
+I rettangoli si cotruiscono dividendo il campo di variazione dei dati ( *range* ) in intervalli ( *bins* ) e contando l'altezza è caratterizzata dal numero di osservazioni che "cadono" in ciascun intervallo
+
+Gli istogrammi ( con intervalli della stessa ampiezza ) si suddividono in due categorie : 
++ *istrogrammi di frequenza* : se l'altezza dei rettangoli corrisponde al numero di osservazioni in ciascun intervallo
++ *istogrammi di frequenza relativa* : se l'altezza dei rettangoli corrisponde alla proporzione di osservazioni in ciascun intervallo ( $\frac{osservazioni}{n}$ )
+
+>[!example]
+>![[Pasted image 20240222161040.png]]
+
+#### Interpretazione
+
+Nel caso di osservazioni che provengono da variabili continue , al crescere della dimensione campionaria gli istogrammi convergeranno alla funzione di densità della variabile
+
+>[!example]
+>![[Pasted image 20240222161018.png]]
+
+#### Scelta degli intervalli
+
+La scelta degli intervalli è fondamentale nella costruzione dell'istogramma , infatti una cattiva scelta degli intervalli potrebbe non permettere di apprendere nulla circa la distribuzione dei dati
+
+![[Pasted image 20240222161533.png]]
+
+I software statistici implementano regole automatiche per il calcolo del numero *ottimale* di intervalli di un istogramma in modo che sia semplice individuare la forma di una distribuzione e individuare i valori *anomali*
+
+>[!note]
+>In ogni caso all'aumentare della dimensione campionaria il numero di intervalli dovrebbe sempre aumentare
+
+### Grafici a Scatola ( con i baffi )
+
+Il grafico a scatola con i baffi ( *box and whiskers plot* o *boxplot* ) è la più efficace rappresentazione grafica di dati numerici
+
+Il *boxplot* è costruito con :
++ il minimo
++ il primo quantile
++ la mediana
++ il terzo quartile
++ il massimo
+
+La scatola contiene l'$IQR$ 
+I baffi si estendono dalla scatola al minimo e massimo ( sempre che non siano anomalmente distanti dal centro della distribuzione )
+>[!note]
+>Il minimo e il massimo possono non essere $Q_1-1.5\cdot IQR$ e $Q_3+1.5\cdot IQR$ se vi sono dei dati che rappresentano un minimo o massimo immediatamente minore
+>>[!example] 
+>>Nel nostro esempio dei tempi di CPU si prende il valore più vicino infatti abbiamo che : 
+>>$max = 59+1.5\cdot (59-34)=96,5$
+>>Sappiamo quindi che $139$ è l'unico possibile *outlier* e quindi prenderemo come massimo $89$ ossia il secondo valore più grande 
+>>Per il minimo invece sappiamo che non vi sono sicuramete valori $\le -3.5$ e quindi prendiamo come minimo il valore minimo presente nei nostri dati
+>>![[Pasted image 20240222163129.png]]  
+
+Le osservazioni anomale sono indicate con dei punti oltre i baffi
+
+![[Pasted image 20240222162153.png]]
+
+#### Boxplot appaiati
+
+I *boxplot* appaiati si utilizzano per confrontare diverse popolazioni o sottopopolazioni
+
+![[Pasted image 20240222163241.png]]
+### Grafici a dispersione
+
+I 
