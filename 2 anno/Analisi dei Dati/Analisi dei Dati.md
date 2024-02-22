@@ -336,6 +336,52 @@ $$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\h
 Visto che il valore medio del valore medio è sempre il valore medio originale abbiamo : 
 $$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+(E(\hat\theta)-\theta)^2$$
 Ora possiamo trovare che il doppio prodotto può essere eliminato attraverso i seguenti passaggi : 
-$$2\cdot E[\hat\theta-E(\hat\theta)]\cdot Bais(\hat\theta)$$
-Visto che il doppio prodotto può essere eliminato visto che il primo termine da 0 avremo che 
+$$2\cdot E[\hat\theta-E(\hat\theta)]\cdot Bias(\hat\theta)$$
+$$2\cdot [E(\hat\theta)-E(\hat\theta)]\cdot Bias(\hat\theta) = 2\cdot [\ 0\ ]\cdot Bias(\hat\theta) =0 $$
+Possiamo quindi concludere che :  
 $$=E[(\hat\theta-E(\hat\theta))^2]+[E(\hat\theta)-\theta]^2\implies Var(\hat\theta)+Bias(\hat\theta)^2$$
+>[!note]
+>Osservando che $$E(\hat\theta)-\theta=Bias\implies [E(\hat\theta)-\theta]^2= Bias^2$$ e $$E[(\hat\theta-E(\hat\theta))^2]= E\left[ \hat\theta^2 - 2\hat\theta E(\hat\theta) + E(\hat\theta)^2 \right]=$$
+>$$=E(\hat\theta^2) - 2E(\hat\theta)E(\hat\theta) +E(E(\hat\theta)^2)=E(\hat\theta^2) - 2(E(\hat\theta))^2 + (E(\hat\theta))^2=$$
+>$$=E(\hat\theta^2) - (E(\hat\theta))^2=Var$$
+
+>[!note]
+>Se la *precisione* aumenta allora miniuisce l'*accuratezza* e viceversa
+>Di solito si preferisce uno stimatore più *preciso* ( ossia cambia poco tra un nuovo insieme di dati ed un'altro )
+### Confronto fra stimatori
+
+La scelta fra due o più *stimatori* è basata sulle loro proprietà :
++ Se entrambi gli *stimatori* sono non distorti si preferirà quello con la varianza inferiore
++ Se invece uno o entrambi sono distorti allora spesso si scieglie lo stimatore con l'*errore quadratico medio* ( *MSE* ) inferiore 
+>[!warning]
+>Uno stimatore con errore quadratico medio basso ma con distorsione rilevante ( e che non converge a 0 o non con la giusta velocità ) in molti problemi è considerato *inaccettablie* 
+
+### Intervallo Interquartile
+
+La *varianza* è una misura della varaibilità molto sensibile alle osservazioni estreme
+
+Una misura di variabilità meno sensibile alle osservazioni estreme è data dallo *scarto interquartile* ( *interquartile range* ) :
+$$IQR=Q_3-Q_1$$
+Dove $Q_1$ e $Q_3$ indicano il primo e il terzo quartile 
+Questa misura rappresenta il 50% della distribuzione ( il *core* ) ossia le parti più caratteristiche 
+
+![[Quantile.excalidraw]]
+
+Se la mediana rappresenta bene i nostri dati allora mi aspetto che lo scarto interquartile sia piccolo , questo ci indica che i valori della distribuzione sono molto compatti attorno alla mediana ( la mediana è precisa )
+
+**Intervallo Interquartile Campionario**
+
+$$\widehat {IQR}=\hat Q_3-\hat Q_1$$
+Dove $\hat Q_1$ e $\hat Q_3$ sono il primo e terzo quartile campionario
+
+### Valori anomali
+
+I valori *anomali* ( outliers ) sono le osservazioni che sono :
++ inferiori a $\hat Q_1 -1.5\cdot\widehat{IQR}$
++ superiori a $\hat Q_3 +1.5\cdot\widehat{IQR}$
+
+Questi limiti vengono utilizzati poichè se i dati fossero normalmente distribuiti allora meno del $1\%$ delle osservazioni possono essere così esterne da non rispettarli 
+
+>[!example]
+>Per l'esempio dei tempi di elaborazione abbimao che : 
+>+ Limite inferiore : $-3.5$ ( essendo che stiamo parlando di tempi questo significa che il limite inferore è in realtà 0 )
