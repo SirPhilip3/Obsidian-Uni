@@ -364,5 +364,78 @@ execvp("command", argv[])
 >[!note] 
 >La presenza della `p` alla fine del nome della `exec` indica che viene utilizzato il path della shell ( non necessitiamo di scrivere l'intero path ) 
 
->[!todo]
->#todo
+>[!note]
+>Le prime due varianti prendono in input un lista di argomenti terminata da `NULL` ( il primo argomento contiene il nome del file associato al programma da eseguire ) , mentre le altre due prendono i parametri sotto froma di un array di stringe
+
+#### Valore di ritorno
+
+L'`exec` ritorna solamente in caso di errore ( valore $-1$ ) , in caso di successo il vecchio codice è completamente sostituito dal nuovo e non è più possibile tornare al programma originale
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+int main() {
+    printf("provo a eseguire ls\n");
+
+    execl("/bin/ls","/bin/ls","-l",NULL);
+    // oppure : execlp("ls","ls","-l",NULL);
+
+    printf("non scrivo questo! \n");
+    // questa printf non viene eseguita se la exec va a buon fine
+}
+```
+Darà in output :
+```bash
+provo a eseguire ls
+total 16
+-rwxr-xr-x 1 focardi focardi 6619 2008-03-05 17:02 a.out
+-rw-r--r-- 1 focardi focardi  226 2008-03-05 17:02 exec1.c
+-rw-r--r-- 1 focardi focardi  225 2008-03-05 17:02 exec1.c
+```
+
+Se invece runniamo il seguente comando : 
+```c
+execlp("ls2","ls2","-l",NULL);
+```
+Riitorneremo un errore in quanto `{bash}ls2` non è un comando riconosciuto , in questo caso infatti il risultato sarà : 
+```bash
+provo a eseguire ls
+non scrivo questo!
+```
+Poichè la `exec` è andato in errore
+
+>[!note]
+>Risulta essere buona norma in *c* testare i codici di errore di chiamate a libreria o a sistema 
+```c
+if (execlp("ls2","ls2","-l",NULL) == -1) {
+      perror("errore durante la exec");
+      // eventualmente si esce: exit(EXIT_FAILURE);
+}
+```
+Questo stamperà l'errore che è stato ritornato ( presente nel *PCB* ) :
+```c
+provo a eseguire ls
+errore durante la exec: No such file or directory
+non scrivo questo!
+```
+
+>[!warning]
+>Qualora si verificassero errori all'interno del programma invocato l'`exec` *non fallisce* , quindi non ritorna e non esegue nessuna istruzione del programma che l'ha invocata
+```c
+if (execlp("ls","ls","-z",NULL) == -1) {
+      perror("errore durante la exec");
+      // eventualmente si esce: exit(EXIT_FAILURE);
+}
+```
+Avremo il seguente output :
+```bash
+provo a eseguire ls
+ls: invalid option -- z
+Try `ls --help' for more information.
+```
+
+#### Example : shell
+
+### Terminazione di un processo
+
+La terminazione di un processo rilascia le risorse allocate dal *SO* al momento della creazione
