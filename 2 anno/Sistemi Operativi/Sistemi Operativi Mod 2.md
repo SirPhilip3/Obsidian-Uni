@@ -436,6 +436,63 @@ Try `ls --help' for more information.
 
 #### Example : shell
 
+>[!todo]
+>#todo
 ### Terminazione di un processo
 
-La terminazione di un processo rilascia le risorse allocate dal *SO* al momento della creazione
+La terminazione di un processo rilascia le risorse allocate dal *SO* al momento della creazione ( memoria e file aperti ) e *segnala* la terminazione al genitore : alcune informazioni di stato ( *PCB* ) vengono messe a disposizione al processo genitore e rimangono memorizzate finchè non sono processate 
+
+Il *SO* mantiene almeno : 
++ *pid*
++ lo stato di terminazione
++ il tempo di CPU utilizzato dal processo 
+
+Esistono 2 chiamate a sistema pertinenti alla terminazione di un processo : 
++ `exit` : termina il processo 
++ `wait` : attende la terminazione di un figlio ( se uno dei figli è uno *zombie* ritorna subito senza bloccarsi )
+
+>[!note]
+>Un processo può anche terminare in modo anomalo a causa di un errore o perchè terminato dal *SO* o da altri processi
+#### Sintassi
+
++ `{c}exit(int stato)` : termina il processo ritornando lo `stato` al genitore ( gli stati possono essere `EXIT_FAILURE` e `EXIT_SUCCESS` reciprocamente uguali ad 1 e 0 )
++ `{c}pid = wait(int &stato)` : ritorna il `pid` e lo `stato` del figlio che ha terminato 
+	Si utilizza `{c}wait(NULL)` se non interessa lo stato
+	Se non ci sono figli ritorna $-1$
+
+#### Valore di ritorno della wait
+
+Lo stato ritornato dalla `wait` deve essere gestito con opportune macro : 
+
++ `{c}WIFEXITED(status) == true` se il figlio è uscito correttamente con una `exit`
+	`{c}WEXITSTATUS(status)` ritorna gli 8 bit di stato passati dalla `exit` 
+	Esempio : 
+```c
+if (WIFEXITED(status))
+    printf("OK: status = %d\n",WEXITSTATUS(status));
+```
+
++ `{c}WIFSIGNALED(status)==true` se il figlio è stato terminato in modo anomalo
+	`{c}WTERMSIG(status)` ritorna il *segnale* che ha causato la terminazione 
+	Esempio : 
+```c
+if (WIFSIGNALED(status))
+    printf("ANOMALO: status = %d\n",WTERMSIG(status));
+```
+
++ Esistono ulteriori macro per lo *stop* e *resume* , utili per il tracing dei processi ( `{c}WIFSTOPPED` , `{c}WSTOPSIG` , `{c}WIFCONTINUED`)
+
+##### Wait per un processo particolare
+
+Se si vuole attendere un processo particolare ( o precessi appartententi a un gruppo particolare ) si può utilizzare la chiamata a sistema : 
+```c
+pid = waitpid(pid2, &stato, options) 
+```
+
+Questo attende il processo `pid2` ( valori $\le 0$ permettono di attendere gruppi di processi ) 
+Se `{c}pid2 == -1` attende un qualsiasi figlio , risulta uguale alla `wait`
+
+>[!todo]
+>#todo
+>Completa esercizi 
+
