@@ -571,17 +571,80 @@ Dopo la decomposizione :
 Se facessimo la `JOIN` vedremmo che ritorneremmo alla tabella originale 
 
 >[!example] Contro-Esempio
->Si consideri $R(A,B,C,D)$ con $F=\{ A \to B , C \to  \}$
->La decomposizione $\{R_1(A,B,C),R_2(A,D)\}$ preserva i dati : 
->+ $T_1=\{A,B,C\}$ e $T_2=\{A,D\}$
->+ $T_1 \cap T_2 = \{A\}$
->+ $A^+_F=\{A,B,C\}=T_1$ quindi $T_1 \cap T_2 \to T_1 \in F^+$
+>Si consideri $R(A,B,C,D)$ con $F=\{ A \to B , C \to D \}$
+>La decomposizione $\{R_1(A,B),R_2(C,D)\}$ non preserva i dati : 
+>+ $T_1=\{A,B\}$ e $T_2=\{C,D\}$
+>+ $T_1 \cap T_2 = \emptyset$
+>+ abbiamo quindi $\{ T_1 \cap T_2 \to T_1 , T_1 \cap T_2 \to T_2 \} \cap F^+ = \emptyset$
 
+L'esempio precedente possiamo anche visualizzarlo nel seguente modo 
+
+| A | B | C | D |
+| ---- | ---- | ---- | ---- |
+| a1 | b1 | c1 | d1 |
+| a2 | b2 | c2 | d2 |
+
+Dopo la decomposizione : 
+
+| A | B |
+| ---- | ---- |
+| a1 | b1 |
+| a2 | b2 |
+
+| C | D |
+| ---- | ---- |
+| c1 | d1 |
+| c2 | d2 |
+La `JOIN` qui ritorna l'insieme vuoto poichè non ho elementi in comune
 #### Decomposizioni che preservano le dipendenze
 
 Una disposizione che *preserva le dipendenze* siginifica che l'unione delle dipendenze dei sottoschemi è equivalente alle dipendenze dello schema originario 
 
->[!example]
+>[!example] 
+>Decomposizione con Perdita di Dipendenze
+
+Prima della decomposizione
+
+| Proprietario | Telefono | Macchina |
+| ---- | ---- | ---- |
+| Mario Rossi | 423567 | CG153SE |
+| Mario Rossi | 423567 | PT267MV |
+| Mario Rossi | 542635 | PT267MV |
+Dopo la decomposizione
+
+| Proprietario | Telefono |
+| ---- | ---- |
+| Mario Rossi | 423567 |
+| Mario Rossi | 542635 |
+
+| Telefono | Macchina |
+| ---- | ---- |
+| 423567 | CG153SE |
+| 423567 | PT267MV |
+| 542635 | PT267MV |
+Se volessi aggiungere $(Luca Bianchi, 421448, CG153SE)$
++ nel primo caso violerei la dipendenza $Macchina\to Proprietario$
++ nel secondo caso non ce ne possiamo accorgere se non dopo la giunzione
+
+---
+Una decomposizione *preserva le dipendenze* se e solo se l'unione delle dipendenze indotte sui singoli schemi equivale alle dipendenze dello schema originale
+
+>[!important] Definizione di *Decomposizione che Preserva le Dipendenze*
+>la decomposizione $p=\{R_1(T_1),\dots,R_n(T_n)\}$ di $R(T,F)$ *preserva le dipendenze* se e solo se $\bigcup_i\pi_{T_i}(F)\equiv F$
+
+Questo può essere verificato algoritmicamente nel seguente modo : 
++ Calcoliamp le proiezioni $\pi_{T_i}(F) = \{ X \to Y \in F^+ | X \cup Y \subseteq T_i \}$
++ Verifichiamo se $\bigcup_i\pi_{T_i}(F)\equiv F$
+##### Verificare l'Equivalenza
+
+>[!important] Teorema
+>$F\equiv G$ se e solo se $F \subseteq G^+$ e $G \subseteq F^+$
+
+
+>[!Dimostrazione]
+>+ d
+>+ 
+
 
 >[!todo]
 >#todo
