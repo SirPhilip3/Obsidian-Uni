@@ -455,4 +455,67 @@ Utilizziamo il seguente algoritmo per ricavare una *copertura canonica* :
 >	$C\in A_{H-\{A\rightarrow C\}}^+=ABC$ ( ossia abbiamo calcolato la copertura di $A$ utilizzando $\{A\rightarrow B,B\rightarrow C\}$ ossia $H-\{A\rightarrow C\}$ e verificato che la chiusura contiene la parte sinistra )
 >Concludendo possiamo dire che una *copertura canonica* di $F$ è l'insieme $\{ B\rightarrow C ,A\rightarrow B \}$
 
+### Decomposizione di schemi
 
+>[!todo]
+>pdf assente appunti temporanei da libro + appunti
+
+La strategia migliore per eliminare le *anomalie* è quella di decomporre lo schema di partenza in schemi più piccoli che godono di particolari proprietà ( *frome normali* ) e che sono equivalenti allo schema originale 
+
+>[!important] Definizione di *Decomposizione* 
+>Dato uno schema $R(T)$ , $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R$ se e solo se $\cup_i T_i =T$
+
+In pratica abbiamo che un insieme di schemi è una decomposizione dello schema originale solo se l'unione degli attributi dei sotto schemi equivalgono agli attributi dello schema iniziale
+
+>[!example]
+>
+
+| Proprietario | Abitazione | Telefono |
+| ---- | ---- | ---- |
+| p1 | a1 | t1 |
+| p1 | a2 | t2 |
+| p1 | a3 | t2 |
+Viene diviso in : 
+
+| Proprietario | Telefono |
+| ---- | ---- |
+| p1 | t1 |
+| p1 | t2 |
+
+| Proprietario | Abitazione |
+| ---- | ---- |
+| p1 | a1 |
+| p1 | a2 |
+| p1 | a3 |
+
+>[!note]
+>Vederemo però che non è una decomposizione equivalente alla tabella originale poichè dalla `JOIN` delle due tabelle decomposte arriveremo ad un numero di righe differenti dall'originale
+
+Per fare in modo che la *decomposizione* sia equivalente allo schema originario dobbiamo soddisfare le seguenti due proprietà : 
++ *preservi i dati*
++ *preservi le dipendenze*
+#### Dipendenze che preservano i dati
+
+>[!note]
+>Per *preservano* non intendiamo se si perdono dei dati da una decomposizione ma se i dati non presentano duplicati ( ossia se facendo la `JOIN` abbiamo le stesse righe dell'originale )
+
+L'esempio di prima è una *decomposizione* che non preserva i dati possiamo infatti osservare che se faccessimo la `JOIN` delle due tabelle della *decomposizione* avremo : 
+
+| Proprietario | Abitazione | Telefono |
+| ---- | ---- | ---- |
+| p1 | t1 | c1 |
+| p1 | t1 | c2 |
+| p1 | t2 | c1 |
+| p1 | t2 | c2 |
+| p1 | t3 | c1 |
+| p1 | t3 | c2 |
+Che evidentemente non corrisponde alla tabella iniziale 
+>[!todo]
+>Violazione dipendenze
+
+>[!important] Definizione di *Decomposizione che preserva i dati*
+>$p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R(T,F)$ che *preserva i dati* se e solo se per ogni relazione $r$ che soddisfa $R(T,F)$ : 
+>$$r=\pi_{T_1}(r)\bowtie\dots\bowtie \pi_{T_k}(r)$$
+
+In pratica una decomposizione preserva i dati se e solo se per ogni righa della relazione iniziale questa è equivalente alla `JOIN` delle linee corrispondenti nella decomposizione 
+#### Dipendenze che preservano le dipendenze
