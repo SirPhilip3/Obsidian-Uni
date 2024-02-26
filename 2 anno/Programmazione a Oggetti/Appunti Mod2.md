@@ -234,6 +234,41 @@ creare un iteratore vuol dire fare una calsse che rispetta iterator , mi basta i
 
 *anonimus class* 
 
+```java
+private static class MyIterator<T> implements Iterator<T>{  
+  
+    private int pos = 0;  
+  
+    private ArrayList<T> enclosing;  
+  
+    public MyIterator(ArrayList<T> a){  
+        this.enclosing = a;  
+    }  
+  
+    @Override  
+    public boolean hasNext() {  
+        return pos< enclosing.size();  }  
+  
+    @Override  
+    public T next() {  
+        return enclosing.get(pos++);    }  
+}  
+  
+@Override  
+public Iterator<T> iterator() {  
+      return new Iterator<T>{  
+	    // espressione che istanzia al volo di un oggetto di tipo iterator
+	    @Override  
+	    public boolean hasNext() {  
+	        return pos< enclosing.size();}  
+	    @Override  
+	    public T next() {  
+	        return enclosing.get(pos++);} 
+		};  
+}
+
+```
+
 *nested class*
 
 ```java
@@ -256,3 +291,31 @@ dati oggetto = somma spazio dei suoi campi ( come una struct in c )
 
 array sono reference type = 8 byte ( cpu a 64 bit con world a 64 bit ) , int = 4 byte
 
+anche pointer a funzione ( pointer a metodi ) -> pointer a codice dei metodi 
+
+dynamic dispatching con chiamate a funzione , svolto a runtime , se avessi un animale ma è un dog quando chiamo un metodo mi chiama quello del cane non degli animali 
+insieme ai campi di oggetto creata tabella con pointer a metodi ( virtual table )
+se io istanzio array list e la passo a qualcuno che la subsume a collection ( subsumption ) perdo infromazione sul tipo originale , faccio 2 dereference , prendo address nell'oggetto stesso e jumpo lì ( jump indiretta ) 
+
+è anche polimorfismo
+
+costruttori non sono mai polimorfi ( non sono in virtual table ) 
+
+metodi override :
++ pointer della mia implementazione 
+
+quando una cosa è static non ho in virtual table , non ho accesso agli altri pointer , nessuno può chiamarmi , non posso fare polimofismo 
+
+metodo static , metodi che non dipendono dai campi di un oggetto
+
+```java
+// non utilizzo metodi o campi di ararylist , posso usare static
+public static int fact(int n)
+	return ....
+```
+
+nested non statiç è in virtual tabel con enclosing
+
+namespace di cpp per dividere in sottocartelle 
+
+meglio nested se lo uso solo solo all'interno altrimenti inquino il package
