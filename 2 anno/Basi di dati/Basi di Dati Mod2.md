@@ -518,4 +518,23 @@ Che evidentemente non corrisponde alla tabella iniziale
 >$$r=\pi_{T_1}(r)\bowtie\dots\bowtie \pi_{T_k}(r)$$
 
 In pratica una decomposizione preserva i dati se e solo se per ogni righa della relazione iniziale questa è equivalente alla `JOIN` delle linee corrispondenti nella decomposizione 
+
+Da questa definizione possiamo anche ricavare un teorema per la *decomposizione* : 
+>[!important] Teorema *Decomposizione*
+>Se $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R(T,F)$ ( qualunque ) allora per ogni istanza $r$ di $R(T,F)$ si ha : 
+>$$r\subseteq \pi_{T_1}(r)\bowtie\dots\bowtie \pi_{T_k}(r)$$
+
+Una perdita di informazione è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossere nella relazione originaria
+
+>[!important] Teorema
+>Sia $p=\{R_1(T_1),R_2(T_2)\}$ una decomposizione di $R(T,F)$ . $p$ è una decmposizione che *preserva i dati* se e solo se $T_1\cap T_2 \rightarrow T_1 \in F^+$ oppure $T_1\cap T_2 \rightarrow T_2 \in F^+$ 
+
+>[!important] *Dimostrazione*
+>Dobbiamo dimostrarlo per entrambi i versi del se e solo se : 
+>+ $\impliedby$
+>	Supponiamo che $T_1 \cap T_2 \to T_1 \in F^+$
+>	Sia $r$ un'istanza valida di $R(T,F)$ e $s=\pi_{T_1}(r)\bowtie \pi_{T_2}(r)$ , sia $t\in s$ bisogna dimostrare che $t\in r$ 
+>	Per come è stata definita $s$ esistono due ennuple $u$ e $v$ in $r$ tali che $u[T_1]=t[T_1]$ e $v[T_2]=t[T_2]$ 
+>+ $\implies$
+
 #### Dipendenze che preservano le dipendenze
