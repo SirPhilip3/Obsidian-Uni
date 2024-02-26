@@ -457,13 +457,15 @@ Utilizziamo il seguente algoritmo per ricavare una *copertura canonica* :
 
 ### Decomposizione di schemi
 
->[!todo]
->pdf assente appunti temporanei da libro + appunti
-
 La strategia migliore per eliminare le *anomalie* è quella di decomporre lo schema di partenza in schemi più piccoli che godono di particolari proprietà ( *frome normali* ) e che sono equivalenti allo schema originale 
 
 >[!important] Definizione di *Decomposizione* 
 >Dato uno schema $R(T)$ , $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R$ se e solo se $\cup_i T_i =T$
+
+>[!important] Definizione di *Proiezione*
+>Dati uno schema $R(T,F)$ e $Z\subseteq T$ la *proiezione* di $F$ su $Z$ è definita come l'insieme $\pi_Z(F)=\{ X \to Y \in F^+ | X \cup Y \subseteq Z \}$
+
+La proiezione $\pi_Z F$ è definita come l'insieme di tutte le dipendenze funzionali $X \to Y$ in $F^+$ tali che l'unione di $X$ e $Y$ sia contenuta in $Z$. In altre parole, stiamo considerando solo le dipendenze funzionali che coinvolgono attributi interamente contenuti in $Z$.
 
 In pratica abbiamo che un insieme di schemi è una decomposizione dello schema originale solo se l'unione degli attributi dei sotto schemi equivalgono agli attributi dello schema iniziale
 
@@ -492,7 +494,7 @@ Viene diviso in :
 >Vederemo però che non è una decomposizione equivalente alla tabella originale poichè dalla `JOIN` delle due tabelle decomposte arriveremo ad un numero di righe differenti dall'originale
 
 Per fare in modo che la *decomposizione* sia equivalente allo schema originario dobbiamo soddisfare le seguenti due proprietà : 
-+ *preservi i dati*
++ *preservi i dati* 
 + *preservi le dipendenze*
 #### Dipendenze che preservano i dati
 
@@ -510,8 +512,6 @@ L'esempio di prima è una *decomposizione* che non preserva i dati possiamo infa
 | p1 | t3 | c1 |
 | p1 | t3 | c2 |
 Che evidentemente non corrisponde alla tabella iniziale 
->[!todo]
->Violazione dipendenze
 
 >[!important] Definizione di *Decomposizione che preserva i dati*
 >$p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R(T,F)$ che *preserva i dati* se e solo se per ogni relazione $r$ che soddisfa $R(T,F)$ : 
@@ -534,7 +534,54 @@ Una perdita di informazione è quindi definita come : proiettando una relazione 
 >+ $\impliedby$
 >	Supponiamo che $T_1 \cap T_2 \to T_1 \in F^+$
 >	Sia $r$ un'istanza valida di $R(T,F)$ e $s=\pi_{T_1}(r)\bowtie \pi_{T_2}(r)$ , sia $t\in s$ bisogna dimostrare che $t\in r$ 
->	Per come è stata definita $s$ esistono due ennuple $u$ e $v$ in $r$ tali che $u[T_1]=t[T_1]$ e $v[T_2]=t[T_2]$ 
->+ $\implies$
+>	Per come è stata definita $s$ esistono due ennuple $u$ e $v$ in $r$ tali che $u[T_1]=t[T_1]$ e $v[T_2]=t[T_2]$
+>	Avremo quindi : $u[T_1 \cap T_2]=v[T_1 \cap T_2]=t[T_1 \cap T_2]$ 
+>	Poichè $T_1 \cup T_2 \to T_1 \in F^+$ da $u[T_1 \cap T_2]=v[T_1 \cap T_2]$ otteniamo $u[T_1]=v[T_1]$ quindi $t=v\in r$
+>+ $\implies$ $\dots$
 
-#### Dipendenze che preservano le dipendenze
+>[!example]
+>Si consideri $R(A,B,C,D)$ con $F=\{ A \to BC \}$
+>La decomposizione $\{R_1(A,B,C),R_2(A,D)\}$ preserva i dati : 
+>+ $T_1=\{A,B,C\}$ e $T_2=\{A,D\}$
+>+ $T_1 \cap T_2 = \{A\}$
+>+ $A^+_F=\{A,B,C\}=T_1$ quindi $T_1 \cap T_2 \to T_1 \in F^+$
+
+L'esempio precedente possiamo anche visualizzarlo nel seguente modo 
+
+Prima della decomposizione : 
+
+| A | B | C | D |
+| ---- | ---- | ---- | ---- |
+| a1 | b1 | c1 | d1 |
+| a1 | b1 | c1 | d2 |
+| a2 | b2 | c2 | d2 |
+
+Dopo la decomposizione : 
+
+| A | B | C |
+| ---- | ---- | ---- |
+| a1 | b1 | c1 |
+| a2 | b2 | c2 |
+
+| A | D |
+| ---- | ---- |
+| a1 | d1 |
+| a1 | d2 |
+| a2 | d2 |
+Se facessimo la `JOIN` vedremmo che ritorneremmo alla tabella originale 
+
+>[!example] Contro-Esempio
+>Si consideri $R(A,B,C,D)$ con $F=\{ A \to B , C \to  \}$
+>La decomposizione $\{R_1(A,B,C),R_2(A,D)\}$ preserva i dati : 
+>+ $T_1=\{A,B,C\}$ e $T_2=\{A,D\}$
+>+ $T_1 \cap T_2 = \{A\}$
+>+ $A^+_F=\{A,B,C\}=T_1$ quindi $T_1 \cap T_2 \to T_1 \in F^+$
+
+#### Decomposizioni che preservano le dipendenze
+
+Una disposizione che *preserva le dipendenze* siginifica che l'unione delle dipendenze dei sottoschemi è equivalente alle dipendenze dello schema originario 
+
+>[!example]
+
+>[!todo]
+>#todo
