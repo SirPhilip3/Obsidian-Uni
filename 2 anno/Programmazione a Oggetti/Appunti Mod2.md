@@ -224,3 +224,35 @@ jdk mette unchecked
 
 classi *anonime*
 
+# 26/02/2024
+
+interfacce sono solo cosa devo implementare non come ( elenchi di metodi che se sono una calsse che la implementa devono essere imlementati )
+
+Dobbiamo utilizzare l'iteratore per iterator poichè 
+
+creare un iteratore vuol dire fare una calsse che rispetta iterator , mi basta imlpementare i due metodi
+
+*anonimus class* 
+
+*nested class*
+
+```java
+class 
+	...
+	class
+```
+
+vantaggio : 
+ + così ha accesso a tutti i campi/metodi della enclosing
+ + semplicità implementazione 
+siccome devo scorrere l'enclosing mi fa comodo accedere alla mia enclosing
+
+per i campi statici il campo non viene messo in virtual table  
+
+i campi prima di avere chiamato costruttore tutti i reference type vengono inizializzati a null mentre quelli primitivi con i loro valori di default
+es per int mette 0 poichè il defualt contructor di int inizializza a 0 (  ) 
+quando faccio = sovrascrivo sempre , il codice generato da compiler alloca memoria quando costruisco una classe , alloca la memoria relativa ai tipi primitivi e reference ( prima della new ) 
+dati oggetto = somma spazio dei suoi campi ( come una struct in c )
+
+array sono reference type = 8 byte ( cpu a 64 bit con world a 64 bit ) , int = 4 byte
+
