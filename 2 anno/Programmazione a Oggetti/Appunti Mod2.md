@@ -256,7 +256,7 @@ private static class MyIterator<T> implements Iterator<T>{
   
 @Override  
 public Iterator<T> iterator() {  
-      return new Iterator<T>{  
+      return new Iterator<T>{ // classe anonima  
 	    // espressione che istanzia al volo di un oggetto di tipo iterator
 	    @Override  
 	    public boolean hasNext() {  
@@ -319,3 +319,81 @@ nested non statiç è in virtual tabel con enclosing
 namespace di cpp per dividere in sottocartelle 
 
 meglio nested se lo uso solo solo all'interno altrimenti inquino il package
+
+# 27/02/2024
+
+*classi anonime*
+
+```java
+@Override  
+public Iterator<T> iterator() {  
+  return new Iterator<T>{ // classe anonima  
+	// espressione che istanzia al volo di un oggetto di tipo iterator
+		private int pos=0;
+		
+		@Override  
+		public boolean hasNext() {  
+			return pos<size();
+		}  
+		@Override  
+		public T next() {  
+			return get(pos++);
+		} 
+	};  
+}
+```
+
+Oggetto anonimo 
+
+Espressione ( ha un tipo e può essere valutata ) dalla new al punto e virgola , occupano una righa tra ; valutano qualcosa di un certo tipo 
+
+la new ha tipo iterator computa un nuovo oggetto , puoi costruire "al volo" una istanza di un tipo senza definire la sua classe definendo al volo le implementazioni , la new in questo caso non sto invoncando un costruttore , se dopo new metto nome interfaccia sto costruendo un oggetto al volo  
+
+```java
+n > 3 // tipo bool -> computa true false 
+```
+
+Statements , alcuni sono fatti di espressioni
+>[!example]
+```java
+int n=6;
+return ...;
+if ...;
+for
+while
+do while
+switch 
+break 
+continue
+try catch 
+throw
+```
+
+if then else in forma di espressione -> operatore ternario 
+
+Posso aggiungere metodi ma questo viene subsutnto all'interfaccia quindi non può chiamarlo visto che vede solo i metodi di quella interfaccia
+
+vantaggi : non inquino il package con classi che poi non mi servirebbereo ad altro
+
+```java
+@Override  
+public Iterator<T> iterator() {  
+
+int pos = 0;
+
+return new Iterator<T>{ // classe anonima  
+	// espressione che istanzia al volo di un oggetto di tipo iterator
+		@Override  
+		public boolean hasNext() {  
+			return pos<size();
+		}  
+		@Override  
+		public T next() {  
+			return get(pos++);
+		} 
+	};  
+}
+```
+
+posso accedere ai campi del metodo in cui siamo all'interno ,
+Le classi anonime

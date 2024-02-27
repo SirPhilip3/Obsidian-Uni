@@ -640,10 +640,11 @@ Questo può essere verificato algoritmicamente nel seguente modo :
 >[!important] Teorema
 >$F\equiv G$ se e solo se $F \subseteq G^+$ e $G \subseteq F^+$
 
-
 >[!Dimostrazione]
->+ d
->+ 
+>Essendo un se e solo se dobbiamo dimostrare entrambi i versi dell'equivaleza
+>+ Sia $F\equiv G$ allora $F^+ =G^+$ per definizione di equivalenza . Dato che si ha $F\subseteq F^+$ e $G \subseteq G^+$ , ottengo $F\subseteq G^+$ e $G\subseteq F^+$ ( ho sostituito grazie a $F^+ =G^+$ ( def di equivalenza ) )
+>+ Poichè $F\subseteq G^+$ , osservo che $F^+\subseteq (G^+)^+ = G^+$ . Analogamente avremo anche : $G \subseteq F^+$ ottengo $G^+ \subseteq (F^+)^+ = F^+$ concludiamo quindi che $F^+=G^+$ 
+
 
 
 >[!todo]
