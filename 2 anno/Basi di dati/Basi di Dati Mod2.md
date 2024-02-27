@@ -688,12 +688,52 @@ L'agoritmo completo risulta quindi essere :
 >
 >Possiamo quindi calcolare $G=\pi_{AB}(F)\cup\pi_{BC}(F)=\{A\to B , B \to A, B\to C , C \to B \}$
 >
-
-
-
-
-
-
-
+>Iteriamo sulle dipendenze di $F=\{ A\to B, B\to C, C\to A \}$ e verichiamo che siano tutte derivabili da $G$ : 
+>+ $A \to B$ : abbiamo $B \in A_G^+ = ABC$
+>+ $B \to C$ : abbiamo $C \in B_G^+ = BAC$
+>+ $C \to A$ : abbiamo $A \in C_G^+ = CBA$
+>
+>Concludiamo quindi che la decomposizione in esame preserva le dipendenze 
 
 **Algoritmo Polinomiale**
+
+Non ci interressa calcolare $G=\bigcup_i \pi_{T_i}(F)$ ma ci basta verificare che per ogni $X \to Y \in F$ abbiamo $Y \subseteq X_G^+$  
+
+```pseudo
+	\begin{algorithm}
+	\caption{}
+	\begin{algorithmic}
+	\Function{FC}{X,F,p}
+	\State $res_{old}\leftarrow \emptyset$
+	\State $res_{new}\leftarrow X$
+	\While{$res_{new}\neq res_{old}$}
+		\State $res_{old}\leftarrow res_{new}$
+		\ForAll{$R_i(T_i)\in p$}
+			\State $res_{old}\leftarrow res_{new} \cup ((res_{new}\cap T_i)_F^+ \cap T)$
+        \EndFor
+    \EndWhile
+    \Return $res_{new}$
+    \EndFunction
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+```pseudo
+	\begin{algorithm}
+	\caption{Preserve Dependency}
+	\begin{algorithmic}
+	\Function{PreserveDeps}{R(T,F),p}
+	\ForAll{$X \to Y \in F$}
+	\If{$Y \nsubseteq FC(X,F,p)$}
+	\Return False
+	\EndIf
+    \EndFor
+    \Return True
+    \EndFunction
+	\end{algorithmic}
+	\end{algorithm}
+```
+Questo *algoritmo* ottimizzato ha complessità *polinomiale*
+
+>[!example]
+>
