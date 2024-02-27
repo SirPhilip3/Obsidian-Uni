@@ -633,7 +633,7 @@ Una decomposizione *preserva le dipendenze* se e solo se l'unione delle dipenden
 >la decomposizione $p=\{R_1(T_1),\dots,R_n(T_n)\}$ di $R(T,F)$ *preserva le dipendenze* se e solo se $\bigcup_i\pi_{T_i}(F)\equiv F$
 
 Questo può essere verificato algoritmicamente nel seguente modo : 
-+ Calcoliamp le proiezioni $\pi_{T_i}(F) = \{ X \to Y \in F^+ | X \cup Y \subseteq T_i \}$
++ Calcoliamo le proiezioni $\pi_{T_i}(F) = \{ X \to Y \in F^+ | X \cup Y \subseteq T_i \}$
 + Verifichiamo se $\bigcup_i\pi_{T_i}(F)\equiv F$
 ##### Verificare l'Equivalenza
 
@@ -645,7 +645,55 @@ Questo può essere verificato algoritmicamente nel seguente modo :
 >+ Sia $F\equiv G$ allora $F^+ =G^+$ per definizione di equivalenza . Dato che si ha $F\subseteq F^+$ e $G \subseteq G^+$ , ottengo $F\subseteq G^+$ e $G\subseteq F^+$ ( ho sostituito grazie a $F^+ =G^+$ ( def di equivalenza ) )
 >+ Poichè $F\subseteq G^+$ , osservo che $F^+\subseteq (G^+)^+ = G^+$ . Analogamente avremo anche : $G \subseteq F^+$ ottengo $G^+ \subseteq (F^+)^+ = F^+$ concludiamo quindi che $F^+=G^+$ 
 
+**Algoritmo Esponenziale**
+
+Sia $G=\bigcup_i \pi_{T_i}(F)$ per dimostrare che $F\equiv G$ dobbiamo verificare : 
++ $F\subseteq G^+$ è possibile verificare tramite il problema dell'*implicazione* perchè equivale a verificare che per ogni $X\to Y \in F$ abbiamo $Y \subseteq X^+_G$  
++ $G\subseteq F^+$ è verificato per definizione 
+
+Per completare l'algoritmo necessitiamo di calcolare $G=\bigcup_i \pi_{T_i}(F)$ in modo efficente , questo non è possibile poichè abbiamo che il costo per calcolare le singole proiezioni $\pi_{T_i}(F)$ ha costo *esponenziale* 
+```pseudo
+	\begin{algorithm}
+	\caption{Proiezione}
+	\begin{algorithmic}
+	\Function{PROIEZIONE}{F,$T_i$}
+	\State $proj \leftarrow \emptyset$
+	\ForAll{$X\subset T_i$}
+		\State $(Y \leftarrow X_F^+)-X$
+		\State $proj \leftarrow proj \cup \{ X \to T \cap T_i \}$
+	\EndFor
+	\Return $proj$
+    \EndFunction	
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+L'agoritmo completo risulta quindi essere : 
+1. Calcola le proiezioni $\pi_{T_i}(F)$ per ogni $i\in[1,n]$
+2. Calcola $G=\bigcup_i \pi_{T_i}(F)$
+3. Verifica che per ogni $X\to Y\in F$ si abbia $Y \subseteq X_G^+$
+ 
+>[!example]
+>Siano $R(A,B,C)$ e $F=\{ A\to B , B \to C , C \to A \}$
+>Vogliamo verificare se la decomposizione $p=\{R_1(A,B),R_2(B,C)\}$ preserva le dipendenze
+>Calcoliamo $\pi_{AB}(F)$ consideriamo i due sottoinsiemi propri $A$ , $B$
+>+ $A_F^+ = ABC$ , quindi $A\to B \in \pi_{AB}(F)$
+>+ $B_F^+ = BCA$ , quindi $B\to A \in \pi_{AB}(F)$
+>Concludiamo quindi che $\pi_{AB}(F)=\{ A\to B , B \to A \}$
+>
+>Calcoliamo ora $\pi_{BC}(F)$ consideriamo i due sottoinsiemi propri $B$ , $C$
+>+ $B_F^+ = BCA$ , quindi $B\to C \in \pi_{BC}(F)$
+>+ $C_F^+ = CAB$ , quindi $C\to B \in \pi_{BC}(F)$
+>Concludiamo quindi che $\pi_{BC}(F)=\{ B\to C , C \to B \}$
+>
+>Possiamo quindi calcolare $G=\pi_{AB}(F)\cup\pi_{BC}(F)=\{A\to B , B \to A, B\to C , C \to B \}$
+>
 
 
->[!todo]
->#todo
+
+
+
+
+
+
+**Algoritmo Polinomiale**
