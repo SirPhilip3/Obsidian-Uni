@@ -1136,7 +1136,7 @@ Indica quando un altro oggetto equivale a questo
 + Simmetrica : `{java}x.equals(y)` $\iff$ `{java}y.equals(x)`
 + Transitiva : `{java}x.equals(y)&&y.equals(z)` $\implies$ `{java}x.equals(z)` 
 
-Fare `{java}==` è diffrente , in fatti questo confronta solo se gli indirizzi dei due oggetti sono gli stessi , non che i valori al loro interno siano gli stessi 
+Fare `{java}==` è differente , in fatti questo confronta solo se gli indirizzi dei due oggetti sono gli stessi , non che i valori al loro interno siano gli stessi 
 
 **Esempio** :
 

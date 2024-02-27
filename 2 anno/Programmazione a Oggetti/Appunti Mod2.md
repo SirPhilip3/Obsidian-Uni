@@ -378,10 +378,10 @@ vantaggi : non inquino il package con classi che poi non mi servirebbereo ad alt
 ```java
 @Override  
 public Iterator<T> iterator() {  
-
-int pos = 0;
-
-return new Iterator<T>{ // classe anonima  
+	
+	int pos = 0;
+	
+	return new Iterator<T>{ // classe anonima  
 	// espressione che istanzia al volo di un oggetto di tipo iterator
 		@Override  
 		public boolean hasNext() {  
@@ -395,5 +395,25 @@ return new Iterator<T>{ // classe anonima
 }
 ```
 
-posso accedere ai campi del metodo in cui siamo all'interno ,
-Le classi anonime
+posso accedere alle variabil del metodo in cui siamo all'interno ,
+Le classi anonime sono delle *closure* , una anonimus class porta con se lo scope in cui è stata definita
+
+fondamentale per funzioni lambda , programmazione funzionale etcc 
+se avessimo il campo potremmo vederlo solo all'interno dell'anonimus class , metterla come variabile ci permette di utilizzate delle cose che sono nello scope 
+
+campi hanno attributi di visibilità le variabili no 
+
+== confronto by reference , se sono lo stesso pointer , se non sono pointer confronto strutturale , polimorfo 
+omogeneo -> confronto lo stesso tipo
+eterogeneo -> confronto tipi differenti
+
+Equals dentro object
+Equals predefinito prende un object come argomento 
+è polimorfo -> posso confrontarmi con una cosa qualsiasi ( *eterogeneo* )
+Normalmente uguaglianza deep
+
+metodi di blitting copia di blocchi di vettori
+
+Implementiamo Mappe -> associa ad ogni chiave un valore , un array è una mappa aventi come key int
+
+Single linked list 
