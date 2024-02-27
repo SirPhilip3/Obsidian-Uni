@@ -496,3 +496,6 @@ I grafici a dispersione sono utilizzati per rappresentare la relazione tra due v
 >+ Aumentare le dimensioni del punto a seconda del numero di occorrenze
 >+ Aggiungere più punti ( il numero di occorrenze ) vicino al punto originale distanziati da un errore randomizzato
 
+>[!note]
+>jitter plot
+

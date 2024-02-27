@@ -103,3 +103,6 @@ exec p con path non completo
 devo raccogliere gli zombie dopo che 
 
 >[!todo]
+
+# 27/02/2024
+
