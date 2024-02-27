@@ -417,3 +417,5 @@ metodi di blitting copia di blocchi di vettori
 Implementiamo Mappe -> associa ad ogni chiave un valore , un array è una mappa aventi come key int
 
 Single linked list 
+
+clear -> gc multishot perchè all'inizio tolgo reference al primo blocco e così via ( il gc passa ogni n secondi servirebbero l cicli della gc per completare  ) , nel jdk garbage collection oneshot mettendo tutti i next a null
