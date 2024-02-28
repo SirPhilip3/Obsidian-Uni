@@ -2917,9 +2917,8 @@ La prima cella esaminata è $T[\ h'(k)\ ]$ se collidiamo continuerà a scandire 
 ![[Pasted image 20240228130453.png]]
 
 >[!example] 
->
-
-
+> 
+![[Ispezionelineare.excalidraw]]
 
 **Vantaggi** : Facilità di implementazione 
 

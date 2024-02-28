@@ -736,4 +736,4 @@ Non ci interressa calcolare $G=\bigcup_i \pi_{T_i}(F)$ ma ci basta verificare ch
 Questo *algoritmo* ottimizzato ha complessità *polinomiale*
 
 >[!example]
->
+
