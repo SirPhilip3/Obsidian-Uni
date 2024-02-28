@@ -2863,3 +2863,59 @@ hash_search(T, k)
 **Post-condizione** :
 	Retituisce $j$ se la cella $j$ contiene la chiave $k$ oppure $NIL$ se la chiave $k$ non si trova nella tabella $T$
 
+**Osservazioni**
+	Il motivo per cui abbiamo `{c} i==m or T[j]==NIL` è perchè se abbiamo fallito troppe volte ( `m` volte poichè è il massimo numero di elementi che possiamo inserire nella tabella hash ) ad un'ispezione oppure abbiamo trovato `NIL` ossia siamo arrivati nel posto corretto ma non c'è nessun elemeto ossia che l'elemento da cercare non è presente all'interno dell hash 
+###### Cancellazione 
+
+La *cancellazione* è il problema principale dell'indirizzamento aperto 
+Vediamo un esempio : 
+>[!example]
+>![[Cancellazione.excalidraw]]
+
+**Soluzione** : 
+	Aggiunggiamo una chiave speciale per inficare una cella cancellata : `DELETED`
+
+A questo punto dobbiamo modificare `{c}hash_insert()` nel seguente modo :
+```c++
+hash_insert(T, k)
+	i = 0
+	trovata = false
+	repeat // tipo un ciclo do while
+		j = h(k, i)
+		if T[j] == NIL or T[j] == DELETED // aggiunta dell'or
+			T[j] = k
+			trovata = true
+		else 
+			i++
+	until trovata or i == m
+	if trovata
+		return j
+	else error "overflow della tabella hash"
+```
+
+A questo punto non necessitiamo di modificare `{c}hash_search()` poichè il valore di `{c}DELETED` sarà sempre differente da tutte le chiavi presenti all'interno dell'universo del discorso , ossia continueremo la ricerca della chiave `k` 
+
+**Svantaggio**
+	Il tempo di ricerca non dipende più dal *fattore di carico* : $\frac n m$ , avremo infatti che in presenza di un alto numero di cancellazioni la *search* risulterà essere molto più complessa , per questo quando abbiamo molte cancellazioni non si usa l'indirizzamento aperto
+
+##### Funzioni hash
+
+La funzione ideale per l'*hashing* con l'indirizzamento *aperto* è l'hashing **uniforme** : ogni chiave ha la stessa probabilità di avere come sequenza di ispezioni una delle $m!$ permutazioni di $<0,1,\dots, m-1>$ ossia che : 
+$$h(k,0)\ \text{si distribuisce uniformemente sulle}\ m\ \text{celle}$$
+$$h(k,1)\ \text{si distribuisce uniformemente sulle}\ m-1\ \text{celle}$$
+$$\vdots$$
+$$\simeq \text{hashing uniforme semplice ad ogni iterazione}$$
+Visto che la precedente è una situazione ideale dobbiamo creare delle *approssimazioni* 
+###### Ispezione Lineare 
+
+Data una funzione hash ordinaria $h' : U \to \{0,1,\dots,m-1\}$ che sarà una *funzione hash ausiliaria*
+
+Il metodo dell'ispezione lineare sarà : 
+$$h(k,i)=(h'(k)+1) \mod m$$
+La prima cella esaminata è $T[\ h'(k)\ ]$ se collidiamo continuerà a scandire tutte le celle sequenzialmente fino alla cella $m-1$ ; infine riprende dalla cella $0$ fino alla cella $T[\ h'(k)\ -1]$
+
+![[Pasted image 20240228130453.png]]
+
+
+
+
