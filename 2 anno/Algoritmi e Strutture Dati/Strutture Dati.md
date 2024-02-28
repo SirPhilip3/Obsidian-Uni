@@ -2916,6 +2916,36 @@ La prima cella esaminata è $T[\ h'(k)\ ]$ se collidiamo continuerà a scandire 
 
 ![[Pasted image 20240228130453.png]]
 
+>[!example] 
+>>[!todo]
 
+**Vantaggi** : Facilità di implementazione 
 
+**Svantaggi** : 
++ Presenza di *addensamenti primari* ( ossia file di celle adiacenti occupate che occupano il tempio di ricerca )
++ La prima ispezionata determina l'intera sequenza di ispezioni , questo significa che per ogni chiave ci sono soltanto $m$ sequenze d ispezioni distinte 
++ La probabilità che una cella $j$ , preceduta da $i$ celle occupate , sia accupata risulta essere $\frac {i+1}m$ ( questo poichè ogni cella $i$ può essere occupata con probabilità $\frac 1m$ e $j$ stessa ha probabilità di essere occupata $\implies i+1$)
+>[!todo]
+>Understand
+>#todo
 
+###### Ispezione quadratica 
+
+Cerchiamo la cella sucessiva attraverso una *funzione quadratica* : 
+$$h(k,i)=(h'(k)+c_i\cdot i + c_2\cdot i^2)\mod m$$
+Dove : 
++ $h'$ è una funzione hash ausiliaria 
++ $c_1 ,\ c_2$ sono due costanti ( anche reali ) ausiliarie $\neq 0$ che prendono valori compresi tra $0$ e $m-1$ 
+
+L'*hashing quadratico* soffre analogmente alla sua variante lineare della formazione di *addensamenti secondari* : se due chiavi distinte $k_1$ e $k_2$  sono mappate tramite la funzione ausiliaria $h'$ nello stesso valore , cioè $h'(k_1)=h'(k_2)$ allora le due chiavi generano la stessa sequenza di ispezioni ( forma più lieve di *addensamenti primari* )
+>[!note]
+>Anche in questo caso la prima posizione determina l'intera sequenza di ispezioni e dunque per una chiave ci sono soltanto $m$ sequenze di ispezioni distinte
+###### Hashing Doppio
+$$h(k,i)=(h_1(k)+i\cdot h_2(k)) \mod m$$
+Dove :
++ $h_1$ e $h_2$ sono due funzioni hash ausiliarie e $i$ può assumere tutti i valori da $0$ a $m-1$ . 
+
+$h_1$ serve per determinare il punto di partenza ( non cambia in funzione di $i$ ) mentre $h_2$ serve per determinare il passo delle ispezioni
+
+>[!example]
+>
