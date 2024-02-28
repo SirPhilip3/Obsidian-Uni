@@ -2917,7 +2917,9 @@ La prima cella esaminata è $T[\ h'(k)\ ]$ se collidiamo continuerà a scandire 
 ![[Pasted image 20240228130453.png]]
 
 >[!example] 
->>[!todo]
+>
+
+
 
 **Vantaggi** : Facilità di implementazione 
 
@@ -2948,4 +2950,23 @@ Dove :
 $h_1$ serve per determinare il punto di partenza ( non cambia in funzione di $i$ ) mentre $h_2$ serve per determinare il passo delle ispezioni
 
 >[!example]
+>Inseriamo nella tabella hash con $m=13$ e con chiavi $69,4,31,43$ 
+>Utilizziamo le seguenti funzioni hash : 
+>$h_1(k)=k \mod 13$ , $h_2(k)=1 +(k \mod 11)$
+>$h(k,i)=(h_1(k)+i\cdot h-2(k))\mod13$
 >
+![[Doubehashing.excalidraw]]
+
+**Proprietà** : 
+	Ogni possibile coppia data da $(h_1,h_2)$ produce una sequenza di ispezioni distinta , questo ci porta a dire che poichè $h_1$ e $h_2$ possono assumere entrambi $m$ valori distinti avremo che la coppia $(h_1,h_2)$ può generare $\Theta(m^2)$ sequenze di ispezione
+
+**Costruire una funzione di hashing doppio**
+
+Necessitiamo che il valore di $h_2(k)$ sia relativamente primo con la dimensione $m$ della tabella hash affinchè questa possa essere ispezionata completamente
+
+Abbiamo qiuindi due possibilità per costruire $h_2(k)$ : 
++ Si può scegliere $m=2^p$ per qualche $p$ . Questo vuol dire che $m$ è un numero pari 
+	Definisco quindi $h_2(k)$ in modo che produca sempre numeri dispari in questo modo $m$ e $h_2(k)$sono relativamente primi
+	 *Esempio* : $m=2^p$ e $h_2=2\cdot h'(k)+1$ dove $h'(k)$ e $h_1(k)$ è una qualsiasi funzione hash già vista 
++ Si può scegliere $m$ numero primo e definire $h_2(k)$ in modo che generi sempre un intero positivo minore strettamente di $m$ 
+	Per esempio scegliamo $m$ primo , $h_1(k)=k \mod m$ e $h_2=1+(k\mod m')$ dove $m'<m$ 
