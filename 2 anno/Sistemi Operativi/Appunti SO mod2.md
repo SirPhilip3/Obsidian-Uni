@@ -106,3 +106,83 @@ devo raccogliere gli zombie dopo che
 
 # 27/02/2024
 
+# 29/02/2024
+
+wait ruolo di una recieve sincrona
+
+**Segnali**
+
+Forma minimia di comunizazione in pratica sono le iterruzioni , 
+*es* : 
+- ctrl c , interrompe il processo in esecuizione nella shell ( shell->programma )
+- eccezioni : divisione per 0 , segfault
+
+cose asincrone -> sigalarm ( puntare un timer e poi essere risvegliato ) ( scheduling , soprattutto in time-sahring mette processo in exec + mette allrame per il tempo -> mi sveglo tolgo il processo ( salvo stato ) + metto nuovo processo )
+
+segnale : 
++ ignora 
++ gestisce 
++ lasciare a so ( può decidere di igonararlo )
+
+*es segnali*
+
+SIGINT -> ctrl c -> interrupt da keyboard
+
+IllegalIstruction -> chiamo istruzione che non esiste 
+
+SIGKILL uccide un processo e lui non può gestirlo
+
+posso definire dei segnali *custom*
+
+SIGCHILD quando un filgio termina risveglia padre dalla wait
+
+core dumped -> salva la memoria interna del programma
+
+Action sono i comportamenti di default
+
+>[!note]
+>Il segnale non ha messagio oltre il numero associato ad un segnale 
+
+>[!example]
+```c
+#include <unistd.h>
+int main()
+{
+    alarm(3); // punta la sveglia a 3 secondi ( di default alarm termina )
+    while(1){} // timeout per terminare il programma
+}
+```
+
+shell analizza lo stato d'uscita del programma e stampa il motivo
+
+con `signal` ci permette di cambiare il *gestore* ( una funzione ) dell'interruzione
+
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+void alarmHandler() // può essere utilizzato da più signal
+{
+    printf("questo me lo gestisco io!\n");
+    alarm(3); // ri-setta il timer a 3 secondi
+}
+
+int main() { 
+    signal(SIGALRM, alarmHandler); // SIGALRM è una macro ( posso sostituirlo con il suo numero ) , passo address di una funzione
+    alarm(3);
+    while(1){}
+}
+```
+
+gestore di segnali ha tabella che aassegna ad ogni segnale il codice che lo gestisce 
+
+quando esco dal gestore vado avanti con l'istruzione sucessiva
+
+signal non è implementata in modo consistente in tutti gli UNIX , meglio utilzzare sigaction che funziona per tutti UNIX
+
+`SIG_IGN` : macro per ignorare il segnale
+`SIG_DFL` : per ritornare all'implementazone di defautl
+`SIG_ERR`
+
+signal ritorna l'indirizzo del precedente gestore del segnale
