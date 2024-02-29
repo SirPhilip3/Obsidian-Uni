@@ -186,3 +186,48 @@ signal non è implementata in modo consistente in tutti gli UNIX , meglio utilzz
 `SIG_ERR`
 
 signal ritorna l'indirizzo del precedente gestore del segnale
+
+il segnale non viene bufferizzato
+
+*kill* , sistem call manda un qualsiasi segnale ad un qualsiasi processo 
+
+mascheramento dei segnali -> il segnale arriva e viene sospeso , quando tolgo il gestore vengono rieseguiti , molto più usato dell'ignorare  
+
+se faccio 3 segnali == alla fine della maschera il segnale viene svolto una sola volta , non specificato in POSIX potrebbe essere che un OS lo implementi differentemente 
+
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+#include <stdlib.h>
+int main() {
+        sigset_t newmask,oldmask;
+
+        sigemptyset(&newmask);          // insieme vuoto
+        sigaddset(&newmask, SIGINT);    // aggiunge SIGINT alla "maschera"
+        // setta la nuova maschera e memorizza la vecchia
+        if (sigprocmask(SIG_BLOCK, &newmask, &oldmask) < 0) { // oldmask valore di ritorno istanziato da sigprocmask
+                perror("errore settaggio maschera"); exit(1); }
+
+        printf("Sono protetto!\n");
+        sleep(3);
+
+        // reimposta la vecchia maschera 
+        if (sigprocmask(SIG_SETMASK, &oldmask, NULL) < 0) {
+                perror("errore settaggio maschera"); exit(1); }
+
+        printf("Non sono piu' protetto!\n");
+        sleep(3);
+}
+```
+
+**Interferenze e funzioni safe POSIX**
+
+printf dentro handler viola funzioni safe
+
+es posso interrompere `write` nel mentre della sua esecuzione senza avere problemi
+se invece interrompo la printf rimane in uno stato inconsistente
+
+handler corretto , :
++ uso solo safe dentro handler
++ maschero i segnali ogni volta 
