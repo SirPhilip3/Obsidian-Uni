@@ -3025,4 +3025,34 @@ Quindi il numero atteso di ispezioni è direttamente legato al numero di ispezio
 >[!important] Teorema
 >Data una tabella hash a indirizzamento aperto con un fattore di carico $\alpha < 1$ , il numero atteso di ispezioni in una ricerca con successo è al massimo :
 >$$\frac 1 \alpha \log \frac1{1-\alpha}$$ 
->Supponendo che l'hashing sia uniforme e che ogni chiave nella tabella abbia la stessa pro
+>Supponendo che l'hashing sia uniforme e che ogni chiave nella tabella abbia la stessa probabilità di essere cercata
+
+**Interpretazione** : 
+
+Se $\alpha$ è costante , una ricerca con successo viene eseguita in tempo medio $O(1)$
+
+>[!example]
+>+ Se $\alpha = 0.5$ il numero medio di ispezioni in una ricerca con successo è minore di $1.387$
+>+ Se $\alpha = 0.9$ il numero medio di ispezioni in una ricerca con successo è minore di $2.559$
+
+##### Confronto tra indirizzamento aperto e concatenamento
+
+![[ConfrontoHash.excalidraw]]
+
+**Ristrutturazione** : 
+
+Per valori di $\alpha$ maggiori di $\frac 1 2$ il tempo di esecuzione delle operazioni su tabelle hash con indirizzamento aperto cresce a ritmo esponenziale.
+
+Per questo quando il valore di $\alpha$ cresce oltre una certa soglia è necessario effettuare una *ristrutturazione* della tabella hash ossia riallocare la tabella raddoppiando la sua dimensione e reinserendo tutti i valori precedenti utilizzando la nuova funzione hash ( poichè dipende dalla dimensione della tabella ) in modo da riottenere le prestazioni iniziali
+
+La *risutrutturazione* va effettuata quando : 
++ Nel caso del *concatenamento* quando $\alpha>2$ 
+	L'operazione di *ristrutturazione* costerà nel caso peggiore $\Theta(m+n)$ in quanto dovremmo scorrere tutte le celle della tabella e tutte le liste delle celle
++ Nel caso dell'*indirizzamento aperto* quando $\alpha \ge \frac 1 2$ 
+	In tal caso l'operazione costerà al caso peggiore $\Theta(m)$ in quanto dovremmo scorrere solo un array
+
+### Programmazione Dinamica
+
+>[!todo]
+>#todo
+
