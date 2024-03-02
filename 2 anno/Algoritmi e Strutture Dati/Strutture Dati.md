@@ -3011,7 +3011,7 @@ Se $\alpha$ è costante una *ricerca senza successo* viene eseguita in tempo $O(
 >Più la tabella è piena più la ricerca è costosa
 
 >[!important] Corollario
->L'inserimento di un elemento in una tabella hash a indirizzamento aperto con fattore di carico $\alpha$ richiede in media non più di $\frac 1 {1-\alpha}$ ispezioni nelle ipotesi di hashing uniforme
+>L'*inserimento* di un elemento in una tabella hash a indirizzamento aperto con fattore di carico $\alpha$ richiede in media non più di $\frac 1 {1-\alpha}$ ispezioni nelle ipotesi di hashing uniforme
 
 *Dimostrazione* : 
 
@@ -3020,3 +3020,9 @@ Un elemento viene inserito all'interno della tabella solo se questa non è satur
 L'inserimento di una chiave richiede una *ricerca senza successo* ( dobbiamo trovare una posizione vuota dove inserire il nuovo valore ) e sucessivamete l'inserimento della chiave nella prima cella vuota trovata 
 
 Quindi il numero atteso di ispezioni è direttamente legato al numero di ispezioni svolte da una *ricerca senza successo* ossia al massimo $\frac 1 {1-\alpha}$ 
+###### Costo ricerca con successo
+
+>[!important] Teorema
+>Data una tabella hash a indirizzamento aperto con un fattore di carico $\alpha < 1$ , il numero atteso di ispezioni in una ricerca con successo è al massimo :
+>$$\frac 1 \alpha \log \frac1{1-\alpha}$$ 
+>Supponendo che l'hashing sia uniforme e che ogni chiave nella tabella abbia la stessa pro
