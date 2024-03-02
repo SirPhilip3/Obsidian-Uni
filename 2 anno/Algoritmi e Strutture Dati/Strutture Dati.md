@@ -2969,3 +2969,41 @@ Abbiamo qiuindi due possibilità per costruire $h_2(k)$ :
 	 *Esempio* : $m=2^p$ e $h_2=2\cdot h'(k)+1$ dove $h'(k)$ e $h_1(k)$ è una qualsiasi funzione hash già vista 
 + Si può scegliere $m$ numero primo e definire $h_2(k)$ in modo che generi sempre un intero positivo minore strettamente di $m$ 
 	Per esempio scegliamo $m$ primo , $h_1(k)=k \mod m$ e $h_2=1+(k\mod m')$ dove $m'<m$ 
+
+##### Analisi dell'hashing a indirizzamento aperto 
+
+Per analizzare il costo della ricerca e dell'inserimento nel caso di hashing con indirizzamento aperto è necessario porre alcune ipotesi : 
+1. Assumiamo di essere in una situazione di *hashing uniforme*
+2. Assumiamo che non avvengano operazioni di cancellazione 
+
+Quest'ultima ipotesi è fondamentale per poter compiere l'analisi in termini di *fattore di carico* : $\alpha = \frac n m$ , notiamo inoltre che nel caso di indirizzamento aperto avremo che $0\le \alpha \le 1$  ( il numero massimo di chiavi che possiamo memorizzare è infatti $m$ portando ad un $\alpha$ massimo $=1$ )
+
+###### Costo ricerca senza successo 
+
+>[!important] Teorema
+>Nell'ipotesi di hashing uniforme , data una tabella hash a indirizzamento aperto con un fattore di carico $\alpha = \frac n m < 1$ il numero atteso di ispezioni in una *ricerca senza successo* ( caso peggiore ) risulta essere al massimo $\frac 1 {1-\alpha}$
+
+**Dimostrazione** :  
+
+Se $\alpha < 1$ allora ci sono delle celle vuote ( contenenti $NIL$ ) , quindi nel compiere la ricerca ci fermeremo alla prima cella vuota 
+
+1. La probabilità di fare una prima ispezione è $1$ 
+2. La probabilità che venga svolta una seconda ispezione equivale alla probabilità che la prima cella sia stata occupata : $\frac n m$ 
+3. La probabuilità che venga compiuta una terza ispezione equivale alla probabilità che anche la seconda cella sia stata occupata : $\frac n m \cdot \frac {n-1}{m-1}$
+
+Questo per le $n$ possibili ispezioni ; possiamo notare che visto che $\frac n m=\alpha$ possiamo *maggiorare* ad $\alpha$ tutte le probabilità di ogni ispezione avremo quindi che : 
+$$\mathbb{P}[I]=1\quad \mathbb{P}[II]=\alpha\quad \mathbb{P}[III]\simeq\alpha^2\quad \mathbb{P}[IV]\simeq\alpha^3\quad \dots$$
+Di conseguenza il valore atteso sarà : 
+$$1+\alpha+\alpha^2+\dots \le \sum_{i=0}^{\infty}\alpha^i$$
+Notando che la sommatoria si tratta di una serie geometrica possiamo semplificarla nel seguente modo : 
+$$\sum_{i=0}^{\infty}\alpha^i=\frac1{1-\alpha}$$
+**Interpretazione** : 
+
+Se $\alpha$ è costante una *ricerca senza successo* viene eseguita in tempo $O(1)$ 
+
+>[!example]
+>+ Se $\alpha=0.5$ ( tabella piena a metà ) il numero medio di ispezioni è al massimo : 
+>$\frac 1 {1-\frac12}=2$
+>+ Se $\alpha = 0.9$ ( tabella quasi piena ) il numero medio di ispezioni è al massimo : 
+>$\frac 1 {1-\frac9{10}=10$
+ 
