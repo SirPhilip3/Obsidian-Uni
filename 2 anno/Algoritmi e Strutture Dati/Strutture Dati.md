@@ -3005,5 +3005,18 @@ Se $\alpha$ è costante una *ricerca senza successo* viene eseguita in tempo $O(
 >+ Se $\alpha=0.5$ ( tabella piena a metà ) il numero medio di ispezioni è al massimo : 
 >$\frac 1 {1-\frac12}=2$
 >+ Se $\alpha = 0.9$ ( tabella quasi piena ) il numero medio di ispezioni è al massimo : 
->$\frac 1 {1-\frac9{10}=10$
- 
+>$\frac 1 {1-\frac{9}{10}}=10$
+
+>[!note]
+>Più la tabella è piena più la ricerca è costosa
+
+>[!important] Corollario
+>L'inserimento di un elemento in una tabella hash a indirizzamento aperto con fattore di carico $\alpha$ richiede in media non più di $\frac 1 {1-\alpha}$ ispezioni nelle ipotesi di hashing uniforme
+
+*Dimostrazione* : 
+
+Un elemento viene inserito all'interno della tabella solo se questa non è satura ossia $\alpha<1$ questo ci permette di utilizzare il *teorema* precedente : 
+
+L'inserimento di una chiave richiede una *ricerca senza successo* ( dobbiamo trovare una posizione vuota dove inserire il nuovo valore ) e sucessivamete l'inserimento della chiave nella prima cella vuota trovata 
+
+Quindi il numero atteso di ispezioni è direttamente legato al numero di ispezioni svolte da una *ricerca senza successo* ossia al massimo $\frac 1 {1-\alpha}$ 
