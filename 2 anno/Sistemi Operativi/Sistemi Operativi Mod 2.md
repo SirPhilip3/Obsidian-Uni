@@ -572,3 +572,31 @@ Comportamenti di **default** :
 + `Stop` : l'azione di *default* è quella di *fermare* il processo
 + `Cont` : l'azione di *default* è quella di *continuare* il processo se è al momento *fermato*
 
+#### Esempio utilizzo di segnali : `alarm`
+
+La chiamata di sistema `{c}alarm(n)` manda un `SIGALRM` dopo $n$ secondi .
+Il default handler termina il programma
+>[!note]
+>La shell analizza lo stato di uscita del programma e stama il motivo della terminazione ( in questo caso stamperebbe "Alarm clock" )
+
+>[!example]
+```c
+#include <unistd.h>
+int main()
+{
+    alarm(3); 
+    while(1){} 
+}
+```
+
+La shell setta l'allarme tra 3 secondi , nel frattempo svolge il ciclo while e alla fine dei 3 secondi il processo termina visto che `alarm` ha come azione di *default* quello di terminare il processo
+
+```bash
+$ ./alarm
+ <... dopo 3 secondi....> 
+ Alarm clock
+$
+```
+
+#### Impostare il gestore dei segnali tramite `signal`
+
