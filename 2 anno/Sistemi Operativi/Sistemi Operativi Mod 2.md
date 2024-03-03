@@ -492,7 +492,83 @@ pid = waitpid(pid2, &stato, options)
 Questo attende il processo `pid2` ( valori $\le 0$ permettono di attendere gruppi di processi ) 
 Se `{c}pid2 == -1` attende un qualsiasi figlio , risulta uguale alla `wait`
 
->[!todo]
->#todo
->Completa esercizi 
+### Segnali
+
+I **Segnali** sono una forma minima di comunicazione tra processi ( tecnicamente sono *interruzioni* causate da svariati eventi ) 
+>[!example]
+>+ `ctrl-c` ( `SIGINT` ) viene generato da terminale e viene utilizzato per terminare l'esecuzione di un programma in esecuzione all'interno di una shell
+>+ Eccezioni ( divisioni per 0 , *segmentation fault* ( riferimento ad area di memoria non allocata ) ) 
+>+ Segnali esplicitamente inviati da un processo all'altro 
+>+ Eventi *asincroni* che vengono notificati ai processi : `SIGALARM` ( utilizzato per settare un timer e poi essere svegliato ) ( utilizzato nello scheduling , soprattutto nel modello time-sharing in cui lo scheduler mette in `exec` un processo e setta il `SIGALARM` per svegliarlo dopo l'intervallo di tempo assegnato a quel processo per metterlo in pausa e mandare in `exec` un'altro processo )
+
+Cosa possiamo fare quando riceviamo un segnale : 
++ Ignorarlo
++ Gestirlo
++ Lasciare questo compito al gestore del sistema operativo
+
+Alcuni segnali *POSIX* ( *Portable Operating System Interface* ) supportati su Linux :
+Ecco il risultato dato da `man 7 signal`
+
+```bash
+First the signals described in the original POSIX.1-1990 standard.
+
+Signal     Value     Action   Comment
+-----------------------------------------------------------------------
+SIGHUP        1       Term    Hangup detected on controlling terminal
+                              or death of controlling process
+SIGINT        2       Term    Interrupt from keyboard     <== ctrl-C
+SIGQUIT       3       Core    Quit from keyboard          <== ctrl-\
+SIGILL        4       Core    Illegal Instruction
+SIGABRT       6       Core    Abort signal from abort(3)
+SIGFPE        8       Core    Floating point exception
+SIGKILL       9       Term    Kill signal                 <== kill -9 (da shell)
+SIGSEGV      11       Core    Invalid memory reference
+SIGPIPE      13       Term    Broken pipe: write to pipe with no readers
+SIGALRM      14       Term    Timer signal from alarm(2)
+SIGTERM      15       Term    Termination signal          <== kill (da shell)
+SIGUSR1   30,10,16    Term    User-defined signal 1
+SIGUSR2   31,12,17    Term    User-defined signal 2
+SIGCHLD   20,17,18    Ign     Child stopped or terminated <== gestito da wait()
+SIGCONT   19,18,25    Cont    Continue if stopped
+SIGSTOP   17,19,23    Stop    Stop process
+SIGTSTP   18,20,24    Stop    Stop typed at tty
+SIGTTIN   21,21,26    Stop    tty input for background process
+SIGTTOU   22,22,27    Stop    tty output for background process
+
+The  signals SIGKILL and SIGSTOP cannot be caught, blocked, or ignored.
+```
+
+Ecco alcuni segnali : 
++ `SIGHUP` : 
+	Viene inviato a un processo quando il terminale a cui è associato viene chiuso 
++ `SIGINT` : 
+	Viene inviato a un processo digitando `ctrl-C` per interromperlo
++ `SIGQUIT` :
+	Viene inviato per far terminare un processo tramite `ctrl-\` ( fa anche il core-dump del processo ( ossia vengono salvati i dati ) )
++ `SIGILL` , `SIGABRT` , `SIGFPE` , `SIGSEGV` : 
+	Corrispondono ad azioni del precesso stesso : 
+>[!example] 
+>+ Istruzione Illegale
+>+ Invocazione di `abort`
+>+ Errore aritmetico
+>+ Riferimento a memoria illegale
++ `SIGKILL` , `SIGTERM` : 
+	Sono segnali inviati da un processo ad un altro utilizzati per terminare un processo 
+>[!example]
+>Questi segnali possono essere inviati tramite shell grazie al comando `{bash}kill -9 pid` oppure `{bash} kill pid` 
+>`SIGKILL` termina *sempre* un processo 
+>`SIGTERM` può essere gestito o ignorato dal processo 
++ `SIGPIPE` : 
+	Inviato ad un processo che prova a scrivere su una *pipe* che non ha lettori 
++ `SIGALRM` : 
+	Un timer che "sveglia" un processo simile al timer usato dallo scheduler per implementare il time-sharing
++ `SIGCHLD` : 
+	Viene inviato a un processo quando un suo processo figlio termina ( utilizzato per svegliare un processo che ha invocato la `wait` altrimente viene ignorato )
+
+Comportamenti di **default** : 
++ `Term` : l'azione di *default* è quella di *terminare* il processo
++ `Ign`   : l'azione di *default* è quella di *ignorare* il segnale
++ `Core` : l'azione di *default* è quella di *terminare* il processo e *dump core* ( salvare stato del processo )
++ `Stop` : l'azione di *default* è quella di *fermare* il processo
++ `Cont` : l'azione di *default* è quella di *continuare* il processo se è al momento *fermato*
 
