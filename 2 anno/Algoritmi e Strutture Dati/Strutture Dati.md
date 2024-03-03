@@ -3121,3 +3121,20 @@ Vogliamo determinare :
 In quanti modi posso dividere un'asta di lunghezza $n$ ? 
 
 Per ogni posizione possiamo decidere se effettuare o meno un taglio , ciò significa che in totale possiamo effettuare : $2\cdot 2\cdot\ \cdots\ \cdot2 = 2^{n-1}$ , analizzare quindi tutti i tagli ci porta ad una complesstià dell'ordine di $\Theta(2^n)$
+
+**Caratterizzazione** *ricavo massimo* : 
+
++ Caso base : se $n=0$ allora $r=0$
++ $r_n=max\{ p_n \ ,\ r_1+r_{n-1}\ ,\ r_2+r_{n-2}\ , \dots ,\ r_{n-1} + r_1\ \}$
+	Ossia dobbiamo prendere il valore massimo tra la divisione dell'asta nel seguenti modi : 
+	+ Non taglio l'asta 
+	+ Taglio l'asta in $i=1$ 
+	+ Taglio l'asta in $i=2$
+	+ $\cdots$
+	+ Taglio l'asta in $i=n-1$
+
+Come possiamo notare il ricavo ottimo è esprimibile attraverso la combinazione di soluzioni ottime di sottoproblemi , si dice che vale la *proprietà della sottostruttura ottimale*
+
+>[!todo]
+>#ToBeContinued
+
