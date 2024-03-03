@@ -600,3 +600,158 @@ $
 
 #### Impostare il gestore dei segnali tramite `signal`
 
+Tramite la call di sistema `signal` è possibile cambiare il gestore dei segnali 
+Questa prende come parametri un *segnale* e un *puntatore a funzione* che da quel momento diventerà il nuovo gestore del segnale
+
+>[!example]
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+void alarmHandler()
+{
+    printf("questo me lo gestisco io!\n");
+    alarm(3); // ri-setta il timer a 3 secondi
+}
+
+int main() { 
+    signal(SIGALRM, alarmHandler);
+    alarm(3);
+    while(1){}
+}
+```
+
+Dopo 3 secondi arriva il segnale `SIGALRM` , a questo punto avendo rimappato l'*handler* verrà chiamata la funzione `{c}alarmHandler()` che stampa `{c}"questo me lo gestico io!"` e reimposta l'allarme doppo 3 secondi . A questo punto la funzione ritorna al punto in cui il programma era stato interrotto ( ossia all'interno del ciclo `{c}while` ) , qui attenderemo che arrivi il sucessivo segnale che lancerà di nuovo `{c}alarmHandler()` etcc...
+
+```bash
+$ ./alarm
+ <... Aspetto 3 secondi ...>
+ questo me lo gestisco io!   <=== dopo 3 secondi
+ questo me lo gestisco io!   <=== dopo 3 secondi
+ questo me lo gestisco io!   <=== dopo 3 secondi
+ .......
+```
+
+>[!note]
+>`SIGALRM` , `SIGKILL` etcc sono *macro* di c e quindi potrebbero essere sostituiti da i loro valori numerici
+
+##### Parametri particolari della `signal`
+
+Possiamo passare alla `signal` le costanti `SIG_IGN` o `SIG_DFL` al posto della funzione handler per indicare rispettivamente : 
++ che il segnale va ignorato
++ che l'handler è quello di default di sistema
+
+Il valore di ritorno di `signal` è :
++ `SIG_ERR` in caso di errore
++ l'handler precedente in caso di successo 
+
+>[!note]
+>L'implementazione di `signal` può essere differente da diversi sistemi `POSIX` 
+>Per questo si utilizza `sigaction` per un'implementazione più consistente nelle varie versioni `UNIX` 
+>>[!example]
+>>La `signal` originale in `UNIX` fa il reset dell'handler a `SIG_DFL` ogni volta che viene ricevuto il segnale ( si può ottenere questo comportamento con il flag `--ansi` ) 
+
+>[!example]
+>Proteggersi da `ctrl-c`
+```c
+#include <signal.h>
+#include <stdio.h>
+#include <unistd.h>
+int main() {
+    void (*old)(int);
+        
+    old = signal(SIGINT,SIG_IGN);
+    printf("Sono protetto!\n");
+    sleep(3);
+        
+    signal(SIGINT,old);
+    printf("Non sono più protetto!\n");
+    sleep(3);
+}
+```
+
+>[!note]
+>Salviamo il primo handler di ritorno , quando vogliamo ritornare all'hander originale è sufficente passare l'handler salvato a `signal` 
+
+Se runniamo il programma per 3 secondi non potremmo effettuare `ctrl-c` , appena reimpostato il vecchio gestore invece `ctrl-c` funzionerà
+
+```bash
+$ ./ctrlc
+ Sono protetto!
+ <ctrl-c>
+ <ctrl-c>
+ <ctrl-c>        <==== nessun effetto
+ Non sono più protetto!
+ <ctrl-c>        <==== esce!
+```
+##### Sospensione e ripristino di processi tramite `kill`
+
+La chiamata a sistema `kill` manda un segnale *qualsiasi* ad un processo.
+
+>[!example]
+>Utilizziamo la chiamata a sistema `kill` per sospendere , ripristinare e terminare un processo
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <signal.h>
+int main(){
+        pid_t pid1,pid2;
+        pid1 = fork();
+        if ( pid1 < 0 ) {
+                perror("errore fork"); exit(EXIT_FAILURE);
+        } else if (pid1 == 0)
+                while(1) { // primo figlio
+                        printf("%d è vivo !\n",getpid());
+                        sleep(1);
+                        }
+        pid2 = fork();
+        if ( pid2 < 0 ) {
+                perror("errore fork"); exit(EXIT_FAILURE);
+        } else if (pid2 == 0)
+                while(1) { // secondo figlio
+                        printf("%d è vivo !\n",getpid());
+                        sleep(1);
+                        }
+        // processo genitore
+        sleep(2);
+        kill(pid1,SIGSTOP); // sospende il primo figlio
+        sleep(5);
+        kill(pid1,SIGCONT); // risveglia il primo figlio
+        sleep(2);
+        kill(pid1,SIGINT); // termina il primo figlio
+        kill(pid2,SIGINT); // termina il secondo figlio       
+}
+```
+
+Quando eseguiamo il programma notiamo che il primo figlio viene sospeso per 5 secondi e che alla fine i processi figli sono terminati
+
+```bash
+$ ./kill
+ 6720 è vivo !
+ 6721 è vivo !
+ 6720 è vivo !
+ 6721 è vivo !
+ 6720 è vivo !
+ 6721 è vivo !    <==== sospende 6720
+ 6721 è vivo !
+ 6721 è vivo !
+ 6721 è vivo !
+ 6721 è vivo !
+ 6720 è vivo !    <==== risveglia 6720 6721 è vivo ! 6720 è vivo ! 6721 è  vivo ! >
+```
+#### Mascherare i segnali
+
+A volte risulta utile bloccare temporaneamente la ricezione dei segnali per poi riattivarli , i segnali non sono ignorati ma solamente *posticipati*
+
+>[!note]
+>*POSIX* non specifica se più occorrenze dello stesso segnale debbano essere memorizzate oppure no 
+>Tipicamente se più segnali uguali vengono generati , solamente uno verrà recapitato quando il blocco viene tolto
+>
+
+
+
+#### Attendere un segnale tramite `pause`
+
+#### Interferenze e funzioni 'safe' in *POSIX*
