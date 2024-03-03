@@ -3053,6 +3053,71 @@ La *risutrutturazione* va effettuata quando :
 
 ### Programmazione Dinamica
 
->[!todo]
->#todo
+La *programmazione dinamica* è una tecnica di progettazzione di algoritmi che si applica in presenza delle seguenti condizioni : 
++ Un problema si può ridurre ad un insieme di problemi più piccoli ( con nel *Divide et Impera* )
++ I sottoproblemi *non sono indipendenti* , ossia molti sottoproblemi si ripetono
 
+>[!important] Idea
+>Ogni volta che risolvo un problema salvo la soluzione per evitare di doverla ricalcolare 
+
+La *programmazione dinamica* è adatta a risolvere problemi di **ottimizzazione** , questi problemi sono caratterizzati da diverse possibili soluzioni al problema ognuna con un costo in termini di tempo , attraverso la programmazione dinamica siamo in grado di scegliere la soluzione *ottima* cioè quella di *costo massimo* o *minimo* (tenendo conto che ci possono essere più soluizoni ottime)  
+#### Sviluppo di un Algoritmo :
+
+Ci sono 4 principali passi da seguire per sviluppare un algoritmo di programmazione dinamica : 
+1. Caratterizzazione della struttura di una soluzione ottimale ( di solito ricorsiva )
+2. Definire ricorsivamente del valore di una soluzione ottimale 
+3. Calcolo il valore di una soluzione ottimale 
+4. Individuare una souzione ottimale sulla base del passo 3 
+
+**Approcci** : 
+
+Ci sono due principali approcci per risolvere un problema di programmazione dinamica : 
++ **Top-Down** :
+	Memorizzo in una tabella ( vettore , tabella hash , ... ) le soluzioni dei problemi già risolti 
++ **Bottom-Up** : 
+	Ordiniamo i problemi in base alla dimensione e partendo dai più piccoli li risolviamo e memorizziamo le soluzioni ottenute 
+
+>[!note]
+>A livello asintotico i due approcci sono equivalenti , considerando le costanti moltiplicative la strategia *Top-Down* risulta essere meno costosa 
+
+#### Problema del taglio delle aste
+
+Un'azienda produce aste d'acciaio e le vende a prezzi. 
+Le aste prodotte hanno una certa lunghezza $n$ , e sul mercato i pezzi hanno un prezzo che dipende dalla loro lunghezza 
+Trovare il modo di tagliare le aste che massimizzi il guadagno
+
+Dato : 
++ Un'asta di lunghezza $n$ 
++ Una tabella di prezzi $p_i$ con $i=1, \dots , m$ e $m\ge n$
+
+Vogliamo determinare : 
++ $r_n$ : il ricavo massimo che si può ottenere da un'asta di lunghezza $n$
++ Le posizioni dove effettuare i tagli 
+
+>[!example]
+> Abbiamo un'asta di lunghezza $7$ e la seguente tabella dei prezzi :
+>  
+| Lunghezza $i$ | Prezzo $p_i$ |
+| ------------- | ------------ |
+| 1             | 1            |
+| 2             | 5            |
+| 3             | 8            |
+| 4             | 9            |
+| 5             | 10           |
+| 6             | 17           |
+| 7             | 17           |
+>Supponiamo di fare i seguenti tagli : 
+>+ $1+1+1+1+1+1+1=7$
+>+ $2+2+2+1=16$
+>+ $2+2+3=18$
+>La soluzione che ci porta al ricavo maggiore è l'ultima ma non è l'unica infatti : 
+>+ $3+2+2=18$
+>+ $2+3+2=18$
+>+ $1+6=18$
+>+ $6+1=18$
+
+##### Approccio *Divide et impera*
+
+In quanti modi posso dividere un'asta di lunghezza $n$ ? 
+
+Per ogni posizione possiamo decidere se effettuare o meno un taglio , ciò significa che in totale possiamo effettuare : $2\cdot 2\cdot\ \cdots\ \cdot2 = 2^{n-1}$ , analizzare quindi tutti i tagli ci porta ad una complesstià dell'ordine di $\Theta(2^n)$
