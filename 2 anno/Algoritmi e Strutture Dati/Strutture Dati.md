@@ -3202,3 +3202,87 @@ Possiamo quindi dire che $T(n)$ ha complessità *esponenziale* $T(n)=O(2^n)$
 > Notiamo che il numero dei nodi è esattamente pari a $2^n$ e il numero di possibili problemi distinti è invece $n$ 
 > Notiamo inoltre che ogni cammino dalla radice ad una foglia ci dà una permutazione dei possibili tagli effettaubili sull'asta ( il cammino più lungo rappresenta la divisione dell'asta sempre in posizione $1$ sottosbarra destra )
 
+##### Approccio di programmazione dinamica ( *Top-Down* )
+
+Se i sottoproblemi distinti sono in numero polinomiale e ciascuno si risolve in tempo polinomiale ( data la soluzione dei sottoproblemi ) allora memorizzando le soluzioni ed evitando di ricalcolare si ottiene un algoritmo polinomiale , occorre però scendere ad un compromesso utilizzando della memoria ausiliaria
+
+**Top-Down**
+
+```c
+Memorized_Cut_Rod(p, n)
+	sia r[0, ... ,n] un nuovo vettore 
+	for i = 0 to n
+		r[i] = -1 // inizializzazione del vettore
+	return Memorized_Cut_Rod_Aux(p ,n ,r)
+
+Memorized_Cut_Rod_Aux(p ,j ,r)
+	if r[j] < 0
+		if j == 0
+			r[j] = 0
+		else 
+			q = -1
+			for i = 1 to j
+				q = max(q, p[i] + Memorized_Cut_Rod_Aux(p, j-i, r))
+	return r[j]
+```
+
+`r[i]` conterrà il prezzo ottimo per la lunghezza $i$ , se questo è $\ge0$ allora abbiamo già risolto poichè vuol dire che abbiamo già trovato il prezzo ottimo per quella lunghezza altrimenti come possiamo semplicemente ricopiare ciò che già faccio nel metodo *divide et impera* 
+
+**Analisi della complessità** ( analisi aggregata ) : 
+
+Una chiamata ricorsiva , per risolvere un problema precedentemente risolto termina  immediatamente , giungiamo quindi al ramo `{c}else` della funzione ausiliaria una sola volta per ciascun sottoproblema
+
+Per risolvere un sottoproblema di dimensione $j$ il ciclo `{c}for` effettua $j$ iterazioni 
+Il numero totale di iterazioni di questo ciclo `{c}for` per tutte le chiamate ricorsive della funzione ausiliaria sarà :
+$$\sum_{j=1}^nj=\frac{n(n+1)}{2}=\Theta(n^2)$$
+Considerando anche il fatto che svolgiamo $n$ iterazioni per inizializzare $r$ diremo che la complessità totale dell'algoritmo sarà : 
+$$T(n)=\Theta(n)+\Theta(n^2)=\Theta(n^2)$$
+##### Approccio di programmazione dinamica ( *Bottom-Up* )
+
+```c
+Bottom_Up_Cut_Rod(p, n)
+	Sia r[0, ... ,n] un unovo vettore
+	r[0] = 0
+	for j = 1 to n // utilizza sempre soluzioni già calcolate
+		q = -1
+		for i = 1 to j
+			q = max(q, p[i]+r[j - i]) // r[j-i] sarà sempre < j
+		r[j] = q
+	return r[n]
+```
+
+**Complessità** : 
+
+Il ciclo esterno compie esattamente $n$ iterazioni mentre il ciclo interno compie $j$ iterazioni dove $j$ prende tutti i valori $1,\dots, n$ , avremo quindi che la complessità sarà : 
+$$T(n)=\sum_{j=1}^n j\cdot\Theta(1)=\Theta\bigg(\frac{n(n+1)}{2}\bigg)=\Theta(n^2)$$
+##### Trovare la soluzione finale ( la posizione dei tagli )
+
+Per trovare dove andremo a tagliare per ottenere il ricavo massimo andremo ad utilizzare un'ulteriore vettore $s[\ 1 , \dots , n\ ]$ , nella cui posizione $j$-esima memorizza la posizione del primo taglio che determina la soluzione ottima per il problema di dimensione $i$
+
+```c
+Ext_Bottom_Up_Cut_Rod(p, n)
+	Siano r[0,...,n] e s[1,...,n] due nuovi vettori
+	r[0] = 0
+	for j = 1 to n
+		q = -1
+		for i = 1 to j
+			if q < p[i] + r[j - i]
+				q = p[i] + r[j - i]
+				s[j] = i
+		r[j] = q
+	return r, s 
+```
+
+Possiamo notare che la *complessità* dell'algoritmo non cambia  
+
+Per visualizzare la sequenza dei tagli possiamo scrivere : 
+```c
+Print_Cut_Rod(p, n)
+	r,s = Ext_Bottom_Up_Cut_Rod(p, n)
+	while n > 0
+		print(s[n])
+		n = n - s[n] // il prossimo taglo lo troveremo nella lunghezza rimanente della barra destra 
+```
+
+*Complessità* :
+	La funzione è composta dalla chiamata a funzione che ritorna il vettore dei tagli e il ricavo ottimale ( $\Theta(n^2)$ ) più un ciclo `{c}while`
