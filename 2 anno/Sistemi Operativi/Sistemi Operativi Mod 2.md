@@ -750,8 +750,14 @@ A volte risulta utile bloccare temporaneamente la ricezione dei segnali per poi 
 >Tipicamente se più segnali uguali vengono generati , solamente uno verrà recapitato quando il blocco viene tolto
 >
 
+La chiamata a sistema `{c}sigprocmask(int action, sigset_t *newmask, sigset_t *oldmask)`
+compie azioni differenti a seconda del valore del parametro `action` : 
++ `SIG_BLOCK` : l'insieme dei segnali `newmask` viene *unito* all'insieme dei segnali attualmente bloccati che sono restituiti in `oldmask`
++ `SIG_UNBLOCK` : l'insieme dei segnali `newmask` viene *sottratto* all'insieme dei segnali attualmente bloccati che sono restituiti in `oldmask`
++ `SIG_SETMASK` : l'insieme dei segnali `newmask` *sostituisce* quello dei segnali attualmente bloccati ( `oldmask` )
 
-
+>[!todo]
+>#todo
 #### Attendere un segnale tramite `pause`
 
 #### Interferenze e funzioni 'safe' in *POSIX*
