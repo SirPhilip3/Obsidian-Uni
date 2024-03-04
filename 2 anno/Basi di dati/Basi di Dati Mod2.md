@@ -770,5 +770,9 @@ Un tipo di *forma normale* è quella così detta *BCNF*
 >Uno schema è in *BCNF* se e solo se per ogni dipendenza funzionale non banale $X \to Y \in F^+$ tale che $Y \nsubseteq X$ si ha che $X$ è una *superchiave*
 
 >[!example] 
->Verifichiamo che $Prodotti(\{ Articolo, Magazzino ,Quantità , Indirizzo \})$ , $F=\{  Articolo\  Magazzino \to Quantità , Magazzino \to Indirizzo\}$
+>Verifichiamo se $Prodotti(\{ Articolo, Magazzino ,Quantità , Indirizzo \})$ , $F=\{  Articolo\  Magazzino \to Quantità , Magazzino \to Indirizzo\}$ è *BCNF*
+>
+>Dato che $\{Magazzino\}_F^+ = \{Magazzino,Indirizzo\}$ , il quale insieme non è superchiave abbiamo che lo schema *non* è *BCNF*
+
+
 
