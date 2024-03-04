@@ -756,8 +756,82 @@ compie azioni differenti a seconda del valore del parametro `action` :
 + `SIG_UNBLOCK` : l'insieme dei segnali `newmask` viene *sottratto* all'insieme dei segnali attualmente bloccati che sono restituiti in `oldmask`
 + `SIG_SETMASK` : l'insieme dei segnali `newmask` *sostituisce* quello dei segnali attualmente bloccati ( `oldmask` )
 
->[!todo]
->#todo
+Per gestire gli insiemi di segnali ( che sono rappresentati dal tipo `sigset_t` ) si utilizzano le seguenti chiamate di sistema : 
++ `{c}sigemptyset(sigset_t *set)` : Inizializza l'insieme `set` all'insieme vuoto
++ `{c}sigaddset(sigset_t *set, int signum)` : Aggiunge il segnale `signum` all'insieme set 
+
+>[!example] 
+>Esempio di come bloccare `SIGINT` e poi ripristinarlo
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+#include <stdlib.h>
+int main() {
+        sigset_t newmask,oldmask;
+
+        sigemptyset(&newmask);          // insieme vuoto
+        sigaddset(&newmask, SIGINT);    // aggiunge SIGINT alla "maschera"
+        // setta la nuova maschera e memorizza la vecchia
+        if (sigprocmask(SIG_BLOCK, &newmask, &oldmask) < 0) {
+                perror("errore settaggio maschera"); exit(1); }
+
+        printf("Sono protetto!\n");
+        sleep(3);
+
+        // reimposta la vecchia maschera
+        if (sigprocmask(SIG_SETMASK, &oldmask, NULL) < 0) {
+                perror("errore settaggio maschera"); exit(1); }
+
+        printf("Non sono piu' protetto!\n");
+        sleep(3);
+}
+```
+
+Se digito `ctrl-c` mentre il segnale è mascherato questo viene sospeso , appena la maschera viene rimossa il segnale è ricevuto dal processo che viene interrotto ( è diverso da quello che abbiamo fatto in precedenza poichè ora non modifichiamo il gestore del segnale )
+
+```bash
+$ a.out
+ Sono protetto!
+ <ctrl-c>
+ <ctrl-c>
+ <ctrl-c>        <==== per 3 secondi nessun effetto
+				 <==== esce appena la maschera viene tolta (senza dare  ulteriori ctrl-c)!
+```
+
+>[!note]
+>Tramite la chiamata a sistema `sigpending` è possibile ottenere l'insieme dei segnali "pendenti" ( ossia quei segnali non ancora inviati al processo , quelli mascherati )
+
+>[!note]
+>`{c}sigprocmask`  non aderisce allo standard *ANSI* ( *ISO C99* ) ma solamente allo standard *POSIX* , la gestione dei segnali da parte di *ANSI-C* è si riduce quindi a `signal` , `raise(sig)` ( equivalente di `kill(getpid(),sig)` ) e `abort()`
+>*ANSI-C* non prevede quindi multi-processing e non prevede l'invio di segnali ad altri processi
 #### Attendere un segnale tramite `pause`
 
+Per attendere un segnale , in precedenza abbiamo usato `{c}while(1){}` per attendere un segnale ( questo metodo viene detto *busy-waiting* ) ( consuma tempo di CPU ) , la system call `pause()` invece attende il segnale senza consumare tempo di CPU
+
+>[!example]
+```c
+#include <signal.h>
+#include <stdio.h>
+#include <unistd.h>
+
+void alarmHandler()
+{
+    printf("questo me lo gestisco io!\n");
+}
+
+int main()
+{
+    signal(SIGALRM, alarmHandler);
+    alarm(3);
+    pause();
+    printf("termino!\n");
+}
+```
 #### Interferenze e funzioni 'safe' in *POSIX*
+
+L'uso della `{c}printf` nell'handler dell'`alarm` è rischioso perchè usa strutture dati condivise da diversi processi , se anche il programma interrotto stava facendo operazioni di I/O i due potrebbero interferire 
+>[!note]
+>`printf` non è *safe*
+
+La lista di funzioni *safe* che possono essere utilizzate all'interno di un *handler* possono essere 
