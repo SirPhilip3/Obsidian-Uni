@@ -3124,7 +3124,7 @@ Per ogni posizione possiamo decidere se effettuare o meno un taglio , ciò signi
 
 **Caratterizzazione** *ricavo massimo* : 
 
-+ Caso base : se $n=0$ allora $r=0$
++ *Caso base* : se $n=0$ allora $r=0$
 + $r_n=max\{ p_n \ ,\ r_1+r_{n-1}\ ,\ r_2+r_{n-2}\ , \dots ,\ r_{n-1} + r_1\ \}$
 	Ossia dobbiamo prendere il valore massimo tra la divisione dell'asta nel seguenti modi : 
 	+ Non taglio l'asta 
@@ -3135,6 +3135,39 @@ Per ogni posizione possiamo decidere se effettuare o meno un taglio , ciò signi
 
 Come possiamo notare il ricavo ottimo è esprimibile attraverso la combinazione di soluzioni ottime di sottoproblemi , si dice che vale la *proprietà della sottostruttura ottimale*
 
->[!todo]
->#ToBeContinued
+La *caratterizzazione* precedente può essere resa più semplice diminuendo le chiamate ricorsive a una :
+	Si taglia definitivamente un pezzo dell'asta ( quello sinistro ) e suddividiamo in modo ottimo la parte rimanente ( quella destra )
+
+La formulazione ricorsiva diventa quindi : 
+
++ *Caso base* : se $n=0$ allora $r=0$ 
++ $r_n = max\{ \ p_i + r_{n-i}\ \}$ con $1\le i \le n$ 
+	Dove : 
+	+ $p_i$ : è il prezzo del taglio in posizione $i$
+	+ $r_{n-i}$ : il prezzo ottimo del pezzo rimanente 
+
+>[!note]
+>Se $i=n$ vuol dire che il pezzo non viene tagliato e lo vendiamo tutto d'un pezzo
+
+###### Algoritmo
+
+**Input** : 
++ $p[\ 1, \dots , m \ ]$ : indica ( con $m\ge n$ ) il vettore contenente i prezzi delle aste , in $p[\ i\ ]$ è contenuto il valore di un'asta di lunghezza $i$ ( $i\ge 0$ )
++ $n$ è la lunghezza dell'asta da tagliare
+**Output** : 
++ $r_n$ : ossia il ricavo massimo da un'asta di lunghezza $n$
+
+```c
+Cut_Rod (p , n)
+	if n == 0 
+		return 0 
+	else
+		q = -1 
+		for i = 1 to n
+			q = max(q , p[i] + Cut_Rod(p , n - i)) 
+		return q
+```
+
+>[!note] 
+>Inizializziamo $q$ a $-1$ poichè sappiamo che le aste non possono avere prezzi negativi ( se li postessero avere allora andrebbe inizializzato a $-\infty$ )
 

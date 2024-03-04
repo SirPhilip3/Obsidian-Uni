@@ -834,4 +834,61 @@ L'uso della `{c}printf` nell'handler dell'`alarm` è rischioso perchè usa strut
 >[!note]
 >`printf` non è *safe*
 
-La lista di funzioni *safe* che possono essere utilizzate all'interno di un *handler* possono essere 
+La lista di funzioni *safe* che possono essere utilizzate all'interno di un *handler* possono essere ricavata dal comando `{bash}man 7 signal`
+
+Eccone alcuni
+```c
+_Exit(),   _exit(),  abort(),  accept(), shutdown(),  sigaction(), times(), umask(), uname(), unlink(), utime(), wait(), waitpid(), write() ....
+```
+
+>[!example]
+>Questo esempio fa interferire le `printf` , all'interno di un ciclo `{c}while` nel main abbiamo inserto la stampa di un stringa , se il programma viene interrotto proprio durante la stampa la `printf` dell'*handler* potrebbe interferire con quella del programma
+```c
+#include <signal.h>
+#include <stdio.h>
+#include <unistd.h>
+
+void alarmHandler();    // gestore
+static int i=0;     // contatore globale `volatile'
+
+int main() { 
+    signal(SIGALRM, alarmHandler);
+    alarm(1);
+    while(1){
+        printf("prova\n");
+    }
+}
+void alarmHandler()
+{
+    printf("questo me lo gestisco io %d!\n",i++);
+    alarm(1);   // ri-setta il timer a 1 secondo
+}
+```
+
+Le stampe tipicamente sono troncate o mischiate tra `{c}"prova"` e `{c}"questo me lo gestisco io $"` , in alcuni casi possiamo perdere alcune `{c}printf` portando a skippare il contatore `{c}i`
+
+Possiamo vedere le interferenze filtrando le stampe della parola `{c}"prova"` che altrimenti avvengono continuamente attraverso la *pipe* : `{bash}./safe | grep io` che fa si che vengano stampate solo le linee contenti la stringa `{c}"io"` 
+
+```bash
+$ ./safe | grep io
+ questo me lo gestisco io 0!
+ questo me lo gestisco io 2!
+ questo me lo gestisco io 4!
+ questo me lo gestisco io 6!
+ questo me lo gestisco io 7!
+ questo me lo gestisco io 8!
+ questo me lo gestisco io 12!
+ questo me lo gestisco io 14!
+ questo me lo gestisco io 15!
+ questo me lo gestisco io 16!
+ questo me lo gestisco io 17!
+ provaquesto me lo gestisco io 18!
+ provaquesto me lo gestisco io 19!
+```
+
+>[!note]
+>La `{bash} |` fa in modo che l'output del programma che sta alla sua destra venga reindirizzato al comando sucessivo ( `{bash}grep` che filtra l'output precedente ) come input
+>>[!note] 
+>>In pratica si crea un canale di comunicazione *message passing* tra i due processi
+
+
