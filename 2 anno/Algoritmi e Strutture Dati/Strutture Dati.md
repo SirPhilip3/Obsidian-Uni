@@ -3285,4 +3285,9 @@ Print_Cut_Rod(p, n)
 ```
 
 *Complessità* :
-	La funzione è composta dalla chiamata a funzione che ritorna il vettore dei tagli e il ricavo ottimale ( $\Theta(n^2)$ ) più un ciclo `{c}while`
+	La funzione è composta dalla chiamata a funzione che ritorna il vettore dei tagli e il ricavo ottimale ( $\Theta(n^2)$ ) più un ciclo `{c}while` che svolge $n$ iterazioni al massimo , avrà quindi complessità $O(n)$
+	La complessità totale sarà dunque : $T(n)=\Theta(n^2)+O(n)=\Theta(n^2)$
+
+>[!todo]
+>Example
+>#todo

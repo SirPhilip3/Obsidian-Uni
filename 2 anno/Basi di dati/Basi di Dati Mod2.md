@@ -736,4 +736,39 @@ Non ci interressa calcolare $G=\bigcup_i \pi_{T_i}(F)$ ma ci basta verificare ch
 Questo *algoritmo* ottimizzato ha complessità *polinomiale*
 
 >[!example]
+>$F=\{ A\to B, B \to C , C \to A \}$ e $p=\{ R_1(A,B) , R_2(B,C) \}$
+>Verifichiamo che preserviamo le dipendenze 
+>1. Partiamo dalla dipendenza $A \to B$
+>	+ Inizialmente avremo $FC(A,F,p)=\{A\}$ 
+>	+ Consideraimo $R_1(\{ A,B \})$ , abbiamo : 
+>		$(\{A\}\cap\{A,B\})_F^+ \ \cap\{A,B\}=A^+_F \cap \{A,B\} = \{A,B\}$
+>		Aggiungiamo quindi $B$ a $FC(A,F,p)$ 
+>	+ Consideraimo $R_2(\{ C,C \})$ , abbiamo :
+>		$(\{A,B\}\cap\{B,C\})_F^+ \ \cap\{B,C\}=B^+_F \cap \{B,C\} = \{B,C\}$
+>		Aggiungiamo quindi $C$ a $FC(A,F,p)$
+
+>[!todo]
+>Capisci esempio
+
+### Forme normali
+
+L'obbiettivo delle *forme normali* è garantire che uno schema sia di buona qualità ( questo può essere ottenuto attraverso un processo chiamato *normalizzazione* basato su una decomposizione dello schema di partenza ) 
+
+Caratteristiche fondamentali ad uno schema in *forma normale* :
++ Non deve contenere anomalie
++ Il processo di normalizzazione deve *preservare i dati*
++ Il processo di normalizzazione deve *preservare le dipendenze*
+
+>[!note]
+>In generale non possiamo garantire tutte e tre le proprietà
+
+#### Forma Normale di Boyce-Codd ( BCNF )
+
+Un tipo di *forma normale* è quella così detta *BCNF*
+
+>[!important] Definizione di *BCNF*
+>Uno schema è in *BCNF* se e solo se per ogni dipendenza funzionale non banale $X \to Y \in F^+$ tale che $Y \nsubseteq X$ si ha che $X$ è una *superchiave*
+
+>[!example] 
+>Verifichiamo che $Prodotti(\{ Articolo, Magazzino ,Quantità , Indirizzo \})$ , $F=\{  Articolo\  Magazzino \to Quantità , Magazzino \to Indirizzo\}$
 
