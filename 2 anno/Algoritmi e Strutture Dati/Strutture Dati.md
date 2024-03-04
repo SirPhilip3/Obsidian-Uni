@@ -3163,11 +3163,42 @@ Cut_Rod (p , n)
 		return 0 
 	else
 		q = -1 
-		for i = 1 to n
-			q = max(q , p[i] + Cut_Rod(p , n - i)) 
+		for i = 1 to n // il primo taglio può essere dall'inizio alla fine
+			q = max(q , p[i] + Cut_Rod(p , n - i)) // caraterizzazione ricorsiva 
 		return q
 ```
 
 >[!note] 
 >Inizializziamo $q$ a $-1$ poichè sappiamo che le aste non possono avere prezzi negativi ( se li postessero avere allora andrebbe inizializzato a $-\infty$ )
+
+**Analisi della complessità** : 
+
+Sia $T(n)$ il numero di chiamate di *Cut_Rod* quando la chiamata viene fatta con il secondo parametro uguale a $n$ 
+$$T(n)=\begin{cases}1 & n=0 \\ 1+\sum_{i=1}^n T(n-i) & n >0\end{cases}$$
+Dove $1$ corrisponde alla chiamata iniziale , la sommatoria rappresenta il `{c}for` e $T(n-i)$ rappresenta la chiamata ricorsiva 
+
+Poniamo ora $j=n-i$ e otteniamo : 
+$$T(n)=1+\sum_{i=1}^n T(n-1)=1+\sum_{j=0}^{n-1}T(j)$$
+>[!note]
+>Non sono sicuro se sostituiamo $j=n-1$ o $j=n-i$
+
+*Dimostriamo* per *induzione* su $n$ che $T(n)=2^n$
+
++ *Caso base* : Se $n=0$ , $T(0)=2^0=1$ che è vero per definizione
++ *Passo Induttivo* : 
+	Assumiamo l'ipotesi induttiva che $T(n)=2^n$ e lo dimostriamo per $n+1$
+$$T(n+1)=1+\sum_{j=0}^{n+1-1}T(j)=$$
+	Ora possiamo portate fuori un $T(n)$ ( visto che la sommatoria possiamo vederla come $n-1$ + l'ultimo elemento ) in modo da ricondurci alla definizione 
+$$=1+\sum_{j=0}^{n-1}T(j)+T(n)=T(n)+T(n) = 2 \cdot T(n)$$
+	Poichè per definizione abbiamo che $T(n)=2^n$ possiamo sostituire e otteniamo : 
+	$$2\cdot 2^n=2^{n+1}$$
+	Che dimostra il nostro passo induttivo
+
+Possiamo quindi dire che $T(n)$ ha complessità *esponenziale* $T(n)=O(2^n)$
+
+>[!example]
+>Verifichiamo la complessità della funzione anche attraverso l'albero della ricorsione
+![[Pasted image 20240304150455.png]]
+> Notiamo che il numero dei nodi è esattamente pari a $2^n$ e il numero di possibili problemi distinti è invece $n$ 
+> Notiamo inoltre che ogni cammino dalla radice ad una foglia ci dà una permutazione dei possibili tagli effettaubili sull'asta ( il cammino più lungo rappresenta la divisione dell'asta sempre in posizione $1$ sottosbarra destra )
 
