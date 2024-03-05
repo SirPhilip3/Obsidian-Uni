@@ -465,3 +465,4 @@ private non si usa quasi mai poichè blocca l'estensione di classi ( esseenzialm
 Set -> sequenza ordinata senza doppioni non random accessible , non è garantito a compile time 
 Posso creare implementazioni differenti dei set , per non mettere duplicati potrei usare una contains , usando equals , equals però dipende dalla struttura dati utilizzata i set invece possono essere implementati con diverse strutture dati 
 
+stub sono wrapper piccoli ossia che chiamano solo una funzione o ritornano un dato etcc
