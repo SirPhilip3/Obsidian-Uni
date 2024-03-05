@@ -499,3 +499,9 @@ I grafici a dispersione sono utilizzati per rappresentare la relazione tra due v
 >[!note]
 >jitter plot
 
+# Stima
+
+## Modelli statistici 
+
+Supponiamo che i dati $x=(x_1,\dots,x_n)$ provengano da una variabile casuale la cui distribuzione *dipende* da un parametro ignoto $\theta$
+

@@ -291,6 +291,44 @@ il file descriptor copiato in entrambi i processi , li chiudo per eveitare che s
 
 la pipe assegna i valori di f\[0] e f\[1] con address dei file
 
+comunicazione bidirezionale 2 pipe distinte altrimenti non so se ho scritto io o l'altro processo
 
+chiusura utile per capire quando ho finito di scrivere / leggere , la read ritorna 0
+leggere da una pipe chiusa è come leggere fino alla fine del file EOF
+
+fa questo solo quando tutti i descrittore f\[1] sono stati chiusi
  
+`SIGPIPE` -> generato errore in pipe , di default uccide il processo  
+
+write su una pipe chiusa -> ignoro SIGPIPE ( dal code ) -> ritorno -1 -> errore poichè se scrivessi "buttare" via byte , poichè nessuno li leggerebbe 
+
+wc -> wordcount 
+
+0 -> stdin
+1-> stdout
+2 ->stderr
+
+dup2 -> duplico un descrittore in un'altro -> copio il descrittore di f\[1] in 1 ossia ridireziono l'output del programma al terminale
+stessa cosa per ridirezionare l'input ossia ridireziono l'input al mio descrittore della pipe 
+visto che se tenessimo sia f\[0] che 0 avremmo 2 input -> dobbiamo chiuderlo subito altrimenti le risorse non verrebbero deallocate ( 0 viene chiuso dalla `execlp` )
+
+*pipe con nome*
+
+in realtà è un file ( fifo in unix ) 
+`mkfifo` -> crea pipe con nome *p*rw-w
+
+la open è bloccante in lettura fino a che qualcunaltro la apra in scrittura
+ 
+`myfifo()` anche da c , permission 0666 -> leggere e scrivere , se non eseiste già non fa nulla 
+`open()` `O_RDONLY` -> pipe aperta solo in lettura
+
+sulle pipe leggo e scrivo byte
+
+`strlen(message)+1` manda stringa + byte 0 per mandare a capo 
+
+`;` -> esegue in sequenza 
+
+
+`./lettore & ./scrittore & ./scrittore & ./scrittore & ./lettore & ./lettore`
+interfersicono i messaggi , lettori non si coordinano tra loro per leggere ciò che viene scritto , non ho garanzia che ogni lettore legge completamente un messaggio 
 
