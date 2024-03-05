@@ -602,4 +602,10 @@ A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali 
 
 Lo stimatore di massima verosimiglianza è quel valore del parametro $\theta$ che massimizza la *funzione di verosimiglianza*
 
-La *funzione di verosimiglianza* è proporzionale $$ alla probabilità di osservare ciò che è stato effettivamente osservato 
+La *funzione di verosimiglianza* è proporzionale $\propto$ alla probabilità di osservare ciò che è stato effettivamente osservato 
+
+Nel *caso discreto* la funzione di verosimiglianza è quindi proporzionalèalla funzione di probabilità congiunta dei dati 
+$$L(\theta) \propto Pr(X_1=x_1,\dots,X_n=x_n;\theta)$$
+Che per un campione casuale semplice diventa : 
+$$L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)$$
+>[!example]
