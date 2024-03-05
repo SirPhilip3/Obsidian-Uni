@@ -106,6 +106,8 @@ devo raccogliere gli zombie dopo che
 
 # 27/02/2024
 
+Esercitazione
+
 # 29/02/2024
 
 wait ruolo di una recieve sincrona
@@ -231,3 +233,64 @@ se invece interrompo la printf rimane in uno stato inconsistente
 handler corretto , :
 + uso solo safe dentro handler
 + maschero i segnali ogni volta 
+
+# 05/03/2024
+
+**Pipe**
+
+-> | ->
+
+tecnicamente è una *porta* di comunicazione dove la send è *asincrona* ( non aspetto che qualcuno li collezioni ) 
+
+di 2 tipi 
++ senza nome -> usato solo tra processi che sono parenti
++ con nome -> chiunque può utilizzarla ( sapendo il nome )
+
+per creare pipe senza nome `pipe()`
+
+in linux `|` shell crea due processi 1 per il primo programma uno per il secondo , crea pipe e direziona output del 1 in pipe e 2 mette input ( direziona solo stdout )
+
+il programma ricevente recieve sincrona
+
+`pipe(filedes[2])` , file descrittori tabella di file , `filedes[0]` > lettura `filedes[1]` > scrittura 
+
+l'array che metto in *pipe* copia per ogni processo creato 
+prima della fork viene creata la pipe questa è *condivisa* tra i due processi 
+
+pipe anonima
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+int main() {
+  int fd[2];
+ 
+  pipe(fd); /* crea la pipe */
+  if (fork() == 0) {
+    char *phrase = "prova a inviare questo!";
+ 
+    close(fd[0]);                         /* chiude in lettura */
+    write(fd[1],phrase,strlen(phrase)+1); /* invia anche 0x00 , scrive byte */
+    close(fd[1]);                         /* chiude in scrittura */
+  } else {
+    char message[100]; // buffer 100 byte
+    memset(message,0,100); // setto a 0 , le stringhe sono terminate da 0 se leggo una stringa non completa sono sicuro che la stringa termina con 0
+    int bytesread; 
+ 
+    close(fd[1]);                         /* chiude in scrittura */
+    bytesread = read(fd[0],message,99); // recieve , 99 -> leggi al massimo 99 byte , sincrona non necessita wait , meglio mettere numero massimo per evitare bufferoverflow
+    printf("ho letto dalla pipe %d bytes: '%s' \n",bytesread,message);
+    close(fd[0]);                         /* chiude in lettura */
+  }
+}
+```
+
+chiudo i file in lettura e scrittura ->
+
+il file descriptor copiato in entrambi i processi , li chiudo per eveitare che so pensi che ci siano 2 processi che leggono e scrivono -> il so sa che c'è 1 solo processo che scrive e 1 solo che legge in modo che quando faccio l'ultima close l'so rimuove la risorsa da memoria
+
+la pipe assegna i valori di f\[0] e f\[1] con address dei file
+
+
+ 
+
