@@ -503,5 +503,67 @@ I grafici a dispersione sono utilizzati per rappresentare la relazione tra due v
 
 ## Modelli statistici 
 
-Supponiamo che i dati $x=(x_1,\dots,x_n)$ provengano da una variabile casuale la cui distribuzione *dipende* da un parametro ignoto $\theta$
+Supponiamo che i dati $x=(x_1,\dots,x_n)$ provengano da una variabile casuale la cui distribuzione *dipende* ( si dice che *indicizza* un *modello statistico* ) da un parametro ignoto $\theta$ ( appatenente allo *spazio parametrico* $\Theta \subset \mathbb{R}^k$ , dove $k$ indica >[!todo] )
+
+Il *modello statistico* è : 
++ Nel caso *discreto* una classe di *funzione di probabilità* $Pr(x;\theta)$ 
++ Nel caso *continuo* una classe di *densità* $f(x;\theta)$
+
+>[!note]
+>Esistono modelli che hanno componenti sia discreti che continui
+### Metodo dei momenti
+
+Questo risulta esser il metodo più semplice per stimare il parametro ( $\theta$ ) di un modello statistico
+
+Costruiamo uno stimatore di $\theta$ confrontando : 
++ I *momenti di popolazione* :
+	+ I momenti teorici del modello statistico
++ I *momenti campionari* :
+	+ I momenti che caratterizzano i dati osservati ( le osservazioni )
+
+#### Momenti
+
+>[!important]
+>Un **momento** rappresenta una misura numerica che fornisce informazioni sulla forma e distribuzione di una variabile casuale
+
+>[!note]
+>$k$ rappresenta l'ordine del momento , per esempio la media e mediana hanno come ordine 1 , mentre la varianza ha ordine 2 
+>>[!todo]
+>>Understand
+>>#todo
+
+Il $k$-esimo *momento di popolazione* è : 
+$$\mu_k=E(X^k)$$
+Il $k$-esimo *momento campionario* è :
+$$M_k=\frac 1 n\sum_{i=1}^n X_i^k \quad (M_1 = \overline X\ )$$
+con *valore* osservato : 
+$$m_k=\frac 1 n \sum_{i=1}^n x_i^k \quad (m_1 = \overline x\ )$$
+
+>[!note]
+>+ $M_k$ è uno *stimatore* di $\mu_k$
+>+ $m_k$ è una *stima* di $\mu_k$
+
+#### Momenti centrali
+
+>[!important]
+>Il **momento centrale** rappresenta una misura numerica che fornisce informazioni sulla dipersione o forma di una distribuzione di probablità rispetto alla sua media
+
+Il $k$-esimo *momento centrale di popolazione* è :
+$$\mu_k' = E(X-\mu)^k$$
+Il $k$-esimo *momento centrale campionatorio* è : 
+$$M_k' = \frac 1n \sum_{i=1}^n(X_i-\overline X)^k$$
+>[!example]
+>Se abbiamo $k=2$ questo rappresenterà la varianza che però deve essere resa non distorta : 
+>$$M_2' = S^2(n-1)/n$$
+
+con *valore* osservato :
+$$m_k'=\frac 1 n \sum_{i=1}^n(x_i-\overline x)^k \quad (\ m_2' = s^2(n-1)/n\ )$$
+>[!note]
+>+ $M_k'$ è uno *stimatore* di $\mu_k'$
+>+ $m_k'$ è una *stima* di $\mu_k'$
+
+#### Metodo dei momenti
+
+
+### Metodo della massima verosimiglianza
 
