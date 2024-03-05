@@ -496,14 +496,17 @@ I grafici a dispersione sono utilizzati per rappresentare la relazione tra due v
 >+ Aumentare le dimensioni del punto a seconda del numero di occorrenze
 >+ Aggiungere più punti ( il numero di occorrenze ) vicino al punto originale distanziati da un errore randomizzato
 
->[!note]
+>[!todo]
 >jitter plot
-
+>#todo
 # Stima
 
 ## Modelli statistici 
 
-Supponiamo che i dati $x=(x_1,\dots,x_n)$ provengano da una variabile casuale la cui distribuzione *dipende* ( si dice che *indicizza* un *modello statistico* ) da un parametro ignoto $\theta$ ( appatenente allo *spazio parametrico* $\Theta \subset \mathbb{R}^k$ , dove $k$ indica >[!todo] )
+Supponiamo che i dati $x=(x_1,\dots,x_n)$ provengano da una variabile casuale la cui distribuzione *dipende* ( si dice che *indicizza* un *modello statistico* ) da un parametro ignoto $\theta$ ( appatenente allo *spazio parametrico* $\Theta \subset \mathbb{R}^k$ , dove $k$ indica ....................) 
+>[!todo]
+>Spiega + Understand 
+>#todo
 
 Il *modello statistico* è : 
 + Nel caso *discreto* una classe di *funzione di probabilità* $Pr(x;\theta)$ 
@@ -564,6 +567,18 @@ $$m_k'=\frac 1 n \sum_{i=1}^n(x_i-\overline x)^k \quad (\ m_2' = s^2(n-1)/n\ )$$
 
 #### Metodo dei momenti
 
+Per *stimare* il parametro $\theta$ si risolve il sistema di $k$ equazioni ottenuto uguagliando i $k$ mommenti di popolazione ai rispettivi $k$ momenti campionari
 
+>[!todo]
+>Understand
+>#todo
+
+$$\begin{cases} \mu_1(\theta) & = M_1 \\ \mu_2(\theta) & = M_2 \\ \dots \ & = \dots \\ \mu_k(\theta) & = M_k\end{cases}$$
+A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare alcuni momenti semplici con altri centrali se risulta conveniente
+
+>[!example]
+>>[!todo]
+>>Completa spiegazione + esempi
+>>#todo
 ### Metodo della massima verosimiglianza
 
