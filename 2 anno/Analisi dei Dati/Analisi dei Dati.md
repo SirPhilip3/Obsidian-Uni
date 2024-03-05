@@ -577,8 +577,29 @@ $$\begin{cases} \mu_1(\theta) & = M_1 \\ \mu_2(\theta) & = M_2 \\ \dots \ & = \d
 A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare alcuni momenti semplici con altri centrali se risulta conveniente
 
 >[!example]
->>[!todo]
->>Completa spiegazione + esempi
->>#todo
+>Osserviamo l'istogramma realizzato dai tempi di elaborazione della CPU
+>![[Pasted image 20240305204621.png]]
+>Possiamo osservare che rappresenta *approssimativamente* un funzione gamma : 
+>$$f(x; \alpha,\lambda)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha -1}e^{-\lambda x}, \quad x>0$$
+>Dove $\Gamma(.)$ è la funzione gamma
+>Il parametro $\theta = (\alpha , \lambda)$ dove  :
+>+ $\alpha>0$ è detto parametro di forma
+>+ $\lambda>0$ è detto parametro di frequenza 
+>Spazio parametrico : $\Theta \in \mathbb{R}_+ \times \mathbb{R}_+$ dove $\mathbb{R}_+$ sono numeri reali positivi
+>Notiamo che il parametro di forma $\alpha$ cambia di fatto la forma dellàcurva avremo infatti che : 
+>![[Pasted image 20240305205727.png]]
+>Svolgiamo quindi la stima dei parametri della funzione gamma attraverso il *metodo dei momenti* 
+>Dai dati abbiamo che : 
+>+ il valore atteso $m_1 = \overline X = 48.2333$
+>+ la varianza $m_2' = S^2=679.7122$ 
+>Possiamo ora scrivere le due equazioni :
+>$$\begin{cases}\mu_1 = E(X) = \alpha / \lambda = m_1 \\ \mu_2' = Var(X) = \alpha / \lambda^2 = m_2' \end{cases}$$
+>Utilizziamo il *secondo momento centrale* poichè sappiamo già l'espressione per la varianza di una variabile *Gamma*
+>Risolviamo il sistema in modo da trovare $\alpha$ e $\lambda$ 
+>$$\begin{cases} \frac{\alpha}{\lambda} = 48.2333 \\ \frac{\alpha}{\lambda^2} = 679.7122 \end{cases}$$
+>$$\begin{cases}\alpha = 3.4227 \\ \lambda = 0.0710 \end{cases}$$
 ### Metodo della massima verosimiglianza
 
+Lo stimatore di massima verosimiglianza è quel valore del parametro $\theta$ che massimizza la *funzione di verosimiglianza*
+
+La *funzione di verosimiglianza* è proporzionale $$ alla probabilità di osservare ciò che è stato effettivamente osservato 
