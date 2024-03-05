@@ -419,3 +419,49 @@ Implementiamo Mappe -> associa ad ogni chiave un valore , un array è una mappa 
 Single linked list 
 
 clear -> gc multishot perchè all'inizio tolgo reference al primo blocco e così via ( il gc passa ogni n secondi servirebbero l cicli della gc per completare  ) , nel jdk garbage collection oneshot mettendo tutti i next a null
+
+# 05/03/2024
+
+```java
+// ricerca dell'indice 
+// getter del node
+// meglio protected , eventuali sottoclassi di linked list che devono scorrere portebbero utilizzare getNode
+// ora la classe node sta meglio protected
+// anche head protected 
+// se voglio tenere protected faccio una serire di metodi per chi sta sotto per ottenere le informazioni (API)
+// se lascio private la head faccio un metodo getHead , setHead protected
+// ha senso fare API solo se libreria molto sofisticata
+private Node getNode(int i){
+
+	// 
+
+}
+
+public T get(int i){
+
+	return getNode(i).data; // non faccio binding con una variabile pochè latrimenti devo
+
+}
+
+public T set(int i, T x){
+
+	Node n = getNode(i);
+	T old = n.data;
+	n.data = x;
+	return old;
+
+}
+```
+
+Binding -> battezzare un dato dopo di che lo posso usare più volte se lo uso più volte allora lo dichiaro ( riuso dei dati )
+Bind usato una sola volta dal compiler viene tolto e trasformato inline
+
+size lasciamo private tanto c'è già sopra ( chiamata con dynamic dispatching )
+
+se voglio fare add in coda in una sottoclasse anche *sz* deve essere protected poichè questa dovrà cambiare la size 
+
+private non si usa quasi mai poichè blocca l'estensione di classi ( esseenzialmente blocca il principio base dell'ereditarietà ) , dovrebbe essere tutto protected di default ( linguaggi moderni la private diventa come la protected )
+
+Set -> sequenza ordinata senza doppioni non random accessible , non è garantito a compile time 
+Posso creare implementazioni differenti dei set , per non mettere duplicati potrei usare una contains , usando equals , equals però dipende dalla struttura dati utilizzata i set invece possono essere implementati con diverse strutture dati 
+
