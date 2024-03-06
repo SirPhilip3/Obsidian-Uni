@@ -643,4 +643,7 @@ $$l(\theta)=\log L(\theta)$$
 Questo viene fatto poichè fare la derivata ( per trovare il massimo ) delle somme è più facile di fare la derivata dei prodotti
 
 >[!note]
->Se massimizzassimo senza log i numeri potrebbero assumere valori molto piccoli e il computer che esegue i calcoli potrebbe andare in 
+>Se massimizzassimo senza log i numeri potrebbero assumere valori molto piccoli e il computer che esegue i calcoli potrebbe andare in underflow
+
+Nel caso *discreto* la *log-verosimiglianza* è : 
+$$l(\theta)=\sum_{i=1}^n \log Pr(X_i=x_i; \theta)$$

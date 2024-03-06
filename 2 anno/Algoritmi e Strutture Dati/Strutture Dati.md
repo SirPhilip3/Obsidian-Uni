@@ -3288,6 +3288,61 @@ Print_Cut_Rod(p, n)
 	La funzione è composta dalla chiamata a funzione che ritorna il vettore dei tagli e il ricavo ottimale ( $\Theta(n^2)$ ) più un ciclo `{c}while` che svolge $n$ iterazioni al massimo , avrà quindi complessità $O(n)$
 	La complessità totale sarà dunque : $T(n)=\Theta(n^2)+O(n)=\Theta(n^2)$
 
->[!todo]
->Example
->#todo
+>[!example]
+>Supponiamo di avere un'asta di lunghezza $7$ avente i seguenti array : 
+>
+>|        | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+| ------ | --- | --- | --- | --- | --- | --- | --- | --- |
+| `r[i]` | 0   | 1   | 5   | 8   | 10  | 13  | 17  | 18  |
+| `s[i]` | -   | 1   | 2   | 3   | 2   | 2   | 6   | 1   |
+>
+>Ora la prima volta avermo `s[7] = 1` che indicherà che taglia l'asta in posizione $1$ , sucessivamente alla 2 iterazione $n$ diventa $7-1=6$ e quindi selezioneremo `s[6] = 6` che indicherà che prendiamo l'intera parte restante dell'asta , usciremo quindi dal ciclo poichè $n==0$ 
+>La sequenza finale di taglio sarà quindi : $[1,6]$ che porta al ricavo di $18$
+#### Longest Common Subsequence ( LCS )
+
+Facciamo un esempio di trovare le *LCS* all'interno di una sequenza di DNA avente il seguente alfabeto : `{A, G, C, T}` 
+
+##### Edit Distance
+
+L'*edit distance* rappresenta il minimo numero di *modifiche* ( inserimento , cancellazione , inserimento , copia , scambio ) da apportare ad una stringa per renderla uguale ad un'altra stringa
+
+>[!example]
+>Prendiamo $S_1 = ACTACCTG$ e $S_2=ATCACC$ e calcoliamo la loro *edit distance* : 
+>+ Inseriamo una $C$ tra $A$ e $T$ in $S_2$
+>+ Eliminiamo la prima $C$ dopo la $T$ in $S_2$
+>+ Inseriamo una $T$ in coda a $S_2$
+>+ Inseriamo una $G$ in coda a $S_2$
+>L'*edit distance* risulta quindi essere 4
+
+##### LCS
+
+>[!note]
+>Una *sottostringa* è diversa da una *sottosequenza* , infatti la *sottostringa* è una sequenza di caratteri *consecutivi* mentere una *sottosequenza* è una sequenza ordinata di caratteri ( mi basta sapere che i loro indici siano strettamente maggiori non che siano consecutivi ( possono in pratica esserci buchi nella sequenza ) )
+
+Il problema del *Longest Common Subsequence* si pone il seguente problema : date due sequenze $X=x_i,\dots,x_m$ e $Y=y_1,\dots,y_n$ vogliamo trovare una sequenza $W$ tale che sia sottoseqeuenza di $X$ e $Y$ e che sia di *lunghezza massima* 
+
+>[!example] 
+> Proviamo a trovare $W$ tra le precedenti stringhe 
+> Notiamo che è possibile trovare 2 sottosequenze che soddifano la condizione di *LCS* : 
+> $$LCS(S_1,S_2)=\{ ATACC , ACACC \}$$
+> >[!note]
+> >La massima sottosequenza comune può non essere unica
+
+**Algoritmo Brute Force**
+
+L'algoritmo fa i seguenti passi : 
++ Genera tutte le sottosequenze di $X$
++ Verifico se è sottosequenza di $Y$
++ Mantengo la più lunga sottosequenza
+
+Può essere facilmente notato che visto che il numero di sottosequenze di $X$ risulta essere $2^m$ ( questo poichè dobbiamo pensare che ad ogni carattere dobbiamo decidere se includerlo o meno all'interno della sottosequenza ) allora l'algoritmo risulterebbe avere complessità $O(2^m)$ , molto *inefficente* 
+
+Controlliamo riusciamo a ridurci ad un problema risolvibile attraverso il metod
+
+
+
+
+
+
+
+
