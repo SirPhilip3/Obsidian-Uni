@@ -890,5 +890,20 @@ $ ./safe | grep io
 >La `{bash} |` fa in modo che l'output del programma che sta alla sua destra venga reindirizzato al comando sucessivo ( `{bash}grep` che filtra l'output precedente ) come input
 >>[!note] 
 >>In pratica si crea un canale di comunicazione *message passing* tra i due processi
+### Pipe
 
+La *pipe* sono la forma più antica di comunicazione tra processi *UNIX* 
 
+Una *pipe* costituisce una *porta* di comunicazione ( nominaizone indiretta ) con send asincrona e recieve sincrona 
+
+Esistono 2 tipi di *pipe* : 
++ Con nome : 
+	Queste hanno un nome nel filesystem ( in pratica sono dei file ) e costituiscono delle porte che tutti i processi possono utilizzare
++ Senza nome :
+	Sono utilizzabili sono da processi con antenati comuni in quanto sono una risorsa che viene ereditata dai parenti
+
+#### Pipe senza nome
+
+Le *pipe* senza nome sono generalmente utilizzate per combinare comandi *UNIX* nella shell tramite `|` questo crea 2 processi , ognuno per un comando , crea sucessivamente una pipe e direziona l'output del primo comando verso l'input del secondo programma 
+
+Per creare un *pipe* si utilizza la *system call* `{c} pipe(int filedes[2])` che restituisce in `filedes` 2 descrittori di file ( quelli di input e output )

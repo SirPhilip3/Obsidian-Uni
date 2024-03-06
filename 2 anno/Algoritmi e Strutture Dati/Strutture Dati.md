@@ -3319,7 +3319,7 @@ L'*edit distance* rappresenta il minimo numero di *modifiche* ( inserimento , ca
 >[!note]
 >Una *sottostringa* è diversa da una *sottosequenza* , infatti la *sottostringa* è una sequenza di caratteri *consecutivi* mentere una *sottosequenza* è una sequenza ordinata di caratteri ( mi basta sapere che i loro indici siano strettamente maggiori non che siano consecutivi ( possono in pratica esserci buchi nella sequenza ) )
 
-Il problema del *Longest Common Subsequence* si pone il seguente problema : date due sequenze $X=x_i,\dots,x_m$ e $Y=y_1,\dots,y_n$ vogliamo trovare una sequenza $W$ tale che sia sottoseqeuenza di $X$ e $Y$ e che sia di *lunghezza massima* 
+Il problema del *Longest Common Subsequence* si pone il seguente problema : date due sequenze $X=x_1,\dots,x_m$ e $Y=y_1,\dots,y_n$ vogliamo trovare una sequenza $W$ tale che sia sottoseqeuenza di $X$ e $Y$ e che sia di *lunghezza massima* 
 
 >[!example] 
 > Proviamo a trovare $W$ tra le precedenti stringhe 
@@ -3337,9 +3337,32 @@ L'algoritmo fa i seguenti passi :
 
 Può essere facilmente notato che visto che il numero di sottosequenze di $X$ risulta essere $2^m$ ( questo poichè dobbiamo pensare che ad ogni carattere dobbiamo decidere se includerlo o meno all'interno della sottosequenza ) allora l'algoritmo risulterebbe avere complessità $O(2^m)$ , molto *inefficente* 
 
-Controlliamo riusciamo a ridurci ad un problema risolvibile attraverso il metod
+Controlliamo riusciamo a ridurci ad un problema risolvibile attraverso la *programmazione dinamica*
+###### Definiamo la Sottostruttura Ottima
 
+Dato $X=x_1,\dots,x_m$ consideriamo $k\le m$  con $x^k$ rappresentante il prefisso ( i primi $k$ caratteri di $X$ ) di lunghezza $k$ di $X$
 
+>[!note]
+>Per una seqeunza di $m$ caratteri avermo che il numero massimo di prefissi sarà $m+1$ ( $+1$ poichè dobbiamo includere anche la sequenza vuota )
+>>[!example]
+>>Per $X=ACG$ avremo i seguenti *prefissi* : $X^0=\epsilon$ , $X^1=A$ , $X^2=AC$ , $X^3=ACG$
+
+In genare avendo $X=x_1,\dots,x_m$ e $X=y_1,\dots,y_n$ se possiamo ridurre il problema della $LCS(X,Y)$ al problema dei suoi prefissi allora avremo che la complessità diventa $O(m\cdot n)$ , ossia polinomiale ( come richiesto per l'utilizzo della *programmazione dinamica* ) , questa complessità deriva dal fatto che .....
+>[!todo]
+>Finisci / trova soluzione
+>#todo
+
+>[!important] Teorema *Struttura Ottima per LCS*
+>Siano $X=x_1,\dots,x_m$ e $Y=y_1,\dots,y_n$ due sequenze e sia $W=w_1,\dots,w_k \in LCS(X,Y)$ Allora : 
+>1. Se $x_m=y_n$ ( gli ultimi elementi sono uguali ) allora $w_k=x_m=y_n$ e $W^{k-1}\in LCS(X^{m-1},Y^{n-1})$ ( in pratica se l'ultimo carattere di $X$ e $Y$ sono uguali allora questo carattere farà parte dell'$LCS$ e il penultimo carattere sarà dato da trovare l'$LCS$ nelle restanti parti delle due sequenze iniziali )
+>2. Se $x_m\neq y_n$ avremo 2 casi : 
+>	2a. Se $w_k\neq x_m$ allora $W \in LCS(X^{m-1},Y)$
+>	2b. Se $w_k\neq y_n$ allora $W \in LCS(X,Y^{n-1})$
+
+>[!important] *Dimostrazione* per assurdo
+>
+
+ 
 
 
 
