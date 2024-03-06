@@ -994,3 +994,130 @@ int main(int argc, char * argv[])
 }
 ```
 
+Per fare in modo che l'input provenga dal primo comando e l'output del secondo venga scritto sullo `stdout` dobbiamo ridirezionare lo stream , per fare questo usiamo la chiamata di sistema `dup2(fd[1],1)` questo fa sì che il descrittore dello `stdout` ( 1 ) sia quello che viene puntato da `fd[1]` ( in pratica diventano interscambiabili ) , in questo modo tutto ciò che mandiamo allo standard output verrà mandato alla *pipe* , dopo il ridirezionamento possiamo chiudere il descrittore della *pipe* in quanto non verrà più utilizzato
+
+Alla fine i descrittore dello standard output e standard input vengono chiusi da `execlp`
+
+##### Atomicità
+
+Le scritture sulle *pipe* sono atomiche ( ossia vengono eseguite in un unico blocco ) se inferiori alla dimensione di `PIPE_BUF` ( `limits.h` ) ossia 4096 bytes 
+Sopra questa dimensione l'atomicità non è garantita , sopra tale dimensione se più processi scrivono contemporaneamente non è detto che i byte in scittura non si mischino tra loro
+
+>[!todo]
+>inserisci example
+>#todo
+
+#### Pipe con nome
+
+Queste *pipe* vengono costruite con il comando `mkfifo` 
+
+>[!example]
+>`{bash}mkfifo myPipe`
+>`{bash}prw-rw-r--    1 focardi  focardi     0 mag 23 00:57 myPipe`
+
+Da questo momento la *pipe* è presente nel filesystem è qualsiasi processo con i diritti per accedere al file può utilizzarla
+
+>[!note]
+>La *open* è boccante in lettura finchè qualche altro processo non la apre in scrittura 
+
+>[!example]
+>Creiamo un processo *lettore* ( il destinatario ) che accetta , su una *pipe con nome* , messsaggi provenienti da più processi *scrittori* ( i mittenti ) che mandano 3 messaggi e poi terminano .
+>Quando tutti gli scrittori chiudono la *pipe* il lettore ottiene 0 come valore di ritorno della `read` ed esce
+
+**Lettore**
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+
+#define PNAME "/tmp/aPipe"
+int main() {
+    int fd;
+    char leggi;
+    
+    mkfifo(PNAME,0666); // crea la pipe con nome, se esiste gia' non fa nulla
+
+    fd = open(PNAME,O_RDONLY); // apre la pipe in lettura
+    if ( fd < 0 ) { 
+        perror("errore apertura pipe"); 
+        exit(1);
+    }
+    
+    while (read(fd,&leggi,1)) { // legge un carattere alla volta fino a EOF
+        if (leggi == '\0'){
+            printf("\n"); // a capo dopo ogni stringa
+        } else {
+            printf("%c",leggi);
+        }
+    }
+
+    close(fd);          // chiude il descrittore
+    unlink(PNAME);      // rimuove la pipe
+
+    return 0;
+}
+```
+
+
+**Scrittore**
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <stdlib.h>
+#define PNAME "/tmp/aPipe"
+int main() {
+    int fd, i, lunghezza;
+    char *message;
+    mkfifo(PNAME,0666); // crea la pipe con nome, se esiste gia' non fa nulla
+    // crea la stringa
+    lunghezza = snprintf(NULL,0,"Saluti dal processo %d",getpid()); // trovo la lunghezza della stringa
+    message = malloc(lunghezza+1); // allocco spazio necessario
+    snprintf(message,lunghezza+1,"Saluti dal processo %d",getpid()); // metto la stringa nell'array + 0x00 
+    fd = open(PNAME,O_WRONLY); // apre la pipe in scrittura
+    if ( fd < 0 ) {    
+        perror("errore apertura pipe"); exit(1);
+    }
+    for (i=1; i<=3; i++){     // scrive tre volte la stringa
+        write (fd,message,strlen(message)+1); // include terminatore
+        sleep(2);
+    }
+    close(fd);    // chiude il descrittore
+    free(message);
+    return 0;
+}
+```
+
+Ora lanciamo ( con `&` per mandarli in esecuzione in parallelo in background ) i processi : 
+```bash
+$ ./lettore & ./scrittore & ./scrittore & ./scrittore
+ [1] 46998 -> lettore
+ [2] 46999 -> scrittore1 
+ [3] 47000 -> scrittore2
+ Saluti dal processo 47000
+ Saluti dal processo 46999
+ Saluti dal processo 47001 ->scrittore3
+ Saluti dal processo 47000
+ Saluti dal processo 47001
+ Saluti dal processo 46999
+ Saluti dal processo 47000
+ Saluti dal processo 46999
+ Saluti dal processo 47001
+ [1]   Done                    ./lettore
+ [2]-  Exit 255                ./scrittore
+ [3]+  Exit 255                ./scrittore
+```
+
+>[!note]
+>Il *lettore* legge un byte alla volta , non ho nessuna garanzia che ogni lettore legga completamente il messaggio , si possono mischiare dei byte
+
+>[!warning]
+>Le *pipe* possono essere aperte sia in lettura che scrittura con l'opzione `O_RDRW` , questo però ci porterebbe a leggere noi stessi .
+>Es nello stesso processo scrivo e poi leggo  
+>Questa modalità è utilizzata solamente per fare in modo di aprire *pipe* in scrittura quando nessuno l'ha ancora aperta in lettura 
