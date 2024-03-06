@@ -906,4 +906,91 @@ Esistono 2 tipi di *pipe* :
 
 Le *pipe* senza nome sono generalmente utilizzate per combinare comandi *UNIX* nella shell tramite `|` questo crea 2 processi , ognuno per un comando , crea sucessivamente una pipe e direziona l'output del primo comando verso l'input del secondo programma 
 
-Per creare un *pipe* si utilizza la *system call* `{c} pipe(int filedes[2])` che restituisce in `filedes` 2 descrittori di file ( quelli di input e output )
+Per creare un *pipe* si utilizza la *system call* `{c} pipe(int filedes[2])` che restituisce in `filedes` 2 descrittori di file ( quelli di input e output ) : 
++ `filedes[0]` : file per la scrittura
++ `filedes[1]` : file per la lettura
+
+>[!note]
+>Le *pipe* sono *half-duplex* ( monodirezionali )
+
+Per il resto la *pipe* si utilizza come un normale file
+
+>[!example]
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+int main() {
+	int fd[2]; /* Array che conterrà i descrittori di file */
+ 
+	pipe(fd); /* crea la pipe , ora in fd[0] e fd[1] ci saranno i descrittori per i file di input e output */
+	if (fork() == 0) {
+		char *phrase = "prova a inviare questo!";
+
+		close(fd[0]);                         /* chiude in lettura */
+	    write(fd[1],phrase,strlen(phrase)+1); /* invia anche 0x00 */
+	    close(fd[1]);                         /* chiude in scrittura */
+	} else {
+		char message[100];
+	    memset(message,0,100);
+	    int bytesread;
+ 
+	    close(fd[1]);                         /* chiude in scrittura */
+	    bytesread = read(fd[0],message,99);
+	    printf("ho letto dalla pipe %d bytes: '%s' \n",bytesread,message);
+		close(fd[0]);                         /* chiude in lettura */
+	}
+}
+```
+
+**Spiegazione** : 
++ Linee 7,8 : 
+	Viene creata una *pipe* e subito dopo un nuovo processo 
++ La *pipe* viene ereditata dai figli e quindi entrambi i processi dopo la fork condividono la pipe 
++ Linea 12 :
+	Il processo figlio invia una stringa , incluso il terminatore `0x00` , questo per fare in modo che quando leggiamo dal file si capisca dove dobbiammo finire di leggere
++ Linea 20 :
+	Il processo genitore legge il file 
++ Linee 11 , 19 : 
+	Prima di scrivere o leggere chiudiamo il descrittore del file complementare a quello che deve usare quel processo ( se dobbiamo scrivere chiuderemo quello per leggere e viceversa ) , questo per fare in modo che il sistema operativo non mantenghi in memoria risorse non utilizzate , infatti quando facciamo una `fork()` copiamo i dati e quindi anche l'array contenente i due descrittori di file , il sistema libera tutte le risorse quando tutti i descrittori di file sono stati chiusi  , per questo se non chiudiamo i descrittori che non utilizziamo alla fine dell'esecuzione risulterà che avremo 2 descrittori ancora aperti e il sistema operativo non libererà le risorse
+
+##### Invio e ricezione su una *pipe* "chiusa"
+
++ Cosa accade se si fa una *read* da una *pipe* che è vuota ed è stata chiusa in scrittura ( non ci sono più dati nel buffer e non ci sono più scrittori sulla *pipe* ) :
+	La *read* ritorna 0 , è come se avesse incontrato un *end-of-file* ( *EOF* )
++ Cosa accade se si fa una *write* su una *pipe* che è stata chiusa in lettura ( non ci sono più *lettori* sulla pipe ) : 
+	Viene generato il segnale `SIGPIPE` che di default termina il processo ( questo poichè altrimenti scriverei in un posto in cui nessuno leggerebbe , in pratica "butterei" via byte di memoria ) . Se lo si ignora o si gestisce il segnale la *write* ritorna un errore ( `errno` viene settato a `EPIPE` )
+
+>[!note]
+> Per questo è molto importante chiudere le una risorsa non utilizzata 
+> Se il processo che legge solamente non chiude in scrittura il file , tale processo non riceverà l'*EOF* nel caso l'altro processo chiuda la pipe in scrittura , infatti esiste ancora un processo scrittore attivo e il sistema tiene aperta la pipe . 
+> Lo stesso accade con `SIGPIPE` se il processo che scrive solamente non chiude la *pipe* in lettura 
+
+>[!example] *Pipe* della shell
+>Replichiamo in modo semplificato il funzionamento della *pipe* della shell
+```c
+#include <stdio.h>
+#include <unistd.h>
+int main(int argc, char * argv[])
+{
+  int fd[2], bytesread;
+ 
+  pipe(fd);
+  if (fork() == 0)  {
+    close(fd[0]);       /* chiude in lettura */
+    dup2(fd[1],1);      /* fa si che 1 (stdout) sia una copia di fd[1] */
+                        /* da qui in poi l'output va sulla pipe */
+    close(fd[1]);       /* chiude il descrittore fd[1] */
+    execlp(argv[1],argv[1],NULL);   /* esegue il comando */
+    perror("errore esecuzione primo comando");
+  } else {
+    close(fd[1]);       /* chiude in scrittura */
+    dup2(fd[0],0);      /* fa si che 0 (stdin) sia una copia di fd[0] */
+                        /* da qui in poi l'input proviene dalla pipe */
+    close(fd[0]);       /* chiude il descrittore fd[0] */
+    execlp(argv[2],argv[2],NULL);   /* esegue il comando */
+    perror("errore esecuzione secondo comando");
+  }
+}
+```
+
