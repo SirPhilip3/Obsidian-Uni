@@ -609,3 +609,38 @@ $$L(\theta) \propto Pr(X_1=x_1,\dots,X_n=x_n;\theta)$$
 Che per un campione casuale semplice diventa : 
 $$L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)$$
 >[!example]
+>Una software house dichiara che l'accuratezza del riconoscimento facciale è dell'80% 
+>Un blogger afferma dichiara che l'accuratezza è invece 70% 
+>In un esperimento su 15 volti 11 vengono riconosciuti correttamente 
+>
+> Indichiamo con $\theta$ la "vera" proporzione di fotografie in cui si riconosce correttamente il volto
+> 1. Individuiamo un modello statistico che potrebbe generare questo tipo di dati 
+> 	In questo caso sembra essere il *binomiale* perchè ad ogni tentativo ci sono 2 possibili risultati : riconoscimento corretto o no ( possiamo rappresentarlo come estraiamo o no )
+> 2. La *verosimiglianza* per $\theta$ è quindi *proporzionale* alla probabilità di osservare 11 successi su 15 prove in un modello binomiale con probabilità di successo $\theta$ :
+> $$L(\theta)= \binom {15} {11} \theta^{11} (1-\theta)^4$$
+> 
+> Supponiamo che abbia ragione la software house allora avremo $\theta=0.8$ e potremmo quindi calcolare la verosimiglianza nel seguente modo : 
+> $$L(0.8) = \binom{15}{11}0.8^{11}0.2^4 = 0.19$$
+> ![[Pasted image 20240306124547.png]]
+> Supponiamo che abbia ragione il blogger allora avremo $\theta=0.7$ e potremmo quindi calcolare la verosimiglianza nel seguente modo : 
+> $$L(0.7) = \binom{15}{11}0.7^{11}0.3^4 = 0.22$$
+> ![[Pasted image 20240306124557.png]]
+>Ora essendo che la verosimiglianza calcolata per il blogger è maggore di quella per la software house il *nostro* esperimento si accorda maggiormente con quello del blogger 
+>Possiamo inoltre calcolare il rapporto con il quale preferiamo il valore del blogger nel seguente modo : 
+>$$\frac{L(0.7)}{L(0.8)}=\frac{\binom{15}{11}0.7^{11}0.3^4 }{ \binom{15}{11}0.8^{11}0.2^4}= 1.17$$
+>Ciò ci porta ad affermare che alla luce del nostro esperimento il valore di $\theta$ del blogger è più verosimile per il $17\%$
+>>[!note]
+>>I fattori binomiali possono essere eliminati , possiamo quindi rimuovere i termini costanti dal calcolo della verosimiglianza
+>>$$L(\theta)=\theta^{11}(1-\theta)^4$$ 
+
+#### Log.verosimiglianza
+
+La *log-verosimiglianza* è definita come : 
+$$l(\theta)=\log L(\theta)$$
+>[!note]
+>Siccome $\log$ è una funzione crescente massimizzare $L(\theta)$ o $l(\theta)$ è equivalente 
+
+Questo viene fatto poichè fare la derivata ( per trovare il massimo ) delle somme è più facile di fare la derivata dei prodotti
+
+>[!note]
+>Se massimizzassimo senza log i numeri potrebbero assumere valori molto piccoli e il computer che esegue i calcoli potrebbe andare in 
