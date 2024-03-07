@@ -774,5 +774,51 @@ Un tipo di *forma normale* è quella così detta *BCNF*
 >
 >Dato che $\{Magazzino\}_F^+ = \{Magazzino,Indirizzo\}$ , il quale insieme non è superchiave abbiamo che lo schema *non* è *BCNF*
 
+##### Dipendenze Anomale
+
+Una dipendenza che *viola* *BCNF* è detta **Anomala** 
+
+>[!example]
+>
+| Articolo | Magazzino | Quantità | Indirizzo       |
+| -------- | --------- | -------- | --------------- |
+| Flauto   | Roma      | 10       | Via Cavour, 7   |
+| Oboe     | Roma      | 5        | Via Cavour, 7   |
+| Arpa     | Torino    | 1        | Via Mazzini, 11 |
+>
+>Come possiamo notare lo schema *mescola* informazioni relative ai magazzini con altre *indipendenti* relative agli articoli 
+>Inoltre lo schema è scarsamente espressivo poichè se un magazzino non ha alcun articolo all'interno allora questo è come se non esistesse
+
+Per risolvere le anomalie si trasformano questi schemi in schemi "normali" ( *BCNF* , *3NF* , etc... )
+
+##### Conversione in BCNF
+
+L'algoritmo di conversione in *BCNF* è anche detto algoritmo di *analisi* poichè decompone lo schema originale fino a normalizzazione
+
+Sia $R(T,F)$ lo schema di partenza : 
+1. Se $R(T,F)$ è già *BCNF* ritorna $R(T,F)$
+2. Seleziona $X\to Y\in F$ che viola *BCNF* . Calcola gli insiemi di attriibuti $T_1 = X_F^+$ e $T_2=X \cup (T-T_1)$
+3. Calcola le *proiezioni* $F_1=\pi_{T_1}(F)$ e $F_2=\pi_{T_2}(F)$ 
+4. Decomponi ricorsivamente $R_1(T_1,F_1)$ e $R_2(T_2,F_2)$ in $p_1$ e $p_2$
+5. Ritorna l'unione $p_1 \cup p_2$
+
+>[!example]
+>Si consideri $Telefoni(\{ Prefisso  , Numero , Località \}, F)$ con $F=\{ Prefisso , Numero \to Località , Località \to Prefisso \}$
+>
+>La dipendenza $Località \to Prefisso$ viola *BCNF* dato che :
+>$$\{Località\}_F^+ = \{ Località ,Prefisso \}$$
+>Applicando l'algoritmo di converssione in *BCNF*
+
+
+
+
+
+
+
+
+>[!todo]
+>Fino alla limitazione dei vincoli slide 27
+
+
 
 

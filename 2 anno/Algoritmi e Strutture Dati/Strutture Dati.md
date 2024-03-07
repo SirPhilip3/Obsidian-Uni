@@ -3361,10 +3361,12 @@ In genare avendo $X=x_1,\dots,x_m$ e $X=y_1,\dots,y_n$ se possiamo ridurre il pr
 
 >[!important] *Dimostrazione* per assurdo
 >
+###### Soluzione ricorsiva per il valore della soluzione 
 
-###### Soluzione ricorsiva per il valore della soluzione  
-
-
+Dati $X = x_1, \dots ,x_m$ e $Y=y_1,\dots,y_n$ indichiamo con $c[i,j]$ la lunghezza delle sottosequenze appartenenti a $LCS(X^i, Y^j)$ con $0\le i \le m$ e $0\le j \le n$ 
+$$c[i,j] = \begin{cases} 0 & \text{se} \ i=0\ \text{o} \ j=0 
+\\ c[i -1, j-1] +1 & \text{se} \ i,j > 0 \ \text{e} \ x_i = y_j \\ max\{\  c[i-1,j]\ ,\ c[i,j-1] \} & \text{se} \ i,j>0 \ \text{e} \ x_i\neq y_j \end{cases} 
+$$
 
 
 
