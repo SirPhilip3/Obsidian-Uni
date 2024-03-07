@@ -3362,7 +3362,7 @@ In genare avendo $X=x_1,\dots,x_m$ e $X=y_1,\dots,y_n$ se possiamo ridurre il pr
 >[!important] *Dimostrazione* per assurdo
 >
 
- 
+###### Soluzione ricorsiva per il valore della soluzione  
 
 
 

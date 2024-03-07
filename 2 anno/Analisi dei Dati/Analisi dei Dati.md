@@ -659,5 +659,31 @@ $$Pr(x-h < X < x+h) = \int_{x-h}^{x+h} f(x; \theta) dx \approx 2h\cdot f(x; \the
 
 Nel caso continuo il metodo della massima verosimiglianza massimizza la probabilità di osservare dei valori *vicini* a ciò che è stato effettivamente osservato
 $$L(\theta)\propto f(x_1, \dots, x_n; \theta)$$
-Nel caso di un campione casuale ( *i.i.d.* ) abbiamo : 
-$$L(\theta)\propto \prod_{i=1}$$
+Nel caso di un campione casuale ( *i.i.d.* ) abbiamo ( il $2h$ può essere tolto poichè costante ) : 
+$$L(\theta)\propto \prod_{i=1}^n f(x_i; \theta)$$ 
+La corrispondente *log-verosimiglianza* è ( a meno di termini costanti che vengono eliminati ) ( il $2h$ può essere tolto poichè costante ) : 
+$$l(\theta) = \sum_{i=1}^n \log f(x_i; \theta)$$
+>[!example]
+>9.8 baron
+
+#### Problemi regolari di stima 
+
+Lo stimatore di *massima verosimiglianza* gode di proprietà che valgono solo sotto delle *oppurtune assunzioni di regolarità* 
+
+Una di queste assunzioni di regolarità è che stiamo lavorando con un *problema di stima regolare* 
+
+Possiamo verificare che siamo in un problema di stima regolare se il *supporto* delle variabili casuali non dipenda dal parametro del modello 
+Le altre assunzioni richiedono che la funzione di probabilità ( caso discreto ) o di densità ( caso continuo ) del modello sia *sufficente regolare* , in particolare la funzione di probabilità o densità deve essere continua e derivabile per almeno 3 volte ( fino all'ordine 3 ) ( questo perchè necessitieremo di calcolare lo sviluppo di Taylor fino all'ordine 3 )
+
+>[!example]
+>Esempi di *problemi regolari di stima* sono stimare :
+>+ I parametri $\mu$ e $\sigma^2$ di una variabile casuale *Normale*
+>+ Il parametro $\lambda$ di una variabile casuale di *Poisson*
+>+ Il parametro $p$ di una variabile casuale *Binomiale*
+>
+>Un esempio di *problema non regolare di stima* :
+>	Stimare il parametro $\theta$ di una variabile uniforme nell'intervallo $[\ 0,\theta\ ]$ , ossia dipende dal parametro stesso
+
+##### Esempio di problema regolare di stima
+
+##### Esempio di problema non regolare di stima
