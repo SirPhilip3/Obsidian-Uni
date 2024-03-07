@@ -647,3 +647,17 @@ Questo viene fatto poichè fare la derivata ( per trovare il massimo ) delle som
 
 Nel caso *discreto* la *log-verosimiglianza* è : 
 $$l(\theta)=\sum_{i=1}^n \log Pr(X_i=x_i; \theta)$$
+>[!example]
+>9.7 baron
+
+#### Il caso continuo
+
+Nel caso continuo la probabilità di osservare esattamente un certo valore $x$ è $Pr(X=x)=0$ 
+Dobbiamo quindi trovare la probabilità per un valore piccolo di $h$ : 
+$$Pr(x-h < X < x+h) = \int_{x-h}^{x+h} f(x; \theta) dx \approx 2h\cdot f(x; \theta)$$
+![[Pasted image 20240307140449.png]]
+
+Nel caso continuo il metodo della massima verosimiglianza massimizza la probabilità di osservare dei valori *vicini* a ciò che è stato effettivamente osservato
+$$L(\theta)\propto f(x_1, \dots, x_n; \theta)$$
+Nel caso di un campione casuale ( *i.i.d.* ) abbiamo : 
+$$L(\theta)\propto \prod_{i=1}$$
