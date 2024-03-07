@@ -480,3 +480,20 @@ se non metto campi classi astratte == interfaccia
 potrei fare classe astratta superclasse di list
 
 abstract class tutto protected
+
+incapsulamento -> invece di ereditare faccio le stub sul mio dato
+
+*naming* di classi etcc -> quello che fa , abstractcollection è una arraylist senza qualcosa , arraylist contiene parola list anche se ci fermiano a implementare collection , 
+Abstract -> va lasciata prima del nome 
+
+array che possono cambiare dimensione ad un array -> resizable array 
+possiamo togliere nome dell'interfaccia che implemento perchè viene fuori dalla documentazione
+
+confronto hash -> confronto elementi tra hash
+
+hash code -> hash dei campi e fare xor ( somma lo renderebbe commutativo )
+
+abstract set che ha tutte le cose che hanno i set -> tipo add etcc 
+
+super non può essere usato dentro una interfaccia 
+abstract in pratica condensano servizi comuni di classi più in basso 
