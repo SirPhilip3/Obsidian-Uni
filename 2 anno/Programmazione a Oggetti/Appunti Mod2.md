@@ -465,4 +465,18 @@ private non si usa quasi mai poichè blocca l'estensione di classi ( esseenzialm
 Set -> sequenza ordinata senza doppioni non random accessible , non è garantito a compile time 
 Posso creare implementazioni differenti dei set , per non mettere duplicati potrei usare una contains , usando equals , equals però dipende dalla struttura dati utilizzata i set invece possono essere implementati con diverse strutture dati 
 
-stub sono wrapper piccoli ossia che chiamano solo una funzione o ritornano un dato etcc
+*stub* sono wrapper piccoli ossia che chiamano solo una funzione o ritornano un dato etcc
+
+# 07/03/2024
+
+*stub* -> wrapper molto semplice -> chimare altra funzione 
+quando eredito -> stub automatiche 
+
+se devo togliere qualcosa dovrei ristrutturare il tutto con classi astratte 
+, una classe astratta può avere metodi implementati , può avere campi , interfacce non hanno campi nè implementazione ( apparte metodi default )
+
+se non metto campi classi astratte == interfaccia
+
+potrei fare classe astratta superclasse di list
+
+abstract class tutto protected
