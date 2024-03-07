@@ -797,7 +797,7 @@ L'algoritmo di conversione in *BCNF* è anche detto algoritmo di *analisi* poich
 
 Sia $R(T,F)$ lo schema di partenza : 
 1. Se $R(T,F)$ è già *BCNF* ritorna $R(T,F)$
-2. Seleziona $X\to Y\in F$ che viola *BCNF* . Calcola gli insiemi di attriibuti $T_1 = X_F^+$ e $T_2=X \cup (T-T_1)$
+2. Seleziona $X\to Y\in F$ che *viola* *BCNF* . Calcola gli insiemi di attributi $T_1 = X_F^+$ e $T_2=X \cup (T-T_1)$
 3. Calcola le *proiezioni* $F_1=\pi_{T_1}(F)$ e $F_2=\pi_{T_2}(F)$ 
 4. Decomponi ricorsivamente $R_1(T_1,F_1)$ e $R_2(T_2,F_2)$ in $p_1$ e $p_2$
 5. Ritorna l'unione $p_1 \cup p_2$
@@ -807,11 +807,56 @@ Sia $R(T,F)$ lo schema di partenza :
 >
 >La dipendenza $Località \to Prefisso$ viola *BCNF* dato che :
 >$$\{Località\}_F^+ = \{ Località ,Prefisso \}$$
->Applicando l'algoritmo di converssione in *BCNF*
+>Applicando l'algoritmo di conversione in *BCNF* abbiamo : 
+>+ $R_1(\{ Località , Prefisso \}, F_1)$ 
+>+ $R_2(\{ Località , Numero \}, F_2)$ 
+>con $F_1$ e $F_2$ da calcolare per proiezione 
+>
+>Calcoliamo $F_1$ su $R_1$ : 
+>+ $\{ Località \}_F^+=\{Località ,Prefisso\}$ da cui $Località \to Prefisso \in F_1$
+>+ $\{ Prefisso \}_F^+ = \{ Prefisso \}$ da cui nessuna nuova dipendenza
+>Calcoliamo $F_2$ su $R_2$ : 
+>+ $\{ Località \}_F^+=\{Località ,Prefisso\}$ da cui nessuna nuova dipendenza
+>+ $\{ Prefisso \}_F^+ = \{ Prefisso \}$ da cui nessuna nuova dipendenza
+>
+>Abbiamo quindi $F_1 = \{Località \to Prefisso\}$ e $F_2 = \emptyset$
+>
+>Abbiamo quindi decomposto in : 
+>+ $R_1(\{ Località , Prefisso \}, \{ Località \to Prefisso \})$
+>+ $R_2(\{ Località , Numero \}, \emptyset)$
+>>[!warning]
+>>Entrambi gli schemi sono in *BCNF* ma è andata perduta la dipendenza funzionale $Prefisso , Numero \to  Località$
+
+##### Correttezza della conversione in *BCNF*
+
+L'algoritmo di conversione in *BCNF* termina quando non ci sono più dipendenze anomale. 
+Per garantire che questo avvenga dimostriamo che tutti gli schemi con *solo due attribut* sono in *BCNF* 
+
+Consideriamo $R(\{ A,B \} , F)$ e sia $X\to Y \in F$ , dimostriamo che in nessun caso si viola la *BCNF* : 
+1. Se $X=\{A\}$ ho 2 casi : 
+	1. Se $B \notin Y$ allora $Y \subseteq X$ e la dipendenza è banale
+	2. Se $B \in Y$ allora $X$ è una superchiave
+2. Se $X=\{B\}$ il caso è simmetrico al precedente
+3. Se $X=\{A,B\}$ allora $Y \subseteq X$ e la dipendenza è banale 
+ 
+##### La conversione in *BCNF* preserva i dati
+
+>[!todo]
+>Scrivi dimostrazione
+>#todo
+
+##### Proprietà di *BCNF*
 
 
+| Pregi                                                       | Difetti                                                                                                                                                                                                                                             |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| *BCNF* garantisce l'assenza di anomalie                     | L'algoritmo di conversione in *BCNF* ha costo *esponenziale* perchè richiede di calcolare le proiezioni delle dipendenze ( alcuni algoritmi lo fanno con costo polinomiale ma non vengono usati perchè producono schemi eccessivamente decomposti ) |
+| L'algoritmo di conversione in *BCNF* preserva i dati        | L'algoritmo di conversione in *BCNF* non preserva le dipendenze nel caso generale                                                                                                                                                                   |
+| Verifichiamo se uno schema è in *BCNF* ha costo polinomiale | ---                                                                                                                                                                                                                                                 |
+#### Terza Forma Normale ( 3NF )
 
-
+>[!important] Definizione *3NF*
+>Uno schema d relazione $R(T,F)$ è in *3NF* se e solo se per ogni dipendenza funzionale $X \to Y \in F^+$ tale che $Y \nsubseteq X$ si ha che $X$ è una superchiave oppure tutti gli attributi di $Y-X$ sono primi
 
 
 
