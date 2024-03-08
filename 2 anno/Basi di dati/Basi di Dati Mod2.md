@@ -830,7 +830,7 @@ Sia $R(T,F)$ lo schema di partenza :
 ##### Correttezza della conversione in *BCNF*
 
 L'algoritmo di conversione in *BCNF* termina quando non ci sono più dipendenze anomale. 
-Per garantire che questo avvenga dimostriamo che tutti gli schemi con *solo due attribut* sono in *BCNF* 
+Per garantire che questo avvenga dimostriamo che tutti gli schemi con *solo due attributi* sono in *BCNF* 
 
 Consideriamo $R(\{ A,B \} , F)$ e sia $X\to Y \in F$ , dimostriamo che in nessun caso si viola la *BCNF* : 
 1. Se $X=\{A\}$ ho 2 casi : 
@@ -858,7 +858,32 @@ Consideriamo $R(\{ A,B \} , F)$ e sia $X\to Y \in F$ , dimostriamo che in nessun
 >[!important] Definizione *3NF*
 >Uno schema d relazione $R(T,F)$ è in *3NF* se e solo se per ogni dipendenza funzionale $X \to Y \in F^+$ tale che $Y \nsubseteq X$ si ha che $X$ è una superchiave oppure tutti gli attributi di $Y-X$ sono primi
 
+Possiamo dimostrare che la definizione precedente è valida anche con $F$ invece di $F^+$
 
+La verifica se uno schema è *3NF* ha comunque costo *esponenziale* poichè per il calcolo degli attributi primi richiediamo di trovare tutte le chiavi
+
+>[!note]
+>Per definizione ogni schema in *BCNF* è anche in *3NF* ma non viceversa
+
+>[!example]
+>Si consideri $Telefoni(\{ Prefisso  , Numero , Località \}, F)$ con $F=\{ Prefisso , Numero \to Località , Località \to Prefisso \}$
+>
+>Calcoliamo le chiavi osservando che $Numero$ deve fare parte di tutte le chiavi , poichè non è mai a destra 
+>Quindi : 
+>+ $\{Numero\}_F^+$ = $Numero$
+>+ $\{Numero,Prefisso\}_F^+ = \{ Numero,Prefisso,Località \}$
+>+ $\{Numero,Località\}_F^+ = \{ Numero,Loaclità,Prefisso \}$ 
+>
+>Visto che $\{Numero , Prefisso\}$ e $\{Numero , Località\}$ sono chiavi si ha che ogni attributo è primo e quindi siamo in *3NF* 
+
+##### Conversione in *3NF*
+
+Sia $R(T,F)$ lo schema di partenza : 
+1. Costruisci $G$ una *copertura canonica* di $F$
+2. Sostituisci in $G$ ciascun insieme di dipendenze $X \to A_1,\dots,X\to A_n$ con una singola dipendenza $X\to A_1\dots A_n$
+3. Pe ogni $X \to Y \in G$ crea uno schema $S_i(XY)$
+4. Elimina ogni schema contenuo in un'altro schema
+5. Se la 
 
 
 >[!todo]
