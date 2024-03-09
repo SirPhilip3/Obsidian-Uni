@@ -684,6 +684,28 @@ Le altre assunzioni richiedono che la funzione di probabilità ( caso discreto )
 >Un esempio di *problema non regolare di stima* :
 >	Stimare il parametro $\theta$ di una variabile uniforme nell'intervallo $[\ 0,\theta\ ]$ , ossia dipende dal parametro stesso
 
+##### Verosimiglianza e problemi regolari di stima
+
+Nei problemi regolari di stima le *stimatore di massima verosimiglianza* si trova ispezionando le derivate prime e seconde della *(log-)verosimiglianza* 
+
+La derivata prima della log-verosimiglianza si chiama *funzione punteggio* ( score function ) 
+
+I punti stazionari della verosimiglianza sono gli zeri della *funzione punteggio* cioè i punti $\overline \theta$ che risolvono l'equazione di verosimiglianza : 
+$$\frac {d}{d\theta}l(\overline \theta)=0$$
+Un punto stazionario di $l(\theta)$ è un massimo locale se la derivata seconda calcolata in quel punto è negativa : 
+$$\frac {d^2}{d\theta^2}l(\overline \theta)<0$$
+
 ##### Esempio di problema regolare di stima
 
+Consideriamo un campione casuale semplice dalla variabile casuale con densità : 
+$$f(x;\beta\ ) = \begin{cases} \frac{\beta}{x^{\beta+1}} & \text{se} \ x>1, \beta >1 \\ 0 & \text{altrimenti} \end{cases}$$
+>[!todo]
+>#todo
 ##### Esempio di problema non regolare di stima
+
+Consideriamo un campione casuale semplice dalla variabile casuale con densità $U(0,\theta)$ ovvero : 
+$$f(x;\theta)=\begin{cases} \frac1 \theta & \text{se}\ x\in [0,\theta] \\ 0 & \text{altrimenti} \end{cases}$$
+La verosimiglianza di $\theta$ è : 
+$$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ 0 \le X_i \le \theta \ \text{per ogni} \ i \\ 0 & \text{altrimenti} \end{cases}$$
+Ovvero : 
+	$$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ \max_i X_i \le \theta \ \text{e} \  \min_i X_i \ge 0 \\ 0 & \text{altrimenti} \end{cases}$$
