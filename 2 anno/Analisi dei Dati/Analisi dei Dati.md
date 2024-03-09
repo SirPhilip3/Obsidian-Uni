@@ -660,7 +660,7 @@ $$Pr(x-h < X < x+h) = \int_{x-h}^{x+h} f(x; \theta) dx \approx 2h\cdot f(x; \the
 Nel caso continuo il metodo della massima verosimiglianza massimizza la probabilità di osservare dei valori *vicini* a ciò che è stato effettivamente osservato
 $$L(\theta)\propto f(x_1, \dots, x_n; \theta)$$
 Nel caso di un campione casuale ( *i.i.d.* ) abbiamo ( il $2h$ può essere tolto poichè costante ) : 
-$$L(\theta)\propto \prod_{i=1}^n f(x_i; \theta)$$ 
+$$L(\theta)\propto \prod_{i=1}^n f(x_i; \theta)$$
 La corrispondente *log-verosimiglianza* è ( a meno di termini costanti che vengono eliminati ) ( il $2h$ può essere tolto poichè costante ) : 
 $$l(\theta) = \sum_{i=1}^n \log f(x_i; \theta)$$
 >[!example]
@@ -699,8 +699,16 @@ $$\frac {d^2}{d\theta^2}l(\overline \theta)<0$$
 
 Consideriamo un campione casuale semplice dalla variabile casuale con densità : 
 $$f(x;\beta\ ) = \begin{cases} \frac{\beta}{x^{\beta+1}} & \text{se} \ x>1, \beta >1 \\ 0 & \text{altrimenti} \end{cases}$$
->[!todo]
->#todo
+La verosimiglianza per $\beta$ è : 
+$$L(\beta) = \beta^n \prod_{i=1}^n X_i^{-(\beta+1)}$$
+La log-verosimiglianza è ( a meno di termini costanti )
+$$l(\beta) = n\log (\beta) - \beta \sum_{i=1}^n \log X_i$$
+L'equazioni di verosimiglianza è : 
+$$\frac n \beta - \sum_{i=1}^n \log X_i = 0$$
+La sua soluzione è :
+$$\hat\beta = \frac{n}{\sum_{i=1}^n \log X_i}$$
+Questo coincide con lo stimatore di massima verosimiglianza poichè : 
+$$l''(\beta)= -\frac n {\beta^2} < 0$$
 ##### Esempio di problema non regolare di stima
 
 Consideriamo un campione casuale semplice dalla variabile casuale con densità $U(0,\theta)$ ovvero : 
@@ -708,4 +716,11 @@ $$f(x;\theta)=\begin{cases} \frac1 \theta & \text{se}\ x\in [0,\theta] \\ 0 & \t
 La verosimiglianza di $\theta$ è : 
 $$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ 0 \le X_i \le \theta \ \text{per ogni} \ i \\ 0 & \text{altrimenti} \end{cases}$$
 Ovvero : 
-	$$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ \max_i X_i \le \theta \ \text{e} \  \min_i X_i \ge 0 \\ 0 & \text{altrimenti} \end{cases}$$
+$$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ \max_i X_i \le \theta \ \text{e} \  \min_i X_i \ge 0 \\ 0 & \text{altrimenti} \end{cases}$$
+
+>[!example]
+>Facciamo un esempio con un ipotetico dataset di 50 osservazioni in cui il massimo delle osservazioni vale 5
+>![[Pasted image 20240309172938.png]]
+>Lo stimatore di massima verosimiglianza è $\hat\theta = \max_i X_i$
+>
+>Il massimo di $L(\theta)$ non può essere trovato tramite differenziazione perchè si trova in un punto di discontinuità
