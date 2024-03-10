@@ -951,10 +951,66 @@ Abbiamo 2 principali strategie per migliorare uno schema di scarsa qualità :
 >> 
 >> La teoria della normalizzazione è stata generalizzata per rimuovere anche questo tipo di anomalie attraverso la *quarta forma normale* o *4NF*
 
-
 ### Vincoli di Integrità
 
+Alcuni *vincoli di integrità* : 
++ Garantire che certi attributi abbiano un valore ( `{sql}NOT NULL` ) 
++ Garantire che un certo insieme di attributi sia un chiave ( `{sql} PRIMARY KEY` , `{sql}UNIQUE` )
++ Garantire l'integrità referenziale ( `{sql}FOREING KEY` )
++ Gatantire alcuni vincoli sui valori degli attributi 
+>[!example]
+>+ Garantire che l'età di una persona sia sempre un numero positivo
+>+ Garantire che il primario di un ospedale sia anche un dottore 
 
+#### NOT NULL
 
+Un certo attributo non deve essere mai impostato a `{sql}NULL`
 
+>[!example]
+```sql
+CREATE TABLE Movies (
+	title  CHAR(100) NOT NULL,
+	year   INT,
+	length INT,
+	genre  CHAR(10)
+)
+```
+#### UNIQUE
 
+Data una tabella $R(T)$ ed un insieme di attributi $X \subseteq T$ possiamo specificare che nessuna coppia di tuple in $R(T)$ coincida su tutti gli attributi in $X$ a meno che almeno uno di essi non sia `NULL`
+
+>[!example]
+```sql
+CREATE TABLE Movies (
+	title  CHAR(100) NOT NULL,
+	year   INT,
+	length INT,
+	genre  CHAR(10),
+	UNIQUE (title, year)
+)
+```
+#### PRIMARY KEY
+
+Il vincolo `{sql}PRIMARY KEY` si comporta come `{sql}UNIQUE` ma impone in aggiunta il vincolo di `{sql}NOT NULL` per tutti gli attributi specificati
+
+>[!example]
+```sql
+CREATE TABLE Movies (
+	title  CHAR(100) NOT NULL,
+	year   INT,
+	length INT,
+	genre  CHAR(10),
+	PRIMARY KEY (title, year)
+)
+```
+#### FOREIGN KEY
+
+Dati
+
+#### CHECK
+
+##### CHECK su Attributi
+
+##### CHECK su Tuple
+
+#### Aggiornare i Vincoli
