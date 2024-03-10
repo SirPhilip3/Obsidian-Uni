@@ -908,11 +908,52 @@ La conversione in *3NF* non garantisce l'assenza di anomialie
 
 >[!example]
 >Consideriamo $Telefoni(\{ Prefisso , Numero , Località \} , F)$ con $F=\{ Prefisso,Numero \to Località, Località \to Prefisso \}$
->Il $Prefisso$ si replica 
+>Notiamo che il $Prefisso$ di replica : 
+>
+| Prefisso | Numero | Località |
+| -------- | ------ | -------- |
+| 041      | 422865 | Venezia  |
+| 041      | 463212 | Venezia  |
+| 049      | 513227 | Padova   |
+
+### Conversione di schemi di scarsa qualità
+
+Abbiamo 2 principali strategie per migliorare uno schema di scarsa qualità : 
+1. Convertiamo lo schema in *BCNF* per eliminare le anomalie , se notiamo che la conversione non ha preservato le diependenze ci accontentiamo di una conversione in *3NF*
+2. Convertiamo lo schema in *3NF* in modo da preservare dati e dipendenze sperando di essere fortunati e rimuovere tutte le anomalie . Questo si verifica se la conversione produce un *BCNF*
+
+>[!note]
+>Una anomalia che non viene prevenuta da *BCNF* si può verificare quando siamo in presenza di attributi multivalore indipendenti
+>>[!example]
+>>
+| Corso        | LibroDiTesto        | Docente   |
+| ------------ | ------------------- | --------- |
+| Basi di Dati | Fondamenti di BD    | Calzavara |
+| Basi di Dati | Web App Development | Calzavara |
+| Basi di Dati | Database System     | Calzavara |
+| Basi di Dati | Fondamenti di BD    | Raffaetà  |
+| Basi di Dati | Web App Development | Raffaetà  |
+| Basi di Dati | Database System     | Raffaetà  |
+>>
+>>Ha forte ridondanza : se ci sono $m$ docenti e $n$ libri di testo si memorizzano $m\times n$ righe
+>>Possiamo fare di meglio memorizzando $m+n$ righe 
+>>
+| Corso        | LibroDiTesto        |
+| ------------ | ------------------- |
+| Basi di Dati | Fondamenti di BD    |
+| Basi di Dati | Web App Development |
+| Basi di Dati | Database System     |
+>>
+| Corso        | Docente   |
+| ------------ | --------- |
+| Basi di Dati | Calzavara |
+| Basi di Dati | Raffaetà  |
+>> 
+>> La teoria della normalizzazione è stata generalizzata per rimuovere anche questo tipo di anomalie attraverso la *quarta forma normale* o *4NF*
 
 
->[!todo]
->Fino alla limitazione dei vincoli slide 27
+### Vincoli di Integrità
+
 
 
 
