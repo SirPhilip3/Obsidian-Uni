@@ -883,7 +883,32 @@ Sia $R(T,F)$ lo schema di partenza :
 2. Sostituisci in $G$ ciascun insieme di dipendenze $X \to A_1,\dots,X\to A_n$ con una singola dipendenza $X\to A_1\dots A_n$
 3. Pe ogni $X \to Y \in G$ crea uno schema $S_i(XY)$
 4. Elimina ogni schema contenuo in un'altro schema
-5. Se la 
+5. Se la decomposizione non contiene alcuno schema i cui attributi costituiscano una superchiave per $R$ aggiungi un nuovo schema $S(W)$ dove $W$ è una chiave di $R$
+
+>[!example]
+>Sia $R(\{ A,B,C,D \}, \{ AB \to C ,C \to D , D \to B  \})$
+>L'insieme delle dipendenze è già in forma canonica . Otteniamo quindi : 
+>+ $R_1(\{ A,B,C \})$ tramite $AB \to C$
+>+ $R_2(\{ C,D \})$ tramite $C \to D$
+>+ $R_3(\{ B,D \})$ tramite $D \to B$
+>
+>Nessuno schema è contenuto in altro quindi non dobiamo eliminarne alcuno
+>Poichè $\{ A,B,C \}$ è una superchiave per $R$ non è necessario aggiungere altri schemi
+
+##### Proprietà *BCNF*
+
+**Preservazione delle Dipendenze**  :
+	E' facile dimostrare che la conversione in *3NF* preserva le dipendenze : poichè per ogni $X\to Y \in G$viene creato uno schema $S_i(XY)$ abbiamo $X\to Y \in \pi_{XY}(G)$ quindi $G$ è contenuto nell'unione delle proiezioni 
+
+**Preservazione dei Dati** : 
+	L'ultimo passo della conversione garantisce che la decomposizione contenga almeno uno schema i cui attributi formano una superchiave dello schema iniziale 
+	Poichè la decomposizione preserva le dipendenze essa deve preservare anche i dati 
+
+La conversione in *3NF* non garantisce l'assenza di anomialie
+
+>[!example]
+>Consideriamo $Telefoni(\{ Prefisso , Numero , Località \} , F)$ con $F=\{ Prefisso,Numero \to Località, Località \to Prefisso \}$
+>Il $Prefisso$ si replica 
 
 
 >[!todo]
