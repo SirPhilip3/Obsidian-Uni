@@ -1005,7 +1005,43 @@ CREATE TABLE Movies (
 ```
 #### FOREIGN KEY
 
-Dati
+Dati una tabella $R(T)$ e $X \subseteq T$ possiamo specificare un vincolo di *integrità referenziale* secondo cui $X$ è una *chiave esterna* di $R(T)$ : 
++ Il vincolo deve riferire una tabella $S(U)$ ed un insieme di attributi $Y\subseteq U$ dichiarati *PRIMARY KEY* o *UNIQUE*
++ Per ogn *tupla* $t\in R(T)$ tale che tutti gli attributi in $X$ sono diversi da `{sql}NULL` deve esistere una tupla $t'\in S(U)$ tale che $t[X] = t'[Y]$ 
+
+>[!note]
+>Implicitamente si chiede che $|X| = |Y|$ 
+
+Indichiamo che un attributo è *chiave esterna* : 
+```sql
+Attribute REFERENCES <table> (<attribute>)
+```
+oppure
+```sql
+FOREING KEY (<attributes>) REFERENCES <table> (<attributes>)
+```
+
+>[!example]
+```sql
+CREATE TABLE MovieExec (
+	name CHAR(50), 
+	address VARCHAR(255), 
+	code INT PRIMARY KEY, 
+	netWorth INT 
+)
+```
+```sql
+CREATE TABLE Studio ( 
+	name CHAR(30) PRIMARY KEY, 
+	address VARCHAR(255), 
+	president INT, 
+	FOREIGN KEY (president) REFERENCES MovieExec(code) 
+)
+```
+>[!note]
+>Le seguenti operazioni su `Studio` sono impedite : 
+>+ Inserimento di una tupla con attributo `president` non `NULL` e non coincidecon l'attributo `code` di una tupla in `MovieExec`
+>+ Aggiornamento di una tupla per cambiare l'attributo `president` ad un valore non `NULL` che non coincide con l'attributo `code` di una tupla di `MovieExec` 
 
 #### CHECK
 
