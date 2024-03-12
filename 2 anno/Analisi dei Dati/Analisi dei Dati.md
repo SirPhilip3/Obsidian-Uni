@@ -764,3 +764,6 @@ $$I(\theta)=n\cdot E\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_1; \theta) \bigg\}$
 Cioè l'informazione del campione è pari a $n$ volte l'informazione contenuta un una singola osservazione
 
 ###### Informazione attesa e osservata
+
+>[!todo]
+>fino slide 36 + caso studio
