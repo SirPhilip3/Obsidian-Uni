@@ -3367,6 +3367,15 @@ Dati $X = x_1, \dots ,x_m$ e $Y=y_1,\dots,y_n$ indichiamo con $c[i,j]$ la lunghe
 $$c[i,j] = \begin{cases} 0 & \text{se} \ i=0\ \text{o} \ j=0 
 \\ c[i -1, j-1] +1 & \text{se} \ i,j > 0 \ \text{e} \ x_i = y_j \\ max\{\  c[i-1,j]\ ,\ c[i,j-1] \} & \text{se} \ i,j>0 \ \text{e} \ x_i\neq y_j \end{cases} 
 $$
+>[!example]
+>Abbiamo $X=ABACA$ e $Y=ACDA$ , risolviamo l'*LCS*
+>1. Abbiamo `c[4,5]` , confrontiamo `X[4]` e `Y[5]` , questi essendo `==` dovremmo ridurci a risolvere il seguente sottoproblema : `c[3,4]+1` ( poichè `A` fa parte dell'*LCS* )
+>2. Abbiamo `c[3,4]` , ora visto che `X[3]!=Y[4]` dovremo risolvere il seguente sottoproblema : `max[c[3,3],c[4,2]]` 
+>3. $\dots$
+
+###### Soluzione *Bottom Up*
+
+Faremo uso di 2 strutture ausiliarie 
 
 
 
