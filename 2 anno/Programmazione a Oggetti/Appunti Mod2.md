@@ -512,3 +512,10 @@ sorted -> caratteristica univoca per vari set implementati in modo differente (h
 ```java
 
 ```
+
+*extends* -> in java 3 cose 
+1. quando extends interfaccia sto ereditando un' interfaccia -> faccio una sottointerfaccia
+2. quando extends class una certa classe è figlia di 
+3. `{java}<T extends ....>` T deve essere almeno del tipo a dx , non sto ereditando nulla 
+
+ogni keyword occupa uno spazio per un nome di variabile , meno keyword possibili in un linguaggio
