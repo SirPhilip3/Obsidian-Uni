@@ -497,3 +497,18 @@ abstract set che ha tutte le cose che hanno i set -> tipo add etcc
 
 super non può essere usato dentro una interfaccia 
 abstract in pratica condensano servizi comuni di classi più in basso 
+
+# 12/03/2024
+
+*Sorted set* 
+
+è un set no dup + iterabile + è ordinata
+ci accorgiamo che è sorted solo se ci iteriamo sopra ( utilizzatore della libreria )
+sorted set -> potresti perdere dettaglio subsumendo a set es -> *interface* sottointerfaccia di *set*
+sorted -> caratteristica univoca per vari set implementati in modo differente (hash,strucutral) etcc 
+
+
+
+```java
+
+```
