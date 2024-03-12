@@ -3375,7 +3375,87 @@ $$
 
 ###### Soluzione *Bottom Up*
 
-Faremo uso di 2 strutture ausiliarie 
+Faremo uso di 2 strutture ausiliarie :
++ `c[i,j]` che conterrà la lunghezza dell'$LCS(X^i,Y^i)$ 
++ `b[i,j]` che conterrà informazioni utili al recupero della soluzione , in particolare 
+	+ $b[i,j]=\ \nwarrow$ se $x_i=y_i \implies LCS(X^i,Y^i)$ viene ridotta a $LCS(X^{i-1},Y^{i-1})$ 
+	+ $b[i,j]=\ \uparrow$   se $x_i\neq y_i \implies LCS(X^i,Y^i)$ viene ridotta a $LCS(X^{i-1},Y^{i})$ 
+	+ $b[i,j]=\ \leftarrow$ se $x_i\neq y_i \implies LCS(X^i,Y^i)$ viene ridotta a $LCS(X^{i},Y^{i-1})$ 
+
+**Algoritmo** : 
+```c
+LCS(X , Y)
+	m = X.length
+	n = Y.length
+	for i = 0 to m 
+		c[i , 0] = 0
+	for j = 1 to n
+		c[0 , j] = 0
+	for i = 1 to m
+		for j = 1 to n
+			if xi == yj
+				c[i , j] = c[i - 1, j - 1] + 1
+				b[i , j] = ↖
+			else 
+				if c[i - 1, j] ≥ c[i , j - 1]
+					c[i , j] = c[i - 1, j]
+					b[i , j] = ↑
+				else
+					c[i , j] = c[i , j - 1]
+					b[i , j] = ← 
+	return b , c
+```
+
+>[!example]
+>Simuliamo l'esecuzione dell'algoritmo con le stringhe $X=AC$ , $Y=BA$
+>1. Viene inizializzata la colonna e riga 0 nella tabella `c[i,j]` a 0 questo perchè queste corrispondono alla sottostringa di lunghezza 0 per cui sappiamo che sono il caso base della ricorsione   
+>2. Iniziamo con $i=1, j=1$ :
+>	`B!=A` $\implies$ `c[i,j]=max{c[i-1,j],c[i,j-1]` che risulterà essere 0 poichè entrambi i sottoproblemi risultano essere uguali e prevale `c[i-1,j]` , posizioniamo $\uparrow$ in `b[i,j]` 
+>3. Confrontiamo $i=1,j=2$ : 
+>	`A==A` : prenderemo il valore della casella precedente sulla diagonale `c[i-1,j-1]` e vi sommiamo `1` poichè abbiamo trovato un *match* , settiamo `b[i,j]=`$\nwarrow$
+>4. Confrontiamo $i=2 , j=1$ : 
+>	`C!=B` : troviamo il massimo tra `c[i-1,j]` e `c[i,j-1]` , visto che entrambi sono 0 prevale `c[i-1,j]` e aggiungiamo in `b[i,j]=`$\uparrow$
+>5. Confrontiamo $i=2,j=2$ : 
+>	`C!=A` : troviamo il massimo tra `c[i-1,j]` e `c[i,j-1]` , visto che `c[i-1,j]=1` , avremo che `c[i,j]=1` e `b[i,j]=`$\uparrow$
+![[Pasted image 20240312153516.png]]
+
+**Complessità** : 
+	La complessità di `LCS(X , Y)` va espressa in funzione di $m$ e $n$ , avremo che : 
+	1. Il primo ciclo viene svolto $m$ volte per inizializzare l'array `c[i,0]` , avrà quindi complessità : $\Theta(m)$
+	2. Il secondo ciclo viene svolto $n$ volte per inizializzare l'array `c[0,j]` , avrà quindi complessità : $\Theta(n)$
+	3. I due cicli for annidati hanno vengono svolti $m\cdot n$ volte ed avranno quindi complessità : $\Theta(m\cdot n)$
+	La complessità risultante sarà quindi : $T(n)=\Theta(m)+\Theta(n)+\Theta(m\cdot n) = \Theta(m\cdot n)$
+
+**Costruzione di una Soluzione** :
+```c
+printLCS(X , Y)
+	b , c = LCS(X , Y)
+	printLCSrec (X , b , X.length , Y.length)
+	
+printLCSrec (X , b , i , j )
+	if i > 0 and j > 0
+		if b[i , j] == ↖
+			printLCSrec (X , b , i - 1, j - 1)
+			print Xi
+		else 
+			if b[i , j ] == ↑
+				printLCSrec(X , b , i - 1, j) 
+			else
+				printLCSrec(X , b , i , j - 1)
+```
+
+>[!note]
+>Ogni volta che troviamo $\nwarrow$ vuol dire che avevamo trovato una lettera che faceva parte dell'*LCS*
+
+>[!example] 
+>Seguiamo i passaggi dell'algoritmo : 
+>1. Partiamo da $i=2,j=2$ , siamo nel caso in cui abbiamo in `b[i,j]=`$\uparrow$ ed avremo quindi che continueremo l'esecuzione risolvendo il problema `(i-1,j)`
+>2. Siamo in $i=1,j=2$ , siamo nel caso in cui abbiamo in `b[i,j]=`$\nwarrow$ , abbiamo trovato un *match* , stampiamo quindi `A` e continuiamo risolvendo il problema `(i-1,j-1)`
+>3. Siamo in $i=0,j=1$ , essendo che abbiamo raggiunto un *caso base* , concludiamo la stampa
+>![[Pasted image 20240312155412.png]]
+
+**Complessità**
+
 
 
 
