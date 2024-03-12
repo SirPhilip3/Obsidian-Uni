@@ -724,3 +724,43 @@ $$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ \max_i X_i \le \the
 >Lo stimatore di massima verosimiglianza è $\hat\theta = \max_i X_i$
 >
 >Il massimo di $L(\theta)$ non può essere trovato tramite differenziazione perchè si trova in un punto di discontinuità
+
+#### Errori Standard 
+
+Gli errori standard servono a misurare la *precisione* degli stimatori 
++ L'*accuratezza* è il concetto opposto alla distorsione
++ La *precisione* è il concetto opposto alla variabilità 
+##### Stimare gli errori standard
+
+Gli errori standard spesso sono funzione del parametro stesso e quindi vanno a loro volta stimati
+
+>[!example]
+>9.11 baron
+
+Stimare gli errori standard può essere complicato anche per in modelli semplici
+
+>[!example]
+>9.12 baron
+
+##### Proprietà asintotiche dello stiamtore di massima verosimiglianza
+
+Sotto *assunzioni* che valgono nei problemi che affronteremo ( non è necessario conoscerle ) lo stimatore di massima verosimiglianza è : 
++ *asintoticamente non distorto* :
+	$E(\hat\theta)\to \theta,$   per $n\to \infty$ 
++ *consistente*
+	$\hat\theta \stackrel{p}\to \theta$  per $n\to\infty$
++ *asintoticamente normale* con distribuzione limite : $$\hat\theta \approx N\{\theta, I(\theta)^{-1}\} \quad \text{per n sufficentemente grande}$$
+  Dove $I(\theta)$ è l'*informazione attesa di Fisher* ( corrisponde alla *varianza* )
+
+###### Informazione Attesa di Fisher
+
+L'*informazione attesa* è definita come : 
+$$I(\theta)=E\bigg\{ -\frac{d^2}{d\theta^2} l(\theta) \bigg\}$$
+Sostiutuendo $l(\theta)$ con la *log-verosimiglianza* avremo : 
+$$=E\bigg\{  -\frac{d^2}{d\theta^2} \sum_{i=1}^n \log f(X_i; \theta) \bigg\}$$
+$$=\sum_{i=1}^nE\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \bigg\}$$
+Nel caso di un *campione casuale semplice* abbiamo :
+$$I(\theta)=n\cdot E\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_1; \theta) \bigg\}$$
+Cioè l'informazione del campione è pari a $n$ volte l'informazione contenuta un una singola osservazione
+
+###### Informazione attesa e osservata

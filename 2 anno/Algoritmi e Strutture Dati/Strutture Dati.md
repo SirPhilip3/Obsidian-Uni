@@ -3424,7 +3424,7 @@ LCS(X , Y)
 	1. Il primo ciclo viene svolto $m$ volte per inizializzare l'array `c[i,0]` , avrà quindi complessità : $\Theta(m)$
 	2. Il secondo ciclo viene svolto $n$ volte per inizializzare l'array `c[0,j]` , avrà quindi complessità : $\Theta(n)$
 	3. I due cicli for annidati hanno vengono svolti $m\cdot n$ volte ed avranno quindi complessità : $\Theta(m\cdot n)$
-	La complessità risultante sarà quindi : $T(n)=\Theta(m)+\Theta(n)+\Theta(m\cdot n) = \Theta(m\cdot n)$
+	La complessità risultante sarà quindi : $T(n,m)=\Theta(m)+\Theta(n)+\Theta(m\cdot n) = \Theta(m\cdot n)$
 
 **Costruzione di una Soluzione** :
 ```c
@@ -3432,7 +3432,7 @@ printLCS(X , Y)
 	b , c = LCS(X , Y)
 	printLCSrec (X , b , X.length , Y.length)
 	
-printLCSrec (X , b , i , j )
+printLCSrec(X , b , i , j )
 	if i > 0 and j > 0
 		if b[i , j] == ↖
 			printLCSrec (X , b , i - 1, j - 1)
@@ -3456,7 +3456,60 @@ printLCSrec (X , b , i , j )
 
 **Complessità**
 
+Analizziamo la complessità di `printLSCrec()` : questa dipende da $i$ e $j$ questo poichè i due indici vengono dimuiti ad ogni passaggio della funzione ricorsiva che termina quando o $i$ o $j$ diventano minori di 1 , potremmo quindi prima raggiungere 1 con uno dei due e poi con l'altro portando ad un numero massimo d'esecuzioni di $i+j$ , la complessità sarà quindi : $O(i+j)$
 
+La complessità della funzione `printLCS()` sarà quindi : $T(n,m) = \Theta(m\cdot n)+ O(m+n)$ 
+Dove : 
++ $\Theta(m\cdot n)$ corrisponde alla complessità di `LCS()`
++ $O(m+n)$ corrisponde alla complessità della funzione ricorsiva dove abbiamo sostituito $i$ e $j$ con le lunghezze delle due stringhe
 
+>[!note]
+>Risulta molto importante l'ordine delle operazioni che vengono svolte 
 
+**Ottimizzazioni** 
 
+Notiamo che l'array `b` può non essere memorizzato dato che l'informazione corrispondente è derivabile da `c` , questo poichè `c[i,j]` dipende solo da 3 valori : `c[i-1,j-1]` , `c[i-1,j]` , `c[i,j-1]` 
+
+La soluzione diventa quindi : 
+```c
+printLCSrec (X , c , i , j)
+	if i > 0 and j > 0
+		if c[i , j] == c[i - 1, j]
+			printLCSrec (X , c , i - 1, j)
+		else if c[i , j] == c [i , j - 1]
+			printLCSrec (X , c , i , j - 1)
+		else
+			printLCSrec (X , c , i - 1, j - 1)
+			print Xi
+```
+
+Inoltre , se sono interesato *solo* alla *lunghezza* di *LCS* possiamo evitare di mantenere la tabella `c` completa visto che ci interessa solo la riga $i+1$ e $i$ per calcolare la soluzione finale
+
+>[!note]
+>Un'ulteriore ottimizzazione riduce lo spazio ad un vettore di spazio = $\min(m,n)$ più uno spazio aggiuntivo in $O(1)$
+
+###### Soluzione *Top Down*
+
+```c
+tdLCS (X , Y)
+	m = X.length
+	n = Y.length
+	c [0 ... m , 0 ... n] = -1
+		return tdLCSaux (X , Y , c , m , n)
+		
+tdLCSaux (X , Y , c , i , j)
+	if c[i , j] == -1 // altrimenti ho già risolto il problema
+		if i == 0 or j == 0
+			c[i , j] = 0
+		else
+			if Xi == Yj
+				c[i , j] = tdLCSaux (X , Y , c , i - 1, j - 1) + 1
+			else 
+				c[i , j] = max(tdLCSaux(X , Y , c , i - 1, j) ,
+							   tdLCSaux (X , Y , c , i , j - 1) )
+	return c[i , j]
+```
+
+>[!todo]
+>#todo
+>spiegazione
