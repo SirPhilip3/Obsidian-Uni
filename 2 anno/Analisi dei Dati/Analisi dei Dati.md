@@ -786,8 +786,42 @@ $$\widehat{SE}(\hat\theta)=J(\hat\theta)^{-1/2}$$
 >[!note]
 >Si preferisce la stima con $J$ poichè riflette l'informazione effettivamente contenuta nei dati
 
+##### Efficenza
 
+Lo stimatore di *massima verosimiglianza* gode di una proprietà importante di ottimalità 
+
+La *diseguaglianza di Cramèr-Rao* identifica il limite inferiore della *varianza* di uno stimatore $\hat\theta$  *non distorto* di $\theta$ in : 
+$$Var(\hat\theta)\ge I(\theta)^{-1}$$
+dove $I(\theta)$ è l'*informazione attesa di Fisher*
+
+Uno stimatore non distorto la cui varianza raggiunge il limite di Cramèr-Rao e detto *efficiente*
+
+Visto che la *varianza* dello stimatore di massima verosimiglianza raggiunge questo valore abbiamo che è *asintoticamente efficente*
+
+>[!example]
+>Consideriamo un campione casuale semplice da una variabile di Poisson di parametro $\lambda$
+>
+>Lo stimatore $\hat\lambda =\overline X$ è uno stimatore efficente di $\lambda$
+>
+>Infatti la varianza di $\hat\lambda$ è : 
+>$$Var(\hat\lambda) = Var(\overline X) = \frac{Var(X_1)}{n}=\frac\lambda n$$
+>
+>Verifichiamo che questo soddifa il limite di Cramèr-Rao
+>
+>Avremo che la *log-verosimiglianza* per $\lambda$ è :
+>$$l(\lambda)=-n\lambda + \log \lambda \sum_{i=1}^n X_i$$
+>
+>Troviamo quindi le due derivate : 
+>$$l'(\lambda)=-n + \frac{\sum_{i=1}^nX_i}{\lambda}$$
+>$$l''(\lambda)= -\frac{\sum_{i=1}^n X_i}{\lambda^2}$$
+>
+>L'*informazione attesa* sarà : 
+>$$I(\lambda)=E\{-l''(\lambda)\}=E\left(\frac{\sum_{i=1}{n}X_i}{\lambdaì2}\right)=\frac{1}{\lambda^2}\sum_{i=1}^n E(X_i)=\frac{n\lambda}{\lambda^2}=\frac n \lambda$$
+>
+>La cui inversa è la varianza di $\hat\lambda$
+
+###### Caso di studio
 
 >[!todo]
->fino slide 36 + caso studio
+>#todo
 
