@@ -132,3 +132,24 @@ WHERE prezzo = (SELECT MAX(prezzo)
 ##### 10
 
 sulle risposte aperte mettere query
+
+
+## Triggers 
+
+
+```sql
+CREATE FUNCTION no_pc_laptop_fn() RETURNS trigger AS $$
+BEGIN 
+	IF(NEW.type = 'pc' AND EXISTS(SELECT FROM lab.product WHERE maker = NEW .maker NAD type='laptop') )
+	THEN RETURN NULL
+	END IF
+	RETURN NEW
+END
+$$ LANGUAGE plpsql
+
+CREATE TRIGGER no_pc_laptop
+BEFORE INSERT ON UPDATE
+ON product
+FOR EACH ROW
+EXECUTE FUNCTION no_pc_laptop_fn()
+```
