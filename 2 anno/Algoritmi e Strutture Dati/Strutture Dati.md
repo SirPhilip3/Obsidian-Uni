@@ -3510,6 +3510,7 @@ tdLCSaux (X , Y , c , i , j)
 	return c[i , j]
 ```
 
->[!todo]
->#todo
->spiegazione
+**Complessità** 
+
+Possiamo ridurre la complessità di al numero di chiamate ricorsive che vengono svolte
+

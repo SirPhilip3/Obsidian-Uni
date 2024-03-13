@@ -134,6 +134,7 @@ WHERE prezzo = (SELECT MAX(prezzo)
 sulle risposte aperte mettere query
 
 
+
 ## Triggers 
 
 
