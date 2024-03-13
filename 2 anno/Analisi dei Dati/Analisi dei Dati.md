@@ -762,8 +762,31 @@ $$=\sum_{i=1}^nE\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \bigg\}$$
 Nel caso di un *campione casuale semplice* abbiamo :
 $$I(\theta)=n\cdot E\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_1; \theta) \bigg\}$$
 Cioè l'informazione del campione è pari a $n$ volte l'informazione contenuta un una singola osservazione
-
 ###### Informazione attesa e osservata
+
+L'*informazione osservata* è definita come :
+$$J(\theta) = - l''(\theta) = \sum_{i=1}^n \left\{ -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \right\}$$
+Per la *Legge dei grandi numeri* avremo che , per $n \to \infty$ : 
+$$\frac{J(\theta)}{n}\stackrel{p}\to E\{ g(X_1) \} = E\left\{ - \frac{d^2}{d\theta^2}\log f(X_1; \theta) \right\}$$
+Ovvero $J(\theta) \approx I(\theta)$ per $n$ sufficentemente grandi 
+
+##### Errore standard dello stimatore di massima verosimiglianza
+
+Sappiamo che per campioni sufficentemente grandi e modelli che modelli che rispettino le assunzioni di regolarità avremo che lo *stimatore* sarà : 
+$$\hat\theta\approx N\{\theta, I(\theta)^{-1}\}$$
+Quindi l'*errore standard* dello stimatore di massima verosimiglianza $\hat\theta$ è asintoticamente pari a : 
+$$SE(\hat\theta)\approx I(\theta)^{-1/2}$$
+Per un $n$ sufficentemente grande 
+
+Ma visto che non sappiamo $\theta$ dovremmo stimarlo , avremo quindi che la *stima* dell'errore standard di $\hat\theta$ è : 
+$$\widehat{SE}(\hat\theta)=I(\hat\theta)^{-1/2}$$
+Oppure visto che sappiamo che $J(\theta) \approx I(\theta)$ potremmo anche scrivere : 
+$$\widehat{SE}(\hat\theta)=J(\hat\theta)^{-1/2}$$
+
+>[!note]
+>Si preferisce la stima con $J$ poichè riflette l'informazione effettivamente contenuta nei dati
+
+
 
 >[!todo]
 >fino slide 36 + caso studio
