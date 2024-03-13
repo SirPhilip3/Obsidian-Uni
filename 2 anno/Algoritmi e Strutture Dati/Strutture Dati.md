@@ -3561,4 +3561,62 @@ Facciamo la *caratterizzazione ricorsiva* del problema :
 $$l\ [ \ i,j\ ] = \begin{cases} 0 & \text{se} \ i > j \\ 1 & \text{se} \ i == j \\ 2+l\ [\  i+1, j-1 \ ] & \text{se} \ x_i ==x_j\  \land\ l\ [\  i+1, j-1 \ ] == j+1-i \\ \max\left(l\ [\  i+1, j \ ],l\ [\  i, j-1 \ ]\right) & \text{altrimenti}   \end{cases}$$
 **Spiegazione** : 
 
-$i$ rappresenta l'inizio della stringa che stima prendendo in considerazione
+$i$ : rappresenta l'indice d'inizio della stringa che stiamo prendendo in considerazione
+$j$ : rappresenta l'indice di fine della stringa che stiamo prendendo in considerazione
+
+I primi due casi della caratterizzazione rappresentano i due *casi base* del problema , infatti : 
++ Se non abbiamo alcun carattere la lunghezza massima della stringa palindroma non potrà che essere 0
++ Se abbiamo esattamente un carattere allora la lunghezza massima della stringa palindroma è 1 poichè un solo carattere è una stringa palindroma
+
+>[!note]
+>Il modo in cui suddividiamo il problema è il seguente : 
+>Se sappiamo che il primo e ultimo carattere sono uguali allora dovremmo controllare se la stringa compresa tra questi due caratteri è palindroma , questa lo sarà solo se la lunghezza della massima stringa palindroma compresa risulti essere la lunghezza della stringa , solo a quel punto possiamo considerarla come possibile soluzione
+
+Possiamo quindi ora spiegare il terzo caso : 
+$$2+l\ [\  i+1, j-1 \ ] \quad \text{se} \ x_i ==x_j\  \land\ l\ [\  i+1, j-1 \ ] == j+1-i$$
+Dove : 
++ $j+1-i$ indica la lunghezza della stringa compresa tra i caratteri $x_i$ e $x_j$ , questi devono soddisfare la seguente propietà : $x_i==x_j$ , che deve essere corrispondenta alla lunghezza della massima sottostringa palindroma ( $l\ [\  i+1, j-1 \ ]$ )
++ Verificate le condizioni possiamo svolgere la chiamata ricorsiva $2+l\ [\  i+1, j-1 \ ]$ , dove $2$ rappresenta i due caratteri uguali trovati
+
+Il quarto caso rappresenta il caso in cui i due caratteri considerati $x_i$ e $x_j$ sono differenti , in questo caso dovremmo cercare la stringa con massima lunghezza in 2 casi : $l\ [\  i+1, j \ ]$ e $l\ [\  i, j-1 \ ]$ , tra i due dovremmo ritornare il massimo che rappresenta la stringa palindroma di massima lunghezza 
+
+##### 2
+
+Abbiamo un *multinsieme* ( insieme di numeri anche ripetuti ) di numeri naturali , questi sono *prefettamente bilanciati* se posso dividere il multinsieme in due sottoinsiemi che abbiano la stessa somma
+
+>[!example] Comprendiamo il problema
+>Abbiamo per esempio l'insieme $I=1,7,3,3$ , questo può essere diviso in $I_1 =1,3,3$ e $I_2=7$ , avendo la stessa somma ( $7$ ) possiamo dire che $I$ è *perfettamente bilanciato*
+
+>[!note]
+>Ci sono delle soluzioni banali che possiamo eliminare : 
+>+ La somma è dispari : infatti avendo a disposizione solo numeri naturali è impossibile creare multinsiemi con somma frazionaria
+
+>[!note]
+>Il problema può essere suddiviso nel cercare se esiste una somma che risulti uguale a $k/2$ dove $k$ rappresenta la somma di tutti i numeri all'interno di $I$
+
+Facciamo la *caratterizzazione ricorsiva* del problema : 
+$$\text{isSubSetSum}(i ,sum) = \begin{cases} true & \text{se} \ sum=0 \\ false & \text{se} \ i=0 \land sum \neq 0 \\ \text{isSubSetSum}(i-1,sum) & \text{se} \ i>0 \ \land I[i-1]>sum \\ \text{isSubSetSum}(i-1,sum)\ \lor\ \text{isSubSetSum}(i-1,sum-I[i-1]) & \text{se} \ i>0 \land \ I[i-1]\le sum \end{cases}$$
+>[!note]
+>L'array $I[\dots]$ è rappresentato come se fosse in `c` ( inizia dall'indice 0 e finisce a $I.size-1$ )
+
+**Spiegazione** : 
+
+$i$ : indica i primi $i$ elementi dell'array $I[\dots]$ 
+$sum$ : indica $k/2$ ( ossia la somma che dobbiamo raggiungere )
+
+Analizziamo ora i differenti *casi* : 
+
+Abbiamo due differenti *casi base* : 
++ $sum==0$ : in questo caso ritorniamo `{cpp}true` poichè significa che abbiamo raggiunto la somma richiesta con i primi $i$ elementi 
++ $i==0\land sum\neq 0$ : in questo caso ritorniamo `{c}false` poichè vuol dire che non abbiamo più elementi da sommare ma non abbiamo raggiunto la somma richiesta
+
+*Casi ricorsivi* : 
++ $i>0 \ \land \ I[i-1] > sum$ : ciò significa che abbiamo ancora elementi da sommare ( $i>0$ ) ma l'elemento in cui ci troviamo è da solo maggiore della somma richiesta , ciò significa che per risolvere il problema dobbiamo escludere quell'elemento dalla somma ( ossia svolgiamo $\text{isSubSetSum}(i-1,sum)$ ) 
++ $i>0 \ \land \ I[i-1] \le sum$ : ciò significa che abbiamo ancora elementi da sommare ( $i>0$ ) e l'emento in cui ci troviamo è minore della somma richiesta , ciò significa che abbiamo 2 possibilità : 
+	1. Lo prendiamo perchè venga utilizzato nella somma ( $\text{isSubSetSum}(i-1,sum-I[i-1])$ )
+	2. Non lo prendiamo nella somma ( $\text{isSubSetSum}(i-1,sum)$ )
+	Ora l'*or* di questi due risultati ci dirà se almeno uno dei due ritorna `true` , ossia $I$ è *perfettamente bilanciato* 
+
+##### 3 
+
+Abbiamo un array di lunghezza $n$ composto da numeri positivi strettamente maggiori di 0 
