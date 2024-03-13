@@ -3491,26 +3491,74 @@ Inoltre , se sono interesato *solo* alla *lunghezza* di *LCS* possiamo evitare d
 ###### Soluzione *Top Down*
 
 ```c
-tdLCS (X , Y)
+tdLCS(X , Y)
 	m = X.length
 	n = Y.length
-	c [0 ... m , 0 ... n] = -1
-		return tdLCSaux (X , Y , c , m , n)
+	c [0 ... m , 0 ... n] = -1 // riempie la matrice c di -1
+		return tdLCSaux(X , Y , c , m , n)
 		
-tdLCSaux (X , Y , c , i , j)
+tdLCSaux(X , Y , c , i , j)
 	if c[i , j] == -1 // altrimenti ho già risolto il problema
 		if i == 0 or j == 0
 			c[i , j] = 0
 		else
 			if Xi == Yj
-				c[i , j] = tdLCSaux (X , Y , c , i - 1, j - 1) + 1
+				c[i , j] = tdLCSaux(X , Y , c , i - 1, j - 1) + 1
 			else 
 				c[i , j] = max(tdLCSaux(X , Y , c , i - 1, j) ,
-							   tdLCSaux (X , Y , c , i , j - 1) )
+							   tdLCSaux(X , Y , c , i , j - 1) )
 	return c[i , j]
 ```
 
 **Complessità** 
 
-Possiamo ridurre la complessità di al numero di chiamate ricorsive che vengono svolte
+Possiamo ridurre la complessità di `tdLCS()` al numero di chiamate ricorsive che vengono svolte dalla funzione `tdLCSaux()` , questa poichè o legge un valore già presente $O(1)$ o inserisce un valore , quest'ultima operazione viene effettuata al più $i\cdot j$ volte o più precisamente $(i+1)\cdot(j+1)$( questo per comprendere anche le due stringhe vuote $\epsilon$ ) che possiamo sostituire con $m\cdot n$ poichè la funzione `tdLCSaux()` viene chiamata con $i=m$ e $j=n$ 
 
+Avremo quindi che la complessità di `tdLCS()` risulterà essere : 
+$$T(n,m)=\Theta(n\cdot m) + O(m\cdot n)$$
+$$T(n,m)=\Theta(n\cdot m) \quad \text{domina}$$
+Dove $\Theta(n\cdot m)$ rappresenta il riempimento della matrice alla riga 4 di `tdLCS()`
+
+>[!note] 
+>Il numero di sottoproblemi risolti non è strettamente $m\cdot n$ , infatti : 
+>>[!example]
+>>Se avessimo due stringhe uguali allora il numero di confronti sarà $O(n)$
+>>![[Pasted image 20240313131030.png]]
+
+Nel caso medio quindi l'approccio *Top Down* è più efficente poichè questo risolve solo i sottoproblemi *strettamente* necessari ( nonostante asintoticamente sia *Top Down* che *Bottom Up* abbiano la stessa complessità )
+#### Riassunto
+
+1. A quali problemi può essere applicata ?
+	La programmazione dinamica si applica ai *problemi di ottimizzazoni* cioè problemi in cui ho un insieme molto grande di soluzioni e voglio determinarne una ottima
+2. I problemi di ottimizzazione devono soddisfare due caratteristiche : 
+	1. Il problema deve disporre di una *sottostruttura ottima* 
+		La soluzione di un problema è una combinazione di soluzioni ottime di sottoproblemi
+	2. Il numero di sottoproblemi distinti è piccolo rispetto rispetto al numero di possibili soluzioni 
+		Nel caso delle *aste* il numero di soluzioni è $\Omega(2^n)$ mentre il numero di sottoproblemi è $\Theta(n)$
+		Nel caso della *LCS* il numero di soluzioni è $\Omega(2^n)$ mentre il numero di sottoproblemi è $\Theta(m\cdot n)$
+3. Se valgono le precedenti due condizioni abbiamo due possibili approcci per risolvere il problema 
+	1. *Bottom Up* :
+		+ Risolve i problemi dal più piccolo a quello di dimensione desiderata
+		+ L'ordine della risoluzione deve assicurare che tutti i sottoproblemi che compongono un sottoproblema maggiore siano già stati risolti
+	2. *Top Down* con *Memorization* : 
+		+ Fornisce la risoluzione ricorsiva data dalla caratterizzazione del problema in termini di sottoproblemi utilizzando le soluzioni di questi memorizzate in precedenza 
+
+>[!note]
+>Se per il calcolo della soluzione occorre risolvere tutti i sottoproblemi risulta essere conveniente l'approccio *Bottom Up* poichè si evita la ricorsione e alcuni controlli 
+>
+>Se invece c'è solamente bisogno di alcuni sottoproblemi allora la soluzione *Top Down* risulta essere migliore poichè evita il calcolo di sottoproblemi inutili
+
+#### Esercizi sulla Programmazione Dinamica
+
+##### 1
+
+Abbiamo una stringa $a_1,\dots,a_n$ individua la lunghezza della massima *sottostringa* palindroma
+
+>[!example] Comprendiamo il problema
+>In `COLONNA` la sottostringa palindroma di massima lunghezza è : `OLO` con lunghezza $3$ 
+
+Facciamo la *caratterizzazione ricorsiva* del problema : 
+$$l\ [ \ i,j\ ] = \begin{cases} 0 & \text{se} \ i > j \\ 1 & \text{se} \ i == j \\ 2+l\ [\  i+1, j-1 \ ] & \text{se} \ x_i ==x_j\  \land\ l\ [\  i+1, j-1 \ ] == j+1-i \\ \max\left(l\ [\  i+1, j \ ],l\ [\  i, j-1 \ ]\right) & \text{altrimenti}   \end{cases}$$
+**Spiegazione** : 
+
+$i$ rappresenta l'inizio della stringa che stima prendendo in considerazione
