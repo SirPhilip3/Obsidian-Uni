@@ -1043,6 +1043,8 @@ CREATE TABLE Studio (
 >+ Inserimento di una tupla con attributo `president` non `NULL` e non coincidecon l'attributo `code` di una tupla in `MovieExec`
 >+ Aggiornamento di una tupla per cambiare l'attributo `president` ad un valore non `NULL` che non coincide con l'attributo `code` di una tupla di `MovieExec` 
 
+>[!todo]
+>#todo
 #### CHECK
 
 ##### CHECK su Attributi

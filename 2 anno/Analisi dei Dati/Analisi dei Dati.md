@@ -767,3 +767,4 @@ Cioè l'informazione del campione è pari a $n$ volte l'informazione contenuta u
 
 >[!todo]
 >fino slide 36 + caso studio
+

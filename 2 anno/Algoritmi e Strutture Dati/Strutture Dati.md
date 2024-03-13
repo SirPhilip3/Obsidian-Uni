@@ -3619,4 +3619,32 @@ Abbiamo due differenti *casi base* :
 
 ##### 3 
 
-Abbiamo un array di lunghezza $n$ composto da numeri positivi strettamente maggiori di 0 
+Abbiamo un array di lunghezza $n$ composto da numeri positivi strettamente maggiori di 0 , ci chiediamo quante *sottosequenze* ( gli indici devono essere strettamete maggiori del precedente ma non sucessivi ) ci sono con prodotto $\le k$ 
+
+>[!example] Comprendiamo il problema
+>Prendiamo il seguente array : $<2,1,7,3>$ e $k=15$ avremo che $<2,1,7,3,2\cdot 1,2\cdot 7,2\cdot 3,\dots>$ saranno le sottosequenze cercate
+
+Facciamo la *caratterizzazione ricorsiva* del problema : 
+$$\text{nsub}(m,j)=\begin{cases} 0 & j=0\\ \text{nsub}(m,j-1) & a_j>m \land j>0 \\ \text{nsub}(m,j-1) + \text{nsub}(m/a_j\ ,j-1) +1 & a_j\le m \land j>0\end{cases}$$
+
+**Spiegazione** : 
+
+$m$ : rappresenta il prodotto a cui dobbiamo arrivare 
+$j$ : rappresenta i primi $j$ elementi dell'array di partenza
+
+In questo problema abbiamo un unico *caso base* :
++ $j=0$ : in questo caso infatti avendo $0$ elementi non possiamo moltiplicare nulla quindi la risposta sarà $0$ sottoquenze trovate
+
+*Casi ricorsivi* :
+
+>[!note]
+>$a_j$ rappresenta il $j$-esimo elemento del vettore di input
+
++ $a_j >m \land j>0$ : ciò significa che l'elemento che stiamo ispezionando è maggiore del valore da trovare , visto che vi sono ancora elementi da visitare ( $j>0$ ) possiamo non scieglere l'elemento per essere incluso nella moltiplicazione e continuare a cercare : $\text{nsub}(m,j-1)$ 
++ $a_j \le m\land j > 0$ : ciò significa che abbiamo ancora elementi e l'elemento che stiamo ispezionando è minore del valore da trovare , ciò significa che abbiamo 2 casi : 
+	1. Lo includiamo nella moltiplicazione : ciò significa che dovremo toglierlo dalla moltiplicazione e continuare a cercare ( visto che abbiamo ancora elementi ) -> $\text{nsub}(m/a_j,j-1)$
+	2. Non lo includiamo nella moltiplicazione : ciò significa che dovremo cercare all'interno della rimanente parte del vattore -> $\text{nsub}(m,j-1)$
+	La soluzione finale sarà quindi data da : $\text{nsub}(m,j-1) + \text{nsub}(m/a_j\ ,j-1) +1$
+>[!note]
+>Dobbiamo anche aggiungere $1$ poichè l'elemento stesso , visto che è $a_j\le m$ , fa parte dell'insieme delle soluzioni
+ 
