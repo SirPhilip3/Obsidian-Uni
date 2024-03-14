@@ -901,4 +901,38 @@ $$L(\alpha,\beta)=\prod_{i=1}^n Pr(Y_i=1)^{y_i}Pr(Y_i=0)^{1-y_i}$$
 >[!note]
 >perchè utilizziamo Pr*Pr
 
-$$=\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\dots\times \left( \frac{e^{\alpha+58\beta}}{1+e^{\alpha+66\beta}} \right)$$
+$$=\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\left( \frac{e^{\alpha+70\beta}}{1+e^{\alpha+70\beta}} \right)\times\dots\times \left( \frac{e^{\alpha+58\beta}}{1+e^{\alpha+58\beta}} \right)$$
+Le stime di *massima verosimigilianza* sono calcolate numericamente : $\hat\alpha = 15.04$ e $\hat\beta = -0.23$
+
+**Interpretiamo ora i dati** : 
+
+Il modello stiamto è : 
+$$Pr(\text{cedimento o-ring alla temp x}) = \frac{e^{15.04-0.23\ x}}{1+e^{15.04-0.23 \ x}}$$
+Calcoliamo quindi la probabilità con $x=31°F$ :
+$$\frac{e^{15.04-0.23\cdot 31}}{1+e^{15.04-0.23 \cdot 31}}=0.9996$$
+![[Pasted image 20240314155131.png]]
+
+>[!warning]
+>Non possiamo fare un'estrapolazione così estrema dei dati poichè non abbiamo dati che riguardano temperature inferiori a $53°F$ che sono molto lontani dai $31$ di cui vogliamo trovare la probabilità
+
+>[!note]
+>Rimane una chiara indicazione che il rischio di rotture degli o-ring quel giorno era inaccettabile
+
+##### Esempio
+
+Consideriamo un campione casuale semplice da una variabile casuale *Bernulliana* di parametro $p$ 
+
+Avremo quindi che : 
+$$Pr(X_1=x_1) = p^{x_1}\cdot(1-p)^{1-x_1}$$
+La *verosimiglianza* sarà quindi : 
+$$L(p)=\prod_{i=1}^n p^{x_i} \cdot(1-p)^{1-x_i}$$
+La *log-verosimiglianza* per $p$ sarà :
+$$l(p)=\sum_{i=1}^n\left[ x_i\log p+(1-x_i)\log(1-p)\right]$$
+$$l(p)=\log p \sum_{i=1}^n X_i + \log(1-n)\left( n -\sum_{i=1}^nX_i\right)$$
+Poichè : $$\sum_{i=1}^n(1-x_i) = \sum_{i=1}^n 1 - \sum_{i=1}^n x_i=n-\sum_{i=1}^nx_i$$
+Ora per trovare la *massima verosimiglianza* ( funzione punteggio ) avremo : 
+$$l'(p)=\frac{\sum_{i=1}^n x_i}{p}-\frac{n-\sum_{i=1}^nX_i}{}$$
+
+#### Invarianza
+
+#### Parametro multivalore
