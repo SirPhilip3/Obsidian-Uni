@@ -531,3 +531,18 @@ i generic solo reference type -> posso fare solo 1 versione della sort  polimorf
 non posso passare metodi 
 < è una function binary -> ret bool , per astrarlo in oggetti , l'entità è un interfaccia che da come contratto solo il metodo che compara -> solo 1 metodo -> il  programmatore è invitato a implemetnare solo 1 , static possono essere tolti , default non serve che li implemento se non voglio , equals di object che ha implementazione di default
 
+comparable extends solo se creo una classe / oggetto che io sono un'entità confrontabile 
+comparatore si presta meglio per essere costrutito al volo per confrontare 2 oggetti 
+
+compare non statico poichè mi serve perchè abbia dynamic dispatching , meglio anche perchè posso avrere uno stato
+
+shadowing varaibile con stesso nome di una in scope 
+
+funzioni binarie 2 modi : 
++ `method(T ,T)` , può essere ternaria con il this
++ `method(T)` la seconda è this
+
+map asoscia key->vaklue
+
+
+
