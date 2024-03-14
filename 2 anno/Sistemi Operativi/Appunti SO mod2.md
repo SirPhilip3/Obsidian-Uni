@@ -409,3 +409,45 @@ consumatore(){
 	}
 }
 ```
+
+versione più intuitiva -> uso contatore per sapere quanto ho scritto o letto nel buffer
+
+```c
+data_t buffer[MAX]
+int inserisci = 0,retrieve = 0;
+int counter = 0;
+produttore(){
+	while(1){
+		// produce
+		while(counter == MAX){} // busy waiting
+		buffer[inserisci]=dato;
+		inserisci = (insersci+1)%MAX;
+		counter++;
+	}
+}
+consumatore(){
+	while(1){
+		while(counter == 0){}// busy waiting
+		dato = buffer[retrieve]; // non è corretto poichè la recieve potrebbe leggere più avanti di inserisci
+		retrieve=(retrieve+1)%MAX;
+		counter--;
+	}
+}
+```
+
+>[!warning]
+>Soluzione incorretta , race condition  quando 2 thread modificano lo stesso dato 
+>Perchè ? 
+>1-> leggo dalla ram `r1=contatore` 
+>3-> incremento `r1++`
+>2-> faccio store `contatore = r1`
+>
+>1-> leggo dalla ram `r2=contatore` 
+>3-> incremento `r2--`
+>2-> faccio store `contatore = r2`
+>
+>nella CPU potrei leggere r2 prima della scrittura 
+
+risoluzione , dovrei aspettare l'altro thread , devo sincronizzarla con se stessa 
+per proteggere codice che modifica dati condivisi da race condition , 
+problema della *sezione critica* -> tutto ciò che viene messo in sezione critica deve essere prottetto da altri thread
