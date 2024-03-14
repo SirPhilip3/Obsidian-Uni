@@ -930,9 +930,57 @@ La *log-verosimiglianza* per $p$ sarà :
 $$l(p)=\sum_{i=1}^n\left[ x_i\log p+(1-x_i)\log(1-p)\right]$$
 $$l(p)=\log p \sum_{i=1}^n X_i + \log(1-n)\left( n -\sum_{i=1}^nX_i\right)$$
 Poichè : $$\sum_{i=1}^n(1-x_i) = \sum_{i=1}^n 1 - \sum_{i=1}^n x_i=n-\sum_{i=1}^nx_i$$
-Ora per trovare la *massima verosimiglianza* ( funzione punteggio ) avremo : 
-$$l'(p)=\frac{\sum_{i=1}^n x_i}{p}-\frac{n-\sum_{i=1}^nX_i}{}$$
+Troviamo ora la funzione punteggio : 
+$$l'(p)=\frac{\sum_{i=1}^n X_i}{p}-\frac{n-\sum_{i=1}^nX_i}{1-p}$$
+Risolvendo $l'(p)=0$ troveremo lo stimatore di *massima verosimiglianza* : 
+$$\frac{(1-p)\sum_{i=1}^nX_i -np + p\sum_{i=1}^n X_i}{1-p}=0$$
+Ci interessa mettere $=0$ solamente al numeratore : 
+$$\sum_{i=1}^nX_i - p\sum_{i=1}^nX_i - np + p \sum_{i=1}^nX_i = 0$$
+$$\sum_{i=1}^nX_i -np = 0$$
+$$p=\frac{\sum_{i=1}^nX_i}{n}$$
+Ossia visto che sappiamo che $\overline X= \frac{\sum_{i=1}^nX_i}{n}$ avremo che : 
+$$p = \overline X$$
+Visto che non sappiamo il vero valore di $p$ passiamo alla stima : 
+$$\hat p = \overline X$$
+>[!warning]
+>Per verificare che effettivamente questo è uno stimatore di *massima verosimiglianza* dobbiamo calcolare la derivata seconda : 
+>$$l''(p)=-\frac{\sum_{i=1}^n X_i}{p^2} - \frac{n-\sum_{i=1}^n X_i}{(1-p)^2}$$
+>Ora questo deve essere $<0$ per avere lo stimatore di *massima verosimiglianza* , notiamo che i fattori moltiplicativi sono sempre $<0$ poichè hanno il segno $-$ davanti mentre la prima sommatoria rappresenta la somma di valori che possono essere o $0$ o $1$ , sarà quindi sicuramente positiva ; mentre il secondo fattore moltiplicativo sappiamo che la sommatoria è sicuramente $\le n$ avremo quindi che la sottrazione $x - \sum$ sarà sicurmanete $\ge 0$  
 
+Calcoliamo ora l'errore standard di $\hat p$ : 
+	Sfruttiamo il fatto che sappiamo che la *varianza* di una variabile bernulliana è : $p(1-p)$
+	$$SE(\hat p) = \sqrt{Var(\hat p)} = \sqrt{\frac{Var(X_1)}{n}}=\sqrt{\frac{p\cdot (1-p)}{n}}$$
+	Che *stimato* diventa 
+	$$\widehat {SE}(\hat p) = \sqrt{\frac{\hat p\cdot(1-\hat p)}{n}}$$ 
+Possiamo ricavare $\widehat{SE}$ anche attraverso l'*informazione attesa* o l'*informazione osservata* : 
+
+>[!note] Attraverso l'informazione osservata
+>Sappiamo che $J(p)=-l''(p)$ , sarà quindi facile calcolarla sfruttando ciò che abbiamo precedentemente calcolato :
+>$$J(p)=\frac{\sum_{i=1}^n X_i}{p^2}+\frac{n-\sum_{i=1}^n X_i}{(1-p^2)}$$
+>Sappiamo inoltre che $\widehat{SE} = J(\hat p)^{-1/2}$ che ci dice che :
+>$$\widehat{SE}=\left( \frac{\sum_{i=1}^n X_i}{p^2}+\frac{n-\sum_{i=1}^n X_i}{(1-p^2)} \right)^{-1/2}$$
+>Siccome $\hat p = \overline X$ segue che $\sum_{i=1}^n X_i = n \hat p$ e quindi 
+>$$\widehat {SE}(\hat p) = \left( \frac{n\hat p}{\hat p^2} + \frac{n - n\hat p}{(1-\hat p )^2} \right)^{-1/2}$$
+>$$\left( \frac{n}{\hat p} + \frac{n}{(1-\hat p)} \right)^{-1/2}$$
+>$$\sqrt{\frac{\hat p(1-\hat p)}{n}}$$
+
+>[!note] Attraverso l'informazione attesa
+>Sappiamo che $I(p)=E\{ J(p) \}$ 
+>$$=E\left( \frac{\sum_{i=1}^n X_i}{p^2} \right) + E\left( \frac{n-\sum_{i=1}^n X_i}{(1-p)^2} \right)$$
+>$$=\left( \frac{\sum_{i=1}^n E(X_i)}{p^2} \right) + \left( \frac{n-\sum_{i=1}^n E(X_i)}{(1-p)^2} \right)$$
+>Visto che sappiamo che la bernulliana ha $E[X]=p$ possiamo sostituire : 
+>$$=\left( \frac{\sum_{i=1}^n p}{p^2} \right) + \left( \frac{n-\sum_{i=1}^n p}{(1-p)^2} \right)$$
+>$$=\left( \frac{n\cdot p}{p^2} \right) + \left( \frac{n-n\cdot p}{(1-p)^2} \right)$$
+>$$=\left( \frac{n}{p} \right) + \left( \frac{n}{1-p} \right)$$
+>$$=\frac{n}{p(1-p)}$$
+>
+>Quindi abbiamo che l'erroe standard limite di $\hat p$ è 
+>$$\widehat{SE}(\hat p)=I(\hat p)^{-1/2}=\sqrt{\frac{\hat p(1-\hat p)}n}$$
+
+>[!warning]
+>In generale le stime dell'errore standard basate su $I$ e $J$ coincidono ma in generale le due stime sono diverse
 #### Invarianza
+
+
 
 #### Parametro multivalore
