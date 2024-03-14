@@ -332,3 +332,80 @@ sulle pipe leggo e scrivo byte
 `./lettore & ./scrittore & ./scrittore & ./scrittore & ./lettore & ./lettore`
 interfersicono i messaggi , lettori non si coordinano tra loro per leggere ciò che viene scritto , non ho garanzia che ogni lettore legge completamente un messaggio 
 
+# 14/03/2024
+
+comunicazione in memoria condivisa tra threads 
+
+thread -> condivide delle risorse del processo , parti d'esecuazione di un processo , light weight processes , mem dati condivisa tra tutti i thread del processo 
+
+Produttore - Consumatore
+
+`{bash} ls | grep 'ciao'`
+ls produce grep consuma
+
+message passing 
+```c
+produttore(){
+	while(1){
+		// produce un dato
+		send(a,dato) // può essere asincrona me deve diventare sincorna se il buffer si riempie , es se l'altro aspetta prima di leggere l'output etccc  
+	}
+}
+```
+```c
+consumatore(){
+	while(1){
+		recieve(a,&dato) // deve essere bloccante , se non è sincrona devo gestire l'errore
+		d = ....
+		// consuo d
+		// legge un dato e poi lo consuma
+	}
+}
+```
+
+porta a è condivisa
+
+con la memoria condivisa ?? ( con buffer di dimensione illimitata )
+ aggiungo un indice che indica dove ho messo i dati 
+```c
+int inserisci = 0; // globale accessibile da tutti i thread
+produttore(){
+	while(1){
+		buffer[inserisci]=dato;
+		insersci++;
+	}
+}
+```
+```c
+int retrieve = 0; // globale
+consumatore(){
+	while(1){
+		while(retrieve==inserisci){}// busy waiting
+		dato = buffer[retrieve]; // non è corretto poichè la recieve potrebbe leggere più avanti di inserisci
+		retrieve++;
+	}
+}
+```
+
+non implementabile perchè il buffer non è infinito
+implemento coda -> buffer circolare , lavoro con il modulo per accedere elementi
+
+```c
+data_t buffer[MAX]
+int inserisci = 0,retrieve = 0;
+produttore(){
+	while(1){
+		// produce
+		while((inserisci+1)%MAX==preleva){} // busy waiting
+		buffer[inserisci]=dato;
+		inserisci = (insersci+1)%MAX;
+	}
+}
+consumatore(){
+	while(1){
+		while(retrieve==inserisci){}// busy waiting
+		dato = buffer[retrieve]; // non è corretto poichè la recieve potrebbe leggere più avanti di inserisci
+		retrieve=(retrieve+1)%MAX;
+	}
+}
+```
