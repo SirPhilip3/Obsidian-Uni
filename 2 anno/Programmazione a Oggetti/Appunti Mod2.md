@@ -519,3 +519,15 @@ sorted -> caratteristica univoca per vari set implementati in modo differente (h
 3. `{java}<T extends ....>` T deve essere almeno del tipo a dx , non sto ereditando nulla 
 
 ogni keyword occupa uno spazio per un nome di variabile , meno keyword possibili in un linguaggio
+
+# 14/03/2024
+
+sort con double , int -> tipi primitivi -> implementazione ideintica a meno di bynding specifici
+il < non è polimorfo in java può essere overloadato ma non su tipi qualsiasi ( in c++ è polimorfo )
+
+i generic solo reference type -> posso fare solo 1 versione della sort  polimorficamente , veci del < che fa da operatore di confronto `Comparable` , poichè non posso overloaddarlo nei tipi generici
+
+
+non posso passare metodi 
+< è una function binary -> ret bool , per astrarlo in oggetti , l'entità è un interfaccia che da come contratto solo il metodo che compara -> solo 1 metodo -> il  programmatore è invitato a implemetnare solo 1 , static possono essere tolti , default non serve che li implemento se non voglio , equals di object che ha implementazione di default
+
