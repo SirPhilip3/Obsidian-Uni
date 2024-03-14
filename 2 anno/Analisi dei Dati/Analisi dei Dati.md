@@ -822,6 +822,56 @@ Visto che la *varianza* dello stimatore di massima verosimiglianza raggiunge que
 
 ###### Caso di studio
 
->[!todo]
->#todo
+**Disastro Challenger**
+
+Disatro causato dal danneggiamento di una coppia di o-ring presenti in un *SRB* , questo fu dovuto al fatto che gli o-ring erano stati progettati per funzionare a temperature non inferiori a $11°C$  mentre quel giorni si raggiunsero i $-8°C$ la notte ed ala momento del lancio vi erano $-0.5°C$ 
+
+Cerchiamo di stimare la probabilità che si verificasse un cedimento dei 2 o-ring data la temperatura , abbiamo a disposizione i seguenti dati : 
+
+| Flight | Number of o-rings with damages $r$ | Temperature ( $°F$ ) |
+| ------ | ---------------------------------- | -------------------- |
+| 1      | 0                                  | 66                   |
+| 2      | 1                                  | 70                   |
+| 3      | 0                                  | 69                   |
+| 5      | 0                                  | 68                   |
+| 6      | 0                                  | 67                   |
+| 7      | 0                                  | 72                   |
+| 8      | 0                                  | 73                   |
+| 9      | 0                                  | 70                   |
+| 41-B   | 1                                  | 57                   |
+| 41-C   | 1                                  | 63                   |
+| 41-D   | 1                                  | 70                   |
+| 41-G   | 0                                  | 78                   |
+| 51-A   | 0                                  | 67                   |
+| 51-C   | 2                                  | 53                   |
+| 51-D   | 0                                  | 67                   |
+| 51-B   | 0                                  | 75                   |
+| 51-G   | 0                                  | 70                   |
+| 51-F   | 0                                  | 81                   |
+| 51-I   | 0                                  | 76                   |
+| 51-J   | 0                                  | 79                   |
+| 61-A   | 2                                  | 75                   |
+| 61-B   | 0                                  | 76                   |
+| 61-C   | 1                                  | 58                   |
+| 61-I   | —                                  | 31                   |
+**Modelliamo i dati** : 
+
+Dobbiamo specificare un *modello statistico* che usi l'informazione dei precedenti 23 lanci per prevedere quello che sarebbe successo quel giorno 
+
+Vogliamo specificare un modello che descriva la variabile casuale : 
+$$Y = '\text{cedimento di almeno un o-ring}'$$
+In funzione della temperatura $x$ il giorno del lancio
+
+Notiamo che $Y_1, \dots ,Y_{23}$ sono varaibili casuali di *Bernuolli* ossia : 
+	$Y_i$ è pari a 0 se gli o-ring dell'$i$-esimo lancio sono intatti , $1$ invece se almeno un o-ring cede
+
+>[!note]
+>Le variabili $Y_1, \dots ,Y_{23}$ non sono identicamente distribuite poichè vogliamo valutare se la probabilità che un o-ring ceda dipenda dalla temperatura 
+>$$Y_i \sim Ber(p_i), \quad p_i = Pr(Y_i = 1|x_I), \quad i = 1,\dots,23$$
+>
+>dove $p_i = g(x_i)$ è una funzione della temperatura
+>
+
+Come scegliamo la funzione $g$ ? 
+	Potremmo considerare qualsiasi funzione che vada da $\mathbb{R}$ ( la temperatura ) a $[0,1]$ ( probabilità di cedimento dell'o-ring )
 
