@@ -875,3 +875,30 @@ Notiamo che $Y_1, \dots ,Y_{23}$ sono varaibili casuali di *Bernuolli* ossia :
 Come scegliamo la funzione $g$ ? 
 	Potremmo considerare qualsiasi funzione che vada da $\mathbb{R}$ ( la temperatura ) a $[0,1]$ ( probabilità di cedimento dell'o-ring )
 
+Tra le scelte per $g:\mathbb{R}\to[0,1]$ quella più usata è la funzione *logisitica inversa*  
+$$g(z)=\text{invlogit}(z) = \frac{e^z}{1+e^z}$$
+![[Pasted image 20240314144854.png]]
+
+Consideriamo un *modello di regressione logistica* che collega la probabilità di cedimento di un o-ring alle variazioni della temperatura
+
+>[!note]
+>Il parametro del modello statistico è costituito da due componenti : $\theta = (\alpha,\beta)$
+
+Avremo quindi le due probabilità legate al cedimento degli o-ring descritte nel seguente modo : 
+$$Pr(Y_i=1|x_i)=\frac{e^{\alpha+\beta\ x_i}}{1+e^{\alpha+\beta\ x_i}}$$
+$$Pr(Y_i=0|x_i)=\frac{1}{1+e^{\alpha+\beta\ x_i}}$$
+>[!note]
+>Le due probabilità sono state trovate considerando la seguente espressione : 
+>$$Pr(Y_i=1|x_i)+Pr(Y_i=0|x_i)=1$$
+
+Il parametro di interesse è $\beta$ : 
++ se $\beta = 0$ allora la temperatura non ha alcun effetto sul *rischio* di cedimento di un o-ring
++ se $\beta\neq 0$ allora la temperatura ha effetto sul rischio
++ valori negativi di $\beta$ indicano che il *rischio cresce* quando la temperatura scende
+  
+Troviamo la *verosimiglianza* basata sui dati : 
+$$L(\alpha,\beta)=\prod_{i=1}^n Pr(Y_i=1)^{y_i}Pr(Y_i=0)^{1-y_i}$$
+>[!note]
+>perchè utilizziamo Pr*Pr
+
+$$=\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\dots\times \left( \frac{e^{\alpha+58\beta}}{1+e^{\alpha+66\beta}} \right)$$
