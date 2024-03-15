@@ -1017,4 +1017,11 @@ I *momenti* di $\hat\theta$ sono :
 1. Il *vettore di valori attesi* : 
 	$$\mu = \left( \matrix{\mu_1 \\ \vdots \\ \mu_k}\right)$$
 	Con $\mu_r = E(\hat\theta_r), \ r=1,\dots,k$
-2. La *matrice di varianze e covarianze *
+2. La *matrice di varianze e covarianze*
+	$$\sum = \left( \matrix{\sigma_1^2 &\sigma_{12} & \dots &\sigma_{1k}\\ \vdots & \vdots & \ddots & \vdots \\ \sigma_{k1} & \sigma_{k2}& \dots& \sigma_k^2 } \right)$$
+	Dove $\sigma_{rs} = Cov(\hat\theta_r , \hat\theta_s)$ e $\sigma_r^2 = \sigma_{rr}$ con $r,s=1,\dots,k$
+
+##### Stimatore di massima verosimiglianza
+
+>[!todo]
+>#todo

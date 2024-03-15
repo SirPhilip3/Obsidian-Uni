@@ -11,13 +11,13 @@ I principali problemi delle basi di dati sono i seguenti :
 
 **Esempio** : 
 
-| NomeUtente | Telefono | *CodiceLibro* | Titolo | Data |
-| ---- | ---- | ---- | ---- | ---- |
-| Rossi Carlo | 75444 | XY188A | Decameron | 07-07 |
-| Pastine Maurizio | 66133 | XY090C | Canzoniere | 01-08 |
-| Paolicchi Laura | 59729 | XY101A | Vita Nova | 05-08 |
-| Paolicchi Luca | 59729 | XY701B | Adelchi | 14-01 |
-| Paolicchi Luca | 59729 | XY008C | Amleto | 17-08 |
+| NomeUtente       | Telefono | *CodiceLibro* | Titolo     | Data  |
+| ---------------- | -------- | ------------- | ---------- | ----- |
+| Rossi Carlo      | 75444    | XY188A        | Decameron  | 07-07 |
+| Pastine Maurizio | 66133    | XY090C        | Canzoniere | 01-08 |
+| Paolicchi Laura  | 59729    | XY101A        | Vita Nova  | 05-08 |
+| Paolicchi Luca   | 59729    | XY701B        | Adelchi    | 14-01 |
+| Paolicchi Luca   | 59729    | XY008C        | Amleto     | 17-08 |
 
 In questo caso i dati sono ridondati poichè *replichiamo* le informazioni degli utenti se questi hanno più prestiti attivi , inoltre possiamo inserire degli utenti nella base di dati solo se hanno preso in prestito almeno un libro ( *scarsa espressività* )
 

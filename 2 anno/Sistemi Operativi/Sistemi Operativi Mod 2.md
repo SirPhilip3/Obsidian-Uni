@@ -1121,3 +1121,5 @@ $ ./lettore & ./scrittore & ./scrittore & ./scrittore
 >Le *pipe* possono essere aperte sia in lettura che scrittura con l'opzione `O_RDRW` , questo però ci porterebbe a leggere noi stessi .
 >Es nello stesso processo scrivo e poi leggo  
 >Questa modalità è utilizzata solamente per fare in modo di aprire *pipe* in scrittura quando nessuno l'ha ancora aperta in lettura 
+
+### Produttore e Consumatore
