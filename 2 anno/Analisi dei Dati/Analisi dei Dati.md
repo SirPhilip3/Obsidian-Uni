@@ -951,7 +951,7 @@ Calcoliamo ora l'errore standard di $\hat p$ :
 	Sfruttiamo il fatto che sappiamo che la *varianza* di una variabile bernulliana è : $p(1-p)$
 	$$SE(\hat p) = \sqrt{Var(\hat p)} = \sqrt{\frac{Var(X_1)}{n}}=\sqrt{\frac{p\cdot (1-p)}{n}}$$
 	Che *stimato* diventa 
-	$$\widehat {SE}(\hat p) = \sqrt{\frac{\hat p\cdot(1-\hat p)}{n}}$$ 
+$$\widehat {SE}(\hat p) = \sqrt{\frac{\hat p\cdot(1-\hat p)}{n}}$$ 
 Possiamo ricavare $\widehat{SE}$ anche attraverso l'*informazione attesa* o l'*informazione osservata* : 
 
 >[!note] Attraverso l'informazione osservata
@@ -981,6 +981,40 @@ Possiamo ricavare $\widehat{SE}$ anche attraverso l'*informazione attesa* o l'*i
 >In generale le stime dell'errore standard basate su $I$ e $J$ coincidono ma in generale le due stime sono diverse
 #### Invarianza
 
+Se $\hat\theta$ è lo *stimatore di massima verosimiglianza* di $\theta$ allora $g(\hat\theta)$ è lo *stimatore di massima verosimiglianza* di $\psi = g(\theta)$
 
+>[!example]
+>Supponiamo che il numero di utenti che si collegano ad un server in un istante di tempo si distribuisca come una variabile di Poisson di parametro $\lambda$
+>La stima di massima verosimiglianza di $\lambda$ è $\hat\lambda = \overline X$ 
+>Ci interessa stimare la probabilità che il numero di utenti superi un certo critico $c$
+>Il *parametro di interesse* diventa quindi : $\psi = Pr(X>c) = 1- F(c)$
+>Dove $F(c)$ è la funzione di ripartizione di una variabile di Poisson
+>
+>La proprietà dell'invarianza dice che lo stimatore di massima verosimiglianza di $\psi$ è : 
+>$$\hat \psi = 1-\hat F(c)$$ 
+>( ricordandoci che $F(c)$ è in funzione di $\lambda$ )
+>
+>Supponiamo di avere un $c=75$
+>In un campione casuale di $25$ istanti di tempo è stato osservato $\overline x = 62.7$
+>
+>La stima di massima verosimiglianza dunque è : $\hat \lambda = 62.7$
+>La stima di massima verosimiglianza di $\psi$ è : 
+>$$\hat \psi = 1-\sum_{x=0}^{75} \frac{e^{-62.7}(62.7)^x}{x!}$$
+>Oppure con R : 
+>`{r} 1- ppois(75,lambda = 62.7)`
 
 #### Parametro multivalore
+
+Nella gran parte dei casi reali la dimensione del parametro è maggiore di uno : 
+$$\theta = \left( \matrix{\theta_1 \\ \vdots \\ \theta_k}\right)$$
+Possiamo estendere i risultati ottenuti finora ad un vettore di parametri , infatti : 
+
+Lo *stimatore* di $\theta$ è un vettore causale : 
+$$\hat\theta = \left( \matrix{\hat\theta_1 \\ \vdots \\\hat \theta_k}\right)$$
+In cui ogni componente $\hat\theta_r\ (r=1,\dots,k)$ è una variabile casuale
+
+I *momenti* di $\hat\theta$ sono : 
+1. Il *vettore di valori attesi* : 
+	$$\mu = \left( \matrix{\mu_1 \\ \vdots \\ \mu_k}\right)$$
+	Con $\mu_r = E(\hat\theta_r), \ r=1,\dots,k$
+2. La *matrice di varianze e covarianze *
