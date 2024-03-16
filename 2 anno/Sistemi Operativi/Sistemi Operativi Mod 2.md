@@ -1274,6 +1274,63 @@ Consumatore() {
 ```
 
 Questa soluzione ha alcuni difetti : 
-+ Spreca una cella di memoria per distinguere buffer pieno da buffer vuoto
-+ Spreca tempo di CPU nel *busy-waiting*
-+ Non scala co 
+1. Spreca una cella di memoria per distinguere buffer pieno da buffer vuoto
+2. Spreca tempo di CPU nel *busy-waiting*
+3. Non scala con la presenza di più costruttori e più consumatori poichè la condivisione di `inserisci` e `preleva` conporterebbe altre interferenze
+
+##### Interferenze tra variabili condivise
+
+Per risolvere il primo problema si potrebbe usare un contatore inizializzato a 0 
+
+```c
+data_t buffer[MAX]; // un buffer di dimensione MAX
+int inserisci=0, preleva=0; // indici per l'accesso al buffer
+int contatore=0; // contatore per le condizioni di attesa
+ 
+Produttore() {
+  while(1) {
+    /* produce un elemento d */
+    while (contatore == MAX) {}; // buffer pieno attendo
+    buffer[inserisci] = d;
+    inserisci=(inserisci+1) % MAX // Il buffer è circolare
+    contatore++; // aggiorno il contatore
+  }
+}
+ 
+Consumatore() {
+  while(1) {
+    while (contatore == 0) {}; // buffer vuoto attendo
+    d = buffer[preleva];
+    preleva=(preleva+1) % MAX // Il buffer è circolare
+    contatore--; // aggiorno il contatore
+    /* consuma d */
+  }
+}
+```
+
+>[!warning]
+>I thread aggiornano la variabile `contatore` contemporaneamente , questo crea interferenze compromettendo l'integrità dei dati
+
+>[!example]
+>In pseudo-assembly avremo che la modifica del contatore sarà : 
+```asm
+r1 = contatore // lettura dalla memoria in un registro
+r1 = r1 + 1 
+contatore = r1 // salvo il nuovo valore in memoria
+```
+```asm
+r2 = contatore
+r2 = r2 - 1
+contatore = r2
+```
+
+Visto che non possiamo essere certi dell'ordine con il quale vengono effettuate le precedenti operazioni non possiamo nemmeno essere certi del risultato che otteniamo :
+Potremmo avere 3 risulati a seconda dell'ordine con cui eseguiamo le istruzioni ( partendo da `contatore=5` ) :
+1. `contatore = 6`
+2. `contatore = 4`
+3. `contatore = 5`
+
+*Race condition* : si sviluppa una competizione per la stessa risorsa ( in questo caso il `contatore` ) , l'output del risultato dipende dalla temporizzazione degli eventi 
+
+Serve un meccanismo per sincronzzare i thread , una soluzione sarebbe avere una parte di codice in cui i thread non possono svolgerla contemporaneamente ( *Sezione critica* )
+
