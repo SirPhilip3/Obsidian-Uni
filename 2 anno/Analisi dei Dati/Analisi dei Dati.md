@@ -1023,5 +1023,21 @@ I *momenti* di $\hat\theta$ sono :
 
 ##### Stimatore di massima verosimiglianza
 
+Nei problemi di stima regolari lo *stimatore di massima verosimiglianza* si ottiene risolvendo le equazioni di verosimiglianza : 
+$$\begin{cases}  \frac{dl(\theta)}{d\theta_1} = 0 \\ \vdots \\ \frac{d l(\theta)}{d\theta_k} = 0\end{cases}$$
+La soluzione è lo stimatore di massima verosimiglianza se la *matrice Hessiana* delle derivate  seconde 
+$$\left(\matrix{\frac{d^2 l(\theta)}{d \theta^2_1} & \frac{d^2 l(\theta)}{d \theta_1 d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ \frac{d^2 l(\theta)}{d \theta_k d\theta_1} & \frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_k^2}}\right)$$
+è definita negativa 
+
+Nei problemi regolari di stima lo stimatore di massima verosimiglianza ha come distribuzione limite la *normale multivariata* di dimensione $k$  : 
+$$\hat \theta \approx MVN_k(\theta.I(\theta)^{-1})\quad \text{per $n$ sufficentemente grande}$$
+dove $I(\theta)$ è la *matrice dell'informazione attesa* 
+$$\hat\theta \approx MVN_k(\theta,J(\theta)^{-1})\quad \text{per $n$ sufficentemente grande}$$
+dove $J(\theta)$ è la *matrice dell'informazione osservata*
+
+La matrice dell'*informazione attesa* è $I(\theta) = E\{J(\theta)\}$ con :
+
+$$\left(\matrix{\frac{}{} & \frac{}{} & \dots & \frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ \frac{d^2 l(\theta)}{d \theta_k d\theta_1} & \frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_k^2}}\right)$$
+
 >[!todo]
 >#todo
