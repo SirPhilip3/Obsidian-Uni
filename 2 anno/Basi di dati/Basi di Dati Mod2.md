@@ -1071,6 +1071,9 @@ CREATE TABLE Studio (
 ```
 #### CHECK
 
+E' possibile specificare vincoli complessi sul valore di un attributo, usando la sintassi *CHECK* seguita da un'espressione booleana fra parentesi : 
++ Si può usare qualsiasi espressione ammmessa da *WHERE*
+
 ##### CHECK su Attributi
 
 ##### CHECK su Tuple
