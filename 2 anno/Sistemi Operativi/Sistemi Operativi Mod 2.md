@@ -1123,3 +1123,157 @@ $ ./lettore & ./scrittore & ./scrittore & ./scrittore
 >Questa modalità è utilizzata solamente per fare in modo di aprire *pipe* in scrittura quando nessuno l'ha ancora aperta in lettura 
 
 ### Produttore e Consumatore
+
+Il modello a scambio di messaggi si presta ad applicazioni strutturate come *produttore*/*consumatore* ossia un processo produce dati e l'altro li utilizza 
+
+#### Scambio di messaggi
+
+Nel modello a scambio di messaggi lo schema *produttore*/*costruttore* si realizza come segue :
+
+```c
+port A
+
+produttore(){
+	while(1){
+		// produce un dato
+		send(A,d);
+	}
+}
+
+consumatore(){
+	while(1){
+		recieve(A,&d);
+		// consuma d
+	}
+}
+```
+
+Se utilizziamo una *send asincrona* ( bloccante solo quando il buffer è pieno ) e una *recieve sincrona* otteniamo una soluzione soddisfacente : il consumatore attende se non ci sono dati da consumare , il produttore attende se non c'è spazio nel buffer
+
+#### Memoria condivisa
+
+Il modello a *memoria condivisa* viene utilizzato dai *thread* ( un filone di istruzioni all'interno di un processo )  , in quanto questi condividono le risorse del loro processo padre .
+Quando abbiamo più thread in un singolo processo si parla di *multi-threading* . In questo caso ogni *thread* avrà un ID distinto ma condivideranno la memoria del loro processo di origine
+
+##### Produttore/Consumatore con memoria condivisa e buffer illimitato
+
+Utilizzeremo la memoria come *canale di comunicazione* senza ricorrere a meccanismi di comunicazione tra processi come le *PIPE*
+
+Consideriamo un buffer illimitato , implementato tramite un array `buffer[]` condiviso e due indici `inserisci` e `preleva` inizializzati a 0 
+
+Vediamo una prima soluzione ==Errata==
+
+```c
+data_t buffer[...]; // un buffer "teorico" di dimensione illimitata
+int inserisci=0, preleva=0; // indici per l'accesso al buffer
+ 
+Produttore() {
+	while(1) {
+	    /* produce un elemento d */
+	    buffer[inserisci] = d;
+	    inserisci++;
+	}
+}
+ 
+Consumatore() {
+	while(1) {
+	    d = buffer[preleva];
+	    preleva++;
+	    /* consuma d */
+	}
+}
+```
+
+>[!warning]
+>Il *consumatore* non attende che vi siano elementi nel buffer e quindi legge memoria "sporca" nel caso sia eseguito pipù velocemente del *produttore* . Visto che non possiamo fare assunzioni sullo scheduling dobbiamo introdurre un meccanismo di attesa 
+
+>[!solution]
+>Utilizziamo la tecnica *busy-waiting* : il thread cicla a vuoto finchè non ci sono elementi da consumare
+
+```c
+data_t buffer[...]; // un buffer "teorico" di dimensione illimitata
+int inserisci=0, preleva=0; // indici per l'accesso al buffer
+ 
+Produttore() {
+	while(1) {
+	    /* produce un elemento d */
+	    buffer[inserisci] = d;
+	    inserisci++;
+	}
+}
+ 
+Consumatore() {
+	while(1) {
+	    while (inserisci == preleva) {}; // buffer vuoto attendo
+	    d = buffer[preleva];
+	    preleva++;
+	    /* consuma d */
+	}
+}
+```
+
+>[!note]
+>La soluzione assume l'esistenza di un buffer illimitato
+
+##### Produttore/Consumatore con memoria condivisa e buffer circolare
+
+Utilizziamo un buffer circolare di dimensione `MAX` 
+
+Suluzione ==Errata==
+```c
+data_t buffer[MAX]; // un buffer di dimensione MAX
+int inserisci=0, preleva=0; // indici per l'accesso al buffer
+ 
+Produttore() {
+	while(1) {
+	    /* produce un elemento d */
+	    buffer[inserisci] = d;
+	    inserisci=(inserisci+1) % MAX // Il buffer è circolare
+	}
+}
+ 
+Consumatore() {
+	while(1) {
+	    while (inserisci == preleva) {}; // buffer vuoto attendo
+	    d = buffer[preleva];
+	    preleva=(preleva+1) % MAX // Il buffer è circolare
+	    /* consuma d */
+	}
+}
+```
+
+>[!warning]
+>Se il buffer ha dimensione limitata il produttore , raggiunto `MAX` , inizierà a scrivere dalla casella 0 , *sovrascrivendo* i dati non ancora letti dal cosumatore . 
+>Nel caso della `send` il produttore si deve bloccare quando il buffer è pieno
+
+>[!solution]
+>Sarebbe necessario aggiungere un *busy-waiting* anche sul produttore ma non è possibile poichè `inserisci==preleva` andrebbe in stallo visto che all'inizio avremo che sicuramente `inserisci==preleva` il produttore quindi si bloccherebbe sul `{c}while(inserisci==preleva){}` senza mai produrre nulla 
+>Una soluzione sarebbe quella di considerare il buffer pieno quando `(inserisci+1) % MAX` coincide con `preleva` ( ossia abbiamo solo una cella libera )
+
+```c
+data_t buffer[MAX]; // un buffer di dimensione MAX
+int inserisci=0, preleva=0; // indici per l'accesso al buffer
+ 
+Produttore() {
+	while(1) {
+    /* produce un elemento d */
+	    while ((inserisci+1) % MAX == preleva) {}; // buffer pieno attendo
+	    buffer[inserisci] = d;
+	    inserisci=(inserisci+1) % MAX // Il buffer è circolare
+	}
+}
+ 
+Consumatore() {
+	while(1) {
+	    while (inserisci == preleva) {}; // buffer vuoto attendo
+	    d = buffer[preleva];
+	    preleva=(preleva+1) % MAX // Il buffer è circolare
+	    /* consuma d */
+	}
+}
+```
+
+Questa soluzione ha alcuni difetti : 
++ Spreca una cella di memoria per distinguere buffer pieno da buffer vuoto
++ Spreca tempo di CPU nel *busy-waiting*
++ Non scala co 
