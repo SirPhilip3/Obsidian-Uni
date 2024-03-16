@@ -1037,7 +1037,9 @@ dove $J(\theta)$ è la *matrice dell'informazione osservata*
 
 La matrice dell'*informazione attesa* è $I(\theta) = E\{J(\theta)\}$ con :
 
-$$\left(\matrix{\frac{}{} & \frac{}{} & \dots & \frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ \frac{d^2 l(\theta)}{d \theta_k d\theta_1} & \frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_k^2}}\right)$$
+$$J(\theta)=\left(\matrix{-\frac{d^2 l(\theta)}{d \theta^2_1} & -\frac{d^2 l(\theta)}{d \theta_1 d\theta_2} & \dots & -\frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ -\frac{d^2 l(\theta)}{d \theta_k d\theta_1} & -\frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & -\frac{d^2 l(\theta)}{d \theta_k^2}}\right)$$
 
 >[!todo]
+>distribuzione normale multivariata
 >#todo
+

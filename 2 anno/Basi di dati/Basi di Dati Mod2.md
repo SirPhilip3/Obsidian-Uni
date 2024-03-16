@@ -1042,9 +1042,33 @@ CREATE TABLE Studio (
 >Le seguenti operazioni su `Studio` sono impedite : 
 >+ Inserimento di una tupla con attributo `president` non `NULL` e non coincidecon l'attributo `code` di una tupla in `MovieExec`
 >+ Aggiornamento di una tupla per cambiare l'attributo `president` ad un valore non `NULL` che non coincide con l'attributo `code` di una tupla di `MovieExec` 
+>
+>Altre operazioni pericolose su `MovieExec`
+> + Cancellazione di una tupla il cui attributo `code` coincide con l'attributo `president` di qualche tupla in `Studio`
+> + Aggiornamento di una tupla per cambiare il suo attributo `code` in modo tale che non coincida più con l'attributo `president` di qualche tupla di `Studio`
 
->[!todo]
->#todo
+##### Politiche di Integrità Referenziale
+
+*SQL* mette a disposizione tre politche per gestire i due casi descritti : 
+
+1. *Default* : rifiuta la modifica
+2. *CASCADE* : applica la stessa modifica ( *DELETE* o *UPDATE* ) sulle tuple che fanno uso della chiave esterna
+3. *SET NULL* : imposta la chiave esterna a *NULL* sulle tuple che fanno uso della stessa
+
+Possiamo specificare una politica diversa per *DELETE* ed *UPDATE* , utilizzando la sintassi *ON DELETE* oppure *ON UPDATE* seguito da *CASCADE* oppure *SET NULL*
+
+>[!example]
+```sql
+CREATE TABLE Studio (
+	name CHAR(30) PRIMARY KEY,
+	address VARCHAR(255),
+	president INT,
+	FOREING KEY ( president )
+	REFERENCES MovieExec(code)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+)
+```
 #### CHECK
 
 ##### CHECK su Attributi
