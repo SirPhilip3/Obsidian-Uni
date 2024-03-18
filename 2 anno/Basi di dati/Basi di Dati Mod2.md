@@ -1073,10 +1073,59 @@ CREATE TABLE Studio (
 
 E' possibile specificare vincoli complessi sul valore di un attributo, usando la sintassi *CHECK* seguita da un'espressione booleana fra parentesi : 
 + Si può usare qualsiasi espressione ammmessa da *WHERE*
+>[!warning] 
+>Nello standard SQL si possono riferire altre relazioni tramite sotto-query , questo non è supportato nei DBMS commerciali ( Postgres )
++ Il vincolo viene controllato ogni volta che una tupla assueme un nuovo valore per quell'attributo ( in pratica quando avviene un `{sql}INSERT` o `{sql}UPDATE` )
 
+>[!note]
+>Non necessariamente significa che il vincolo venga sempre rispettato 
 ##### CHECK su Attributi
 
+>[!example]
+>
+```sql
+CREATE TABLE MovieExec ( 
+	name CHAR(50), 
+	address VARCHAR(255), 
+	code INT PRIMARY KEY CHECK (code >= 100000), 
+	netWorth INT CHECK (netWorth >= 0) 
+)
+```
+
+>[!example]
+```sql
+CREATE TABLE Studio(
+	name CHAR(30) PRIMARY KEY, 
+	address VARCHAR(255), 
+	president INT, FOREIGN KEY (president) REFERENCES MovieExec(code)	
+)
+```
+```sql
+CREATE TABLE Studio ( 
+	name CHAR(30) PRIMARY KEY, 
+	address VARCHAR(255), 
+	president INT CHECK (president in (SELECT code FROM MovieExec)) )
+```
+
+Nel secondo esempio il `{sql}CHECK` offre meno garanzie rispetto alla `{sql}FOREING KEY` poichè se modificassio `code` questo non verrebbe rilevato nel `CHECK` poichè con la modifica non tocchiamo mai la tabella `Studio` , non viene quindi garantita l'*integrità referenziale*
+
 ##### CHECK su Tuple
+
+Il `CHECK` ci permette di specificare un vincolo sull'intera tupla 
+
+>[!note]
+>I `CHECK` su attributi sono più efficenti rispetto a quello su tuple
+
+>[!example]
+```sql
+CREATE TABLE MovieExec ( 
+	name CHAR(50), 
+	address VARCHAR(255), 
+	code INT PRIMARY KEY, 
+	netWorth INT, 
+	CHECK (code >= 100000 AND netWorth >= 0) 
+)
+```
 
 #### Aggiornare i Vincoli
 
