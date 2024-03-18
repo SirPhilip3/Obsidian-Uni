@@ -586,7 +586,7 @@ A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali 
 >+ $\alpha>0$ è detto parametro di forma
 >+ $\lambda>0$ è detto parametro di frequenza 
 >Spazio parametrico : $\Theta \in \mathbb{R}_+ \times \mathbb{R}_+$ dove $\mathbb{R}_+$ sono numeri reali positivi
->Notiamo che il parametro di forma $\alpha$ cambia di fatto la forma dellàcurva avremo infatti che : 
+>Notiamo che il parametro di forma $\alpha$ cambia di fatto la forma della curva avremo infatti che : 
 >![[Pasted image 20240305205727.png]]
 >Svolgiamo quindi la stima dei parametri della funzione gamma attraverso il *metodo dei momenti* 
 >Dai dati abbiamo che : 

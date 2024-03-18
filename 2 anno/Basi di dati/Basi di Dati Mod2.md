@@ -1258,3 +1258,44 @@ CREATE ASSERTION SumLength CHECK(
 
 #### Triggers
 
+I *trigger* sono lo standard per il mantenimento di invarianti *globali* nei DBMS poichè possono essere implementati efficentemente 
+
+Un *trigger* utilizza il paradigma *Evento-Condizione-Azione* 
+1. Un *trigger* è associato ad un *evento* che ne determina l'attivazione 
+	Esempi tipici sono `{SQL}INSERT,DELETE o UPDATE` su una certa tabella 
+2. Quando un *trigger* viene attivato possiamo controllare una certa *condizione* , se questa risulta falso il trigger termina 
+3. Se la condizione è vera viene eseguita una *azione* associata al trigger ( una sequenza arbitraria di operazioni sullo schema relazionale ) 
+
+>[!note]
+>I *trigger* sono stati standardizzati in *SQL-3* ( 1999 ) , ma i DBMS li avevano già implementati da prima ma non si aggiornano allo standard per problemi di backwards compatability
+
+Un evento può convilgere una sola riga o righe multiple per questo abbiamo due *trigger* diversi : 
++ *Trigger per riga* : 
+	Eseguiti per ognuna delle righe coinvolte dall'evento scatenante 
+	Possiamo usare `{sql} OLD ROW` e `{sql}NEW ROW` per riferirsi rispettivamente alla tupla coinvolta dall'evento prima e dopo la sua occorrenza 
++ *Trigger per statement* : 
+	Eseguiti una sola volta per evento scatenante 
+	Si può usare `OLD TABLE` e `NEW TABLE`  per riferirsi a tutte le tuple coinvolte dall'evento prima e dopo la sua occorrenza 
+
+>[!note]
+>E' consentito fare uso di `OLD TABLE` e `NEW TABLE` anche all'interno di un *trigger* per riga ( la riga viene interpretata come una tabella con una singola tupla al suo interno )
+
+In fase di definizione di un *trigger* è possibile specificare se l'azione debba essere eseguita prima o dopo l'evento scatenante : 
++ `{sql} BEFORE trigger` : attivati prima dell'evento scatenante
+	Di solito vengono utilizzati per impedire l'esecuzione di un'operazione o per modificarne preventivamente il comportamento
++ `{sql} AFTER trigger` : attivati dopo l'evento scatenante 
+	Hanno visibilità dello stato della base di dati dopo l'esecuizone di un'operazionee quindi sono talvolta necessari per motivi di espressività
+
+>[!note]
+>Un *AFTER trigger* può simulare l'annullamento di un'operazione facendo un rollback dello stato della base di dati alla situazione precedente 
+>L'uso di *BEFORE trigger* è preferibile quando possibile 
+
+##### Progettazione di Trigger
+
+I *trigger* forniscono un modo indiretto per mantenere invarianti globali
+
+Metodologia per il mantenimento di invarianti tramite *trigger* : 
+
+>[!todo]
+>#todo
+
