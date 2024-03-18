@@ -1127,6 +1127,21 @@ CREATE TABLE MovieExec (
 )
 ```
 
+##### CHECK su Tuple o Attributi ? 
+
++ Se un vincolo coinvolge più di un attributo e non è una congiunzione di vincoli su attributi indipendenti è *necessario* ricorrere a `CHECK` su tuple per motivi di espressività 
++ Se un vincolo coincolge un solo attributo possiamo scegliere fra i due tipi di `CHECK` ma generalmente i `CHECK` su attributi sono *più efficenti* dei `CHECK` su tuple dato che vengono controllati meno frequentemente
+
+>[!todo]
+>#todo
+>Equivalenze logiche
 #### Aggiornare i Vincoli
+
+Possiamo dare un nome ai vincoli anteponendo alla loro dichiarazione `{sql}CONSTRAINT namo_costraint [FOREING KEY , UNIQUE , CHECK . etc...]`
+
+>[!example]
+```sql
+
+```
 
 #### Triggers
