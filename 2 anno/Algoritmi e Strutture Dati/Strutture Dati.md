@@ -3472,14 +3472,14 @@ Notiamo che l'array `b` può non essere memorizzato dato che l'informazione corr
 
 La soluzione diventa quindi : 
 ```c
-printLCSrec (X , c , i , j)
+printLCSrec(X , c , i , j)
 	if i > 0 and j > 0
 		if c[i , j] == c[i - 1, j]
-			printLCSrec (X , c , i - 1, j)
+			printLCSrec(X , c , i - 1, j)
 		else if c[i , j] == c [i , j - 1]
-			printLCSrec (X , c , i , j - 1)
+			printLCSrec(X , c , i , j - 1)
 		else
-			printLCSrec (X , c , i - 1, j - 1)
+			printLCSrec(X , c , i - 1, j - 1)
 			print Xi
 ```
 
