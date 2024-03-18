@@ -1079,3 +1079,5 @@ E' possibile specificare vincoli complessi sul valore di un attributo, usando la
 ##### CHECK su Tuple
 
 #### Aggiornare i Vincoli
+
+#### Triggers
