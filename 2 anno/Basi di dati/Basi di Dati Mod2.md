@@ -1141,7 +1141,120 @@ Possiamo dare un nome ai vincoli anteponendo alla loro dichiarazione `{sql}CONST
 
 >[!example]
 ```sql
-
+CREATE TABLE nome_tabella ( 
+	colonna1 TIPO_DATO CONSTRAINT nome_vincolo CHECK (condizione), 
+	colonna2 TIPO_DATO, 
+	... 
+	CONSTRAINT nome_vincolo_primario PRIMARY KEY (colonna_primaria),
+	CONSTRAINT nome_vincolo_esterno FOREIGN KEY (colonna_esterna) REFERENCES altra_tabella(colonna_corrispondente) );
 ```
 
+Possiamo *cancellare* un vincolo esistente a partire dal suo nome : 
+```sql
+ALTER TABLE nome_tabella DROP CONSTRAINT nome_vincolo
+```
+
+Possiamo *inserire* un nuovo vincolo nel seguente modo : 
+```sql
+ALTER TABLE nome_tabella ADD [CONSTRAINT nome_vincolo] definizione_vincolo
+```
+
+>[!warning]
+>Il vincolo che viene aggiunto deve già valere al momento del suo inserimento
+
+>[!note]
+>La *modifica* di un vincolo non è supportata ma può essere effettuata tramite una cancellazione seguita da un inserimento
+
+>[!todo]
+>#todo
+>Add examples
+
+#### Limitazione dei Vincoli
+
+##### 1
+
+Consideriamo questi schemi dove `president` è chiave esterna per `code` : 
+```
+MovieExec(name, address, code, netWorth) 
+Studio(name, address, president)
+```
+
+Il vincolo : 
+	Nessuno può essere il presidente di uno studio senza avere reddito di almeno 100000
+Non può essere esprimibile via `CHECK` a meno che il DBMS non supporta vincoli con sotto-query
+
+Soluzione con sotto-query 
+```sql
+CHECK (100000 <= ALL(SELECT netWorth 
+					 FROM Studio, MovieExec 
+					 WHERE president = code))
+```
+
+##### 2 
+
+Consideriamo il seguente schema : 
+```
+Movies(title, year, length, genre, studio, producer)
+```
+
+Il vincolo : 
+	La durata complessiva dei film prodotti da ciascuno studio non deve superare i 10000 minuti
+Non può essere espresso con un `CHECK` a meno che il DBMS non supporti vincoli con sotto-query
+
+Soluzione con sotto-query 
+```sql
+CHECK (10000 >= ALL(SELECT SUM(length) 
+					FROM Movies 
+					GROUP BY studio))
+```
+
+#### Asserzioni
+
+Le asserzioni esprimono *invarianti globali* sull'intero schema relazionale : 
+```sql
+CREATE ASSERTION <name> CHECK ( <condition> )
+```
+
+La condizione deve essere vera quando l'asserzione viene creata e continuare a rimanere vera dopo *ogni modifica* del database
+
+>[!note]
+>Le *asserzioni* sono più potenti dei `CHECK` ma molto più complicate da implementare efficentemente
+
+>[!note]
+>Nessun DBMS le implementa poichè toppo inefficenti
+
+>[!example]
+>Nessuno può essere il presidente di uno studio senza avere un reddito di almeno 100000 
+```sql
+CREATE ASSERTION RichPresident CHECK( 
+	NOT EXISTS( 
+		SELECT Studio.name 
+		FROM Studio, MovieExec 
+		WHERE Studio.president = MovieExec.code AND 
+			MovieExec.netWorth < 100000 
+	) 
+)
+```
+
+>[!example]
+>La durata complessiva dei film prodotti da ogni studio deve essere di almeno 500 minuti 
+```sql
+CREATE ASSERTION SumLength CHECK(
+	500 <= ALL(
+		SELECT SUM(length)
+		FROM Movies
+		GROUP BY studio
+	)
+)
+```
+
+#### Vincoli o Asserzioni 
+
+|                      | Dichiarazione            | Controllo                                         | Validità                  |
+| -------------------- | ------------------------ | ------------------------------------------------- | ------------------------- |
+| `CHECK` su attributo | Attributo di una tabella | Inserimento nella tabella o update dell'attributo | In assenza di sotto-query |
+| `CHECK` su tupla     | Tabella                  | Inserimento nella tabella o update della tupla    | In assenza di sotto-query |
+| Asserzione           | Schema relazionale       | Ogni modifica di ogni tabella menzionata          | Sempre                    |
+
 #### Triggers
+
