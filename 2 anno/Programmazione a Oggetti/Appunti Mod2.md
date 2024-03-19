@@ -565,3 +565,11 @@ remove sarebbe by V , se ci sono più key ???????
 collection pair<K,V> -> collection di pair 
 se scorro con iteratore ritorno coppie K,V
 
+iterare in Collection<Pair<K,V>>
+
+Iterable di pair K , V ->  sono tenuto ad implemetntare iterator
+
+in collection add diventa alias della put 
+contains di pair K ,V -> sarebbe meglio contains by K e poi ritorna il Valore 
+
+limiterei ad essere un Iterable 
