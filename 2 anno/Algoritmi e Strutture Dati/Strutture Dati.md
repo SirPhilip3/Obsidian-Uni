@@ -3302,7 +3302,7 @@ Print_Cut_Rod(p, n)
 
 Facciamo un esempio di trovare le *LCS* all'interno di una sequenza di DNA avente il seguente alfabeto : `{A, G, C, T}` 
 
-##### Edit Distance
+#### Edit Distance
 
 L'*edit distance* rappresenta il minimo numero di *modifiche* ( inserimento , cancellazione , inserimento , copia , scambio ) da apportare ad una stringa per renderla uguale ad un'altra stringa
 
@@ -3314,7 +3314,7 @@ L'*edit distance* rappresenta il minimo numero di *modifiche* ( inserimento , ca
 >+ Inseriamo una $G$ in coda a $S_2$
 >L'*edit distance* risulta quindi essere 4
 
-##### LCS
+#### LCS
 
 >[!note]
 >Una *sottostringa* è diversa da una *sottosequenza* , infatti la *sottostringa* è una sequenza di caratteri *consecutivi* mentere una *sottosequenza* è una sequenza ordinata di caratteri ( mi basta sapere che i loro indici siano strettamente maggiori non che siano consecutivi ( possono in pratica esserci buchi nella sequenza ) )
@@ -3338,7 +3338,7 @@ L'algoritmo fa i seguenti passi :
 Può essere facilmente notato che visto che il numero di sottosequenze di $X$ risulta essere $2^m$ ( questo poichè dobbiamo pensare che ad ogni carattere dobbiamo decidere se includerlo o meno all'interno della sottosequenza ) allora l'algoritmo risulterebbe avere complessità $O(2^m)$ , molto *inefficente* 
 
 Controlliamo riusciamo a ridurci ad un problema risolvibile attraverso la *programmazione dinamica*
-###### Definiamo la Sottostruttura Ottima
+##### Definiamo la Sottostruttura Ottima
 
 Dato $X=x_1,\dots,x_m$ consideriamo $k\le m$  con $x^k$ rappresentante il prefisso ( i primi $k$ caratteri di $X$ ) di lunghezza $k$ di $X$
 
@@ -3361,7 +3361,7 @@ In genare avendo $X=x_1,\dots,x_m$ e $X=y_1,\dots,y_n$ se possiamo ridurre il pr
 
 >[!important] *Dimostrazione* per assurdo
 >
-###### Soluzione ricorsiva per il valore della soluzione 
+##### Soluzione ricorsiva per il valore della soluzione 
 
 Dati $X = x_1, \dots ,x_m$ e $Y=y_1,\dots,y_n$ indichiamo con $c[i,j]$ la lunghezza delle sottosequenze appartenenti a $LCS(X^i, Y^j)$ con $0\le i \le m$ e $0\le j \le n$ 
 $$c[i,j] = \begin{cases} 0 & \text{se} \ i=0\ \text{o} \ j=0 
@@ -3373,7 +3373,7 @@ $$
 >2. Abbiamo `c[3,4]` , ora visto che `X[3]!=Y[4]` dovremo risolvere il seguente sottoproblema : `max[c[3,3],c[4,2]]` 
 >3. $\dots$
 
-###### Soluzione *Bottom Up*
+##### Soluzione *Bottom Up*
 
 Faremo uso di 2 strutture ausiliarie :
 + `c[i,j]` che conterrà la lunghezza dell'$LCS(X^i,Y^i)$ 
@@ -3488,7 +3488,7 @@ Inoltre , se sono interesato *solo* alla *lunghezza* di *LCS* possiamo evitare d
 >[!note]
 >Un'ulteriore ottimizzazione riduce lo spazio ad un vettore di spazio = $\min(m,n)$ più uno spazio aggiuntivo in $O(1)$
 
-###### Soluzione *Top Down*
+##### Soluzione *Top Down*
 
 ```c
 tdLCS(X , Y)
@@ -3526,7 +3526,7 @@ Dove $\Theta(n\cdot m)$ rappresenta il riempimento della matrice alla riga 4 di 
 >>![[Pasted image 20240313131030.png]]
 
 Nel caso medio quindi l'approccio *Top Down* è più efficente poichè questo risolve solo i sottoproblemi *strettamente* necessari ( nonostante asintoticamente sia *Top Down* che *Bottom Up* abbiano la stessa complessità )
-#### Riassunto
+### Riassunto
 
 1. A quali problemi può essere applicata ?
 	La programmazione dinamica si applica ai *problemi di ottimizzazoni* cioè problemi in cui ho un insieme molto grande di soluzioni e voglio determinarne una ottima
@@ -3548,9 +3548,9 @@ Nel caso medio quindi l'approccio *Top Down* è più efficente poichè questo ri
 >
 >Se invece c'è solamente bisogno di alcuni sottoproblemi allora la soluzione *Top Down* risulta essere migliore poichè evita il calcolo di sottoproblemi inutili
 
-#### Esercizi sulla Programmazione Dinamica
+### Esercizi sulla Programmazione Dinamica
 
-##### 1
+#### 1
 
 Abbiamo una stringa $a_1,\dots,a_n$ individua la lunghezza della massima *sottostringa* palindroma
 
@@ -3580,7 +3580,7 @@ Dove :
 
 Il quarto caso rappresenta il caso in cui i due caratteri considerati $x_i$ e $x_j$ sono differenti , in questo caso dovremmo cercare la stringa con massima lunghezza in 2 casi : $l\ [\  i+1, j \ ]$ e $l\ [\  i, j-1 \ ]$ , tra i due dovremmo ritornare il massimo che rappresenta la stringa palindroma di massima lunghezza 
 
-##### 2
+#### 2
 
 Abbiamo un *multinsieme* ( insieme di numeri anche ripetuti ) di numeri naturali , questi sono *prefettamente bilanciati* se posso dividere il multinsieme in due sottoinsiemi che abbiano la stessa somma
 
@@ -3617,7 +3617,7 @@ Abbiamo due differenti *casi base* :
 	2. Non lo prendiamo nella somma ( $\text{isSubSetSum}(i-1,sum)$ )
 	Ora l'*or* di questi due risultati ci dirà se almeno uno dei due ritorna `true` , ossia $I$ è *perfettamente bilanciato* 
 
-##### 3 
+#### 3 
 
 Abbiamo un array di lunghezza $n$ composto da numeri positivi strettamente maggiori di 0 , ci chiediamo quante *sottosequenze* ( gli indici devono essere strettamete maggiori del precedente ma non sucessivi ) ci sono con prodotto $\le k$ 
 
@@ -3648,3 +3648,48 @@ In questo problema abbiamo un unico *caso base* :
 >[!note]
 >Dobbiamo anche aggiungere $1$ poichè l'elemento stesso , visto che è $a_j\le m$ , fa parte dell'insieme delle soluzioni
  
+# Grafi
+
+I *grafi* rappresentano il concetto matematico di relazione binaria
+
+Un *grafo* è costituito da un insieme di *vertici* ( o nodi , $V$ ) e da un insieme di *archi* ( $E$ ) che collegano i nodi 
+
+Formalmente un *grafo* $G$ è una coppia $G=(V,E)$ , dove $V=\{1,2,\dots,n\}$ è l'insieme di vertici del grafo , e $E \subseteq V \times V$ è un insieme di coppie che rappresentano gli *archi*  
+
+I *grafi* si dividono in : 
++ **grafi orientati**
++ **grafi non orientati**
+## Grafi orientati 
+
+Gli *archi* hanno una direzione 
+
+>[!example]
+>Avendo : $V=\{ 1,2,3,4 \}$ e $E=\{ (1,2),(1,4),(2,2),(2,3),(3,1),(3,4),(4,2),(4,3) \}$
+
+![[grafo1.excalidraw]]
+
+Il numero di *archi* presenti all'interno di un *grafo orientato* sono rappresentati come : $|V|=n$
+
+Quindi il *massimo* numero di *vertici* sarà : $n^2$ visto che $E = V \times V = V^2$ e quindi $|E|=|V|^2=n^2$ 
+
+>[!note] 
+>In generale non è detto che due nodi collegati abbiano sia l'arco $(primo,secondo)$ che $(secondo,primo)$
+
+## Grafici non orientati
+
+Un *grafo non orientato* $G$ è una coppia $G=(V,E)$ dove $V$ è l'insieme di vertici e $E\subseteq V \times V$ è l'insieme di archi su cui valgono le seguenti proprietà : 
++ *Simmetria* : 
+	$$(i,j)\in E \iff (j,i)\in E$$
++ *Non riflessività* : 
+$$\forall i \in V,\quad  (i,i) \notin E$$
+	In pratica significa che non vi possono essere *archi* che vanno da un nodo a se stesso ( *cappi* o *loophole* ) 
+
+>[!example]
+>Abbiamo $V=\{ 1,2,3,4 \}$ e $E=\{ (1,2),(2,3),(1,3),(3,4) \}$
+
+![[grafo2.excalidraw]]
+
+**Definizione alternativa** 
+
+Un *grafo non orientato* $G=(V,E)$ è costituito dall'insieme di veritici $V$ e dall'insieme di archi $E \subseteq \binom V 2$
+
