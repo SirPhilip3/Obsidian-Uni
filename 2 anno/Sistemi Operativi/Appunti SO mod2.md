@@ -582,16 +582,17 @@ t1{
 
 c'è *progresso*
 
-**Soluzione**
+**Soluzione** ( algoritmo di Peterson ) per 2 thread
 
 ```c
 pronto[2]={false,false};
-tu
+int turno = 0;
 
 t0{
 	....
 	pronto[0]=true;
-	while(pronto[1]){} // se l'altro è pronto
+	turno = 1; // turno viene concesso
+	while(pronto[1]&&turno!=0){} // se l'altro è pronto
 	<sezione critica>
 	pronto[0] = false;
 	....
@@ -600,9 +601,79 @@ t0{
 t1{
 	....
 	pronto[1]=true;
-	while(pronto[0]){}
+	turno = 0;
+	while(pronto[0]&&turno!=1){}
 	<sezione critica>
 	pronto[1] = false;
 	....
 }
 ```
+
+**Soluzioni HW** 
+
+creato per evitare il busy waiting -> preco tempo di CPU , se single core devo aspettare il suo stallo di tempo , in multi core quando vado in sezione critica devo bloccare tutti i core comunque , non cambia a livello di performance in multi core 
+
+da comunque race condition poichè ottimizzazioni del compiler e CPU modificano ordine delle istruzioni , preservano corretteza del programma ma non del multithreading
+
+*istruzioni hw speciali*
+
+test_and_set , architettura offre istruzione macchina che fa in modo indivisibile un'operazione normalmente divisibile 
+
+permette di fare un test e un set(assegnamento) in modo indivisibile a livello architetturale
+
+```c
+// indivisibile
+bool test&set(bool *x){
+	tmp = *x 
+	*x = true;
+	// accede in modo esclusivo al bus di memoria 
+	return tmp;
+}
+```
+
+cambia valore di X e ritorna il valore vecchio di X ma contempraneamente viene assegnata a *true*
+
+*lock* : 
+```c
+bool lock = false; // in nessuna szezione critica
+
+t0{
+	....
+	while(test&set(&lock)){} // ritorna false  
+	// lock ora è true
+	<sezione critica>
+	lock = false; // questo è unsafe posso esegure op prima/dopo
+	....
+}
+
+t1{
+	....
+	while(test&set(&lock)){}
+	// lock ora è true
+	<sezione critica>
+	lock = false;
+	....
+}
+```
+
+while su un cosa inefficente , guardo prima lock e poi test&set solo quando necessario
+
+```c
+while(test&set(&lock)){
+	while(lock){}
+}
+```
+
+*Intel* : 
+
+```c
+// exchange
+XCHG(bool *x, *y){
+	tmp = *x;
+	*x = *y;
+	*y = tmp;
+	
+}
+```
+
+

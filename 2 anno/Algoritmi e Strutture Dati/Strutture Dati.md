@@ -2565,9 +2565,9 @@ Distinguiamo quindi in 2 casi :
 	In questo caso conviene scegliere $r$ tale che sia massimo ma sotto la condizione che $n\ge 2^r \implies r = \lfloor\log n \rfloor$ , otteniamo quindi il tempo di esecuzione risultante :
 	$$\frac b {\log n}(n + 2 ^{\log n})=\frac b {\log n}(n+n)=\frac b {\log n}(2n)=\Theta\bigg(\frac b {\log n} n\bigg)$$
 
-## Tabelle Hash
+# Tabelle Hash
 
-### Tabelle ad indirizzamento diretto
+## Tabelle ad indirizzamento diretto
 
 Una tabella ad unduruzzamento diretto viene utilizzata per memorizzare dati indicizzati da una *chiave* ( un numero ) 
 
@@ -2581,7 +2581,7 @@ La struttura dati che ci permette di gestire questo tipo di dato è un *array* $
 ![[Pasted image 20240214123718.png]]
 
 Ogni posizione dell'array corrisponde ad una *chiave* in $U$ , se nella tabella è presente l'elemento $x$ con *chiave* $k$ allora $T[\ k\ ]$ contiene un puntatore a $x$ altrimenti se la tabella non contiene l'elemento $x$ avremo che $T[\ k\ ]=NIL$ 
-#### Operazioni
+### Operazioni
 
 Vediamo ora l'implementazione delle operazioni di *ricerca* , *inserimento* e *cancellazione* :
 
@@ -2606,7 +2606,7 @@ direct_access_delete(T, x)
 ```
 Complessità : $O(1)$
 
-#### Conclusioni
+### Conclusioni
 
 **Vantaggi** : 
 + Il tempo di esecuzione delle operazioni disponibili sulle tabelle ad indirizzamento direttoè $O(1)$
@@ -2615,7 +2615,7 @@ Complessità : $O(1)$
 + Elevato spreco di memoria 
 	Lo spazio utilizzato è legato alla dimensione del dominio universale ( $w$ ) non ad $n$ ( i dati memorizzati ) 
 	Il dominio è molto grande ma il numero di dati da memorizzare è piccolo $n\ll w$
-### Tabelle Hash
+## Tabelle Hash
 
 Le *tabelle Hash* sono un'alternativa alle tabelle ad indirizzamento diretto senza ereditare però l'elevata complessità spaziale ( in questo caso sarà proporzionale al numero di elementi memorizzati non al dominio )
 
@@ -2636,7 +2636,7 @@ Le collisioni si possono risolvere in 2 modi :
 + **Concatenamento** : Ad ogni cella corrisponde una lista di elementi contenenti tutte le chiavi mappate con lo stesso indice
 + **Indirizzamento aperto** : Mappiamo una chiave già occupata un una cella differente
 
-#### Concatenamento
+### Concatenamento
 
 Inseriamo tutti gli elementi associati ad una stessa cella in una lista concatenata 
 La cella $j$ contiene un puntatore alla testa della lista se sono memorizzati degli elementi , altrimenti si memorizza $NIL$ 
@@ -2670,7 +2670,7 @@ chained_hash_delete(T, x)
 
 In questa implementazione $x$ è un puntatore all'elemento , non è quindi necessario svolgere un'operazione di *search* ( se fosse una *key* allora sarebbe necessaria ) 
 Inoltre , per fare sì che la complessità sia costante dobbiamo utilizzare una *lista doppiamente concatenata* , questa ci permette di non dovere trovare il predecessore per cambiare i puntatori 
-##### Analisi dell'Hashing con concatenamento
+#### Analisi dell'Hashing con concatenamento
 
 Studiamo il tempo medio di ricerca di un elemento con *chiave* $K$ 
 
@@ -2721,7 +2721,7 @@ Il tempo complessivo di esecuzione sarà quindi : $\Theta(1+\frac \alpha 2)=\The
 
 >[!warning]
 >Quando $\alpha$ cresce oltre una certa soglia ( $\gt2$ ) dobbiamo raddopiare le dimensioni della tabella hash e reinserire le *chiavi* ripassate attraverso la funzione hash in modo da recuperare la complessità $\Theta(1)$ , altrimenti la complessità potrebbe diventare maggiore : $\Theta(1+\frac {3m}{m}) = \Theta(4)$ che è ovviamente inefficente rispetto a $\Theta(1)$
-##### Funzioni hash
+#### Funzioni hash
 
 Una *funzione hash* è una funzione che spezzetta la nostra chiave e la ricompone casualmente in modo tale da ottenere un intero che risulti più casuale possibile 
 Lo scopo è quello di *distribuire* in modo *uniforme* gli elementi nella nostra tabella 
@@ -2790,7 +2790,7 @@ Eseguiamo lo shift a destra di $w-p$ posizioni in modo da inserire degli 0 nelle
 ###### Hashing Randomizzato
 
 Esistono insieme di *funzioni hash* ben costruite tra le quali il programma scieglie casualmente quale utilizzare durante l'esecuzione , in questo modo non è possibile che un attacante sappia la funzione di hash utilizzata per protare a pessime prestazioni  
-#### Indirizzamento aperto
+### Indirizzamento aperto
 
 Le tabelle hash ad indirizzamento aperto non utilizzano una struttura dati esterna per gestire le collisioni
 
@@ -2815,7 +2815,7 @@ $$h(k,i):U\times \{ 0,1,\dots,m-1 \}\rightarrow \{ 0,1,\dots,m-1 \}$$
 >[!note] Precondizione
 >Per ogni possibile chiave $k\in U$ la sequenza di ispezioni $<h(k,0),h(k,1),\dots,h(k,m-1)>$ deve essere una permutazione di $<0,1,\dots,m-1>$ ossia gli indici della tabella , in modo che ogni posizione della tabella hash possa essere considerata come possibili cella in cui inserire una nuova chiave mentre la tabella si riempie
 
-##### Operazioni
+#### Operazioni
 
 >[!note] Ipotesi
 >Per semplificare il codice supponiamo che gli elementi contengono solo la chiave , ossia che non abbiano dati satellite
@@ -2865,7 +2865,7 @@ hash_search(T, k)
 
 **Osservazioni**
 	Il motivo per cui abbiamo `{c} i==m or T[j]==NIL` è perchè se abbiamo fallito troppe volte ( `m` volte poichè è il massimo numero di elementi che possiamo inserire nella tabella hash ) ad un'ispezione oppure abbiamo trovato `NIL` ossia siamo arrivati nel posto corretto ma non c'è nessun elemeto ossia che l'elemento da cercare non è presente all'interno dell hash 
-###### Cancellazione 
+##### Cancellazione 
 
 La *cancellazione* è il problema principale dell'indirizzamento aperto 
 Vediamo un esempio : 
@@ -2898,7 +2898,7 @@ A questo punto non necessitiamo di modificare `{c}hash_search()` poichè il valo
 **Svantaggio**
 	Il tempo di ricerca non dipende più dal *fattore di carico* : $\frac n m$ , avremo infatti che in presenza di un alto numero di cancellazioni la *search* risulterà essere molto più complessa , per questo quando abbiamo molte cancellazioni non si usa l'indirizzamento aperto
 
-##### Funzioni hash
+#### Funzioni hash
 
 La funzione ideale per l'*hashing* con l'indirizzamento *aperto* è l'hashing **uniforme** : ogni chiave ha la stessa probabilità di avere come sequenza di ispezioni una delle $m!$ permutazioni di $<0,1,\dots, m-1>$ ossia che : 
 $$h(k,0)\ \text{si distribuisce uniformemente sulle}\ m\ \text{celle}$$
@@ -2906,7 +2906,7 @@ $$h(k,1)\ \text{si distribuisce uniformemente sulle}\ m-1\ \text{celle}$$
 $$\vdots$$
 $$\simeq \text{hashing uniforme semplice ad ogni iterazione}$$
 Visto che la precedente è una situazione ideale dobbiamo creare delle *approssimazioni* 
-###### Ispezione Lineare 
+##### Ispezione Lineare 
 
 Data una funzione hash ordinaria $h' : U \to \{0,1,\dots,m-1\}$ che sarà una *funzione hash ausiliaria*
 
@@ -2930,7 +2930,7 @@ La prima cella esaminata è $T[\ h'(k)\ ]$ se collidiamo continuerà a scandire 
 >Understand
 >#todo
 
-###### Ispezione quadratica 
+##### Ispezione quadratica 
 
 Cerchiamo la cella sucessiva attraverso una *funzione quadratica* : 
 $$h(k,i)=(h'(k)+c_i\cdot i + c_2\cdot i^2)\mod m$$
@@ -2941,7 +2941,7 @@ Dove :
 L'*hashing quadratico* soffre analogmente alla sua variante lineare della formazione di *addensamenti secondari* : se due chiavi distinte $k_1$ e $k_2$  sono mappate tramite la funzione ausiliaria $h'$ nello stesso valore , cioè $h'(k_1)=h'(k_2)$ allora le due chiavi generano la stessa sequenza di ispezioni ( forma più lieve di *addensamenti primari* )
 >[!note]
 >Anche in questo caso la prima posizione determina l'intera sequenza di ispezioni e dunque per una chiave ci sono soltanto $m$ sequenze di ispezioni distinte
-###### Hashing Doppio
+##### Hashing Doppio
 $$h(k,i)=(h_1(k)+i\cdot h_2(k)) \mod m$$
 Dove :
 + $h_1$ e $h_2$ sono due funzioni hash ausiliarie e $i$ può assumere tutti i valori da $0$ a $m-1$ . 
@@ -2978,7 +2978,7 @@ Per analizzare il costo della ricerca e dell'inserimento nel caso di hashing con
 
 Quest'ultima ipotesi è fondamentale per poter compiere l'analisi in termini di *fattore di carico* : $\alpha = \frac n m$ , notiamo inoltre che nel caso di indirizzamento aperto avremo che $0\le \alpha \le 1$  ( il numero massimo di chiavi che possiamo memorizzare è infatti $m$ portando ad un $\alpha$ massimo $=1$ )
 
-###### Costo ricerca senza successo 
+##### Costo ricerca senza successo 
 
 >[!important] Teorema
 >Nell'ipotesi di hashing uniforme , data una tabella hash a indirizzamento aperto con un fattore di carico $\alpha = \frac n m < 1$ il numero atteso di ispezioni in una *ricerca senza successo* ( caso peggiore ) risulta essere al massimo $\frac 1 {1-\alpha}$
@@ -3020,7 +3020,7 @@ Un elemento viene inserito all'interno della tabella solo se questa non è satur
 L'inserimento di una chiave richiede una *ricerca senza successo* ( dobbiamo trovare una posizione vuota dove inserire il nuovo valore ) e sucessivamete l'inserimento della chiave nella prima cella vuota trovata 
 
 Quindi il numero atteso di ispezioni è direttamente legato al numero di ispezioni svolte da una *ricerca senza successo* ossia al massimo $\frac 1 {1-\alpha}$ 
-###### Costo ricerca con successo
+##### Costo ricerca con successo
 
 >[!important] Teorema
 >Data una tabella hash a indirizzamento aperto con un fattore di carico $\alpha < 1$ , il numero atteso di ispezioni in una ricerca con successo è al massimo :
@@ -3035,7 +3035,7 @@ Se $\alpha$ è costante , una ricerca con successo viene eseguita in tempo medio
 >+ Se $\alpha = 0.5$ il numero medio di ispezioni in una ricerca con successo è minore di $1.387$
 >+ Se $\alpha = 0.9$ il numero medio di ispezioni in una ricerca con successo è minore di $2.559$
 
-##### Confronto tra indirizzamento aperto e concatenamento
+#### Confronto tra indirizzamento aperto e concatenamento
 
 ![[ConfrontoHash.excalidraw]]
 
@@ -3051,7 +3051,7 @@ La *risutrutturazione* va effettuata quando :
 + Nel caso dell'*indirizzamento aperto* quando $\alpha \ge \frac 1 2$ 
 	In tal caso l'operazione costerà al caso peggiore $\Theta(m)$ in quanto dovremmo scorrere solo un array
 
-### Programmazione Dinamica
+## Programmazione Dinamica
 
 La *programmazione dinamica* è una tecnica di progettazzione di algoritmi che si applica in presenza delle seguenti condizioni : 
 + Un problema si può ridurre ad un insieme di problemi più piccoli ( con nel *Divide et Impera* )
@@ -3061,7 +3061,7 @@ La *programmazione dinamica* è una tecnica di progettazzione di algoritmi che s
 >Ogni volta che risolvo un problema salvo la soluzione per evitare di doverla ricalcolare 
 
 La *programmazione dinamica* è adatta a risolvere problemi di **ottimizzazione** , questi problemi sono caratterizzati da diverse possibili soluzioni al problema ognuna con un costo in termini di tempo , attraverso la programmazione dinamica siamo in grado di scegliere la soluzione *ottima* cioè quella di *costo massimo* o *minimo* (tenendo conto che ci possono essere più soluizoni ottime)  
-#### Sviluppo di un Algoritmo :
+### Sviluppo di un Algoritmo :
 
 Ci sono 4 principali passi da seguire per sviluppare un algoritmo di programmazione dinamica : 
 1. Caratterizzazione della struttura di una soluzione ottimale ( di solito ricorsiva )
@@ -3080,7 +3080,7 @@ Ci sono due principali approcci per risolvere un problema di programmazione dina
 >[!note]
 >A livello asintotico i due approcci sono equivalenti , considerando le costanti moltiplicative la strategia *Top-Down* risulta essere meno costosa 
 
-#### Problema del taglio delle aste
+### Problema del taglio delle aste
 
 Un'azienda produce aste d'acciaio e le vende a prezzi. 
 Le aste prodotte hanno una certa lunghezza $n$ , e sul mercato i pezzi hanno un prezzo che dipende dalla loro lunghezza 
@@ -3116,7 +3116,7 @@ Vogliamo determinare :
 >+ $1+6=18$
 >+ $6+1=18$
 
-##### Approccio *Divide et impera*
+#### Approccio *Divide et impera*
 
 In quanti modi posso dividere un'asta di lunghezza $n$ ? 
 
@@ -3149,7 +3149,7 @@ La formulazione ricorsiva diventa quindi :
 >[!note]
 >Se $i=n$ vuol dire che il pezzo non viene tagliato e lo vendiamo tutto d'un pezzo
 
-###### Algoritmo
+##### Algoritmo
 
 **Input** : 
 + $p[\ 1, \dots , m \ ]$ : indica ( con $m\ge n$ ) il vettore contenente i prezzi delle aste , in $p[\ i\ ]$ è contenuto il valore di un'asta di lunghezza $i$ ( $i\ge 0$ )
@@ -3202,7 +3202,7 @@ Possiamo quindi dire che $T(n)$ ha complessità *esponenziale* $T(n)=O(2^n)$
 > Notiamo che il numero dei nodi è esattamente pari a $2^n$ e il numero di possibili problemi distinti è invece $n$ 
 > Notiamo inoltre che ogni cammino dalla radice ad una foglia ci dà una permutazione dei possibili tagli effettaubili sull'asta ( il cammino più lungo rappresenta la divisione dell'asta sempre in posizione $1$ sottosbarra destra )
 
-##### Approccio di programmazione dinamica ( *Top-Down* )
+#### Approccio di programmazione dinamica ( *Top-Down* )
 
 Se i sottoproblemi distinti sono in numero polinomiale e ciascuno si risolve in tempo polinomiale ( data la soluzione dei sottoproblemi ) allora memorizzando le soluzioni ed evitando di ricalcolare si ottiene un algoritmo polinomiale , occorre però scendere ad un compromesso utilizzando della memoria ausiliaria
 
@@ -3237,7 +3237,7 @@ Il numero totale di iterazioni di questo ciclo `{c}for` per tutte le chiamate ri
 $$\sum_{j=1}^nj=\frac{n(n+1)}{2}=\Theta(n^2)$$
 Considerando anche il fatto che svolgiamo $n$ iterazioni per inizializzare $r$ diremo che la complessità totale dell'algoritmo sarà : 
 $$T(n)=\Theta(n)+\Theta(n^2)=\Theta(n^2)$$
-##### Approccio di programmazione dinamica ( *Bottom-Up* )
+#### Approccio di programmazione dinamica ( *Bottom-Up* )
 
 ```c
 Bottom_Up_Cut_Rod(p, n)
@@ -3255,7 +3255,7 @@ Bottom_Up_Cut_Rod(p, n)
 
 Il ciclo esterno compie esattamente $n$ iterazioni mentre il ciclo interno compie $j$ iterazioni dove $j$ prende tutti i valori $1,\dots, n$ , avremo quindi che la complessità sarà : 
 $$T(n)=\sum_{j=1}^n j\cdot\Theta(1)=\Theta\bigg(\frac{n(n+1)}{2}\bigg)=\Theta(n^2)$$
-##### Trovare la soluzione finale ( la posizione dei tagli )
+#### Trovare la soluzione finale ( la posizione dei tagli )
 
 Per trovare dove andremo a tagliare per ottenere il ricavo massimo andremo ad utilizzare un'ulteriore vettore $s[\ 1 , \dots , n\ ]$ , nella cui posizione $j$-esima memorizza la posizione del primo taglio che determina la soluzione ottima per il problema di dimensione $i$
 
@@ -3298,7 +3298,7 @@ Print_Cut_Rod(p, n)
 >
 >Ora la prima volta avermo `s[7] = 1` che indicherà che taglia l'asta in posizione $1$ , sucessivamente alla 2 iterazione $n$ diventa $7-1=6$ e quindi selezioneremo `s[6] = 6` che indicherà che prendiamo l'intera parte restante dell'asta , usciremo quindi dal ciclo poichè $n==0$ 
 >La sequenza finale di taglio sarà quindi : $[1,6]$ che porta al ricavo di $18$
-#### Longest Common Subsequence ( LCS )
+### Longest Common Subsequence ( LCS )
 
 Facciamo un esempio di trovare le *LCS* all'interno di una sequenza di DNA avente il seguente alfabeto : `{A, G, C, T}` 
 
