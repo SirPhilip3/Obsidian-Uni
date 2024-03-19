@@ -3686,10 +3686,72 @@ $$\forall i \in V,\quad  (i,i) \notin E$$
 
 >[!example]
 >Abbiamo $V=\{ 1,2,3,4 \}$ e $E=\{ (1,2),(2,3),(1,3),(3,4) \}$
-
 ![[grafo2.excalidraw]]
 
 **Definizione alternativa** 
 
 Un *grafo non orientato* $G=(V,E)$ è costituito dall'insieme di veritici $V$ e dall'insieme di archi $E \subseteq \binom V 2$
 
+>[!note]
+>Dove $\binom V 2$ rappresenta l'insieme di tutti gli insiemi di 2 elementi presenti in $V$  , questo ci dice che formalmente l'ordine non conta a differenza della dicitura $V \times V$ 
+>Per rappresentare l'insieme delle coppie utilizziamo al dicitura $\{\{1,2\}\}$ ( parentesi graffe a racchiudere la coppia ) per indicare che l'ordine non cambia
+
+Troviamo ora la *cardinalità di $E$* :
+$$\left|\binom V 2\right|=\binom {|V|}2 = \frac{n(n-1)}{2}$$
+
+## Altre suddivisioni dei grafi
+
+I *grafi* possono essere divisi a seconda della loro *densità* : 
++ **grafo sparso** : 
+	Se il numero di archi è approssimativamente il numero di vertici : $|E|\simeq n$
++ **grafo denso** : 
+	Se il numero di archi è dell'ordine di $n^2$ : $|E|\approx n^2$ 
+
+Definiamo formalmente la **densità** ( $\delta$ ) di un *grafo* 
+
+>[!note]
+>$$0\le \delta \le 1$$
+
+Con :
++ $\delta(G) = 0$ si dice che il grafo è *vuoto* , ossia non ha archi , ciò non significa che non abbia vertici
++ $\delta(G)=1$ si dice che il grafo è *completo* , ossia sono presenti tutti gli archi possibili
+
+Avremo che $\delta$ differenzierà per i *grafi orientati* e *non* : 
++ Per quelli *orientati* avremo che : 
+	$$\delta(G)= \frac{|E|}{n^2} \to \frac{|E|}{|V|^2}$$
++ Per quelli *non orientati* avremo che : 
+	$$\delta(G)=\frac{|E|}{\left|\binom V 2\right|}= \frac{|E|}{\frac{n(n-1)}{2}}=\frac{2\cdot |E|}{n(n-1)}$$
+
+## Grafi Pesati
+
+I *grafi pesati* sono un'altra tipologia di *grafo* che hanno valori numerici collegati agli *archi* , *vertici* o entrambi
+
+Un *grafo pesato* sui *vertici* $G(V,E,w)$ , dove $w$ rappresenta una funzione che assegna ad ogni vertice un numero reale 
+
+>[!example]
+![[grafopesatoV.excalidraw]]
+
+Un *grafo pesato* sugli *archi* $G(V,E,w)$ , dove $w$ rappresenta una funzione che assegna ad ogni arco un numero reale
+
+>[!example]
+![[grafopesatoA.excalidraw]]
+
+I pesi possono rappresentare informazioni es :
++ I veritici rappresentano delle stazioni
++ Gli archi rappresentano la tratta tra 2 stazioni 
++ I pesi sugli archi rappresentano la distanza tra due stazioni
+
+Un *grafo pesato* sui vertici e sugli archi $G(V,E,w_1,w_2)$ , dove $w_1$ rappresenta una funzione che assegna ad ogni vertice un numero reale e $w_2$ rappresenta una funzione che assegna ad ogni arco un numero reale  
+
+## Sottografo
+
+Definiamo con *sottografo* di $G(V,E)$ come $G'(V',E')$ con $V' \subseteq V$ e $E'\subseteq E \cap V' \times V'$ 
+
+>[!example]
+![[subgraph.excalidraw]]
+
+L'importante è che i *nodi* che vogliamo nel *sottografo* siano presenti anche senza alcun *arco* , questo poichè l'insieme vuoto è sempre un sottoinsieme di $E$ , non è un *sottografico* se invece aggiungiamo degli *archi* non presenti nel *grafo* originale 
+
+### Sottografo indotto
+
+Un *sottografo indotto* è un particolare sottografo che ha la seguente caratteris
