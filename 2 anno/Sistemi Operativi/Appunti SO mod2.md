@@ -451,3 +451,158 @@ consumatore(){
 risoluzione , dovrei aspettare l'altro thread , devo sincronizzarla con se stessa 
 per proteggere codice che modifica dati condivisi da race condition , 
 problema della *sezione critica* -> tutto ciò che viene messo in sezione critica deve essere prottetto da altri thread
+
+# 19/03/2024
+
+*sezione critica* codice che deve essere protetto , le istruzioni di ogni thread non devono essere interrotte da altre di altri processi?? 
+
+```c
+<entrance>
+	<critical section>
+<exit>
+```
+
+proprietà che deve soddisfare la sezione critica : 
+	solo un thread alla volta può accedere alla sezione critica , *mutua esclusione* 
+	mutex oggetti che permettnon di ottenere questa proprietà 
+
+Decidere cosa fare in entrance e exit :
+1. soluzione software 
+	In pratica utilizzare il busy waiting 
+2. sol che si basa sul SO
+3. soluzioni con istruzioni hardware speciali
+
+
+*sol sftw*
+
+sol su 2 thread 
+
+```c
+t0{
+	....
+	<sezione critica>
+	....
+}
+
+t1{
+	....
+	<sezione critica>
+	....
+}
+```
+
+1. utilizzo un flag booleano se qualcuno è dentro la sezione critica , `lock`
+
+```c
+bool lock = false; // in nessuna szezione critica
+
+t0{
+	....
+	while(lock){} // se lock true aspetto 
+	lock = true;
+	<sezione critica>
+	lock = false;
+	....
+}
+
+t1{
+	....
+	while(lock){}
+	lock = true;
+	<sezione critica>
+	lock = false;
+	....
+}
+```
+
+>[!warning]
+>Stesso problema di prima , lock può essere modificato da entrambi , oppure entrambi entrano
+>Non c'è mutua esclusione 
+
+2. dò io la priorità a qualcuno 
+
+```c
+int turno = 0; // in nessuna szezione critica
+
+t0{
+	....
+	while(turno!=0){} // non è il tuo turno -> turno di 1 poichè !=0
+	<sezione critica>
+	turno = 1;
+	....
+}
+
+t1{
+	....
+	while(turno!=1){}
+	<sezione critica>
+	turno = 0;
+	....
+}
+```
+
+>[!note]
+>non possono entrare 2 assieme poichè la condizione di entrata è differente 
+
+dà **mututa esclusione** 
+
+>[!warning]
+>i due thread devono per forza alternarsi 
+
+proprità del *progresso* a meno che non ci sia un buon motivo , 
+se la sezione critica è libera ( nessuno è in sezione critica ) il thread deve poter entrarci
+
+3. pronto
+
+```c
+pronto[2]={false,false};
+
+t0{
+	....
+	pronto[0]=true;
+	while(pronto[1]){} // se l'altro è pronto
+	<sezione critica>
+	pronto[0] = false;
+	....
+}
+
+t1{
+	....
+	pronto[1]=true;
+	while(pronto[0]){}
+	<sezione critica>
+	pronto[1] = false;
+	....
+}
+
+```
+
+>[!warning]
+>Se vengono settati entrambi i pronto a true entrambi i thread si bloccano , *deadlock*
+
+c'è *progresso*
+
+**Soluzione**
+
+```c
+pronto[2]={false,false};
+tu
+
+t0{
+	....
+	pronto[0]=true;
+	while(pronto[1]){} // se l'altro è pronto
+	<sezione critica>
+	pronto[0] = false;
+	....
+}
+
+t1{
+	....
+	pronto[1]=true;
+	while(pronto[0]){}
+	<sezione critica>
+	pronto[1] = false;
+	....
+}
+```
