@@ -545,4 +545,23 @@ funzioni binarie 2 modi :
 map asoscia key->vaklue
 
 
+# 19/03/2024
+
+*Mappe* : 
+
+get data key ritorna valore 
+set -> dato key+value -> add in una mappa
+array di fatto è una mappa con tipo chiave è un int e valore quello che vogliamo
+
+mappa = lista di coppie 
+
+pairmap -> fatta con coppie
+K , V type parameter -> prima volta che li dichiaro 
+
+non ha senso che estendiamo collection perdi la chiave come polimorfismo 
+also add all prende collection potrei mettere un array -> non va in map also add ha solo V non la key , contains chiederebbe un valore strange
+remove sarebbe by V , se ci sono più key ???????
+
+collection pair<K,V> -> collection di pair 
+se scorro con iteratore ritorno coppie K,V
 
