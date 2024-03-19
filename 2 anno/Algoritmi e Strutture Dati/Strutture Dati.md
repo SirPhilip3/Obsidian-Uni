@@ -3754,4 +3754,81 @@ L'importante è che i *nodi* che vogliamo nel *sottografo* siano presenti anche 
 
 ### Sottografo indotto
 
-Un *sottografo indotto* è un particolare sottografo che ha la seguente caratteris
+Un *sottografo indotto* è un particolare sottografo che ha la seguente caratteristica : $E' = E \cap V' \times V'$ , significa che , dato un sottoinsieme $V'$ dei vertici di $G$ il sottoalbero indotto $G[V']$ contiene *tutti gli archi* incidenti ai nodi di $V'$ 
+
+>[!example]
+![[SottografoIndotto.excalidraw]]
+
+## Cammino
+
+Un *cammino* tra due vertici $u$ e $v$ è una sequenza di vertici $<x_0,x_1,\dots,x_q>$ tali che $x_1=u$ e $x_q=v$ e deve esistere un arco tra un vertice $x_i$ e il suo sucessivo $x_{i+1}$ ossia : $(x_i,x_{i+1}) \in E\forall i=0,\dots,q-1$
+
+>[!example]
+![[camminiGrafo.excalidraw]]
+$<1,2,1,2,3,1,2,3>$ è un cammino
+
+>[!note]
+>Un cammino è definito *semplice* se non ci sono vertici ripetuti 
+>>[!example]
+>>$<1,2,3>$ è un cammino *semplice*
+>
+>Il cammino precedente è quindi un cammino *non semplice*
+### Lunghezza di un cammino
+
+La *lunghezza di un cammino* è il numero di *archi* presenti in un cammino 
+## Connessione
+
+Un *grafo* si dice *connesso* se presi due vertici del grafo esiste almeno un cammino che li collega 
+>[!example]
+![[camminiGrafo.excalidraw]]
+E' un *grafo connesso*
+
+
+Un *grafo* *disconnesso* invece presenta almeno una coppia di vertici non raggiungibili da un cammino
+
+>[!example]
+![[disconnectedGraph.excalidraw]]
+E' un *grafo disconnesso*
+## Cicli
+
+I *cicli* sono sono *cammini* che ritornano su se stessi , ossia quando $x_0==x_q$ 
+>[!example]
+>$$<1,2,3,1>$$
+
+In un *grafo non orientato* per creare dei cili dobbiamo avere almeno 3 vertici
+In un *grafo orientato* invece è sufficente averne 2 visto che i *cappi* rappresentano un ciclo con 2 vertici ( un unico vertice ripetuto )
+
+>[!example]
+![[grafociclico.excalidraw]]
+### Grafo Aciclico
+
+Un *grafo* si dice *aciclico* se non ha *cicli* 
+
+>[!example]
+![[Aciclico.excalidraw]]
+
+## Alberi 
+
+Un *grafo aciclico connesso* viene detto *albero*
+
+Un *albero* può essere *libero* se privo di gerarchia , *radicato altrimenti*
+
+**Proprietà** : 
++ Se $G$ è un *albero libero* allora il numero di archi è : $n-1$ , dove $n$ è il numero di vertici 
++ Tra $u$ e $v$ ( vertici ) esiste sempre uno e uno solo *cammino* ( in caso contrario si creano dei *cicli* )
+
+Un *grafo acicliclo disconnesso* è detto *foresta*
+![[foresta.excalidraw]]
+
+## Adiacenza
+
+In un *grafo* i nodi $i$ e $j$ sono *adiacenti* se esiste un arco che li collega 
+
+![[adiacenza.excalidraw]]
+
+## Implementazione
+
+### Lista di Adiacenza
+
+### Matrice di Adiacenza
+### Matrice di Indicenza
