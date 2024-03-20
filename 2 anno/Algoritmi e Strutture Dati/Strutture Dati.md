@@ -3908,3 +3908,53 @@ Se questo metodo viene utilizzato con *grafi non orientati* utilizzeremo 1 per i
 Questa rappresentazione è utilizzata nel caso in cui abbiamo un *grafo sparso* ( in modo che abbiamo poche colonne per diminuire la complessità spaziale )
 
 ## Componente Connessa
+
+Dato un grafo $G=(V,E)$  , una *componente connessa* di $G$ è un sottoinsieme di *vertici* $V'$ tale che :
++ Il sottografo indotto da $V'$ ( $G[V']$ ) è conness
++ $V'$ non è contenuto in nessun insieme di *vertici* che indica un sottografo connesso
+	In altre parole non è possibile aggiungere un vertice esterno ad una componente connessa e ottenere un grafo connesso
+
+>[!example]
+![[ConnectedComponents.excalidraw]]
+>
+>Non possiamo aggiungere $6$ nel primo componente connesso altrimenti non è più connesso 
+
+**Proprietà** : 
++ L'insieme delle *componenti connesse* di un *grafo* formano una *partizione* ( l'$\cap$ risulta essere vuota e l'$\cup$ ritorna l'insieme di partenza ) di $V$ 
+
+**Dimostrazione** : 
+
+## Tipologie di grafi
+
+### Grafo vuoto
+
+Un *grafo vuoto* si rappresenta con $E_n$ ( $E$ indica che è empty , $n$ rappresenta il numero di vertici , ossia $n$ componenti connesse ) e indica un grafo con $n$ vertici e nessun arco
+### Grafo completo
+
+Si rappresenta con $K_n$ e indica il grafo con $n$ vertici e $n^2$ archi se *orientato* , $\frac{n(n-1)}{2}$ o $\binom V 2$ archi se *non orientato*
+### Grafo comlpemento
+
+Dato $G=(V,E)$ allora $\overline G=(V,\overline E)$ o $G^C$  è un nuovo grafo costruito sugli stessi *vertici*  ma con tutti gli archi non presenti in $E$ : 
+$$\overline G=(V,\overline E)\implies (u,v)\in \overline E \iff (u,v) \notin E$$
+![[Coplemento.excalidraw]]
+
+>[!note]
+>$\overline K_n = E_n$ 
+### Grafo bipartito
+
+Un *grafo bipartito* è un grafo che può essere partizionato in due parti tali che all'interno di ciascuna di queste non ci sono *archi* ( sono grafi vuoti ) obbiamo solo archi tra i due insiemi
+
+**Grafo bipartito completo** : 
+	Tutti i possibili archi tra i due insiemi
+
+>[!note]
+>Un grafo può essere sempre $k$-partito
+
+Se indichiamo con $n_1$ e $n_2$ il numero di *vertici* di ogni *partizione* possiamo dire che il numero di archi di un *grafo bipartito* sono : $n_1\times n_2$
+
+Formalmente possiamo dire : 
+$$\exists\  V_1 , V_2 \subseteq V \ \text{tale che} : $$$$\begin{cases}V_1 \cap V_2 = \emptyset \\ V_1 \cup V_2 = V\end{cases}$$
+$$\text{t.c.}\ \forall (u , v) \in E : (u \in V_1 \land v \in V_2) \lor(u \in V_2 \land v \in V_1)$$
+Oppure $G[V_1]$ e $G[V_2]$ sono vuoti
+## Grado
+
