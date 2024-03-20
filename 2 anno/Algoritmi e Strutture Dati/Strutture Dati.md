@@ -3958,3 +3958,58 @@ $$\text{t.c.}\ \forall (u , v) \in E : (u \in V_1 \land v \in V_2) \lor(u \in V_
 Oppure $G[V_1]$ e $G[V_2]$ sono vuoti
 ## Grado
 
+Per *grafi non orientati* il grado rappresentra il numero di vertici adiacenti al vertice $u$ ( $deg(u)$ )
+
+>[!example]
+![[Degree.excalidraw]]
+
+L'*intorno* ( l'insieme dei vertici per cui esiste un arco tra $u$ e $v$ ) di $u$ è rappresentato nel seguente modo : $N(u)=\{ v\in V | (u,v)\in E \}$ potremmo quindi scrivere : $deg(u)=|N(u)|$
+
+### Proprietà
+
+Non possiamo creare un *grafo* tale che ogni vertice ha un *grado* diverso
+
+**Dimostrazione** per assurdo
+	Supponiamo che esista un grafo $G$ tale che tutti i $0\le deg(u)\le n-1$ 
+	Allora avremo che dovranno esistere vertici con $deg(u)=0$ ma anche uno con $deg(u)=n-1$ ciò significa che dovrebbero esistere due *vertici* uno che abbia 0 archi e uno che si collegato a tutti i *vertici* **Impossibile** 
+
+#### Somma dei gradi
+
+Notiamo che la somma dei *gradi* può essere scritta come $2\ \cdot$ numero archi 
+
+**Lemma della stretta di mano** ( solo su grafici non orientati ) : 
+	Sia $G=(V,E)$ un grafo non orientato allora la somma dei gradi dei nodi di $G$ è un numero pari , in particolare il doppio della cardinalità di $E$ 
+	$$\sum_{i=1}^n deg(i)=2\cdot |E|$$
+	*Dimostrazione* : possiamo dimostrare notando che si conta due volte ogni arco
+
+Se rappresentiamo il *grafo* con una matrice di adiacenza il *grado* può essere calcolato sommando tutti i valori della riga corrispondente ad $i$ , se abbiamo un *grafo non orientato* questo vale anche per la somma della colonna 
+
+### Grafo regolare
+
+Sono *grafi* con i vertici con lo stesso grado 
+
+![[Regolari.excalidraw]]
+
+Un *grafo* viene detto $k$-regolare se $\forall u \in V : \quad \ deg(u)=k$ 
+
+Se $G$ è $2$-regolare allora per il *lemma della stretta di mano* avremo che : 
+$$\sum_{u\in V} deg(u) = 2\cdot m$$
+$$n\cdot deg(u) = 2\cdot m$$
+$$2\cdot n = 2\cdot m \implies n=m$$
+
+Possiamo dimostrare che il numero di vertici di grado dispari è sempre pari
+
+Dividiamo $V$ in due sottoinsiemi di vertici : 
+$$P=\{ u \in V | deg(u)\ \text{è pari} \ \}$$
+$$D=\{ u \in V | deg(u)\ \text{è dispari} \ \}$$
+$P$ e $D$ costituiscono quindi due *partizioni* di $V$ dove avremo che $P \cup D = V$ e $P\cap D = \emptyset$ 
+Sviluppiamo quindi il *lemma della stretta di mano* : 
+$$2\cdot m = \sum_{u\in V} deg(u)$$
+$$= \sum_{u\in P} deg(u) + \sum_{u\in D} deg(u)$$
+$$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} (2\cdot f(u)+1)$$
+	Dove questo perchè sappiamo che $deg(u)$ di $P$ è pari e quindi può essere trasformato in $2\cdot f(u)$ ossia come può essere rappresentato un numero pari , il contrario vale per $D$ dove un numero dispari può essere rappresentato con $2\cdot f(u) +1$ 
+$$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} 2\cdot f(u) + \sum_{u \in D} 1$$
+$$= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|$$
+$$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
+$$|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)$$
+Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anchesso *pari*
