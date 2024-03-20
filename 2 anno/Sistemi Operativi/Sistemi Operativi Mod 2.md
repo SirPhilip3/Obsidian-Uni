@@ -1334,3 +1334,115 @@ Potremmo avere 3 risulati a seconda dell'ordine con cui eseguiamo le istruzioni 
 
 Serve un meccanismo per sincronzzare i thread , una soluzione sarebbe avere una parte di codice in cui i thread non possono svolgerla contemporaneamente ( *Sezione critica* )
 
+### Sezione critica
+
+La *sezione critica* è una parte del codice in cui i processi accedono a dati condivisi dai thread , in questa parte per mantenere la consistenza dei dati necessitiamo di implementare meccanismi che permettino l'esecuzione ordinata dei *thread*
+
+Vogliamo quindi garantire che un solo *thread* alla volta possa accedere alla sezione critica , questa proprietà viene detta *mutua esclusione* ( questa deve valere a prescindere dalla schedulazione dei thread )
+
+#### Soluzione software
+
+##### lock
+
+Utilizziamo una variabile booleana globale `lock` inizialzzata a `{c}false` per indicare se qualche *thread* è dentro la *sezione critica* 
+
+```c
+bool lock = false; // in nessuna sezione critica
+
+t0{
+	....
+	while(lock){} // se lock true aspetto ( busy waiting ) 
+	lock = true; // sono dentro alla sezione critica
+	<sezione critica>
+	lock = false; // sono uscito dalla sezione critica
+	....
+}
+
+t1{
+	....
+	while(lock){}
+	lock = true;
+	<sezione critica>
+	lock = false;
+	....
+}
+```
+
+*Descrizione* : 
+	Il codice di ingresso attende ciclando a vuoto ( busy waiting ) finchè `lock` è `{c}true` Quando il `lock` viene rilasciato usciremo dal ciclo `{c}while` e acquisisce il `lock` ponendolo a `true` . Alla fine della sezione critica il `lock` viene settato a `false` e quindi rilasciato
+
+>[!warning]
+>Se due *thread* entrano contemporaneamente in *sezione critica* potrebbe accadere che superino il `while` entrambi , in quanto leggono il valore `false` prima che l'altro *thread* abbia settato `lock` a `true` , in tale caso è come se entrambi acquisissero il `lock` e la *mutua esclusione* non è garantita
+
+##### turno
+
+Utilizziamo una variabile booleana globale `turno` inizializzata a 1 . 
+I *thread* eseguono codice che dipende dal proprio ID
+
+```c
+int turno = 1; // in nessuna szezione critica
+
+t0{
+	....
+	while(turno!=0){} // non è il tuo turno -> turno di 1 poichè !=0
+	<sezione critica>
+	turno = 1;
+	....
+}
+
+t1{
+	....
+	while(turno!=1){}
+	<sezione critica>
+	turno = 0;
+	....
+}
+```
+
+*Descrizione* : 
+	Il codice di ingresso attende ciclando a vuoto finchè non è il propro turno , alla fine della *sezione critica* il turno viene dato all'altro thread
+
+Con questo codice la *mutua esclusione* è garantita dal fatto che `turno` non può valere contemporaneamente 0 e 1 , di conseguenza uno dei due *thread* rimarrà bloccato in attesa sul ciclo `{c}while` 
+
+>[!warning]
+>Supponiamo che `t0` volgia entrare due volte di seguito nella sezione critica mentre `t1` sta eseguendo altro codice 
+>A questo punto `t0` esce dalla prima sezione critica e assegna il turno a `t1` che però sta eseguendo dell'altro codice e quindi non sappiamo prevedere quando `t1` entrerà in *sezione critica*
+
+
+Manca una seconda proprietà fondamentale : il **progresso** : se nessun *thread* è in *sezione critica* un *thread* che richiede di accedere deve poterlo fare immediatamente
+
+##### pronto
+
+Utilizziamo un array di booleani globale `pronto[2]` inizializzato `false` 
+I *thread* eseguono codice che dipende dal proprio ID
+
+```c
+pronto[2]={false,false};
+
+t0{
+	....
+	pronto[0]=true;
+	while(pronto[1]){} // se l'altro è pronto
+	<sezione critica>
+	pronto[0] = false;
+	....
+}
+
+t1{
+	....
+	pronto[1]=true;
+	while(pronto[0]){}
+	<sezione critica>
+	pronto[1] = false;
+	....
+}
+
+```
+
+*Descrizione* : 
+	Quando il *thread* $i$-esimo vuole entrare pone a `true` la variabile `pronto[i]` , per segnalare all'altro *thread* la volontà di accedere , sucessiva cicla a vuoto se anche l'altro *thread* vuole accedere . Quando esce dalla sezione critica il thread pone a `false` `pronto[i]` per indicare che non ha più bisongno della sezione critica
+
+**Mutua esclusione** : 
+	La mutua esclusione è garantita dal fatto che se un *thread* è in *sezione critica* la sua variabile pronto è settata a `true` e l'altro *thread* si bloccherà sul ciclo `{c}while` 
+
+>[!warning]
