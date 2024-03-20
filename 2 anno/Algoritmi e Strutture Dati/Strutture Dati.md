@@ -3830,5 +3830,34 @@ In un *grafo* i nodi $i$ e $j$ sono *adiacenti* se esiste un arco che li collega
 
 ### Lista di Adiacenza
 
+La *lista di adiacenza* implementa i grafi attraverso l'uso di un array di dimensione $n$ che contiene , in ciascuna posizione , un puntatore ad un lista conctenata 
+
+Ogni posizione dell'array indica un *nodo* del grafo da cui partono la lista degli *archi* *uscenti*  , ogni cella della lsita concatenata contiene l'informazione sul *nodo* a cui arriva quell'arco
+
+>[!example]
+![[Pasted image 20240320082151.png]]
+
+**Vantaggi** : 
++ L'occupazione di memoria creace linearmente rispetto ad $n$
+
+**Svantaggi** : 
++ I tempi di accesso non sono ottimi : 
+	Per verificare l'essitenza di un arco è necessario scorrere le liste concatenate che è un'operazione lenta rispetto all'accesso diretto degli array
+
+>[!note]
+>L'utilizzo di questa struttura dati conviene in *grafi sparsi* visto che ho pochi archi e non devo sprecare molto tempo per la ricerca 
 ### Matrice di Adiacenza
+
+La *matrice di adiacenza* $A_G$ ( matrice di adiacenza $A$ del grafo $G$ ) è una matrice di dimensione $n\times n$ i cui elementi assumono i seguenti valori : 
+
+$$a_{ij}=\begin{cases} 1 & \text{se}\ (i,j)\in E \\ 0 & \text{se}\ (i,j)\notin E
+\end{cases}$$
+Con $1\le i, j\le n$
+
+In pratica metteremo 1 in quelle caselle le cui coordinate rappresentano un arco che esiste all'interno del grafo
+
+>[!example]
+
+$$$$
+
 ### Matrice di Indicenza
