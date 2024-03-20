@@ -3857,7 +3857,54 @@ Con $1\le i, j\le n$
 In pratica metteremo 1 in quelle caselle le cui coordinate rappresentano un arco che esiste all'interno del grafo
 
 >[!example]
+![[MatriceAdiacenza.excalidraw]]
+>
+>
+|       | **1** | **2** | **3** | **4** |
+| :---: | :---: | :---: | :---: | :---: |
+| **1** |   0   |   1   |   1   |   1   |
+| **2** |   0   |   1   |   1   |   0   |
+| **3** |   0   |   1   |   0   |   1   |
+| **4** |   1   |   0   |   0   |   0   |
 
-$$$$
+>[!note]
+>Questo metodo risulta essere più efficente ( dal punto di vista temporale ) rispetto alla *lista di adiacenza* poichè per vedere se abbiamo un arco tra due nodi $i$ e $j$ ci basterà vedere se la cella $a[\ i\ ][\ j\ ]$ contiene 1 o 0
+>
+>Dal punto di vista spaziale abbiamo un consumocostante di $\Theta(n^2)$
 
+Questa soluzione risulta essere preferibili nel caso di *grafi densi* se non ho problemi di spazio
+
+>[!note]
+>Con un *grafo non orientato* avremo che la matrice creata risulterà simmetrica rispetto alla sua diagonale che conterrà solo 0 poichè non possono esistere *cappi* per definizione
+>
+>Possiamo dire che $A^T = A$ ossia la sua *trasposta* ( scambio righe con colonne ) corrisponde alla matrice iniziale
 ### Matrice di Indicenza
+
+Rappresentiamo il grafo attraverso la matrice di incidenza di dimensione $|V|\times |E| = n \times m$  in cui le righe rappresentano i *vertici* e le colonne gli *archi* 
+
+Nel caso di *grafi orientati* metteremo : 
++ 1  nella casella che corrisponde al *veritice* di *arrivo*
++ -1 nella casella che corrisponde al *vertice* di *partenza*
++ 0   per tutte le altre caselle
+
+>[!example]
+![[MatriceAdiacenza.excalidraw]]
+>
+>
+|   -   | **(1,2)** | **(1,4)** | **(3,1)** | **(3,2)** | **(3,4)** | **(4,1)** | **(2,2)** |
+| :---: | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: |
+| **1** |    -1     |    -1     |    +1     |     0     |     0     |    +1     |     0     |
+| **2** |    +1     |     0     |     0     |    +1     |     0     |     0     |    -1     |
+| **3** |     0     |     0     |    -1     |    -1     |    -1     |     0     |     0     |
+| **4** |     0     |    +1     |     0     |     0     |    +1     |    -1     |     0     |
+
+>[!note] 
+>Quando troviamo un *cappio* possiamo mettere o -1 o +1 a piacimento visto possiamo capire che siamo in un cappio dal fatto che abbiamo solo un 1 nella colonna 
+>
+>Generalmente viene usato solo con *grafi* senza *cappi*
+
+Se questo metodo viene utilizzato con *grafi non orientati* utilizzeremo 1 per indicare sia l'arrivo che la partenza 
+
+Questa rappresentazione è utilizzata nel caso in cui abbiamo un *grafo sparso* ( in modo che abbiamo poche colonne per diminuire la complessità spaziale )
+
+## Componente Connessa
