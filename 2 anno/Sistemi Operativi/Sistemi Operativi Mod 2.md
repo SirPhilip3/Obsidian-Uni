@@ -1446,3 +1446,87 @@ t1{
 	La mutua esclusione è garantita dal fatto che se un *thread* è in *sezione critica* la sua variabile pronto è settata a `true` e l'altro *thread* si bloccherà sul ciclo `{c}while` 
 
 >[!warning]
+>Anche se la soluzione garantisce *mutua esclusione* esistono esecuzioni problematiche : supponiamo che `t0` e `t1` vogliano entrare entrambi in *sezione critica* , potrebbe accedere che settino simultaneamente `pronto[i]=true` e poi si blocchino entrambi sul proprio ciclo `{c}while` . Questo porta a *deadlock*
+>
+>Se inveriamo i `{c}while` e l'assegnamento `pronto[i]=true` potrebbe accadere che entrambi i *thread* superino il ciclo `{c}while` rompendo la *mutua esclusione*
+
+##### Algoritmo di Peterson
+
+Il difetto della soluzione *pronto* è che esiste un caso in cui i *thread* vanno in stallo. Per evitare questa situazione utilizziamo il metodo dei *turni* solo nel caso problematico ( ossia quando entrambi i thread sono pronti ) , se uno solo è pronto tale thread può accedere senza problemi alla *sezione critica* 
+
+```c
+pronto[2]={false,false};
+int turno = 0;
+
+t0{
+	....
+	pronto[0]=true;
+	turno = 1; // turno viene concesso
+	while(pronto[1]&&turno!=0){} // se l'altro è pronto
+	<sezione critica>
+	pronto[0] = false;
+	....
+}
+
+t1{
+	....
+	pronto[1]=true;
+	turno = 0;
+	while(pronto[0]&&turno!=1){}
+	<sezione critica>
+	pronto[1] = false;
+	....
+}
+```
+
+*Descrizione* : 
+	Quando il *thread* $i$-esimo vuole entrare pone a `true` la variabile `pronto[i]` per segnalare all'altro thread che vuole accedere alla *sezione critica* 
+	Cede quindi il `turno` all'altro thread e cicla a vuoto se l'altro thread è pronto e non è il suo turno 
+	Quando esce dalla sezione critica, il *thread* pone a `false` `pronto[i]` per indicare che non ha più bisogno della *sezione critica*
+
+**Mutua esclusione** : 
+	Consideriamo 2 casi : 
+	1. `t0` supera il proprio `{c}while` quando `t1` è prima di `turno=0` , in questo caso quando `t1` eseguirà `turno=0` si bloccherà nel ciclo `{c}while` in quanto avremo che `pronto[0]` è `{c}true` e `turno` è `0` ossia diverso da `1` 
+	2. `t0` super il proprio `{c}while` quando `t1` è `turno=0` . Poichè `t0` sta superando il `{c}while` deve essere `turno==0` . Quindi avremo che `t1` si blocca nel suo `{c}while` ed attende
+
+**Progresso** : 
+	Se nessuno è in *sezione critica* `pronto[i]` vale `{c}false` . Chiunque voglia entrare ci riuscirà in quanto la prima condizione nel `{c}while` sarà falsa
+
+**Assenza di stallo** : 
+	Supponiamo che entrambi i *thread* siano bloccati nel rispettivo `{c}while` . In questo caso avremo che `turno != 0` e `!= 1` ma questo non è possibile , quindi uno dei due *thread*  uscirà dal ciclo `{c}while`
+
+>[!note]
+>L'algoritmo di Peterson funziona per 2 *thread* ma esistono algoritmi che funzionano per $n$ *thread*
+##### Conclusione
+
+Le soluzioni via *software* presentano le seguenti problematiche : 
++ I cicli `{c}while` fatti per implementare il busy-waiting consumano tempo di CPU , su macchine con un solo core il problema è rilevante pochè fino alla fine del tempo che è stato allocato a quel *thread* la CPU è bloccata , in CPU multicore risulta più accettabile poichè solo alcuni core rimarrebbero bloccati
++ I compiler e processori effettuando delle ottimizzazioni che potrebbero riordinare delle istruzioni del processo per motivi di efficenza , ciò però potrebbe compromettere la correttezza del nostro codice , per questo se si utilizza la soluzione puramente via software dovremmo disabilitare queste ottimizzazioni che potrebbe però portare ad un decremento considerevole delle performance
+#### Soluzioni Hardware 
+
+##### Disabilitare le interruzioni
+
+La tecnica consiste nel *disabilitare* le *interruzioni* della CPU in modo da monopolizzare la CPU per il tempo necessario ad eseguire il codice critico , in CPU single core viene momentaneamente sospesa l'esecuzione parallela di *thread* e *processi* garantendo la *mutua esclusione*
+
+>[!warning] 
+>In CPU multi core esiste ancora il parallelismo tra core e quindi la *mutua esclusione* potrebbe non essere garantita 
+>
+>Inoltre non può essere utilizzata in programmi utente poichè un errore di programmazione bloccherebbe l'intero sistema
+
+##### Istruzioni speciali
+
+ Ci vengono fornite dal sistema operativo delle *istruzioni speciali* che ci permettono di eseguire dei blocchi di istruzioni in modo indivisibile 
+
+Un esempio è la `test&set` : questa ci permette di testare un valore ed assegnarlo in modo indivisibile 
+
+```c
+bool test&set(bool *x){
+	bool tmp = *x;
+	*x = true;
+	return tmp;
+}
+```
+
+Pone a `{c}true` il valore della variabile `x` ritornando il valore booleano prima dell'assegnamento , ci permette quindi di testare ed assegnare il valore di `x` in modo indivisibile
+
+Possiamo usarla per risolvere il problema del `lock` 
