@@ -1529,4 +1529,14 @@ bool test&set(bool *x){
 
 Pone a `{c}true` il valore della variabile `x` ritornando il valore booleano prima dell'assegnamento , ci permette quindi di testare ed assegnare il valore di `x` in modo indivisibile
 
-Possiamo usarla per risolvere il problema del `lock` 
+Possiamo usarla per risolvere il problema del `lock`  : 
+
+```c
+t0{
+	....
+	while(test&set(&lock)){}
+	<sezione critica>
+	lock = false;
+	....
+}
+```
