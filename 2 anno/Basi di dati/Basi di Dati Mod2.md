@@ -1315,3 +1315,80 @@ WHEN (OldTuple.netWorth > NewTuple.netWorth)
 	UPDATE MovieExec SET netWorth = OldTuple.netWorth 
 	WHERE code = NewTuple.code;
 ```
+
+>[!example]
+>Vogliamo utilizzare un *trigger* per garantire che la media degli stipendi non scenda mai sotto $500.000$ : 
+>1. L'*invariante* può essere violata da un'operazione di inserimento , aggiornamento o cancellazione
+>2. Visto che la media è un'informazione globale della tabella e non di una riga non possiamo ricorrere ad un controllo per riga
+>3. Possiamo mantener l'*invariante* annulando l'operazione che l'ha violata cioè riportando la tabella allo stato originale ( `AFTER` )
+```sql
+CREATE TRIGGER AvgNetWorthTrigger 
+AFTER UPDATE ON MovieExec 
+REFERENCING OLD TABLE AS OldStuff, NEW TABLE AS NewStuff 
+FOR EACH STATEMENT 
+WHEN (500000 > (SELECT AVG(netWorth) FROM MovieExec)) 
+BEGIN 
+	DELETE FROM MovieExec 
+	WHERE (name, address, code, netWorth) 
+	IN (SELECT * FROM NewStuff); 
+	INSERT INTO MovieExec (SELECT * FROM OldStuff); 
+END;
+```
+
+>[!note]
+>Servono *trigger* analogi per `{sql}INSERT` e `{sql}DELETE`
+
+>[!example]
+>Vogliamo utilizzare un *trigger* per garantire che la data di uscita di un film non possa mai essere `{sql}NULL` , usando il valore di default 1915 in questo caso
+>1. L'*invariante* può essere violata da un'operazione di inserimento o aggiornamento
+>2. L'informazione è relativa alla riga modificata o inserita
+>3. Possiamo mantere l'*invariante* correggendo il valore della data nella riga prima o dopo l'operazione
+```sql
+CREATE TRIGGER FixYearTrigger 
+BEFORE INSERT ON Movies 
+REFERENCING NEW ROW AS NewRow, NEW TABLE AS NewStuff 
+FOR EACH ROW 
+WHEN NewRow.year IS NULL 
+UPDATE NewStuff SET year = 1915;
+```
+
+>[!note]
+>Serve un *trigger* analogo per `{sql}UPDATE`
+
+##### Uso dei Trigger
+
+Esistono 2 tipi di *trigger* : 
++ **Trigger passivi** : 
+	Questi provocano il fallimento di un'operazione sotto determinate condizioni , usi tipici : 
+	+ Definizione di vincoli di integrità 
+	+ Controlli dinamici di autorizzazione (  )
++ **Trigger attivi** : 
+	Questi modificano lo stato della base di dati in corrispondenza di certi eventi , usi tipici : 
+	+ Definizione di vincoli di integrità 
+	+ Meccanismi di auditing , logging
+	+ Definizione di regole aziendali
+
+>[!example]
+>Attraverso i *trigger* possiamo implementare i vincoli di `FOREING KEY` gestendo sia la poltica `CASCADE` che la politica `SET NULL` oppure anche un'arbitraria *dipendenza funzionale* $X \to Y$
+
+##### Vantaggi dei Trigger
+
+Poichè i *trigger* sono gestiti dal *DBMS* non c'è alcun modo per sorpassarli : 
++ Risulta essere più robusto centralizzare un'*invariante* in un *trigger* che sparpagliare i controlli all'interno del codice 
++ Chiunque utilizzi la base di dati , anche all'esterno dell'applicazione che state sviluppando è soggetto al controllo dei *trigger*
++ Se si vuole fare *auditing* e *logging* i *trigger* sono l'unico strumento robusto per tali compiti visto che il *DBMS* ha completa visibilità delle operazioni effettuate sulle tabelle
+
+##### Svantaggi dei Trigger
+
+I *trigger* sono poco standardizzati e *DBMS* differenti faranno scielte differenti riguardo alcuni aspetti : 
++ Il linguaggio utilizzato per scrivere i *trigger* 
++ L'ordine dei *trigger* da svolgere se ve ne sono più di uno sullo stesso evento
++ Possibilità di chiamare un *trigger* all'interno di un'altro trigger , gestione dei *trigger* ricorsivi
+
+>[!note] 
+>I *trigger* sono difficili da debuggare , poco visibili in generale
+
+#### Trigger o Vincoli
+
+Generalmente , se è possibile , è sempre preferibile utilizzare i *vincoli* messi a dispozione da parte del *DBMS* invece che i *trigger* poichè : 
++ I vincoli sono standard e gestiti in modo uniforme da t
