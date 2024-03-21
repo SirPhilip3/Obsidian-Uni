@@ -1391,4 +1391,95 @@ I *trigger* sono poco standardizzati e *DBMS* differenti faranno scielte differe
 #### Trigger o Vincoli
 
 Generalmente , se è possibile , è sempre preferibile utilizzare i *vincoli* messi a dispozione da parte del *DBMS* invece che i *trigger* poichè : 
-+ I vincoli sono standard e gestiti in modo uniforme da t
++ I vincoli sono standard e gestiti in modo uniforme da tutti i *DBMS* 
++ I vincoli hanno una semantica semplice e non presentano problemi in termini di debugging
++ I vincoli garantiscono che una certa proprietà valga già al momento della loro definizione a differenza dei trigger che sono reattivi
+
+I *trigger* sono necessari per via della loro espressività : 
++ per *invarianti* che coinvolgono più di una tabella
++ per *invarianti* che coinvolgono più righe di una stessa tabella 
+
+#### Trigger in Postgres
+
+Esempio di sintassi in *Postgres* : 
+```sql
+CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] } 
+	ON table_name 
+	[ REFERENCING { { OLD | NEW } TABLE AS tab } [ ... ] ] 
+	[ FOR EACH { ROW | STATEMENT } ] 
+	[ WHEN ( condition ) ] 
+	EXECUTE FUNCTION func ( args )
+```
+
+Differenze rispetto allo standard :
++ Posso utilizzare `{sql}OR` per associare uno stesso *trigger* a più eventi
++ Non è possibile riferire `OLD ROW` e `NEW ROW` in `REFERENCING` ma c'è un modo *custom* per accedere a tali righe
++ Il corpo del *trigger* deve essere definito in una *funzione* separata
+
+*Postgres* supporta la definizione di funzioni nel suo linguaggio nativo *PL/pgSQL* , questo linguaggio viene utilizzato per definire *trigger functions* ossia funzioni : 
++ con *trigger* come tipo di ritorno 
++ senza argomenti , il passaggio di parametri avviene in modo custom in fase di creazione del *trigger* perchè non esiste un chiamante
+
+```sql
+CREATE FUNCTION my_trigger() RETURNS trigger AS $$
+	definizione della funzione
+$$ LANGUAGE plpgsql
+```
+
+All'interno della definizione della funzione possiamo avere : 
+```sql
+BEGIN
+	statement_1;
+	...
+	statement_n;
+END;
+```
+
+Dove ogni *statement* può essere un'istruzione *SQL* , un *IF* opppure un *RETURN*
+
+##### Passaggio di Parametri
+
+Quando una trigger function viene invocata da *Postgres* vengono create nel suo scope delle variabili speciali : 
++ *NEW* : la nuova riga per operazioni di `{sql}INSERT/UPDATE` all'interno di un trigger per riga ( `NULL` nel caso di `{sql}DELETE` )
++ *OLD* : la vecchia riga per operazioni di `{sql}DELETE/UPDATE` all'interno di un trigger per riga ( `NULL` nel caso di `{sql}INSERT` )
++ *TG_NARGS* : numero di argomenti passati tramite `{sql}CREATE TRIGGER`
++ *TG_ARGV* : vettore di argomenti passati tramite `{sql}CREATE TRIGGER`
+
+>[!note] 
+>Vi sono inoltre altre variabili informative come *TG_OP* che dicono quale evento ha scatenato il *trigger*
+
+##### Valore di Ritorno
+
+Una trigger function associa ad un *BEFORE trigger per riga* può : 
++ ritornare `NULL` per indicare che l'operazione ( `{sql}INSERT, UPDATE` o `{SQL}DELETE` ) sulla riga deve essere abortita
++ nel caso di `{sql}INSERT` o `{sql}UPDATE` ritornare una riga che diventerà la nuova riga che sarà inserita o sostituirà la riga aggiornata 
++ Se non si vuole interferire con l'operazione : 
+	+ Ritornare `NEW` nel caso di `{sql}INSERT UPDATE`
+	+ Ritornare `OLD` nel caso di `{sql}DELETE`
+
+Una trigger function deve ritornare `NULL` in tutti gli altri casi cioè nel caso di *trigger per statement* ed `AFTER` *trigger per riga*
+
+##### Trigger per Riga
+
+```sql
+CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] } 
+	ON table_name 
+	[ REFERENCING { { OLD | NEW } TABLE AS tab } [ ... ] ] 
+	FOR EACH ROW 
+	[ WHEN ( condition ) ] 
+	EXECUTE FUNCTION func ( args )
+```
+
++ Un `{sql}BEFORE` *trigger* per riga può prevenire operazioni o modificarle
++ La clasusola `WHEN` può fare riferimento a `OLD`e `NEW` per specificare una condizione di attivazione e non può fare uso di sotto-query
++ Possiamo utilizzare `REFERENCING` per vedere i cambiamenti complessivi nell'intera tabella , non solo nella riga ( solo per `AFTER` trigger )
+
+##### Trigger per Statement
+
+```sql
+CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] } 
+	ON table_name 
+	[ REFERENCING { { OLD | NEW } TABLE AS tab } [ ... ] ] 
+	FOR EACH STATEMENT 
+	EXECUTE FUNCTION func ( args )
+```
