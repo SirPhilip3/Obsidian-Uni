@@ -1473,7 +1473,6 @@ CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] }
 + Un `{sql}BEFORE` *trigger* per riga può prevenire operazioni o modificarle
 + La clasusola `WHEN` può fare riferimento a `OLD`e `NEW` per specificare una condizione di attivazione e non può fare uso di sotto-query
 + Possiamo utilizzare `REFERENCING` per vedere i cambiamenti complessivi nell'intera tabella , non solo nella riga ( solo per `AFTER` trigger )
-
 ##### Trigger per Statement
 
 ```sql
@@ -1483,3 +1482,41 @@ CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] }
 	FOR EACH STATEMENT 
 	EXECUTE FUNCTION func ( args )
 ```
+
++ Un trigger per statement viene eseguito una volta anche se nessuna riga è coincolta nell'operazione scatenante
++ Il `WHERE` non supporta `OLD`e `NEW`
++ Possiamo utilizzare `REFERENCING` per vedere i cambiamenti complessivi nell'intera tabella ( solo per `AFTER` trigger ) 
+
+##### Modello di Esecuzione 
+
+L'ordine di esecuzione dei *trigger* dipende dal loro tipo : 
++ I `BEFORE` *trigger per statement* si attivano prima di tutti ( prima che l'evento abbia inizio )
++ I `BEFORE` *trigger per riga* si attivano immediatamente prima di operare sulla riga coinvolta ( prima dei `CHECK` ) 
++ Gli `AFTER` *trigger per riga* si attivano alla fine dell'evento ma prima degli `AFTER` trigger per statement 
++ Gli `AFTER` *trigger per statement* vengono eseguiti per ultimi 
+
+**Specificità di Postgres** : 
++ Un *trigger per riga* ha visibilità dei cambiamenti effettuati sulle righe precedenti ma l'ordine delle righe non è predicibile 
++ Se più di un *trigger* viene definito per lo stesso evento sulla stessa tabella essi sono eseguiti in ordine *alfabetico* fino a terminazione o finchè uno non ritorna `NULL` 
++ Un *trigger* può attivare ricorsivamente altri *trigger* ( può condurre a ricorsioni infinite )
+
+>[!example]
+>Trigger per garantire la dipendenza funzionale $A \to B$
+```sql
+CREATE TRIGGER FuncDep 
+	BEFORE INSERT OR UPDATE ON Relation 
+	FOR EACH ROW 
+	EXECUTE FUNCTION fix_func_dep () 
+
+CREATE FUNCTION fix_func_dep() RETURNS TRIGGER AS $$ 
+	IF (EXISTS SELECT * FROM Relation 
+			WHERE A = NEW.A AND B != NEW.B) 
+	THEN RETURN NULL; 
+	END IF; 
+	RETURN NEW; 
+$$ LANGUAGE plpgsql;
+```
+
+### Funzioni e Procedure 
+
+>[!todo]
