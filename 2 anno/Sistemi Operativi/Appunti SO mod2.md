@@ -678,3 +678,45 @@ XCHG(bool *x, *y){
 
 # 21/03/2024
 
+( lab )
+
+-pthread per linkare libreria per creazione di thread in POSIX
+
+```c
+pthread_create(pthread_t *thread, pthread_attr_t *attr, void *(*start_routine)(void *), void *arg)
+```
+
+```c
+pthread_t *thread
+```
+Passa id thread 
+attr attributi per modificare impostazioni del thread NULL = default 
+
+```c
+*()
+```
+pointer a funzione  , puntatore a void , possiamo passare un pointer di qualsiasi tipo e poi castarlo a void \*  , nome di funzione che prende pointer ritorna pointer -> codice che eseguirà
+
+se voglio passare argomenti alla funzione \*arg 
+
+```c
+pthread_exit
+```
+usciamo dal thread  + ritorniamo un pointer al valore di ritorno
+
+```c
+pthread_join
+```
+aspetta terminazione di un thread  primo è l'id del ritorno , secondo è l'eventuale return , visto che quello che ritorno è pointer a void devo salvarlo su un address , null se non mi interessa il valore di ritorn o 
+
+ritornano 0 se successo >0 se vanno in errore 
+
+```c
+pthread_detach
+```
+non si vuole attendere la detach utilizzato se non volgiamo fare la join , fino a che non finisce il processo altrimenti rimarrebbero thread zombie che attendono di essere joinati
+
+A livello di sistema i therad hanno un id differente da quello all'interno del processo 
+```c
+syscall(SYS_gettid) // per prendere id di sistema
+```
