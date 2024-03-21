@@ -1294,8 +1294,24 @@ In fase di definizione di un *trigger* è possibile specificare se l'azione debb
 
 I *trigger* forniscono un modo indiretto per mantenere invarianti globali
 
-Metodologia per il mantenimento di invarianti tramite *trigger* : 
+Metodologia per il mantenimento di invarianti tramite *trigger* prevede 3 passi : 
+1. Quali operazioni possono violare l'invariante
+2. Il mantenimento dell'*invariante* può essere controllato per ogni riga coinvolta dall'operazione oppure no ? 
+3. Cosa bisogna fare prima o dopo dell'operazione per garantire il mantenimento dell'*invariante*
 
->[!todo]
->#todo
-
+>[!example]
+>Vogliamo usare un *trigger* per garantire che non sia mai possibile abbassare uno stipendio 
+>1. L'invariante può essere violata da un'operazione di aggiornamento 
+>2. L'informazione che potrebbe violare l'invariante si trova sempre su una sola riga
+>3. Possiamo fare 2 scielte : 
+>	1. Impedire l'aggiornamento della riga ( `BEFORE` )
+>	2. Riportare lo stipendio al valore originale ( `AFTER` )
+```sql
+CREATE TRIGGER NetWorthTrigger 
+AFTER UPDATE OF netWorth ON MovieExec 
+REFERENCING OLD ROW AS OldTuple, NEW ROW AS NewTuple 
+FOR EACH ROW 
+WHEN (OldTuple.netWorth > NewTuple.netWorth) 
+	UPDATE MovieExec SET netWorth = OldTuple.netWorth 
+	WHERE code = NewTuple.code;
+```

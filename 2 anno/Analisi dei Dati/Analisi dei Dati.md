@@ -1041,5 +1041,7 @@ $$J(\theta)=\left(\matrix{-\frac{d^2 l(\theta)}{d \theta^2_1} & -\frac{d^2 l(\th
 
 >[!todo]
 >distribuzione normale multivariata
+>>[!note]
+>>non verrà chiesta all'esame
 >#todo
 
