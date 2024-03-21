@@ -573,3 +573,6 @@ in collection add diventa alias della put
 contains di pair K ,V -> sarebbe meglio contains by K e poi ritorna il Valore 
 
 limiterei ad essere un Iterable 
+
+# 21/03/2024
+
