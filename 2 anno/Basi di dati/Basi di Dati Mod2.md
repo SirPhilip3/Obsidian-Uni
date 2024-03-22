@@ -1519,4 +1519,78 @@ $$ LANGUAGE plpgsql;
 
 ### Funzioni e Procedure 
 
->[!todo]
+Le funzioni in SQL possono avere vari utilizzi : 
++ Incapsulare funzionalità di uso comune 
++ Offrire interfacce di accesso semplificate ad utenti inesperti in SQL
++ Centralizzare lato server una sequenza di operazioni di cui non ci interessano i risultati intermedi ( miglioramento delle performance )
+
+Vedremo le funzioni in *PL/pgSQL*
+
+#### Dichiarazione di Funzioni
+
+Possiamo dichiarare nel seguente modo : 
+```sql
+CREATE FUNCTION my_fun ( args ) RETURN type
+AS function_body
+LANGUAGE plpgsql
+```
+
+Dove il *function_body* è un blocco con la seguente struttura : 
+```sql
+[ DECLARE declarations ]
+BEGIN 
+	staements
+END;
+```
+
+>[!note]
+>*Postgres* richiede che il *function_body* sia una stringa. Lo possiamo definire in più righe facendolo precedere e terminare da `$$`
+
+##### Dichiarazione di Variabili
+
+Tutte le *variabili* utilizzate in un blocco vanno dichiarate nella sezione iniziale associando loro un tipo : 
+
+```sql
+name [ CONSTANT ] type [ NOT NULL ] [ = expr ];
+```
+
+Il tipo di una variabile può essere un qualsiasi tipo *SQL* . Ci sono inoltre alcuni tipi e sintassi particolari : 
++ `var%TYPE` : il tipo della variabile o colonna chiamata `var`
++ `tab%ROWTYPE` : il tipo record delle righe della tabella `tab`
++ `RECORD` : un qualsiasi tipo record 
++ `SETOF t` : un insieme di elementi di tipo `t` ( utilizzato solo per valori di ritorno )
+
+>[!example]
+```sql
+CREATE FUNCTION my_concat(a text, b text, uppercase boolean = false)
+RETURN text AS $$
+BEGIN
+	IF uppercase THEN RETURN UPPER(a || '' || b);
+	END IF
+	RETURN LOWER(a || '' || b);
+END; $$ LANGUAGE plpgsql
+```
+
+Possiamo involare la funzione nei seguenti modi : 
+```sql
+SELECT my_concat(’Hello’, ’World’) -- ritorna helloworld
+SELECT my_concat(’Hello’, ’World’, true) -- ritorna HELLOWORLD
+SELECT my_concat(b := ’Hello’, a := ’World’) -- ritorna worldhello
+```
+
+**Assegnamento**
+
+Un assegnamento ad una variabile si effettua con la sintassi : 
+```sql
+var = expr;
+```
+
+Il risultato di un comando *SQL* che ritorna una *singola riga* può essere salvato in una variabile con la sintassi : 
+```sql
+SELECT expr INTO [STRICT] var FROM ...
+```
+
+>[!note]
+>L'`{sql}STRICT` richiede alla query di ritornare esattamente una riga , in caso contrario viene dato errore a runtime . Se viene omessa solo la prima riga del risultato verrà assegnata , `{sql}NULL` nel caso di risultato vuoto
+##### Valore di Ritorno
+
