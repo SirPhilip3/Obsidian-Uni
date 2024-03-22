@@ -1540,3 +1540,22 @@ t0{
 	....
 }
 ```
+
+### Thread in POSIX
+
+Un *thread* in POSIX è un'unità di esecuzione all'interno di un processo
+Un *processo* può avere più *thread* in esecuzione , che tipicamente condividono le risorse di un processo , in particolare condividono la memoria con il processo 
+Lo standard *POSIX* definisce un insieme di funzioni per la creazione e la sincronizzazione dei thread :
+
++ `{c}pthread_create(pthread_t *thread, pthread_attr_t *attr, void * (*start_routine)(void *), void *arg)`
+	I suoi 4 argomenti rappresentano : 
+	1. `thread` : un puntatore a `{c}pthread_t` , l'analogo di `{c}pid_t` ma per i *thread* ( non viene però implementato con un intero , in Linux è implementato con un `{c}unsigned long int` )
+	2. `attr`
+
+
+
+
+
+
+
+>[!todo]

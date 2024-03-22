@@ -1766,5 +1766,84 @@ FOREACH target IN ARRAY expr LOOP
 END LOOP
 ```
 
-##### Varaibile `FOUND`
+##### Variabile `FOUND`
+
+Ciascuna funzione contiene una variabile booleana `FOUND`
++ `SELECT INTO` imposta `FOUND` a `true` se viene assegnata una riga alla variabile corrispondente , `false` altrimenti
++ `UPDATE`,`INSERT` e `DELETE` impostano `FOUND` a `true` se almeno una riga è stata toccata dall'operazione , a `false` altrimenti 
++ Un ciclo `FOR` imposta `FOUND` a `true` se ha iterato almeno una volta a `false` altrimenti
++ `RETURN QUERY` imposta `FOUND` a `true` se la query ha ritornato alemeno una riga , a `false` altrimenti
+
+>[!example]
+```sql
+CREATE FUNCTION f3(OUT m character(20), OUT p real) 
+RETURNS SETOF RECORD AS $$ 
+declare r RECORD; 
+BEGIN 
+	FOR r IN SELECT model, price FROM lab.pc LOOP 
+	SELECT r.model,r.price INTO m, p; 
+	RETURN NEXT; 
+	END LOOP; 
+END; 
+$$ LANGUAGE plpgsql;
+```
+
+##### Messaggi ed Eccezioni
+
+Una *funzione* può riportare messaggi o errori con la sintassi :
+```sql
+RAISE [ level ] 'format' [, expr [, ... ]]
+				[USING option = expr]
+```
+Dove : 
++ `level` indica il *livello* di severità dell'errore ( `DEBUG`, `LOG`, etc... ). Il *livello* di default `EXCEPTION` solleva nache un'*eccezione*
++ `{sql}'format'` è una string formattata ( posso inseri segnaposti da essere sostituiti ) che specifica il messaggio da riportare
++ La clausola `USING` permette di popolare informazioni aggiuntive sull'errore come il codice di errore `ERRCODE`
+
+Si può usare `RAISE` senza parametri per rilanciare un'*eccezione* *catturata*
+
+Per **catturare** un'eccezione possiamo usare la seguente sintassi 
+```sql
+BEGIN
+	statements
+EXCEPTION
+	WHEN cond [ OR cond ... ] THEN handler
+	[ WHEN cond [ OR cond ... ] THEN handler ... ]
+END;
+```
+
+Le condizioni `cond` seguono una sintassi particolare che ci permette di avere condizioni complesse come fare azioni diverse in base al codice di errore
+
+Quando un'eccezione viene catturata, il contenuto delle variabili locali persiste , ma tutti i cambiamenti al database effettuatu nel blocco che ha sollevato l'eccezione vengono **annullati** 
+
+>[!example]
+```sql
+INSERT INTO mytab(firstname, lastname) VALUES(’Tom’, ’Jones’); 
+BEGIN 
+	UPDATE mytab SET firstname = ’Joe’ WHERE lastname = ’Jones’;
+	x := x + 1; 
+	y := x / 0; 
+EXCEPTION 
+	WHEN division_by_zero THEN 
+		RAISE NOTICE ’caught division_by_zero’; 
+		RETURN x; 
+END;
+```
+>[!example]
+>In questo caso catturiamo la divisione per 0 effettuata alla riga 5
+
+##### Procedure
+
+Una *procedura* è una funzione che non ritorna alcun risultato :
+```sql
+CREATE PROCEDURE my_proc( args )
+AS proc_body
+LANGUAGE plpgsql
+```
+
+Una *procedura* può essere invocata attraverso il comando `CALL` 
+
+>[!note]
+>+ Prima di Postgres 11 si utilizzava il comando `PERFORM`
+>+ Una *procedura* differisce da una *funzione* void solo nella gestione della *transazioni*
 
