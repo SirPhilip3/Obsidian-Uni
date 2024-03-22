@@ -1594,3 +1594,177 @@ SELECT expr INTO [STRICT] var FROM ...
 >L'`{sql}STRICT` richiede alla query di ritornare esattamente una riga , in caso contrario viene dato errore a runtime . Se viene omessa solo la prima riga del risultato verrà assegnata , `{sql}NULL` nel caso di risultato vuoto
 ##### Valore di Ritorno
 
+Una funzione che ritorna un *singolo valore* può usare la sintassi : 
+```sql
+RETURN expr;
+```
+
+Se è necessario ritornare un *record* possiamo utilizzare i parametri di output per definire implicitamente il tipo :
+>[!example]
+```sql
+CREATE FUNCTION sum_n_product(x int,y int, OUT sum int, OUT prod int)
+AS $$
+BEGIN
+	sum = x + y;
+	prod = x * y;
+END; $$ LANGUAGE plpgsql
+```
+
+Una funzione che ritorna un *insieme di valori* ( `SETOF` ) deve costruirlo in modo incrementale tramite le sintassi : 
+```sql
+RETURN NEXT expr; -- aggiunge un record al risultato
+RETURN QUERY  query; -- aggiunge un insieme al risultato
+```
+
+L'insieme di valori da ritornare può essere restituito con `RETURN` senza passare alcun argomento o lasciando terminare la funzione
+
+>[!example]
+>Data la tabella `PC(model, speed, ram, hd, price)` definire una funzione che ritorna un insieme di modelli associati ai rispettivi prezzi
+>
+>Possiamo svolgerlo in due modi differenti : 
+>1. Ritorniamo un `SETOF RECORD`
+>2. Utilizziamo la sintassi `RETURNS TABLE` al posto di `RETURNS` 
+```sql
+-- opzione 1
+CREATE FUNCTION f() RETURNS SETOF RECORD AS $$ 
+BEGIN 
+RETURN QUERY SELECT model, price FROM pc; 
+END; 
+$$ LANGUAGE plpgsql;
+```
+```sql
+-- call
+SELECT m,p FROM f() AS (m character(20), p real);
+```
+
+```sql
+-- opzione 2
+CREATE FUNCTION f() 
+RETURNS TABLE(m integer, p real) AS $$ 
+BEGIN 
+RETURN QUERY SELECT model, price FROM pc; 
+END; 
+$$ LANGUAGE plpgsql;
+```
+```sql
+-- call
+SELECT * FROM f();
+```
+
+>[!note]
+>La sintassi 
+```sql
+CREATE FUNCTION f()
+RETURNS TABLE(m character(20), p real) ...
+```
+>[!note]
+>Può essere riscritta in modo più rigoroso nel seguente modo :
+```sql
+CREATE FUNCTION f(OUT m character(20), OUT p real)
+RETURNS SETOF RECORD ...
+```
+
+>[!note]
+>Nel caso di funzioni con parametri di output che ritornano un insieme di valori si può usare `{sql}RETURN NEXT` senza argomenti per aggiungere gli attuali valori dei parametri di output come nuova riga del risultato
+
+##### Statement Condizionali
+
+Costrutto `IF THEN ELSE` 
+
+```sql
+IF boolean-expr THEN
+	statements
+[ ELSIF boolean-expr THEN 
+	statements
+	... ]
+[ ELSE 
+	statements ]
+END IF;
+```
+
+Esiste inoltre il costrutto `CASE` , questo ha 2 forme :
+1. **Costrutto CASE Semplice:**
+```sql
+CASE
+   WHEN condizione1 THEN valore1
+   WHEN condizione2 THEN valore2
+   ...
+   ELSE valore_default
+END
+```
+
+   Questo costrutto valuta le condizioni nell'ordine in cui sono elencate e restituisce il valore corrispondente alla prima condizione vera. Se nessuna delle condizioni è vera, viene restituito il valore predefinito specificato nella clausola ELSE (facoltativa).
+
+>[!example]
+```sql
+SELECT 
+   CASE 
+	   WHEN age < 18 THEN 'Minore'
+	   WHEN age >= 18 AND age < 65 THEN 'Adulto'
+	   ELSE 'Anziano'
+   END AS category
+FROM people;
+```
+
+2. **Costrutto CASE di Ricerca:**
+```sql
+CASE espressione_da_valutare
+   WHEN valore1 THEN risultato1
+   WHEN valore2 THEN risultato2
+	...
+   ELSE risultato_default
+END
+```
+
+   Questo costrutto valuta un'espressione specificata e restituisce il risultato corrispondente al primo valore che coincide con l'espressione da valutare. Se nessun valore coincide, viene restituito il risultato predefinito specificato nella clausola ELSE (facoltativa).
+
+>[!example]
+```sql
+SELECT 
+   name,
+   CASE gender
+	   WHEN 'M' THEN 'Maschio'
+	   WHEN 'F' THEN 'Femmina'
+	   ELSE 'Non specificato'
+   END AS gender_text
+FROM employees;
+```
+
+In entrambi i casi, il costrutto CASE può essere utilizzato in qualsiasi parte di una query SQL dove è consentita un'espressione, come nelle clausole SELECT, WHERE, GROUP BY, ORDER BY e altre.
+
+##### Cicli
+
+Ciclo **While** : 
+```sql
+WHILE boolean-expr LOOP
+	statements
+END LOOP;
+```
+
+Ciclo **For** : 
+```sql
+FOR name IN [ REVERSE ] int-expr .. int-expr
+			[ BY int-expr ] LOOP
+	statements
+END LOOP;
+```
+
+>[!note] 
+>La variabile di iterazione non deve essere dichiarta ed è locale al ciclo
+
+Il ciclo *for* può anche essere utilizzato per iterare sui risultati prodotti da una certa query : 
+```sql
+FOR target IN query LOOP
+	statements
+END LOOP;
+```
+
+L'iterazione su un array si effettua invece con `FOREACH` : 
+```sql
+FOREACH target IN ARRAY expr LOOP
+	statements
+END LOOP
+```
+
+##### Varaibile `FOUND`
+
