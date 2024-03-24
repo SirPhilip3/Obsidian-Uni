@@ -1554,8 +1554,4 @@ Lo standard *POSIX* definisce un insieme di funzioni per la creazione e la sincr
 
 
 
-
-
-
-
 >[!todo]
