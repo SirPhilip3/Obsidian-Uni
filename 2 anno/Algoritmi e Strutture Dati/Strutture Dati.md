@@ -4057,6 +4057,8 @@ $$out\_deg(i)=\sum_{j=1}^n a_{ij} \quad \text{ossia la somna della $i$-esima rig
 
 Vale che la somma degli $in\_deg$ e $out\_deg$ rappresenta il numero totale di archi presenti all'interno di un grafo orientato , possiamo anche vederlo come : 
 $$\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m $$
+
+Per i grafi *orientati* vale anche che all'interno della diagonale di $A$ è presente il numero di cicli che passano su quel vertice
 ### Isomorfismo di grafi
 
 Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$ è un *isomorfismo* se valgono le seguenti prorpietà : 
@@ -4083,7 +4085,7 @@ Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$
 Un *grafo* è detto **Auto-complementare** se $G \simeq \overline G$
 
 >[!note]
->
+>Non esiste un algoritmo di tempo polinomiale che , dati due grafi , ritorni la funzione di isomorfismo tra di essi , qualora esistesse 
 
 #### Proprietà necessarie ma non sufficenti per l'*isomorfismo*
 
@@ -4103,3 +4105,53 @@ Un *grafo* è detto **Auto-complementare** se $G \simeq \overline G$
 ![[Clique.excalidraw]]
 #### Traccia di una matrice
 
+Consideriamo una matrice $A = n \times n$ allora la *taccia* di questa è : 
+$$tr(A)=\sum_{i=1}^{n}a_{ii}$$
+Ossia la somma dei valori sulla diagonale principale 
+
+Possiamo dire che $G=(V,E)$ *grafo non orientato* ha : 
++ $tr(A)=0$ : questo poichè in un grafo non orientato non essendoci cappi il numero di vertici tra $i$ e $i$ è sempre 0
++ $tr(A^2) = 2\cdot |E|$ : questo rappresenta la somma degli archi uscenti da un nodo che rappresenta il numero totale di archi moltiplicato per 2 poichè se un nodo è collegato ad un'altro allora verrà contato una volta per il primo ed un'altra per il secondo ( *lemma della stretta di mano* ) 
++ $tr(A^3)=\sum_{i=1}^n a_{ii}^{(3)}$ : questo rappresenta  il numero di cammini di lunghezza $3$ che vanno da $i$ ad $i$ ossia 2 volte il numero di *triangoli* presenti adiacenti ad un nodo $i$ ( 1 triangolo ha infatti 2 versi di percorrenza ) , la sommatoria quindi rappresenta 6 volte il numero di triangoli presenti in totale in un *grafo* ( 6 poichè ogni triangolo aventi 3 vertici avremo che ognuno di essi può avere $2 \times$ i suo triangoli adiacenti  )
+
+>[!example] 
+![[Triangoli.excalidraw]]
+>
+>|       | **1** | **2** | **3** | **4** |
+| :---: | :---: | :---: | :---: | :---: |
+| **1** |   2   |       |       |       |
+| **2** |       |   4   |       |       |
+| **3** |       |       |   4   |       |
+| **4** |       |       |       |   2   |
+>
+>Questa è la tebella $A^3$
+
+>[!note]
+>Un *grafo non orientato* contiene un *triangolo* se e solo se $\exists\ i,j \in V \quad i\neq j$ tale che $a_{ij}\cdot a_{ij}^{(2)}\neq 0$
+>
+>Perchè questo si verifichi deve essere che $a_{ij} \neq 0$ e $a_{ij}^{(2)} \neq 0$ , 
+>+ $a_{ij} \neq 0$ : avviene se esiste un arco tra $i$ e $j$
+>+ $a_{ij}^{(2)} \neq 0$ : avviene se esiste un cammino di lunghezza $2$ che congiunge $i$ e $j$
+
+
+### Connettività , Aciclicità
+
+In *grafi non orientati* $G$ è *connesso* se $\forall u ,v \in V \quad u \neq v \quad \exists \ \text{un cammino che li collega}$
+
+**Proprietà** : 
+	Qual'è il numero minimo di archi perchè un grafo sia connesso ? 
+
+Abbiamo che : 
+	Se $G$ è connesso allora $|E| \ge |V|-1$
+
+**Dimostrazione** per induzione sul numero di vertici del grafo 
+
+La *base* dell'induzione sarà : 
+	$$n=2 \quad |E|=1 \ \ \ |V| = 2 \quad |E|=|V|-1 \quad \text{come volevasi dimostrare}$$
+Supponiamo ora che la proprietà valga per un grafo con $n-1$ vertici e dimostriamo la proprietà per $n$ vertici
+
+*Passo induttivo* : per $n\ge 3$
+
+Consideriamo un vertice $Z \in V$ , togliamolo dal *grafo* , consideriamo quindi $G[V - \{Z\}]$ ossia il *grafo indotto* da $V - Z$ , questo possiamo dunque rappresentarlo con $G'$ il quale avrà come $|V'| = n-1$ , questo però non può essere usato direttamente poichè togliendo $Z$ potremmo disconnettere il grafo e quindi non essere più nelle ipotesi di avere un *grafo connesso* 
+Indichiamo quindi con $k$ il numero di componenti connesse di cui è costituito $G'$ ( se $G'$ è connesso $k=1$ ) , essendo che ogni *componente connesso* è *connesso* posso utilizzare l'ipotesi induttiva 
+Indico con 
