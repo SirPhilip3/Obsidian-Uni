@@ -3984,6 +3984,19 @@ Notiamo che la somma dei *gradi* può essere scritta come $2\ \cdot$ numero arch
 
 Se rappresentiamo il *grafo* con una matrice di adiacenza il *grado* può essere calcolato sommando tutti i valori della riga corrispondente ad $i$ , se abbiamo un *grafo non orientato* questo vale anche per la somma della colonna 
 
+#### Moltiplicazioni della martice di adiacenza
+
+Consideriamo un grafo $G=(V,E)$ *non orientato* allora avremo che $A_G$ sarà la *matrice di adiacenza*di $G$ , cosa rappresenterà $A \times A = A^2 = (a_{ij}^{(2)}) = \sum_{l=1}^n a_{ik}\cdot a_{lj}$ 
+
+Cosa rappresenta nei seguenti casi : 
++ $i==j$
+	Avremo che $a_{ii}=\sum_{k=1}^n[a_{ik}\cdot a_{ki}] = \sum_{k=1}^n a_{ik}^2$
+	Ma essendo che $a_{ik}$ può essere solo o 1 o 0 avremo che la radice di questi numeri sarà uguale alla radice dei numeri precedenti , possiamo quindi scrivere : 
+	$a_{ii}=\sum_{k=1}^n a_{ik}=deg(i)$ 
+	Possiamo quindi dire che i valori che troviamo sulla diagonale della matrice quadrata $A^2$ rappresentano il grado dei nodi del grafo
++ $i\neq j$ 
+	A
+
 ### Grafo regolare
 
 Sono *grafi* con i vertici con lo stesso grado 
@@ -4013,3 +4026,5 @@ $$= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|$$
 $$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
 $$|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)$$
 Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anchesso *pari*
+
+### 
