@@ -3993,10 +3993,18 @@ Cosa rappresenta nei seguenti casi :
 	Avremo che $a_{ii}=\sum_{k=1}^n[a_{ik}\cdot a_{ki}] = \sum_{k=1}^n a_{ik}^2$
 	Ma essendo che $a_{ik}$ può essere solo o 1 o 0 avremo che la radice di questi numeri sarà uguale alla radice dei numeri precedenti , possiamo quindi scrivere : 
 	$a_{ii}=\sum_{k=1}^n a_{ik}=deg(i)$ 
-	Possiamo quindi dire che i valori che troviamo sulla diagonale della matrice quadrata $A^2$ rappresentano il grado dei nodi del grafo
+	Possiamo quindi dire che i valori che troviamo sulla *diagonale* della matrice quadrata $A^2$ rappresentano il *grado dei nodi del grafo*
 + $i\neq j$ 
-	A
+	Avremo che $a_{ij}=\sum_{k=1}^n[a_{ik}\cdot a_{kj}]$ dove il prodotto tra $a_{ik}$ e $a_{jk}$ assume come valore 1 se entrambi sono 1 ( ossia c'è un cammino tra $i$ e $k$ e un cammino tra $k$ e $j$ il che implica l'esistenza di un cammino di lunghezza 2 tra $i$ e $j$ ) 0 altrimenti , possiamo quindi dire che la somma di tali cammini indica il *numero di cammini di lunghezza 2 tra $i$ e $j$*
 
+Riassumendo possiamo scrivere : 
+$$a_{ij}^{(2)}=\begin{cases} deg(i) &\text{se}\ i == j\\ \text{n° di cammini di lunghezza 2 tra $i$ e $j$} & \text{se} \ i \neq j \end{cases}$$
+In **generale** se abbiamo il prodotto di $k$ matrici di adiacenza $A$ allora la matrice risultante rappresenta : 
++ se $i\neq j$ il numero di cammini di lunghezza $k$ tra i nodi $i$ e $j$ 
+
+>[!important] Dimostrazione
+>>[!todo]
+>>#todo
 ### Grafo regolare
 
 Sono *grafi* con i vertici con lo stesso grado 
@@ -4027,4 +4035,28 @@ $$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
 $$|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)$$
 Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anchesso *pari*
 
-### 
+### Proprietà
+
+#### Esistono almeno 2 vertici con grado 1 ( sono *Terminali* )
+
+Considerando un grafo $G=(V,E)$ *non orientato* senza veritici *isolati* ( $deg()=0$ ) e per cui abbiamo che : $|E|=|V|-1$ 
+
+Voglia dimostrare che se prendiamo l'insieme di veritici $V_1$ di grado $1$ allora $|V_1| \ge 2$ 
+
+**Dimostrazione** : 
+
+#### Grado di un Grafo Orientato
+
+Per grafo $G=(V,E)$ *orientato* avremo che possiamo suddividere il grado di un vertice in : 
++ $in\_deg(u)$ : rappresenta il numero di *archi* *entranti* in un *vertice* $u$
++ $out\_deg(u)$ : rappresenta il numero di *archi* *uscenti* in un *vertice* $u$ 
+
+Se abbiamo la *matrice di adiacenza* possiamo calcolarli nei seguenti modi : 
+$$in\_deg(i)=\sum_{j=1}^n a_{ji} \quad \text{ossia la somma della $i$-esima colonna}$$
+$$out\_deg(i)=\sum_{j=1}^n a_{ij} \quad \text{ossia la somna della $i$-esima riga}$$
+
+Vale che la somma degli $in\_deg$ e $out\_deg$ rappresenta il numero totale di archi presenti all'interno di un grafo orientato , possiamo anche vederlo come : 
+$$\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m $$
+### Isomorfismo di grafi
+
+Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$ è un isomorfismo se valgono le seguenti prorpietà  
