@@ -4059,4 +4059,47 @@ Vale che la somma degli $in\_deg$ e $out\_deg$ rappresenta il numero totale di a
 $$\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m $$
 ### Isomorfismo di grafi
 
-Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$ è un isomorfismo se valgono le seguenti prorpietà  
+Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$ è un *isomorfismo* se valgono le seguenti prorpietà : 
+1. $\phi$ è biunivoca ( o bigettiva )
+2. Deve preservare l'adiacenza tra i vertici : $(u,v) \in E_1 \iff (\phi(u), \phi(v))\in E_2$ 
+
+>[!example]
+![[Isomorfismo.excalidraw]]
+>
+>I due grafi si dicono *isomorfi* ( $G_1 \simeq G_2$ ) ( o uguali ) se esiste almeno un *isomorfismo* 
+>Per i due grafi precedenti possiamo trovare il seguente isomorfismo : 
+>$\phi : \{1,2,3\} \to \{a,b,c\}$
+>$1 \to b$
+>$2 \to a\ \text{or} \ c$
+>$3 \to c\ \text{or} \ a$
+>Si nota infatti che la funzione è *biettiva* e che le adiacenze sono rispettate infatti : tra i nodi $1$ e $2$ c'è un *arco* come anche tra $b$ e $a$ , tra i nodi $1$ e $3$ c'è un *arco* come anche tra $b$ e $c$ , infine tra i nodi $2$ e $3$ non c'è un *arco* come tra $a$ e $c$
+>
+>In pratica $\phi$ rappresenta la seguente associazione :
+![[phi.excalidraw]]
+
+>[!note]
+>Un grafo *isomorfo* può essere detto *uguale* ( rappresenta la stessa relazione ) ad un altro grafo
+
+Un *grafo* è detto **Auto-complementare** se $G \simeq \overline G$
+
+>[!note]
+>
+
+#### Proprietà necessarie ma non sufficenti per l'*isomorfismo*
+
+1. $|V_1| = |V_2|$
+2. $|E_1| = |E_2|$
+3. $deg\_seq(G_1)=deg\_seq(G_2)$
+	Dove $deg\_seq$ rappresenta la *degree sequence* di un grafo ossia il vettore di $n$ elementi dove sono scritti in ordine crescente gli *ordini* o *degree* dei nodi del grafo
+>[!example]
+![[deg_seq.excalidraw]]
+>
+>Questo grafo ha come *degree sequence* : $deg\_seq = <1,2,2,3>$
+1. $NCC(G_1) = NCC(G_2)$
+	Dove $NCC$ rappresenta il *Numero di Componenti Connesse*
+5. $\omega_{G_1} = \omega_{G_2}$
+	Dove $\omega$ rappresenta il *Clique number* ossia la cardinalità della *clique massima* , questa è la *clique* ( *sottografo completo* ) con il più grande numero di vertici , una *clique massimale* invece è una *clique* che non è contenuta in una *clique* più grande
+>[!example]
+![[Clique.excalidraw]]
+#### Traccia di una matrice
+
