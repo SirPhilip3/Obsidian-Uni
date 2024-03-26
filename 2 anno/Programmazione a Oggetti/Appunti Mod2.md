@@ -667,7 +667,8 @@ public class lambda{
 }
 ```
 
-
+funzione anonima -> input , output e implementazione 
+può essere chiamata dando un nome dopo
 
 C funzioni di ordine superiore 
 

@@ -51,3 +51,6 @@ quantile(type=2)
 with utilizza un oggetto e i valori di quell'oggetto ( es x e y )
 
 # 29/02/2024
+
+# Prova Intermedia 
+
