@@ -1550,8 +1550,11 @@ Lo standard *POSIX* definisce un insieme di funzioni per la creazione e la sincr
 + `{c}pthread_create(pthread_t *thread, pthread_attr_t *attr, void * (*start_routine)(void *), void *arg)`
 	I suoi 4 argomenti rappresentano : 
 	1. `thread` : un puntatore a `{c}pthread_t` , l'analogo di `{c}pid_t` ma per i *thread* ( non viene però implementato con un intero , in Linux è implementato con un `{c}unsigned long int` )
-	2. `attr`
+	2. `attr` : attributi del nuovo thread creato ( `NULL` se non vogliamo modificarli )
+	3. `start_routine` : Pointer a *funzione* ( codice da eseguire all'interno del thread ) , questa deve prendere un
 
-
+### Semafori
 
 >[!todo]
+>#todo
+
