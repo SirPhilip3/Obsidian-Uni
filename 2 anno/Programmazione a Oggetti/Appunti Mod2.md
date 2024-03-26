@@ -577,3 +577,5 @@ limiterei ad essere un Iterable
 # 21/03/2024
 
 SU codice
+# 26/03/2024
+
