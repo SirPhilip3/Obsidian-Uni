@@ -720,3 +720,6 @@ A livello di sistema i therad hanno un id differente da quello all'interno del p
 ```c
 syscall(SYS_gettid) // per prendere id di sistema
 ```
+
+# 26/03/2024
+

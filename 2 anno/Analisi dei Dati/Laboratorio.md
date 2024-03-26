@@ -54,3 +54,5 @@ with utilizza un oggetto e i valori di quell'oggetto ( es x e y )
 
 # Prova Intermedia 
 
+# Laboratorio 3
+
