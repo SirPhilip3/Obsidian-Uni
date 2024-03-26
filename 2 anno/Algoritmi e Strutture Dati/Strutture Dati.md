@@ -4153,5 +4153,18 @@ Supponiamo ora che la proprietà valga per un grafo con $n-1$ vertici e dimostri
 *Passo induttivo* : per $n\ge 3$
 
 Consideriamo un vertice $Z \in V$ , togliamolo dal *grafo* , consideriamo quindi $G[V - \{Z\}]$ ossia il *grafo indotto* da $V - Z$ , questo possiamo dunque rappresentarlo con $G'$ il quale avrà come $|V'| = n-1$ , questo però non può essere usato direttamente poichè togliendo $Z$ potremmo disconnettere il grafo e quindi non essere più nelle ipotesi di avere un *grafo connesso* 
-Indichiamo quindi con $k$ il numero di componenti connesse di cui è costituito $G'$ ( se $G'$ è connesso $k=1$ ) , essendo che ogni *componente connesso* è *connesso* posso utilizzare l'ipotesi induttiva 
-Indico con 
+Indichiamo quindi con $k$ il numero di componenti connesse di cui è costituito $G'$ ( se $G'$ è connesso $k=1$ ) , essendo che ogni *componente connesso* è *connesso* posso utilizzare l'ipotesi induttiva
+Indico con $E_i$ gli archi dell'$i$-esima componente connessa e con $V_i$ i vertici dell'$i$-esima componente connessa , allora possiamo dire per ipotesi induttiva che : 
+$$|E_i|\ge |V_i|-1$$
+Vorrei dimostrare che $|E|\ge |V|-1$ quindi deve essere vero che $|E|\ge \sum_{i=1}^{k}|E_i| +deg(Z)$
+Ossia il numero di archi del grafo iniziale deve essere equivalente alla somma degli archi di tutte le componenti connesse più gli archi del nodo che ho tolto ( ossia $deg(Z)$ )
+Quindi semplificando : 
+$$|E|\ge \sum_{i=1}^{k}|E_i| +deg(Z)$$
+Visto che so che per ipotesi induttiva abbiamo che $|E_i|\ge |V_i|-1$ possiamo scrivere : 
+$$|E|\ge \sum_{i=1}^{k}(|V_i|-1) +deg(Z)$$
+$$|E|\ge \sum_{i=1}^{k}|V_i|-k +deg(Z)$$
+Visto che abbiamo tolto il vertice $Z$ avremo che la sommatoria può essere riscritta come : 
+$$|E|\ge |V|-1-k +deg(Z)$$
+Essendo che il grafo di partenza è connesso deve essere che $deg(Z)\ge k$ altrimenti non sarebbe connesso , e quindi $deg(Z)-k \ge 0$
+Quindi possiamo sicuramente dire che : 
+$$|E|\ge |V|-1$$

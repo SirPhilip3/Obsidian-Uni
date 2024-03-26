@@ -1541,6 +1541,39 @@ t0{
 }
 ```
 
+In *Intel* c'è un altra funzione che ci permette di eseguire operazioni in modo atomico : 
+
+**XCHG** : questa scambia due varaibili booleane tra loro in modo atomico
+```c
+XCHG(boolean *x , *y){
+	boolean temp = *x;
+	*x = y*;
+	*y = temp;
+}
+```
+
+L'esempio precedente può essere scritto con `XCHG` nel seguente modo : 
+```c
+bool lock = false;
+t0{
+	bool b0 = true;
+	while(b0){ XCHG( &b0, &lock); } // se un thread ha fatto exchange qui continuerà a scambiare sempre true perchè lock è diventato true
+	<sezione critica>
+	XCGH( &b0, &lock )
+}
+
+t1{
+	bool b1 = true;
+	while(b1){ XCHG( &b1, &lock); } // variabile locale non da race condition
+	<sezione critica>
+	XCGH( &b1, &lock );
+}
+```
+
+In pratica manteniamo in memoria condivisa il *flag* che ci permette di entrare in sezione critica e con `XCHG` lo scambiamo con uno locale che ci permette di far rimanere all'interno del ciclo `{c}while`l'altro *thread*
+
+>[!note]
+>Quando utilizziamo questo tipo di funzioni il compiler e l'architettura di sistema evita di ottimizzare le tighe comprese tra le funzioni *atomiche* ( *XCHG* e *test&set* )
 ### Thread in POSIX
 
 Un *thread* in POSIX è un'unità di esecuzione all'interno di un processo
@@ -1549,10 +1582,39 @@ Lo standard *POSIX* definisce un insieme di funzioni per la creazione e la sincr
 
 + `{c}pthread_create(pthread_t *thread, pthread_attr_t *attr, void * (*start_routine)(void *), void *arg)`
 	I suoi 4 argomenti rappresentano : 
-	1. `thread` : un puntatore a `{c}pthread_t` , l'analogo di `{c}pid_t` ma per i *thread* ( non viene però implementato con un intero , in Linux è implementato con un `{c}unsigned long int` )
-	2. `attr` : attributi del nuovo thread creato ( `NULL` se non vogliamo modificarli )
-	3. `start_routine` : Pointer a *funzione* ( codice da eseguire all'interno del thread ) , questa deve prendere un
+	
+1. `thread` : un puntatore a `{c}pthread_t` , l'analogo di `{c}pid_t` ma per i *thread* ( non viene però implementato con un intero , in Linux è implementato con un `{c}unsigned long int` )
+2. `attr` : attributi del nuovo thread creato ( `NULL` se non vogliamo modificarli )
+3. `start_routine` : Pointer a *funzione* ( codice da eseguire all'interno del thread ) , questa deve prendere un pointer a *void* e tornare un pointer a void
+>[!example]
+```c
+void * codice_thread(void * a)
+```
+4. `arg` : eventuali argomenti da passare alla funzione `NULL` altrimenti
 
++ `{c}pthread_exit(void *retval)` termina l'esecuzione di un thread creato con `{c}pthread_create` 
+
+>[!note]
+>Quando facciamo la `exit` da un processo vengono terminati tutti i sui thread figli
+
++ `{c}pthread_join(pthread_t th, void **thread_return)` 
+	Ci permette di attendere la terminazione del *thread* `th` , valori di ritorno 
+	+ 0 se ha successo la join e un pointer al valore di ritorno di `th` ( `{c}void **thread_return` ) 
+	+ $\neq 0$ se è stato generato un errore 
+>[!note]
+>Se non vogliamo ricevere valori di ritorno basta porre a `NULL` `{c}void **thread_return`
++ `{c}pthread_detach(pthread_t th)` : se non si vuole attende la fine dell'esecuzione di quel *thread* specifico , pone `th` in uno stato distaccato dal suo processo d'origine in modo da non farlo diventare zombie quando termina
+>[!note] 
+>Nessun processo può fare `{c}thread_join` su quel thread
+>Non rimane comunque attivo dopo che il processo padre termina con `exit()`
+
++ `{c}pthread_t pthread_self()` ritorna il *thread ID* del thread dove è stato chiamato
+>[!note]
+>*Pthread ID* è l'ID della libreria `pthread` non quello di sistema , dipende quindi dall'implementazione di questa  
+>Per visualizzare l'ID di sistema si può usare la syscall ( presente in Linux ) `syscall(SYS_getiid)`
+
+>[!todo]
+>esempi
 ### Semafori
 
 >[!todo]
