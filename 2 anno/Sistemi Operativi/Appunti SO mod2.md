@@ -820,3 +820,7 @@ t1{
 
 Esempio con 3 processi , se 1 solo entra in sc ma gli altri non lo sono non vengono bloccati processi , se invece  vi sono altri processi che vogliono entrare aspettano che uno esca
 
+posso usare valori di `valore` più grande quando vogliamo gestire l'accesso a risorse duplicate 
+
+es ho 3 stampanti , non mi interessa su quale stampo , potrei usare un semaforo inizializzato a 3 su vari thread che stampano , possono stampare in 3 alla volta 
+
