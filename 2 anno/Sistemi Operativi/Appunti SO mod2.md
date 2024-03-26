@@ -723,3 +723,100 @@ syscall(SYS_gettid) // per prendere id di sistema
 
 # 26/03/2024
 
+XCHG , scambia 2 valori di 2 variabile booleane 
+
+Abbiamo in memoria condivisa il token che indica quando un thread è in sezione critica poi ognuno si prende il token
+
+```c
+bool lock = false;
+t0{
+	bool b0 = true;
+	while(b0){ XCHG( &b0, &lock); } // se un thread ha fatto exchange qui continuerà a scambiare sempre true perchè lock è diventato true
+	<sezione critica>
+	XCGH( &b0, &lock )
+}
+
+t1{
+	bool b1 = true;
+	while(b1){ XCHG( &b1, &lock); } // variabile locale non da race condition
+	<sezione critica>
+	XCGH( &b1, &lock );
+}
+```
+
+XCHG fa da barriera e il compiler / architettura evita di ottimizzare riorganizzando le righe tra le due exchange
+
+Ottimizzazione : evitare di fare exchange anche quando non serve
+
+## Semafori
+
+Ci permette di evitare il busy waiting con il while , ed in modo semplice 
+
+**Example**
+
+![[Drawing 2024-03-26 12.40.45.excalidraw]]
+
+Semafori contatori 
+
+Se 2 entrate entrano simultaneamente , senza sezione critica race condition sullo stesso contatore 
+Semaforo deve evitate race condition
+
+sistema operativo gestisce la race condition ( implementato attraverso spin-lock ) 
+
+possono anche dire quanti stanno aspettando all'entrata , quando qualcuno è in coda si tolgie -1 dal semaforo , vale per tutti i thread 
+
+Quando esce un out sblocco quella che ha il numero negativo minore , ossia quella che aveve prenotato per primo 
+
+realizzati da Dijkstra 1965
+
+```c
+struct semaphore{
+	int valore; // contatore 
+	thread *queue ; // coda di thread
+}
+```
+
+Due primitive (S = semaforo): 
++ `P(S)` : wait : 
+	deve decrementare il valore
+	Se il valore è diventato negativo metto il coda il thread 
+```c
+P(){
+	S.valore --;
+	if(S.valore<0)
+		<mette thread corrente in S.queue>
+}
+```
++ `V(S)` : post
+	Incrementa valore 
+	Se il valore minore o ugale di 0 sblocco il primo thread della coda 
+```c
+V(){
+	S.valore++;
+	if(S.valore<=0)
+		<sblocca il primo thread in attesa in S.queue>
+}
+```
+
+P e S blocca me e sblocca qualcun'altro
+
+mutua esclusione può entrare solo 1 thread -> mutex = 1
+
+```c
+mutex = 1;
+
+t0{
+	P(mutex)
+	<sezione critica>
+	S(mutex)
+}
+
+t1{
+	P(mutex)
+	<sezione critica>
+	V(mutex)
+}
+```
+
+Esempio con 3 processi , se 1 solo entra in sc ma gli altri non lo sono non vengono bloccati processi , se invece  vi sono altri processi che vogliono entrare aspettano che uno esca
+
