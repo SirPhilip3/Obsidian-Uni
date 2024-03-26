@@ -579,3 +579,97 @@ limiterei ad essere un Iterable
 SU codice
 # 26/03/2024
 
+ritornare un oggetto non è eseguire il suo codice , signifi intanziare un oggetto O(1) -> solo quando chiamo i metodi di quell'oggetto allora la complessità si srotola
+
+---
+
+Programmazione pseudofunzionale ad oggetti
+
+cpp multiparadigma : ad oggetti e imperativo , posso ignorare gli oggetti 
+java class centrico , ma se uso solo metodi statici senza campi ne constructor $\to$ non è di fatto programmare ad oggetti 
+
+```java
+public class myMath{
+
+	public static double mult(double x){
+		return x*x;
+	} 
+
+}
+```
+Utility class ( ex java.util.Arrays )
+
+python -> mutliparadigma -> object system ma posso non usarlo
+
+java : per definire un nuovo tipo di dato -> costrutto class
+cpp : struct , class (sinonimi)
+
+tipi prodotto / somma 
+
+data type non object oriented 
+
+```cpp
+class person{
+
+	string name; 
+	int age;
+
+}
+
+persona pippo; // chiama default constructor
+```
+
+non finisce in virtualtable in cpp solo i metodi virtual vanno in virtualtable , come ovverride
+
+```c
+struct {
+
+	char* name
+	int age
+
+}
+
+persona pippo;
+// in c comunqe c'è default constructor
+```
+
+object oriented -> polimorfismo -> dynamic dispatching ( deve esserci la virtual table )
+
+```java
+class Person{
+
+	public string name; 
+	public int age;
+
+}
+
+Person pippo; // non ho metodi che vanno in virtual table -> non sto programmando ad oggetti anche se il linguaggio lo è
+```
+
+paradigmi di programmazione è imperativo , paradigma imperativo solo per l'assegnamento se non c'è non è imperativo 
+
+```java
+public static void main(String[] args){
+	int x = 10; // binding , inizializzazione , assegno un nuovo nome + valore iniziale
+	x = 3; // assegnamento , x esiste già , modifico il valore del nome   
+}
+```
+
+Linguaggi senza assegnamento > funzionali ( in pratica lo implementano ) , lambda in linguaggi ad assegnamento vengono da quelli funzionali
+
+in java caratteristiche che vengono dai linguaggi funzionali -> **lambda** 
+
+**lambda** : invenzione dei funzionali : 
+	Funzione anonima ( haskell , Camel , F# , Scala , Closure )
+```java
+public class lambda{
+	int (int x) {x++;}
+}
+```
+
+
+
+C funzioni di ordine superiore 
+
+
+CPU hanno solo il necessario -> ciò che è necessario per programmare 
