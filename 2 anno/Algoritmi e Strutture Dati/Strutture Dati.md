@@ -4222,17 +4222,49 @@ Questo poichè la somma delle cardinalità dei componenti connessi risulta esser
 Avremo quindi che perchè sia vera $|E|\le |V|-1$ dovremmo avere che $\deg(Z) \le k$ 
 ### Grafi connessi e i loro complementi
 
+|     $G$     |        $\bar G$        |        |          Controesempo          |
+| :---------: | :--------------------: | ------ | :----------------------------: |
+|  Connesso   |  $\implies$ Connesso   | Falso  | ![[CompConNotCon.excalidraw]]  |
+|  Connesso   | $\implies$ Disconnesso | Falso  | ![[GrafoConNonCon.excalidraw]] |
+| Disconnesso |  $\implies$ Connesso   | *Vero* |                                |
+| Disconnesso | $\implies$ Disconnesso | Falso  |   ![[ComDiscCon.excalidraw]]   |
 
-| $G$         | $\bar G$               |        | Controesempo                  |
-| :---------- | ---------------------- | ------ | ----------------------------- |
-| Connesso    | $\implies$ Connesso    | Falso  | ![[CompConNotCon.excalidraw]] |
-| Connesso    | $\implies$ Disconnesso | Falso  |                               |
-| Disconnesso | $\implies$ Connesso    | *Vero* |                               |
-| Disconnesso | $\implies$ Disconnesso | Falso  |                               |
+**Dimostriamo** intuitivamente la terza casistica
 
-
+Abbiamo $k$ componenti connesse , il *complementare* di ogni coppia di componenti connesse rappresenta tutti gli archi tra le due componenti 
+Prendiamo quindi 2 nodi , avremo 2 casi : 
++ $u\in V_1$ e $v\in V_2$ : in questo caso sicuramente avremo che i due nodi saranno connessi poichè le due componenti connesse sono connesse tra di loro ( in $\bar{G}$ )
++ $u,v\in V_1$ : in questo caso non sappiamo se sono collegati tra di loro ma so che abbiamo tutti i possibili archi tra le due componenti , questo ci garantisce che anche se non vi è un arco tra $u$ e $v$ ci basterà uscire dal componente connesso che li contiene e sicuramente avremo un cammino che li collega 
 ### Alberi
 
+Un *albero* è un grafo *aciclico connesso* dove avremo che $|E|=|V|-1$ ( questo per l'unione tra le proprietà dell'*aciclicità* e *connettività* ) 
+
+Una proprità dell'*albero* è la : **Fragilità** : 
++ Se aggiungo un arco all'*albero* questo non è più *aciclico*
++ Se tolgo un arco all'*albero* il grafo diventa disconnesso
+
+**Caratterizzazioni** degli alberi , le affermazioni sono *equivalenti* tra loro se $G=(V,E)$ è un grafo non orientato: 
++ $G$ è un albero
++ Due vertici qualsiasi di $G$ sono connessi da un unico cammino ( condizione sufficente perchè sia un albero )
++ $G$ è connesso ma se un arco qualsiasi è rimosso da $G$ allora il grafo risultante è disconnesso
++ $G$ è connesso e $|E|=|V|-1$
++ $G$ è aciclico e $|E|=|V|-1$
++ $G$ è aciclico ma se un arco qualsiasi viene aggiunto in $G$ il grafo diventa ciclico 
 #### Alberi di copertura 
 
+Un *albero di copertura* è un sottoinsieme di archi che forma un albero e toccano tutti i vertici del grafo 
+Più formalmente possiamo scrivere : $T\subseteq E$ tale che $(V,T)$ è un albero
+
+Dato un grafo possono esitere più alberi di copertura
+
+>[!example] 
+![[AlberoCopertura.excalidraw]]
+
 #### Alberi di copertura minimi
+
+Dato un grafo $G(V,E,\omega)$ dove $\omega$ rappresenta una funzione peso $\omega : E\to R$ relativa agli archi di $G$ 
+Allora l'*albero di copertura minimo* ( *MInimum Spanning Tree* ( *MST* ) ) DI $G$ è un albero di copertura avente la somma dei pesi sugli archi minima 
+
+>[!example] 
+![[MST.excalidraw]]
+
