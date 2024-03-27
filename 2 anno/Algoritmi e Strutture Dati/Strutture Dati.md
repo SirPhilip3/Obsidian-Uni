@@ -4168,3 +4168,71 @@ $$|E|\ge |V|-1-k +deg(Z)$$
 Essendo che il grafo di partenza è connesso deve essere che $deg(Z)\ge k$ altrimenti non sarebbe connesso , e quindi $deg(Z)-k \ge 0$
 Quindi possiamo sicuramente dire che : 
 $$|E|\ge |V|-1$$
+>[!warning] 
+>Questa condizione non è *sufficente* per dire che il grafo è connesso , possiamo infatti vedere il seguente *controesempio* per verificarlo : 
+![[Notconnected.excalidraw]]
+>
+>Possiamo vedere infatti che la condizione precedente è verificata ossia $|E|\ge |V|-1 = 5\ge 6-1$ ma il grafo non è connesso 
+
+#### Condizione sufficente per la connettività di un grafo
+
+Se $G=(V,E)$ è un grafo non orientato allora questo sarà connesso se il grado di ogni vertice è : 
+$$deg(u)\ge \frac{n-1}{2}$$
+**Dimostrazione** : 
+	Usiamo la dimostrazione per *assurdo* : 
+
+Supponiamo che $G$ *non* sia *connesso* e supponiamo che sia costituito da $k\ge 2$ componenti connesse dove $V_1$ e $V_2$ sono due *componenti connesse* di $G$
+
+Avremo quindi che se vogliamo che valga che $G$ non sia connesso $|V| \ge |V_1|+|V_2|$
+
+Prendiamo due nodi $u\in V_1$ e $v\in V_2$ questi per ipotesi induttiva ( può essere usata poichè stiamo parlando di componenti connesse ) hanno come $deg(u) \ge \displaystyle \frac{n-1}{2}$  avremo quindi che $|V_1| = \displaystyle \frac{n-1}{2} + 1$ dove 1 indica il vertice che stiamo prendendo in considerazione 
+
+Lo stesso vale per $|V_2| =\displaystyle \frac{n-1}{2}+1$ 
+Riportando questi nell'eqazione originale avremo : 
+$$|V|\ge \frac{n+1}{2} + \frac{n+1}{2}$$
+$$n \ge n +1$$
+Che è un ==Assurdo== , possiamo quindi dire che $G$ deve essere per forza connesso 
+
+### Grafi Aciclici non orientati
+
+Condizione *necessaria* perchè un grafo sia *aciclico* : $|E| \le |V|-1$ 
+
+**Dimostrazione** per induzione
+
+*Caso Base* : 
++ $n=1$ : avremo un solo nodo e quindi nessun arco , la condizione è verificata
++ $n=2$ : avremo 2 nodi ed al massimo un arco tra di loro : la condizione è verificata
+
+*Ipotesi Induttiva* : 
+	La propriteà vale per ogni grafo con $|V|=n$ , verifichiamo per $n+1$
+
+*Passo induttivo* : 
+
+Rimuoviamo un vertice $Z$ dal grafo $G$ con $n=|V|$ , avremo quindi $G' = [V -\{Z\}]$ ( sottografo indotto )
+Questo è composto da $k$ componenti connesse $V_1,V_2,\dots,V_k$ 
+Per ogni componente connessa varrà quindi l'ipotesi induttiva $|E_i|\le |V_1|-1$ 
+Ricordiamoci che dobbiamo arrivare alla seguente equazione : $|E|\le |V|-1$
+Notiamo che $|E|$ può essere riscritto nel seguente modo : 
+$$|E|=\sum^{k}_{i=1} |E_i|+\deg(Z)$$
+Considerando $|E_i|\le |V_i|-1$ possiamo scrivere :
+$$|E|=\sum^{k}_{i=1} (|V_i-1|)+\deg(Z)$$
+$$|E|=\sum^{k}_{i=1} |V_i| -k+\deg(Z)$$
+$$|E|=|V| -1 -k+\deg(Z)$$
+Questo poichè la somma delle cardinalità dei componenti connessi risulta essere tutti i nodi di $|V|$ meno quello che abbiamo tolto all'inizio 
+Avremo quindi che perchè sia vera $|E|\le |V|-1$ dovremmo avere che $\deg(Z) \le k$ 
+### Grafi connessi e i loro complementi
+
+
+| $G$         | $\bar G$               |        | Controesempo                  |
+| :---------- | ---------------------- | ------ | ----------------------------- |
+| Connesso    | $\implies$ Connesso    | Falso  | ![[CompConNotCon.excalidraw]] |
+| Connesso    | $\implies$ Disconnesso | Falso  |                               |
+| Disconnesso | $\implies$ Connesso    | *Vero* |                               |
+| Disconnesso | $\implies$ Disconnesso | Falso  |                               |
+
+
+### Alberi
+
+#### Alberi di copertura 
+
+#### Alberi di copertura minimi
