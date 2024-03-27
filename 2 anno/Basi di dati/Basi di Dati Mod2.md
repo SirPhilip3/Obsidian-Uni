@@ -46,12 +46,12 @@ Se volessimo cancellare una persona ma non il libro ? dovremmo inserire dei valo
 
 Per risolvere le precedenti **Anomalie** dobbiamo sciegliere una modellazione alternativa : utilizziamo 2 tabelle , una contente gli utenti e una i libri con *foreing key* NomeUtente
 
-| *NomeUtente* | Telefono |
-| ---- | ---- |
-| Rossi Carlo | 75444 |
-| Pastine Maurizio | 66133 |
-| Paolicchi Laura | 59729 |
-| Paolicchi Luca | 59729 |
+| *NomeUtente*     | Telefono |
+| ---------------- | -------- |
+| Rossi Carlo      | 75444    |
+| Pastine Maurizio | 66133    |
+| Paolicchi Laura  | 59729    |
+| Paolicchi Luca   | 59729    |
 
 | *CodiceLibro* | Titolo | Data | NomeUtente (FK) |
 | ---- | ---- | ---- | ---- |

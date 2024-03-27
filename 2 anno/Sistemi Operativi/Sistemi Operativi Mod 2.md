@@ -1706,4 +1706,111 @@ mutex
 **Sincronizzazione di codice**
 
 >[!example] 
->Abbiamo un thread 
+>Abbiamo un thread `T2` che deve eseguire del codice `D` dopo l'esecuzione di una sezione di codice `A` presente in un thread `T1` 
+>Questo può essere fatto utilizzando un *semaforo* inizializzato a 0 
+```c
+semaforo S = 0;
+
+T1{
+	< A >
+	V(S)
+	< B >
+}
+
+T2{
+	< C >
+	P(S)
+	< D >
+}
+```
+>[!example] 
+>Poichè `S` è inizializzato a 0 la `P(S)` di `T2` sarà bloccante e di conseguenza il codice `< D >` verrà eseguito necessariamente dopo il codice `< A >` 
+>Se la `V(S)` viene eseguita prima della `P(S)` il *semaforo* diventerà `1` e la sucessiva `P(S)` non sarà bloccante
+>>[!note]
+>>Questo esempio ricorda la sincronizzazione che si ottiene nello scambio di messaggi : la `V(S)` è come una `send` *asincrona* mentre la `P(S)` è come una `recieve` *sincorna*
+
+**Regolare l'accesso a risorse**
+
+In generale un *semaforo* inizializzato a `MAX` permette `MAX` accessi prima di diventare bloccante , possiamo quindi ridefinire le operazioni `P` e `V` 
++ `P(S)` richiede una risorsa , se ce ne è almeno una disponibile viene assegnata altrimenti attendiamo che ve ne sia una disponibile 
++ `V(S)` rilascio di una risorsa , se ci sono *thread* in attesa il primo viene sbloccato
+
+>[!example] 
+>Se abbiamo 3 stampanti possiamo usare un *semaforo* inizializzato a 3 per regolare il loro utilizzo contemporaneo da un massimo di 3 thread alla volta , quando un processo avrà finito una stampa allora con `V(S)` si sbloccherà il primo *thread* in attesa di utilizzare la stampante
+
+**Produttore e consumatore con semafori**
+
+Cerchiamo di risolvere il problema del *produttore-consumatore* con i semafori 
+Ci sono 2 sincronizzazioni da fare : 
++ Quando il buffer è pieno il *produttore* deve attendere per evitare di sovrascrivere i dati
++ Quando  il buffer è vuoto il *consumatore* deve attendere per evitare di leggere celle non ancora scritte
+
+Possiamo utilizzare 2 *semafori* che regolano l'accesso alle risorse : 
++ `vuote` rappresenta le celle vuote che possono essere utilizzate , inizialmente inizializzata a `MAX`
++ `piene` rappresenta le celle piene , inizialmente inizializzata a 0 
+
+```c
+semaphore piene=0, vuote=MAX;
+
+Produttore {
+  while(1) {
+    < produce d >
+    P(vuote); // richiede una cella vuota
+    buffer[inserisci] = d;
+    inserisci = (inserisci+1) % MAX;
+    V(piene); // rilascia una cella piena
+  }
+}
+ 
+Consumatore {
+  while(1) {
+    P(piene); // richiede una cella piena
+    d = buffer[preleva];
+    preleva = (preleva+1) % MAX:
+    V(vuote); // rilascia una cella vuota
+    < consuma d >
+  }
+}
+```
+
+>[!warning] 
+>Cosa accade quando abbiamo tanti *produttori* e tanti *consumatori* ?
+
+Potrebbero verificarsi interferenze in scrittura e lettura sul buffer 
+>[!example] 
+>Due produttori potrebbero scrivere sulla stessa cella `buffer[inserisci]` sovrascrivendosi l'un l'altro e poi entrambi incrementare `inserisci` oppure interfierire sull'incremento di `inserisci` 
+>
+
+La soluzione è quella di proteggere il codice implementando una *sezione critica* ( ossia utilizzando un *semaforo* `mutex` inizializzato ad 1 )
+
+```c
+semaphore piene=0, vuote=MAX, mutex=1;
+
+Produttore {
+  while(1) {
+    < produce d >
+    P(vuote); // richiede una cella vuota
+    P(mutex); // entra in sezione critica
+    buffer[inserisci] = d;
+    inserisci = (inserisci+1) % MAX;
+    V(mutex); // esce dalla sezione critica
+    V(piene); // rilascia una cella piena
+  }
+}
+ 
+Consumatore() {
+  while( {
+    P(piene); // richiede una cella piena
+    P(mutex); // entra in sezione critica
+    d = buffer[preleva];
+    preleva = (preleva+1) % MAX:
+    V(mutex); // esce dalla sezione critica
+    V(vuote); // rilascia una cella vuota
+    < consuma d >
+  }
+}
+```
+
+>[!note] 
+>Quando si inseriscono *sezioni critica* bisogna verificare che al loro interno non vi siano semafori bloccanti
+
