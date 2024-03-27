@@ -1617,6 +1617,40 @@ void * codice_thread(void * a)
 >esempi
 ### Semafori
 
->[!todo]
->#todo
+In tutti i codici precedentemente visiti si utilizzano dei cicli a vuoto per "fermare" un thread , questi sono *inefficenti* poichè si spreca tempo di CPU inutilmente , questi vengono utilizzati nel codice del sistema operativo per implementare la sincronizzazione tra thread 
 
+I *semafori* sono una soluzione a questo problema 
+
+Un *semaforo* non è altro che una struttura dati contenente un contatore e una coda di thread in attesa : 
+```c
+struct semaforo{
+	int valore;
+	thread *queue;
+}
+```
+
+Il `valore` del semaforo va interpretato nel seguente modo : 
++ `{c}S.valore > 0` : rappresenta il numero di accessi consentiti prima che venga blocca l'entrata in sezione critica
++ `{c}S.valore <=0` : Indica il numero di thread che sono presenti in attesa all'interno della coda
+
+Il `valore` non viene mai incrementato o decrementato direttamente ma solo attraverso delle funzioni speciali che gestiscono la sincronizzazione dei thread : 
++ `P(S)` : o `wait(S)` 
+	Decrementa il valore del *semaforo* `S` . Se il semaforo era già "rosso" prima del decremento allora il thread corrente viene posto in fondo alla coda associata a quel semaforo
++ `V(S)` : o `post(S)` 
+	Incrementa il valore del *semaforo* `S` . Se ci sono thread in attesa sul semaforo ( `valore<=0` ) allora viene mandato in esecuzione il primo thread che si trova sulla coda
+
+Le loro implementazioni sono : 
+```c
+P(semaforo S){
+	S.valore--;
+	if(S.valore<0)
+		< Metti il thread corrente in S.queue > 
+}
+```
+```c
+V(semaforo S){
+	S.valore++;
+	if(S.valore<=0)
+		< Sblocca il primo thread presente in S.queue >
+}
+```
