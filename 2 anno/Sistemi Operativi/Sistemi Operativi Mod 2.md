@@ -1655,4 +1655,55 @@ V(semaforo S){
 }
 ```
 
+I semafori permettono di realizzare la sezione critica in modo semplice ed efficace .
+Il *valore* del semaforo indica il numero di accessi consentiti prima di diventare rosso . 
 
+>[!example] 
+>Nel caso della sezione critica solo un *thread* alla volta deve accedere alla sezione critica in modo da mantenere la *mutua esclusione* , utilizziamo quindi un semaforo `mutex` , nel quale il *valore* sarà impostato ad 1 
+>Per controllare l'accesso è sufficente eseguire una `P(mutex)` 
+>Mentre all'uscita della *sezione critica* ci basterà eseguire una `V(mutex)` per ripristinare il valore del semaforo e sbloccare un *thread* eventualmente in attesa 
+```c
+thread T{
+	...
+	P(mutex)
+	< Sezione critica >
+	V(mutex)
+	...
+}
+```
+
+>[!example] 
+>Esempio di esecuzione con tre *thread* in esecuzione su 3 core distinti.
+>Consideriamo un semaforo `mutex` inizializzato a 1 
+```bash
+T1 -----------P====V----P==============V--------------
+
+T2 --------------------------P         +====V---------
+
+T3 -------------------------------P         +====V----
+
+mutex
+ valore: 1    0    1    0   -1   -2   -1    0    1  
+ queue:  _    _    _    _    |    |    |    _    _  
+                             T2   T2   T3  
+                                  |  
+                                  T3
+```
+
+**Spiegazione**
+
++ `{bash}-` indica l'esecuzione fuori dalla sezione critica 
++ `{bash}=` indica l'esecuzione in sezione critica
++ In basso è rappresentato dello stato del semaforo 
+
+>[!note] 
+>+ Per valori negativi del counter il suo modulo rappresenta il numero di thread in attessa nella queue
+>+ Al di fuori della sezione critica i thread possono essere eseguiti liberamente anche contemporaneamente
+>+ Viene realizzata *mutua esclusione* , ossia non ci sarà mai più di un thread in sezione critica alla volta 
+
+#### Altri utilizzi dei semafori
+
+**Sincronizzazione di codice**
+
+>[!example] 
+>Abbiamo un thread 
