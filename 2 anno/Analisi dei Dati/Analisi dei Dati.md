@@ -1045,3 +1045,26 @@ $$J(\theta)=\left(\matrix{-\frac{d^2 l(\theta)}{d \theta^2_1} & -\frac{d^2 l(\th
 >>non verrà chiesta all'esame
 >#todo
 
+# Stima Intervallare
+
+Quando otteniamo una *stima* $\hat{\theta}$ sappiamo che questà sarà quasi sicuramente diversa dal vero valore del parametro $\theta$ a causa dell'*errore campionario* 
+
+- Quando possiamo credere alla nostra *stima* $\hat\theta$ ?
+- Quanto può essere distante la *stima* dal vero valore del parametro ?
+- Se otteniamo una certa stima $\hat\theta$ quali sono i valori plausibili per $\theta$
+
+Queste domande sono risposte attraverso gli *intervalli di confidenza*
+
+## Intervalli di confidenza 
+
+Un intervallo $[A,B]$ è detto *intervallo di confidenza* per $\theta$ di *livello* $(1-\alpha)100\%$ se contiene il parametro con probablità $(1-\alpha)$ :
+$$\Pr(A\le \theta \le B) = 1- \alpha$$
+>[!note] 
+>La *probabiltà di copertura* dell'intervallo $(1-\alpha)$ viene detta anche *livello di confidenza* 
+
+>[!warning] 
+>$\theta$ rappresenta un numero 
+>Gli estremi $A$ e $B$ dipendono dai dati e quindi sono quantità *casuali* , potremmo quindi riscrivere la *probabilità di copertura* nel seguente modo : $[A(X_1,\dots,X_n),B(X_1,\dots,X_n)]$
+>
+>>[!note] 
+>>Possiamo quindi notare

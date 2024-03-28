@@ -3045,7 +3045,7 @@ Per valori di $\alpha$ maggiori di $\frac 1 2$ il tempo di esecuzione delle oper
 
 Per questo quando il valore di $\alpha$ cresce oltre una certa soglia è necessario effettuare una *ristrutturazione* della tabella hash ossia riallocare la tabella raddoppiando la sua dimensione e reinserendo tutti i valori precedenti utilizzando la nuova funzione hash ( poichè dipende dalla dimensione della tabella ) in modo da riottenere le prestazioni iniziali
 
-La *risutrutturazione* va effettuata quando : 
+La *ristrutturazione* va effettuata quando : 
 + Nel caso del *concatenamento* quando $\alpha>2$ 
 	L'operazione di *ristrutturazione* costerà nel caso peggiore $\Theta(m+n)$ in quanto dovremmo scorrere tutte le celle della tabella e tutte le liste delle celle
 + Nel caso dell'*indirizzamento aperto* quando $\alpha \ge \frac 1 2$ 
