@@ -1067,4 +1067,29 @@ $$\Pr(A\le \theta \le B) = 1- \alpha$$
 >Gli estremi $A$ e $B$ dipendono dai dati e quindi sono quantità *casuali* , potremmo quindi riscrivere la *probabilità di copertura* nel seguente modo : $[A(X_1,\dots,X_n),B(X_1,\dots,X_n)]$
 >
 >>[!note] 
->>Possiamo quindi notare
+>>Possiamo quindi notare che l'intervallo varia al variare del campione 
+>>Ci aspettiamo che $(1-\alpha)100\%$ degli intervalli contengano $\theta$
+
+>[!example] 
+![[Pasted image 20240328152003.png]]
+
+>[!warning] 
+>Non possiamo dire che se abbiamo calcolato un intervallo di confidenza di livello $90\%$ e abbiamo un intervallo $[2,5]$ allora $\theta$ appartiene a questo intervallo con probabilità $90\%$
+>
+>Il livello di confidenza dell'intervallo indica che $\theta$ appartiene al $90\%$ degli intervalli che possiamo calcolare con campioni diversi ( ottenuti con la stessa regola di campionamento e con la stessa dimensione )
+
+### Costruzione di un intervallo di confidenza
+
+Il metodo più semplice per costruire un *intervallo di confidenza* $[A,B]$ con livello di confidenza $(1-\alpha)$ richiede uno stimatore $\hat\theta$ :
++ *non distorto* : $E(\hat\theta) = \theta$
++ *con distribuzione normale* : $N\{\theta, Var(\hat\theta)\}$
+
+In questo caso costruiremo l'*intervallo di confidenza* a partire dallo stimatore *standardizzato* 
+$$Z = \frac{\hat{\theta}-\theta}{SE(\hat{\theta})}$$
+Che si distribuisce come una variabile casuale *normale standard* $N(0,1)$ ( $Z$ verrà chiamata *statistica Z* )
+
+Dobbiamo trovare i quantili della distribuzione normale standard che identificano un'area di ampiezza pari a $(1-\alpha)$ 
+
+![[Pasted image 20240328161333.png]]
+
+$z_{\alpha/2}$ è tale che $Pr(Z > z_{\alpha/2}) = \alpha/2$ ossia il quantile di posizione $(1-\alpha /2)$ della ditribuzione normale standard
