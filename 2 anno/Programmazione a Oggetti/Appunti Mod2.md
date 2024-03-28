@@ -583,7 +583,7 @@ ritornare un oggetto non è eseguire il suo codice , signifi intanziare un ogget
 
 ---
 
-Programmazione pseudofunzionale ad oggetti
+Programmazione *pseudofunzionale ad oggetti*
 
 cpp multiparadigma : ad oggetti e imperativo , posso ignorare gli oggetti 
 java class centrico , ma se uso solo metodi statici senza campi ne constructor $\to$ non è di fatto programmare ad oggetti 
@@ -674,3 +674,74 @@ C funzioni di ordine superiore
 
 
 CPU hanno solo il necessario -> ciò che è necessario per programmare 
+
+# 28/03/2024
+
+**lambda**
+
+```java
+public static <T> void foreach(Collection<T> , Function<T , void> f){
+
+} 
+```
+
+funzione di ordine superiore , prende collection , funzione , applica la funzione ad  ogni el della collection
+
+funzione di ordine superiore -> funzione di ordine superiore
+
+tipo di una funzione : `Function` -> interfaccia che definisce tipo di una funzione che prende qualcosa e ritorna qualcos'altro
+
+`Function<Integer , Integer>` ( gli integer sono tipi di input - output )
+```java
+Integer f( Integer x ) {return x+1}
+```
+può essere boxata con tipo `Function`
+
+```java
+Function test_f = 
+```
+
+entità del primo ordine ( manipolabile come un espressione ) -> hanno un tipo e possono essere messe in variabili 
+-> tutti gli oggetti sono entità del primo ordine 
+
+in c posso usare pointer a funzione per trasportare una funzione 
+```c
+int f(double x) {...}
+// tipo di "funzione"
+int(*)(double) g = f;
+// nome della variabile dopo tipo di ritorno ( immmerso nel tipo )
+// star agganciato alla variabile non al tipo
+int(*g)(double) = f;
+```
+
+funzione che svolga foreach in c 
+```c
+void foreach(int* arr, size_t len, void(*f)(int)) // for che ad ogni iterazione fa qualcosa con la funzione che prende un el e fa qualcosa
+{
+	for(int i = 0; i<len; i++){
+		f(arr[i]);
+	}
+}
+
+void printint(int s){
+	printf("%d\n",s);
+}
+
+int main(){
+	int A[10];
+	foreach(A,10,printint)
+}
+```
+
+programmazione funzionale , funzioni generali che poi prendono una funzione particolare
+```c
+std::quesort() // prende un function pointer che prende funzione che dice quale dei due el è >
+```
+
+>[!warning] 
+>ogni volta devo creare una funzione etcc , non posso dichiararla direttamente inline
+```c
+foreach(A,10,printf("\n"))
+// funzione senza nome -> lambda non presenti in c
+```
+
