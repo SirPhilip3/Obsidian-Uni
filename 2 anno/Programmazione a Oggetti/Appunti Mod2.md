@@ -745,3 +745,9 @@ foreach(A,10,printf("\n"))
 // funzione senza nome -> lambda non presenti in c
 ```
 
+lambda funzione senza nome , "passi un pezzo di codice" che passi per argomento
+```java
+
+```
+
+si possono simulare la lambda con le anonymus class 
