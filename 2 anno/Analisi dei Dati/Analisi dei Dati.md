@@ -1092,4 +1092,21 @@ Dobbiamo trovare i quantili della distribuzione normale standard che identifican
 
 ![[Pasted image 20240328161333.png]]
 
-$z_{\alpha/2}$ è tale che $Pr(Z > z_{\alpha/2}) = \alpha/2$ ossia il quantile di posizione $(1-\alpha /2)$ della ditribuzione normale standard
+$z_{\alpha/2}$ è tale che $Pr(Z > z_{\alpha/2}) = \alpha/2$ ossia il quantile di posizione $(1-\alpha /2)$ della distribuzione normale standard
+$$\Pr \Bigg\{ - z_{\alpha/2} \le \frac{\hat{\theta}-\theta}{SE(\hat{\theta})} \le z_{\alpha/2} \Bigg\}=1-\alpha$$
+Ossia : 
+$$\Pr \{ \hat\theta - z_{\alpha/2} SE(\hat{\theta})\le \theta \le \hat\theta + z_{\alpha/2} SE(\hat{\theta})\}=1-\alpha$$
+Possiamo quindi scrivere che : 
+$$A = \hat\theta - z_{\alpha/2}SE(\hat{\theta} \ )$$
+$$B = \hat\theta + z_{\alpha/2}SE(\hat{\theta} \ )$$
+>[!note] 
+>Si tratta di un intervallo centrato in $\hat\theta$ con *margine di errore* pari a $z_{\alpha/2} SE(\hat\theta)$
+
+### Intervallo di confidenza per la media di una popolazione
+
+Avendo un campione casuale semplice da una popolazione con media $\mu$ e varianza $\sigma^2$ che assumiamo nota
+
+Consideriamo lo stimatore non distorto $\hat\mu = \bar X$ 
+
+Quando possiamo usare la statistica $Z$ ? : 
++ Se $X_1,\dots,X_n$ sono normali , allora $\hat\mu = \bar X$ è *normale*
