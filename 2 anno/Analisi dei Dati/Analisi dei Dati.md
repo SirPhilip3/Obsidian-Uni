@@ -1110,3 +1110,14 @@ Consideriamo lo stimatore non distorto $\hat\mu = \bar X$
 
 Quando possiamo usare la statistica $Z$ ? : 
 + Se $X_1,\dots,X_n$ sono normali , allora $\hat\mu = \bar X$ è *normale*
++ Se $X_1,\dots,X_n$ non sono normali ma $n$ è *grande* allora $\hat\mu=\bar{X}$ è approssimativemente normale ( per il teorema del limite centrale )
+
+L'errore standard sarà quindi $SE(\hat\mu) = \sigma / \sqrt{n}$  
+
+L'intervallo di confidenza sarà quindi : 
+$$\bar{X}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+Il quantile $z_{\alpha/2}$ necessario per il caclolo degli intervalli di confidenza può essere ottenuto con il seguente comando , con $\alpha = 0.05$ : 
+```r
+qnorm(1-0.05/2)  ->  1.959964
+```
+
