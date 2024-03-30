@@ -1168,4 +1168,34 @@ $$\text{stimatore} \pm \text{margine d'errore}$$
 Quanto deve essere grande il campione per garantire una data precisione al nostro stimatore ?
 
 Ossia quanto deve valere $n$ affinchè il margine di errore sia inferiore ad un dato valore $\Delta$ , dobbiamo quindi risolvere la seguente diseguaglianza rispetto alla numerosità campionaria $n$ : 
-$$\text{mergine d'errore} \le \Delta$$ 
+$$\text{mergine d'errore} \le \Delta$$
+Il margine d'errore è : $z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$
+Quindi dobbiamo risolvere la diseguaglianza : 
+$$z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \le \Delta$$
+Otteniamo quinidi : 
+$$n\ge \bigg( \frac{z_{\alpha/2}\cdot \sigma}{\Delta} \bigg)^2$$
+>[!note] 
+>Visto che $n$ è un numero intero allora la minima dimensione campionaria che assicura la precisione desiderata sarà il più piccolo intero che soddisfa la diseguaglianza
+
+>[!example] 
+>Esempio 9.15 Baron
+
+### Deviazione standard ignota
+
+Per calcolare un intervallo di confidenza per la media $\mu$ *assumiamo* che $\sigma^2$ sia noto , questa assunzione è ragionevole solo in alcuni casi : 
++ quando abbiamo un'ampia informazione da studi precedenti 
++ i dati sono misurazioni ottenute da strumenti con precisione nota
+
+Spesso $\sigma^2$ non è noto e quindi dovremmo stimarlo con i dati 
+
+In questi casi si dice che : 
++ $\mu$ è il *parametro di interesse*
++ $\sigma^2$ è il *paramtero di disturbo*
+
+Possiamo avere tre casi possibili : 
+1. Campioni di grandi dimensioni da qualsiasi distribuzione
+2. Campioni di qualsiasi dimensione di distribuzione normale
+3. Campioni di piccola dimensione da una distribuzione non normale
+
+#### Campioni di grandi dimensioni
+
