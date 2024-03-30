@@ -1121,3 +1121,51 @@ Il quantile $z_{\alpha/2}$ necessario per il caclolo degli intervalli di confide
 qnorm(1-0.05/2)  ->  1.959964
 ```
 
+>[!example] 
+>Esempio 9.13 baron
+
+### Quando non possiamo usare la statistica $Z$
+
+Non possiamo usare la *statistica* $Z$ quando : 
++ $X_1,\dots,X_n$ *non* sono *normali* e $n$ è *piccolo* 
+
+>[!note] 
+>Campioni piccoli appaiono in problemi anche molto rilevanti 
+
+**Soluzioni** : 
++ Metodi che dipendono dal problema specifico 
++ Approssimazioni che funzionano anche per valori di $n$ piccoli ( utilizziamo metodi asintotici di ordine superiore )
+
+### Intervallo di confidenza per la differenza di due medie
+
+Campioni casuali semplici da due popolazioni : 
++ $X_1,\dots,X_n$ con media $\mu_X$ e varianza nota $\sigma_X^2$
++ $Y_1,\dots,Y_m$ con media $\mu_Y$ e varianza nota $\sigma_Y^2$ 
+
+Calcoliamo unintervallo di confidenza per 
+$$\theta = \mu_X -\mu_Y$$
+**Assunzioni** : 
++ I due campioni sono indipendenti
++ Le osservazioni sono normalmente distribuite oppure le numerosità dei due campioni $n$ e $m$ sono grandi 
+
+Uno stimatore non distorto di $\theta$ è 
+$$\hat\theta = \bar{X} - \bar{Y}$$
+L'*errore standard* dello stimatore è : 
+$$SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}$$
+$$=\sqrt{Var(\bar X)+Var(\bar Y)}$$
+$$=\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}}$$
+L'intervallo di confidenza è 
+$$\hat{\theta}\pm z_{\alpha/2}SE(\hat{\theta})$$
+Ossia : 
+$$(\bar X-\bar Y)\pm z_{\alpha/2}\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}}$$
+>[!example] 
+>Esempio 9.14 baron
+
+### Dimensione campionaria 
+
+Gli intervalli di confidenza hanno la seguente forma simmetrica : 
+$$\text{stimatore} \pm \text{margine d'errore}$$
+Quanto deve essere grande il campione per garantire una data precisione al nostro stimatore ?
+
+Ossia quanto deve valere $n$ affinchè il margine di errore sia inferiore ad un dato valore $\Delta$ , dobbiamo quindi risolvere la seguente diseguaglianza rispetto alla numerosità campionaria $n$ : 
+$$\text{mergine d'errore} \le \Delta$$ 
