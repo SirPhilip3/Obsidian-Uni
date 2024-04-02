@@ -824,3 +824,96 @@ posso usare valori di `valore` più grande quando vogliamo gestire l'accesso a r
 
 es ho 3 stampanti , non mi interessa su quale stampo , potrei usare un semaforo inizializzato a 3 su vari thread che stampano , possono stampare in 3 alla volta 
 
+# 02/04/2024
+
+**Produttore -> consumatore molti ad uno**
+
+Produttori scrivono su code separate tra loro , il consumatore legge un dato per ogni coda e fa qualcosa , computazione che dipende da tutte le altre 
+
+Ogni produttore ha un suo indice 
+
+```c
+queue_t datoProduttore[N]; // -> N indica il numero di produttori (N-1)
+// MAX = dimensione delle code , meglio di allocazione dinamica -> prima o poi finisco la memoria se il produttore è più veloce del consumatore 
+// se la struttura dati non è thread safe dobbiamo mettere mutex
+semafori piene[N] = {0,0...,0}, vuote[N] = {MAX,MAX,...,MAX}; // array di semafori
+
+// mutex
+semaforo mutex[N] = {1,1,...,1,};
+
+// se metto un solo mutex sincornizzo troppo altri produttori potrebbero scrivere nei loro buffer e non interferire tra loro 
+
+Produttore(i){
+	while(1){
+		// produce d
+		// aspetto quando raggiungo dim massima , mi servono i-semafori
+		P(vuote[i])
+		P(mutex[i])
+		datoProduttre[i].add(d); // aggiunge alla coda i il dato d
+		V(mutex[i])
+		V(piene[i])
+	}
+}
+
+Consumatore{
+	dato_t d[N]; // array locale per i dati 
+	while(1){
+		// legge 1 dato per ogni coda
+		for(j = 0; j<N; j++){
+			P(piene[j])
+			P(mutex[j])
+			d[j]=datoProduttore[j].remove() // prendo il dato e lo metto in un array locale
+			V(mutex[j])
+			V(vuote[j])
+		}
+		// consumo tutti i dati d[0],d[1].... d[N-1] 
+	}
+}
+```
+
+meglio sincronizzare di più che di meno
+
+**Lettori e scrittori**
+
+thread lettore , 
+
+```c
+semaforo scrittura=1; // di fatto un mutex per solo 1 scrittore
+int n_lettori = 0; // può dare race condition 
+
+lettore{
+	while(1){
+		// quando ho uno scrittore devo aspettare 
+		// posso entrare qunado ho già dei lettori all'interno della sezione critica
+		// solo il primo lettore che entra in sezione critica devo fare P(scrittura) -> prendo il controllo della sezione scritica 
+		// mi serve un counter
+		n_lettori++;
+		if()
+
+		<legge da risorsa condivisa>
+
+
+		n_lettori--;
+	}
+}
+
+scrittore{
+	while(1){
+		P(scrittura)
+		<modifica/scrive su risorsa condivisa>
+		V(scrittura)
+	}
+}
+```
+
+race condition -> scrittori ( ex 2 scrittori scrivono contemporaneamente ) -> mutex
+
+lettori tra di loro non danno race condition
+
+lettori potrebbero leggere cose sbagliate con scrittori , non permetto ai lettori di leggere mentre vengono scritte 
+*sezione critica*
+può accedere 1 scrittore (mutex) oppure tanti lettori
+
+
+
+**Filosofi a cena**
