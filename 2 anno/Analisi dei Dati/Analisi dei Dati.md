@@ -1200,4 +1200,4 @@ Possiamo avere tre casi possibili :
 #### Campioni di grandi dimensioni
 
 >[!note] 
->Meglio studiare per il test dell'11
+>Meglio studiare per il test dell'11 

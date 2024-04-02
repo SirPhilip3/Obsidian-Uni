@@ -1979,6 +1979,77 @@ La revoca deve essere terminata da una delle seguenti opzioni :
 + `{postgresql}CASCADE` : Il permesso viene revocato in modo ricorsivo a tutti gli utenti che lo hanno ricevuto
 + `{postgresql}RESTRICT` : fa fallire la revoca se essa comporterebbe la revoca di ulteriori permessi secondo la politica `{postgresql}CASCADE`
 
+>[!note] 
+>Un utente può revocare soltanto permessi assegnati *direttamente* da se stesso a meno di revoche indirette tramite `{postgresql}CASCADE`
+
+>[!example]
+>>[!todo] 
+
+##### Revoca di Deleghe
+
+Possiamo revocare solo la *possibilità* di delega ma non il permesso 
+
+```postgresql
+REVOKE GRANT OPTION FOR ListaPermessi ON Elemento FROM ListaUtenti
+```
+
+##### Revoca e Generalità 
+
+Potrebbe essere che un utente possieda un permesso `P` e una sua variante meno generale `p` sullo stesso oggetto 
+
+Revocare `p` non ha alcun effetto su `P` 
+Revocare `P` invece ha un comportamento che dipende dal *DBMS* : 
++ *Postgres* revoca automaticamente anche `p` 
++ Lo standard *SQL* suggerisce di lasciare assegnato `p` 
+
+#### Ruoli 
+
+Un *ruolo* è un colletore di permessi che permette di introdurre un livello di segmentazione durante la loro assegnazione
+
+##### Gestione dei Ruoli 
+
+Un ruolo può essere creato tramite il comando : 
+```postgresql
+CREATE ROLE NomeRuolo;
+```
+
+Una volta fatto questo ci basta usare i comandi :
++ `GRANT` : per assegnare permessi a ruoli e ruoli ad utenti
++ `REVOKE` : per rimuovere permessi a ruoli e ruoli ad utenti
+
+I ruoli assegnati  ad un utente non sono *attivi* di default. Lattivazione di un ruolo per ottenere i permessi viene effettuata tramite il comando : 
+```postgresql
+SET ROLE NomeRuolo;
+```
+
+**Pros** : 
++ Possiamo raggruppare insiemi di permessi *logicamente collegati*
++ Risulta essere meno dispensioso assegnare ruoli rispetto a permessi visto che vi sono molti meno ruoli rispetto ai permessi
++ Rimuove errori nell'assegnazione di permessi
++ Le operazioni di revoca sono semplificate 
++ Sono più fedeli al principio di *minimo privilegio*
+
+##### Ruoli in Postgres
+
+In *Postgres* non vi è una vera e propria differenza tra utenti e ruoli ( il comando `CREATE USER` è un alias per `CREATE ROLE WITH LOGIN` )
+
+>[!note] 
+>+ L'opzione `CREATE ROLE` consente al ruolo di creare altri ruoli 
+>>[!warning] 
+>>Potrebbe portare a scalata di privilegi
+>
+>+ Ruoli assegnati con `WITH ADMIN OPTION` possono essere delegati
+>+ Possiamo assegnare ruoli ad altri ruoli introducendo una forma di *ereditarietà* dei permessi
+>+ Se un permesso viene assegnato tramite un ruolo, qualsiasi altro utente con quel ruolo può revocarlo
+
+Possiamo gestire l'ereditarietà attraverso le opzioni `INHERIT` ( *default* ) e `NOINHERIT` 
+
+>[!example] 
+#### SQL Injection
+
+>[!todo]
+>
+
 ### Indici e viste materializzate
 
 ### Transazioni
