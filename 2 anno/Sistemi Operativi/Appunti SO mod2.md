@@ -880,20 +880,28 @@ thread lettore ,
 ```c
 semaforo scrittura=1; // di fatto un mutex per solo 1 scrittore
 int n_lettori = 0; // può dare race condition 
-
+semaforo mutex=1; // per poteggere n_lettori
 lettore{
 	while(1){
 		// quando ho uno scrittore devo aspettare 
 		// posso entrare qunado ho già dei lettori all'interno della sezione critica
 		// solo il primo lettore che entra in sezione critica devo fare P(scrittura) -> prendo il controllo della sezione scritica 
 		// mi serve un counter
+		// race condition su n_lettori e gli if -> per risolvere creo una sezione critica
+		P(mutex);
 		n_lettori++;
-		if()
+		if(n_lettori==1) 
+			P(scrittura) // V mutex dopo if perchè un thread potrebbe siperarmi e fare prima la if
+			// Se faccio P(scrittura) essendo bloccante potrebbe fare deathlock
+		V(mutex)
 
 		<legge da risorsa condivisa>
 
-
+		P(mutex)
 		n_lettori--;
+		if(n_lettori==0) // ultimo che esce dalla sezione critica libera la sezione critica
+			V(scrittura)
+		V(mutex)
 	}
 }
 
@@ -914,6 +922,128 @@ lettori potrebbero leggere cose sbagliate con scrittori , non permetto ai lettor
 *sezione critica*
 può accedere 1 scrittore (mutex) oppure tanti lettori
 
+*dim*
 
+1. Entra uno scrittore -> scrittura = 0
+2. Arriva il primo lettore -> 
+	1. mutex = 0 
+	2. Faccio P(scrittura) e mi blocco ( scrittura = 0 )
+3. Arriva altro lettore -> si ferma su mutex ( mutex = 0 ) , primo lettore sta aspettando lo scrittore *oki*
+
+
+1. Entra un lettore ( scrittura = 0  )
+	1. svolge lettura
+2. Altri lettori saltano if e fanno anche loro lettura
+3. Arriva scrittore non può acquisire (scrittura = 0) 
+
+>[!warning] 
+>Se entrano più lettori che ne escono -> *starvation* dello scrittore 
+
+soluzione corretta con starvation , esiste sol simmetrica con starvation ai lettori , + soluzione equa , quando c'è un scrittore che aspetta si ferma l'entrata dei lettori e poi faccio scrittore etcc
 
 **Filosofi a cena**
+
+5 filosofi > 1 bacchetta per piatto 
+
+ogni filosofo utilizza la bacchetta della sx e dx
+
+```c
+filosofo(i){
+	while(1){
+		// pensa
+		raccogli(i)//sx
+		raccogli((i+1)%5) //dx
+
+		deposita(i)
+		deposita((i+1)%5)
+	}
+}
+```
+
+sol con semafori
+
+```c
+// 5 mutex , uno per ogni bacchetta differente
+semafori bacchette[5]={1,1,1,1,1};
+
+filosofo(i){
+	while(1){
+		// pensa
+		P(bacchetta[i])
+		P(bacchetta[(i+1)%5])
+		// raccogli(i)//sx
+		// raccogli((i+1)%5) //dx
+		// mangio
+		// deposita(i)
+		// deposita((i+1)%5)
+		V(bacchetta[i])
+		V(bacchetta[(i+1)%5])
+	}
+}
+```
+
+>[!warning] 
+>Se tutti prendono la bacchetta di sx nessuno può prendere bacchette di dx 
+>**Deathlock** 
+
+Permetto di mangiare al massimo in 4 -> 1 bacchetta rimane libera -> almeno un filosofo mangia poi a catena si sbloccano i rimanenti
+
+```c
+// 5 mutex , uno per ogni bacchetta differente
+semafori bacchette[5]={1,1,1,1,1};
+semaforo posti = 4; 
+filosofo(i){
+	while(1){
+		// pensa
+		P(posti)
+		P(bacchetta[i])
+		P(bacchetta[(i+1)%5])
+		// raccogli(i)//sx
+		// raccogli((i+1)%5) //dx
+			// mangio
+		// deposita(i)
+		// deposita((i+1)%5)
+
+		// potrei fare V(posti) qui tanto mi interessa che non siano mai in 5 a prendere le bacchette comunque al massimo 2 che mangiano in contemporanea 
+
+		V(bacchetta[i])
+		V(bacchetta[(i+1)%5])
+		V(posti)
+	}
+}
+```
+
+2 sol -> senza aggiungere semafori usando solo le bacchette 
+
+Faccio in modo che basti che uno raccolga le bacchette in ordine differente 
+
+```c
+// 5 mutex , uno per ogni bacchetta differente
+semafori bacchette[5]={1,1,1,1,1};
+
+filosofo(i){
+	while(1){
+		// pensa
+		if(i==4)
+			P(bacchetta[0]) // dx
+			P(bacchetta[4]) // sx
+		else{
+			P(bacchetta[i]) // sx
+			P(bacchetta[(i+1)%5]) // dx
+		}
+		// raccogli(i)//sx
+		// raccogli((i+1)%5) //dx
+			// mangio
+		// deposita(i)
+		// deposita((i+1)%5)
+		V(bacchetta[i])
+		V(bacchetta[(i+1)%5])
+	}
+}
+```
+
+3 sol -> 
+
+>[!error] 
+>mutex prima e dopo P(bacchette) -> sincronizza troppo -> se un filofo vuole mangiare una baccheta di uno che è passato il mutex blocca tutti gli altri filosofi che potrebbero mangiare
+
