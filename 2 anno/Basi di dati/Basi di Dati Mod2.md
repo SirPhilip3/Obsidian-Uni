@@ -1817,7 +1817,7 @@ Le condizioni `cond` seguono una sintassi particolare che ci permette di avere c
 Quando un'eccezione viene catturata, il contenuto delle variabili locali persiste , ma tutti i cambiamenti al database effettuatu nel blocco che ha sollevato l'eccezione vengono **annullati** 
 
 >[!example]
-```sql
+```postgresql
 INSERT INTO mytab(firstname, lastname) VALUES(’Tom’, ’Jones’); 
 BEGIN 
 	UPDATE mytab SET firstname = ’Joe’ WHERE lastname = ’Jones’;
@@ -1835,7 +1835,7 @@ END;
 ##### Procedure
 
 Una *procedura* è una funzione che non ritorna alcun risultato :
-```sql
+```postgresql
 CREATE PROCEDURE my_proc( args )
 AS proc_body
 LANGUAGE plpgsql
@@ -1906,7 +1906,78 @@ Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *passw
 >5. Il *server* verifica che `x == MD5(y+"salt")` ed autorizza l'accesso
 
 >[!warning] Problemi di Sicurezza
->Questo protocollo non è consigliato per via dell'uso dell'*MD5* ( considerato un algoritmo di hashing debole )
+>Questo protocollo non è consigliato per via dell'uso dell'*MD5* ( considerato un algoritmo di hashing debole ) e del *salt* breve
+>
+>Il furto di `y` può portare all'impersonificazione dell'utente , basterebbe sapere il *salt*
+>
+>Questi problemi sono risolti dall'algoritmo *SCRAM*
+
+#### Autorizzazione
+
+**Politiche base** : 
+1. Quando un oggetto viene creato il suo creatore ne diventa il proprietario
+2. Gli altri utenti possono accedervi solo secondo le modalità stabilite dai *permessi* concessi su di esso
+3. Solo il creatore dell'oggetto può eliminarlo o alterarne la definizione 
+##### Permessi
+
+*SQL* mette a disposizione diversi tipi di permessi , fra cui : 
++ `SELECT` : può essere riferito ad una tabella intera o ad un set di attributi `X` di quella tabella
++ `INSERT` : può essere riferito ad una tabella intera o ad un set di attributi `X` di quella tabella
++ `UPDATE` : può essere riferito ad una tabella intera o ad un set di attributi `X` di quella tabella
++ `DELETE` : spesso necessitiamo il permesso `SELECT` per `DELETE` non banali
++ `TRIGGER` : necessario per definire un *trigger* su una tabella
++ `EXECUTE` : necessario per eseguire una *funzione* o *procedura*
+
+##### Permessi e Trigger
+
++ Il permesso `TRIGGER` per una *tabella* abilita la definizione di *trigger* *arbitrari* su di essa 
++ Il creatore del trigger deve avere il permesso `TRIGGER` sulla tabella e tutti i permessi richiesti per eseguire l'azione del trigger
++ Quando un *trigger* viene attivato esso deve essere eseguito con i permessi del suo cretatore indipendentemente da chi ha indotto l'attivazione 
+
+>[!warning] 
+>L'uso di *trigger* può portare a scalate di privilegi
+
+Quando una *funzione* viene dichiarata è possibile specificarne i permessi di esecuzione tramite le opzioni :
++ `SECURITY INVOKER` : la funzione viene eseguita con i permessi dell'utente chiamante ( *default* )
++ `SECURITY DEFINER` : la funzione viene eseguita con i permessi dell'utente che l'ha definita 
+
+>[!warning] 
+>L'utilizzo di `SECURITY DEFINER` può abilitare scalate di privilegi , possiamo però fornire accesso controllato a funzionalità che richiederebbero permessi elevati
+
+#### Assegnare Permessi 
+
+Il *proprietario* di uno schema relazionale ha tutti i permessi possibili sulle tabelle e altri elementi dello schema , questi permessi possono essere concessi ad altri utenti usando la sintassi : 
+```postgresql
+GRANT ListaPermessi ON Elemento TO ListaUtenti
+```
+
+>[!note] 
+>Possiamo utilizzare `ALL PRIVILEGES` per indicare tutti i permessi 
+>Possiamo utilizzare `PUBLIC` per indicare tutti gli utenti ( compresi quelli non ancora creati )
+
+#### Delegare Permessi
+
+I permessi possono essere assegnati fornendo la possibilità di *delegarli* ad altri utenti : 
+
+```postgresql
+GRANT ListaPermessi ON Elemento TO ListaUtenti WITH GRANT OPTION
+```
+
+E' sempre possibile delegare una versione meno generale di un privilegio ( delegabile ) che si possiede
+
+>[!example] 
+>Un utente con permesso `{postgresql}SELECT WITH GRANT OPTION` può delegare `SELECT(X)` con `X` arbitrario sullo stesso elemento
+
+#### Revoca di Permessi
+
+I permessi assegnati possono essere *revocati* tramite la sintassi : 
+```postgresql
+REVOKE ListaPermessi ON Elemento FROM ListaUtenti
+```
+
+La revoca deve essere terminata da una delle seguenti opzioni : 
++ `{postgresql}CASCADE` : Il permesso viene revocato in modo ricorsivo a tutti gli utenti che lo hanno ricevuto
++ `{postgresql}RESTRICT` : fa fallire la revoca se essa comporterebbe la revoca di ulteriori permessi secondo la politica `{postgresql}CASCADE`
 
 ### Indici e viste materializzate
 
