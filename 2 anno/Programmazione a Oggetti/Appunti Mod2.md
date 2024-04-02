@@ -751,3 +751,18 @@ lambda funzione senza nome , "passi un pezzo di codice" che passi per argomento
 ```
 
 si possono simulare la lambda con le anonymus class 
+
+# 02/04/2024
+
+java implementa le lambda con anonymus class ( non sono implementate dall'inizio ) -> una lambda può sempre essere sostituita con una anonymus class
+
+foreach -> side effect -> modifica lo stato della macchina in qualche modo ( ex print , salvare un file )
+map -> ritorna qualcosa , computa qualcosa ( lettura di un file )
+
+tutte le operazioni che non sono trasformazione di dati -> side effect 
+
+malloc -> input memoria che voglio , output pointer alla memoria 
+
+```java
+
+```
