@@ -1847,3 +1847,67 @@ Una *procedura* può essere invocata attraverso il comando `CALL`
 >+ Prima di Postgres 11 si utilizzava il comando `PERFORM`
 >+ Una *procedura* differisce da una *funzione* void solo nella gestione della *transazioni*
 
+### Sicurezza e autenticazione
+
+Tutti i principali *DBMS* implementano meccanismi di : 
++ *autenticazione* : Identifica chi sta operando sul database 
+	Questa viene normalmente effettuata tramite l'utilizzo di un nome utente e password 
++ *autorizzazione* : Determinare chi può fare cosa ( ossia determinare i *permessi* per ogni utente ) 
+
+>[!note] Controllo degli accessi
+>
+>Il controllo degli accessi è il meccanismo con cui viene verificato che chi richede un'operazione sia effitivamente autorizzato a farla 
+
+#### Autenticazione 
+
+>[!note] 
+>Lo standard *SQL* non definisce uno standard per la gestione degli utenti , vediamo la l'implementazione in *Postgres*
+
+La creazione di un nuovo utente avviene attraverso una query SQL : 
+```sql
+CREATE USER NomeUtente WITH PASSWORD NuovaPwd
+```
+
+In coda al comando possiamo aggiungere delle opzioni come : 
++ `{sql}SUPERUSER` : l'utente creato ignora i controlli di sicurezza
++ `CREATEDB` : consente all'utente di creare nuovi database
++ `VALID UNTIL ts` : consente di specificare la durata massima della password inserita dall'utente
+
+In *Postgres* possiamo controllare il processo di autenticazione all'interno del file : $\text{pg\_hba.conf}$ 
+
+Possiamo modificare il *metodo di autenticazione* per ciascuna richiesta di autenticazione con le seguteni opzioni :
++ *tipo di connessione* : locale , remota , cifrata 
++ *database* : lista di database o `all`
++ *utente* : lista di utenti o `all`
++ *indirizzo* : hostname , indirizzo IP , range di IP
+
+Se non si trovano *match* per una connessione allora l'autenticazione è vietata
+
+Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *password* , *MD5* , *SCRAM* , *peer* ...
+##### Password
+
+>[!example] 
+>1. Crazione delll'utente il server si salva : `y=123456`
+>2. Il *client* manda lo username e richiede la connessione
+>3. Il *server* richiede la password per quell'username
+>4. Il *client* fornisce la propria password `x=123456`
+>5. Il *server* verifica che `x == y` ed autorizza l'accesso
+
+>[!warning] Problemi di Sicurezza
+>+ Se il canale di comunicazione in cui mandiamo la password non è cifrato siamo suscettibili a *man in the middle* attacks , problema facile da risolvere tramite TLS o SSL
+>+ La password viene salvata  in chiaro sul server e quindi esposta a chiunque riesca ad ottenerene il controllo ( questo non viene più fatto in nuove versioni di *Postgres* )
+##### MD5
+
+>[!example] 
+>1. In fase di creazione dell'utente il server salva `y=MD5(12345+peter)`
+>2. Il *client* manda lo username e richiede la connessione
+>3. Il *server* richiede un *MD5* della password poponendo un *salt*
+>4. Il *client* calcola `x=MD5(MD5(123456+peter)+"salt")` e lo invia al server
+>5. Il *server* verifica che `x == MD5(y+"salt")` ed autorizza l'accesso
+
+>[!warning] Problemi di Sicurezza
+>Questo protocollo non è consigliato per via dell'uso dell'*MD5* ( considerato un algoritmo di hashing debole )
+
+### Indici e viste materializzate
+
+### Transazioni

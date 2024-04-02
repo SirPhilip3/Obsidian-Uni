@@ -1815,29 +1815,3 @@ Consumatore() {
 >Quando si inseriscono *sezioni critica* bisogna verificare che al loro interno non vi siano semafori bloccanti
 
 ## Semafori in POSIX
-
-thread safe -> le funzioni possono o non essere thread safe 
-`printf` è thread safe ( non safe per i segnali ) poichè `stdio` è thread safe
-
-`mt_safe locale` -> sono safe da invocare in presenza di altri thread , locale -> legge senza sincronizzazione , ossia leggo se qualcuno modifica nella variabile locale , se uso funzioni che modificano il locale allora in questo caso sono unsafe altrimenti sono safe
-
-codifica i mutex in `pthread mutex` utilizzati solo per sezione critica 
-
-`pthread condition` -> utilizzati per implementare i monitor in C
-
-libreria `semaphore.h`
-
-`sem_t` -> tipo del semaforo da mettere globale 
-
-funzione per inzialzzare semaforo -> primo indirizzo semaforo , secondo sempre a 0 ( per dire se fra thread 0 o processi !=0 ) ultimo è il valore del semaforo
-
-init fatto prima di dichiarare i thread 
-
-+ P(sem) -> `int sem_wait(sem_t *sem)`
-+ V(sem) -> `int sem_post(sem_t *sem)`
-
-`sem_getValue` -> non da utilizzare per la sincronizzazione ->l'implementazione potrebbe ritornare 0 anche se ci sono 100 thread in attesa 
-
-`sem_destroy` per eliminare il semaforo , se elimino durante l'utilizzo comportamento non specificato
-
-semafori con il nome come per le pipe sono semafori che esistono a livello del sistema operativo
