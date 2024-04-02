@@ -766,3 +766,15 @@ malloc -> input memoria che voglio , output pointer alla memoria
 ```java
 
 ```
+
+foreach -> dezuccherato in patter while (hasNext)---
+
+sull'input -> meglio minimo possibile che uso
+sul ritorno -> ( con reflection ? >[!todo] ) , gli output sciendono nella gerarchia dei tipi , posso fare **List** 
+controvarianza dei tipi
+
+migliore sarebbe reflection ritornando un clone , ( dovrei considerare se c'è add , potrei chiedere collection invece di iterable ) 
+
+metodi statici -> sono funzioni
+
+lambda dezuccherata a compiletime ?? 
