@@ -2052,4 +2052,50 @@ Possiamo gestire l'ereditarietà attraverso le opzioni `INHERIT` ( *default* ) e
 
 ### Indici e viste materializzate
 
+>[!note] Definizione
+>Un *indice* è una struttura dati ausiliaria che ci permette di accedere in modo più efficente alle tuple di una relazione che soddifano una determinata proprietà
+
+Un *indice* su un attributo $A$ di una relazione $R$ è una lista di coppie $(a_i, P_i)$ dove $a_i$ è un valore di $A$presente in almeno una tupla di $R$ e $P_i$ è un insieme di puntatori alle tuple di $R$ per cui $A$ vale $a_i$
+Tale lista è ordinata rispetto al valore di $A$ 
+
+In pratica si utilizza una struttura dati simile ad un *Binary Search Tree* per memorizzare l'indice in modo da trovare in modo efficente i puntatori alle tuple che soddisfano una condizione $A$ 
+
+>[!note] 
+>L'*indice* creato viene utilizzato solo quando il query planner del DBMS lo ritiene vantaggioso
+
+>[!example] 
+>Supponiamo di avere un *indice* sull'anno di produzione di un film , avremo che verrà creata la seguente struttura dati : 
+>![[Pasted image 20240403144012.png]]
+>
+>Ora per trovare tutti i film prodotti nel 2012 dobbiamo esaminare solo la metà delle tuple 
+
+#### Indici Multiattributi
+
+Nel caso avessimo indici formati da più attributi l'ordine di primo grado sarà il primo attributo dell'indice e l'ordinamento secondario si svolgerà sul'ordinamento primario
+
+>[!example] 
+>![[Pasted image 20240403144906.png]]
+
+>[!warning] 
+>L'ordine degli attributi è rilevante alla costruzione di un indice multiattributo , si scieglie come ordinamento primario l'attributo per il quale ci si aspettano più query
+
+>[!example] 
+>>[!todo] 
+
+
+>[!note] 
+>Generalemente se il database si trova completamente in RAM allora il guadagno in termini di accessi è generalmente minimale
+
+Per questo generalmente non si utilizza come misura del costo di un'operazione il numero di accessi alle tuple poichè ignoriamo l'organizzazione fisica della memoria 
+
+Una metrica migliore è basata sul numero di *pagine* caricate in RAM : 
++ Ciascuna pagina tipicamente contiene motle tuple 
++ Anche se volessimo accedere ad una sola tuple comunque dovremmo caricare la corrispondente pagina in RAM
++ L'accesso a tutte le tuple in una pagina è solo poco più costoso dell'accesso ad una singola tupla 
+
+Se una tabella è fortemente 
+
+
+
+
 ### Transazioni
