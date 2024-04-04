@@ -4268,3 +4268,30 @@ Allora l'*albero di copertura minimo* ( *MInimum Spanning Tree* ( *MST* ) ) DI $
 >[!example] 
 ![[MST.excalidraw]]
 
+##### Fatto cruciale
+
+Dato un *taglio* di un grafo : 
+	dato $G=(V,E)$ è $(S,V-S)$ dove $S \subseteq V$ 
+
+Poichè ipotizziamo che il grafo è connesso avremo che almeno un arco attraverserà il taglio
+Il primo vertice di questo taglio deve essere contenuto nell'insieme $S$ e il secondo vertice in $S-V$ 
+
+>[!note] 
+>Un arco con peso minimo che attraversa un *taglio* si dice **arco leggero**
+
+>[!note] Fatto cruciale
+>Se $(u,v)$ è un ( posson essere molteplici ) *arco leggero* allora $(u,v)$ appartiene ad un **MST** 
+
+**Tecnica del cuci e taglia** 
+
+**Dimostrazione** : 
+
+$T$ è un **MST** di $G$
+
+2 casi : 
++ $(u,v) \in T$ : la dimostrazione è finita visto che $(u,v)$ è già in $T$
++ $(u,v) \notin T$ : 
+	1. *cuci* aggiungo l'arco $(u,v)$ a $T$ = $T'$ , in questo caso si crea un ciclo visto che $T$ è un **MST** 
+	   poichè abbiamo un ciclo sicuramente avremo un arco che attraversa il taglio oltre a $(u,v)$ , $(x,y)$ 
+	   Inoltre visto che $(u,v)$ è *leggero* sicuramente avremo che tutti gli altri archi presenti nel taglio avranno il peso $\le$ rispetto a $(u,v)$ ( $w(u,v)\le w(x,y)$ ) 
+
