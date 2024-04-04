@@ -846,3 +846,19 @@ se facevano come c# con un tipo nuovo -> non c'è retrocompatibilità
 
 vantaggio essendo che può essereci o non esserci tipo input e output -> 4 forma di lambda
 
+*thread* > usano i runnable -> 4 forma di lambda (function ,consumer,supplier,runnable(ni no))
+
+thread ->  stack , pc -> codice e memoria condivisa dal padre
+
+thread è un runnable , 
+costruttore vuoto per le sottoclassi 
+
+costruttore utile -> Thread(Runnable targed) -> gli passi il codice che deve are , 
+in lambda -> () -> {blocco} senza return -> solo side effect 
+
+si può dare un nome per debugging
+
+Il thread stesso implementa runnable per questo deve avere il metodo run()
+
+vecchoi
+

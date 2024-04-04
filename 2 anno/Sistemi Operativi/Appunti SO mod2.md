@@ -1079,3 +1079,5 @@ filosofo(i){
 >[!error] 
 >mutex prima e dopo P(bacchette) -> sincronizza troppo -> se un filofo vuole mangiare una baccheta di uno che è passato il mutex blocca tutti gli altri filosofi che potrebbero mangiare
 
+# 04/04/2024
+
