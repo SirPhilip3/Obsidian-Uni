@@ -778,3 +778,71 @@ migliore sarebbe reflection ritornando un clone , ( dovrei considerare se c'è a
 metodi statici -> sono funzioni
 
 lambda dezuccherata a compiletime ?? 
+
+# 04/04/2024
+
+command design pattern 
+
+quando passi funzione ad altra funzione come se passassi un comando che viene eseguito
+
+**wildcard** 
+
+```java
+interface PippoFunction<A, B>{
+
+	B pippo();
+
+}
+
+public static <A, B> List<B> map(Iterable<A> c, PippoFunction<A, B> f) {  
+    List<B> r = new ArrayList<>();  
+    for (A x : c) {  
+        B b = f.apply(x);  
+        r.add(b);  
+    }  
+    return r;  
+}
+List<Zoo.Dog>
+Function <Zoo.Dog , Zoo.Cat> f = (d) -> new Zoo.Cat(d.getWright())
+PippoFunction <Zoo.Dog , Zoo.Cat> g = (d) -> new Zoo.Cat(d.getWright())
+// tipo function con dog e cat -> Function<Dog,Cart>
+List<Zoo.Cat> cats = map(dogs , f) // errore -> si aspetta pippoFunction
+List<Zoo.Cat> cats = map(dogs , g) // nessun errore
+```
+
+Perchè stessa lambda può essere messa in due varaibaili con tipo differente , *strano* visto che Function e PippoFunction sono scorrelati 
+
+Le lambda sono semplicemente delle anonymus class 
+
+prima delle lambda : 
+```java
+map(p, new PippoFunction....) 
+```
+
+si trasforma in lambda a compile time 
+come ? 
+dove P nome di varaibile
+P -> Exp
+
+dà dei tipi  a P (T1) e Exp (T2) 
+-> 
+```java
+interface ...<T1, T2>{
+	@Override
+	public T2 ... (T1 P){
+		return Exp;
+	}
+}
+```
+
+per caspire se fare PippoFunction o Function dipende dal contesto in cui la chiamiamo
+
+lambda si traformano in tipi diversi e nomi di metodi arbitrari , purchè si possa fare una anonymus class e abbia il metodo che vogliamo chiamare 
+
+in linguaggi > C# 
+in C# le lambda hanno un tipo apposito Func -> non si dezzucchera 
+
+se facevano come c# con un tipo nuovo -> non c'è retrocompatibilità
+
+vantaggio essendo che può essereci o non esserci tipo input e output -> 4 forma di lambda
+
