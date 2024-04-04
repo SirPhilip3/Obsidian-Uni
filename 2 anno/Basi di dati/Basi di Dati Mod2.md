@@ -1506,7 +1506,7 @@ L'ordine di esecuzione dei *trigger* dipende dal loro tipo :
 CREATE TRIGGER FuncDep 
 	BEFORE INSERT OR UPDATE ON Relation 
 	FOR EACH ROW 
-	EXECUTE FUNCTION fix_func_dep () 
+	EXECUTE FUNCTION fix_func_dep() 
 
 CREATE FUNCTION fix_func_dep() RETURNS TRIGGER AS $$ 
 	IF (EXISTS SELECT * FROM Relation 
@@ -1847,6 +1847,15 @@ Una *procedura* può essere invocata attraverso il comando `CALL`
 >+ Prima di Postgres 11 si utilizzava il comando `PERFORM`
 >+ Una *procedura* differisce da una *funzione* void solo nella gestione della *transazioni*
 
+
+---
+
+>[!caution] 
+>Dopo questo gli argomenti sono solo nella domanda di teoria
+
+---
+
+
 ### Sicurezza e autenticazione
 
 Tutti i principali *DBMS* implementano meccanismi di : 
@@ -2094,8 +2103,4 @@ Una metrica migliore è basata sul numero di *pagine* caricate in RAM :
 + L'accesso a tutte le tuple in una pagina è solo poco più costoso dell'accesso ad una singola tupla 
 
 Se una tabella è fortemente 
-
-
-
-
 ### Transazioni
