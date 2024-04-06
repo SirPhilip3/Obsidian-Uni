@@ -574,7 +574,7 @@ Per *stimare* il parametro $\theta$ si risolve il sistema di $k$ equazioni otten
 >#todo
 
 $$\begin{cases} \mu_1(\theta) & = M_1 \\ \mu_2(\theta) & = M_2 \\ \dots \ & = \dots \\ \mu_k(\theta) & = M_k\end{cases}$$
-A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare alcuni momenti semplici con altri centrali se risulta conveniente
+A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare  alcuni momenti semplici con altri centrali se risulta conveniente
 
 >[!example]
 >Osserviamo l'istogramma realizzato dai tempi di elaborazione della CPU
