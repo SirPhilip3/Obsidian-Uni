@@ -744,7 +744,7 @@ Stimare gli errori standard può essere complicato anche per in modelli semplici
 
 ##### Proprietà asintotiche dello stiamtore di massima verosimiglianza
 
-Sotto *assunzioni* che valgono nei problemi che affronteremo ( non è necessario conoscerle ) lo stimatore di massima verosimiglianza è : 
+Sotto *assunzioni* che valgono nei problemi che affronteremo ( **non è necessario conoscerle** ) lo stimatore di massima verosimiglianza è : 
 + *asintoticamente non distorto* :
 	$E(\hat\theta)\to \theta,$   per $n\to \infty$ 
 + *consistente*
