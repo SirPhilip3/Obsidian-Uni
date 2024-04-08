@@ -958,8 +958,8 @@ può accedere 1 scrittore (mutex) oppure tanti lettori
 
 1. Entra uno scrittore -> scrittura = 0
 2. Arriva il primo lettore -> 
-	1. mutex = 0 
-	2. Faccio P(scrittura) e mi blocco ( scrittura = 0 )
+		1. mutex = 0 
+	1. Faccio P(scrittura) e mi blocco ( scrittura = 0 )
 3. Arriva altro lettore -> si ferma su mutex ( mutex = 0 ) , primo lettore sta aspettando lo scrittore *oki*
 
 
