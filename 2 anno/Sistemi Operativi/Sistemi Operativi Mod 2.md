@@ -1694,7 +1694,7 @@ mutex
 
 + `{bash}-` indica l'esecuzione fuori dalla sezione critica 
 + `{bash}=` indica l'esecuzione in sezione critica
-+ In basso è rappresentato dello stato del semaforo 
++ In basso è rappresentato lo stato del semaforo 
 
 >[!note] 
 >+ Per valori negativi del counter il suo modulo rappresenta il numero di thread in attessa nella queue
@@ -1732,8 +1732,8 @@ T2{
 **Regolare l'accesso a risorse**
 
 In generale un *semaforo* inizializzato a `MAX` permette `MAX` accessi prima di diventare bloccante , possiamo quindi ridefinire le operazioni `P` e `V` 
-+ `P(S)` richiede una risorsa , se ce ne è almeno una disponibile viene assegnata altrimenti attendiamo che ve ne sia una disponibile 
-+ `V(S)` rilascio di una risorsa , se ci sono *thread* in attesa il primo viene sbloccato
++ `P(S)` ( `wait(S)` ) richiede una risorsa , se ce ne è almeno una disponibile viene assegnata altrimenti attendiamo che ve ne sia una disponibile 
++ `V(S)` ( `post(S)` ) rilascio di una risorsa , se ci sono *thread* in attesa il primo viene sbloccato
 
 >[!example] 
 >Se abbiamo 3 stampanti possiamo usare un *semaforo* inizializzato a 3 per regolare il loro utilizzo contemporaneo da un massimo di 3 thread alla volta , quando un processo avrà finito una stampa allora con `V(S)` si sbloccherà il primo *thread* in attesa di utilizzare la stampante
@@ -1743,7 +1743,7 @@ In generale un *semaforo* inizializzato a `MAX` permette `MAX` accessi prima di 
 Cerchiamo di risolvere il problema del *produttore-consumatore* con i semafori 
 Ci sono 2 sincronizzazioni da fare : 
 + Quando il buffer è pieno il *produttore* deve attendere per evitare di sovrascrivere i dati
-+ Quando  il buffer è vuoto il *consumatore* deve attendere per evitare di leggere celle non ancora scritte
++ Quando il buffer è vuoto il *consumatore* deve attendere per evitare di leggere celle non ancora scritte
 
 Possiamo utilizzare 2 *semafori* che regolano l'accesso alle risorse : 
 + `vuote` rappresenta le celle vuote che possono essere utilizzate , inizialmente inizializzata a `MAX`
