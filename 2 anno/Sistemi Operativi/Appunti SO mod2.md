@@ -1087,3 +1087,5 @@ Lab
 
 Eesercitazione punto bonus
 
+sem_wait--
+sem_post++
