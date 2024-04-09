@@ -862,3 +862,26 @@ Il thread stesso implementa runnable per questo deve avere il metodo run()
 
 vecchoi
 
+# 09/04/2024
+
+thread 
+
+ogni thread assegnato un quanto di tempo per cui esegue
+thread e processi schedulati allo stesso modo
+
+round robin con priorità statica -> windows
+
+salva come stavca mappando  la memoria quel processo ( quando facciamo un context switch )
+salva i file descriptor attivi del processo + handle per io ( al driver )
+
+thread condividono codice e spazio di memoria ( data segment -> dati statici del processo , varaibili globali , la malloc non va li , in pratica tutti i campi statici )
+
+indipendente -> program counter , stack della memoria
+
+multithreading java , per costrutire thread erediti thread , overridi run metti codice e poi si chiama il metodo start -> mette nello scheduler ( chiedi al kernel di schedulare il tuo thread syscall )
+
+```java
+t.start() 
+```
+
+non è bloccante 

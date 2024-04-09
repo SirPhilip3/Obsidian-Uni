@@ -1082,3 +1082,8 @@ filosofo(i){
 # 04/04/2024
 
 Lab
+
+# 09/04/2024
+
+Eesercitazione punto bonus
+
