@@ -882,6 +882,29 @@ multithreading java , per costrutire thread erediti thread , overridi run metti 
 
 ```java
 t.start() 
+loop("Hello from main");
 ```
 
-non è bloccante 
+non è bloccante : aggiunge solo alla coda del round robin , fa eseguire run al thread che viene creato 
+
+essendo che java viene eseguito in jvm , una volta la jvm aveva uno scheduler interno ed esguiva lei il codice secondo una cosa round robin interna 
+kernel preemptive -> con i quanto
+kernel cooperativo ->  dentro il codice bisognava fare syscall che chiamava il kernel per passare ad altri processi
+
+java all'inzio era cooperativo -> thread finti dentro la jvm -> thread nel kernel di systema ( non implementato prima poichè non tutti i kernel avevano i therad )
+
+il nuovo thread in java deve forkare la jvm per quel thread che traduca il bytecode ( interprete )
+
+il costruttore di thread può prendere una runnable ( 4 forma di lambda non prendono nulla e non restituiscono nulla )
+
+visto che ho run la casse thread è un Runnable 
+modo alternativo di costrutire thread
+
+garbage collector si comporta in momdo diverso per i thread in modo da mantere consistenza nei dati
+
+per thread complesso meglio isolarlo in una classe 
+se thread rapido per fare un cosa semplice senza dati -> lambda o anonymus class
+
+pattern *consumer producer*
+
+
