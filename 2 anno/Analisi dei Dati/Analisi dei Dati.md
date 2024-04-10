@@ -312,7 +312,7 @@ Anche l'*errore standard* può dipendere dai parametri della popolazione e quind
 #### Errore standard della media campionaria
 
 L'*errore standard* dello stimatore media campionaria è ( con la deviazione standard non stimata ) :
-$$SE(\hat\mu)=SE(\overline X)=\frac{\sigma}{\sqrt n}$$
+$$SE(\hat\mu)=SE(\overline X)=\frac{\sigma}{\sqrt n} = \sqrt{\frac{Var(X_1)}{n}}$$
 $SE(\hat\mu)$ viene *stimato* con la deviazione standard campionaria ( stimata ) : 
 $$\widehat{SE}(\hat\mu)=\frac{S}{\sqrt n}$$
 Le proprietà delle *trasformazioni* ci dicono che $\widehat{SE}(\hat\mu)$ è uno stimatore di $SE(\hat\mu)$ con le seguenti caratteristiche : 
@@ -604,7 +604,7 @@ Lo stimatore di massima verosimiglianza è quel valore del parametro $\theta$ ch
 
 La *funzione di verosimiglianza* è proporzionale $\propto$ alla probabilità di osservare ciò che è stato effettivamente osservato 
 
-Nel *caso discreto* la funzione di verosimiglianza è quindi proporzionalèalla funzione di probabilità congiunta dei dati 
+Nel *caso discreto* la funzione di verosimiglianza è quindi proporzionale alla funzione di probabilità congiunta dei dati 
 $$L(\theta) \propto Pr(X_1=x_1,\dots,X_n=x_n;\theta)$$
 Che per un campione casuale semplice diventa : 
 $$L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)$$
@@ -742,7 +742,7 @@ Stimare gli errori standard può essere complicato anche per in modelli semplici
 >[!example]
 >9.12 baron
 
-##### Proprietà asintotiche dello stiamtore di massima verosimiglianza
+##### Proprietà asintotiche dello stimatore di massima verosimiglianza
 
 Sotto *assunzioni* che valgono nei problemi che affronteremo ( **non è necessario conoscerle** ) lo stimatore di massima verosimiglianza è : 
 + *asintoticamente non distorto* :
