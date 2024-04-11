@@ -4391,6 +4391,16 @@ Allora $(u,v)$ è *sicuro* per $A$ cioè $A \cup \{u,v\}$ è contenuto n qualche
 + `Find_Set(x) ->` $S_y \ \text{t.c.} \ x\in S_y$ 
 	Ritorna il *rappresentante* dell'insieme che contiene $x$ 
 
+L'implementazione può essere fatta in 2 modi differenti : 
++ **Liste concatenate**
+	+ `make_set(x)` semplicemente inizializza una cella con il valore $x$ e il puntatore `next` a `nullptr`
+	+ `Union(x,y)` semplicemente concateniamo le 2 liste
+	+ `Find_Set(x)` siamo costretti a scorrere l'intera lista
++ **Alberi radicati** 
+	Costruiamo un albero binario radicato rispetto al rappresentate dell'insieme
+	+ `Union(x,y)` visto che utilizziamo gli alberi quando facciamo la `union` è meglio che bilanciamo l'albero altrimenti la ricerca non è efficente ( questo avrà complessità $\log n$ )
+	+ `Find_Set(x)` scorre l'albero fino alla radice e ritorna la radice ( $\log n$ )
+
 Con questa struttura dati possiamo scrivere il seguente algoritmo che restituisce le componenti connesse di un grafo $G$ 
 
 ```pseudo
@@ -4412,21 +4422,74 @@ Con questa struttura dati possiamo scrivere il seguente algoritmo che restituisc
 >Svolgiamo l'agoritmo sul seguente grafo
 ![[ExGraph.excalidraw]]
 >
->
-
 | Step | Insiemi                               | Arco    |
 | :--: | ------------------------------------- | ------- |
 |  0   | $\{1\},\{2\},\{3\},\{4\},\{5\},\{6\}$ |         |
 |  1   | $\{1,2\},\{3\},\{4\},\{5\},\{6\}$     | $(1,2)$ |
-|  2   | $\{1,2,3\},\{4\},\{5\},\{6\}$         | $(4,5)$ |
+|  2   | $\{1,2\},\{3\},\{4,5\},\{6\}$         | $(4,5)$ |
 |  3   | $\{1,2,3\},\{4,5\},\{6\}$             | $(1,3)$ |
 |  4   | $\{1,2,3\},\{4,5\},\{6\}$             | $(2,3)$ |
-
-
 #### Algoritmo di ricerca di MST
 
+```pseudo
+	\begin{algorithm}
+	\caption{$\text{Generic-MST}$}
+	\begin{algorithmic}
+	\State $A \leftarrow \emptyset$
+	\While{$|A| < |V[E]|-1$}
+		\State $\text{trova un arco sicuro per A}$
+		\State $A \leftarrow A \cup \{(u,v)\}$
+    \EndWhile
+    \Return A
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+**Correttezza**
+
+Questo algoritmo è corretto per come viene costruito $A$ ( questo infatti sarà sempre un sottoinsieme di un $MST$ ) ( per via del *teorema fondametale degli MST* )
+>[!todo] 
+>Controlla ?????
 #### Algoritmo di Kruskal
 
-#### Algoritmo di Primm
+Avendo $G$ un grafo non orientato connesso
+
+```pseudo
+	\begin{algorithm}
+	\caption{$Kruskal(G)$}
+	\begin{algorithmic}
+	\State $A \leftarrow \emptyset$
+	\ForAll{$v \in V[G]$}
+		\State $\text{Make\_Set(v)}$
+    \EndFor
+    \State $\text{Ordina gli archi di G in modo crescente}$
+    \ForAll{$(u,v) \in E[G]$}
+	    \If{$\text{Find\_Set(u)} \neq \text{Find\_Set(v)}$}
+		    \State $\text{Union(u,v)}$
+		    \State $A \leftarrow A \cup \{(u,v)\}$
+        \EndIf
+    \EndFor
+    \Return A
+	\end{algorithmic}
+	\end{algorithm}
+```
+**Correttezza**
+
+La correttezza dell'agoritmo può essere verificata grazie al *teorema fondametale degli MST* , inoltre , per il modo in cui estraggo l'arco ( estraggo sempre il minimo dall'ordinamento crescente ) questo sarà **sicuro** per $A$
+
+**Complessità**
+
+Indichiamo con $n$ il numero di vertici e $m$ il numero di archi
+
+La complessità è data da :
++ Il primo `for each` ha complessità $O(n)$
++ L'ordinamento ha complessità $O(m \log m)$ ( visto che è la complessità migliore pe un algoritmo di ordinamento basato sui confronti )
++ Il secondo `for each` viene svolto $m$ volte e le operazioni `find_set` e `union` hanno complessità $O(\log m)$ , avremo quindi che la complessità totale sarà $O(m\log m)$
+
+La complessità totale sarà : $O(n + m \log m + m \log m) = O(m \log m)$ 
+questo poichè essendo che siamo in un grafo *connesso* $m \ge n$ 
+#### Algoritmo di Prim
+
+L'algoritmo di *Prim* a differenza dell'algoritmo di *Kruskal* costruisce un albero radicato 
 
 ### Cammini minimi sui grafi
