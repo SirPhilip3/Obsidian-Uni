@@ -907,4 +907,5 @@ se thread rapido per fare un cosa semplice senza dati -> lambda o anonymus class
 
 pattern *consumer producer*
 
+# 11/04/2024
 
