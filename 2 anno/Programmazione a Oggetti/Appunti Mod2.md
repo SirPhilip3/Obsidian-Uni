@@ -924,3 +924,30 @@ wait non sono postbufferizzate -> se ho ricevuto 40 notif prima di dormire le wa
 
 notifyAll -> sveglia tutti i thread sullo stesso monitor ( oggetto condiviso ) 
 
+wait(long) -> dovrme finchè o non viene svegliato da notify o dopo il tempo in millisecondi long
+wait(long , int) -> stesso ma più precisa , se voglio dormire con precisione maggiore dei millisecondi 
+
+A runtime -> 2 eccezioni da 1-consumer 2-produce -> illegalmonitorstate
+
+current thread is not owner 
+
+mutex in java : 
+pthread -> semaphore
+
+costrutto per il mutex-> 
+```java
+syncronized(...) {...}
+```
+per costruire sezione critcia
+-> come se facessi :
+```java
+mutex.lock
+....
+mutex.unlock
+```
+sia producer che consumer
+
+ogni oggetto può essere sia un semaforo che un monitor
+
+pattern -> ogni volta che utilizziamo stessa struttura dati metti syncronize su tutti i thread -> se ho bisogno di monitor la wait dentro la syncronize
+
