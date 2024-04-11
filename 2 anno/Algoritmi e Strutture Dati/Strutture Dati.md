@@ -4294,4 +4294,32 @@ $T$ è un **MST** di $G$
 	1. *cuci* aggiungo l'arco $(u,v)$ a $T$ = $T'$ , in questo caso si crea un ciclo visto che $T$ è un **MST** 
 	   poichè abbiamo un ciclo sicuramente avremo un arco che attraversa il taglio oltre a $(u,v)$ , $(x,y)$ 
 	   Inoltre visto che $(u,v)$ è *leggero* sicuramente avremo che tutti gli altri archi presenti nel taglio avranno il peso $\le$ rispetto a $(u,v)$ ( $w(u,v)\le w(x,y)$ ) 
+	2. *taglia* rimuoviamo l'arco che creava il ciclo dal gafo $T'$
+		$T' - \{x,y\} = T''$ allora $T''\in MST(G)$ 
+		Come prima cosa $T''$ sicuramente è uno *spanning tree* per il modo in cui l'ho costruito : ossia aggiungendo e poi togliendo un arco ma se $T''$ fosse un $MST(G)$  allora dovrebbe essere che : $w(T'') == w(T)$ 
+		$w(T'') = w(T)+w(u,v)-w(x,y)$  
+		visto che $w(u,v)\le w(x,y)$ sicuramente $w(u,v) - w(x,y) \le 0$
+		Quindi $w(T'') \le w(T)$ e poichè $T$ è un $MST$ $\implies w(T)\le w(T'')\le w(T)$ 
 
+>[!todo] 
+>Spiega meglio
+
+>[!important] 
+Questo ci dice che se $(u,v)$ è un arco leggero che attraversa $(S,V-S)\implies \exists\ T \in MST(G)\ \text{t.c.}\ (u,v)\in T$  
+
+Dimostriamo ora che se $(u,v)$ è l'*unico* arco leggero che attravversa il taglio $(S,V-S)$
+$$\implies \forall\ T \in MST(G) \ \text{t.c.} \ (u,v) \in T$$
+Ossia tutti gli alberi di copertura minimi conterranno quell'arco
+
+**Dimostrazione** per assurdo
+
+Supponiamo che $\exists \ T \in MST(G)\ \text{t.c.} \ (u,v) \notin T$
+Utilizziamo la tecnica del *cuci e taglia* per la dimostrazione
+
+1. $T' = T \cup (u,v)$ -> si forma un ciclo , sicuramente avremo un arco $(x,y)$ che attraversa il taglio
+2. $T'' = T' - (x,y)$ -> $T''$ è uno *spanning tree* , poichè $(u,v)$ è un arco leggero unico avremo che $w(u,v) < w(x,y)$ 
+	Avremo quindi che : $w(T'')=w(T)-w(u,v)+w(x,y)$ ma essendo che $w(u,v)-w(x,y)<0$ questo è **assurdo** 
+
+**Osservazione**
+
+Abbiamo $G(V,E,w)$ grafo non orientato connesso e $(u,v)\in E$ è l'arco di peso minimo dell'intero grafo allora $\forall (x,y) \in E \implies w(u,v)\le w(x,y)$

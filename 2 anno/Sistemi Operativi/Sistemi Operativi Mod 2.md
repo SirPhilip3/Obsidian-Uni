@@ -1815,3 +1815,4 @@ Consumatore() {
 >Quando si inseriscono *sezioni critica* bisogna verificare che al loro interno non vi siano semafori bloccanti
 
 ## Semafori in POSIX
+
