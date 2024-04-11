@@ -4339,18 +4339,89 @@ Sia $G=(V,E,w)$ un grafo non orientato e connesso dove $w : E \to \mathbb{R}$ è
 Valgono le seguenti ipotesi : 
 + $A \subseteq E$ è un sottoinsieme di archi contenuto in qualche $MST$
 + $(S,S-V)$ un talgio di $G$ che **rispetta** A ( ossia se gli archi di A stanno in S o S-V o entrambi ma non devono esserci archi di A che attraversano il taglio )
-+ Un arco $(u,v)$ è un arco leggero che attraversa il taglio 
++ Un arco $(u,v)$ è un *arco leggero* che attraversa il taglio 
 
 Allora avremo che il *teorema fondamentale degli MST* afferma che $A \cup (u,v)$ è contenuto in qualche $MST$ . Si può dire che $(u,v)$ è **sicuro** per A
 
 **Dimostrazione** : ( sempre per il *cuci e taglia* ) 
 
 Sia $T\in MST(G)$ tale che $A \subseteq T$ 
-1. $(u,v)\in T$ 
+1. $(u,v)\in T$ questo implica che $A \cup (u,v) \subseteq T$
+2. $(u,v)\notin T$ 
+	1. Aggiungiamo $(u,v)$ -> $T' = T \cup (u,v)$
+	2. Tagliamo  $T'' = T' - (x,y)$ ( questo sarà un *minimum spanning tree* di $G$ poichè aggiungiamo un arco leggero del taglio e togliamo un arco leggero ( questo poichè si trova sul taglio che ha come arco leggero $(u,v)$ ) $(x,y)$ )
+	Avremo quindi che $T''$ è un $MST$ di $G$
+
+Possiamo quindi dire che $A\cup (u,v)\subseteq T''$ poichè $A$ era un insieme di archi tranne quelli sul taglio , $(u,v)$ invece è l'arco che abbiamo scielto da aggiungere in $T$ questo inoltre fa parte del taglio , avremo quindi che $A \cup (u,v) \subseteq T''$
+
+>[!note] 
+>Se nel metodo *cuci e taglia* facciamo prima il taglia del cuci non è la stessa cosa e porta ad un risultato scorretto
+
+>[!example]
+>>[!todo] 
 
 ###### Corollario del Teorema Fondamentale
 
+In pratica è al riscrittura delle ipotesi che però portano alla stessa conclusione : 
+
+Se G è un grafo non orientato connesso , pesato allora avremo le seguenti ipotesi : 
+1. $A \subseteq E$ è un sottoinsieme di archi contenuto in qualche $MST$ 
+2. Sia $C$ una componente connessa della foresta $G_A=(V,A)$
+3. Sia $(u,v)$ un arco leggero che connette $C$ ad un'altra componente connessa della foresta $G_A$
+
+Allora $(u,v)$ è *sicuro* per $A$ cioè $A \cup \{u,v\}$ è contenuto n qualche $MST$
 #### Strutture Dati per Insiemi Disgiunti
+
+>[!note] 
+>L'intersezione di questi insiemi da $\emptyset$ 
+>
+>Ogni insieme è caratterizzato da un *rappresentante* che lo individua
+
+>[!example] 
+>$S_5 = \{3,5,7,32\}$
+>$S_2 = \{2\}$
+>$S_{17} = \{8,9,17,4\}$
+>
+
+**Operazioni** : 
++ `make_set(x) ->`$S_x = \{x\}$ 
+	Crea un insieme il cui unico elemento è $x$ , questo diventa anche il suo *rappresentante*
++ `Union(x,y) ->`$S_x \cup S_y$ 
+	Unisce 2 insiemi i cui *rappresentanti* sono $x$ e $y$
++ `Find_Set(x) ->` $S_y \ \text{t.c.} \ x\in S_y$ 
+	Ritorna il *rappresentante* dell'insieme che contiene $x$ 
+
+Con questa struttura dati possiamo scrivere il seguente algoritmo che restituisce le componenti connesse di un grafo $G$ 
+
+```pseudo
+	\begin{algorithm}
+	\caption{$\text{Connected Components}$}
+	\begin{algorithmic} 
+		\ForAll{$v \in V[G]$}
+		\State $\text{Make\_Set(v)}$
+        \EndFor
+        \ForAll{$(u,v)\in E[G]$}
+	        \If{$\text{Find\_Set(u)} \neq \text{Find\_Set(v)}$ }
+		        \State $\text{Union(u,v)}$
+            \EndIf
+        \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
+>[!example] 
+>Svolgiamo l'agoritmo sul seguente grafo
+![[ExGraph.excalidraw]]
+>
+>
+
+| Step | Insiemi                               | Arco    |
+| :--: | ------------------------------------- | ------- |
+|  0   | $\{1\},\{2\},\{3\},\{4\},\{5\},\{6\}$ |         |
+|  1   | $\{1,2\},\{3\},\{4\},\{5\},\{6\}$     | $(1,2)$ |
+|  2   | $\{1,2,3\},\{4\},\{5\},\{6\}$         | $(4,5)$ |
+|  3   | $\{1,2,3\},\{4,5\},\{6\}$             | $(1,3)$ |
+|  4   | $\{1,2,3\},\{4,5\},\{6\}$             | $(2,3)$ |
+
 
 #### Algoritmo di ricerca di MST
 
