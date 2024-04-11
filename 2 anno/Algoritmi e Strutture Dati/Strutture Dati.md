@@ -4490,6 +4490,52 @@ La complessità totale sarà : $O(n + m \log m + m \log m) = O(m \log m)$
 questo poichè essendo che siamo in un grafo *connesso* $m \ge n$ 
 #### Algoritmo di Prim
 
-L'algoritmo di *Prim* a differenza dell'algoritmo di *Kruskal* costruisce un albero radicato 
+L'algoritmo di *Prim* a differenza dell'algoritmo di *Kruskal* costruisce un albero radicato , prendendo in input il grafo , la funzione peso e la radice dell'MST
+
+L'algoritmo si serve di una struttura dati formata da una coda di minima priorità $Q$ che memorizza i vertici del grafo per estrarli uno alla volta sulla base del campo `Key[u]` , $u \in V$ , che contiene il minore tra i pesi degli archi $u$ che attraversano un taglio 
+
+La *key* rappresenta la chiave della coda di priorità $Q$ , se volgio quindi estrarre un arco leggero mi basterà prendere la *key* con il valore minore , dopo aver aggiunto un arco devo però aggiornare i campi *key* dei vertici rimaneti visto che il taglio adesso non comprende più il vertice scelto
+
+Per ogni vertice inoltre abbiamo un campo `predecessore` che è un puntatore al suo predecessore ( utilizzato per costruire l'albero che stiamo cercando )
+
+>[!example] 
+![[Prim.excalidraw]]
+
+Il campo *key* deve essere aggiornato infatti potremmo avere il seguente caso : 
+
+![[keycahgeMST.excalidraw]]
+
+>[!note] 
+>L'ordine di estrazione non è importante , tanto troveremo al massimo un MST diverso ma sarebbe comunque un MST
+
+**Algoritmo** : 
+
+```pseudo
+	\begin{algorithm}
+	\caption{MST\_Prim(G,w,r)}
+	\begin{algorithmic}
+	\State $Q \leftarrow V[G]$
+	\ForAll{$u \in V[G]$}
+		\State $key[u]\leftarrow + \infty$
+		\State $\pi[u] \leftarrow NIL$
+    \EndFor
+    \State $key[r] \leftarrow 0$
+    \While{$Q \neq \emptyset$}
+	    \State $u \leftarrow \text{Extract\_Min(Q)}$
+		\ForAll{$v \in Adj[u]$}
+			\If{$v \in Q \land w(u,v) < key[v]$}
+				\State $key[v]\leftarrow w(u,v)$
+				\State $\pi[v] \leftarrow u$
+            \EndIf
+        \EndFor
+    \EndWhile
+    \Return $A = \{v,\pi[v]\in E | v \in V - \{r\}\} $
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+**Spiegazione** : 
+>[!todo] 
+
 
 ### Cammini minimi sui grafi
