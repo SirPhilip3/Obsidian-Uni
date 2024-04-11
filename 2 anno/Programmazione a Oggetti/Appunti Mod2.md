@@ -909,3 +909,18 @@ pattern *consumer producer*
 
 # 11/04/2024
 
+pattern *consumer producer*
+
+1 produce  l'laltro la consuma -> struttura dati condivisa
+
+tutti gli oggetti java sono anche monitor -> dentro object 2 metodi : 
++ wait 
++ notify
+
+se uno dorme non posso chiamare notify ( non posso eseguire codice )
+non continua finchè non si chiama notify sullo stesso oggetto -> qualunque ???
+
+wait non sono postbufferizzate -> se ho ricevuto 40 notif prima di dormire le wait ignorano le 40 notify , non defo waitare tutto
+
+notifyAll -> sveglia tutti i thread sullo stesso monitor ( oggetto condiviso ) 
+
