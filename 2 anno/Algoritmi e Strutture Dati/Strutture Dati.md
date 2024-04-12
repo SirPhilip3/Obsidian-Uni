@@ -4573,7 +4573,7 @@ Dato un *grafo orientato* $G=(V,E)$ avente pesi sugli archi ( $w: E \to \mathbb{
 Il problema che ora affrontiamo è quello di determinare il cammino minimo tra due vertici 
 
 >[!note] 
->Gli algoritmi che studieremo saranno applicabili sia a grafi non orientati
+>Gli algoritmi che studieremo saranno applicabili sia a grafi non orientati ( possimao convertirli in grafi orientati duplicando gli archi e mettendoli in direzioni opposte con lo stesso peso )
 
 >[!important] Definizione
 >Avendo due $u,v \in V$ : $v$ è raggiungibile da $u$ se $\exists$ un cammino tra $u$ e $v$ altrimenti viene detto *irraggiungibile*   
@@ -4586,3 +4586,46 @@ Il problema che ora affrontiamo è quello di determinare il cammino minimo tra d
 >L'insieme dei cammini può anche essere scritto nel seguente modo : 
 >$C(u,v) = \{p|p\ \text{è un cammino tra u e v}\}$
 
+La *Distanza tra 2 vertici* sarà :
+$$\sigma(u,v)=\begin{cases}
+\min w(p) & \text{se} \ C(u,v)\neq \emptyset \\
++\infty & \text{se} \ C(u,v)= \emptyset \\
+-\infty & \text{se} \ C(u,v)\neq \emptyset\ \text{ed}\ \exists \ \text{cicli di costo negativo tra u e v}
+\end{cases}$$
+Possiamo descrivere i tre casi nel seguente modo : 
+1. Ritorneremo il peso minimo tra i cammini trovati tra $u$ e $v$
+2. La distanza è $+\infty$ se $v$ sono *irraggiungibili*
+3. La distanza è $-\infty$ se esiste un ciclo *negativo* tra $u$ e $v$
+
+Facciamo un esempio : 
+
+![[Distance.excalidraw]]
+
+#### Quattro tipi di problemi
+
+I problemi che possiamo risolvere si possono dividere a seconda del numero di sorgenti e destinazioni 
+
+1. Dati $G=(V,E)$ orientato e pesato sugli archi e $u,v \in V$ si cerchi il cammino minimo da $u$ a $v$ 
+2. Dati $G=(V,E)$ orientato e pesato sugli archi e $s \in V$ si cerchi il cammino minimo da $s$ a tutti gli altri vertici 
+3. Dati $G=(V,E)$ orientato e pesato sugli archi e $d \in V$ si cerchi il cammino minimo da tutti i vertici a $d$
+4. Dati $G=(V,E)$ orientato e pesato sugli archi si cerchi il cammino minimo tra tutte le possibili coppe di nodi 
+
+I problemi 2 e 3 sono interscambiabili basterà invertire il verso del grafo 
+
+>[!note] 
+>Il problema 1 risulta avere una simile complessità al problema 2 perchè comunque dovremo cercare l'intero grafo
+
+#### Proprietà dei cammini minimi
+
+#### Strutture dati
+
+#### Dijkstra
+
+```pseudo
+	\begin{algorithm}
+	\caption{Algo Caption}
+	\begin{algorithmic}
+
+	\end{algorithmic}
+	\end{algorithm}
+```
