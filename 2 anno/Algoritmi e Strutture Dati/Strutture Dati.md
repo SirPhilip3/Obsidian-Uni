@@ -4535,8 +4535,54 @@ Il campo *key* deve essere aggiornato infatti potremmo avere il seguente caso :
 ```
 
 **Spiegazione** : 
->[!todo] 
 
++ *Inizializzazione* : 
+	All'inizio dell'algoritmo $Q$ corrisponde all'insieme dei vertici $V$  
+	Il campo `Key[u]` di ogni nodo viene inizializzato a $\infty$ tranne per la radice che è inizializzata a 0 
+	Il campo $\pi$ di ogni nodo viene inizializzato a `NIL` 
++ *Estrazione* : 
+	Finchè $Q$ non è vuoto viene estratto il minimo da $Q$ cioè il vertice del grafo che non è ancora stato estratto avente campo `Key` minore.
+	Questo prevede anche l'aggiornamento del *taglio* che divide i nodi appartenenti a $Q$ sai nodi $V-Q$
++ *Aggiornamento campi* :
+	L'estrazione di un elemento di $Q$ va aggiunto all'insieme $V-Q$ , questo porta alla conseguenza che il *taglio* va aggiornato
+	Bisogna quindi aggiornare il valore `Key` dei nodi di $V-Q$ ( per esempio se includiamo un arco non incluso precedentemente )
 
+**Terminazione** : 
+
+Poichè tolgo sempre nodi da $Q$ prima o poi questo diventerà $\emptyset$ e quindi l'algoritmo terminerà
+
+**Correttezza** : 
+
+Poichè ogni ciclo del `while` aggiungiamo un arco leggero avremo che sicuramente ritorna un *MST*
+
+**Complessità** :
+
++ L'inizializzazione ha complessità $O(n)$ 
++ *Extract_Min* : visto che il minimo si trova sulla radice dell'albero dovremo aggiornare l'albero , questo costa $\log n$
++ Il *for each* viene svolto per il numero di archi adiacenti a $u$ ( ossia il grado di quel vertice ) , visto che questo viene svolto per tutti i nodi allora verrà svolto $2 \cdot m$ 
+
+Avremo quindi in totale che la complessità sarà : 
+$$n+n\log n + 2m\log n$$
+Visto che $m \ge n-1$ avremo che $T(n,m)=O(m\log n)$ 
+
+>[!example] 
+>>[!todo] 
 ### Cammini minimi sui grafi
+
+Dato un *grafo orientato* $G=(V,E)$ avente pesi sugli archi ( $w: E \to \mathbb{R}$ )
+Il problema che ora affrontiamo è quello di determinare il cammino minimo tra due vertici 
+
+>[!note] 
+>Gli algoritmi che studieremo saranno applicabili sia a grafi non orientati
+
+>[!important] Definizione
+>Avendo due $u,v \in V$ : $v$ è raggiungibile da $u$ se $\exists$ un cammino tra $u$ e $v$ altrimenti viene detto *irraggiungibile*   
+
+>[!important] Peso di un cammino
+>Avendo il cammino $p = <x_0,x_1,x_2,...,x_q>$ dove $x_0=u$ e $x_n=v$ 
+>$\forall i = 1,...,q , \ (x_{i-1},x_i) \in E$ allora il peso del cammino sarà :
+>$w(p)=\sum^{q}_{i=1} w(x_{i-1},x_i)$
+>
+>L'insieme dei cammini può anche essere scritto nel seguente modo : 
+>$C(u,v) = \{p|p\ \text{è un cammino tra u e v}\}$
 
