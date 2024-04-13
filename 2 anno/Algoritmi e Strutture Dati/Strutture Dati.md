@@ -4617,15 +4617,75 @@ I problemi 2 e 3 sono interscambiabili basterà invertire il verso del grafo
 
 #### Proprietà dei cammini minimi
 
+>[!important] 
+>Sottocammini di cammini minimi sono anch'essi minimi
+
+>[!example] 
+![[CamminiMinimi.excalidraw]]
+
+**Dimostrazione** per *assurdo*
+
+Supponiamo per assurdo che esista un'altro cammino tra $x$ e $y$ il cui peso è minore del cammino precedente tra $x$ e $y$
+
+Allora il peso del cammino tra $u$ e $v$ avrebbe peso $<$ del cammino precedente che però è assurdo poichè abbiamo come ipotesi che il cammino tra $u$ e $v$ era minimo
 #### Strutture dati
 
-#### Dijkstra
+Per ogni vertice ( $\forall u \in V$ ) avremo : 
+1. $d[u]$ : stima della distanza tra $s$ ( sorgente ) e $u$ 
+2. $\pi[u]$ : puntatore al predecessore
 
+**Operazioni** : 
+
+*Inizializzazione*
 ```pseudo
 	\begin{algorithm}
-	\caption{Algo Caption}
+	\caption{INIT\_SS(G)}
 	\begin{algorithmic}
+	\ForAll{$v \in V[G]$}
+		\State $d[v] = +\infty$
+		\State $\pi[v] = NIL$
+    \EndFor
+    \State $d[s] = 0$
+	\end{algorithmic}
+	\end{algorithm}
+```
 
+*Relax*
+Utilizzato per abbassare il valore $d$ di un vertice 
+```pseudo
+	\begin{algorithm}
+	\caption{RELAX(u,v, w(u,v))}
+	\begin{algorithmic}
+    \If{$d[u]>d[v]+w(u,v)$}
+	    \State $d[v]\leftarrow d[u] + w(u,v)$
+	    \State $\pi[v]\leftarrow v$
+    \EndIf
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!example] 
+>![[relax.excalidraw]]
+
+Visto che $d[u]$ rappresenta la distanza del cammino che abbiamo trovato fino ad ora e visto che ora $d[u]+w(u,v)$ è minore di $d[v]$ allora significa che abbiamo trovato un cammino migliore per arrivare a $d[v]$ 
+#### Dijkstra
+
+*Intuizione* : estrea una radice alla volta e rilasserà gli archi uscenti da quel vertice
+```pseudo
+	\begin{algorithm}
+	\caption{DIJKSTRA(G,w,s)}
+	\begin{algorithmic}
+	\State $INIT\_SS(G)$
+	\State $Q \leftarrow V[G]$
+	\State $S \leftarrow \emptyset$
+	\While{$Q \neq \emptyset$}
+		\State $u \leftarrow EXTRACT\_MIN(Q)$
+		\ForAll{$v \in Adj[u]$}
+			\State $RELAX(u,v,w(u,v))$
+        \EndFor
+        \State $S \leftarrow S \cup \{u\}$
+    \EndWhile
+    \Return
 	\end{algorithmic}
 	\end{algorithm}
 ```
