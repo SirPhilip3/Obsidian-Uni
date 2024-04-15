@@ -1,4 +1,5 @@
-# list comprehension
+# 10/04/2024
+## list comprehension
 
 applicare funzione a tutti el di una lista e salvare risultati in un'altra lista
 
@@ -23,7 +24,7 @@ print (my_dict)
 # coppie ( x (0->9), y (0->8) )
 ```
 
-# Funzioni
+## Funzioni
 
 ```python
 def square(x): 
@@ -147,3 +148,8 @@ print(f.good_dog())
 
 accesso al database 
 
+# 15/04/2024
+
+Metadata contiene la definizione delle tabelle + attributi delle tabelle 
+
+compile() -> per vedere la statement compilata 
