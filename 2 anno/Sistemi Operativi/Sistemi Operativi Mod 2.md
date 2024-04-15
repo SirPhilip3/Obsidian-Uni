@@ -1832,4 +1832,11 @@ I *semafori POSIX* sono utilizzabili attraverso la libreria `semaphore.h`
 	+ `value` : è il valore del semaforo ( quanti thread possono andare in esecuzoine prima che diventi rosso )
 + `{c}int sem_wait(sem_t *sem)` : esegue una `P(sem)`
 + `{c}int sem_post(sem_t * sem)` : esegue una `V(sem)`
-+ `{c}sem_destroy(sem_t )`
++ `{c}void sem_destroy(sem_t *sem)` : elimina il semaforo `sem` 
+>[!warning] 
+>Porta a comportamento inatteso se viene usato mentre ci sono processi in attesa sul semaforo
++ `{c}int sem_getValue(sem_t *sem, int *val)` : legge il valore del semaforo `sem` e lo copia in `val`
+
+>[!warning] 
+>In MACOS supporta solamente semafori con nome , quindi al posto di `sem_init` si deve usare `sem_open` , al posto di `sem_destroy` `sem_close` e `sem_unlink` 
+
