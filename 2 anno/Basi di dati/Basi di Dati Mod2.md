@@ -2091,7 +2091,6 @@ Nel caso avessimo indici formati da più attributi l'ordine di primo grado sarà
 >[!example] 
 >>[!todo] 
 
-
 >[!note] 
 >Generalemente se il database si trova completamente in RAM allora il guadagno in termini di accessi è generalmente minimale
 
@@ -2102,5 +2101,25 @@ Una metrica migliore è basata sul numero di *pagine* caricate in RAM :
 + Anche se volessimo accedere ad una sola tuple comunque dovremmo caricare la corrispondente pagina in RAM
 + L'accesso a tutte le tuple in una pagina è solo poco più costoso dell'accesso ad una singola tupla 
 
-Se una tabella è fortemente 
+Se una tabella è fortemente "*clusterizzata*" su un certo attributo nella memoria fisica è possibile accedere a molte tuple caricando solo poche pagine : il numero di tuple come stima del costo effettivo risulta essere quindi *pessimistica*
+
+>[!example] 
+>Supponiamo che la tabella `Movies` occupi 700 pagine di memoria e ogni pagina contenga 100 tuple e che vi siano 300 film prodotti nel 2001 : 
+>+ se i film sono salvati sul disco ordinati per anno possono bastare 3 pagine ( tuple tutte continue )
+>+ Nel caso peggiore potremmo dover accedere a 300 pagine ( ogni pagina contiene una sola tupla con 1 solo film del 2001 )
+
+**Conclusioni Indici** : 
+
++ **Pro** : 
+	Un *indice* su di un asttributo può accelerare di molto l'esecuzione delle query in cui un valore è specificato per quell'attributo o di join che coinvolgono quell'attributo
++ **Contro** : 
+	Ogni indice che utilizziamo rende le operazioni di inserimento , cancellazione e aggiornamento più costose poichè anche l'indice deve essere aggiornato  
+
+**Consigli** : 
++ *Utilizzare gli indici* :
+	+ Su una chiave 
+	+ Sulle chiavi esterne 
+	+ Qando le operazioni di modifica sono rare 
+	+ Quando le tuple sono cllusterizzate su un certo attributo nella memoria fisica
 ### Transazioni
+
