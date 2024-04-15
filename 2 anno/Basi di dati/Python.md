@@ -153,3 +153,8 @@ accesso al database
 Metadata contiene la definizione delle tabelle + attributi delle tabelle 
 
 compile() -> per vedere la statement compilata 
+
+sqlalchemy ORM
+
+generalmente solo per query di aggiornamento semplici
+
