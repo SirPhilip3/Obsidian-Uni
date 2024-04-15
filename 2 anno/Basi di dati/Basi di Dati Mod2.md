@@ -2120,6 +2120,93 @@ Se una tabella è fortemente "*clusterizzata*" su un certo attributo nella memor
 	+ Su una chiave 
 	+ Sulle chiavi esterne 
 	+ Qando le operazioni di modifica sono rare 
-	+ Quando le tuple sono cllusterizzate su un certo attributo nella memoria fisica
+	+ Quando le tuple sono clusterizzate su un certo attributo nella memoria fisica ( `CLUSTER` )
++ *Non utilizzare gli indici* : 
+	+ Su tabelle piccole che occupano un ridotto numero di pagine
+	+ Su attributi poco selettivi ( sesso , stato civile )
+	+ Su attributi modificati di frequente
+
+#### Definizione di Indici
+
+Una sintassi per definire un nuovo indice è la seguente : 
+```postgresql
+CREATE INDEX NomeIndice ON NomeTabella ( Attributi )
+```
+
+Sintassi per eliminare un indice : 
+```postgresql
+DROP INDEX NomeIndice
+```
+
+>[!note] 
+>Una volta che un indice è definito il *DBMS* lo utilizza automaticamente quando lo ritiene più efficente dello scanning sequenziale
+
+>[!tip] 
+>+ `ANALYZE TableName` : ci fornisce delle statistiche sulla distribuzione dei dati , utilizzate dal query planner per decidere che *indici* usare
+>+ `EXPLAIN Query` : Spiega che metodo ha utilizzato il query planner per svolgere quella query 
+>>[!example] 
+>>Senza index
+>> ```postgresql
+>>EXPLAIN SELECT * FROM foo; 
+>>						QUERY PLAN
+>> --------------------------------------------------------- 
+>> Seq Scan on foo (cost=0.00..155.00 rows=10000 width=4) (1 row)
+>>```
+>>Con index
+>> ```postgresql
+>>EXPLAIN SELECT * FROM foo WHERE i = 4; 
+>>						QUERY PLAN
+>> --------------------------------------------------------- 
+>> Index Scan using fi on foo (cost=0.00..5.98 rows=1 width=4) Index Cond: (i = 4) (2 rows)
+>>```
+>>
+
+#### Modello di Costo
+#### Selezione Automatica di Indici
+
+Un *DBMS* può suggerire automaticamente gli indici migliori sulla base di un *modello di costo* simile al seguente : 
+1. Usa i log delle query per stimare il costo delle operaizoni più frequenti
+2. Genera un insieme di *indici candidati* $I$ e stima i loro tempi di esecuzione
+3. Ritorna l'insieme di indici $J_{min}$ che ottimizza i tempo di esecuzione 
+
+>[!note] 
+>Il secondo passo potrebbe essere implementato in modo *greedy* ( non considera altri risultati ) per motivi di efficenza :
+>1. Usa i log delle query per stimare il costo delle operaizoni più frequenti
+>2. Genera un insieme di indici candidati $I$ ed inizializza $J \neq \emptyset$
+>3. Finchè è possibile migliorare i tempi di esecuzione : 
+>	1. Identifica $i_{min} \in I$ ossia l'indice che ottimizza meglio i tempi di esecuzione assumendo di avere già creato gli indici in $J$
+>	2. Imposta $J = J \cup {i_{min}}$
+>	3. Imposta $I = I -  {i_{min}}$
+
+#### Viste e Performance
+
+Le *viste* hanno un problema di performance in quanto devono essere *valutate* ogni volta che viene fatta una query su di questa 
+
+Una possibile soluzione sarebbero le *viste materializzate*
+##### Viste Materializzate
+
+SQL permette di *materializzare* una vista in memoria in modo che essa *non venga valutata* ad ogni query che la coinvolge :
+
+>[!example] 
+>```postgresql
+>CREATE MATERIALIZED VIEW MovieProd AS 
+>	SELECT m.title, m.year, e.name 
+>	FROM Movies m, MovieExec e 
+>	WHERE m.producer = e.code
+>```
+
+>[!note] 
+>L'uso di viste materializzate comporta un costo aggiuntivo derivante dalla necessità di riflettere sulla vista le modifiche alle tabelle su cui la vista è costruita
+
+Non c'è bisogno di aggiornare `MovieProd` quando : 
++ Modifichiamo tabelle differenti da `Movies` e `MovieExec`
++ Modifichiamo attrbuti diversi da quelli menzionati nella definizione di `MovieProd`
+
+>[!important] Approccio Conservativo
+>In tutti i restanti casi rigenero la vista ( è possibile svolgere diverse ottimizzazioni )
+>*Postgres* delega la responsabilità all'utente finale che manualmente dovre
+
+##### Inlining Viste Materializzate
 ### Transazioni
 
+### Linguaggi per SQL
