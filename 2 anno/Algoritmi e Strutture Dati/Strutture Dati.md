@@ -4683,11 +4683,30 @@ Gli insiemi $V_{\pi}$ e $E_{\pi}$ sono definiti nel seguente modo :
 #### Albero di cammini minimi
 
 $G'=(V',E')$ è un albero di cammini minimi , sottografo di $G(V,E,w)$ dove avremo che : 
-+ $V' = \{u \in V : \delta(s,u)<\}$
++ $V' = \{u \in V : \delta(s,u)<+\infty\}$
++ $G'$ forma un albero con radice $s$ 
++ Per ogni vertice $u\in V'$ l'*unico* cammino ( visto che è un albero ) tra $s$ e $u$ in $G'$ è un cammino minimo tra $s$ e $u$ in $G$
 
-#### Proprietà della Diseguaglianza triangolare 
+>[!example] 
+![[MinimumTreeWalks.excalidraw]]
 
-#### 
+#### Proprietà della Diseguaglianza triangolare
+
+Sia $G=(V,E)$ un grafo con $s\in V$ , $(u,v)\in E$ allora :
+$$\delta(s,v)\le \delta(s,u)+w(u,v)$$
+**Dimostrazione** : 
+
+Abbiamo 3 casi : 
+1. $\delta(s,u) = +\infty$ : non esiste un cammino tra $s$ e $u$ 
+	+ Avremo che $\delta(s,v) \le +\infty + w(u,v)$ e siccome $w(u,v)\in \mathbb{R}$ allora la condizione è banalmente vera
+2. $\delta(s,u) = - \infty$ : tra $s$ e $u$ esiste un ciclo negativo 
+	+ Avremo che $\delta(s,v)\le -\infty + w(u,v)$ ma quindi anche $\delta(s,v)=-\infty$ per via del ciclo negativo , dunque la condizione è verificata 
+3. $\delta(s,u) \in \mathbb{R}$ : esiste un cammino senza cicli tra $s$ e $u$ 
+	+ 
+>[!todo] 
+#### Proprietà del limite inferiore
+
+#### Proprietà della convergenza
 
 #### Dijkstra
 
@@ -4711,3 +4730,8 @@ $G'=(V',E')$ è un albero di cammini minimi , sottografo di $G(V,E,w)$ dove avre
 	\end{algorithm}
 ```
 
+**Spiegazione**
+
+**Complessità**
+
+**Correttezza**

@@ -1816,3 +1816,20 @@ Consumatore() {
 
 ## Semafori in POSIX
 
+I semafori *POSIX* sono semafori contatori che peremettono di gestire la sincronzzazione dei thread *POSIX* 
+Altri metodi per gestire la sincronizzazione tra thread sono :
++ *Phtread Mutex* : Sono semafori binari che permettono di realizzare la sezione critica ( sono solo o rossi o verdi )
++ *Pthread Condition* : Vengono utilizzati per realizzare i `monitor` 
+
+I *semafori POSIX* sono utilizzabili attraverso la libreria `semaphore.h` 
+
++ `{c}sem_t sem_name` : dichiara una variabile di tipo semaforo
++ `{c}int sem_init(sem_t *sem, int pshared, unsigned int value)`
+	+ `sem` : indica il semaforo che vogliamo inizializzare
+	+ `pshared` : 
+		+ $=0$ se vogliamo che sia condiviso tra thread 
+		+ $\neq 0$ se vogliamo che sia condiviso tra processi
+	+ `value` : è il valore del semaforo ( quanti thread possono andare in esecuzoine prima che diventi rosso )
++ `{c}int sem_wait(sem_t *sem)` : esegue una `P(sem)`
++ `{c}int sem_post(sem_t * sem)` : esegue una `V(sem)`
++ `{c}sem_destroy(sem_t )`
