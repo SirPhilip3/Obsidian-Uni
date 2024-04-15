@@ -2204,9 +2204,104 @@ Non c'è bisogno di aggiornare `MovieProd` quando :
 
 >[!important] Approccio Conservativo
 >In tutti i restanti casi rigenero la vista ( è possibile svolgere diverse ottimizzazioni )
->*Postgres* delega la responsabilità all'utente finale che manualmente dovre
+>*Postgres* delega la responsabilità all'utente finale che manualmente può : 
+>+ creare dei trigger per refreshare la vista
+>+ refershare la vista periodicamente
+>+ utilizzare il comando `REFRESH MATERIALIZED VIEW` manualmente
+
+**Ottimizzazioni** : 
+
+Potremmo svolgere queste operazioni invece di rigenerare completamente la vista
+
++ Aggiungere una tupla :
+```postgresql
+INSERT INTO VistaMaterializzata 
+VALUES (...)
+```
++ Eliminare una tupla o delle tuple : 
+```postgresql
+DELETE FROM VistaMaterializzata
+WHERE ...
+```
+
+**Conclusioni** :
+
++ Possono velocizzare le query ma rendono operazioni di modifica più costose o potenzialmente invalidanti
++ In certi *DBMS* vengono mantenute in modo incrementale per quanto possibile ma richiedono comunque di essere *rigenerate* dopo certe operazioni
++ Possono essere *inlined* automaticamente dal *DBMS* in una query per migliorarne l'efficenza sfruttando il fatto che parte dell'informazione è già stata computata e salvata in memoria
 
 ##### Inlining Viste Materializzate
+
+Il *DBMS* può svolgere l'inlining sotto le seguenti condizioni :
+
+Abbiamo la seguente *vista materializzata* : 
+```postgresql
+SELECT AV
+FROM RV
+WHERE CV
+```
+E la seguente *query* : 
+```postgresql
+SELECT AQ 
+FROM RQ
+WHERE CQ
+```
+
+Se abbiamo che : 
++ $RV \subseteq RQ$
++ $CQ = CV \land CQ'$ per qualche $CQ'$
++ Ogni attributo di $CQ'$ che proviene da $RV$ fa parte di $AV$
++ Ogni attributo di $AQ$ che proviene da $RV$ fa parte di $AV$
+
+Allora avremo che l'*inlining* sarà : 
+```postgresql
+SELECT AQ
+FROM V , RQ-RV
+WHERE CQ'
+```
+
+>[!example] 
+Vista *materializzata*
+```postgresql
+CREATE MATERIALIZED VIEW MovieProd AS 
+	SELECT m.title, m.year, e.name 
+	FROM Movies m, MovieExec e 
+	WHERE m.producer = e.code
+```
+*Query*
+```postgresql
+SELECT s.starName 
+FROM StarsIn s, Movies m, MovieExec e 
+WHERE s.title = m.title 
+	AND s.year = m.year 
+	AND m.producer = e.code 
+	AND e.name = ’Tarantino’
+```
+Risultato dell'*inlining* : 
+```postgresql
+SELECT s.starName 
+FROM StarsIn s, MovieProd mp 
+WHERE s.title = mp.title 
+	AND s.year = mp.year 
+	AND mp.name = ’Tarantino’
+```
+
 ### Transazioni
+
+Raggruppare una *sequenza di operazioni* può causare problemi quando : 
++ Ci sono molte operazioni *concorrenti* sulla base di dati ( più persone stanno prenotando contemporaneamente un posto a sedere sullo stesso volo )
++ Certe operazioni *falliscono* e non possono essere completate
+
+In entrambi i casi possiamo danneggiare l'*integrità* della base di dati
+
+>[!example] 
+>2 utenti $u$ e $v$ vogliono prenotare lo stesso posto $22A$ *contemporaneamente*
+![[Concurrenxy.excalidraw]]
+>
+>Alla fine dell'esecuzione avremo che il posto è occupato da 2 utenti differenti
+
+>[!example] 
+>*Fallimenti*
+
 
 ### Linguaggi per SQL
