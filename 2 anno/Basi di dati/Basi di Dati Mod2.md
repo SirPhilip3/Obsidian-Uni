@@ -2301,7 +2301,50 @@ In entrambi i casi possiamo danneggiare l'*integrità* della base di dati
 >Alla fine dell'esecuzione avremo che il posto è occupato da 2 utenti differenti
 
 >[!example] 
->*Fallimenti*
+>*Fallimenti* : Vogliamo rimborsare un biglietto , preleviamo 800 euro dal conto della compagnia e aggiungiamo 800 euro nel conto del cliente 
+>
+>```postgresql
+>UPDATE Accounts
+>SET balance = balance - 800
+>WHERE acctNo = 342;
+>```
+>```postgresql
+>UPDATE Accounts
+>SET balance = balance + 800
+>WHERE acctNo = 456;
+>```
+>Potrebbe succedere che l'operazione crashi dopo la prima operazione non rimborsando ma il
+>cliente
 
+Per risolvere i problemi di *integrità* dei dati si utilizzano le **Transazioni** : 
+
+Una *transazione* è una sequenza di operazioni sul database che soddisfino le seguenti proprietà : 
+1. *Serializzabilità* : L'esecuzione concorrente di più transazioni è equivalente ad una loro esecuzione seriale in un qualche ordine 
+2. *Atomicità* : Se la transazione termina prematuramente tutti suoi effetti parziali sono annulati
+3. *Persistenza* : Le modifiche effettuate da una transazione terminata con successo sono permanenti 
+
+##### Serializzabilità
+
+L'esempio precedente dovrà essere eseguito nel seguente modo :
+
+![[Serilizable.excalidraw]]
+
+In questo modo solo uno dei due può avere quel posto 
+
+##### Atomicità 
+
+Nell'esempio precedente se avviene un crash tra 2 operazioni all'interno di una transazione questa non viene più eseguita annullando tutte le modifiche apportate fino al crash ( revert allo stato prima dell'inizio della transazione )
+
+>[!todo] 
+>Da sile 10 transazioni postgresql
+#### Programmare Transazioni
+
+##### Vincoli
+
+#### Implementazioni di Transizioni
+
+#### Transazioni Read Only
+
+#### Transazioni Read Uncommitted
 
 ### Linguaggi per SQL

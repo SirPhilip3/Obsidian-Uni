@@ -4668,6 +4668,27 @@ Utilizzato per abbassare il valore $d$ di un vertice
 >![[relax.excalidraw]]
 
 Visto che $d[u]$ rappresenta la distanza del cammino che abbiamo trovato fino ad ora e visto che ora $d[u]+w(u,v)$ è minore di $d[v]$ allora significa che abbiamo trovato un cammino migliore per arrivare a $d[v]$ 
+#### Grafo dei Predecessori
+
+$G_{\pi}=(V_{\pi},E_{\pi})$ è un sottografo del grafo di partenza $G$ che dipende dal campo predecessore dei vertici di $G$ 
+Gli insiemi $V_{\pi}$ e $E_{\pi}$ sono definiti nel seguente modo : 
++ $V_{\pi}=\{s\}\cup\{ u \in V : \pi[u] \neq NIL \}$ , ossia rappresenta tutti i vertici che hanno predecessori 
++ $E_{\pi} = \{(\pi[u],u) \in E : u \in V_{\pi} - \{s\}\}$ , rappresenta gli archi che collegano i vertici con i predecessori
+
+>[!example] 
+![[PredecessorGraph.excalidraw]]
+>
+>Avremo che : 
+>$V_{\pi} = \{s,a,c\}$ e $E_{\pi} = \{(s,a),(a,c)\}$
+#### Albero di cammini minimi
+
+$G'=(V',E')$ è un albero di cammini minimi , sottografo di $G(V,E,w)$ dove avremo che : 
++ $V' = \{u \in V : \delta(s,u)<\}$
+
+#### Proprietà della Diseguaglianza triangolare 
+
+#### 
+
 #### Dijkstra
 
 *Intuizione* : estrea una radice alla volta e rilasserà gli archi uscenti da quel vertice
@@ -4689,3 +4710,4 @@ Visto che $d[u]$ rappresenta la distanza del cammino che abbiamo trovato fino ad
 	\end{algorithmic}
 	\end{algorithm}
 ```
+
