@@ -4587,7 +4587,7 @@ Il problema che ora affrontiamo è quello di determinare il cammino minimo tra d
 >$C(u,v) = \{p|p\ \text{è un cammino tra u e v}\}$
 
 La *Distanza tra 2 vertici* sarà :
-$$\sigma(u,v)=\begin{cases}
+$$\delta(u,v)=\begin{cases}
 \min w(p) & \text{se} \ C(u,v)\neq \emptyset \\
 +\infty & \text{se} \ C(u,v)= \emptyset \\
 -\infty & \text{se} \ C(u,v)\neq \emptyset\ \text{ed}\ \exists \ \text{cicli di costo negativo tra u e v}
@@ -4704,6 +4704,7 @@ Abbiamo 3 casi :
 3. $\delta(s,u) \in \mathbb{R}$ : esiste un cammino senza cicli tra $s$ e $u$ 
 	+ Sia $p$ il cammino tra $s$ e $u$ allora se l'*unico* cammino tra $s$ e $v$ è costituito dal cammino $p$ e dall'arco tra $(u,v)$  il suo peso risulterà essere pari alla somma peso di $p$ e $w(u,v)$ , ( $\delta(s,v) = \delta(p)+w(u,v)$ ) e visto che potrebbero esserci cammini meno csotosi tra $s$ e $v$ questo risulterà essere un limite inferiore 
 >[!todo] 
+>capire la dimostrazione
 #### Proprietà del limite inferiore
 
 In qualsiasi algoritmo che : 
@@ -4717,10 +4718,28 @@ Quando $\delta(s,v)=d[v]$ nessuna `Relax` potrà mai cambiare il valore di $d[v]
 
 Distinguiamo 2 momenti nell'algoritmo : 
 1. Subito dopo la `Init_SS`
-2. 
+	1. Se $v\neq s$ varrà che $d[v]=+\infty \ge \delta(s,v)$ , questo verifica banalmente la proprietà del limite inferiore
+	2. Se $v=s$ sappiamo che $\delta(s,s) = 0$ se non esistono cicli negativi che passano per la sorgente altrimenti $\delta(s,s)=-\infty$ , in entrambi i casi $\delta(s,s)\le 0 = d[s]$
+	Abbiamo quindi dimostrato che subito dopo l'inzializzazione la proprietà è vera
+2. Supponiamo per assurodo che $v$ sia il primo vertice per cui la proprietà è violata
+	Al termine di questa `Relax` verrà che : 
+	$d[u]+w(u,v)=d[v]$ ma per ipotesi avremo che $d[u]+w(u,v)< \delta(s,v)$ 
+	applico quindi la diseguaglianza triangolare ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ nonsarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
 
 #### Proprietà della convergenza
 
+In un *cammino minimo* $p=<s,\dots,u,v>$ per una qualche coppia di veritici $u,v\in V$ ad un certo punto , dopo una certa `Relax` avremo che $d[u]=\delta(s,u)$ ( abbiamo trovato il cammino minimo ) allora chiamare `Relax(u,v,w(u,v))` farà sì che $d[v]=\delta(s,v)$ 
+
+**Dimostrazione** :
+
+Per la proprietà del limite inferiore : 
+$$\delta(s,v)\le d[v]$$
+Per la proprietà della `Relax` : 
+$$\delta(s,v)\le d[u]+w(u,v)$$
+Per ipotesi ( $d(u)=\delta(s,u)$ ) avremo che : 
+$$\delta(s,v)\le \delta(s,u)+w(u,v)$$
+Poichè siamo su un *cammino minimo* : 
+$$\delta(s,v)=\delta(s,v)$$
 #### Dijkstra
 
 *Intuizione* : estrea una radice alla volta e rilasserà gli archi uscenti da quel vertice
@@ -4733,18 +4752,28 @@ Distinguiamo 2 momenti nell'algoritmo :
 	\State $S \leftarrow \emptyset$
 	\While{$Q \neq \emptyset$}
 		\State $u \leftarrow EXTRACT\_MIN(Q)$
+		\State $S \leftarrow S \cup \{u\}$
 		\ForAll{$v \in Adj[u]$}
 			\State $RELAX(u,v,w(u,v))$
         \EndFor
-        \State $S \leftarrow S \cup \{u\}$
     \EndWhile
     \Return
 	\end{algorithmic}
 	\end{algorithm}
 ```
 
-**Spiegazione**
+**Spiegazione** :
 
-**Complessità**
+**Terminazione** : 
+	L'algoritmo sicuramente termina poichè il ciclo `while` estrae sempre un vertice , arriveremo sempre quindi all'insieme vuoto e il ciclo `for` è limitato dal numero di vertici adiacenti ( al massimo tutti gli altri verici del grafo )
 
-**Correttezza**
+**Complessità** :
+	1. Righe `2-4` : La procedura `Init_SS` ha tempo di esecuzione $\Theta(n)$ poichè scorrerà per forza l'intero grafo 
+	2. Righe `5-7` : il ciclo `while` compie $n$ iterazioni , ora la complessità delle rimanenti operazioni dipende da come abbiamo implementato la $Q$
+		1. Se è stata implementata con un *heap binario* : 
+			La `Extract_min` avrà complessità $\log n$ poich dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $n\log n$
+		1. Se è stata implementata con un *array lineare* :
+			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ 
+	1. Righe `8-9` : 
+
+**Correttezza** : 
