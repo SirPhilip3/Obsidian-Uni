@@ -2336,12 +2336,28 @@ In questo modo solo uno dei due può avere quel posto
 ##### Atomicità 
 
 Nell'esempio precedente se avviene un crash tra 2 operazioni all'interno di una transazione questa non viene più eseguita annullando tutte le modifiche apportate fino al crash ( revert allo stato prima dell'inizio della transazione )
-
->[!todo] 
->Da sile 10 transazioni postgresql
 #### Programmare Transazioni
 
+Normalmente ogni operazione *SQL* è gestita come una transazione indipendente , possiamo però utilizzare i seguenti comandi : 
++ `{postgresql}START TRANSACTION` indica l'inizio di una nuova tansazione
++ `{postgresql}COMMIT` indica la terminazione *corretta* di una transazione , tutto ciò che è stato fatto durante la transazione deve essere reso persistente
++ `{postgresql}ROLLBACK` indica la terminazione *anomala* di una transazione , tutto ciò che è stato fatto durante la transazione deve essere annullato
+
+>[!note] 
+>*API* come *JDBC* offrono metodi che permettono di gestire le transazioni che si appoggiano a questi comandi
+
 ##### Vincoli
+
+Vista l'*atomicità* delle transazioni è possibile *rimandare* il controllo di alcuni vincoli di intergrità alla fine di una transazione 
+
+Ogni vincolo di integrità può essere quindi assegnato ad una fra tre categorie : 
++ `{postgresql}NOT DEFERRABLE` : il vincolo viene sempre controllato dopo ogni operazione 
++ `{postgresql}DEFERRABLE INITIALLY IMMEDIATE` : il vincolo viene controllato dopo ogni operazione della transizione ma è possibile rilassarlo per farlo controllare solo prima del commit
++ `{postgresql}DEFERRABLE INITIALLY DEFERRED` : il vincolo viene controllato solo prima del commit ma è possibile forzarlo a farlo controllare dopo ogni operazione della transizione
+
+>[!note] 
+>I vincolo *rimandabili* possono essere configurati tramite `SET CO`
+
 
 #### Implementazioni di Transizioni
 

@@ -4772,8 +4772,32 @@ $$\delta(s,v)=\delta(s,v)$$
 	2. Righe `5-7` : il ciclo `while` compie $n$ iterazioni , ora la complessità delle rimanenti operazioni dipende da come abbiamo implementato la $Q$
 		1. Se è stata implementata con un *heap binario* : 
 			La `Extract_min` avrà complessità $\log n$ poich dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $n\log n$
-		1. Se è stata implementata con un *array lineare* :
+		3. Se è stata implementata con un *array lineare* :
 			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ 
-	1. Righe `8-9` : 
+	3. Righe `8-9` : il ciclo `for` viene svolto tante volte qunato l'*out-degree* del nodo appena estratto $u$ , notiamo che visto che viene svolto per $n$ volte all'interno del ciclo `while` possiamo trovare il numero di iterazioni totali risolvendo : $$\sum_{i=1}^n \text{out-deg}(i)=m$$
+	  All'interno del ciclo `for` svolgiamo la `Relax` , la sua complessità dipende dal'implementazione di $Q$ , avremo quindi 2 casi :
+		1. *heap binario* : 
+			Ha complessità $\log n$ poichè può cambiare la key di $Q$ e deve quindi essere ribilanciato
+		2. *array lineare* : 
+			In questo caso avremo complessità *costante*
+
+La complessità totale sarà quindi dipendente dalle 2 implementazioni di $Q$ : 
++ **Heap binario** : 
+	$$T(n,m)=n + n\log n +m \log n=O(m\log n)$$
++ **Array lineare** :
+	$$T(n,m)=n+n^2+c\cdot m = O(n^2)$$
+
+L'implementazione scielta dipende da come è fatto il grafo , avremo 2 casi : 
++ grafo *sparso* : in questo caso avremo che $m \approx n$
++ grafo *denso* : in questo caso avremo che $m \approx n^2$
+
+|      -       |   *heap*    | **array** |
+| :----------: | :---------: | :-------: |
+| ***sparso*** |  $n\log n$  |   $n^2$   |
+| ***denso***  | $n^2\log n$ |   $n^2$   |
+Avremo quindi che in caso di grafo *sparso* preferiremo l'implementazione con l'*heap binario* , mentre nel caso di grafo *denso* preferiremo l'implementazione con l'*array lineare*
+
 
 **Correttezza** : 
+
+>[!todo] 
