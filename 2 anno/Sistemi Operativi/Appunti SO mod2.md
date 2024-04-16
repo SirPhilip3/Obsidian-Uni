@@ -1092,3 +1092,90 @@ sem_post++
 
 # 16/04/2024
 
+**Monitor**
+
+semafori -> sincronizzazione è sconnessa dai thread stessi , decentralizzata , sparsa nell'applicazione , example -> annidando i semafori
+
+monitor sono un costrutto linguistico che semplificano la programmazione multithread 
+
+contiene : 
++ dati condivisi
++ accesso ai dati tramite funzioni
+	+ sono in mutua esclusione 
+
+un moitor è di fatto una sezione critica
+
+variabili *condition* ( anche in pthread ) -> sono semafori sempre rossi , sono solo code
++ wait -> sempre bloccante e rilascia la mutua esclusione del monitor ( in modo automatio )
++ signal/notify -> sbloccano il primo thread in coda , altrimenti non fa nulla se la coda è vuota
+
+![[monitor.excalidraw]]
+
+
+signal sblocca il primo thread in coda e blocca il thread corrente su una coda urgente per il mutex 
+
+notify sblocca T1 ma non entra subito -> viene ri messo nella coda per i mutex e T2 esegue , deve riaqiusire il mutex dopo l'uscita di T2 e dopo ulteriori thread nella stessa coda per il mutex
+
+>[!example] 
+>
+>Produttore consumatore , la mutua esclusione è "gratis" , logica + lock
+
+```c
+
+monitor PC{
+	dato_t buffer[MAX]
+	int inserisci = 0;
+	int preleva = 0;
+	int contatore = 0; // numero di celle scritte 
+
+	Condition piene , vuote;
+	// funzioni già in mutua esclusione non devo considerare i mutex
+	// motivo per che mi blocco e sblocco determina se mi servono code differenti
+	// stesso motivo = unica coda 
+	// motivi differenti = code differenti
+	void scrivi(dato_t d){
+		if(contatotre == MAX) // non posso più scrivere 
+			// sto aspettando una vuota 
+			vuote.wait()
+			// mi aspetto che qui ci sia una cella vuota 
+		buffer[inserisci]=d
+		inserisci++;
+		contatore++;
+		// è giusto che sblocchi un lettore poichè siamo sicuri che abbiamo un elemento e l'if wait non viene più controllato e so che posso leggere
+		piene.signal()
+		// se lo notifico ed entra dopo possono entrare altri thread che leggono  
+	}
+
+	dato_t leggi(){
+		if(contstotre == 0) // non posso più scrivere 
+			piena.wait()
+		d = buffer[preleva];
+		preleva=(preleva++)%MAX
+		contatore--;
+		vuote.signal()
+	}
+}
+
+Produttore(){
+	while(1){
+		// produce d
+		pc.scrivi(d) // scrive d dentro la struttura dati del monitor
+	} 
+}
+
+Consumatore(){
+	while(1){
+		pc.leggi()
+		// consuma d
+	}
+}
+```
+
+sincronizzazione sulla scrittura e lettura tutta all'interno del monitor
+
+>[!example] 
+
+nella coda per il mutex C P1 P2
+
+1. C -> leggi -> contatore = 0 , fa subito la wait , entra in coda piene
+2. il monitor ra è libero entra P1 .
