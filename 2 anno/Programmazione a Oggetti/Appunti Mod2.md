@@ -956,5 +956,54 @@ pattern -> ogni volta che utilizziamo stessa struttura dati metti syncronize su 
 
 
 ```java
+syncronized(){
+	//red
+	syncronized(){
+	}
+}
 
+void f(){
+
+	syncronized(){
+		f();
+	}
+
+}
 ```
+
+non genera deadlock , se il thread è lo stesso ( owner del semforo quando lo chiede ) , lascia entrare tutte le volte che vuoi nella critical section , verifica sollamente se owner chiede più volte il semaforo quando ritorna a 0 ( le unlock ) deve verificare che sia effettivamente ritornato 
+
+per fare wait o notify devi essere owner del sefaoro preso quando richiedo un semaforo su syncronized a quel punto il thread può fare wait e notify sullo stesso oggetto
+
+posso poi fare add remove etcc su un differente oggetto tanto ci interessa solo quando le faccio non come
+
+posso anche usare this ( -> tanto è consumer che subsume a object ) , this però di due classi differenti -> sono 2 oggeti diversi 
+
+normalmente uso oggetto stesso che devo arbitrare
+
+scrambling con output esterni 
+
+nel nostro caso non c'è sovrapposizione tra stdout -> poichè printano tante volte -> il quanto di tempo è maggiore rispetto al singolo print 
+
+println -> sincronizzata ( mutex fino alla fine della print )
+printf -> non sincronizzato ( non può farlo  )
+
+dentro critical section -> l'essenziale 
+
+```java
+syncronized(..){
+
+}
+```
+
+meglio in modo da non dimenticare mai di fare unlock
+
+possiamo essere interrotti dentro la critical section con exception -> semaforo rimane rosso , verrà messo a verde 
+
+eccezione da dentro critical section -> semaforo a verde da jvm -> visto che siamo dentro uno scope la jvm sa che eravamo dentro la critical section
+
+approccio object oriented
+è l'oggetto che si bocca , usare l'oggetto stesso per arbitrare me stesso 
+in c++ devo utilizzare pthread 
+
+con tanti producer e consumer ->
