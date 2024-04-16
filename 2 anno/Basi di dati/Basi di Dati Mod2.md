@@ -2356,13 +2356,64 @@ Ogni vincolo di integrità può essere quindi assegnato ad una fra tre categorie
 + `{postgresql}DEFERRABLE INITIALLY DEFERRED` : il vincolo viene controllato solo prima del commit ma è possibile forzarlo a farlo controllare dopo ogni operazione della transizione
 
 >[!note] 
->I vincolo *rimandabili* possono essere configurati tramite `SET CO`
-
+>I vincolo *rimandabili* possono essere configurati tramite `{postgresql}SET CONSTRAINTS`
 
 #### Implementazioni di Transizioni
 
-#### Transazioni Read Only
+Visto che una transazione deve essere una sequenza di operazioni *serializzate* questa ci porta a dei problemi in termini di performance : 
+
+Ciascuna transazione prende un *lock* *globale* ( blocca qualsiasi altra operaizone sul database ) sul database che viene rialasciato dopo il commit 
+
+*ottimizzazione* : insieme di *lock locali* che blocchino solo porzioni del database e gestione "rilassata" delle transazioni *read only* poichè non possono comprometter l'integrità della base di dati 
+
+>[!note] 
+>I *DBMS* moderni utilizzano soluzioni senza *lock* come *MVCC* (*multiversion concurrency control*)
+>Inoltre forniscono ulteriore controllo al programmatore definendo diversi livelli di isolamento fra transazioni 
+#### Transazioni Read Only 
+
+Possiamo dichiarare una transazione *read only* tramite la sintassi : 
+```postgresql
+SET TRANSACTION READ ONLY 
+```
+
+Questo permette alla transazione di leggere solo dati ( `SELECT` ) ma non scriverli
+
+Tutte le query nella transazione possono vedere solo le scritture committate prima dell'inizio della transazione
+
+Più operazioni *read only* che operano sugli stessi dati possono essere eseguire concorrentemente
+
+>[!important] 
+>Una transazione *read only* fornisce una lettura *consistente* dello stato del database prima dell'inizio della transazione
 
 #### Transazioni Read Uncommitted
+
+Il livello di isolamento `{postgresql}READ UNCOMMITTED` consente ad una transazione di leggere *dirty data* ossia dati scritti da altre transazioni che non hanno ancora fatto commit ( si svolge una *dirty read* ) 
+
+>[!warning] 
+>Potrebbe avvenire che la transazione che ha scritto i *dirty data* potrebbe *abortire* : in tal caso i *dirty data* dovrebbero essere rimossi e non dovrebbero infuenzare le altre transazioni
+>
+>*SQL* limita l'utilizzo di `{postgresql}READ UNCOMMITTED` a solo transazioni *read only* a meno che lo sviluppatore non decida di rilassare questo vincolo
+
+>[!todo] 
+>>[!example] 
+>>scrivi gli esempi dirty reads 15-16
+#### Transazioni Read Committed
+
+Il livello di isolamento `{postgresql}READ COMMITTED` impedisce il fenomeno delle *dirty reads* fornendo un maggiore isolamento : 
++ Quando una transazione vuole effettuare una *scrittura* acquisice un *lock* che viene rilasciato solo dopo la sua terminazione
++ Si può verificare il fenomeno di **unrepeatabel read** : due letture degli stessi dati in momenti diversi possono portare a risultati diversi a causa dell'intervento di un'altra transazione 
++ Si può verificare il fenomeno di **lost update** : la perdita di una modifica da parte di una transazione causata da un aggiornamento operato da un'altra transazione
+
+>[!todo] 
+>>[!example] 
+>>Esempio unrepeatable read , lost update
+#### Transazioni Repetable Read
+
+
+
+#### Interazioni fra Livelli di Isolamento
+
+#### Transazioni in Postgres
+
 
 ### Linguaggi per SQL
