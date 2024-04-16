@@ -2162,6 +2162,8 @@ DROP INDEX NomeIndice
 >>
 
 #### Modello di Costo
+
+>[!todo] 
 #### Selezione Automatica di Indici
 
 Un *DBMS* può suggerire automaticamente gli indici migliori sulla base di un *modello di costo* simile al seguente : 

@@ -1399,3 +1399,4 @@ invarianza dei generics
 producer extends consumer s pecs
 
 per modificare la stringa se ne crea una nuova e poi viene modificata la reference.
+

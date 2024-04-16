@@ -951,3 +951,10 @@ ogni oggetto può essere sia un semaforo che un monitor
 
 pattern -> ogni volta che utilizziamo stessa struttura dati metti syncronize su tutti i thread -> se ho bisogno di monitor la wait dentro la syncronize
 
+# 16/04/2024
+
+
+
+```java
+
+```
