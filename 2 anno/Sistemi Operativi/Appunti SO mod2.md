@@ -1178,4 +1178,102 @@ sincronizzazione sulla scrittura e lettura tutta all'interno del monitor
 nella coda per il mutex C P1 P2
 
 1. C -> leggi -> contatore = 0 , fa subito la wait , entra in coda piene
-2. il monitor ra è libero entra P1 .
+2. il monitor ra è libero entra P1 -> scrivi , inserice , incrementa contatore = 1 , signal , si auto esclude dal monitor
+	1. sblocca C -> legge value -> contatore = 0 , fa vuote.signal (la coda è vuota , non succede nulla)
+	2. C esce
+3. P1 rientra dalla coda urgent ( prima guardo coda urgent e poi la coda per il monitor ) , non fa nulla dopo signal ed esce
+4. P2 entra contatore = 1 , signal che non fa nulla perchè adesso piena è una coda vuota
+
+compito di chi fa la signal sbloccare al momento giusto 
+
+con la **notify** ??
+
+```c
+
+monitor PC{
+	dato_t buffer[MAX]
+	int inserisci = 0;
+	int preleva = 0;
+	int contatore = 0; // numero di celle scritte 
+
+	Condition piene , vuote;
+	void scrivi(dato_t d){
+		if(contatotre == MAX) 
+			vuote.wait()
+		buffer[inserisci]=d
+		inserisci++;
+		contatore++;
+		
+		piene.notify()
+		
+	}
+
+	dato_t leggi(){
+		// lascio allo scheduler decidere 
+		// while perchè potrebbe avermi sbloccato quando il contatore è diverso da 0 , note -> sblocca alla riga sucessiva della wait ma a quel punto non sono sicuro che counter == 0 quindi la ricontrollo con il while , se il counter è ancora == 0 continuo a bloccarmi 
+		while(contatotre == 0) // non posso più scrivere 
+			piena.wait()
+		d = buffer[preleva];
+		preleva=(preleva++)%MAX
+		contatore--;
+		vuote.notify()
+	}
+}
+
+Produttore(){
+	while(1){
+		// produce d
+		pc.scrivi(d) // scrive d dentro la struttura dati del monitor
+	} 
+}
+
+Consumatore(){
+	while(1){
+		pc.leggi()
+		// consuma d
+	}
+}
+```
+
+**Filosofi** con raccolta atomica
+
+non faccio raccogliere uno alla volta ma 2 assieme , raccolfo tutte e due o nessuna 
+
+```c
+monitor Tavola{
+
+	bool bacchette[5] = {true,true,true,true,true} // sono tutte sul tavolo 
+
+	Condition filosofi[5]
+
+	raccoglie(int i){
+		// mi blocco quando non ci sono le bacchette
+		while(!bacchette[i]|| !bacchette[(i+1)%5]) // finchè non c'è bacchetta a desta o a sinistra mi blocco
+			filosofi[i].wait
+
+		bacchette[i] = false;
+		bacchette[(i+1)%5] = false;
+	}
+
+	deposita(int i){
+		bacchette[i]=true
+		bacchette[(i+1)%5] = true;
+		// potrei bloccare o il filosofo a dx o a sx , mi servono 5 code
+		filosofi[(i+4)%5].notify
+		filosofi[(i+1)%5].notify
+	}
+
+}
+
+filosofi(i){
+	while(1){
+	// pensa
+	tavola.raccogli(i)
+
+	// mangia
+
+	tavola.deposita(i)
+	
+	}
+}
+```
