@@ -148,6 +148,8 @@ print(f.good_dog())
 
 accesso al database 
 
+
+
 # 15/04/2024
 
 Metadata contiene la definizione delle tabelle + attributi delle tabelle 
@@ -157,4 +159,6 @@ compile() -> per vedere la statement compilata
 sqlalchemy ORM
 
 generalmente solo per query di aggiornamento semplici
+
+# 17/04/2024
 
