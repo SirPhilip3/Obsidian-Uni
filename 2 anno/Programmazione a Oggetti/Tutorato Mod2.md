@@ -29,3 +29,7 @@ join -> mainthread aspetta fine del thread creato prima di continuare
 thread possono terminare in modo inaspettato -> le join throwano errore
 
 *consumer producer*
+
+ex -> container di risorse che 
+
+lincked blocking queue è thread safe -> 
