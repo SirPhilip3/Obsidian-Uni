@@ -2440,3 +2440,4 @@ Il livello di isolamento di default è `{postgresql}READ COMMITTED` ma i livelli
 >[!example] 
 >>[!todo] 
 ### Linguaggi per SQL
+

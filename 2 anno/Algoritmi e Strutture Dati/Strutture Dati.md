@@ -4764,6 +4764,8 @@ $$\delta(s,v)=\delta(s,v)$$
 
 **Spiegazione** :
 
+>[!todo] 
+
 **Terminazione** : 
 	L'algoritmo sicuramente termina poichè il ciclo `while` estrae sempre un vertice , arriveremo sempre quindi all'insieme vuoto e il ciclo `for` è limitato dal numero di vertici adiacenti ( al massimo tutti gli altri verici del grafo )
 
@@ -4800,4 +4802,29 @@ Avremo quindi che in caso di grafo *sparso* preferiremo l'implementazione con l'
 
 **Correttezza** : 
 
->[!todo] 
+>[!warning] 
+>L'algoritmo di *Diijkstra* non è sempre corretto , restituirà risultati corretti solamente se tutti i pesi sono $\ge 0$
+
+Sia $G=(V,E)$ un grafo orientato con $w : E \to \mathbb{R}$ tale che $\forall (u,v) \in E : w(u,v)\ge 0$
+Allora alla fine dell'algortimo di *Dijkstra* si ha : 
+1. $\forall v \in V : d[v] = \delta(s,v)$ 
+2. $G_{\pi}$ è un albero di cammini minimi
+
+>[!note] 
+>Non dimostreremo il secondo punto
+
+Dimostriamo quindi la seguente effermazione : 
+	$\forall u \in V$ all'atto dell'estrazione di $u$ dalla coda $Q$ risutletà che $d[u]=\delta(s,u)$ ( se questo è vero all'estrazione allora dovrà essere vero anche alla fine dell'algoritmo poichè sappiamo che quando $d[u]=\delta(s,u)$ questo non potrà più cambiare per come è scritta la `Relax`)
+
+**Dimostrazione** per assurdo :
+
+Supponiamo *per assurdo* che esista un vertice $u\in V$ tale che al momento della sua estrazione si avrà : $d[u]\neq \delta(s,u)$  e che $u$ sia il primo vertice per il quale accade 
+
+**Osservazioni** : 
+
+1. $u$ non può essere sorgente , avremo infatti che $d[u] = 0 = \delta(s,s)$ 
+>[!note] 
+>$\delta(s,s)$ non può valere $-\infty$ poichè abbiamo suppsto di avere solo pesi $\ge 0$ all'interno del grafo $G$
+2. Al momento dell'estrazione di $u$ , $S \neq \emptyset$ perchè in $S$ ( insieme dei vertici estratti ) ci sarà almeno la sorgente $s$
+3. $u$ deve essere *raggiungibile* da $s$ ( altrimenti avremo che $\delta(s,u)=+\infty = d[u]$ )
+
