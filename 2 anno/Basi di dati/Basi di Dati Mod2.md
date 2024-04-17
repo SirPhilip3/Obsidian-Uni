@@ -2409,11 +2409,34 @@ Il livello di isolamento `{postgresql}READ COMMITTED` impedisce il fenomeno dell
 >>Esempio unrepeatable read , lost update
 #### Transazioni Repetable Read
 
+Il livello di isolamento `{postgresql}REPEATABLE READ` impedisce il fenomeno delle *dirty read* delle *urepeatable read* e dei *lost update* : 
++ Quando una transazione vuole effettuare una lettura oppure una scrittura acquisisce un *lock* che viene rilasciato solo dopo la sua terminazione 
+>[!note] 
+>I *lock* sono a livello di righe ( in modo da aumentare le performance )
 
+>[!warning] 
+>Si può verificare il fenomeno dei *fantasmi* : un'altra transazione può aggiungere dati ad una tabella prima che la transazione sia completata andando ad influenzare il risultato ( poichè il risutlato potrebbe essere sull'intera tabella )
+
+>[!example] 
+>>[!todo] 
 
 #### Interazioni fra Livelli di Isolamento
 
+Il livello di isolamento di una transazione riguarda esclusivamente ciò che può vedere quella transazione  
+
+>[!example] 
+>Se abbiamo una transazione $T$ `{postgresql}SERIALIZABLE` questà dovrà essere svolta come se tutte le atre transazioni siano eseguite interamente prima o dopo $T$ ma se un'altra transazione è `{postgresql}READ UNCOMMITTED` quest'ultima potrà leggere *dirty data* dalla trasnazione $T$
+
 #### Transazioni in Postgres
 
+*PostgreSQL* considera ciascuna istruzione *SQL* come una transazione : 
+	Se non viene eseguito `{postgresql}BEGIN` ciascuna istruzione ha un `{postgresql}BEGIN` implicito e , se ha successo un `{postgresql}COMMIT` 
 
+Il livello di isolamento di default è `{postgresql}READ COMMITTED` ma i livelli di isolamento garantiscono proprietà più forti rispetto allo standard `SQL` 
+
+>[!note] 
+>`{postgresql}SERIALIZABLE` garantisce l'assenza di *anomalie di serializzazione* che invece sono possibili con `{postgresql}REPEATABLE READ` 
+
+>[!example] 
+>>[!todo] 
 ### Linguaggi per SQL
