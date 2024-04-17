@@ -1199,6 +1199,5 @@ Possiamo avere tre casi possibili :
 
 #### Campioni di grandi dimensioni
 
->[!note] 
->Meglio studiare per il test dell'11 
+Se il campione ha grandi dimensioni allora ci asoettiamo che lo stimatore dell'errore standard $\widehat{SE}(\hat{\theta})$ sia *ragionevolmente* vicino al vero errore standard ( $SE(\theta)$ )
 
