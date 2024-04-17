@@ -4894,7 +4894,49 @@ Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando 
 	\end{algorithmic}
 	\end{algorithm}
 ```
-**Spiegazione** : 
+**Spiegazione e Complessità** : 
 
 + Si inzializza con `init_ss`
-+ 
++ Il ciclo `for` esterno verrà svolto per $n-1$ volte ( dove $n$ indica $|V|$ ) 
++ Il ciclo `for` interno verrà svolto per $m$ volte ( il numero di achi presenti nel grafo )
++ La `Relax` ha costo costante poichè non stiamo utilizzando alcuna coda per $Q$
++ Il secondo ciclo `for` esterno ( ha il compito di ritornare false se vi sono cicli negativi all'interno del grafo , se vi sono cicli negativi inatti non possiamo più fidarci della risposta dell'algoritmo in quanto i cammini minimi potrebbero ciclare all'infinito nei cicli negativi ) viene eseguito $m$ volte ( il numero degli archi )
+
+Avremo quindi che la complessità finale sarà : 
+$$T(n,m)=n+(n-1)\cdot m + m = \Theta(n\cdot m)$$
+
+**Correttezza** : 
+
+Avremo 2 casi da considerare : 
+1. Se $G$ non contiene cicli negativi raggiungibili da $s$ allora alla fine dell'algortimo avremo : 
+	1. $d[u]=\delta(s,u)\quad \forall u \in V$
+	2. $G_{\pi}$ è un albero di cammini minimi
+	3. L'algoritmo restituisce `True`
+2. Se $G$ contiene cicli negativi raggiungibili da $s$ allora l'agortimo restituisce `False`
+
+**Dimostrazione** 1.1
+
+Sappiamo che $\nexists$ cicli negativi raggiungibili da $s$ , avremo quindi che :
+$$\forall u \in V, \ne s , \quad \delta(s,u)=\begin{cases}
++\infty  & \text{ovvio dopo $Init\_ss$}\\ \mathbb{R}
+\end{cases}$$
+Se $\delta(s,u) \in \mathbb{R}$ allora esisterà un cammino $p=<x_0 = s , x_1 , \dots , x_q = u>$ minimo *semplice* ( ossia un cammino dove non vi sono vertici ripetuti ) tra $s$ e $u$ 
+
+>[!note] 
+>Esiste sempre un cammino minimo *semplice* poichè visto che non esitono cicli negativi questi possono essere solo $\ge 0$ e per questo possono sempre essere eliminati dal cammino minimo
+
+$p$ può avere al massimo $n-1$ archi in totale ( visto che è *semplice* ) nel caso in cui attraversa tutti i veritici del grafo
+
+Poichè sottocammini di un cammino minimo sono anchessi minimi possiamo applicare il teorema della convergenza tante volte quante sono le passate dell'algoritmo e verificare che alla fine dell'algoritmo avremo $d[u]=\delta(s,u)$
+
+![[DimoBellmanFord.excalidraw]]
+
+**Dimostrazione** 1.3
+
+Perchè l'algoritmo ritorni `True` alla fine della dovremmo avere che : 
+$$\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)$$ Questo in modo che fallisca sempre l'`if` ed infine ritorni `True`
+
+Utilizziamo la *disuguaglianza triangolare* :
+$$\delta(s,v)\le \delta(s,u)+w(u,v)$$
+Ma avendo dimostrato nella dimostrazione precedente che $d[u]=\delta(s,u)$ e $d[v]=\delta(s,v)$ possiamo conludere che : 
+$$d[v]\le d[u]+w(u,v)$$
