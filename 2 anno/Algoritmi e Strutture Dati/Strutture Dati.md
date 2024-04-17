@@ -4828,3 +4828,73 @@ Supponiamo *per assurdo* che esista un vertice $u\in V$ tale che al momento dell
 2. Al momento dell'estrazione di $u$ , $S \neq \emptyset$ perchè in $S$ ( insieme dei vertici estratti ) ci sarà almeno la sorgente $s$
 3. $u$ deve essere *raggiungibile* da $s$ ( altrimenti avremo che $\delta(s,u)=+\infty = d[u]$ )
 
+Ci poniamo nell'istante in cui $s$ è già stato estratto ( $s\in S$ ) ma $u$ no ( $u \in Q$ dove $Q=V - S$ )
+Visto che $u$ è *raggiungibile* dovrà esistere un *cammino minimo* $p$ tra $u$ e $s$ 
+Inoltre visto che $u$ si trova in $Q$ avremo necessariamente un arco che attraversa il taglio tra gli insiemi $S$ e $Q$ 
+
+Prendiamo quindi i vertici $x$ e $y$ che delimitano l'arco che attraversa questo taglio
+
+Quindi possiamo dire che :
+ 4. $d[x]=\delta(s,x)$ : visto che :
+	 1. ci troviamo in un cammino minimo e sottocammini di un cammino minimo sono anchessi minimi 
+	 2. sappiamo che entrambi fanno parte dei vertici già estratti che necessaramente hanno $d[x]=\delta(s,x)$ 
+	 3. Inoltre sappiamo per ipotesi che $u$ è il primo verice per cui non vale questa proprietà
+ 5. $d[y]=\delta(s,x)+w(x,y)=\delta(s,y)$ :
+	 1. Questo per la *proprietà della convergenza* in quanto quando abbiamo estratto $x$ svolgiamo la relax su tutti i veritici adiacenti e faremo quindi anche $d[y]=d[x]+w(x,y)$ ( questo viene sempre svolto perchè so di essere su un cammino minimo e quindi sicuramente $d[x]>d[y]+w(x,y)$ ) e dal punto prima abbiamo che $d[y]=\delta(s,x)+w(x,y)$ abbiamo inoltre che questo sarà $\delta(s,y)$ poichè ci troviamo su un cammino minimo
+ 6. $d[u]\le d[y]$ :
+	 1. Pochè stiamo per estrarre il nodo $u$ siccome l'algorimo estrare il vertice avente campo $d$ minore avremo che $d[u]\le d[y]$
+ 7. $\delta(s,y)\le \delta(s,u)$ : 
+	 1. poichè i pesi devono essere $\ge 0$ se aggiungo un arco al cammino questo influisce sul peso finale del cammino solo in modo positivo
+ 8. $\delta(s,u)\le d[u]$ : 
+	 1. Per la proprietà del limite inferiore 
+
+Ricostruiamo l'*assurdo* sulla base delle precedenti osservazioni , ci basterà dimostrare che : 
+$$\delta(s,u)\le d[u]\le \delta(s,u)$$
++ $\delta(s,u)\le d[u]$ per la proprietà del limite inferiore 
++ $d[u]\le\delta(s,u)$ : possiamo ricondurci a questo grazie alla precedenti osservazioni : 
+$$d[u]\le d[y] \quad \text{per 6}$$
+$$d[u]\le \delta(s,y) \quad \text{per 5}$$
+$$d[u]\le \delta(s,u)\quad \text{per 7}$$
+Possiamo quindi dire che deve essere $d[u]=\delta(s,u)$ e questo è un *assurdo*
+
+##### Dijkstra con pesi negativi 
+
+Come abbiamo detto *Dijkstra* non è corretto se vi sono dei pesi negativi all'interno 
+
+Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando in modo che abbiamo tutti pesi positivi mantenendo inalterato il risutlato dell'algoritmo di *Dijkstra* 
+
+>[!example] 
+>Proviamo con il seguente grafo : 
+![[ShiftedDijkstra.excalidraw]]
+>
+>Come si può notare lo *shift* ha causato il cambiamento del cammino minimo , non possiamo quindi *shiftare* i pesi per risolvere il problema dei pesi negativi
+
+
+#### Bellman-Ford
+
+>[!note]
+>Questo algoritmo svolge per $n-1$ volte la `Relax` su tutti gli archi del grafo 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Bellman-Ford(G,w,s)}
+	\begin{algorithmic}
+	\State $Init\_ss(G)$
+	\For{$i=1\ \text{to} \ |V[G]|-1$}
+		\ForAll{$(u,v)\in E[G]$}
+			\State $\text{Relax}(u,v,w(u,v))$
+        \EndFor
+    \EndFor
+    \ForAll{$(u,v)\in E[G]$}
+	    \If{$d[v]>d[u]+w(u,v)$}
+		    \Return False
+        \EndIf
+    \EndFor
+    \Return True
+	\end{algorithmic}
+	\end{algorithm}
+```
+**Spiegazione** : 
+
++ Si inzializza con `init_ss`
++ 
