@@ -1051,21 +1051,81 @@ context indipendent overloading (java , C#)
 
 covarianza -> il tipo di ritorno varia con this
 
-!!!!! 
 posso sciendere quante volte sciendo con this
 
 ```java
-    public static class A{    
-        public Number m(){return 1.4;}  
-    }  
-  
-    public static class B extends A{  
-        public Integer m(){return 3;}  
-    }
+public static class A{    
+	public Number m(){return 1.4;}  
+}  
+
+public static class B extends A{  
+	public Integer m(){return 3;}  
+}
 ```
 
 A runtime -> 
 
 ```java
-
+A a = new B();  
+Number n = a.m();
+// invoca Integer m()
+A a = new B();  
+Integer n = a.m(); // devo avere number -> so che ritorno del tipo più alto
 ```
+
+controvarianza -> invalida sul tipo di ritrono altrimenti a runtime breaks
+tipo di ritorno può solo covariare
+
+I parametri dei metodi overridati -> posso controvariare con override valido 
+
+```java
+public static class A{    
+	public Number m(Double l){return 1.4;}  
+}  
+
+public static class B extends A{  
+	public Integer m(Number l){return 3;}  
+}
+```
+
+>[!warning] 
+>Java non consente controvarianza dei parametri anche se sarebbe sound
+
+Poichè non aveva generics -> non sono supportati nativamente da jvm -> controlla genrics a compile time e poi li elimina > type erasure quando in bytecode -> li sostituice con un loro upperboung -> `T extends String` -> sostituisce T con String oppure Object se non lo specifico
+
+override non può far salire il tipo , non riescie a bindare Object -> complicherebbe troppo il checking della controvarianza
+
+```java
+public static class A{    
+	public Number m(Double l){return 1.4;}  
+
+	public void a(List<Integer>){}
+	public void a(List<String>){}
+	// dopo erasure ho tolto i genrics 
+	public void a(List){}
+	public void a(List){}
+	// diventano uguali 
+}  
+
+public static class B extends A{  
+	public Integer m(Number l){return 3;}  
+}
+```
+
+C# -> ha i generics , supportati a bytecode -> posso fare l'overload con list string e integer 
+
+*Wildcards* : 
+
+```java
+? extends T  
+```
+
+non è un tipo -> può essere solo un typeargument al posto di un generic -> esprime il concetto di covarianza function prende A e può tornare qualcosa che è sottotipo di T
+
+type argument non subsumono , solo il guscio estreno subsume mai i generics esterni 
+
+```java
+? super A
+// o A o un supertipo di A
+```
+
