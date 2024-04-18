@@ -1007,3 +1007,65 @@ approccio object oriented
 in c++ devo utilizzare pthread 
 
 con tanti producer e consumer ->
+
+# 18/04/2024
+
+*wildcard* , *overloading*
+
+*overloading* -> metodi stesso nome firme differenti
+
+```java
+// dentro Animal
+
+public void eat(Animal w){...}
+
+public void eat(int n){...}
+
+// dentro Dog
+// override
+public void eat(Animal w){...}
+
+public void eat(Dog n){...}
+```
+
+3 metodi in virtual table ( l'override )
+
+```java
+Dog.eat(Dog) // chiama quello con dog non animal per dynamic dispatching , prende tipo più vicino
+```
+
+con più argomenti
+
+override -> dipende dal tipo su cui chiami 
+override ridefinisce -> reimplementazione -> non si puù cambiare la firma , si può cambiare il codice 
+
+se sei uguale ad uno ereditato -> override altrimenti no , senza @override con firma differnte -> overload
+
+specializzare il parametro implica una firma differente -> non può essere overridato 
+
+covarianza ( variare assieme ) dei tipi dei parametri -> 
+
+tipo di ritorno non è firma di un metodo -> 
+
+context indipendent overloading (java , C#)
+
+covarianza -> il tipo di ritorno varia con this
+
+!!!!! 
+posso sciendere quante volte sciendo con this
+
+```java
+    public static class A{    
+        public Number m(){return 1.4;}  
+    }  
+  
+    public static class B extends A{  
+        public Integer m(){return 3;}  
+    }
+```
+
+A runtime -> 
+
+```java
+
+```
