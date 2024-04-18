@@ -1204,4 +1204,50 @@ Se il campione ha *grandi dimensioni* allora ci aspettiamo che lo stimatore dell
 Possiamo allora calcolare un intervallo di confidenza di *livello approssimato* $1-\alpha$ con la statistica $\mathbb{Z}$
 $$\hat{\theta}\pm z_{\alpha/2} \widehat{SE}(\hat{\theta})$$
 
-Nel caso della 
+Nel caso della media di una popolazione avremo : 
+$$\hat{\mu}\pm z_{\alpha/2} \frac{\hat\sigma}{\sqrt{n}}$$
+Ovvero 
+$$\overline{X}\pm z_{\alpha/2}\frac{S}{\sqrt{n}}$$
+Se abbiamo la differenza di due medie : 
+$$\hat\mu_x-\hat\mu_y \pm z_{\alpha/2} \sqrt{\frac{\hat\sigma^2_x}{n}+\frac{\hat\sigma^2_y}{m}}$$
+Ovvero 
+$$\bar X-\bar X \pm z_{\alpha/2} \sqrt{\frac{S^2_x}{n}+\frac{ S^2_y}{m}}$$
+>[!example] 
+>Esempio 9.16 baron
+
+#### Intervalli di confidenza per le proporzioni
+
+Quando dobbiamo stimare una *proporzione campionaria* non conosciamo la deviazione standard
+
+Supponiamo che siamo interessati alla *sottopopolazione* che possiede un certo attributo A
+
+Definiamo la *proporzione della popolazione* con l'attributo A come :
+$$p=Pr(\text{possedere l'attributo A})$$
+La corrispondente *proporzione campionaria* è : 
+$$\hat p = \frac{n_A}{n}$$
+con $n_A$ il numero di unità con l'attributo A
+
+Possiamo riformulare il problema con le variabili indicatrici :
+$$X_i = \begin{cases}
+1  & \text{se l'unità $i$ possiede  l'attributo A}\\ 0 & \text{se l'unità $i$ non possiede l'attributo A}
+\end{cases}$$
+$X_i$ diventa quiondi una variabile *Bernulliana* con parametro $p$ :
+	$E(X_i)=p$ e $Var(X_i)=p(1-p)$ 
+
+Lo stimatore $\hat{p}$ sarà quindi la media campionaria : 
+$$\hat p = \bar X = \frac{1}{n}\sum^{n}_{i=1}X_i$$
+con $E(\hat{p}) = p$ e $Var(\hat{p}) = \frac{p(1-p)}{n}$ 
+
+Quindi lo *stimatore* $\hat{p}$ è quindi : 
++ *non distorto* 
++ *asintoticamente normale* 
+
+Per $n$ abbastanza grande la distribuzione di $\hat p$ è *approssimativamente* pari a :
+$$N\bigg(p,\frac{p(1-p)}{n}\bigg)$$
+L'*errore standard* di $\hat{p}$ stimato sarà quindi : 
+$$\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}=\sqrt{\frac{\bar X(1-\bar X)}{n}}$$
+L'intervallo di confidenza per $p$ con livello di confidenza approssimativamente pari a $1-\alpha$ è 
+$$\hat{p}\pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \quad\text{ovvero} \quad \bar{X}\pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{n}}$$
+
+#### Intervalli di confidenza per la differenza di due proporzioni
+
