@@ -1410,3 +1410,42 @@ posso avere **starvation** agli scrittori -> ....
 Soluzione grenerica -> ho un ordine di arrivo in cui richiedo l'ingresso al monitor
 prima di far entrare altri lettori dopo aver incontrato uno scrittore svolgo lo scrittore -> non voglio sorpassare lo scrittore
 
+utilizzo un coda non condition ma esplicta
+
+```c
+monitor rwd{
+	queue Q;
+	bool scrittore = false; 
+	int lettori = 0;
+	Condition c;
+	initLeggi(i){ // i = id thread
+		Q.add(i); // aggiungo in cosa il lettore
+		while(scrittore||Q.top()!=i) // se non sono io il primo della coda  
+			c.wait()
+		lettori++;
+		Q.remove()
+		c.notifyAll() 
+	}
+	endLeggi(){
+		Q.remove()
+		lettori--;
+		if(lettori==0) 
+			c.notifyAll()
+	}
+	initScrivi(i){
+		Q.add(i); // aggiungo in coda lo scrittore
+		while(lettori>0||scrittore||Q.top()!=i) // finchè non è il mio turno
+			c.wait()
+		scrittore = true;
+		Q.remove()
+		// se entra uno scrittore c'è solo lui
+	}
+	endScrivi(){
+		scrittore = false;
+		c.notifyAll()
+	}
+}
+```
+
+se aggiungo condizione di bloccaggio probabilmente devo notificare di più 
+

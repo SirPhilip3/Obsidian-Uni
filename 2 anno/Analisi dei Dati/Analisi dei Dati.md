@@ -1199,5 +1199,9 @@ Possiamo avere tre casi possibili :
 
 #### Campioni di grandi dimensioni
 
-Se il campione ha grandi dimensioni allora ci asoettiamo che lo stimatore dell'errore standard $\widehat{SE}(\hat{\theta})$ sia *ragionevolmente* vicino al vero errore standard ( $SE(\theta)$ )
+Se il campione ha *grandi dimensioni* allora ci aspettiamo che lo stimatore dell'errore standard $\widehat{SE}(\hat{\theta})$ sia *ragionevolmente* vicino al vero errore standard ( $SE(\theta)$ )
 
+Possiamo allora calcolare un intervallo di confidenza di *livello approssimato* $1-\alpha$ con la statistica $\mathbb{Z}$
+$$\hat{\theta}\pm z_{\alpha/2} \widehat{SE}(\hat{\theta})$$
+
+Nel caso della 
