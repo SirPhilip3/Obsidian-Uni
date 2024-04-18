@@ -1249,18 +1249,21 @@ monitor Tavola{
 	raccoglie(int i){
 		// mi blocco quando non ci sono le bacchette
 		while(!bacchette[i]|| !bacchette[(i+1)%5]) // finchè non c'è bacchetta a desta o a sinistra mi blocco
-			filosofi[i].wait
+			filosofi[i].wait();
 
 		bacchette[i] = false;
 		bacchette[(i+1)%5] = false;
 	}
 
 	deposita(int i){
+		// rimette le bacchette 
 		bacchette[i]=true
 		bacchette[(i+1)%5] = true;
 		// potrei bloccare o il filosofo a dx o a sx , mi servono 5 code
-		filosofi[(i+4)%5].notify
-		filosofi[(i+1)%5].notify
+		// solo i filosofi a dx o sx potrebbero poter mangiare
+		// +4 perchè il modulo può ritornare un numero negativo
+		filosofi[(i+4)%5].notify();
+		filosofi[(i+1)%5].notify();
 	}
 
 }
@@ -1278,5 +1281,132 @@ filosofi(i){
 }
 ```
 
+
+Se volessi utilizzare la signal :
+
+```c
+monitor Tavola{
+
+	bool bacchette[5] = {true,true,true,true,true} // sono tutte sul tavolo 
+
+	Condition filosofi[5]
+
+	raccoglie(int i){
+		// mi blocco quando non ci sono le bacchette
+		if(!bacchette[i]|| !bacchette[(i+1)%5]) // finchè non c'è bacchetta a desta o a sinistra mi blocco
+			filosofi[i].wait();
+
+		bacchette[i] = false;
+		bacchette[(i+1)%5] = false;
+	}
+
+	deposita(int i){
+		// rimette le bacchette 
+		bacchette[i]=true
+		bacchette[(i+1)%5] = true;
+		// con signal qui potrebbe partire anche solo aggiungendone 1 al tavolo
+		// devo sapere se esiste bacchetta a sinistra del filosofo di sinstra
+		if(bacchetta[i+4]%5) // deve essere false la if di raccoglie
+			filosofi[(i+4)%5].signal();
+		if(bacchetta[i+2]%5)
+			filosofi[(i+1)%5].signal();
+	}
+
+}
+```
+
+Potrebbe penalizzare un filosofo che non mangia mai -> c'è sempre uno alla mia destra e sinistra che mangia , se quelli di fianco a me si alternano ad usare le bacchette non esce mai dalla wait
+
 # 18/04/2024
+
+programmazione con i monitor
+
+**Semafori con monitor** 
+hanno lo stesso potere espressivo , fare un semaforo sentro i monitor è ez
+
+Soluzione dei filosofi con solo 4 filosofi
+
+```c
+// praticamente per implemetnare in semaforo con i monitor metti ciò che serve dentro il monitor
+
+// in pratica è un semaforo contatore ma in questo caso i semafori non vanno in negativo
+// il monitor stesso è mutex quindi non ho mai race condition
+monitor Tavola{
+	int sedie = 4;
+	// coda -> condition nei monitor
+	Condition sedia;
+	siediti() // non ci interessa chi si siede
+	{
+		while(sedie==0) 
+			sedia.wait();
+		sedie=sedie-1; // la prendo se la posseggo
+	}
+	alzati(){
+		sedie = sedie + 1;
+		sedia.notify();
+	}
+}
+
+// voglio che questo sia eseguito da al massimo 4 filosofi
+filosofo(i)
+	// pensa 
+	tavolo.siediti()
+	// raccoglie le bachchette
+	// mangia
+	//deposita bacchette
+	tavola.alzati()
+```
+
+**Lettori Scrittori** 
+
+```c
+monitor rwd{
+	bool scrittore = false; // se lo scrittore sta scrivendo ( dentro sezione critica ) o no
+	int lettori = 0;
+	Condition c;
+	initLeggi(){
+		while(scrittore) // finchè c'è uno scrittore aspetto
+			c.wait()
+		lettori++;
+	}
+	endLeggi(){
+		lettori--;
+		if(lettori==0) // notifico solo quando non ve ne sono più tanto se ne abbiamo >0 rimane nel while sotto
+			c.notify
+	}
+	initScrivi(){
+		while(lettori>0||scrittore) //
+			c.wait()
+		scrittore = true;
+	}
+	endScrivi(){
+		scrittore = false;
+		// potrebbero accodarsi sia scrittore che lettori 
+	}
+}
+// policy 1 scrittore o tanti lettori 
+lettore{
+	// thread che accede solo in lettura
+	while(1){
+		rwd.initLeggi()
+		// read
+		rwd.endLeggi();
+		// voglio svegliare 1 solo se scrittore e molti se lettori perchè potrebbero essercene più di uno in coda
+		c.notifyAll(); // sveglia tutti ed essendo in un while vince o uno scrittore e tutti si bloccano oppure se sis sveglia lettore tutti scrittori si bloccano e gl altri lettori si sbloccano 
+	}
+}
+
+scrittore{
+	while(1){
+		rwd.initScrivi();
+		// leggi
+		rwd.endScrivi();
+	}
+}
+```
+
+posso avere **starvation** agli scrittori -> ....
+
+Soluzione grenerica -> ho un ordine di arrivo in cui richiedo l'ingresso al monitor
+prima di far entrare altri lettori dopo aver incontrato uno scrittore svolgo lo scrittore -> non voglio sorpassare lo scrittore
 
