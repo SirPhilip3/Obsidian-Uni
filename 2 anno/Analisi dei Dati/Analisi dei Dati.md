@@ -1251,3 +1251,30 @@ $$\hat{p}\pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \quad\text{ovvero}
 
 #### Intervalli di confidenza per la differenza di due proporzioni
 
+Supponiamo di avere due popolazioni *indipendenti* di dimensioni $n_1$ e $n_2$ 
+
+Vogliamo valutare in quale delle due popolazioni un certo attributo sia più frequente 
+
+Possiamo costruire un *intervallo di confidenza* per la differenza della proporzione di unità con l'attributo : 
+$$\theta= p_1 - p_2$$ 
+Lo stimatore di $\theta$ è la differenza delle proporzioni campionarie 
+$$\hat{\theta} = \hat{p_1}-\hat{p_2}$$
+L'*errore standard* di $\hat{\theta}$ è :
+$$SE(\hat{\theta}) = \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$$
+L'*errore standard stimato* è quindi :
+$$\widehat{SE}(\hat{\theta}) = \sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
+L'intervallo di confidenza con livello di confidenza approssimativamente pari a $(1-\alpha)$ è :
+$$\hat{p}_1+\hat{p}_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
+>[!example] 
+>Esempio 9.17 Baron
+
+#### Stimare proporzioni con una precisione prefissata
+
+Il margine d'errore nell'intervallo di confidenza per una proporzione è :
+$$\text{margine d'errore} = z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+La dimensione campionaria che assicura che *margine d'errore* $\le \Delta$ è pari a : 
+$$n\ge \hat{p}(1-\hat{p})\bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
+>[!warning] 
+>Quests diseguaglianza però coinvolge $\hat{p}$ che non è nota prima della raccolta del campione
+
+Possiamo risolvere il problema notando che il valore massiamo di $\hat{p}(1-\hat{p})$ è $0.25$ che si ottiene con 
