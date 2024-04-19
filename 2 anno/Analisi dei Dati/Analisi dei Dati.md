@@ -1277,4 +1277,13 @@ $$n\ge \hat{p}(1-\hat{p})\bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
 >[!warning] 
 >Quests diseguaglianza però coinvolge $\hat{p}$ che non è nota prima della raccolta del campione
 
-Possiamo risolvere il problema notando che il valore massiamo di $\hat{p}(1-\hat{p})$ è $0.25$ che si ottiene con 
+Possiamo risolvere il problema notando che il valore massiamo di $\hat{p}(1-\hat{p})$ è $0.25$ che si ottiene con $\hat{p} = 0.5$ 
+
+![[Pasted image 20240419172815.png]]
+
+Possiamo quindi sostituire $\hat{p}(1-\hat{p})$ con $0.25$ per ottenere la dimensione campionaria :
+$$n\ge 0.25 \bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
+che assicura che il margine d'errore sai inferiore a $\Delta$ ( per qualunque $\hat{p}$ )
+
+#### Piccoli campioni : distributzione $T$
+
