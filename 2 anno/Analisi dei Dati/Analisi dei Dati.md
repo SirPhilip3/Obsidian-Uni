@@ -1354,6 +1354,10 @@ Dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione
 >Esempio 9.20 Baron
 ###### Varianze diverse
 
+Il caso in cui le varianze non sono uguali $\sigma^2_X \ne \sigma^2_Y$ è più complicato poichè la statistica $T$ :
+$$T = \frac{(\bar X - \bar Y)-(\mu_X - \mu_Y)}{\sqrt{\frac{S^2_X}{n}+\frac{S^2_Y}{n}}}$$
+non ha più una distribuzione $T$ 
+
 
 
 ##### Intervalli di confidenza basati sullo stimatore di massima verosimiglianza
