@@ -1287,3 +1287,23 @@ che assicura che il margine d'errore sai inferiore a $\Delta$ ( per qualunque $\
 
 #### Piccoli campioni : distributzione $T$
 
+Consideriamo in campione casuale semplice di dimensione $n$ da una distribuzione normale con media $\mu$ e *varianza ignota* $\sigma^2$ 
+
+Vogliamo calcolare un intervallo di confidenza per la media $\mu$ basato sullo stimatore $\hat \mu = \bar X$ 
+
+Se $n$ è piccolo allora l'*errore standard stimato* $\frac{S}{\sqrt{n}}$ potrebbe differire significativamente dal vero *errore standard* $\frac{\sigma}{\sqrt{n}}$ 
+
+La conseguenza di sostituire $\sigma$ con la stima consistente $S$ è che la quantità :
+$$T=\frac{\sqrt{n}(\bar X -\mu)}{S}$$
+Non ha più una distribuzione normale ma una dsitribuzione **T di Student** con $n-1$ *gradi di libertà*
+
+#### Distribuzione $T$ di Student
+
+I *gradi di libertà* controllano la forma della distribuzione $T$ 
+
+Al crescere dei *gradi di libertà* la distribuzione $T$ *converge* alla distribuzione *normale*
+
+##### Gradi di Libertà
+
+I *gradi di libertà* corrispondono alla dimensione del vettore usato per stimare la varianza $\sigma^2$ nella statistica $T$ , questa è stimata dalla *varianza campionaria* : 
+$$S^2 = \frac{1}{n-1}\sum^{n}_{i=1}(X_i-\bar X)^2$$
