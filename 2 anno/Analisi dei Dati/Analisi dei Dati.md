@@ -1307,3 +1307,58 @@ Al crescere dei *gradi di libertà* la distribuzione $T$ *converge* alla distrib
 
 I *gradi di libertà* corrispondono alla dimensione del vettore usato per stimare la varianza $\sigma^2$ nella statistica $T$ , questa è stimata dalla *varianza campionaria* : 
 $$S^2 = \frac{1}{n-1}\sum^{n}_{i=1}(X_i-\bar X)^2$$
+La *varianza campionaria* è una funzione del vettore dei dati centrali
+
+>[!todo] 
+
+##### Intervalli di confidenza per la media basati sulla statistica $T$
+
+L'intervallo di confidenza per la media $\mu$ di una popolazione normale è :
+$$\bar X \pm t_{\alpha/2} \frac{S}{\sqrt{n}}$$
+dove $t_{\alpha/2}$ è il quantile della distribuzione $T$ con $n-1$ gradi di libertà di posizione $1-\alpha/2$ ovvero il valore tale che :
+$$\Pr(T \ge t_{\alpha/2}) = \alpha/2\quad \text{oppure}\quad \Pr(T \le t_{\alpha/2}) = 1-\alpha/2$$
+Al crescere di $n$ l'intervallo di confidenza basato sulla statistica $T$ convergerà all'intervallo basato sulla statistica $Z$  :
+$$\bar X \pm z_{\alpha/2}\frac{S}{\sqrt{n}}$$
+##### Quantili
+
+Il valore di $t_{\alpha/2}$ si può ottenere grazie ad `R` attraverso la funzione `qt` ( *quantile of the T distribution* ) : $\Pr(T \le t_{\alpha/2})=1-\alpha/2$ ovvero $t_{\alpha/2}$ è il *qunatile* di $T$ di posizione $1-\alpha/2$ 
+
+Per esempio se $\alpha = 0.05$ e $17$ gradi di libertà : `{r}qt(1-0.05/2, df = 17)`
+
+>[!example] 
+>Esempio 9.19 Baron
+##### Confronto fra le medie di due popolazioni normali con varianze ignote
+
+Consideriamo due campioni casuali semplici normali 
++ $X_1,\dots,X_n$ con media $\mu_X$ e varianza ignota $\sigma^2_X$
++ $Y_1,\dots,Y_m$ con media $\mu_Y$ e varianza ignota $\sigma^2_Y$
+
+Assumiamo che i campioni siano *indipendenti*
+
+Siamo interessati alla differenza fra le due medie : 
+$$\theta = \mu_X -\mu_Y$$
+Abbiamo 2 casi :
+1. Le due varianze sono uguali $\sigma^2=\sigma^2_X=\sigma^2_Y$
+2. Le due varianza sono differenti $\sigma^2_X \ne \sigma^2_Y$
+###### Varianze uguali
+
+Se le varianze sono uguali allora stimiamo $\sigma^2$ con tutti i dati : 
+$$\hat \sigma^2 = S^2_p = \frac{1}{n+m-2}\bigg\{\sum^{n}_{i=1}(X_i-\bar X)^2+ \sum^{n}_{i=1}(Y_i-\bar Y)^2\bigg\}$$
+Lo stimatore $S_p^2$ è detto varianza campionaria *pooled* 
+
+In questo caso l'intervallo di confidenza per la differenza delle medie è :
+$$\bar X -\bar Y \pm t_{\alpha/2}S_p \sqrt{\frac{1}{n}+\frac{1}{m}}$$
+Dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ con $n+m-2$ *gradi di libertò* 
+
+>[!example] 
+>Esempio 9.20 Baron
+###### Varianze diverse
+
+
+
+##### Intervalli di confidenza basati sullo stimatore di massima verosimiglianza
+
+##### Intervalli di confidenza e trasformazioni
+
+### Verifica delle Ipotesi
+
