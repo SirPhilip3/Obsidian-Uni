@@ -1358,10 +1358,33 @@ Il caso in cui le varianze non sono uguali $\sigma^2_X \ne \sigma^2_Y$ è più c
 $$T = \frac{(\bar X - \bar Y)-(\mu_X - \mu_Y)}{\sqrt{\frac{S^2_X}{n}+\frac{S^2_Y}{n}}}$$
 non ha più una distribuzione $T$ 
 
+In questo caso si ricorre spesso all'approsimazione di *Satterthwaite*
 
+La distribuzione della statistica $T$ può essere *approssimata* con la distribuzione di una variabile casuale $T$ di Student con gradi di libertà : 
+$$v=\frac{\bigg(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\bigg)^2}{\frac{S_X^4}{n^2(n-1)}+\frac{S_Y^4}{m^2(m-1)}}$$
+>[!note] 
+>$v$ non è generalmente un numero intero
 
+L'intervallo di confidenza per la differenza di due medie con l'approssimazione di *Satterthwaite* è :
+$$\bar X -\bar Y\pm t_{\alpha/2} \sqrt{\frac{S_X^2}{n}+ \frac{S_Y^2}{m}}$$
+dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ dellla sitribuzione $T$ di Student con $v$ gradi di libertà
+
+>[!example] 
+>Esempio 9.21 Baron
+>
 ##### Intervalli di confidenza basati sullo stimatore di massima verosimiglianza
 
+Sappiamo che sotto assunzioni di regolarità lo stimatore di massima verosimiglianza $\hat \theta$ è :
++ asintoticamente non distorto 
++ asintoticamente normale con distribuzione limite : $N\{ \theta , I(\theta)^{-1} \}$ 
+
+Possiamo usare la distribuzione limite per costruire un intervallo di confidenza approssimato : 
+$$\hat \theta \pm z_{\alpha/2}I(\hat{\theta})^{-1/2}$$
+Oppure utilizzando l'informazione osservata : 
+$$\hat \theta \pm z_{\alpha/2}J(\hat{\theta})^{-1/2}$$
+
+>[!example] 
+>
 ##### Intervalli di confidenza e trasformazioni
 
 ### Verifica delle Ipotesi
