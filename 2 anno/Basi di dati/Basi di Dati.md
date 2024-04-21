@@ -254,7 +254,6 @@ CREATE VIEW InfCorsi (IdeC , Titolo , NumEsami) AS
 
 La tabella *InfCorsi* ( conta quanti studenti hanno svolto un esame ) è una tabella *virtuale* : 
 	Non viene salvata in memoria ma viene ricalcolata ogni volta che la si richiede con una query
-
 #### Data independence 
 
 + **Indipendenza fisica** : I programmi applicativi non devono essere modificati in seguito a modifiche dell'organizzazione fisica dei dati

@@ -56,7 +56,7 @@ HaScritto ^fnixXCgd
 {
 	"type": "excalidraw",
 	"version": 2,
-	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.9.19",
+	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.1.4",
 	"elements": [
 		{
 			"type": "ellipse",
@@ -89,8 +89,8 @@ HaScritto ^fnixXCgd
 		},
 		{
 			"type": "text",
-			"version": 33,
-			"versionNonce": 736525409,
+			"version": 34,
+			"versionNonce": 993311175,
 			"isDeleted": false,
 			"id": "aDCS1sdx",
 			"fillStyle": "hachure",
@@ -123,7 +123,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085506543,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -134,13 +134,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "a1",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 54,
-			"versionNonce": 409127617,
+			"version": 55,
+			"versionNonce": 1256319529,
 			"isDeleted": false,
 			"id": "0fw42R8w",
 			"fillStyle": "hachure",
@@ -173,7 +172,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085513595,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -184,8 +183,7 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "a2",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "ellipse",
@@ -218,8 +216,8 @@ HaScritto ^fnixXCgd
 		},
 		{
 			"type": "text",
-			"version": 56,
-			"versionNonce": 1850876545,
+			"version": 57,
+			"versionNonce": 1009248487,
 			"isDeleted": false,
 			"id": "xtiASgrY",
 			"fillStyle": "hachure",
@@ -252,7 +250,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085489717,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -263,13 +261,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "d1",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 75,
-			"versionNonce": 341045825,
+			"version": 76,
+			"versionNonce": 1767161097,
 			"isDeleted": false,
 			"id": "PMyuGl9I",
 			"fillStyle": "hachure",
@@ -298,7 +295,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085495435,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -309,13 +306,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "d2",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 90,
-			"versionNonce": 757528559,
+			"version": 91,
+			"versionNonce": 287847431,
 			"isDeleted": false,
 			"id": "KlF8yK9R",
 			"fillStyle": "hachure",
@@ -348,7 +344,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085530067,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -359,13 +355,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "d3",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 49,
-			"versionNonce": 567751745,
+			"version": 50,
+			"versionNonce": 464139241,
 			"isDeleted": false,
 			"id": "edkhc9qU",
 			"fillStyle": "hachure",
@@ -385,7 +380,7 @@ HaScritto ^fnixXCgd
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696085415905,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -396,13 +391,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Autori",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 196,
-			"versionNonce": 7726287,
+			"version": 197,
+			"versionNonce": 1915886375,
 			"isDeleted": false,
 			"id": "DlrtD1Wo",
 			"fillStyle": "hachure",
@@ -422,7 +416,7 @@ HaScritto ^fnixXCgd
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696085481760,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 19.84642105098999,
@@ -433,13 +427,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Descrizioni Bibliografiche",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 159,
-			"versionNonce": 206111777,
+			"version": 160,
+			"versionNonce": 367906505,
 			"isDeleted": false,
 			"id": "2kFPwbRi",
 			"fillStyle": "hachure",
@@ -464,7 +457,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085415905,
+			"updated": 1713715066006,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -475,13 +468,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Nome : \"Italo Calvino\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 211,
-			"versionNonce": 1377644513,
+			"version": 212,
+			"versionNonce": 1672617543,
 			"isDeleted": false,
 			"id": "9mStTamF",
 			"fillStyle": "hachure",
@@ -506,7 +498,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085415905,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -517,13 +509,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Nome : \"Zerocalcare\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 231,
-			"versionNonce": 1579772833,
+			"version": 232,
+			"versionNonce": 2126187945,
 			"isDeleted": false,
 			"id": "JwP4ijl4",
 			"fillStyle": "hachure",
@@ -548,7 +539,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085415905,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -559,13 +550,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Nazionalità : \"Italiano\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 247,
-			"versionNonce": 1839839073,
+			"version": 248,
+			"versionNonce": 679787879,
 			"isDeleted": false,
 			"id": "49YzZSP6",
 			"fillStyle": "hachure",
@@ -590,7 +580,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085415905,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -601,13 +591,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Nazionalità : \"Italiano\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 317,
-			"versionNonce": 1839292673,
+			"version": 318,
+			"versionNonce": 490565769,
 			"isDeleted": false,
 			"id": "kIM1Mrha",
 			"fillStyle": "hachure",
@@ -632,7 +621,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085407024,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -643,13 +632,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Titolo : \"Il Barone Rampante\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 383,
-			"versionNonce": 116118721,
+			"version": 384,
+			"versionNonce": 1945532551,
 			"isDeleted": false,
 			"id": "oa5fgSFA",
 			"fillStyle": "hachure",
@@ -674,7 +662,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085407024,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -685,13 +673,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Titolo : \"La città invisibili\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 444,
-			"versionNonce": 595351681,
+			"version": 445,
+			"versionNonce": 1194358633,
 			"isDeleted": false,
 			"id": "DatC927Q",
 			"fillStyle": "hachure",
@@ -716,7 +703,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085407024,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -727,13 +714,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Titolo : \"La profezia dell'armadillo\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 442,
-			"versionNonce": 353299521,
+			"version": 443,
+			"versionNonce": 1539559335,
 			"isDeleted": false,
 			"id": "Orf6cxLR",
 			"fillStyle": "hachure",
@@ -758,7 +744,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085407024,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -769,13 +755,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Editore : \"Einaudio\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 472,
-			"versionNonce": 1851756545,
+			"version": 473,
+			"versionNonce": 249537097,
 			"isDeleted": false,
 			"id": "7X4m540q",
 			"fillStyle": "hachure",
@@ -800,7 +785,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085407024,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -811,13 +796,12 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Editore : \"Einaudio\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 490,
-			"versionNonce": 1126843329,
+			"version": 491,
+			"versionNonce": 169427655,
 			"isDeleted": false,
 			"id": "J96ByPN5",
 			"fillStyle": "hachure",
@@ -842,7 +826,7 @@ HaScritto ^fnixXCgd
 					"type": "arrow"
 				}
 			],
-			"updated": 1696085407024,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.76014647136866,
@@ -853,8 +837,7 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Editore : \"Bao Publishing\"",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "arrow",
@@ -1402,83 +1385,81 @@ HaScritto ^fnixXCgd
 			"locked": false
 		},
 		{
-			"id": "siaRuHCz",
 			"type": "text",
-			"x": -233.56220262793832,
-			"y": 271.0799779373292,
-			"width": 92.59989929199219,
-			"height": 25,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "transparent",
+			"version": 25,
+			"versionNonce": 824602921,
+			"isDeleted": false,
+			"id": "siaRuHCz",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": -233.56220262793832,
+			"y": 271.0799779373292,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 92.59989929199219,
+			"height": 25,
+			"seed": 1046401487,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 1046401487,
-			"version": 24,
-			"versionNonce": 114936993,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1696085462463,
+			"boundElements": [],
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
-			"text": "Collezione",
-			"rawText": "Collezione",
 			"fontSize": 20,
 			"fontFamily": 1,
+			"text": "Collezione",
+			"rawText": "Collezione",
 			"textAlign": "left",
 			"verticalAlign": "top",
-			"baseline": 17,
 			"containerId": null,
 			"originalText": "Collezione",
 			"lineHeight": 1.25
 		},
 		{
-			"id": "mOB0DgfV",
 			"type": "text",
-			"x": 4.850225527701525,
-			"y": 276.7059231234563,
-			"width": 120.85987854003906,
-			"height": 25,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "transparent",
+			"version": 43,
+			"versionNonce": 798183911,
+			"isDeleted": false,
+			"id": "mOB0DgfV",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": 4.850225527701525,
+			"y": 276.7059231234563,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 120.85987854003906,
+			"height": 25,
+			"seed": 353725729,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 353725729,
-			"version": 42,
-			"versionNonce": 1390885473,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1696085460553,
+			"boundElements": [],
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
-			"text": "Associazione",
-			"rawText": "Associazione",
 			"fontSize": 20,
 			"fontFamily": 1,
+			"text": "Associazione",
+			"rawText": "Associazione",
 			"textAlign": "left",
 			"verticalAlign": "top",
-			"baseline": 17,
 			"containerId": null,
 			"originalText": "Associazione",
 			"lineHeight": 1.25
 		},
 		{
 			"type": "text",
-			"version": 42,
-			"versionNonce": 2070482145,
+			"version": 43,
+			"versionNonce": 1131439113,
 			"isDeleted": false,
 			"id": "zuVfkATu",
 			"fillStyle": "hachure",
@@ -1498,7 +1479,7 @@ HaScritto ^fnixXCgd
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1696085464901,
+			"updated": 1713715066007,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -1509,74 +1490,81 @@ HaScritto ^fnixXCgd
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Collezione",
-			"lineHeight": 1.25,
-			"baseline": 17
+			"lineHeight": 1.25
 		},
 		{
-			"id": "fnixXCgd",
 			"type": "text",
-			"x": 11.759243794684636,
-			"y": -58.641582154210255,
-			"width": 93.21990966796875,
-			"height": 25,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "transparent",
+			"version": 24,
+			"versionNonce": 893287687,
+			"isDeleted": false,
+			"id": "fnixXCgd",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": 11.759243794684636,
+			"y": -58.641582154210255,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 93.21990966796875,
+			"height": 25,
+			"seed": 31590561,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": null,
-			"seed": 31590561,
-			"version": 23,
-			"versionNonce": 1884468641,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1696085478765,
+			"boundElements": [],
+			"updated": 1713715066008,
 			"link": null,
 			"locked": false,
-			"text": "HaScritto",
-			"rawText": "HaScritto",
 			"fontSize": 20,
 			"fontFamily": 1,
+			"text": "HaScritto",
+			"rawText": "HaScritto",
 			"textAlign": "left",
 			"verticalAlign": "top",
-			"baseline": 17,
 			"containerId": null,
 			"originalText": "HaScritto",
 			"lineHeight": 1.25
 		},
 		{
-			"id": "v6L9Pyez88dPkADFUfI4G",
 			"type": "arrow",
-			"x": 273.8048544183801,
-			"y": 46.442725335526404,
-			"width": 223.47030953569742,
-			"height": 5.320731184551505,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "transparent",
+			"version": 55,
+			"versionNonce": 1615437839,
+			"isDeleted": false,
+			"id": "v6L9Pyez88dPkADFUfI4G",
 			"fillStyle": "hachure",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": 273.8048544183801,
+			"y": 46.442725335526404,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 223.47030953569742,
+			"height": 5.320731184551505,
+			"seed": 768621839,
 			"groupIds": [],
 			"frameId": null,
 			"roundness": {
 				"type": 2
 			},
-			"seed": 768621839,
-			"version": 55,
-			"versionNonce": 1615437839,
-			"isDeleted": false,
-			"boundElements": null,
+			"boundElements": [],
 			"updated": 1696085525742,
 			"link": null,
 			"locked": false,
+			"startBinding": {
+				"elementId": "xtiASgrY",
+				"focus": -0.1826500614427375,
+				"gap": 5.013663445731197
+			},
+			"endBinding": null,
+			"lastCommittedPoint": null,
+			"startArrowhead": null,
+			"endArrowhead": "arrow",
 			"points": [
 				[
 					0,
@@ -1586,16 +1574,7 @@ HaScritto ^fnixXCgd
 					-223.47030953569742,
 					5.320731184551505
 				]
-			],
-			"lastCommittedPoint": null,
-			"startBinding": {
-				"elementId": "xtiASgrY",
-				"focus": -0.1826500614427375,
-				"gap": 5.013663445731197
-			},
-			"endBinding": null,
-			"startArrowhead": null,
-			"endArrowhead": "arrow"
+			]
 		},
 		{
 			"type": "arrow",
@@ -1805,10 +1784,10 @@ HaScritto ^fnixXCgd
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 584.4349985497365,
-		"scrollY": 1143.6457560651268,
+		"scrollX": 457.9348082216949,
+		"scrollY": 158.1173938619811,
 		"zoom": {
-			"value": 0.4058179117955385
+			"value": 1.7000000000000002
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
