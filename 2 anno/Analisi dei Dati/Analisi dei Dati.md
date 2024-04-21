@@ -1413,7 +1413,12 @@ $$\hat \theta \pm z_{\alpha/2}J(\hat{\theta})^{-1/2}$$
 
 ##### Intervalli di confidenza e trasformazioni
 
+Supponiamo di aver calcolato un intervallo di confidenza $[A,B]$ per un parametro $\theta$ , siamo però interessati ad una trasformazione $\phi = g(\theta)$ del parametro $\theta$ 
 
+Se $\phi$ è una *trasformazione monotona* calcoliamo l'intervallo di confidenza per $\phi$ applicando la funzione $g$ agli estremi dell'intervallo di confidenza per $\theta$
 
+Se $g$ è una *trasformazione monotona crescente* allora l'intervallo per $\phi$ è $[g(A),g(B)]$ poichè :
+$$1-\alpha = \Pr(A\le \theta \le B) = \Pr\{g(A)\le g(\theta)\le g(B)\}$$
+Se invece $g$ è *monotona descresente* allora l'intervallo per $\phi$ sarà $[g(B),g(A)]$ 
 ### Verifica delle Ipotesi
 
