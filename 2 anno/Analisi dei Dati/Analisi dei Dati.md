@@ -1384,8 +1384,36 @@ Oppure utilizzando l'informazione osservata :
 $$\hat \theta \pm z_{\alpha/2}J(\hat{\theta})^{-1/2}$$
 
 >[!example] 
+>Sia $X_1, \dots,X_n$ un campione casuale semplice da una varaibile normale con media 0 e varianza $\sigma^2$ ignota
 >
+>La funzione di densità di $X$ è :
+>$$f(x; \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2} \exp \bigg(-\frac{x^2}{2\sigma^2}\bigg)}$$
+>
+>Vogliamo calcolare un intervallo di confidenza 90% per $\sigma^2$
+>
+>Abbiamo che 
+>1. $\hat\sigma^2=\sum^{n}_{i=1} X^2/n$
+>2. $I(\sigma^2)= n/(2\sigma^4)$
+>
+>Lo stimatore di massima verosimiglianza è distribuito approssimativamente come :
+>$$N\bigg(\sigma^2,\frac{2\sigma^4}{n}\bigg)\quad \text{per $n$ sufficientemente grande}$$
+>
+>Un intervallo di confidenza con livello approssimato del $90\%$ è quindi : 
+>$$\hat \sigma^2 \pm z_{0.05}I(\hat\sigma^2)^{-1/2} \quad \text{oppure} \quad \hat \sigma^2 \pm z_{0.05}J(\hat\sigma^2)^{-1/2}$$ 
+>
+>In questo particolare caso avremo che $I(\hat \sigma^2)=J(\hat \sigma^2)=n/(2\hat \sigma^4)$
+>
+>L'intervallo di confidenza è 
+>$$\hat \sigma^2 \pm z_{0.05} \hat \sigma^2 \sqrt{2/n} \implies \hat \sigma^2 \pm 1.64 \hat \sigma^2 \sqrt{2/n}$$
+>
+>Supponiamo che un campione di dimensione $60$ abbia dato $\sum^{60}_{i=1} x_i^2 = 164.83$ 
+>
+>L'intervallo di confidenza sarà quindi :
+>$$\frac{164.83}{60}\pm 1.64 \bigg(\frac{164.83}{60}\bigg)\sqrt{\frac{2}{60}} = [1.93,3.57]$$
+
 ##### Intervalli di confidenza e trasformazioni
+
+
 
 ### Verifica delle Ipotesi
 
