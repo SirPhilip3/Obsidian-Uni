@@ -3241,7 +3241,7 @@ $$T(n)=\Theta(n)+\Theta(n^2)=\Theta(n^2)$$
 
 ```c
 Bottom_Up_Cut_Rod(p, n)
-	Sia r[0, ... ,n] un unovo vettore
+	Sia r[0, ... ,n] un nuovo vettore
 	r[0] = 0
 	for j = 1 to n // utilizza sempre soluzioni già calcolate
 		q = -1
@@ -3430,7 +3430,7 @@ LCS(X , Y)
 ```c
 printLCS(X , Y)
 	b , c = LCS(X , Y)
-	printLCSrec (X , b , X.length , Y.length)
+	printLCSrec(X , b , X.length , Y.length)
 	
 printLCSrec(X , b , i , j )
 	if i > 0 and j > 0
