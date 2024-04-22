@@ -5004,4 +5004,39 @@ L'algortimo di *Floyd-Warshall* ha complessità $\Theta(n^3)$ che risulta essere
 Supponiamo di avere un $G=(V,E)$ orientato con $w:E\to \mathbb{R}$
 Inoltre supponiamo di numerare tutti i vertici con numeri naturali compresi tra $1$ e $n$
 
-Indichiamo con $W$ la matrice delle distanze , indicheremo con $w(i,j)$ il peso dell'arco tra $i$ e $j$ e con $w_{ij}$ l'elemento di $W$ presente alla riga $i$ e colonna $j$ 
+L'algortimo prende in input una matrice $W$ che contiene in $w(i,j)$ il peso dell'arco tra $i$ e $j$
+e $w_{ij}$ per indicare l'elemento della matrice alla righa $i$ e colonna $j$ , $w_{ij}$ potrà quindi prendere i seguenti valori : 
+$$w_{ij}=\begin{cases}
+0 & \text{se} \ i =j \\ w(i,j) & \text{se}\ i\ne j \land (i,j)\in E \\ \infty & \text{se}\ i\ne j \land (i,j)\notin E
+\end{cases}$$
+L'algortimo restituirà un'ulteriore matrice detta *matrice delle distanze* $D$ per cui alla fine dell'algoritmo avermo che $d_{ij}=\delta(i,j)$ ( ossia la distanza vera tra $i$ e $j$ ) 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Floyd\_Warshall(W)}
+	\begin{algorithmic}
+	\State $n \leftarrow rows(W)$
+	\State $D^{0} \leftarrow W$
+	\For{$k=1\ \text{to}\ n$}
+		\For{$i=1\ \text{to}\ n$}
+			\For{$j=1\ \text{to}\ n$}
+			\State $d_{ij}^k = \min \{ d_{ij}^{k-1} , d_{ik}^{k-1} + d_{kj}^{k-1} \}$
+			\EndFor
+		\EndFor
+    \EndFor
+    \Return $D^k$
+	\end{algorithmic}
+	\end{algorithm}
+```
+**Spiegazione** :
+
+>[!todo] 
+
+**Complessità** : 
+
+Visti i tre cicli `for` e la complessità costante dell'operazione all'interno avremo che : la *complessità* sarà : $n^3\cdot 1 = \Theta(n^3)$
+
+**Correttezza** : 
+
+>[!todo] 
+
