@@ -4954,7 +4954,54 @@ Visto che l'algoritmo avrà restituito `True` avremo che dovrà essere ( poichè
 $$\sum^{q}_{i=1}d[x_i] \le \sum^{q}_{i=1}d[x_{i-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)$$
 Visto che ci troviamo su un ciclo e $x_0=x_q$ avremo che le due sommatorie possono essere semplificate nel seguente modo : 
 $$d[x_1]+d[x_2]+\dots+d[x_q]\le d[x_0]+d[x_1]+\dots+d[x_{q-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)$$
-Possiamo eliminare quindi tutti i pesi uguali e rimarremo con $d[]$
+Possiamo eliminare quindi tutti i pesi uguali e rimarremo con $d[q]\le d[x_0]$ ma sapendo che $d[q]=d[x_0]$ possiamo riscrivere l'equazione precedente nel seguente modo : 
+$$\sum^{q}_{i=1}w(x_{i-1},x_i)\ge 0$$
+che va contro l'ipotesi iniziale e abbiamo quindi raggiunto l'*assurdo*
 
-Avremo quindi che :
-$$$$
+**Osservazioni**
+
+Quando è meglio utilizzare *Bellman-Ford* rispetto a *Dijkstra* ? :
+
+|                           |   *Dijkstra*    | *Bellman-Ford* |
+| :------------------------ | :-------------: | :------------: |
+| ***Sparso*** $m\approx n$ | $n\cdot \log n$ |     $n^2$      |
+| ***Denso***               |      $n^2$      |     $n^3$      |
+Notiamo che generalmente *Dijkstra* ha una migliore complessità rispetto a *Bellman-Ford* , dobbiamo però ricordarci che *Dijkstra* è valido solo se i pesi sono $>0$ mentre *Bellman-Ford* è un algoritmo più generale
+
+>[!example] 
+>>[!todo] 
+
+#### Cammini minimi tra tutte le coppie di vertici
+
+>[!note] 
+In questo caso ci limitiamo al calcolo delle distanze 
+
+Una prima soluzione sarebbe quella di lanciare l'algoritmo di *Dijkstra* ( se so che i pesi sono $>0$ ) o *Bellman-Ford* su tutti i vertici 
+```pseudo
+	\begin{algorithm}
+	\caption{Iterated\_Bellman-Ford(G,w)}
+	\begin{algorithmic}
+	\ForAll{$v\in V[G]$}
+		\State $\text{Bellman-Ford}(G,w,v)$
+    \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
+La **complessità** sarebbe : 
+
+|                           |   *Iterated_BF*    |       *Iterated_Djikstra*        |
+| :-----------------------: | :----------------: | :------------------------------: |
+| ***Sparso*** $m\approx n$ | $n\cdot n^2 =n^3$  | $n\cdot n\cdot \log n=n^2\log n$ |
+|        ***Denso***        | $n\cdot n^3 = n^4$ |         $n\cdot n^2=n^3$         |
+
+Possiamo fare di meglio ? 
+Si grazie alla *programmazione dinamica* 
+
+##### Floyd-Warshall
+
+L'algortimo di *Floyd-Warshall* ha complessità $\Theta(n^3)$ che risulta essere meglio di tutte le complessità ottenute nel precedente esempio ( solo nel caso in cui abbiamo tutti i pesi $>0$ e grafo sparso allora *Iterated_Djikstra* fa meglio )
+
+Supponiamo di avere un $G=(V,E)$ orientato con $w:E\to \mathbb{R}$
+Inoltre supponiamo di numerare tutti i vertici con numeri naturali compresi tra $1$ e $n$
+
+Indichiamo con $W$ la matrice delle distanze , indicheremo con $w(i,j)$ il peso dell'arco tra $i$ e $j$ e con $w_{ij}$ l'elemento di $W$ presente alla riga $i$ e colonna $j$ 
