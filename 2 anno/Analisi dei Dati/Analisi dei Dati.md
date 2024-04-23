@@ -1422,3 +1422,15 @@ $$1-\alpha = \Pr(A\le \theta \le B) = \Pr\{g(A)\le g(\theta)\le g(B)\}$$
 Se invece $g$ è *monotona descresente* allora l'intervallo per $\phi$ sarà $[g(B),g(A)]$ 
 ### Verifica delle Ipotesi
 
+#### Ipotesi nulla e alternativa
+
+Nella *verifica delle ipotesi* vengono confrontate due ipotesi mutualmente esclusive : 
++ $H_0$ : *ipotesi nulla* 
+	Rappresenta lo stato delle cose ( ciò in cui si crede finchè i dati non forniscono una *chiara evidenza* contraria ( vale la **presunzione di innocenza** ) ) 
++ $H_A$ : *ipotesi alternativa* 
+
+Le due ipotesi fromano un sistema d'ipotesi 
+
+L'esperimento campionario usato per valure le ipotesi è detto *test* e può porteare a 2 possibili decisioni : 
++ *impossibilità di rifiutare* l'ipotesi nulla $H_0$ perchè i dati non forniscono sufficoente evidenza contraria a $H_0$
++ *rifiuto* dell'ipotesi nulla $H_0$ perchè i dati forniscono sufficiente evidenza contraria a $H_0$ 

@@ -5042,5 +5042,30 @@ Visti i tre cicli `for` e la complessità costante dell'operazione all'interno a
 
 **Correttezza** : 
 
-Aven
+Avendo $k$ l'etichetta posta sui vertici allora diremo che : $\mathcal{D}_{i,j}$ è un insieme di cammini tali per cui : 
+$$\mathcal{D}_{i,j} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$}\}$$
+e 
+$$\mathcal{D}_{i,j}^{(k)} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$, con vertici intermedi di etichetta}\le k\}$$
+Dove *vertice intermedio* : è un qualsiasi vertice del cammino $p<x_0,x_1,\dots,x_n>$ tale che sia diverso da $x_0$ o $x_n$ 
 
+>[!example] 
+>In questo cammino $p=<1,2,5,7,9>$ i *veritci intermedi* sono $<2,5,7>$
+
+>[!example] 
+![[Floyd-Warshall.excalidraw]]
+>
+>Se abbiamo $\mathcal{D}_{2,7}$ allora avremo differenti insiemi per differenti valori di $k$ :
+>+ $\mathcal{D}_{2,7}^{(1)}=\mathcal{D}_{2,7}^{(2)}=\mathcal{D}_{2,7}^{(3)}=\emptyset$
+>+ $\mathcal{D}_{2,7}^{(4)}=\{<2,1,4,3,7>\}$
+>+ $\mathcal{D}_{2,7}^{(5)}=\{<2,5,3,7>\}$
+>
+>Da questo possiamo notare che $\mathcal{D}_{i,j}^{(k)}\subseteq \mathcal{D}_{i,j}^{(k+1)}$  ed in particolare quando $k=n$ $\mathcal{D}_{i,j}^{(k)}$ e $\mathcal{D}_{i,j}$ coincidono ( ossia $\mathcal{D}_{i,j}$ è un cammino semplice tra $i$ e $j$ )
+>
+>
+
+Definiamo ora $d_{i,j}^{(k)}$ come il peso del cammino minimo tra $i$ e $j$ dove i valori dei vertici intermedi hanno valore minore o uguale a $k$ ossia : 
+$$d_{i,j}^{(k)} = \min_{p \in \mathcal{D}_{i,j}^{(k)}} w(p)$$
+In pratica tra tutti i cammini minimi presenti in $\mathcal{D}_{i,j}$ , $d_{i,j}^{(k)}$ sarà il peso minimo tra tutti i cammini minimi 
+
+Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : 
+$$\delta(i,j)=d_{ij}^{(n)}$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'alogritmo di *Floyd-Warshall*

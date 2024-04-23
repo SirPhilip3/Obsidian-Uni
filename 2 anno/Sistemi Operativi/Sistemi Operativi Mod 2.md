@@ -1839,6 +1839,6 @@ I *semafori POSIX* sono utilizzabili attraverso la libreria `semaphore.h`
 
 >[!warning] 
 >In MACOS supporta solamente semafori con nome , quindi al posto di `sem_init` si deve usare `sem_open` , al posto di `sem_destroy` `sem_close` e `sem_unlink` 
-
 ## Monitor
 
+## Thread in Java

@@ -2441,3 +2441,5 @@ Il livello di isolamento di default è `{postgresql}READ COMMITTED` ma i livelli
 >>[!todo] 
 ### Linguaggi per SQL
 
+>[!todo] 
+>mybe
