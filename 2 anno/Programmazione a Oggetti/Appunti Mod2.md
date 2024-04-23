@@ -1223,9 +1223,10 @@ posso ereditare in tre modi -> public , private e protected
 public dog : public animal
 // posso subsumere solo io non gli altri
 public dog : private animal 
-// io + pacchetto 
+// io + i figli 
 public dog : protected animal 
 ```
 
 potrei volere solo le cose del padre ma non voglio realmente essere suo figlio , come se encapsulassi il codice , non voglio essere usato polimorficamente 
 
+class def private struct def public
