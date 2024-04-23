@@ -1449,3 +1449,17 @@ monitor rwd{
 
 se aggiungo condizione di bloccaggio probabilmente devo notificare di più 
 
+# 23/04/2024
+
+thread in java 
+
+classe Thread in java -> getName -> ritorna stringa dell'id del thread
+
+dentro run codice del thread t.run() -> call funzione 
+
+t.start() -> starta il thread nella jvm
+
+tutte le classi che impleemtano runnable candidati per creare dei thread e poi lo passo alla classe thread
+
+variabili condition -> sono come dei semafori sempre rossi , sempre bloccante 
+
