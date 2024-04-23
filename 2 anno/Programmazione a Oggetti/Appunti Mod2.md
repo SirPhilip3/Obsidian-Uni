@@ -1175,5 +1175,57 @@ non c'è subsumption sul type argument , se lo accettasse potrei creare una lsit
 strong typed 
 template system
 
+multiparadigma -> più stili e paradigmi diversi : 
++ linguaggio ad oggetti
++ procedurale
++ generic programming -> senza ereditarietà etcc solo con polimorfismo parametrico
 
+ad oggetti realizzato con pointers
+
+stl ( standard template library ) and standard library
+
+snake case -> tutto minuscolo + unserscore
+
+private , protected (tu + figli) , public
+
+inizializzazione dei campi 
+
+```cpp
+animal(int w) : weight(w) {} // inizializzazione-> : nomecampo(valore)
+```
+
+copy constructor
+
+```cpp
+// & altrimenti passo per copia animal e sarebbe una ricorsione perchè il passaggio per copia dovrei chiamare il copy constructor 
+// vuole reference
+animal(const animal& a){
+	
+}
+```
+
+tipo senza reference e pointer -> valore 
+
+con const non posso chiamare cose non const ex operatore + non è const quindi non posso chiamarlo
+
+this è un pointer ( per acceder ad un suo campo -> ) il . accede a campi by value -> by pointer
+
+si passa sempre per const & poi se mi serve tolgo const o reference 
+
+passaggio più comune è il pù lungo da scrivere 
+
+override non si può fare di default scrivendo virtual per abilitare 
+
+posso ereditare in tre modi -> public , private e protected 
+
+```cpp
+// possono subsumere tutti
+public dog : public animal
+// posso subsumere solo io non gli altri
+public dog : private animal 
+// io + pacchetto 
+public dog : protected animal 
+```
+
+potrei volere solo le cose del padre ma non voglio realmente essere suo figlio , come se encapsulassi il codice , non voglio essere usato polimorficamente 
 
