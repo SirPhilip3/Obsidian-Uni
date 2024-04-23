@@ -1129,3 +1129,51 @@ type argument non subsumono , solo il guscio estreno subsume mai i generics este
 // o A o un supertipo di A
 ```
 
+# 23/04/2024
+
+sort -> 
+
+```java
+public static <T> void sort(List<T> list,Comparator<? super T> c)
+```
+
+wildcard -> in sort accetto comparator che può essere supertipo del tipo della lista , 
+comparator 
+
+```java
+public static class Animal{
+	
+	int weight;
+}
+
+public static class Dog extends Animal{
+	boolean pedigree; 
+}
+
+public static void main(){
+	List<Animal> l = new ArrayList<>();
+	l.add(new Animal(50));
+	l.add(new Animal(20));
+	l.add(new Animal(30));
+	sort(l , new Comparator<Animal>{
+		compare(Animal o1, Animal o2){
+			return o1.weight - o2.weight
+		}
+	})
+}
+
+// dovrei poter confrontare dog ? , posso confrontarli con un comparator per animal basta che il comparator sia della sua superclasse
+// controvarianza del comparator 
+// non dei sottotipi perchè il comparator potrebbe usare attributi della sottocalsse che la superclasse non possiede 
+// al massimo posso trattarli come cose più in su non in giù
+```
+
+non c'è subsumption sul type argument , se lo accettasse potrei creare una lsita di dog passarla come lista di animal e poi inserisci gatti
+
+**Cpp**
+
+strong typed 
+template system
+
+
+
