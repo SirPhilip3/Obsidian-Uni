@@ -1426,7 +1426,7 @@ Se invece $g$ è *monotona descresente* allora l'intervallo per $\phi$ sarà $[g
 
 Nella *verifica delle ipotesi* vengono confrontate due ipotesi mutualmente esclusive : 
 + $H_0$ : *ipotesi nulla* 
-	Rappresenta lo stato delle cose ( ciò in cui si crede finchè i dati non forniscono una *chiara evidenza* contraria ( vale la **presunzione di innocenza** ) ) 
+	Rappresenta lo stato delle cose ( ciò in cui si crede finchè i dati non forniscono una *chiara evidenza* contraria ( vale la **presunzione d'innocenza** ) ) 
 + $H_A$ : *ipotesi alternativa* 
 
 Le due ipotesi fromano un sistema d'ipotesi 
@@ -1434,3 +1434,48 @@ Le due ipotesi fromano un sistema d'ipotesi
 L'esperimento campionario usato per valure le ipotesi è detto *test* e può porteare a 2 possibili decisioni : 
 + *impossibilità di rifiutare* l'ipotesi nulla $H_0$ perchè i dati non forniscono sufficoente evidenza contraria a $H_0$
 + *rifiuto* dell'ipotesi nulla $H_0$ perchè i dati forniscono sufficiente evidenza contraria a $H_0$ 
+
+>[!example] 
+>Se si vuole provare una nuova teoria allora si svolgerà un esperimento per valutare : 
+>$$H_0:\{\text{la nuova teoria non è corretta}\}$$
+>$$H_A:\{\text{la nuova teoria è corretta}\}$$
+
+#### Ipotesi alternative
+
+La verifica delle ipotesi viene classificata a seconda delle possibili ipotesi alternative $H_A$ :
+1. ipotesi *alternativa bilaterale* ( *test a due code* )
+	$H_0 : \theta = \theta_0$  contro  $H_A  : \theta \neq \theta_0$ 
+2. ipotesi *alternativa sinistra* ( *test ad una coda* )
+	$H_0 : \theta \ge \theta_0$  contro  $H_A : \theta < \theta_0$
+3. ipotesi *alternativa destra* ( *test ad una coda* )
+	$H_0 : \theta \le \theta_0$  contro  $H_A : \theta > \theta_0$
+
+>[!note] 
+Nei *test ad una coda* se rifiutiamo $H_0$ quando $\theta = \theta_0$ allora rifiutiamo $H_0$ per tutti gli altri valori , quindi anzichè scrivere $H_0 : \theta \ge \theta_0$ o $H_0 : \theta \le \theta_0$ possiamo scrivere $H_0 : \theta = \theta_0$
+
+>[!example] 
+
+#### Errori del primo tipo e secondo tipo
+
+Poichè valutiamo le ipotesi con dei dati campionari dobbiamo considerare il rischio di formulare conclusioni sbagliate a causa dell'*errore campionario* , abbiamo 4 possibili situazioni che possiamo incontrare : 
+
+|                     | ***rifiuto $H_0$*** | ***non rifiuto $H_0$*** |
+| ------------------- | ------------------- | ----------------------- |
+| ***$H_0$ è vera***  | errore $I$ tipo     | corretto                |
+| ***$H_0$ è falsa*** | corretto            | errore $II$ tipo        |
+
++ *Errore del $I$ tipo* : rifiutare $H_0$ quando è vera 
+	Commettere questo errore è molto grave ( è come condannare un innocente )
++ *Errore del $II$ tipo* : non rifiutare $H_0$ quando è falsa
+
+>[!note] 
+>Visto che stiamo osservando un campione dei dati non potremmo mai sapere se abbiamo fatto degli errori o no
+
+Possiamo però calcolare la probabilità di commettere errori del $I$ e del $II$ tipo , visto che l'errore del $I$ tipo è più grave di solito si fissa un valore massimo accettabile per la sua probabilità 
+
+#### Livello di Significatività
+
+Il livello di significatività di un test è la probablilità di commettere un errore del $I$ tipo : 
+$$\alpha = \Pr(\text{Rifiutate $H_0$ quando è in realtà vera})$$
+>[!todo] 
+>finito unità 4 + esercizi
