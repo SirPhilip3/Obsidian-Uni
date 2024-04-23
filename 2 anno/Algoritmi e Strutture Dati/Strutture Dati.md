@@ -5030,7 +5030,11 @@ L'algortimo restituirà un'ulteriore matrice detta *matrice delle distanze* $D$ 
 ```
 **Spiegazione** :
 
+Ciò che fa l'algortimo è il seguente : 
+Prende dalla matrice $k-1$ i valori di $d_{ij}$ che viene confrontato con la somma dei valori trovati sulla stessa matrice a $d_{ik}$ e $d_{kj}$ , il minimo tra questi due valori verrà scritto nella nuova matrice $k$
+
 >[!todo] 
+>Sopiegazione un pò di merda
 
 **Complessità** : 
 
@@ -5038,5 +5042,5 @@ Visti i tre cicli `for` e la complessità costante dell'operazione all'interno a
 
 **Correttezza** : 
 
->[!todo] 
+Aven
 

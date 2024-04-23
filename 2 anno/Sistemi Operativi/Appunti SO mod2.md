@@ -1463,3 +1463,12 @@ tutte le classi che impleemtano runnable candidati per creare dei thread e poi l
 
 variabili condition -> sono come dei semafori sempre rossi , sempre bloccante 
 
+**monitor in java** :
+
+ogni oggetto ha un mutex , il metodo aquisirà il mutex dentro al metodo syncornized , 
+
+oltre al mutex c'è coda implicita utilizzata per notify, wait, notifyall
+
+se i metodi non sono statici ogni classe un suo mutex , se invece voglio più istanzee evoglio mutua eslusione su più oggetti mi basta dichiarae il metodo statico in modo che il mutex diventa unico per tutti gli oggetti 
+
+sincronizzazioen rientrante -> chiamare un metodo sync da un altro sync senza problemi 
