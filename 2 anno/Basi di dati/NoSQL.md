@@ -42,3 +42,31 @@ proprietà Base :
 
 in lettura meglio , in scrittura risulta essere più costoso , devo scrivere tutti i file con le copie dei dati 
 
+## Neo4j
+
+database a grafi
+
+nodo -> tipo di entità dentro ad un grafo 
+tipo dell'arco > natura della relazione tra 2 nodi 
+
+posso attraversare più volte stessi nodi ma solo 1 volta per ogni arcio
+
+query risultano essere più semplici (cypher) rispetto a sql 
+
+proprety graph > posso identificare nodi e relazioni e assengarne proprietà (key value)
+
+relazioni -> predicati dentro agli archi , proprietà es da quando sono sposate 2 persone etcc , l'età di una persona etcc
+
+index free adjacency -> non necessitiamo più di avere un index per recuperare qualcosa da una tabella 
+
+utilizza pointers 
+
+rispetta proprietà acide dei database relazionali 
+
+**cypher** -> semplice nella sua sintassi attraverso ascii art -> () rappresentano nodi -[] relazioni
+
+nodi posso non avere etichette o più etichette 
+rappresentata -> `(variabile:nomelabel)`
+
+nodi che condividono letichetta possono avere anche proprietà diverse -> schemaless
+
