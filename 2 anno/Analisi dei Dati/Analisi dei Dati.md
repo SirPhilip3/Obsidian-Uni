@@ -1516,7 +1516,7 @@ Viene spesso usato per risolvere verifiche che riguardano :
 >+ medie di popoalzioni normali con varianze note
 >+ medie valutate con campioni di grandi dimensioni
 >+ proporzioni valutate con campioni di grandi dimensioni
->+ quantità stimate con il metodo della massima verosimiglianza con campioni di 
+>+ quantità stimate con il metodo della massima verosimiglianza con campioni di grandi dimensioni
 
 ##### Test a una coda
 
@@ -1543,10 +1543,34 @@ Si rifiuta per valori sia troppo grandi che troppo piccoli della statistica $Z$ 
 Il livello di significatività è : 
 $$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+\Pr(Z > z_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha$$
 ![[Pasted image 20240424141059.png]]
+
+#### Test Z per medie e proporzioni
+
+![[Pasted image 20240424142605.png]]
+
+>[!example] 
+>>[!todo] 
 #### Test Z e massima verosimiglianza
 
+Se l'ipotesi nulla $H_0 : \theta = \theta_0$ è vera allora , sotto assunzioni di regolarità , lo stimatore di massima verosimiglianza ha distribuzione approssimativamente normale 
+
+Possiamo usare questo risultato per costruire le statistiche test $Z$ : 
+$$Z = I(\theta_0)^{1/2}(\hat{\theta}-\theta_0) \ \text{oppure} \ Z = J(\theta_0)^{1/2}(\hat{\theta}-\theta_0)$$
+Oppure possiamo usare l'errore standard stimato
+$$Z = I(\hat\theta)^{1/2}(\hat{\theta}-\theta_0) \ \text{oppure} \ Z = J(\hat\theta)^{1/2}(\hat{\theta}-\theta_0)$$
+Questo poichè se l'ipotesi nulla è vera allora 
+$$\hat\theta \stackrel{p}\to \theta_0\quad \text{per n sufficentemente grande}$$
+
+Per campioni finiti le statistiche costruite con $I(\theta_0)$ anzichè $I(\hat{\theta})$ o con $J(\theta_0)$ anzichè $J(\hat{\theta})$ possono differire anche in modo non trascurabile
+
+>[!example] 
+>>[!todo] 
+>>slide 22
 #### Test T 
 
+Quando il campione è di piccole dimensioni la statisitica $Z$ potrebbe avere una *distribuzione nulla* che differisce anche in modo sostanziale dalla distribuzione normale 
+
+Se usiamo la distribuzione normale potremmo commettere errori del $I$ tipo con una probabilità maggiore di quella prefissata 
 ##### Test a una coda
 
 ##### Test a due code
