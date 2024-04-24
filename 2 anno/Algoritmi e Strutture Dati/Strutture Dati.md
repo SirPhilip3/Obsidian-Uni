@@ -5069,3 +5069,4 @@ In pratica tra tutti i cammini minimi presenti in $\mathcal{D}_{i,j}$ , $d_{i,j}
 
 Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : 
 $$\delta(i,j)=d_{ij}^{(n)}$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'alogritmo di *Floyd-Warshall*
+

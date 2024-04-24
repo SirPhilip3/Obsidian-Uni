@@ -1497,4 +1497,72 @@ I test di livello prefissato $\alpha$ consistono in tre passaggi :
 	Avremo quindi 2 regioni :
 	+ *regione di accettazione* $\mathcal{A}$ 
 	+ *regione di rifiuto* $\mathcal{R}$ 
+>[!example] 
+	>![[Pasted image 20240424131445.png]]
 3. Prendere una decisione a seconda se il valore osservato della statistica test cade nella regione di accettazione o di rifiuto e interpretare il risultato
+#### Test Z
+
+Supponiamo di avere lo stimatore $\hat{\theta}$ non distorto e normale ( es media campionaria ) 
+
+Se l'*ipotesi nulla* è $H_0 : \theta = \theta_0$ allora è naturale ( perchè è naturale ???? ) considerare la statistica $Z$ come statistica test 
+$$Z = \frac{\hat\theta-\theta_0}{SE(\hat{\theta})}$$
+La statistica $Z$ ha distribuzione $\approx$ normale standard sotto l'ipotesi nulla $H_0$
+
+Per valori della statistica $Z$ *vicini allo 0* diremo che l'evidenza empirica non ci permette di rifiutare $H_0$
+Per valori invece *distanti dallo 0* invece l'evidenza empirica ci porta contro $H_0$
+
+>[!note] 
+Viene spesso usato per risolvere verifiche che riguardano : 
+>+ medie di popoalzioni normali con varianze note
+>+ medie valutate con campioni di grandi dimensioni
+>+ proporzioni valutate con campioni di grandi dimensioni
+>+ quantità stimate con il metodo della massima verosimiglianza con campioni di 
+
+##### Test a una coda
+
++ Se l'ipotesi alternativa è *unilaterale destra* ( $H_A : \theta > \theta_0$ ) 
+	Si rifiuta per valori *troppo grandi* della statistica $Z$ :
+	+ $\mathcal{R}=[z_{\alpha},+\infty)$
+	+ $\mathcal{A}=(-\infty,z_{\alpha})$
+	Il livello di significatività è : $\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R} | H_0) = \Pr(Z>z_{\alpha})=\alpha$
+![[Pasted image 20240424135305.png]]
++ Se l'ipotesi alternativa è *unilaterale sinistra* ( $H_A : \theta < \theta_0$ )
+	Si rifiuta per valori *troppo piccoli* della statistica $Z$ :
+	+ $\mathcal{R}=(-\infty,-z_{\alpha})$
+	+ $\mathcal{A}=(-z_{\alpha},+\infty)$
+	Il livello di significatività è : $\Pr(Errore I tipo) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z <-z_{\alpha})=\alpha$
+![[Screenshot 2024-04-24 135600.png]]
+##### Test a due code
+
+Se l'ipotesi alternativa è *bilaterale* ( $H_A : \theta \neq \theta_0$ )
+
+Si rifiuta per valori sia troppo grandi che troppo piccoli della statistica $Z$ : 
++ $\mathcal R = (-\infty, -z_{\alpha/2}]\cup[z_{\alpha/2}, + \infty)$
++ $\mathcal{A} = (-z_{\alpha/2},z_{\alpha/2})$
+
+Il livello di significatività è : 
+$$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+\Pr(Z > z_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha$$
+![[Pasted image 20240424141059.png]]
+#### Test Z e massima verosimiglianza
+
+#### Test T 
+
+##### Test a una coda
+
+##### Test a due code
+
+##### Test a due campioni 
+
+###### Con varianze uguali
+
+###### Con varianze diverse
+
+#### Test e intervalli di confidenza
+
+#### Fissare il livello di significatività ?
+
+#### Livello di significatività osservato
+
+#### Interpretazione del livello di significatività osservato
+
+#### Campioni non indipendenti
