@@ -1813,7 +1813,6 @@ Consumatore() {
 
 >[!note] 
 >Quando si inseriscono *sezioni critica* bisogna verificare che al loro interno non vi siano semafori bloccanti
-
 ## Semafori in POSIX
 
 I semafori *POSIX* sono semafori contatori che peremettono di gestire la sincronzzazione dei thread *POSIX* 
@@ -1838,7 +1837,22 @@ I *semafori POSIX* sono utilizzabili attraverso la libreria `semaphore.h`
 + `{c}int sem_getValue(sem_t *sem, int *val)` : legge il valore del semaforo `sem` e lo copia in `val`
 
 >[!warning] 
->In MACOS supporta solamente semafori con nome , quindi al posto di `sem_init` si deve usare `sem_open` , al posto di `sem_destroy` `sem_close` e `sem_unlink` 
+>In MacOS supporta solamente semafori con nome , quindi al posto di `sem_init` si deve usare `sem_open` , al posto di `sem_destroy` `sem_close` e `sem_unlink` 
 ## Monitor
 
+I *semafori* hanno degli svantaggi : 
++ La sincronizzazione è gestita in modo decentralizzato dai singoli thread 
++ La gestione dei *mutex* e sincornizzazione diventa complessa quando i thread devono attendere per condizioni non facilmente codificabili tramite un singolo semaforo
+
+I **Monitor** :
++ Costringono il programmatore a centralizzare tutta la sincronizzazione in un unico punto del programma ( il *monitor* )
++ Permette di gestire in modo efficace la mutua esclusione 
+
+Questi ricordano le *classi* della programmazione ad oggetti in cui procedure e dati sono incapsulati in un'unità modulare : i *thread* non possono accedere direttamente ai dati ma devono utilizzare le procedure del *Monitor*
+
+Un *monitor* ha le seguenti caratteristiche : 
++ Le procedure del monitor vengono eseguite in mutua esclusione 
++ Forniscono delle variabili speciali *Condition* sulle quali possiamo svolgere 2 operazioni : 
+	+ *wait*
+	+ *signal* o *notify*
 ## Thread in Java

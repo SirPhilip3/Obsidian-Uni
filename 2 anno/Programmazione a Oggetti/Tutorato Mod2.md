@@ -33,3 +33,24 @@ thread possono terminare in modo inaspettato -> le join throwano errore
 ex -> container di risorse che 
 
 lincked blocking queue è thread safe -> 
+
+# 24/04/2024
+
+esercizi : pg 17 eserciziario
+pattern di programmazione 
+
+creare un'altra classe che riusa i metodi della classe random
+
+*singleton* :  insieme con un solo elemento , voglio avere un unica istanza renderla accessibile in tutto il programma non faccio mai new ,
++ non voglio che sia istanizabile dall'esterno
++ metodo che la renda accessibile da fuori -> ritorna un pointer a quell'istanza 
+
+deve essere partre della calsse stessa , es connesione database -> oggetto connessione accessibile da tutto il programma 
+
+costruttore privato , se lo eredito override
+
+metodo per istanziare l'istanza se non lo è ancora e ritorno il pointer all'oggetto 
+
+`Es7 e = Es7.getInstance();` per accedere all'istanza , essendo statico -> nomeclasse.metodo
+quando ho bisogno della board 
+
