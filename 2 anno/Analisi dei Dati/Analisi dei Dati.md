@@ -1475,7 +1475,26 @@ Possiamo però calcolare la probabilità di commettere errori del $I$ e del $II$
 
 #### Livello di Significatività
 
-Il livello di significatività di un test è la probablilità di commettere un errore del $I$ tipo : 
-$$\alpha = \Pr(\text{Rifiutate $H_0$ quando è in realtà vera})$$
->[!todo] 
->finito unità 4 + esercizi
+>[!note] 
+> Il *livello di significatività* di un test è la probablilità di commettere un errore del $I$ tipo 
+> $$\alpha = \Pr(\text{Rifiutate $H_0$ quando è in realtà vera})$$
+
+La probablilità di *rifiutare* $H_0$ quando è *falsa* ( ossia abbiamo fatto al scielta corretta ) è detta *potenza del test* :
+$$\beta(\theta)=\Pr(\text{ Rifiutare $H_0$ quando $H_A$ è vera })$$
+La *potenza* dipende da $\theta$ perchè $H_A$ contiene solitamente diversi valori di $\theta$ 
+>[!note] 
+>La *potenza* è la probabilità di non commettere un errrore del $II$ tipo 
+
+>[!hint] 
+>Spesso i test si costruiscono fissando il *livello di significatività* ossia la probabilità di commettere un errore del $I$ tipo
+
+#### Test con livello di significatività prefissato
+
+I test di livello prefissato $\alpha$ consistono in tre passaggi : 
+1. Individuare una *statistica test* ovvero una funzione dei dati utile per discriminare fra $H_0$ e $H_A$ 
+	Solitamente la *statistica test* è una trasformazione di uno stimatore $\hat{\theta}$ con una distribuzione nota $f_0$ sotto l'*ipotesi nulla* $H_0$ ( ossia quando questa è vera )
+2. Individuare i valori della statistica test che portano ad accettare o rifiutare $H_0$ ad un livello di significatibilità prefissato $\alpha$ 
+	Avremo quindi 2 regioni :
+	+ *regione di accettazione* $\mathcal{A}$ 
+	+ *regione di rifiuto* $\mathcal{R}$ 
+3. Prendere una decisione a seconda se il valore osservato della statistica test cade nella regione di accettazione o di rifiuto e interpretare il risultato
