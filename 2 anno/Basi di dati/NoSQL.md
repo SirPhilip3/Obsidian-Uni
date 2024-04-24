@@ -70,3 +70,11 @@ rappresentata -> `(variabile:nomelabel)`
 
 nodi che condividono letichetta possono avere anche proprietà diverse -> schemaless
 
+MATCH (m:Movie (released:2003))
+RETURN m.prop
+
+relazioni devono avere un tipo e necessariamente un verso 
+()--()
+()->()
+()<-()
+
