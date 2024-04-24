@@ -51,6 +51,29 @@ costruttore privato , se lo eredito override
 
 metodo per istanziare l'istanza se non lo è ancora e ritorno il pointer all'oggetto 
 
-`Es7 e = Es7.getInstance();` per accedere all'istanza , essendo statico -> nomeclasse.metodo
-quando ho bisogno della board 
+Es7 del libro
 
+`Es7 e = Es7.getInstance();` per accedere all'istanza , essendo statico -> nomeclasse.metodo
+quando ho bisogno della board
+
+```java
+// non creo mai l'istanza 
+int random = Es7.RandomSingleton.nextInt();
+```
+
+due collection != se diverso numero di el o elementi differenti stessa lunghezza 
+
+---
+comparaTo<T>
+
+comparato confronta il this con il parametro che passo -> implementa confronto a 3 vie 
+0 se el sono uguali 
+1 se A > B tra i due parametri
+-1 se A \< B >
+
+se collection A ha meno el di B ritorno -1
+
+a1 > b1 return 1 
+a1 < b1 > return -1
+
+es 2 pg 11
