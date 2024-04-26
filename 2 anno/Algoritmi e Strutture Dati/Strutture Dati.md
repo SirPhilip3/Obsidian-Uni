@@ -5082,3 +5082,8 @@ Quindi potremmo costruire il seguente insieme :
 $$\mathcal{D}^{(k)}_{i,j} = \hat{\mathcal{D}}^{(k)}_{i,j} \cup \mathcal{D}_{i,j}^{(k-1)}$$
 Possiamo quindi riscrivere la definizione di distanza nel seguente modo : 
 $$d_{ij}^{(k)}=\min_{p\in \mathcal{D}_{i,j}^{(k)}} w(p)$$
+$$=\min\bigg\{ \min_{p\in \hat{\mathcal{D}}_{i,j}^{(k)}} w(p) , \min_{p\in \mathcal{D}_{i,j}^{(k-1)}} w(p) \bigg\}$$
+$$=\min\bigg\{ \min_{p\in \mathcal{D}_{i,k}^{(k-1)}} w(p) + \min_{p\in \mathcal{D}_{k,j}^{(k-1)}} w(p)\ ,\ d_{ij}^{(k-1)} \bigg\}$$
+$$=\min\bigg\{  d_{ik}^{(k-1)}+d_{kj}^{(k-1)}\ ,\ d_{ij}^{(k-1)} \bigg\}$$
+$d_{ij}^{(k)}$ rappresenta dunque il peso del cammino minimo tra $i$ e $j$ i cui vertici intermedi sono di valore minore o uguale a $k$ 
+
