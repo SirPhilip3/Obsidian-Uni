@@ -1853,6 +1853,27 @@ Questi ricordano le *classi* della programmazione ad oggetti in cui procedure e 
 Un *monitor* ha le seguenti caratteristiche : 
 + Le procedure del monitor vengono eseguite in mutua esclusione 
 + Forniscono delle variabili speciali *Condition* sulle quali possiamo svolgere 2 operazioni : 
-	+ *wait*
-	+ *signal* o *notify*
+	+ *wait* : 
+		Il thread si mette in attesa sulla coda relativa alla *condition* 
+		Il mutex del Monitor viene automaticamente rialsciato in modo da permettere ad altri thread di invocare le procedure del Monitor 
+	+ *signal* o *notify* :
+		Riattiva il primo thread in attesa sulla coda relativa alla condition. 
+		Se non ci sono thread in attesa non abbiamo alcun effetto.
+		Il thread viene eseguito immediatamente nel caso della *signal* 
+		Viene messo in attesa del mutex nel caso della *notify* 
+
+>[!note] 
+>Le *condition* sono simili ai semafori ma non c'è un valore : sono come semafori sempre rossi in quanto la wait è sempre bloccante e la signal/notify non fa nulla se non ci sono thread in coda 
+
+### Differenza tra `signal` e `notify`
+
+La differenza tra *signal* e *notify* stà nel come gestiscono il riavvio di un thread bloccato da una *wait* 
+
++ *signal* : 
+	Il thread che viene sbloccato dalla *signal* va subito in esecuzione nel Monitor mentre il thread che ha eseguito la *signal* attende su una coda prioritaria che il thread sbloccato esca dal Monitor
++ *notify* : 
+	Il thread che viene sbloccato dalla *notify* si mette in coda per riavvedere al monitor mentre il thread che ha eseguito la *notify* prosegue la sua esecuzione
+
+
+
 ## Thread in Java
