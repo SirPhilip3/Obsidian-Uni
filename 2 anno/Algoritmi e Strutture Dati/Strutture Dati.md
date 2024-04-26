@@ -5070,3 +5070,15 @@ In pratica tra tutti i cammini minimi presenti in $\mathcal{D}_{i,j}$ , $d_{i,j}
 Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : 
 $$\delta(i,j)=d_{ij}^{(n)}$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'alogritmo di *Floyd-Warshall*
 
+Ora per dimostrare che l'algoritmo è corretto ci basterà dimostrare la verredicità di : 
+$$d_{ij}^{(k)} = \min\{ d_{ij}^{k-1} , d_{ik}^{k-1}+d_{kj}^{k-1}\}$$
+Possiamo dividere un cammino tra $i$ e $j$ in due sottocammini quelli che passano per $k$  e quelli che non passano per $k$ , poichè stiamo assumendo che i cammini siano semplici abbiamo la sicurezza che $k$ non è compreso in nessuno dei due insiemi di sottocammini $\mathcal{D}_{i,k}^{(k-1)}$ e $\mathcal{D}_{k,j}^{(k-1)}$ e che tutti i vertici compresi in tali sottocammini abbiano valore minore o uguale a $k-1$ 
+
+![[Pasted image 20240426174605.png]]
+
+Definiamo quindi il seguente insieme : 
+$$\hat{\mathcal{D}}^{(k)}_{i,j}=\big\{ p | p \in \mathcal{D}_{i,k}^{(k)} \quad \text{passanti per k} \ \big\}$$
+Quindi potremmo costruire il seguente insieme : 
+$$\mathcal{D}^{(k)}_{i,j} = \hat{\mathcal{D}}^{(k)}_{i,j} \cup \mathcal{D}_{i,j}^{(k-1)}$$
+Possiamo quindi riscrivere la definizione di distanza nel seguente modo : 
+$$d_{ij}^{(k)}=\min_{p\in \mathcal{D}_{i,j}^{(k)}} w(p)$$

@@ -1874,6 +1874,17 @@ La differenza tra *signal* e *notify* stà nel come gestiscono il riavvio di un 
 + *notify* : 
 	Il thread che viene sbloccato dalla *notify* si mette in coda per riavvedere al monitor mentre il thread che ha eseguito la *notify* prosegue la sua esecuzione
 
+Con la *signal* siamo sicuri che il thread sbloccato verrà eseguito immediatamente mentre con la *notify* verrà eseguito in base allo scheduler , ciò significa che potrebbero essere eseguiti altri thread cambiando eventualmente lo stato del Monitor 
+
+### Produttore - Consumatore
+
+#### Produttore - Consumatore con la notify
+
+### Filosofi a cena con raccolta atomica
+
+### Semafori con i Monitor
+
+### `NotifyAll`
 
 
 ## Thread in Java
