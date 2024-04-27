@@ -1602,10 +1602,22 @@ $$\Pr(\text{Errore I tipo}) = \Pr(T \in \mathcal{R}|H_0)=\Pr(T < -t_{\alpha/2})+
 >Esempio 9.28 baron slide 27
 ##### Test a due campioni 
 
-Consideriamo ora ipotesi relative al confronto delle medie di due *popolazioni normali* con varianze i
+Consideriamo ora ipotesi relative al confronto delle medie di due *popolazioni normali* con *varianze ignote*
 
+*Ipotesi nulla* : $H_0 : \mu_X - \mu_Y = D$ 
+*Ipotesi alternative* : 
+$$H_A : \mu_X - \mu_Y \neq D \qquad H_A : \mu_X - \mu_Y > D \qquad H_A : \mu_X - \mu_Y < D$$
+Spesso si addume $D=0$ per cui avremo che $H_0 : \mu_X = \mu_Y$ e 
+$$H_A : \mu_X \neq \mu_Y \qquad H_A : \mu_X > \mu_Y  \qquad H_A : \mu_X < \mu_Y $$
+
+Se la dimensione dei due campioni $n$ e $m$ non sono grandi dobbiamo usare un test $T$ a due campioni 
+
+Dobbiamo considerare due casi differenti :
 ###### Con varianze uguali
 
+Nel caso di varianze uguali si usa la statistica test $T$ : 
+$$T = \frac{\bar{X}-\bar{Y}-D}{S_p \sqrt{\frac{1}{n}+\frac{1}{m}}}$$
+Dove $S_p^2$ indica la *varianza pooled* 
 ###### Con varianze diverse
 
 #### Test e intervalli di confidenza
