@@ -1577,12 +1577,32 @@ $$H_A : \mu \ne \mu_0 \qquad H_A : \mu > \mu_0 \qquad H_A : \mu < \mu_0 $$
 Per valutare le ipotesi utilizzeremo la statistica test $T$ 
 $$T = \frac{\sqrt{n}(\bar X -\mu_0)}{S}$$
 La statistica $T$ ha distribuzione $T$ di Student con $n-1$ gradi di libertà sotto $H_0$
- 
 ##### Test a una coda
 
++ Se l'ipotesi alternativa è *unilaterale destra* ( $H_A : \theta > \theta_0$ ) 
+	Si rifiuta per valori *troppo grandi* della statistica $T$ :
+	+ $\mathcal{R}=[t_{\alpha},+\infty)$
+	+ $\mathcal{A}=(-\infty,t_{\alpha})$
+	Il livello di significatività è : $\Pr(\text{Errore I tipo}) = \Pr(T \in \mathcal{R} | H_0) = \Pr(T>t_{\alpha})=\alpha$
++ Se l'ipotesi alternativa è *unilaterale sinistra* ( $H_A : \theta < \theta_0$ )
+	Si rifiuta per valori *troppo piccoli* della statistica $T$ :
+	+ $\mathcal{R}=(-\infty,-t_{\alpha})$
+	+ $\mathcal{A}=(-t_{\alpha},+\infty)$
+	Il livello di significatività è : $\Pr(Errore I tipo) = \Pr(T \in \mathcal{R}|H_0)=\Pr(T<-t_{\alpha})=\alpha$
 ##### Test a due code
 
+Se l'ipotesi alternativa è *bilaterale* ( $H_A : \theta \neq \theta_0$ )
+
+Si rifiuta per valori sia troppo grandi che troppo piccoli della statistica $T$ : 
++ $\mathcal R = (-\infty, -t_{\alpha/2}]\cup[t_{\alpha/2}, + \infty)$
++ $\mathcal{A} = (-t_{\alpha/2},t_{\alpha/2})$
+Il livello di significatività è : 
+$$\Pr(\text{Errore I tipo}) = \Pr(T \in \mathcal{R}|H_0)=\Pr(T < -t_{\alpha/2})+\Pr(T > t_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha$$
+>[!example] 
+>Esempio 9.28 baron slide 27
 ##### Test a due campioni 
+
+Consideriamo ora ipotesi relative al confronto delle medie di due *popolazioni normali* con varianze i
 
 ###### Con varianze uguali
 
