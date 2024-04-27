@@ -1571,6 +1571,13 @@ Per campioni finiti le statistiche costruite con $I(\theta_0)$ anzichè $I(\hat{
 Quando il campione è di piccole dimensioni la statisitica $Z$ potrebbe avere una *distribuzione nulla* che differisce anche in modo sostanziale dalla distribuzione normale 
 
 Se usiamo la distribuzione normale potremmo commettere errori del $I$ tipo con una probabilità maggiore di quella prefissata 
+
+Supponiamo di voler valutare un'ipotesi relativa alla media di un campione di piccole dimensioni da una *popolazione normale* con media $\mu$ e varianza $\sigma^2$ entrambe *ignote* , siamo interessati a valutare l'ipotesi $H_0 : \mu = \mu_0$ con possibili alternative : 
+$$H_A : \mu \ne \mu_0 \qquad H_A : \mu > \mu_0 \qquad H_A : \mu < \mu_0 $$
+Per valutare le ipotesi utilizzeremo la statistica test $T$ 
+$$T = \frac{\sqrt{n}(\bar X -\mu_0)}{S}$$
+La statistica $T$ ha distribuzione $T$ di Student con $n-1$ gradi di libertà sotto $H_0$
+ 
 ##### Test a una coda
 
 ##### Test a due code
