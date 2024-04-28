@@ -220,7 +220,6 @@ Siano $a$ il numero totale di attributi di $T$ e $d$ il numero di dipendenze fun
 + Per verificare se $Y\subseteq X_{new}^+$ ha costo $O(a)$
 
 Il costo totale dell'algoritmo sarà quindi : $O(a^2 d)$
-
 ### Chiavi e Attributi primi
 
 >[!important] Definizione Superchiave
