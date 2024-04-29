@@ -5114,4 +5114,120 @@ Vogiamo determinare il massimo numero di attività che sono tra loro *compatibil
 >
 >Rappresentiamo un esempio con un diagramma di Gantt : 
 >![[Pasted image 20240429132847.png]]
->Il numero massimo di attività comparibili in questo esempio sono $3$ ( ${(1,4,6)}$ )
+>Il numero massimo di attività compatibili in questo esempio sono $3$ ( ${(1,4,6),(1,5,6)}$ )
+
+Possiamo scrivere un algoritmo *greedy* per trovare la soluzione a questo problema ?
+
+Partiamo da $A=\emptyset$ , questo rappresenta le attività compatibili 
+Ora sciegliamo un'attività , *faccio una verifica* e la inserisco in $A$
+Scielgo un'altra attività  , *verifico se è compatibile* , se sì la aggiungo ad $A$ altrimenti la scarto
+
+Ora ci basta sciegliere un modo con il quale confrontiamo le diverse attività , scegliamo il tempo di fine di ogni attività , ordiniamo le attività quindi in modo crescente secondo questo parametro in modo da ottenere : 
+$$f_1 \le f_2 \le f_3 \le \dots \le f_n$$
+Per sciegliere che attività aggiungere ad $A$ sciegliamo quella per cui il suo inizio è maggiore o uguale al tempo di fine dell'ultima attività inserita in $A$ 
+
+Vediamo qundi l'algoritmo : 
+```pseudo
+	\begin{algorithm}
+	\caption{$Greedy\_Activity\_Selector(s,f)$}
+	\begin{algorithmic}
+	\State $n \leftarrow length(s)$
+	\State $\text{ordina le n attività per tempo di fine in senso crescente}$
+	\State $A \leftarrow \{1\}$
+	\State $j \leftarrow 1$
+	\For{$i=2\ \text{to} \ n$}
+		\If{$s_i \ge f_j$}
+			\State $A \leftarrow A \cup \{i\}$
+			\State $j \leftarrow i$
+        \EndIf
+    \EndFor
+    \Return $A$
+	\end{algorithmic}
+	\end{algorithm}
+```
+Dove :
++ $s$ e $f$ sono vettori conenenti i valori di $s_i$ e $f_i$
++ $j$ indica l'ultima attività inserita in $A$
++ Il ciclo `for` inizia da due perchè abbiamo già inserito il primo elemento in $A$
+
+**Complessità** : 
+
+L'ordinamento avrà complessità equivalente a $n\log n$ 
+Il ciclo `for` viene svolto per $n$ volte e visto che le operazioni al suo interno hanno complessità costante potremmo dire che la complessità del ciclo `for` è $O(1)$
+
+La complessità totale sarà quindi : $T(n)=O(n\log n+ n) = O(n)$
+
+**Correttezza** :
+
+Non dimostriamo la correttezza dell'algoritmo ma sappiamo che risulterà essere corretto 
+
+#### Scielte greedy alternative 
+
+Potremmo aver fatto diverse scielte su come abbiamo ordinato le attività : 
+1. *Ordinamento per tempo di inizio minore* :
+	In questo caso l'algoritmo non sarebbe corretto poichè se fosse presente una attività che inizia subito ed è anche la più lunga di tutte allora verrebbe scielta solo questa e nessun'altra
+>[!example] 
+>![[Pasted image 20240429140121.png]]
+>In questo caso viene scielta subito l'attività $1$ e non potremmo scieglerne nessun'altra poichè saranno incompatibili
+1. *Ordinamento per durata minore* :
+	Anche in questo caso l'algoritmo non sarebbe stato corretto poichè potremmo aver avuto tante attività di durata maggiore e altre di durata minore che però fanno in modo di non essere compatibili con quelle di durata maggiore , in questo caso verrebbero scielte solamente le minori attività di durata minore e non le altre che potrebbero aver formato un insieme di dimensioni maggiori 
+>[!example] 
+>![[Pasted image 20240429140443.png]]
+>In questo caso avremmo preso le attività $3,5,7$ mentre le attività $1,2,4,6$ sarebbero state maggiori
+### Schema generale Algoritmo Greedy
+
+Lo schema generale per un *algoritmo greedy* è il seguente :
+
+```pseudo
+	\begin{algorithm}
+	\caption{Greedy}
+	\begin{algorithmic}
+	\State Ordinamento ( secondo un qualche criterio a nostra discrezione )
+	\State $A \leftarrow \emptyset$	inizializzazione di strutture dati usiliarie
+	\ForAll{$element\ x$ preso secondo l'ordine}
+		\If{$A \cup \{x\}$ è ok (test/controllo della condizione cercata)}
+	        \State $A \leftarrow A \cup \{x\}$ aggiunta dell'elemento che soddisfa la condizione
+        \EndIf
+    \EndFor
+    \Return $A$
+	\end{algorithmic}
+	\end{algorithm}
+```
+>[!example] 
+>In *Kruskal* : 
+>+ si ordina secondo il peso in modo crescente 
+>+ ok : se non si crea un ciclo in $A$ con l'aggiunta dell'elemento
+>
+>In *Activity selector* : 
+>+ si ordina secondo il tempo finale in modo crescente
+>+ ok : se l'attività $x$ è compatibile con tutte l'ultima attività in $A$ ( di conseguenza a tutte le altre )
+### Problema della $Clique$ Massima
+
+#### $Clique$ Massima
+
+Un *clique* è un sottografo completo del grafo $G$ 
+Una *clique massima* è una *clique* con il massimo numero di *vertivi*
+Una *clique massimale* è una *clique* che non è contenuta in una *clique* più grande 
+>[!warning] 
+>Non è detto che sia anche *massima*
+>>[!example] 
+>>![[Clique.excalidraw]]
+
+#### Trovare la $clique$ massima
+
+Proviamo ad implementare quindi un algoritmo *greedy* che trovi la $clique$ massima dato un grafo $G$ in input
+
++ Oridiniamo secondo il grado dei vertici in modo decrescente ( teoricamente dovremo avere più nodi collegati possibile )
++ ok : quando il vertice scielto è collegato a tutti quelli presenti in $A$
+
+```pseudo
+	\begin{algorithm}
+	\caption{Greedy\_Clique(G)}
+	\begin{algorithmic}
+	\State Ordina i vertici di $G$ per grado decrescente
+	\State $A \leftarrow \emptyset$
+	\ForAll{}
+    \EndFor	
+	\end{algorithmic}
+	\end{algorithm}
+```
