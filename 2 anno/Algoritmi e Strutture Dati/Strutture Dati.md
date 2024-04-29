@@ -5226,8 +5226,53 @@ Proviamo ad implementare quindi un algoritmo *greedy* che trovi la $clique$ mass
 	\begin{algorithmic}
 	\State Ordina i vertici di $G$ per grado decrescente
 	\State $A \leftarrow \emptyset$
-	\ForAll{}
+	\ForAll{$u \in V[G]$ estratti secondo l'ordinamento}
+		\If{Is\_A\_Clique(C,u)}
+			\State $A \leftarrow A \cup \{u\}$
+        \EndIf 
     \EndFor	
+    \Return $A$
 	\end{algorithmic}
 	\end{algorithm}
 ```
+```pseudo
+	\begin{algorithm}
+	\caption{Is\_A\_Clique(C,u)}
+	\begin{algorithmic}
+	\ForAll{$v\in A$}
+		\If{$(u,v)\notin E$ non ho l'arco tra il vertice scelto e un vertice di $A$}
+			\Return $FALSE$
+        \EndIf
+    \EndFor
+    \Return $TRUE$
+	\end{algorithmic}
+	\end{algorithm}
+```
+>[!note] 
+>Non usiamo il grado dei vertici per determinare se siamo dentro una $clique$ poichè potrebbe essere che il vertice sia collegato ad altri vertici all'esterno della $clique$
+
+**Complessità** : 
+
++ L'ordinamento come sempre ha complessità $n \log n$ 
++ Il ciclo `for` itera per $n$ volte su una funzione che nel peggiore dei casi avrà complessità $n$ , avremo quindi che la complessità del ciclo `for` sarà $n^2$
+
+La complessità totale sarà quindi : $T(n)= O(n\log n + n^2) =O(n^2)$
+
+**Correttezza** : 
+
+Pultroppo l'algoritmo **non** è **corretto** , per dimostrarlo ci basta un contro esempio : 
+
+![[MaxClique.excalidraw]]
+
+Visto che l'algoritmo non è corretto potremmo pensare di modificare il modo in cui svolgiamo l'ordinamento ( non possiamo modificare il modo in cui sciegliamo chi mettere in $A$ perchè questo co definisce cos'è una *clique* )
+
+**Ordinamenti Alternativi** : 
+
+*Ordinamento secondo il numero di triangoli incidenti in modo crescente*
+	Con questo ordinamento risulterà corretta l'individuazione della *clique* nel grafo precedente 
+	![[MaxClique2.excalidraw]]
+	Possiamo però comunque trovare un *controesempio* anche per questa soluzione : 
+	![[MaxClique3.excalidraw]]
+
+>[!warning] 
+>Per questo problema non esiste un modo per ordinare i vertici in modo da raggiungere la soluzione corretta
