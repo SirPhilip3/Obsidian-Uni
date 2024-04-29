@@ -846,7 +846,6 @@ Consideriamo $R(\{ A,B \} , F)$ e sia $X\to Y \in F$ , dimostriamo che in nessun
 
 ##### Proprietà di *BCNF*
 
-
 | Pregi                                                       | Difetti                                                                                                                                                                                                                                             |
 | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | *BCNF* garantisce l'assenza di anomalie                     | L'algoritmo di conversione in *BCNF* ha costo *esponenziale* perchè richiede di calcolare le proiezioni delle dipendenze ( alcuni algoritmi lo fanno con costo polinomiale ma non vengono usati perchè producono schemi eccessivamente decomposti ) |
