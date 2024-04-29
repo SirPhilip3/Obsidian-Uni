@@ -388,6 +388,7 @@ Vogliamo portare l'insieme delle *dipendenze funzionali* ad una forma più stand
 >Sia $X\rightarrow Y \in F$ . L'attributo $A\in X$ è *estraneo* se e solo se $(X-{A})\rightarrow Y \in F^+$
 
 Ossia se rimuoviamo questi attributi estranei la dipendenza fa ancora parte della chiusura ( ossia non contribuiscono nel determinare univocamente la dipendenza )
+Ossia ci basta che nella chiusura risultante sia presente l'attributo estraneo
 
 >[!important] Definizione Dipendenza Ridondante
 >La dipendenza $X\rightarrow Y \in F$ è *ridondante* se e solo se $X \rightarrow Y\in (F-\{ X \rightarrow Y \})^+$  
