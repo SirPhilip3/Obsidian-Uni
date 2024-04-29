@@ -5087,3 +5087,31 @@ $$=\min\bigg\{ \min_{p\in \mathcal{D}_{i,k}^{(k-1)}} w(p) + \min_{p\in \mathcal{
 $$=\min\bigg\{  d_{ik}^{(k-1)}+d_{kj}^{(k-1)}\ ,\ d_{ij}^{(k-1)} \bigg\}$$
 $d_{ij}^{(k)}$ rappresenta dunque il peso del cammino minimo tra $i$ e $j$ i cui vertici intermedi sono di valore minore o uguale a $k$ 
 
+## Algoritmi Greedy
+
+Un *algoritmo greedy* o goloso è : 
+	Un alogritmo *iterativo* in cui ad ogni passo dell'iterazione si compie una *decisione* che sembra essere in quel momento la più promettente per determinare il proseguimento dell'algortimo
+
+>[!example] 
+>Esempio di algoritmi *greedy* sono : *Kruskal* , *Prim* e *Dijkstra*
+>+ Per *Kruskal* ad ogni passo devo sciegliere un arco da aggiungere all'insieme risultante , in questo caso sciegliamo l'arco di peso minimo 
+>+ Per *Prim* invece ad ogni iterazione sciegliamo il vertice con `Key` minore 
+>+ Per *Dijkstra* ad ogni iterazione sciegliamo quello con campo `d` minore
+
+>[!note] 
+>Non sono algoritmi *greedy* invece *Bellman-Ford* e *Floyd-Warshall* in quanto non si deve svolgere una decisione 
+
+### Problema della selezione delle attività
+
+Supponiamo di avere $n$ attività indicizzate con un numero da $1$ a $n$ di cui conosciamo l'orario di inizio $s_i$ e di fine $f_i$ 
+Due attività $i$ e $j$ sono dette *compatibili* se gli insiemi temporali che occupano sono disgiunti ossia :
+$$[s_i,f_i[\ \cap\ [s_j,f_j[ = \emptyset \implies \text{i e j sono compatibili}$$
+Vogiamo determinare il massimo numero di attività che sono tra loro *compatibili*
+
+>[!example] 
+>>[!warning] 
+>>Il diagramma è scorretto ? 
+>
+>Rappresentiamo un esempio con un diagramma di Gantt : 
+>![[Pasted image 20240429132847.png]]
+>Il numero massimo di attività comparibili in questo esempio sono $3$ ( ${(1,4,6)}$ )

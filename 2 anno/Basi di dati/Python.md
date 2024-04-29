@@ -166,3 +166,4 @@ web
 
 # 29/04/2024
 
+web + inizio flask
