@@ -1620,6 +1620,8 @@ $$T = \frac{\bar{X}-\bar{Y}-D}{S_p \sqrt{\frac{1}{n}+\frac{1}{m}}}$$
 Dove $S_p^2$ indica la *varianza pooled* 
 ###### Con varianze diverse
 
+
+
 #### Test e intervalli di confidenza
 
 #### Fissare il livello di significatività ?
