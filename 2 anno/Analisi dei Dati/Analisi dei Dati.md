@@ -1639,12 +1639,56 @@ La statistica $T$ si distribuisce quindi come una variabile casuale $T$ di Stude
 
 Se le varianze sono diverse $\sigma_X^2 \neq \sigma_Y^2$ allora dovremmo utilizzare la seguente statistica test $T$ : 
 $$T = \frac{\bar{X}-\bar{Y}-D}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}}$$
+In questo caso la statistica $T$ **non** si distribuisce esattamente come una variabile casuale $T$ di Student sotto $H_0$
 
+Per risolvere questo problema possiamo utilizzare l'approssimazione di *Satterthwaite* che ci dirà che $T$ ha distribuzione *approssimativamente* $T$ di Student con $v$ gradi di libertà , con $v$ : 
+$$v = \frac{\bigg(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\bigg)^2}{\frac{S_X^4}{n^2(n-1)}+\frac{S_Y^4}{m^2(m-1)}}$$
+##### Riassunto Test $T$
+
+![[Pasted image 20240430142444.png]]
 #### Test e intervalli di confidenza
 
+Vi è una relazione fra test a due code e intervalli di confidenza simmetrici : **dualità**
+
+>[!Teorema]
+> Un test $Z$ per l'ipotesi alternativa bilaterale $H_0 : \theta = \theta_0$ contro $H_A : \theta \neq \theta_0$ non rifiuta l'*ipotesi nulla* al *livello di significatività* $\alpha$ **se e solo** se l'*intervallo di confidenza* per $\theta$ basato sulla statistica $Z$ con *livello di confidenza* $1-\alpha$ contiene $\theta_0$
+
+In pratica possiamo usare gli *intervalli di confidenza* per risolvere problemi di verifi d'ipotesi
+
+>[!Dimostrazione]
+>L'ipotesi nulla non viene rifiutata se e solo se il valore osservato della statistica $Z$ appartiene alla regione di accettazione : 
+>$$-z_{\alpha/2}<\frac{\hat\theta-\theta_0}{SE(\hat{\theta})}<z_{\aleph/2}$$
+>Ossia : 
+>$$\bigg|\frac{\hat\theta-\theta_0}{SE(\hat{\theta})}\bigg|<z_{\aleph/2}$$
+>Visto che $SE(\hat\theta)>0$ possiamo scrivere : 
+>$$|\hat\theta-\theta_0|<z_{\aleph/2}\cdot SE(\hat{\theta})$$
+>
+>Questa diseguaglianza mostra che $\theta_0$ dista da $\hat\theta$ meno del margine di errore dell'intervallo di confidenza per $\theta$ con livello di confidenza $1-\alpha$
+
+>[!important] 
+>+ Il risultato vale solo per verifiche d'ipotesi con alternative bilaterali
+>+ Il risultato vale solo se il livello di significatività è $\alpha$ e il livello di confidenza è $1-\alpha$
+>+ Il risultato vale anche per altre statistiche test fra cui il test $T$ e l'intervallo basato sulla statistica $T$
+
+>[!example] Example 9.31  
+>Si consideri un campiona casuale semplice derivante da una distribuzione normale con media $\mu$ ignota e devizione standard $\sigma = 2.2$ : $2.5,7.4,8.0,4.5,7.4,9.2$
+>
+>Valutiamo l'ipotesi al livello di significatività del $5\%$ : $H_0 : \mu = 6$ contro $H_A : \mu \neq 6$
+>
+>L'intervallo di confidenza di livello $95\%$ per $\mu$ è : $[4.74,8.26]$ , visto che l'intervallo contiene $\mu_0 = 6$ non possiamo rifiutare l'ipotesi nulla al livello di significatività del $5\%$
+
+>[!example] 
+>Altri esempi 9.34 , 9.35
 #### Fissare il livello di significatività ?
 
+Notiamo che i dati potrebbero portarci a rifiutare l'ipotesi nulla ad un certo livello di significatività in modo netto ( ci troviamo distanti da $z_{\alpha/2}$ ) o anche solo di poco ( ci troviamo vicini da $z_{\alpha/2}$ )
+
+I test con livello di significatività fissata ci portano solo a rifiutare o meno ma non misurano l'evidenza a favore o contro l'ipotesi nulla 
 #### Livello di significatività osservato
+
+Un approccio per risolvere il precedente problema è quello della verifica delle ipotesi basata sul *livello di significatività osservato* o *p-value* che evita di fissare un livello di significatività in modo da misurare l'ammontare di evidenza a favore delle ipotesi 
+
+
 
 #### Interpretazione del livello di significatività osservato
 
