@@ -1230,3 +1230,6 @@ public dog : protected animal
 potrei volere solo le cose del padre ma non voglio realmente essere suo figlio , come se encapsulassi il codice , non voglio essere usato polimorficamente 
 
 class def private struct def public
+
+# 30/04/2024
+
