@@ -1762,4 +1762,23 @@ Ciò vuol dire che i dati appaiati saranno : $(X_1,Y_1),\dots,(X_n,Y_n)$ ( dove 
 
 Avendo l'ipotesi nulla $H_0 : \mu_x = \mu_y$ la statistica test $Z$ o $T$ corretta è ( bisogna aggiungere la covarianza campionaria fra  $X$ e $Y$ : $S_{XY}$ ) : 
 $$Z=\frac{\bar{X}-\bar{Y}}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{n}+\frac{2S_{XY}}{n}}}$$
-Possiamo evitare la *covarianza* se in un test per dati appaiati si utilizza come variabili $$D
+Possiamo evitare la *covarianza* se in un test per dati appaiati si utilizza come variabili $D_n=X_n-Y_n$ossia la differenza tra le varaibili dipendenti ( questo perchè dipendono sulla stessa "popolazione" )
+
+Il test quindi può essere risctritto nel seguente modo : $H_0 : \mu_D = 0$ e la statistica $Z$ o $T$ sarà semplicemente : 
+$$Z = \sqrt{n}\frac{\bar{D}}{S_D}$$
+>[!example] Amazon o libreria?
+>
+>Abbiamo un campione di 15 libri eterogenei , abbiamo i loro costi presi da Amazon o dalla Libreria
+>
+>Possiamo notare che siamo nel caso di test appaiati sul nome del libro ( lo stato prima è ora il costo dalla Libreria e quello dopo il costo da Amazon )
+>Dovremo calcolare la differenza tra tutti i prezzi : 
+>$$d_1 = 120 - 101.22 = 18.78 , \dots , d_15 = 155.75 - 126-97 = 28.78$$
+>
+>Vorremo verificare l'ipotesi che sia più conveniente comprare da Amazon , avremo quindi che :
+>$$H_0 : \mu_d = 0 \ \text{contro} \ H_A : \mu_d > 0$$
+>Abbiamo inoltre $\bar d = 16.51$ e $s_d=9.42$
+>
+>Il valore osservato della statistica $T$ ( dopo aver controllato la normalità delle differenze di prezzo ) è : 
+>$$t=\sqrt{15}\frac{16.51}{9.42}=6.72$$ 
+>Che ci porta nettamente a rifiutare l'ipotesi nulla 
+
