@@ -1688,8 +1688,78 @@ I test con livello di significatività fissata ci portano solo a rifiutare o men
 
 Un approccio per risolvere il precedente problema è quello della verifica delle ipotesi basata sul *livello di significatività osservato* o *p-value* che evita di fissare un livello di significatività in modo da misurare l'ammontare di evidenza a favore delle ipotesi 
 
+>[!note] Definizione di *livello di significatività osservato*
+>La probabilità di ottenere un valore della statistica test uguae o più estremo di quello osservato se l'ipotesi nulla fosse vera 
 
+Se il *livello di significatività osservato* è "grande" vuol dire che quello che abbiamo osservato non era poi così estremo e quindi non possiamo rifiutare $H_0$ , viceversa se il *livello di significatività osservato* è "piccolo" vuol dire che quello che abbiamo osservato era davvero estremo e quindi rifiutiamo $H_0$ 
 
+##### Calcolo del livello di significatività osservato
+
+Il calcolo del livello di significatività osservato dipende da $H_A$ e dalla statistica test 
+
+Abbiamo 3 casi a seconda dell'$H_A$ :   
++ *unilaterale destra* : 
+	Rifiutiamo $H_0$ per valori "troppo grandi"
+	Il livello di significatività osservato è la probabilità di osservare qualcosa tanto o più estremo di $z$ ovvero : 
+	$p = \Pr(Z \ge z) = 1- \Phi(z)$
++ *unilaterale sinistra*
+	Rifiutiamo $H_0$ per valori "troppo piccoli"
+	Il livello di significatività osservato è pari a : 
+	$p = \Pr(Z \le z) = \Phi(z)$
++ *bilaterale*
+	Rifiutiamo $H_0$ sia per valori "troppo grandi" che per valori "troppo piccoli"
+	Il livello di significatività osservato è : 
+	$p = \Pr(|Z|>|z|)=\Pr(Z > |z|)+\Pr(Z<-|z|)=2\Pr(Z>|z|)=2\{\ 1-\Pr(Z < |z|)\}=2\{1-\Phi(|z|)\}$
+
+![[Pasted image 20240430153822.png]]
+
+>[!note] 
+>Nello stesso modo si calcola il livello di significatività osservato per il test $T$
+![[Pasted image 20240430153832.png]]
 #### Interpretazione del livello di significatività osservato
 
+Quando si rifiuta l'ipotesi nulla si dice che il test è *significativo*
+
+Esistono diversi gradi di *significatività* a seconda dell'evidenza empirica contro l'ipotesi nulla 
+
+Soglie per il *p-value* : 
+
+| *P-value*           | *Significatività* | *Decisione*                |
+| ------------------- | ----------------- | -------------------------- |
+| $p<0.001$           | forte             | rifiuto netto di $H_0$     |
+| $0.001\le p < 0.01$ | moderata          | rifiuto di $H_0$           |
+| $0.01 \le p < 0.05$ | modesta           | rifiuto debole di $H_0$    |
+| $0.05\le p< 0.1$    | incerta           | situazione dubbia          |
+| $p\ge 0.1$          | nessuna           | non si può rifiutare $H_0$ |
+
+>[!example] Example 9.37 
+> Riprende esercizio 9.34
+> 
+> Ci chiediamo se il livello di significatività del $5\%$ è stato superato di poco o molto
+> 
+> Il valore osservato della statistica $Z$ è :
+> $$z=\frac{8.5-7.2}{\sqrt{\frac{1.8^2}{50}+\frac{1.8^2}{50}}} = 3.61$$
+> 
+> Il livello di significatività osservato è pari a :
+> $p=\Pr(Z > 3.61)=1-\Phi(3.61)=0.0002$
+> o in `r` : `{r}1-pnorm(3.61)`
+> 
+> Quindi possiamo concluder che l'aggioernamento è stato effiacce ad un livello di significatività ben più basso del $5\%$
 #### Campioni non indipendenti
+
+Cosa succede se in situazioni nelle quali non possiamo assumere l'*indipendenza* di due campioni ne assumiamo invece l'*indipendenza* ? 
+In questo caso le statistiche $Z$ e $T$ utilizzano una stima dell'errore standard sbagliato perchè trascura la correlazione fra i due campioni esponendoci al rischio di errori del primo o del secondo tipo più altro di quanto atteso
+##### Test per dati appaiati
+
+Abbiamo dati *appaiati* quando le variabili $X$ e $Y$ sono osservate sulle stesse unità statistiche 
+
+>[!example] 
+>Per studiare l'efficacia di un farmaco lo si misura su un campione di volontari *prima* e *dopo* il trattamento
+>
+>In questo caso non possiamo assumere che le due osservazioni siano indipendenit in quanto il trattamento può essere influenzato da caratteristiche personali 
+
+Ciò vuol dire che i dati appaiati saranno : $(X_1,Y_1),\dots,(X_n,Y_n)$ ( dove nell'esempio di prima $X$ rappresenta dei dati *prima* e $Y$ *dopo* il trattamento )
+
+Avendo l'ipotesi nulla $H_0 : \mu_x = \mu_y$ la statistica test $Z$ o $T$ corretta è ( bisogna aggiungere la covarianza campionaria fra  $X$ e $Y$ : $S_{XY}$ ) : 
+$$Z=\frac{\bar{X}-\bar{Y}}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{n}+\frac{2S_{XY}}{n}}}$$
+Possiamo evitare la *covarianza* se in un test per dati appaiati si utilizza come variabili $$D
