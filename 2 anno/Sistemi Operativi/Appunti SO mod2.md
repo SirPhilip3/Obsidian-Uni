@@ -1472,3 +1472,6 @@ oltre al mutex c'è coda implicita utilizzata per notify, wait, notifyall
 se i metodi non sono statici ogni classe un suo mutex , se invece voglio più istanzee evoglio mutua eslusione su più oggetti mi basta dichiarae il metodo statico in modo che il mutex diventa unico per tutti gli oggetti 
 
 sincronizzazioen rientrante -> chiamare un metodo sync da un altro sync senza problemi 
+
+# 30/04/2024
+
