@@ -1617,10 +1617,28 @@ Dobbiamo considerare due casi differenti :
 
 Nel caso di varianze uguali si usa la statistica test $T$ : 
 $$T = \frac{\bar{X}-\bar{Y}-D}{S_p \sqrt{\frac{1}{n}+\frac{1}{m}}}$$
-Dove $S_p^2$ indica la *varianza pooled* 
+Dove $S_p^2$ indica la *varianza pooled* ( incontrata nel calcolo degli intervalli di confidenza ) : 
+$$S_p^2 = \frac{(n-1)\cdot S_X^2 + (m-1)\cdot S_Y^2}{n+m-2}$$
+La statistica $T$ si distribuisce quindi come una variabile casuale $T$ di Student con $n+m-2$ gradi  di libertà sotto $H_0$
+
+>[!example] 
+>Abbiamo i seguenti dati su un pc con un lettore CD (campione $X$) e uno senza (campione $Y$)
+>$$n=12, \ \bar{X}=4.8, \ s_X=1.6; \quad m=18,\ \bar{Y}=5.3,\ s_Y = 1.4; \quad s_p = 1.4818$$
+>
+>Vogliamo vedere se il lettore CD consuma extra enegria e se quindi si riduce la durata della batteria
+>
+>Testiamo dunque :
+>$$H_0 : \mu_X = \mu_Y \qquad H_A : \mu_X < \mu_Y$$
+>con $\alpha=0.05$ :
+>$$t = \frac{\bar{X}-\bar{Y}}{s_p \sqrt{\frac{1}{n}+\frac{1}{m}}} = \frac{4.8-5.3}{1.4818\cdot \sqrt{\frac{1}{12}+\frac{1}{18}}}= -0.9054$$
+>>[!note] 
+>>In questo caso $D=0$ poichè abbiamo assunto che sia $0$
+>
+>La regione di rifiuto per questo testa alla coda sinistra è : $(-\infty,-t_{\alpha}] = (-\infty,-1.70]$ ossia il quantile della distribuzione $T$ con $18+12-2=28$ gradi di libertà
 ###### Con varianze diverse
 
-
+Se le varianze sono diverse $\sigma_X^2 \neq \sigma_Y^2$ allora dovremmo utilizzare la seguente statistica test $T$ : 
+$$T = \frac{\bar{X}-\bar{Y}-D}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}}$$
 
 #### Test e intervalli di confidenza
 

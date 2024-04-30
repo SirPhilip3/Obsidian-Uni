@@ -1475,3 +1475,4 @@ sincronizzazioen rientrante -> chiamare un metodo sync da un altro sync senza pr
 
 # 30/04/2024
 
+lab monitor java
