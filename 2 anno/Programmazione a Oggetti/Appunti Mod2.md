@@ -1233,3 +1233,21 @@ class def private struct def public
 
 # 30/04/2024
 
+in java non posso ridefinire operatore di assegnamento poichè essendo tutto pointer non ha senso ridefinire questo operatore 
+
+polimorfismo c++
+
+super in java deve essere la prima riga del costruttore -> in c++ tuo padre è un tuo campo e fai inizializer list assieme ai campi del figlio 
+
+override -> non sa che tu devi fare un override se sbagli fai un altro metodo 
+in c++11 aggiunta key word override alla fine della dichiarazione (alla fine poichè fatta con macro con stringa vuota se fosse messa prima avrebbe conflitto con i type qualifier)
+
+se non scrivo virtual eat è comunque in virtual table ma se creo un'altra sottocalsse non può più overridare se voglio continuare devo mettere virtual 
+
+const cambia la firma e produce overload 
+
+potrei creare due metodi uno con const e uno senza allora invocherò quello con const in read only l'altro in read - write
+
+in cpp non si usano i getter si creano 2 asserso method uno const e uno non const 
+
+compiler per ogni variabile ha tipo + flag per const o no -> una cosa const posso passarla a cosa const ma no a cosa non const 
