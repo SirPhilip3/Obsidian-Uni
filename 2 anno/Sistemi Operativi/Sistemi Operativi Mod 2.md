@@ -1944,13 +1944,54 @@ La procedura `leggi` è più o meno la stessa cosa
 >
 >`P1` invoca `pc.scrivi(d)` . Poichè il contatore vale `0` il buffer viene scritto . il `contatore` viene incrementato e viene eseguito `piene.signal()` 
 >
->L'effetto è di sbloccare ed eseguire immediatamente il consumatore `C` in attesa 
-
-
+>L'effetto della `signal()` è di sbloccare ed eseguire immediatamente il consumatore `C` in attesa , in questo modo siamo sicuri che ci sono celle da leggere in quanto nessun altro consumatore può aver letto tra la `signal()` e l'esecuzione di `C` , lo stato è il seguente : 
+>+ `contatore = 1`
+>+ `C nel Monitor subito dopo la piene.wait()` 
+>+ `P1 in attesa sulla piene.signal() dentro pc.scrivi(d)`
+>+ `P2 in attesa sull'imvocazione di pc.scrivi()`
+>>[!todo]
+>>Continua l'esecuzione
 #### Produttore - Consumatore con la notify
 
+Lo schema precedente funziona perchè i thread sbloccati dalla `signal` vengono eseguiti immediatamente. Infatti , se così non fosse , un consumatore potrebbe accadere che il dato venga consumato da un altro thread consumatore prima che il thread sbloccato vada in esecuzione 
+
+Questo può accadere se utilizziamo la `notify` invece che la `signal` , in questo caso dobbiamo racchiudere la `wait` denstro un ciclo `while` in modo che se lo stato del Monitor si è omdificato il thread possa bloccarsi nuovametne . In questo caso il codice diventa : 
+
+```c
+while (contatore == MAX)
+	vuote.wait();
+```
+e 
+```c
+contatore++;
+piene.notify();
+```
 ### Filosofi a cena con raccolta atomica
 
+Una delle soluzioni dello stallo nel problema dei filosofi a cena è la raccolta atomica delle bacchette. 
+
+Se i filosofi raccolgono le due bacchette assieme non può verificarsi una situazione di attesa circolare. 
+
+Possiamo risolvere questo problema con i Monitor 
+
+Scriviamo lo schema del Filosofo :
+```c
+Filosofo(i) {
+	while(1){
+		< pensa >
+
+		tavola.raccogli(i);
+	
+		< mangia >
+
+		tavola.deposita(i);
+	}
+}
+```
+
+Come per il *produttore-consumatore* la sincronizzazione è centralizzata in un Monitor con due procedure `raccogli(i)` e `deposita(i)` che raccolgono e depositano **entrambe** le bacchette del filosofo `i`-esimo 
+
+Utilizziamo quindi un Monitor con `notify()`
 ### Semafori con i Monitor
 
 ### `NotifyAll`
