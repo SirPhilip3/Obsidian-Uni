@@ -1875,8 +1875,77 @@ La differenza tra *signal* e *notify* stà nel come gestiscono il riavvio di un 
 	Il thread che viene sbloccato dalla *notify* si mette in coda per riavvedere al monitor mentre il thread che ha eseguito la *notify* prosegue la sua esecuzione
 
 Con la *signal* siamo sicuri che il thread sbloccato verrà eseguito immediatamente mentre con la *notify* verrà eseguito in base allo scheduler , ciò significa che potrebbero essere eseguiti altri thread cambiando eventualmente lo stato del Monitor 
-
 ### Produttore - Consumatore
+
+Possiamo risolvere il problema *produttore-consumatore* grazie ad un monitor chiamato `pc` questo avrà 2 procedure `scrivi` e `leggi` che scrivono e leggono dal buffer condiviso 
+
+I produttori e consumatori verranno quindi scritti nel seguente modo :
+```c
+Produttore(){
+	while(1){
+		pc.scrivi(d)	
+	}
+}
+
+Consumatore(){
+	while(1){
+		d = pc.leggi(1)
+	}
+}
+```
+
+La sincronizzazione avviene quindi nel Monitor che definiamo come segue :
+
+```c
+Monitor pc {
+	dato buffer[MAX];
+	int contatore=0, inserici=0, preleva=0;
+	condition piene , vuote;
+
+	void scrivi(dato d){
+		if(contatore == MAX)
+			vuote.wait(); // il buffer è pieno attendo una cella vuota
+
+		buffer[inserisci] = d; // inserisco i dati
+		inserisci = (inserisci+1)%MAX; // utilizzo un buffer circolare
+
+		contatore++; // aggiorno il contatore
+		piene.signal(); // segnalo agli altri thread che ho finito 
+	}
+
+	dato leggi(){
+		if(contatore==0)
+			piene.wait(); // se il buffer è vuoto attendo per il dato
+
+		d = buffer[preleva];  // leggi dal buffer
+		preleva = (preleva+1)%MAX; // utilizzo un buffer circolare
+
+		contatore--; // aggiorno il contatore 
+		vuote.signal();
+		return d;
+	}
+}
+```
+
+`scrivi` : Per poter scrivere nel buffer è necessario che ci sia una cella vuota quindi l'attesa avviene quando il contatore è a `MAX` 
+
+Poi scriviamo nel buffer , incrementiamo il `contatore` e sblocchiamo eventuali thread in attesa tramite la `piene.signal()`
+
+La procedura `leggi` è più o meno la stessa cosa 
+
+>[!example] 
+>Consideriamo un'esecuzione con un consumatore $C$ e due produttori $P1$ e $P2$ 
+>
+>Il consumatore esegue `pc.leggi()` e perchè il contatore vale `0` si blocca sulla condition `piene` . Il mutex viene rilasciato e `P1` può invocare `pc.scrivi(d)` Lo stato sarà : 
+>+ `contatore  = 0`
+>+ `C in attesa sulla coda piene`
+>+ `P1 invoca pc.scrivi(d)`
+>+ `P2 in attesa dell'invocazione di pc.scrivi()`
+>
+>`P1` invoca `pc.scrivi(d)` . Poichè il contatore vale `0` il buffer viene scritto . il `contatore` viene incrementato e viene eseguito `piene.signal()` 
+>
+>L'effetto è di sbloccare ed eseguire immediatamente il consumatore `C` in attesa 
+
 
 #### Produttore - Consumatore con la notify
 
