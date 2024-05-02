@@ -1251,3 +1251,30 @@ potrei creare due metodi uno con const e uno senza allora invocherò quello con 
 in cpp non si usano i getter si creano 2 asserso method uno const e uno non const 
 
 compiler per ogni variabile ha tipo + flag per const o no -> una cosa const posso passarla a cosa const ma no a cosa non const 
+
+# 02/05/2024
+
+pointer + new > programmazione ad oggetti
+
+utilizzo pointer perchè tanto la new ritorna pointer e la delete deve avere in input un pointer
+
+in cpp non si programma ad oggetti , con classi etcc ma non uso dynamic dispatching ( virtual table)
+
+template system -> non utilizza virtual table , ortogonale a dynamic dispatching
+
+array c style -> non utilizzati , meglio i vector 
++ dimensione dinamica ( come array list di java )
++ performance -> pointer di inizio + offset -> ritorno reference / const reference ; basta fare inlining del metodo -> sostituto nella chiamata alla funzione ( compilatore non fa la jump al metodo )
+
+vector fa overloading dell'operatore di [] e quindi in pratica è come usare array nativi
+
+typename stessa cosa di class
+
+template system utilizzato per polimorfismo parametrico 
+
+vactor di vector -> le doppie quadre devono fare due offset , due inlining
+vector lineare -> conto unico -> calcolo solo un offset
+
+matrix orientato a : 
++ data structures -> vector cresce -> potrei fare vettori bidimensionali 
++ math -> generalmente la matrice non cresce 
