@@ -10,8 +10,6 @@ shell crea processo figlio lo esegue , aspetta fine della sua esecuzione , conti
 
 cntr+C termina il processo in esecuzione o può essere gestito dal processo
 
-
-
 relazioni dinamiche 
 
 

@@ -10,7 +10,7 @@ Se non vengono gestite correttamente si potrebbe provocare :
 ```c
 int main(){
 	while(1)
-		if(fork()<0)
+		if(wfork()<0)
 			perror("errore fork");
 }
 ```
