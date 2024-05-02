@@ -815,6 +815,7 @@ Sia $R(T,F)$ lo schema di partenza :
 >Calcoliamo $F_1$ su $R_1$ : 
 >+ $\{ Località \}_F^+=\{Località ,Prefisso\}$ da cui $Località \to Prefisso \in F_1$
 >+ $\{ Prefisso \}_F^+ = \{ Prefisso \}$ da cui nessuna nuova dipendenza
+>
 >Calcoliamo $F_2$ su $R_2$ : 
 >+ $\{ Località \}_F^+=\{Località ,Prefisso\}$ da cui nessuna nuova dipendenza
 >+ $\{ Prefisso \}_F^+ = \{ Prefisso \}$ da cui nessuna nuova dipendenza

@@ -1912,10 +1912,42 @@ Quindi :
 La *varianza totale* delle risposte è descritta dalla *somma dei quadrati totale* : 
 $$SQ_{tot} = \sum^{n}_{i=1}(y_i - \bar{y})^2 = (n-1)s_y^2$$
 Per cui vale la decomposizione 
-$$SQ$$
+$$SQ_{tot} = SQ_{reg} +SQ_{res}$$
+dove : 
++ $SQ_{reg}$ è la *somma dei quadrati spiegata* dal modello :
+	$$SQ_{reg} = \sum_{i=1}^n(\hat{y}_i-\bar{y}_i)^2$$
++ $SQ_{res}$ è la *somma dei quadati residua* :
+	$$SQ_{res} = \sum_{i=1}^n({y}_i-\hat{y}_i)^2$$
 #### Coefficente di determinazione
 
+Il *coefficiente di determinazione* o $R^2$ ( R quadro ) è la proporzione della variazione totale spiegata dal modello di regressione 
+$$R^2 = \frac{SQ_{reg}}{SQ_{tot}}=1-\frac{SQ_{res}}{SQ_{tot}}$$
+
+>[!note] 
+>$R^2$ può assumere valori fra 0 e 1 
+
+Più alto è $R^2$ tanto migliore sarà l'adattamento del modello di regressione ai dati 
+
+>[!note] 
+>Per il modello di *regressione lineare semplice* si dimostra che $R^2=r_{xy}^2$ ossia il quadrato del coefficiente di correlazione
+
+Se $X$ e $Y$ sono perfettamente correlate $r_{xy}=\pm 1$ e $R^2=1$
+
+>[!example] 
+>Nel modello della crescita di popolazione $R^2=0.995$
 #### Correlazioni spurie
+
+Due variabili possono presentare una'alta correlazione in assenza di un nesso logico 
+
+Le *correlazioni spurie* sono solitamente dovute alla presenza di una terza variabile che è collegata alle due variabili che stiamo considerando 
+
+Quindi $A$ e $B$ risultano correlate solamente perchè $A$ è correlata con $C$ e $B$ è correlata con $C$ ( non sempre è evidente quale sia la terza variabile coinvolta )
+
+>[!example] 
+>
+>C'era una correlazione dell'85% tra la popolazione di una città tedesca e il numero di cicogne avvistate nella città 
+>Potrebbe portarci a dire che le cicogne portano bambini 
+>Siamo di fronte ad un caso di *correlazione spuria* : in questo caso la variabile $C$ era il numero di case che aumentando a cuasa dell'espansione della città aumentavano anche i camini dove potevano nidificare le cicogne e di conseguenza il numero di cicogne avvistate aumentava
 
 
 >[!note] 
