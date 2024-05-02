@@ -1995,6 +1995,4 @@ Utilizziamo quindi un Monitor con `notify()`
 ### Semafori con i Monitor
 
 ### `NotifyAll`
-
-
 ## Thread in Java

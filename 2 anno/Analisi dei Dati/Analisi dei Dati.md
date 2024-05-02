@@ -1782,3 +1782,88 @@ $$Z = \sqrt{n}\frac{\bar{D}}{S_D}$$
 >$$t=\sqrt{15}\frac{16.51}{9.42}=6.72$$ 
 >Che ci porta nettamente a rifiutare l'ipotesi nulla 
 
+### Dipendenza tra Variabili
+
+In molti casi siamo interessati a valutare se vi sia un legame fra due variabili :
+>[!example] 
+>+ Il fumo di sigaretta è associato alla formazione di tumori ?
+>+ Il voto ottenuto all'esame di matematica diepende dal numero di ore di studio ? 
+
+#### Dipendenza fra due variabili numeriche 
+
+Valutiamo se una variabile $X$ può essere usata per *prevedere* una variabile $Y$ 
+
+Terminologia : 
++ $X$ è la variabile *predittore*
++ $Y$ è la variabile *risposta*
+
+Nei **modelli di regressione** si valuta la capacità predittiva della variabile $X$ sulla variabile $Y$ attraverso il *valore atteso condizionato* : 
+$$G(x) = E(Y|X=x)$$
+Dove $G(x)$ è una funzione di $x$ la cui forma può essere stimata con i dati 
+
+>[!example] 
+>Abbiamo i seguenti dati riguardanti la cresctita della popolazione mondiale a partire dal 1950:
+>
+| Year | Population mln. people |
+| ---- | :--------------------: |
+| 1950 |          2558          |
+| 1955 |          2782          |
+| 1960 |          3043          |
+| 1965 |          3350          |
+| 1970 |          3712          |
+| 1975 |          4089          |
+| 1980 |          4451          |
+| 1985 |          4855          |
+| 1990 |          5287          |
+| 1995 |          5700          |
+| 2000 |          6090          |
+| 2005 |          6474          |
+| 2010 |          6864          |
+>
+> La dsitribuzione dei dati può essere rappresentata nel seguente grafico :
+> 
+> ![[Pasted image 20240502134246.png]]
+> 
+> In questo caso vediamo che i dati si allineano rispetto ad una linea della *regression line* ( *retta di regressione* )
+
+>[!example] 
+>Il prezzo delle case rispetto alla loro dimensione invece possiamo vedere che non segue molto la *funzione di regressione* , questo poichè i prezzi non dipendono solo dalla dimensione ma anche da altri fattori 
+>
+>![[Pasted image 20240502134708.png]]
+>
+>Per rappresentare correttamente questo dataset avremmo bisogno di un modello di regressione multivalore
+
+
+#### Modelli di regressione lineare
+
+Il modello di regressione più semplice è il quello *lineare semplice* o *retta di regressione* , andremo infatti a modellare i dati secondo una retta : 
+$$G(x)=\beta_0 + \beta_1x$$
++ $\beta_0$ : corrisponde all'*intercetta* della retta
++ $\beta_1$ : è invece il *coefficente angolare* della retta 
+  
+Nelle applicazioni è comune considerare diversi *predittori* per migliorare la previsione della *risposta* , in questo caso utilizzeremo il modello di *regressione lineare multipla* :
+$$G(x) = \beta_0 +\beta_1x_1+ \dots + \beta_px_p$$
+>[!example] 
+>Per prevedere il prezzo di vendita di un immobile possiamo considerare : dimensione , numero di stanze , quartiere etcc... 
+#### Interpretazione dei parametri 
+
+L'*intercetta* è il valore predetto dal modello quando $x=0$ , ovvero $\beta_0 = G(0)$ 
+
+>[!note]
+>Spesso $\beta_0$ non ha un particolare significato 
+>>[!example] 
+>>Nessuno infatti è interessato al prezzo di una casa $Y$ con una dimensione $X$ pari a 0 metri quadri
+
+Il *coefficente angolare* è la variazione della *risposta* quando il *predittore* aumeta di una unità : 
+$$\beta_1 = G(x+1)-G(x) = \{ \beta_0 +\beta_1(x+1) \}-\{ \beta_0 +\beta_1x \} = \beta_1$$
+Questo ci dice quanto aumetna il prezzo di vendita di una casa all'aumentare della dimensione di un metro quadro 
+
+>[!note] 
+>Se $\beta_1 = 0$ allora non vi è relazione lineare fra $Y$ e $X$ 
+#### Metodo dei minimi quadrati
+
+#### Stima ai minimi quadrati della retta di regressione
+
+
+>[!note] 
+>fino a pg 20 
