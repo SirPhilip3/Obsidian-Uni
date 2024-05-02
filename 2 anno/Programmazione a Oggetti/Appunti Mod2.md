@@ -1278,3 +1278,46 @@ vector lineare -> conto unico -> calcolo solo un offset
 matrix orientato a : 
 + data structures -> vector cresce -> potrei fare vettori bidimensionali 
 + math -> generalmente la matrice non cresce 
+
+vector ho size , costruttori , distruttori invece array bidimensionali devo distruggere in modo corretto , usando vector non devo gestire sta cosa 
+
+c++ *value oriented programming* definisci sempre def counstructor , destructor e assegnamento
+
+tipi di dato devono comportarsi come valori non oggetti , ossia come i data type nativi -> possono dichiarare senza inizializzare , inizializzandoli , nello stack , posso assegnarli 
+
+tipo si deve comportare come i valori dobbiamo quindi avere : 
+```cpp
+matrix<double> a;
+x = matrix<double>();
+matrix<double> b(...);
+b = a;
+```
+
+i costruttori unari (un parametro) sono operatori di conversione ( il copy const non conta )
+
+```cpp
+matrix(size_t dim) : matrix(dim,dim) {};
+```
+se ho un size_t o qualcìsiaci tipo converitbile in size_rt ed è richiesta una matrix allora viene chiamato questo 
+
+funzione che prende matrix e passo un numero -> int in unsigned long e questo chiama il costruttore matrix(size_t dim)
+
+possono esserci dei flussi di conversione ciclici 
+
+```
+martix(strind)
+```
+
+esiste un modo data una stringa di avere una matrix invocando questo costruttore
+
+prima c'è il sistema di converisone dell'overloading
+il metodo con distanza minore viene scielto 
+
+posso non volere sta cosa con `{cpp}explicit`
+costurttore può essere chiamato solo esplicitamente e non implicitamente
+
+non serve distruttore perchè lo fa vector , distruttore viene generato chiamando i disrtuttori dei suoi campi 
+
+costruttore di vector chiama i costuttori di defualt di ogni el 
+
+
