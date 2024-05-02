@@ -1862,7 +1862,60 @@ Questo ci dice quanto aumetna il prezzo di vendita di una casa all'aumentare del
 >Se $\beta_1 = 0$ allora non vi è relazione lineare fra $Y$ e $X$ 
 #### Metodo dei minimi quadrati
 
-#### Stima ai minimi quadrati della retta di regressione
+I dati consistono in $n$ coppie di osservazioni : $(y_1,x_1),\dots , (y_n,x_n)$ 
+
+Il metodo de minimi quadrati costruisce la *stima* $\widehat{G}(x)$ della funzione di regressione $G(x)$ minimizzando la somma dei quadrati delle differenze fra le risposte $y_1,\dots,y_n$ e le corrispondenti previsioni basate sul modello di regressione $\hat{y}_1 = \widehat{G}(x_1),\dots,\hat{y}_n=\widehat{G}(x_n)$
+Ossia minimizzando la somma dei quadrati *residui* $e_i = y_i -\hat{y}_i$ ossia : 
+$$\sum^{n}_{i=1} e_i^2 =\sum^{n}_{i=1}(y_i -\hat{y}_i)^2$$
+![[Pasted image 20240502142354.png]]
+
+Otterremo quindi le stime dei parametri $\beta_0$ e $\beta_1$ minimizzando : 
+$$\mathcal{Q} (\beta_0 , \beta_1) = \sum^{n}_{i=1}(y_i -\hat{y}_i)^2 = \sum^{n}_{i=1}\{y_i -(\beta_0+\beta_1x_i)\}^2$$
+Ovvero risolvendo il seguente sistema : 
+$$\begin{cases}
+\frac{d\mathcal{Q}(\beta_0,\beta_1)}{d\beta_0}=0 \\ \frac{d\mathcal{Q}(\beta_0,\beta_1)}{d\beta_1}=0
+\end{cases} $$
+Da cui avremo : 
+$$\hat{\beta_0} = \bar{y} -\hat{\beta_1}\bar{x}\quad \text{e}\quad \hat{\beta_1}=\frac{s_{xy}}{s_x^2}$$dove : 
+$$s_{xy}=\frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar x)(y_i-\bar y)$$
+$$s_x^2 = \frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar{x})^2$$
+
+>[!example] 
+>Con i dati relativi alla popolazione modiale
+>
+>Abbiamo : 
+>$$\bar{x} = 1980, \quad \bar{y}=4558.1,\quad s_x^2 = 4550, \quad s_{xy}=337250$$
+>
+>Da cui segue : 
+>$$\hat{\beta}_1 = s_{xy}/s_x^2 = 74.1, \quad \hat{\beta}_0 = \bar{y}-\hat{\beta}\bar{x}=-1442201$$
+>
+>La *retta di regressione* stimata è 
+>$$\hat{G}(x)=-142201+74.1x$$
+>
+>Ora possiamo fare delle previsioni : 
+>+ $\hat{G}(2015)=-1442201+74.1(2015)=7152\ \text{milioni di persone}$
+>+ $\hat{G}(2020)=-1442201+74.1(2020)=7523\ \text{milioni di persone}$
+#### Regressione e correlazione
+
+Lo stimatore del coefficiente angolare può essere riscritto in funzione del coefficiente di correlazione 
+
+Indichiamo con $r_{xy}$ il *coefficiente di correlazione* : 
+$$r_{xy}=\frac{s_{xy}}{s_ys_x}$$
+Abbiamo :
+$$\hat{\beta}_1 = \frac{s_{xy}}{s_x^2} = \frac{s_{xy}}{s_y s_x}\frac{s_y}{s_x}=r_{xy}\frac{s_y}{s_x}$$
+Quindi : 
++ $\hat{\beta_1}>0$ se $X$ e $Y$ sono correlate positivamente
++ $\hat{\beta_1}<0$ se $X$ e $Y$ sono correlate negativamente 
++ $\hat{\beta_1}=0$ se $X$ e $Y$ sono incorrelate 
+#### Decomposizione della varianza
+
+La *varianza totale* delle risposte è descritta dalla *somma dei quadrati totale* : 
+$$SQ_{tot} = \sum^{n}_{i=1}(y_i - \bar{y})^2 = (n-1)s_y^2$$
+Per cui vale la decomposizione 
+$$SQ$$
+#### Coefficente di determinazione
+
+#### Correlazioni spurie
 
 
 >[!note] 
