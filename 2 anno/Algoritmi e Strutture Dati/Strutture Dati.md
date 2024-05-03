@@ -5276,3 +5276,4 @@ Visto che l'algoritmo non è corretto potremmo pensare di modificare il modo in 
 
 >[!warning] 
 >Per questo problema non esiste un modo per ordinare i vertici in modo da raggiungere la soluzione corretta
+

@@ -1991,8 +1991,91 @@ Filosofo(i) {
 
 Come per il *produttore-consumatore* la sincronizzazione è centralizzata in un Monitor con due procedure `raccogli(i)` e `deposita(i)` che raccolgono e depositano **entrambe** le bacchette del filosofo `i`-esimo 
 
-Utilizziamo quindi un Monitor con `notify()`
+Utilizziamo quindi un Monitor con `notify()`  che in questo caso saranno convenienti : 
+
+```cpp
+Monitor tavola {
+	bool bachetta[5] = {true,true,true,true,true}; // rappresenta le bachette 
+	condition filosofo[5]; // sono le code di attesa dei filosofi 
+
+	void raccogli(int i) {
+		while(!bachetta[i]||!bachetta[(i+1)%5])
+			filosofo[i].wait(); // attende se una delle due bacchette non è disponibile
+		
+		// quando ho le bacchette allora le raccolgo
+		bachetta[i] = false;
+		bachetta[(i+1)%5] = false;
+	}
+
+	void deposita(int i) {
+		// rilascio le bacchette 
+		bachetta[i] = true;
+		bachetta[(i+1)%5] = true;
+
+		// notifico il filosofo sx e quello dx che ci sono le bacchette 
+		filosofo[(i+4)%5].notify(); // uso +4  in modo da non fare buffer underflow con il -1%5
+		filosofo[(i+1)%5].notify();
+	}
+}
+```
+
+>[!note] 
+>I filosofi attendono se una delle bachette non è disponibile 
+
+La `wait` è racchiusa in un while perchè quando il filosofo viene svegliato deve verificare la presenza di entrambe le bacchette prima di proseguire 
+
+In questo caso l'uso di `signal` non cambia l'esecuzione perchè dobbiamo comunque riverificare la condizione di bloccaggio ( anche se la mette in coda non ci interessa visto che quando verrà eseguito farà il `while` per verificare se può eseguire )
 ### Semafori con i Monitor
 
-### `NotifyAll`
+Vogliamo realizzare un semaforo contatore con i Monitor
+
+Consideriamo il problema dei filosofi a cena in cui vogliamo limitare il numero di filosofi a tavola a 4 
+
+>[!note] 
+>Con i *semafori* è sufficente inizializzare un semaforo al valore 4 e eseguire una `P(S)` prima di raccogliere le bacchette e una `V(S)` dopo che le bachette sono state depositate
+
+Estendiamo il *Monitor* precedente con due procedure `siediti()` e `alzati()`  che vengono invocate come segue :
+
+```c
+Folosofo(i) {
+	while(1){
+		< pensa >
+		tavola.siediti(); // attende una delle 4 sedie disponibili
+		tavola.raccogli(i);
+	
+		< mangia >
+
+		tavola.deposita(i);
+		tavola.alzati(); // libera la sedia
+	}
+}
+```
+
+Per realizzare tali procedure sarà sufficente un contatore per il numero di sedie libere e una condition per la coda di attesa :
+
+```cpp
+Monitor tavola {
+	int sedie = 4;
+	condition sedia;
+
+	void siediti() {
+		while(sedie == 0)
+			sedia.wait(); // anttendo che ci sia una sedia libera
+		// occupa una sedia
+		sedie--;
+	}
+
+	void alzati() {
+		sedie++; // libera una sedia
+		sedia.notify(); // sblocca un thread in attesa di una sedia
+	}
+}
+```
+
+`siediti()` può essere invocata 4 volte prima di diventare bloccante 
+`alzati()` incrementa il contatore e sblocca un thread in coda 
+
+>[!note] 
+>Con questa soluzione non è necessario che le bacchette vengano raccolte in modo atomico visto che lo stallo viene evitato ( why? )
+### Lettori e scrittori : `notifyAll()`
 ## Thread in Java

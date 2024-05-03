@@ -1952,3 +1952,4 @@ Quindi $A$ e $B$ risultano correlate solamente perchè $A$ è correlata con $C$ 
 
 >[!note] 
 >fino a pg 20 
+
