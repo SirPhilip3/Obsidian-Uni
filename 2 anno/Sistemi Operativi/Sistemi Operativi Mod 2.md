@@ -2239,3 +2239,23 @@ In questo caso necessitiamo di prendere il `currentThread` poichè `MyThread` no
 
 ### I Monitor di Java
 
+Ogni oggetto ha un *mutex* *implicito* utilizzato per garantire mutua esclusione sui metodi 
+
+I metodi sono eseguiti in mutua esclusione solo se dichiarati `syncronized` 
+
+Ogni oggetto has un'unica *condition implicita* sulla quale si possono effettuare le operazioni standard `wait()` , `notify()` , `notifyAll()` 
+
+Se il metodo è statico allora il *mutex* è a livello di classe invece di oggetto 
+
+Possiamo utilizzare `syncronized` solo in alcune parti del codice nel seguente modo 
+```java
+synchronized(this){
+	// codice in sezione critica
+}
+```
+dove `this` indica a quale oggetto fare riferimento per ottenere il *lock* implicito ( è possibile utilizzare anche oggetti differenti ) 
+
+>[!note] 
+>Possiamo chiamare `synchronized` all'interno di un'altro `synchronized` senza problemi poichè il mutex già acquisito alla prima chiamata viene matenuto fino al ritorno del primo metodo o fino ad una terminazione prematura dovuta ad un'eccezione non gestita
+>
+
