@@ -2078,4 +2078,116 @@ Monitor tavola {
 >[!note] 
 >Con questa soluzione non è necessario che le bacchette vengano raccolte in modo atomico visto che lo stallo viene evitato ( why? )
 ### Lettori e scrittori : `notifyAll()`
+
+Vogliamo realizzare il problema dei *lettori e scrittori* attraverso un *Monitor* `rw` in modo che sia garantito l'accesso a un numero arbitrario di lettori oppure a un solo scrittore
+
+Lo schema dei *lettori* e *scrittori* è il seguente : 
+
+```c
+Lettore {
+	while(1){
+		rw.ini_leggi();
+		< legge i dati >
+		rw.end_leggi();
+	}
+}
+
+Scrittore {
+	while(1){
+		rw.ini_scrivi();
+		< modifica i dati >
+		rw.end_scrivi();
+	}
+}
+```
+
+Per realizzare il *Monitor* dobbiamo sapere se c'è uno scrittore in sezione scritica oppure il numero esatto di lettori in sezione critica. 
+
+I *lettori* entrano se non c'è uno scrittore in sezione scritica , lo *scrittore* entra se non c'è nessuno in sezione critica 
+
+```cpp
+Monitor rw {
+	int n_lettori = 0; // numero di lettori in sezione critica 
+	bool scrittore = false; // scrittore in sezione critica 
+	condition c; // coda di attesa 
+
+	void ini_leggi(){
+		while(scrittore)
+			c.wait(); // attendo se c'è uno scrittore in sezione critica
+		n_lettori++; // il lettore entra
+	}
+
+	void end_leggi(){
+		n_lettori--; // il lettore esce dalla sezione critica
+		if (n_lettori == 0)
+			c.notify(); // l'ultimo lettore sblocca eventuali scrittori in attesa
+	}
+
+	void ini_scrivi(){
+		while(scrittore || n_lettori>0)
+			c.wait(); // attendo se c'è uno scrittore o qualche lettore in sezione critica
+		scrittore = true; // lo scrittore entra in sezione critica
+	}
+
+	void end_scrivi(){
+		scrittore = false; // lo scrittore esce dalla sezione critica
+		c.notifyAll(); // lo scrittore sblocca tutti i thread in attesa
+	}
+}
+```
+
+>[!note] 
+>La mutua esclusione viene garantita automaticamente
+
+In `end_scrivi()` utilizziamo la `notifyAll()` sulla condition `c` . Questa operazione sblocca tutti i thread in coda . In questo caso specifico è necessario sbloccare tutti i thread perchè eventuali lettori in attesa riescano ad entrare tutti in sezione critica ( visto che posso avere più lettori in sezione critica ) 
+
+>[!note] 
+>Grazie al ciclo `while` prima della `wait` tutti i thread riverificheranno la condizione di attesa prima di proseguire . 
+
+La `notifyAll()` ha la particolarità di affidare allo scheduler di sistema la scelta del prossimo thread che entrerà in sezione critica , questo è utile perchè fa in modo che lo scheduler di sistema utilizzi i meccanismi anti-starvation 
+#### Rispettare l'ordine d'arrivo
+
+Possiamo inoltre rispettare l'ordine di arrivo dei thread tramite l'utilizzo di una coda `q` aggiunta al *Monitor* 
+
+I *thread* verranno accodati quando invochiamo le funzioni `ini_leggi` e `ini_scrivi` ( passando il loro `id` ) e per uscire dal `while` devono essere i primi della coda `q` . 
+I *thread* vengono rimossi dalla coda alla fine delle due procedure 
+
+```cpp
+Monitor rw {
+	...
+	queue q;
+
+	void ini_leggi(id){
+		q.add(id); // il thread si accoda
+		while(q.top()!=id || scrittore) // attendo se c'è uno scrittore in sezione critica o se non sono il primo della coda
+			c.wait(); 
+		q.remove(); // togliamo dalla coda , poichè siamo usciti dal while è il primo
+		n_lettori++; // il lettore entra
+		c.notifyAll(); // notifica eventuali altri lettori in attesa 
+	}
+
+	void end_leggi(){
+		n_lettori--; // il lettore esce dalla sezione critica
+		if (n_lettori == 0)
+			c.notifyAll(); // l'ultimo lettore sblocca tutti i thread
+	}
+
+	void ini_scrivi(id){
+		q.add(id); // il thread si accoda
+		while(q.top()!=id || scrittore || n_lettori>0)// attendo se non è il primo in coda o se c'è uno scrittore o qualche lettore in sezione critica
+			c.wait(); 
+		q.remove(); // togliamo dalla coda , poichè siamo usciti dal while è il primo
+		scrittore = true; // lo scrittore entra in sezione critica
+	}
+
+	void end_scrivi(){
+		scrittore = false; // lo scrittore esce dalla sezione critica
+		c.notifyAll(); // lo scrittore sblocca tutti i thread in attesa
+	}
+}
+```
+
+>[!note] 
+>+ Aggiungiamo una `notifyAll()` alla fine di `ini_leggi` per sbloccare sbloccare altri lettori in attesa che potrebbero essersi ribloccati perchè non erano i primi della coda `q`
+>+ Sostituiamo la `notify` con una `notifyAll()` in `end_leggi()` 
 ## Thread in Java
