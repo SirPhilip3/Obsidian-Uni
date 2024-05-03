@@ -4742,7 +4742,7 @@ Poichè siamo su un *cammino minimo* :
 $$\delta(s,v)=\delta(s,v)$$
 #### Dijkstra
 
-*Intuizione* : estrea una radice alla volta e rilasserà gli archi uscenti da quel vertice
+*Intuizione* : estrae una radice alla volta e rilasserà gli archi uscenti da quel vertice
 ```pseudo
 	\begin{algorithm}
 	\caption{DIJKSTRA(G,w,s)}
@@ -4904,7 +4904,6 @@ Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando 
 
 Avremo quindi che la complessità finale sarà : 
 $$T(n,m)=n+(n-1)\cdot m + m = \Theta(n\cdot m)$$
-
 **Correttezza** : 
 
 Avremo 2 casi da considerare : 

@@ -242,7 +242,6 @@ L'utilizzo del binomiale può avvenire quando :
 + ci sono 2 eventi possibili ( successo e insuccesso )
 + la probabilità di successo è costante per ogni tentativo
 + gli eventi sono indipendenti tra di loro ( ossia l'esito di un tentativo non influenza l'esito degli altri tentativi )
-
 $$\binom{n}{k}$$
 Indica $n$ come gli oggetti che dobbiamo selezionare e $k$ il numero di oggetti con la caratteristica che vogliamo
 
