@@ -2189,5 +2189,53 @@ Monitor rw {
 
 >[!note] 
 >+ Aggiungiamo una `notifyAll()` alla fine di `ini_leggi` per sbloccare sbloccare altri lettori in attesa che potrebbero essersi ribloccati perchè non erano i primi della coda `q`
->+ Sostituiamo la `notify` con una `notifyAll()` in `end_leggi()` 
+>+ Sostituiamo la `notify` con una `notifyAll()` in `end_leggi()` poichè non siamo sicuri che i thread sulla coda `q` siano nello stesso ordine dei thread sulla condition , dobbiamo sbloccarli tutti e lasciare a loro stessi che si riblocchino se non sono i primi della coda `q` 
+>  Inoltre se non utilizzassimo `notifyAll()` si creerebbe stallo se il thread che sbloccassimo non fosse il primo e ribloccandosi nessun altro thread verrebbe eseguito
 ## Thread in Java
+
+In *java* i *Monitor* sono implementati in una forma semplificata 
+
+### Creazione di Thread in Java
+
+I thread in *Java* vengono creati estendendo la classe `Thread` e definendo il metodo `run` ( ciò che il thread eseguirà ) . Per eseguire il nuovo thread è sufficiente invocare il metodo `start`
+
+```java
+public class MyThread extends Thread {
+
+	public void run() {
+		System.out.println("Sono il thread " + this.getName() );
+	}
+
+}
+
+public static void main(String args[]){
+	MyThread t = new MyThread();
+	t.start();
+}
+```
+
+Possiamo anche creare una classe che implementi l'interfaccia `Runnable` dove implementeremo il metodo `run()` , passeremo poi una istanza della classe al costruttore di un `Thread` 
+
+```java
+public class MyThread implements Runnable{
+	public void run(){
+		System.out.println("Sono il thread " + Thread.currentThread().getName());
+	}
+}
+
+public static void main(String args[]){
+	MyThread r = new MyThread();
+	Thread t = new Thread(r);
+	t.start();
+}
+```
+
+In questo caso necessitiamo di prendere il `currentThread` poichè `MyThread` non estende `Thread` e quindi non abbiamo il metodo `getName()` , lo avremo solo quando `run()` verrà eseguito dallo `start()` di `Thread` 
+
+>[!note] 
+>Ogni volta che fermo il *thread* è necessario gestire l'eccezzione `InterruptedException` poichè questo potrebbe essere interrotto mentre è fermo ( ad esempio tramite una `interrupt()` ) 
+
+`join()` attende la terminazione del *thread* 
+
+### I Monitor di Java
+
