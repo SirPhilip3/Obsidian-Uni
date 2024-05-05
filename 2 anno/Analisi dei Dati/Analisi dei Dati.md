@@ -1267,7 +1267,7 @@ $$SE(\hat{\theta}) = \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$$
 L'*errore standard stimato* è quindi :
 $$\widehat{SE}(\hat{\theta}) = \sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
 L'intervallo di confidenza con livello di confidenza approssimativamente pari a $(1-\alpha)$ è :
-$$\hat{p}_1+\hat{p}_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
+$$\hat{p}_1-\hat{p}_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
 >[!example] 
 >Esempio 9.17 Baron
 
