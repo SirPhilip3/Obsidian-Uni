@@ -1161,6 +1161,9 @@ $$(\bar X-\bar Y)\pm z_{\alpha/2}\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}
 >[!example] 
 >Esempio 9.14 baron
 
+>[!note] 
+>Se ho valori sia positivi che negativi $[-0.3,0.4]$ nell'intervallo di confidenza non possiamo essere sicuri che ci sia una vera differenza significativa tra le due medie ( non possiamo escludere che la media sia la stessa ad un livello di confidenza $\alpha$ )
+
 ### Dimensione campionaria 
 
 Gli intervalli di confidenza hanno la seguente forma simmetrica : 
@@ -1207,7 +1210,7 @@ $$\hat{\theta}\pm z_{\alpha/2} \widehat{SE}(\hat{\theta})$$
 Nel caso della media di una popolazione avremo : 
 $$\hat{\mu}\pm z_{\alpha/2} \frac{\hat\sigma}{\sqrt{n}}$$
 Ovvero 
-$$\overline{X}\pm z_{\alpha/2}\frac{S}{\sqrt{n}}$$
+$$\overline{X}\pm z_{\alpha/2}\frac{\hat S}{\sqrt{n}}$$
 Se abbiamo la differenza di due medie : 
 $$\hat\mu_x-\hat\mu_y \pm z_{\alpha/2} \sqrt{\frac{\hat\sigma^2_x}{n}+\frac{\hat\sigma^2_y}{m}}$$
 Ovvero 
@@ -1292,6 +1295,9 @@ Consideriamo in campione casuale semplice di dimensione $n$ da una distribuzione
 Vogliamo calcolare un intervallo di confidenza per la media $\mu$ basato sullo stimatore $\hat \mu = \bar X$ 
 
 Se $n$ è piccolo allora l'*errore standard stimato* $\frac{S}{\sqrt{n}}$ potrebbe differire significativamente dal vero *errore standard* $\frac{\sigma}{\sqrt{n}}$ 
+
+>[!note] 
+>Da utilizzare quando $n<30$
 
 La conseguenza di sostituire $\sigma$ con la stima consistente $S$ è che la quantità :
 $$T=\frac{\sqrt{n}(\bar X -\mu)}{S}$$
