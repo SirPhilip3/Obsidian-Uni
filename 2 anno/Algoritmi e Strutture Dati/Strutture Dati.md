@@ -5320,3 +5320,61 @@ I problemi *Decidibili* possono essere suddivisi in due categorie a seconda del 
 + *Problemi intrattabili* :
 	Sono problemi i cui algoritmi risolutivi hanno tempi d'esecuzione almeno esponenziali , ossia risolvibili in tempo $O(k^n)$ 
 
+#### Tipi di Problemi 
+
+Un'altra divisione dei *problemi* può essere fatta a seconda di cosa calcolano :
+
+![[Problems2.excalidraw]]
+
++ *Problemi decisionali* : 
+	Sono problemi per cui la risposta dell'algortimo è *binaria* ( $\mathcal{S}=\{0,1\}$ )
+>[!example] 
+>Il grafo è connesso ? $S = \{ Si, No\}$
++ *Problemi di Ottimizzazione* : 
+	Sono problemi per cui la soluzione è costituita da un insieme più o meno vasto da dove vogiamo ricavare l'elemento massimo o minimo 
+>[!example] 
+>Trova il cammino minimo in un grafo non orientato
+
+>[!important] 
+>Possiamo dimostrare che per ogni problema di ottimizzazione esiste una versione decisionale
+
+>[!example] MAX CLIQUE  -> CLIQUE 
+>Il problema della *MAX CLIQUE* è un problema di *ottimizzazione* ( ossia trovare la clique massima all'interno di un grafo orientato ) mentre il problema della *CLIQUE* è un problema *decisionale* dove come input avremo $\mathcal{J}$ grafi non orientati e $k$ , l'algoritmo risponderà alla seguente domanda : $\exists$ nel grafo una *clique* di $k$ vertici ?
+
+>[!example] GRAFO HAMILTONIANO
+>
+>Un grafo non orientato è detto hamiltoniano se ha un ciclo hamiltoniano al suo interno , ossia se essite un cammino che tocchi tutti i vertici 
+>
+>Il problema del grafo *hamiltoniamo* ha le seguenti due verioni : 
+>+ la decisionale che determina se un grafo è *hamiltoniano*
+>+ la versione di ottimizzione invece resituisce il ciclo *hamiltoniamo* presente
+
+>[!important] 
+>Se abbiamo un problema di ottimizzazione e consideriamo la sua versione decisionale allora avranno la stessa complessità
+
+### Classi di problemi decisionali
+
+#### Classe $P$
+La classe $P$ è definita nel seguente modo : 
+$$P = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale risolvibile polinomialmente}\}$$
+Dove $\mathcal{P}$ è un problema generale
+#### Classe $NP$
+La classe $NP$ è definita nel seguente modo :
+$$NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale verificabile polinomialmente}\}$$
+Cosa significa *verificabile* ? :
+##### Verificabile
+Possiamo partizionare l'insieme delle istanze $\mathcal{I}$ in due sottinsiemi : $\mathcal{L_+}$ ( che include le istanze positive , ossia quelle che ritornano 1 ) e $\mathcal{L_-}$ ( che include le istanze negative , ossia quelle che ritornano 0 ) 
+
+Immaginiamo di avere un algoritmo $A_{VER}$ detto *algoritmo di verifica* che prende in input due elementi : un'*istanza positiva* $i \in \mathcal{L_+}$ di un problema e un *certificato* , ossia una presunta soluzione del problema. 
+
+Il compito dell'*algoritmo di verifica* è quello di verificare se l'*istanza positiva* sia effettivamente un'*istanza positiva* del problema attraverso il *certificato* , ritornando $Si$ in questo caso e $No$ altrimenti 
+
+>[!example] CICLO HAMILTONIANO
+>
+>Supponiamo di avere come certificato una permutazione dei vertici del grafo ( questo poichè per essere hamiltoniano dobbiamo avere un cammino che passi per tutti i vertici ) 
+>Dovremmo quindi avere un algoritmo che verifichi che questa permutazione di vertici costituisca di fatto un ciclo hamiltoniamo , questo può essere fatto semplicemente scorrendo la lista di vertici e verificando che essis siano connessi tra di loro da un arco
+>
+>Poichè questa verifica può essere eseguita in tempo polinomiale questo problema è 
+
+
+#### Classe $NP-completi$
