@@ -5374,7 +5374,52 @@ Il compito dell'*algoritmo di verifica* è quello di verificare se l'*istanza po
 >Supponiamo di avere come certificato una permutazione dei vertici del grafo ( questo poichè per essere hamiltoniano dobbiamo avere un cammino che passi per tutti i vertici ) 
 >Dovremmo quindi avere un algoritmo che verifichi che questa permutazione di vertici costituisca di fatto un ciclo hamiltoniamo , questo può essere fatto semplicemente scorrendo la lista di vertici e verificando che essis siano connessi tra di loro da un arco
 >
->Poichè questa verifica può essere eseguita in tempo polinomiale questo problema è 
+>Poichè questa verifica può essere eseguita in tempo polinomiale questo problema è $NP$
 
+Un'altro modo per scrivere la definizione di $NP$ è : 
+$$NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale per il quale posso scrivere un algoritmo di verifica in tempo polinomiale} \}$$
 
-#### Classe $NP-completi$
+>[!example] CLIQUE
+>Un possibile *algoritmo di verifica* per il problema della *CLIQUE* può essere : 
+>Dato un certificato costituito da un insieme di vertici :
+>1. Controlla che il numero di vertici sia $\ge k$
+>2. Controlla se per ogni coppia di vertici ci sia un arco ( questo ha complessità $n^2$ )
+>   
+>Visto che l'algoritmo può essere scritto polinomialmente allora il problema della *CLIQUE* è $NP$
+
+>[!note] 
+>$P \subseteq NP$ : 
+>Se un problema è risolvibile polinomialmente allora è verificabile polinomialmente
+#### Classe $NP-completi$ ( o NPC )
+
+##### Riducibilità polinomiale
+
+Questa proprietà è simile a quella che sfruttiamo per ricondurci ad un problema già risolto quando cerchiamo di risolvere un problema nuovo 
+
+In questo caso parliamo di *riducibilità polinomiale* ossia :
+	Dati due problemi decisionali $\mathcal{P}_1$ e $\mathcal{P_2}$ diciamo che $\mathcal{P_1}$ è riducibile polinomialmente al problema $\mathcal{P_2}$ ( $\mathcal{P_1} \le_P \mathcal{P_2}$ ) se esiste un algoritmo polinomiale che mappi le istanze del problema $\mathcal{P_1}$ in istanze *equivalenti* ( ossia da istanze positive a positive o da negative a negative ) del problema $\mathcal{P_2}$ 
+
+Potremmo quindi dire che : 
++ Se $\mathcal{P_1} \le_P \mathcal{P_2}$ e $\mathcal{P_2} \in P$ allora anche $\mathcal{P_1}\in P$ 
+
+Questa proprietà soddisfa le seguenti proprietà : 
++ **Riflessività** : 
+	Dato un problema decisionale qualsiasi, possiamo dire che è riducibile a sé stesso in quanto l’algoritmo di riducibilità applica il mapping identità: ogni istanza del problema viene mappata a sé stessa
++ **Transitività** : 
+	Dati $\mathcal{P_1} \le_P \mathcal{P_2}$  e  $\mathcal{P_2} \le_P \mathcal{P_3}$  avremo :  $\mathcal{P_1} \le_P \mathcal{P_3}$ , questo è vero poichè ci basterà concatenare i due algoritmi che passano da $\mathcal{P_1}$ a $\mathcal{P_2}$  e  da $\mathcal{P_2}$ a $\mathcal{P_3}$ 
+
+##### $NP-completi$
+
+La definizione di problema $NP-completo$ è : 
+$$NP-completo = \{ \mathcal{P} | \mathcal{P} \ \text{è un problema decisionale tale che :}\ \mathcal{P} \in NP\quad ,\forall \mathcal{P}' \in MP :  \mathcal{P}' \le_P \mathcal{P}  \}$$
+Ossia : 
+1. Il problema $\mathcal{P}$ deve essere un problema $NP$
+2. Tutti i problemi in $NP$ sono riducibili polinomialmente a $\mathcal{P}$
+
+>[!todo] 
+>continue da qua
+#### Insiemi delle Classi di problemi
+
+Le classi di problemi sono distribuite come nel seguente insieme :
+
+![[ClassiNP.excalidraw]]
