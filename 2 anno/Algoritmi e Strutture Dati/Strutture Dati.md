@@ -5276,3 +5276,47 @@ Visto che l'algoritmo non è corretto potremmo pensare di modificare il modo in 
 >[!warning] 
 >Per questo problema non esiste un modo per ordinare i vertici in modo da raggiungere la soluzione corretta
 
+## Teoria della $NP$ completezza
+
+### Problemi 
+
+Parliamo in modo generico di *problemi* 
+
+Un *problema* può essere rappresentato in modo astratto da due insiemi : 
+$$\mathcal{I} = \text{Questo rappresenta l'insieme delle istanze}$$
+>[!example] 
+>Queste *istanze* possono essere : nel problema dei camminimi minimi tutti i possibili , infiniti , grafi orientati e pesati 
+
+$$\mathcal{S} = \text{Questo rappresenta l'insieme delle soluzioni}$$
+>[!example] 
+>Le *soluzioni* possono essere : nel problema dei cammini minimi questo può essere l'insieme dei vertici e cammini che costituiscono un possibile cammino minimo 
+
+Un **problema** quindi può essere scritto come una relazione binaria tra le sue possibili *istanze* e le sue possibili *soluzioni* : 
+$$\mathcal{P} \subseteq \mathcal{I} \times \mathcal{S}$$
+Un **Algoritmo** invece è una serie di istruzioni che prende come *input* un'istanza dell'insieme delle istanze e come *output* una particolare soluzione : 
+![[Algorithm.excalidraw]]
+
+#### Tipologie di Problemi 
+
+![[Problems.excalidraw]]
+
+I *Problemi* possono essere divisi in : 
++ *Problemi Decidibili* : 
+	Sono problemi per cui *esiste* un algoritmo che dia una soluzione in tempo *finito*
++ *Problemi Indecidibili* : 
+	Sono problemi per cui *non esiste* un algoritmo che dia una soluzione in tempo finito
+>[!example]
+>Un esempio di problema indecidibile è il problema dell'Alt di una macchina di Turing  
+>In questo problema dobbiamo dire se un certo programma termina oppure no 
+>
+>L'unica soluzione per questo problema è inevitabilmente di simulare il programma dati dei certi dati e osservare se termina oppure no , se preò il programma entra in un ciclo infinito anche l'algoritmo simulante ci entra non dando mai una soluzione
+
+I problemi *Decidibili* possono essere suddivisi in due categorie a seconda del loro tempo di esecuzione : 
++ *Problemi trattabili* : 
+	Sono problemi per cui esistono algoritmi risolutivi con complessità al massimo polinomiale ossia risolvibili in tempo $O(n^k)$ dove $n$ è la dimensione dell'input e $k$ è una qualche costante 
+>[!note] 
+>Si è notato che non si hanno generalmente problemi con un $k>4$ , altrimenti con $k$ molto alti la complessità potrebbe essere simile ad un problema *intrattabile*
+>Inoltre si è notato che generalmente se un algortimo ammette una soluzione polinomiale si possono fare delle ottimizzazioni per diminuirne la complessità
++ *Problemi intrattabili* :
+	Sono problemi i cui algoritmi risolutivi hanno tempi d'esecuzione almeno esponenziali , ossia risolvibili in tempo $O(k^n)$ 
+
