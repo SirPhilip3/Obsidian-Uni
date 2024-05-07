@@ -2034,4 +2034,64 @@ dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione
 >Notiamo che la retta non descrive molto bene i dati visto che vi sono numero osservazioni lontane dalla *retta di regressione*
 >
 >![[Pasted image 20240507145031.png]]
+>
+>Notiamo che inolte i residui ( differenza tra i valori predetti e quelli osservati ) sono molto lontani dalla normalità 
+>
+>![[Pasted image 20240507145255.png]]
+
+Per risolvere questi problemi potremmo utilizzare un modello differente :
+
+#### Modello log-log
+
+Consideriamo una *retta di regressione* con predittore e risposta trasformate su scala logaritmica : 
+$$\log(Y) = \gamma_0 + \gamma_1 \log(x) + \varepsilon$$
+ora la *correlazione* fra le due variabili trasformate diventa $0.96$
+
+>[!warning] 
+>Non possiamo confrontare questa correlazione con la precedente in scala originale
+
+Ora avendo le variabili trasformate $a=\log (y)$ e $b=\log(x)$ avremo le seguenti medie e deviazioni standard
+$$\bar{a} = 1.34, \quad \bar{b}=3.14$,\quad s_a = 3.12 , \quad s_b = 2.45$$
+
+La *retta di regressione* stimata con il metodo dei minimi quadrati è :
+$$\widehat{\log(y)} = 2.13 + 0.75 \log(x)$$
+Con $R^2 = 0.92$
+
+Avremo che la retta rispetta molto di più i dati : 
+![[Pasted image 20240507151136.png]]
+
+Sulla scala originale avremo : $Y = e^{2.13}X^{0.75}$
+
+![[Pasted image 20240507151221.png]]
+
+I *residui* rispettano l'assunzione di normalità :
+
+![[Pasted image 20240507151254.png]]
+
+L'errore standard di $\hat\gamma_1$ è $0.028$
+
+Verifichiamo la significatività di $\gamma_1$
+Il valore osservato della statistica $T$ è :
+$$t = \frac{0.75}{0.038}=26.41$$
+porta ad un $p$-value pari a $2\{1-F(26.41)\}<10^{-16}$ 
+Concludiamo che il 
+
+>[!todo] 
+>da 33 in poi
+
+#### Analisi dei residui
+
+#### Verifica dela normalità
+
+#### Verifica dell'assunzione di linearità
+#### Verifica dell'assunzione di omoschedasticità
+#### Verifica dell'assunzione di indipendenza
+
+#### Regressione polinomiale
+
+#### Overfitting
+
+#### Sciegliere la dimensione del modello
+
+
 

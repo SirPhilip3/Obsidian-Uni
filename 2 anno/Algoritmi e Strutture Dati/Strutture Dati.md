@@ -2336,7 +2336,7 @@ Aumentiamo la size dell'heap di 1 elemento , poniamo nell'ultimo elemento dell'a
 #### Conclusione
 
 Un *heap* può svolgere le operazioni delle code di priorità con complessità $O(\log n)$
-
+# Secondo Semestre
 ## Ordinamenti Lineari
 
 ### Limiti degli algoritmi basati sui confronti
