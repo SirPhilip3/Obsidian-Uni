@@ -1976,4 +1976,62 @@ L'*intervallo di confidenza* di livello $1-\alpha$ per $\upbeta_1$ è :
 $$\hat{\upbeta}_1 \pm t_{\alpha/2} \widehat{SE}(\hat\upbeta_1)$$
 dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ *di student* con $(n-2)$ gradi di libertà , questo perchè ci sono due parametri $\upbeta_0$ e $\upbeta_1$ che devono essere stimati per calcolare $s^2_e$ 
 
+##### Verifica delle ipotesi su $\upbeta_1$ 
+
+Consideriamo un'ipotesi nulla : 
+$$H_0 : \upbeta_1 = \upbeta_1^0$$
+L'ipotesi può essere valutata con la statistica test $T$
+$$T = \frac{\hat\upbeta_1-\upbeta_1^0}{\widehat{SE}(\hat{\upbeta}_1)}$$
+che si distribuisce come una variabile casuale $T$ con $n-2$ gradi di libertà sotto l'ipotesi nulla 
+
+##### Test di significatività del predittore
+
+Possiamo condurlo per valutare se un predittore è *statisticamente significativo* 
+
+Si tratta di un test *bilaterale* in cui l'ipotesi nulla è che il predittore è ininfluente nel modello di regressione lineare , l'ipotesi nulla e alternativa saranno : 
+$$H_0 : \upbeta_1 = 0 \quad \text{contro} \quad H_A : \upbeta_1 \neq 0$$
+La statistica test $T$ è quindi pari a : 
+$$T = \frac{\hat\upbeta_1}{\widehat{SE}(\hat\upbeta_1)}$$
+Se il test porta al *rifiuto* dell'ipotesi nulla allora il predittore è statisticamente significativo
+
+#### Relazioni lineari e non lineari 
+
+Se il test di significatività indica che non si può rifiutare l'ipotesi nulla vuol dire che *non* vi è una *relazione lineare* fra il predittore e la risposta 
+
+Potrebbe essere che esista una qualche *relazione non lineare* fra predittore e risposta 
+
+>[!example] 
+>![[Pasted image 20240507141338.png]]
+>
+>Abbiamo $r_{xy}=0$ e quindi $\upbeta_1 = 0$ ma vi è una perfetta relazione quadratica fra le due variabili 
+
+#### Previsioni
+
+La previsione della risposta in corrispondenza ad un particolare valore del predittore $x_*$ : 
+$$\hat{y}_* = \hat{\upbeta}_0 + \hat{\upbeta}_1 x_*$$
+Siccome i paraetri della retta $\upbeta_0$ e $\upbeta_1$ sono stati stimati allora la previsione sarà affetta da *incertezza*
+
+La varianza di $\hat{y}_*$ è :
+$$Var(\hat{y}_*)=\sigma^2 \bigg(1+\frac{1}{n}+\frac{(x_*-\bar{x})^2}{(n-1)s_x^2}\bigg)$$
+con cui possiamo calcolare l'**intervallo di previsione**
+$$\hat{y}_* \pm t_{\alpha/2}\sqrt{\widehat{Var}(\hat{y}_*)}$$
+dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ con $n-2$ gradi di libertà e la varianza $\sigma^2$ è stiamta con $s_e^2$ 
+
+>[!example] 
+>Abbiamo un dataset contenente i pesi medi del corpo ( Kg ) e del cervello ( gr ) di 62 specie di mammiferi
+>
+>Stimiamo la retta di regressione fra il peso medio del corpo $X$ e il peso medio del cervello $Y$ 
+>
+>La *correlazione* fra $X$ e $Y$ è $0.93$ 
+>
+>Avremo i seguenti dati : $\bar{x} = 198.79 \quad, \bar{y} = 283.13,\quad s_x = 899.16,\quad s_y = 930.28$
+>
+>La retta di regressione stimata con il metodo dei minimi quadrati è :
+>$$\hat y = 91 +0.97 x$$
+>
+>Con $R^2 = 0.87$ 
+>
+>Notiamo che la retta non descrive molto bene i dati visto che vi sono numero osservazioni lontane dalla *retta di regressione*
+>
+>![[Pasted image 20240507145031.png]]
 
