@@ -2102,6 +2102,11 @@ I residui $e_i$ sono le stime degli errori $\epsilon_i$ e quindi ci aspettiamo c
 + *indipendenti* tra loro
 + con *varianza costante* ovvero *omoschedastici*
 
+>[!note] 
+>Non serve verificare che la media dei residui sai zero perchè è una conseguenza della stima con il metodo dei minimi quadrati
+
+>[!todo] 
+
 #### Verifica dela normalità
 
 #### Verifica dell'assunzione di linearità
