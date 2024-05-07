@@ -1955,7 +1955,25 @@ Quindi $A$ e $B$ risultano correlate solamente perchè $A$ è correlata con $C$ 
 >Potrebbe portarci a dire che le cicogne portano bambini 
 >Siamo di fronte ad un caso di *correlazione spuria* : in questo caso la variabile $C$ era il numero di case che aumentando a cuasa dell'espansione della città aumentavano anche i camini dove potevano nidificare le cicogne e di conseguenza il numero di cicogne avvistate aumentava
 
+#### Intervalli di confidenza e verifica delle ipotesi
 
->[!note] 
->fino a pg 20 
+Nel modello di *regressione lineare semplice* il parametro di interesse è il coefficente angolare $\upbeta_1$ 
+
+Per calcolare intervalli di confidenza e valutare ipotesi su $\upbeta_1$ dobbiamo introdurre delle *assunzioni* : 
+
+Avremo il seguente modello di regressione lineare semplice con *errori normali* :
+$$Y_i=\upbeta_0 +\upbeta_1 x_i +\epsilon_i$$ **Assunzioni** :
++ Gli errori $\epsilon_i$ sono variabili casuali *indipendenti* *normali* di media 0 e varianza $\sigma^2$ ( costante per tutti gli $i$ ) 
++ Il predittore ( $x_i$ ) è una quantità *non casuale* 
+
+Sotto queste assunzioni $\hat \upbeta_1$ è uno *stimatore non distorto* di $\upbeta_1$ con *distribuzione normale*
+
+##### Intervalli di confidenza per $\upbeta_1$
+
+Siccome $\hat{\upbeta}_1$ è distribuito normalemente allora possiamo calcolare gli *intervalli di confidenza* per $\upbeta_1$ con la statistica $T$ 
+
+L'*intervallo di confidenza* di livello $1-\alpha$ per $\upbeta_1$ è :
+$$\hat{\upbeta}_1 \pm t_{\alpha/2} \widehat{SE}(\hat\upbeta_1)$$
+dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ *di student* con $(n-2)$ gradi di libertà , questo perchè ci sono due parametri $\upbeta_0$ e $\upbeta_1$ che devono essere stimati per calcolare $s^2_e$ 
+
 
