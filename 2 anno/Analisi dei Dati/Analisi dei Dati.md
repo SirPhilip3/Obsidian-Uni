@@ -2074,12 +2074,33 @@ Verifichiamo la significatività di $\gamma_1$
 Il valore osservato della statistica $T$ è :
 $$t = \frac{0.75}{0.038}=26.41$$
 porta ad un $p$-value pari a $2\{1-F(26.41)\}<10^{-16}$ 
-Concludiamo che il 
+Concludiamo che il logaritmo del peso corporeo è un predittore fortemente significativo del logaritmo del peso del cervello 
 
->[!todo] 
->da 33 in poi
+L'intervallo di confidenza di livello $95\%$ per $\gamma_1$ è :
+$$0.75\pm t_{0.025}0.028 = [0.69,0.81]$$
+dove $t_{0.025}  = 2$ è il quantile di posizione $0.975$ della distribuzione $T$ con 60 gradi di libertà
 
+**Previsioni**
+
+Calcoliamo l'intervallo di previsione del peso del cervello per un mammifero dato il suo peso 
+
+Per esempio fissiamo il peso a $60kg$ . La previsione del logaritmo del peso del cervello è : 
+$$2.13 + 0.75\log(60)=5.2 \ \text{log-grammi}$$
+La varianza della previsione è pari a $0.496$
+
+L'intervallo di previsione con livello del $95\%$ per il peso del cervello è : 
+$$\bigg[ e^{5.2-2\sqrt{0.496}}, e^{5.2+2\sqrt{0.496}} \bigg] = [46 , \ 715] \ \text{grammi}$$
+Il risultato ottenuto ha senso per la gran maggioranza dei mammiferi , per la specie umana  no che con $62kg$ di peso corporeo il cui peso medio di cervello è $1320$ grammi
 #### Analisi dei residui
+
+Il modello di regressione è stato analizzato assumendo che gli errori siano variabili normali indipendenti con media nulla e varianza $\sigma^2$  
+
+Dobbiamo verificare le assunzioi per poter credere nei risultati ottenuti
+
+I residui $e_i$ sono le stime degli errori $\epsilon_i$ e quindi ci aspettiamo che siano : 
++ *normalmente distribuiti*
++ *indipendenti* tra loro
++ con *varianza costante* ovvero *omoschedastici*
 
 #### Verifica dela normalità
 
