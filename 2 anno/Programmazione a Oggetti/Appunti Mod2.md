@@ -1322,4 +1322,36 @@ costruttore di vector chiama i costuttori di defualt di ogni el
 
 # 07/05/2024
 
+oop non usato
 
+value oriented programming -> cpp + rust
+
+cpp è touring completo , ad html manca if , tipo countable 
+
+container -> strutture dati lineari , es vector non ha nessun papà 
+vector è un valore non un oggetto 
+
+default const , copy , operatore assegnamento -> uso stile della value oriented progrmamming
+
+questo stile poichè : 
++ posso scrivere codice polimorfo con i template 
++ rinuncio a dynamic dispatching etcc 
+
+somma container qualunque ? -> attraverso i template 
+
+member types , tipi definiti dentro un tipo 
+
+member function non metodi ( funzioni dentro le calsse )
+
+stl != std
+
+std per accedere ai file etcc ( standard library )
+stl -> sylicon graphics standard template library -> polimofismo statico invece di dinamica -> value oriented programming , tutta templatizzata
+
+adesso namespace unico
+
+list è un container constant time insertion and removal of elements (linked list) , vector non in tempo costante è un array devo resizare etcc
+
+ad oggetti avrei tipo comune in java
+
+per il template system basta che abbia i metodi con la firma corretta 
