@@ -1320,4 +1320,6 @@ non serve distruttore perchè lo fa vector , distruttore viene generato chiamand
 
 costruttore di vector chiama i costuttori di defualt di ogni el 
 
+# 07/05/2024
+
 
