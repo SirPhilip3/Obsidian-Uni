@@ -2168,6 +2168,27 @@ Il massimo ordine del polinomio che può essere considerato è $k=n-1$
 >>![[Pasted image 20240508091405.png]]
 #### Sciegliere la dimensione del modello
 
-Si dimostra che l'indice $R^2$ cresce  
+Si dimostra che l'indice $R^2$ cresce sempre quando si aggiungono termini al modello di regressione
 
+>[!note] 
+>$R^2$ aumenta sempre quindi anche se il termine aggiuntivo non aggiunge nulla di rilevante , per questo se cerchiamo di massimizzare $R^2$ arriveremo a fare *overfitting*
+
+Per questo si utilizza $R^2_{adj}$ che penalizza il modello quando un termine non aggiunge nessuna informazione rilevante :
+$$R_{adj}^2 = 1-\frac{SQ_{res}/(n-p)}{SQ_{tot}/n}$$
+Dove : 
++ $p$ è il numero dei parametri 
+>[!example] 
+>$2$ per la retta di regressione , $k-1$ per modelli polinomiali di ordine $k$ 
+
+Possiamo utilizzare $R^2_{adj}$ per sciegliere che termini tenere nel modello
+
+#### Punti influenti 
+
+All'interno dei dati potremmo avere dei dati che influenzano molto la retta di regressione ma non sono rappresentanti del'insieme completo di dati
+
+>[!example] 
+![[Pasted image 20240508092945.png]]
+>Nel primo caso vediamo che il punto in alto sposta la retta di regressione verso l'alto anche se questo punto non rappresenta la maggioranza dei dati , lo stesso per il secondo esempio
+>
+>In questi casi possiamo eliminare quel punto
 
