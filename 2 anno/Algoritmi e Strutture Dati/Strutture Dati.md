@@ -5403,7 +5403,6 @@ Il *complemento* di un *problema decisionale* $\mathcal{P}$ è il problema $\mat
 >Come certificato dovrei avere tutte le possibili permutazioni di vertici e verificare che nessuna di esse sia un ciclo poichè dobbiamo verificare che non è hamiltoniano ossia non ha un ciclo hamiltoniano , per verificare ciò dobbiamo per forza ritornare tutte le possibili permutazioni in modo da verificare che nessuna di esse sia un grafo hamiltoniano
 >
 >Questo ci porta a dover per forza controllare $n!$ combinazioni di vertici
-
 #### Classe $NP-completi$ ( o NPC )
 
 ##### Riducibilità polinomiale
@@ -5424,7 +5423,7 @@ Questa proprietà soddisfa le seguenti proprietà :
 ##### $NP-completi$
 
 La definizione di problema $NP-completo$ è : 
-$$NP-completo = \{ \mathcal{P} | \mathcal{P} \ \text{è un problema decisionale tale che :}\ \mathcal{P} \in NP\quad ,\forall \mathcal{P}' \in MP :  \mathcal{P}' \le_P \mathcal{P}  \}$$
+$$NP-completo = \{ \mathcal{P} | \mathcal{P} \ \text{è un problema decisionale tale che :}\ \mathcal{P} \in NP\quad ,\forall \mathcal{P}' \in NP :  \mathcal{P}' \le_P \mathcal{P}  \}$$
 Ossia : 
 1. Il problema $\mathcal{P}$ deve essere un problema $NP$
 2. Tutti i problemi in $NP$ sono riducibili polinomialmente a $\mathcal{P}$
@@ -5432,4 +5431,44 @@ Ossia :
 Le classi di problemi sono distribuite come nel seguente insieme :
 
 ![[ClassiNP.excalidraw]]
- 
+
+>[!note] 
+>Se vale solo la seconda proprietà degli $NPC$ allora diremo che il problema è $NP-Hard$
+##### Teorema fondamentale della $NP$ completezza
+
+$$(\ P \cap NPC \ )\neq \emptyset \implies P =NP$$
+>[!important] Definition
+> Se esiste un problema che allo stesso tempo è $P$ e $NPC$ allora la classe $P$ coincide con la classe $NP$ 
+
+>[!important] Dimostrazione
+>Abbiamo la seguente *ipotesi* : 
+>$P \cap NPC \neq \emptyset$ ossia : 
+>$\exists Q \in (P \cap NPC)$ da cui ricaviamo che $Q \in P$ e $Q \in NPC$ 
+>
+>La *tesi* è : $P = NP$ , dovremmo quindi dimostrare : 
+>1. $P \subseteq NP$ :
+>	Questo è banalmente vero in quanto un problema risolvibile polinomialmente è anche verificabile polinomialmente
+>2. $NP \subseteq P$ : 
+>	Essendo che $Q \in NPC$ dovrà valere che tutti i problemi in $NP$ devono essere ricondicibili a $Q$  
+
+>[!error] 
+>rivedi dimostrazione
+
+>[!note] 
+>$\le_p$ non è *simmetrica* poichè se supponiamo che lo sia avremmo che ........ 
+>
+>$\le_p$ vale solo tra $NPC$
+
+##### Teorema di Cook
+
+*Cook* dimostra che il problema $CIRCUIT-SAT$ è un $NPC$ 
+###### Circuit Satisfability ( $CIRCUIT-SAT$ )
+
+Il problema della $CIRCUIT-SAT$ è stato il primo problema ad essere dimostrato $NPC$
+
+Supponiamo di avere un circuito booleano con $n$ ingressi e una sola uscita , vogliamo determinare se esiste una configurazione degli input per cui l'uscita è 1
+
+>[!example] 
+
+
+
