@@ -97,3 +97,8 @@ asincrona -> non so quando la computazione eseguisce -> in iteratore normale lo 
 ```
 
 ad ogni iterazione voglio creare un nuovo thread passando f.apply() , ogni volta che istanzio future creo nuovo thread e passa apply restituendo un risultato
+
+l'iteratore ad ogni iterazione ritorna una nuova future che starta il thread che computa la funzione di trasformazione che ritorna un valore 
+
+iterable di liste -> ha iteratore ,ad ogni iterazione dobbiamo ordinare ogni lista 
+T deve essere comparabile altrimenti non posso ordinare
