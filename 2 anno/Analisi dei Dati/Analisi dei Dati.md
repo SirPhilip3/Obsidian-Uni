@@ -2105,19 +2105,69 @@ I residui $e_i$ sono le stime degli errori $\epsilon_i$ e quindi ci aspettiamo c
 >[!note] 
 >Non serve verificare che la media dei residui sai zero perchè è una conseguenza della stima con il metodo dei minimi quadrati
 
+Se l'*assunzione* di *relazione lineare* fra la risposta e il predittore è valida , allora i *residui* non dovrebbero avere *nessuna relazione* con il *predittore*
+
 >[!todo] 
+>Controlla i precedenti 3 capitoli non ho capito
 
-#### Verifica dela normalità
+#### Verifica della normalità
 
+L'assunzione di *normalità* può essere valutata con il grafico *quantile - quantile*
+
+Per assumere la normalità dei dati dobbiamo avere che i punti sul grafico *quantile-quantile* devono seguire la distribuzione teorica di normalità 
+
+![[Pasted image 20240508083538.png]]
+Questi dati seguono la distribuzione normale
+
+![[Pasted image 20240508083612.png]]
+Questi dati non seguono la distribuzione normale
+
+![[Pasted image 20240508083633.png]]
+Questi dati non seguono la distribuzione normale
 #### Verifica dell'assunzione di linearità
+
+L'assunzione di *linearità* può essere valutata tramite il grafico a dispersione dei residui rispetto al predittore 
+
+![[Pasted image 20240508083755.png]]
+In questo caso i dati non sono lineari in quanto seguono un pattern 
+
+![[Pasted image 20240508083839.png]]
+In questo caso i dati seguono una distribuzione lineare ( nel grafico dei residui vediamo che i dati sono posizionati casualmente all'interno della varianza dei residui )
 #### Verifica dell'assunzione di omoschedasticità
+
+L'assunzione di *omoschedasticità* può essere valutata tramite il grafico a dispersione dei residui rispetto al predittore
+
+![[Pasted image 20240508084219.png]]
+In questo caso vediamo che essendo la *varianza* non costante la dispersione dei dati cambia con l'aumento di $x$ ( non è detto che la varianza aumenti ) 
+
+![[Pasted image 20240508084634.png]]
+Qui invece vediamo che la varianza è costante e quindi anche i dati sono distribuiti all'interno di un intervallo preciso
+
 #### Verifica dell'assunzione di indipendenza
 
+L’assunzione di *indipendenza* può essere valutata tramite il grafico a dispersione dei residui rispetto all’indice delle osservazioni
+
+![[Pasted image 20240508084916.png]]
+Questi dati *non* sono *indipendenti* poichè seguono un pattern
+
+![[Pasted image 20240508084926.png]]
+Questi dati sono *indipendenti*
 #### Regressione polinomiale
 
-#### Overfitting
+L'assunzione di linearità del modello di regressione può essere superata considerando modelli non-lineari 
 
+I modelli non-lineari più semplici sono i modelli di *regressione polinomiali* , questi contengono potenze del predittore fino ad un certo grado $k$ 
+$$Y_i = \upbeta_0+\upbeta_1 x_i+\upbeta_2 x_i^2 + \dots + \upbeta_kx_i^k + \varepsilon$$
+Il massimo ordine del polinomio che può essere considerato è $k=n-1$ 
+
+>[!warning] 
+>Modelli con ordini vicini a $n$ si adattono troppo ai dati osservati perdendo la capacità di fornire ragionevoli previsioni di future osservazioni ( **overfitting** ) 
+>
+>L'*overfitting* è quando il predittore collega tutti i dati perdendo la capacità predittiva 
+>>[!example] 
+>>![[Pasted image 20240508091405.png]]
 #### Sciegliere la dimensione del modello
 
+Si dimostra che l'indice $R^2$ cresce  
 
 
