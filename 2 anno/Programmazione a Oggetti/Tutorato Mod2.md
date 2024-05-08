@@ -64,12 +64,12 @@ int random = Es7.RandomSingleton.nextInt();
 due collection != se diverso numero di el o elementi differenti stessa lunghezza 
 
 ---
-comparaTo<T>
+comparaTo\<T>
 
 comparato confronta il this con il parametro che passo -> implementa confronto a 3 vie 
 0 se el sono uguali 
-1 se A > B tra i due parametri
--1 se A \< B >
+1 se A \> B tra i due parametri
+-1 se A \< B \>
 
 se collection A ha meno el di B ritorno -1
 
@@ -77,3 +77,23 @@ a1 > b1 return 1
 a1 < b1 > return -1
 
 es 2 pg 11
+
+# 08/05/2024
+
+5/9/2024
+
+trasformazione tra iteratori :
+
+oggetto iterabile di tipo a con el di tipo a -> map per cui vogliamo ritornare un iteratore di tipo B -> conversione dentro l'iteratore -> f A -> B , ad ogni iterazione applichiamo f  e ritorniamo un el di tipo B *asincrona* -> ogni thread fa f , passando lambda `f.apply(A)` ritorniamo promessa che una volta fatta apply 
+
+`() -> (f.apply(a))`
+
+lambda non prende parametri e ritorna un el di tipo B (supplier) , iteratore di supplier di B  
+
+asincrona -> non so quando la computazione eseguisce -> in iteratore normale lo fa sequenzialmente , per ogni el sequenzialmente f.apply(a) , se la metto in lambda e passo a thread non so quando effettivamente verrà effettuata 
+
+```java
+
+```
+
+ad ogni iterazione voglio creare un nuovo thread passando f.apply() , ogni volta che istanzio future creo nuovo thread e passa apply restituendo un risultato

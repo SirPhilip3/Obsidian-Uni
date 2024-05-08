@@ -5469,6 +5469,24 @@ Il problema della $CIRCUIT-SAT$ è stato il primo problema ad essere dimostrato 
 Supponiamo di avere un circuito booleano con $n$ ingressi e una sola uscita , vogliamo determinare se esiste una configurazione degli input per cui l'uscita è 1
 
 >[!example] 
+![[Cricuit.excalidraw]]
+>In questo esempio una possibile configurazione potrebbe essere $x_1 = 0, x_2 =1 , x_3 = 0$
 
+Per dimostrare la $NPC$ *Cook* ha dovuto dimostrare la seconda parte della definizione di $NPC$ 
+###### Altri problemi
 
+Avendo dimostrato un problema $NPC$ risulta essere relativamente semplice dimostrare gli altri infatti la seconda proprietà può essere riscritta nel seguente modo per via della *transitività* della *riducibilità polinomiale* : 
 
+$$\exists\ Q \in NPC, \quad Q \le_p \mathcal{P}$$
+Infatti potremmo avere che :
+$$\forall \mathcal{P}' \in NP, \quad \mathcal{P}' \le_p Q \le \mathcal{P}$$
+In questo modo ci basterà ricondurci ad un problema per cui abbiamo già dimostrato la $NPC$ per dire che quel problema è $NPC$
+###### SAT
+
+###### Froma normale congiuntiva , 3-SAT , CLIQUE
+
+##### Se troviamo un problema $NPC$
+
+Poichè non si possono scrivere algoritmi efficenti per quesi problemi bisogna ricorrere a delle alternative : 
++ algoritmi di approssimazione : algoritmi che ritornano risultati non perfetti 
++ euristiche : algoritmi che statisticamente parlando forniscono la risposta corretta
