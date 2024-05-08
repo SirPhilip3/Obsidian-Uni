@@ -5388,6 +5388,22 @@ $$NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale per il qual
 >[!note] 
 >$P \subseteq NP$ : 
 >Se un problema è risolvibile polinomialmente allora è verificabile polinomialmente
+
+#### Classe $Co-NP$
+
+La *classe* $Co-NP$ e ( classi di problemi il cui complemento è $NP$ )
+
+Il *complemento* di un *problema decisionale* $\mathcal{P}$ è il problema $\mathcal{P}$ per cui le soluzioni sono invertite , ossia $\bar{\mathcal{P}}$ è vero quando $\mathcal{P}$ è falso ed è falso quando $\mathcal{P}$ è vero 
+
+>[!example] 
+>Per il problema del *grafo hamiltoniano* avremo che $\bar{\mathcal{P}}$ ritornarà *no* se $G$ è hamiltoniano e *yes* se non lo è 
+>
+>Vediamo ora se $\bar{\mathcal{P}}$ è $NP$ 
+>
+>Come certificato dovrei avere tutte le possibili permutazioni di vertici e verificare che nessuna di esse sia un ciclo poichè dobbiamo verificare che non è hamiltoniano ossia non ha un ciclo hamiltoniano , per verificare ciò dobbiamo per forza ritornare tutte le possibili permutazioni in modo da verificare che nessuna di esse sia un grafo hamiltoniano
+>
+>Questo ci porta a dover per forza controllare $n!$ combinazioni di vertici
+
 #### Classe $NP-completi$ ( o NPC )
 
 ##### Riducibilità polinomiale
@@ -5405,7 +5421,6 @@ Questa proprietà soddisfa le seguenti proprietà :
 	Dato un problema decisionale qualsiasi, possiamo dire che è riducibile a sé stesso in quanto l’algoritmo di riducibilità applica il mapping identità: ogni istanza del problema viene mappata a sé stessa
 + **Transitività** : 
 	Dati $\mathcal{P_1} \le_P \mathcal{P_2}$  e  $\mathcal{P_2} \le_P \mathcal{P_3}$  avremo :  $\mathcal{P_1} \le_P \mathcal{P_3}$ , questo è vero poichè ci basterà concatenare i due algoritmi che passano da $\mathcal{P_1}$ a $\mathcal{P_2}$  e  da $\mathcal{P_2}$ a $\mathcal{P_3}$ 
-
 ##### $NP-completi$
 
 La definizione di problema $NP-completo$ è : 
@@ -5414,11 +5429,7 @@ Ossia :
 1. Il problema $\mathcal{P}$ deve essere un problema $NP$
 2. Tutti i problemi in $NP$ sono riducibili polinomialmente a $\mathcal{P}$
 
->[!todo] 
->continue da qua
-#### Insiemi delle Classi di problemi
-
 Le classi di problemi sono distribuite come nel seguente insieme :
 
 ![[ClassiNP.excalidraw]]
-
+ 
