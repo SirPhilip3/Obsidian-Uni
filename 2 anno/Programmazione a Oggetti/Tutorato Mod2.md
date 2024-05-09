@@ -130,3 +130,6 @@ iteratori si comportano come pointer ma non lo sono
 subscript
 
 typename -> nome di un tipo che occorrono dei member type , per scpecificare che :: indica un nome di tipo , problema di parsing 
+
+chiusura -> scope delle varibili di una lambda
+

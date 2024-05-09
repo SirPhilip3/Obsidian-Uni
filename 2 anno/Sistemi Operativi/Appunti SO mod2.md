@@ -1474,3 +1474,25 @@ sincronizzazioen rientrante -> chiamare un metodo sync da un altro sync senza pr
 # 30/04/2024
 
 lab monitor java
+
+# 09/05/2024
+
+se esame gio
+
+**Stallo** : andiamo in stallo quando in un insieme di processi o thread tutti attendono un qulcosa che può essere fatto soloda altri processi di S 
+
+sotto che condizioni avviene uno stallo :
+
+1. *mutua esclusione* : fa attendere dei thread ( altrimenti i thread non attenderebbero mai )
+2. *mancanza di rilascio di una risorsa* : Possesso e attesa (call and wait)
+   Ho una risorsa e chiedo per un qualcosaltro ( richiesta delle risorse in modo incrementale ) , questa portebbe essere a sua volta in attesa 
+3. Se non ho un modo di forzare il rilascio di una risorsa ( posso fare la prelazione sulla cpu salvando lo stato )  
+4. Attesa circolare ( a *runtime* )
+
+1 , 2 , 3 -> condizioni *statiche* 
+
+Per evitare lo stallo : 
++ Prevenire ( pre runtime ) -> lo stallo non può avvenire
++ Controlla a runtime lo stato del sistema se sta per avvenire uno stallo cerco di evitarlo -> monitoraggio e evito attesa circolare 
++ Riconoscimento dello stallo -> mi accorgo dell'avvenimento dello stallo (reset o rollback) 
+
