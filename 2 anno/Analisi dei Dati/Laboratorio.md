@@ -56,3 +56,23 @@ with utilizza un oggetto e i valori di quell'oggetto ( es x e y )
 
 # Laboratorio 3
 
+# 
+
+`lm` linear models -> fitta i dati
+
+`predict()` standard livello di 0.95
+
+```
+## (Intercept)  -2298.4      158.5  -14.50   <2e-16 *** beta0
+## carat        11598.9      230.1   50.41   <2e-16 *** beta1 coeff angolare
+```
+
+p-value per ipotesi nulla = 0 ? 
+
+fitted beta0 +beta1\*x 
+
+`resid` -> grafico dei residui
+
+```
+mod3 <- update(mod2, . lascia y ~ . lascia x + I(carat ^ 2) aggiungi il termine al quadrato)
+```
