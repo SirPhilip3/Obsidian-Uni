@@ -102,3 +102,21 @@ l'iteratore ad ogni iterazione ritorna una nuova future che starta il thread che
 
 iterable di liste -> ha iteratore ,ad ogni iterazione dobbiamo ordinare ogni lista 
 T deve essere comparabile altrimenti non posso ordinare
+
+# 09/05/2024
+
+template -> su qualsiasi entità 
+
+template non solo tipi ma anche valori , 
+classi , metodi , typedef ( nome alternativo a tipi vecchi )
+
+namespace non templetizzabili
+
+```cpp
+// copy con un template diverso 
+template <class S>
+matrix(const matrix<S>& m)
+
+// matrix int , matrix double -> passi a int il double -> invoca costruttore
+// copy transformer
+```

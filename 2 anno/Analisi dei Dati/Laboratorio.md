@@ -76,3 +76,11 @@ fitted beta0 +beta1\*x
 ```
 mod3 <- update(mod2, . lascia y ~ . lascia x + I(carat ^ 2) aggiungi il termine al quadrato)
 ```
+
+1. visualizza i dati
+2. togli outlier
+3. verifca senso con analisis dei residui
+
+il grafi dei residui con dim -> - outliers
+
+predict -> level = 0.99
