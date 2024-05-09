@@ -1486,7 +1486,7 @@ sotto che condizioni avviene uno stallo :
 1. *mutua esclusione* : fa attendere dei thread ( altrimenti i thread non attenderebbero mai )
 2. *mancanza di rilascio di una risorsa* : Possesso e attesa (call and wait)
    Ho una risorsa e chiedo per un qualcosaltro ( richiesta delle risorse in modo incrementale ) , questa portebbe essere a sua volta in attesa 
-3. Se non ho un modo di forzare il rilascio di una risorsa ( posso fare la prelazione sulla cpu salvando lo stato )  
+3. Se non ho un modo di forzare il rilascio di una risorsa ( posso fare la prelazione sulla cpu salvando lo stato )  *prelazione*
 4. Attesa circolare ( a *runtime* )
 
 1 , 2 , 3 -> condizioni *statiche* 
@@ -1494,5 +1494,31 @@ sotto che condizioni avviene uno stallo :
 Per evitare lo stallo : 
 + Prevenire ( pre runtime ) -> lo stallo non può avvenire
 + Controlla a runtime lo stato del sistema se sta per avvenire uno stallo cerco di evitarlo -> monitoraggio e evito attesa circolare 
-+ Riconoscimento dello stallo -> mi accorgo dell'avvenimento dello stallo (reset o rollback) 
++ Riconoscimento dello stallo -> mi accorgo dell'avvenimento dello stallo (reset o rollback) , meglio i primi 2 casi
 
+**Prevenire** : 
+
+Provo a toglie una condizione di stallo , se posso toglierla allora non avverrà lo stallo
+
+1. negare la mutua esclusione ?
+	Dipende dalla risorsa stessa 
+>[!example] 
+>Per i lettori ha senso negare ma non per gli scrittori
+
+2. negare possesso e attesa -> contrario è raccolta (allocazione) atomica , 
+	Dipende dalle risorse 
+
+3. Prelazione -> dipende sempre dall'applicazione , rischio di corrompere lo stato
+4. Negare attesa circolare -> a runtime -> vuol dire prevenire l'attesa circolare 
+   Attraverso *allocazione gerarchica* 
+   Divido le risorse in classi ordinate secondo una gerachia , devo seguire questo ordine anche quando alloco le risorse , una risorsa viene concessa solo se un processo possiede (se ne possiede) risorse di minore "importanza"
+
+non va in stallo perchè 
+
+![[Drawing 2024-05-09 13.13.35.excalidraw]]
+Se succedesse questo la policy non sarebbe rispettata e non alloco la risorsa 
+
+Filosofi a cena , 
+numero le bacchette , l'indice delle bachette è la gerarchia 
+
+tutti raccolgono prima la sinistra e uno raccoglierà prima la destra ( non posso prendere 4 prima di 0 (essendo 4 > 0 violererbbe la policy) -> devo raccogliere prima 0 a 4  )
