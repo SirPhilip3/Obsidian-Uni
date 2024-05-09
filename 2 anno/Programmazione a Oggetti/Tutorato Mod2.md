@@ -120,3 +120,13 @@ matrix(const matrix<S>& m)
 // matrix int , matrix double -> passi a int il double -> invoca costruttore
 // copy transformer
 ```
+
+operatori bianri o dentro una classe con this + destro o globali con due parametri 
+
+per permettere programmazione polimorfa devo avere typedef dentro a
+
+iteratori si comportano come pointer ma non lo sono 
+
+subscript
+
+typename -> nome di un tipo che occorrono dei member type , per scpecificare che :: indica un nome di tipo , problema di parsing 
