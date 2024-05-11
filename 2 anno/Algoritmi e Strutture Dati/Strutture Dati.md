@@ -4453,7 +4453,6 @@ Questo algoritmo è corretto per come viene costruito $A$ ( questo infatti sarà
 #### Algoritmo di Kruskal
 
 Avendo $G$ un grafo non orientato connesso
-
 ```pseudo
 	\begin{algorithm}
 	\caption{$Kruskal(G)$}
