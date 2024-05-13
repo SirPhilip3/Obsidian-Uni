@@ -5516,9 +5516,34 @@ Ci interessiamo del problema $SAT-3FNC$ ossia una variante del $SAT$ che si occu
 >Vale che $k-FNC$ è riducibile a $3-FNC$ per $k \ge 3$ 
 >Notiamo che quando $k=2$ il problema $SAT-2FNC$ appartiene alla classe $P$ 
 
+Con i precedenti problemi possiamo dimostrare che il problema della $CLIQUE$ è $NPC$ 
 
+Per dimostrarlo dobbiamo verificare 2 proprietà : 
++ $CLIQUE \in NP$ 
++ Possiamo dire che $SAT-3FNC \le_p CLIQUE$ 
+	Questo ci dice che possiamo trasformare il problema $SAT-3FNC$ in un problema di $CLIQUE$ 
+	
+	Una istanza di $SAT-3FNC$ può essere : 
+	$$\Phi = C_1 \land C_2 \land C_3$$$$C_1 = x_1 \lor \lnot x_2 \lor \lnot x_3$$$$C_1 = \lnot x_1 \lor x_2 \lor x_3$$$$C_1 = x_1 \lor x_2 \lor  x_3$$
+
+Questa può essere trasformato in un'istanza di $CLIQUE$ nel seguente modo :  
+Avremo un grafo di tanti sottoinsiemi di vertici quante sono le clausole di $\Phi$ e ciascun sottoinsieme ha $k$ vertici , gli archi possono essere costruiti nel seguente modo : 
++ non ci sarà mai un arco tra i letterali dello stesso gruppo , un'arco può solo collegare vertici di gruppi diversi 
++ non ci possono essere archi tra letterali che sono la negazione dell'altro
+
+Nel nostro caso avremo un grafo simile : 
+
+![[Pasted image 20240513125405.png]]
+
+La congiunzione $\Phi$ risulta soddisfacibile se e solo se esiste una *clique* di grado 3 nel grafo risultante 
+
+>[!example] 
+>Possiamo sciegliere i seguenti vertici : $\lnot x_2$ nel sottoinsieme $C_1$ , $x_3$ nel sottoinsieme $C_2$ e $x_3$ nel sottoinsieme $C_3$ 
+>Questi formano una *cllique* , inoltre se poniamo ad 1 i letterali non negati e a 0 quelli negati avremo che la *congiunzione* è verificata 
+
+Il problema della $CLIQUE$ è quindi riconducibile al problema $SAT-3FNC$ , questo ci porta a dire che , per la riconducibilità polinomale , avremo che $CLIQUE$ sarà $NPC$ 
 ##### Se troviamo un problema $NPC$
 
 Poichè non si possono scrivere algoritmi efficenti per quesi problemi bisogna ricorrere a delle alternative : 
-+ algoritmi di approssimazione : algoritmi che ritornano risultati non perfetti 
-+ euristiche : algoritmi che statisticamente parlando forniscono la risposta corretta
++ algoritmi di *approssimazione* : algoritmi che ritornano risultati non perfetti 
++ *euristiche* : algoritmi che statisticamente parlando forniscono la risposta corretta

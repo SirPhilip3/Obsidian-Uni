@@ -2258,4 +2258,19 @@ dove `this` indica a quale oggetto fare riferimento per ottenere il *lock* impli
 >[!note] 
 >Possiamo chiamare `synchronized` all'interno di un'altro `synchronized` senza problemi poichè il mutex già acquisito alla prima chiamata viene matenuto fino al ritorno del primo metodo o fino ad una terminazione prematura dovuta ad un'eccezione non gestita
 >
+## Stallo
 
+>[!important] Definizione
+>Un'insieme $S$ di *processi* o *thread* è in **stallo** se ogni $p$ di $S$ attende un evento che può essere causato solo da processi o thread appartenenti  d $S$  
+
+### Condizioni necessarie per lo stallo
+
+Parlando in generali di *risorse* avremo che uno stallo avviene sotto alcune condizioni : 
++ *Mutua esclusione* :
+	Quando una risorsa può essere utilizzata solo da un processo alla volta
++ *Possesso e attesa* : 
+	
++ *Assenza di preemption* :
+	Se non è presente un sistema che forza la deallocazione delle risorse 
++ *Attesa circolare* : 
+	Se tutti i processi o thread sono in attesa di una risorsa che può essere 
