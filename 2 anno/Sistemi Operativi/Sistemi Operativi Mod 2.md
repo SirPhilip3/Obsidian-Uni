@@ -2269,8 +2269,72 @@ Parlando in generali di *risorse* avremo che uno stallo avviene sotto alcune con
 + *Mutua esclusione* :
 	Quando una risorsa può essere utilizzata solo da un processo alla volta
 + *Possesso e attesa* : 
-	
+	Quando i processi o thread aquisiscono una risorsa ( *possesso* ) e poi ne chiedono altre in seguito ( *attesa* )
 + *Assenza di preemption* :
 	Se non è presente un sistema che forza la deallocazione delle risorse 
 + *Attesa circolare* : 
-	Se tutti i processi o thread sono in attesa di una risorsa che può essere 
+	Se tutti è presente una dipendenza circolare ( $p_1$ dipende da $p_2$ e $p_2$ dipende da $p_1$ ) all'interno dei processi 
+
+### Gestione delle situazioni di stallo
+
+Lo stallo può essere gestito in vari modi : 
++ *Prevenzione* :
+	Utilizzo di strategie che prevengono la formazione di stalli
++ *Controllo* :
+	L'assegnamento delle risorse avviene solo se il sistema può garantire che tale assegnamento non porterà ad uno stallo
++ *Riconosciemento* :
+	Il sistema individua situazioni di stallo e cerca di ripristinare uno stato precedente in cui non vi era lo stallo
++ *Nessuna azione*
+	Il programmatore deve evitarlo e gestirlo
+
+#### Prevenzione
+
+Per prevenire la formazione di uno stallo dobbiamo negare una delle condizioni per l'avvenimento dello stallo ( in quanto devono valere tutte assieme perchè avvenga uno stallo )
+
+##### Negare mutua esclusione
+
+Non possiamo evitarla poichè questa dipende dal tipo di risorsa e come questa viene utilizzata
+##### Evitare il possesso e attesa
+
+Potremmo avitare possesso e attesa allocando tutte le risorse assieme , questo però non è sempre possibile in quanto non è detto che si conoscano tutte le risorse che dobbiamo allocare all'inizio 
+
+>[!note] 
+>Inotre questo potrebbe privare altri thread o processi di tali risorse 
+
+>[!example] 
+>Un caso in cui questo è possibile è la risoluzione del problema dei filosofi attraverso la raccolta atomica delle bacchette ( raccogliamo sempre assieme la bacchetta a sinistra e a destra )
+
+>[!note] 
+>Allocare le risorse tutte assieme può provocare **starvation** , potrebbe avvenire che un processo attendi indefinitamente la presenza delle sue risorse 
+>>[!example] 
+>>Se i due filosofi vicini ad un filosofo mangiano continuamente in modo alternato questo attenderà indefinitamente  che le sue bacchette si liberino  
+##### Preemption
+
+Come per la *mutua esclusione* anche l'aggiunta di *preeemption* dipende dal tipo di risorsa 
+
+Tipicamente se una risorsa può salvare completamente il proprio stato e ripristinarlo allora è *preemptable* ( ex : CPU ) , altri tipi di risorse che non hanno queste caratteristiche non sono *preemptable*
+##### Prevenire l'attesa circolare ( allocazione gerarchica )
+
+Possiamo evitare l'attesa circolare con opportune strategie di allocazione delle risorse 
+
+Un esempio è l'*allocazione gerarchica* :
+
+Le risorse sono raggruppate in insiemi $R_i$ ordinati tra loro : $R_1 < R_2 < \dots < R_m$ 
+Se un thread chiede istanze di risorse appartenenti ad insiemi $R_j$ deve prima rilasciare tutte le risorse appartenenti ad insiemi $R_i$ tali che $R_j \le R_i$ 
+
+**Dimostrazione** : 
+
+$R \to P$ : indica che $P$ *possiede* almeno una risorsa di tipo $R$
+$P \to R$ : indica che $P$ sta *chiedendo* una risorsa di tipo $R$ 
+
+Supponiamo , *per assurdo* di avere un assegnamento delle risorse che provochi attesa circolare : 
+$$R_1 \to P_1 \to R_2 \to P_2 \dots R_w \to P_w \to R_1$$
+L'allocazione gerarchica in questo caso potrà essere scritta nel seguente modo : 
+$$R_1 < R_2 < \dots < R_w < R_1$$
+Questo implicherebbe che $R_1 < R_1$ ma ciò non è possibile , ciò ci dimostra che l'allocazione gerarchica previene l'attesa circolare e di conseguenza lo stallo
+
+Se un processo viola la politica di allocazione gerarchica l'allocazione della risorsa viene rifiutata
+
+>[!example] Il filosofo mancino
+>
+>Tutti i filosofi raccolgono la 
