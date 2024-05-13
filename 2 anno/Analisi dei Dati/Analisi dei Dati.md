@@ -1787,7 +1787,6 @@ $$Z = \sqrt{n}\frac{\bar{D}}{S_D}$$
 >Il valore osservato della statistica $T$ ( dopo aver controllato la normalità delle differenze di prezzo ) è : 
 >$$t=\sqrt{15}\frac{16.51}{9.42}=6.72$$ 
 >Che ci porta nettamente a rifiutare l'ipotesi nulla 
-
 ### Dipendenza tra Variabili
 
 In molti casi siamo interessati a valutare se vi sia un legame fra due variabili :
@@ -1838,8 +1837,6 @@ Dove $G(x)$ è una funzione di $x$ la cui forma può essere stimata con i dati
 >![[Pasted image 20240502134708.png]]
 >
 >Per rappresentare correttamente questo dataset avremmo bisogno di un modello di regressione multivalore
-
-
 #### Modelli di regressione lineare
 
 Il modello di regressione più semplice è il quello *lineare semplice* o *retta di regressione* , andremo infatti a modellare i dati secondo una retta : 

@@ -5482,7 +5482,40 @@ $$\forall \mathcal{P}' \in NP, \quad \mathcal{P}' \le_p Q \le \mathcal{P}$$
 In questo modo ci basterà ricondurci ad un problema per cui abbiamo già dimostrato la $NPC$ per dire che quel problema è $NPC$
 ###### SAT
 
+Supponiamo di avere una *formula booleana* 
+>[!example] 
+>$$\Phi = \{ [[(x_1\lor x_2) \to x_3]\lor x_4 ] \land [x_2 \land \lnot x_1 \lor (x_1 \to x_5)]\}$$
+
+Vogliamo determinare se esiste una configurazione di $x_1 , x_2,x_3,x_4$ tale che il risultato sia $1$ 
+
+Una possibile configurazione per $\Phi$ è : $x_1 = 0, x_2 = 1, x_3 = 0, x_4 = 1, x_5 = 0$ 
+
+Per verificare questo risultato dobbiamo controllare tutte le possibili configurazioni ( $2^n$ ) degli input ( *polinomialmente verificabile* , $NP$ ) è inoltre dimostrabile che $CIRCUIT-SAT$ è *polinomalmente riducibile* a $SAT$ e questo , per la proprietà della *transitività* dellariducibilità polinomiale , sarà $NPC$ 
 ###### Froma normale congiuntiva , 3-SAT , CLIQUE
+
+Nel caso dell'algebra booleana è comodo lavorare con certi formati particolari dotati di una struttura precisa, una di queste è la *forma normale conginutiva* o *FNC* costituita nel seguente modo : 
+$$\Phi = C_1 \land C_2 \land \dots \land C_k$$
+Dove $C_k$ rappresenta una *clausola* , ognuna di queste è costituita da una disgiunzione di *letterali* : ossia $\lor$ di variabili o negazioni di variabili : 
+$$C = l_1 \lor l_2 \lor \dots \lor l_q$$
+>[!example] 
+>Un esempio di *FNC* è : 
+>$$\phi = (x_1 \lor \lnot x_2)\land(x_2 \lor x_3\lor \lnot x_4) \land (x_1 \lor x_4)\land (x_2 \lor x_4)$$
+>
+
+Per verificare la *soddisfacibilità* di $\Phi$ è necessario che tutte le *clausole* siano vere e che all'interno delle clausole almeno un letterale sia vero
+
+Il formato $k-FNC$ è una specializzazione della forma normale congiuntiva in cui tutte le clausole hanno esattamente $k$ letterali 
+
+Ci interessiamo del problema $SAT-3FNC$ ossia una variante del $SAT$ che si occupa di verificare la soddisfacibilità di formule nella forma $3FNC$ ( ossia che per ogni *clausola* abbiamo esattamente 3 letterali )
+
+>[!important] 
+>Si può verificare che $SAT-3FNC$ è $NPC$ dimostrando che appartiene a $NP$ e che $SAT$ è riducibile polinomialmente a $SAT-3FNC$ 
+>
+
+>[!note] 
+>Vale che $k-FNC$ è riducibile a $3-FNC$ per $k \ge 3$ 
+>Notiamo che quando $k=2$ il problema $SAT-2FNC$ appartiene alla classe $P$ 
+
 
 ##### Se troviamo un problema $NPC$
 
