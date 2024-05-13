@@ -2337,4 +2337,9 @@ Se un processo viola la politica di allocazione gerarchica l'allocazione della r
 
 >[!example] Il filosofo mancino
 >
->Tutti i filosofi raccolgono la 
+>Tutti i filosofi raccolgono la bachetta a sinistra e poi a destra mentre uno solo fa il contrario 
+>Numeriamo quindi le bacchette da 0 a 4 e i filosofi da 0 a 4
+>I filosofi da 0 a 3 rispetteranno l'ordine e raccoglieranno le bacchette 0 e 1, 1 e 2, 2 e 3, 3 e 4. Il filosofo n. 4 è il filosofo mancino che raccoglie prima la bacchetta 0 e poi 4 
+>
+>Notiamo che i filosofi raccolgono le bacchette in modo crescente  $0<1<2<3<4$   
+
