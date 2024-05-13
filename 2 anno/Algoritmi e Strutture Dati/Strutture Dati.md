@@ -3675,7 +3675,7 @@ Quindi il *massimo* numero di *vertici* sarà : $n^2$ visto che $E = V \times V 
 >[!note] 
 >In generale non è detto che due nodi collegati abbiano sia l'arco $(primo,secondo)$ che $(secondo,primo)$
 
-## Grafici non orientati
+## Grafi non orientati
 
 Un *grafo non orientato* $G$ è una coppia $G=(V,E)$ dove $V$ è l'insieme di vertici e $E\subseteq V \times V$ è l'insieme di archi su cui valgono le seguenti proprietà : 
 + *Simmetria* : 
@@ -3932,7 +3932,7 @@ Un *grafo vuoto* si rappresenta con $E_n$ ( $E$ indica che è empty , $n$ rappre
 ### Grafo completo
 
 Si rappresenta con $K_n$ e indica il grafo con $n$ vertici e $n^2$ archi se *orientato* , $\frac{n(n-1)}{2}$ o $\binom V 2$ archi se *non orientato*
-### Grafo comlpemento
+### Grafo complemento
 
 Dato $G=(V,E)$ allora $\overline G=(V,\overline E)$ o $G^C$  è un nuovo grafo costruito sugli stessi *vertici*  ma con tutti gli archi non presenti in $E$ : 
 $$\overline G=(V,\overline E)\implies (u,v)\in \overline E \iff (u,v) \notin E$$
