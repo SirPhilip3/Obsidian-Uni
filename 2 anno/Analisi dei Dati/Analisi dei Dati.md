@@ -20,7 +20,7 @@
 Il *campione* ha di per s'è un *errore* rispetto al *parametro* 
 ### Errori
 
-Vi sono due diverse tipologie di errore :
+Vi sono due diverse tipologie di errore :T
 + **Errori campionari** : sono inevitabili
 + **Errori non campionari** : sono evitabili
 #### Errori campionari
