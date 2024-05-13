@@ -5047,7 +5047,7 @@ $$\mathcal{D}_{i,j}^{(k)} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$, c
 Dove *vertice intermedio* : è un qualsiasi vertice del cammino $p<x_0,x_1,\dots,x_n>$ tale che sia diverso da $x_0$ o $x_n$ 
 
 >[!example] 
->In questo cammino $p=<1,2,5,7,9>$ i *veritci intermedi* sono $<2,5,7>$
+>In questo cammino $p=<1,2,5,7,9>$ i *vertici intermedi* sono $<2,5,7>$
 
 >[!example] 
 ![[Floyd-Warshall.excalidraw]]
