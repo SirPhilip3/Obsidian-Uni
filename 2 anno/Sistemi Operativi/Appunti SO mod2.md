@@ -1522,3 +1522,74 @@ Filosofi a cena ,
 numero le bacchette , l'indice delle bachette è la gerarchia 
 
 tutti raccolgono prima la sinistra e uno raccoglierà prima la destra ( non posso prendere 4 prima di 0 (essendo 4 > 0 violererbbe la policy) -> devo raccogliere prima 0 a 4  )
+
+# 14/05/2024
+
+Prevenzione : 
++ raccolta atomica 
++ allocazione gerarchica ( può dare starvation  )
+
+Controllo -> qulcuno controlla il mio programma e evita lo stallo da solo ( SO , VM , runtime )
+
+C'è dell'overhead -> generalemente non c'è per questo
+
+grafo di assegnazione delle risorse per controllare come le risorse vengono assegnate 
+Archi
+quali risorse a quali processi 
+che processi dipendono da che risorse
+quali risorse potrebbero essere richieste 
+
+Nodi
+Processi = tondi
+Risorse = quadrati -> 1 o più istanze 
+
+da un'istanza di R a un P -> ha quell'istanza
+P verso R vuole quella risorsa
+P tratteffio R -> P potrebbe volere un'istanza di R (assunzione forte che sappiamo che risorse ho bisogno, in contesti realtime si fa il prefetch)
+
+>[!example] 
+>R1 -> P2
+>P1 -> R1 attesa di R1 che è in P2
+>R2 -> P1
+>P3 -> R2 attesa di R2 che è in P1
+>Non c'è stallo perchè P2 quando ha finito sblocca il tutto
+
+>[!example] 
+>![[Pasted image 20240514124535.png]]
+>
+>Stalla se si P2 richiede R2 
+Se arrivo ad un asituazione in cui le frecce trattegiate indicano stallo è già troppo tardi 
+>
+>C'è ciclo ma non stallo 
+
+
+Con la seguente sequenza i processi possono uscire dalle attese : $<P2,P1,P3>$ , sequenza *sicura* ossia ordine di uscita dei processi tale pre cui usciamo da tutte le attese 
+
+Dato un grafo di assegnazione come si fa a decidere se c'è uno stallo ? 
+2 casi : 
++ una sola istanza per risorsa
+
+Lo stallo è equivalente al fatto che sia presente un ciclo nel grafo
+
++ più istanze per risorse
+
+Se c'è uno stallo c'è per forza un ciclo ma non è vero che se c'è un ciclo c'è per forza uno stallo ( potrebbe esserci un'altra istanza libera )
+
+Se non esiste una sequenza sicura c'è uno stallo 
+
+**Algoritmo**
+
+Algoritmo del banchiere ( caso generale )
+
+Fa dei presetiti solo se è sicuro che gli ritornano i soldi 
+
++ P richiede una istanza di R 
+	+ Se R non è disponibile P andrà in attesa ( mutua esclusione )
+	+ Se R è disponibile simulo l'assegnamento della risorsa sul grafo
+		+ Se sul grafo individuo uno stallo , in cui considero anche le richieste future , mette P in attesa , altrimenti assegno la risorsa 
+
+![[Stall.excalidraw]]
+
+>[!example] Filosofi
+
+Individuo la sequenza sicura -> 
