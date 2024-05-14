@@ -1593,3 +1593,17 @@ Fa dei presetiti solo se è sicuro che gli ritornano i soldi
 >[!example] Filosofi
 
 Individuo la sequenza sicura -> 
+
+Cerco se c'è un processo che può ottenere tutte le risorse necessarie incluse quelle future 
+Se non c'è vuol dire che non c'è una sequenza sicura
+Se lo trovo aggiunge P alla sequenza sicura e rilascio le sue risorse e cerco il sucessivo 
+Se terminano tutti allora ritorna la sequenza sicura 
+
+Se non riesco ad ottenere una sequenza sicura c'è uno stallo 
+
+>[!example] 
+>+ aggiungi P3 richiede R1 alla fine 
+>  
+>  Se tutti richiedono tutto non ci sono abbastanza risorse per soddisfare tutti
+
+Compiti vecchi , stessi esercizi ma a risposta multipla 

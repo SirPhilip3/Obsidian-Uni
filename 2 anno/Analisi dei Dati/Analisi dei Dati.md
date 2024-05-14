@@ -1557,6 +1557,9 @@ $$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+
 >[!note] 
 >Sigma $\sigma$ è relativa a $\mu_0$
 
+>[!note] 
+>In un esercizio quando ho l'ultimo caso invece di usare $\hat p = \frac{n \hat p_1 + m \hat{p}_2}{n+m}$ uso la formula : $\hat p = (\frac{\text{casi positivi 1} + \text{casi positivi 2}}{n + m})$ ha senso è solo una formulazione diversa di quella di prima perchè $\hat{p}$ è la media ossia $\frac{\text{casi positivi}}{n}$
+
 >[!example] 
 >>[!todo] 
 #### Test Z e massima verosimiglianza
