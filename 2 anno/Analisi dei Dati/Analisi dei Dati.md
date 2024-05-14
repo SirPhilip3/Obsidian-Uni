@@ -1554,6 +1554,9 @@ $$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+
 
 ![[Pasted image 20240424142605.png]]
 
+>[!note] 
+>Sigma $\sigma$ è relativa a $\mu_0$
+
 >[!example] 
 >>[!todo] 
 #### Test Z e massima verosimiglianza
