@@ -2586,7 +2586,7 @@ Distinguiamo quindi in 2 casi :
 
 ## Tabelle ad indirizzamento diretto
 
-Una tabella ad unduruzzamento diretto viene utilizzata per memorizzare dati indicizzati da una *chiave* ( un numero ) 
+Una tabella ad induruzzamento diretto viene utilizzata per memorizzare dati indicizzati da una *chiave* ( un numero ) 
 
 **Caratteristiche** : 
 + Sono costituite da un insieme dinamico al fine dell'implementazione delle operazioni di *inserimento* , *ricerca* e *cancellazione*
@@ -2626,7 +2626,7 @@ Complessità : $O(1)$
 ### Conclusioni
 
 **Vantaggi** : 
-+ Il tempo di esecuzione delle operazioni disponibili sulle tabelle ad indirizzamento direttoè $O(1)$
++ Il tempo di esecuzione delle operazioni disponibili sulle tabelle ad indirizzamento diretto è $O(1)$
 
 **Svantaggi** : 
 + Elevato spreco di memoria 
@@ -2652,7 +2652,6 @@ Quando avvengono le *collisioni* :
 Le collisioni si possono risolvere in 2 modi :
 + **Concatenamento** : Ad ogni cella corrisponde una lista di elementi contenenti tutte le chiavi mappate con lo stesso indice
 + **Indirizzamento aperto** : Mappiamo una chiave già occupata un una cella differente
-
 ### Concatenamento
 
 Inseriamo tutti gli elementi associati ad una stessa cella in una lista concatenata 
@@ -2831,7 +2830,6 @@ La funzione hash ora deve prendere 2 argomenti : $h(k,i)$ rappresenta la posizio
 $$h(k,i):U\times \{ 0,1,\dots,m-1 \}\rightarrow \{ 0,1,\dots,m-1 \}$$
 >[!note] Precondizione
 >Per ogni possibile chiave $k\in U$ la sequenza di ispezioni $<h(k,0),h(k,1),\dots,h(k,m-1)>$ deve essere una permutazione di $<0,1,\dots,m-1>$ ossia gli indici della tabella , in modo che ogni posizione della tabella hash possa essere considerata come possibili cella in cui inserire una nuova chiave mentre la tabella si riempie
-
 #### Operazioni
 
 >[!note] Ipotesi
@@ -2881,7 +2879,7 @@ hash_search(T, k)
 	Retituisce $j$ se la cella $j$ contiene la chiave $k$ oppure $NIL$ se la chiave $k$ non si trova nella tabella $T$
 
 **Osservazioni**
-	Il motivo per cui abbiamo `{c} i==m or T[j]==NIL` è perchè se abbiamo fallito troppe volte ( `m` volte poichè è il massimo numero di elementi che possiamo inserire nella tabella hash ) ad un'ispezione oppure abbiamo trovato `NIL` ossia siamo arrivati nel posto corretto ma non c'è nessun elemeto ossia che l'elemento da cercare non è presente all'interno dell hash 
+	Il motivo per cui abbiamo `{c} i==m or T[j]==NIL` è perchè se abbiamo fallito troppe volte ( `m` volte poichè è il massimo numero di elementi che possiamo inserire nella tabella hash ) ad un'ispezione oppure abbiamo trovato `NIL` ossia siamo arrivati nel posto corretto ma non c'è nessun elemento ossia che l'elemento da cercare non è presente all'interno dell hash 
 ##### Cancellazione 
 
 La *cancellazione* è il problema principale dell'indirizzamento aperto 
@@ -2890,7 +2888,7 @@ Vediamo un esempio :
 >![[Cancellazione.excalidraw]]
 
 **Soluzione** : 
-	Aggiunggiamo una chiave speciale per inficare una cella cancellata : `DELETED`
+	Aggiungiamo una chiave speciale per inficare una cella cancellata : `DELETED`
 
 A questo punto dobbiamo modificare `{c}hash_insert()` nel seguente modo :
 ```c++
@@ -2941,12 +2939,11 @@ La prima cella esaminata è $T[\ h'(k)\ ]$ se collidiamo continuerà a scandire 
 
 **Svantaggi** : 
 + Presenza di *addensamenti primari* ( ossia file di celle adiacenti occupate che occupano il tempio di ricerca )
-+ La prima ispezionata determina l'intera sequenza di ispezioni , questo significa che per ogni chiave ci sono soltanto $m$ sequenze d ispezioni distinte 
-+ La probabilità che una cella $j$ , preceduta da $i$ celle occupate , sia accupata risulta essere $\frac {i+1}m$ ( questo poichè ogni cella $i$ può essere occupata con probabilità $\frac 1m$ e $j$ stessa ha probabilità di essere occupata $\implies i+1$)
++ La prima ispezionata determina l'intera sequenza di ispezioni , questo significa che per ogni chiave ci sono soltanto $m$ sequenze di ispezioni distinte 
++ La probabilità che una cella $j$ , preceduta da $i$ celle occupate , sia accupata risulta essere $\frac {i+1}m$ ( questo poichè ogni cella $i$ può essere occupata con probabilità $\frac 1m$ e $j$ stessa ha probabilità di essere occupata $\implies i+1$ )
 >[!todo]
 >Understand
 >#todo
-
 ##### Ispezione quadratica 
 
 Cerchiamo la cella sucessiva attraverso una *funzione quadratica* : 
