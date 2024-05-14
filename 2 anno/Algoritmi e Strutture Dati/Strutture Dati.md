@@ -2002,7 +2002,7 @@ Un *heap binario* è un albero quasi completo ossia un albero in cui tutti i suo
 
 Un *heap* può essere memorizzato attraverso un *array posizionale* contente 2 attributi :
 + `A.length` indica il numero di elementi dell'array 
-+ `A.heap_size` il numero di elementi dell'*heap* che sono memorizzati nell'array , è possibile che $A.length\ge A.heap_size$
++ `A.heap_size` il numero di elementi dell'*heap* che sono memorizzati nell'array , è possibile che $A.length\ge A.heap\_size$
 
 La radice dell'albero è memorizzata alla prima posizione dell'array 
 
@@ -3840,6 +3840,9 @@ In un *grafo* i nodi $i$ e $j$ sono *adiacenti* se esiste un arco che li collega
 
 ![[adiacenza.excalidraw]]
 
+>[!note] 
+>$j$ è adiacente a $i$ solo se ho un vertice che va *da $i$ a $j$* un vertice orientato al contrario non funziona
+
 ## Implementazione
 
 ### Lista di Adiacenza
@@ -4907,6 +4910,7 @@ Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando 
 	\end{algorithmic}
 	\end{algorithm}
 ```
+
 **Spiegazione e Complessità** : 
 
 + Si inzializza con `init_ss`
