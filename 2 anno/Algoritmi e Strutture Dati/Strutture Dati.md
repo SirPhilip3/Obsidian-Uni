@@ -2441,7 +2441,7 @@ Nel caso del **Counting Sort** , esso è applicabile solo se i dati in input ris
 countingsort(array A, array B, int n, int k)
 	creo C[0,...,k]
 	for i = 0 to k
-		A[i] = 0
+		C[i] = 0
 	for j = 1 to n
 		C[A[j]]++ // popola vettore delle occorrenze
 	for i = 1 to k
@@ -2451,6 +2451,23 @@ countingsort(array A, array B, int n, int k)
 		C[A[j]]-- // evita sovrapposizioni nel caso di duplicati
 ```
 
+>[!note] 
+>Counting sort in descending order : 
+```c
+counting_sort(array A, array B, int n, int k)
+    creo C[0,...,k]
+    for(int i=0;i<k; i++) 
+	    C[i] = 0;
+    // ASSUMPTION: All elements in arr is < k
+    for(int i=0;i<size;i++) 
+	    C[A[i]]++;
+    for(int i=k-1;i>0;i--) 
+	    C[i-1] += C[i];
+    for(int j=0;j<size;j++) {
+        B[C[A[j]]] = A[j];
+        C[a[j]]--;
+```
+
 #### Spiegazione
 
 L'algoritmo ha 3 array : 
@@ -2458,7 +2475,7 @@ L'algoritmo ha 3 array :
 + $B$ : l'array risultato , contenente gli elementi di $A$ ordinati in modo crescente 
 + $C$ : un vettore ausiliario delle occorrenze , contenente $k+1$ elementi ( da $0$ a $k$ )
 
-Il secondo ciclo for incrementa gli elementi del vettore delle ricorrenze , alla fine di questo ciclo l'elemento in posizione $i$-esima del vettore $C$ contiene il numero di colte che il numero $i$ compare in $A$ 
+Il secondo ciclo for incrementa gli elementi del vettore delle ricorrenze , alla fine di questo ciclo l'elemento in posizione $i$-esima del vettore $C$ contiene il numero di volte che il numero $i$ compare in $A$ 
 $$C[\ i\ ]=|\{ x\in \{1,\dots,n\} \ \text{t.c.} \ A[\ x \ ]= i \ \}|$$
 Il terzo ciclo compie il calcolo delle *somme prefisse* sugli elementi del vettore delle occorrenze : somma ad ogni elemento del vettore delle occorrenze il numero di occorrenze dell'elemento precedente
 Questo ci permette di capire quanti elementi minori o uguali di $i$ sono presenti in $A$ dove $i$ è l'indice che scorre il vettore delle occorrenze e quindi assume tutti i valori contenuti in $A$ 
