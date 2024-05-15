@@ -2343,3 +2343,23 @@ Se un processo viola la politica di allocazione gerarchica l'allocazione della r
 >
 >Notiamo che i filosofi raccolgono le bacchette in modo crescente  $0<1<2<3<4$   
 
+## Controllo dello stallo
+
+Possiamo prevenire uno stallo anche a runtime intervenedo quando individuiamo un possibile stallo 
+
+Uno stallo può essere individuando controllando l'assegnamento delle risorse , se l'assegnamento di una risorsa può portare ad uno stallo il processo che richiede quella risorsa non la riceve ( rimane in attesa )
+
+### Grafo di assegnazione 
+
+Per rappresentare l'assegnamento delle risorse utilizziamo un **grafo di assegnazione** : 
+composto da due tipi di nodi :
++ *processi* 
++ *risorse*
+Ci sono tre tipi di archi :
++ $R$ è assegnata a $P$
++ $P$ chiede $R$
++ $P$ *potrà* chiedere $R$
+
+>[!note] 
+>Una risorsa può offrire una o più istanze 
+

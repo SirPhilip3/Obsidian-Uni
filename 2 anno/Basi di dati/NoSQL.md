@@ -78,3 +78,53 @@ relazioni devono avere un tipo e necessariamente un verso
 ()->()
 ()<-()
 
+# 15/05/2024
+
+Couchbase
+
+-.....
+
+buchet -> schema tipo mysql -> ogni bucket identifica serie di dati di un determinato gruppo , max 30 
+
+scope (max 1000) -, collection -> \_default , suddivisione in sottogruppi dentro un bucket ( a livello logico )
+
+memory first -> per avere sempre performance su operazioni in memoria ( metadata etcc )
+
+approccio alla normalizzazione -> utilizza json per manetere dati etcc 
+subdocument per rappresentare tabelle èadre , figio
+
+doc : 20 mb max
+key : 250byte ( non solo id ma anche altre info )
++ natural key -> deriva dal dataset
++ surrogate key -> contatore , sha , uuid
+posso avere dei pattern nella key :
++ `DocumentType::ID` -> ex:
+	+ `order::id`
+	+ `product::uuid`
++ `ApplicationName::DocumentType::ID::ID`
++ `DocumentType::ParentID::ChildID::ID`
+
+informazioni mancanti posso avere :
++ non mettere il campo
++ valore null
++ non dare un valore alla key
+
+per documents -> 
++ campo dedicato -> riduce profondità co -> riduce complessità
++ innestare ho il tipo sempre a portata di mano
+
+utilizzo di array o no per multivalue -> all'aggiornamento senza array dovrei modificare il documento 
+
+dentro array posso mettere sia key che subdoc
+generalmente meglio non mischiare subdoc con value
+
+relazioni 1:1 meglio doc insestati -> migliore perf in lettura
+
+1: m -> array di key doc 
+
+se facciamo update dobbiamo propagare l'aggiornamento su doc inestate in altri documenti 
+
+relazioni m:m -> 1:m con m che incorpora l'1 
+
+documento di relazione separato
+
