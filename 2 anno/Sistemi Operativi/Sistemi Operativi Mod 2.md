@@ -2349,6 +2349,8 @@ Possiamo prevenire uno stallo anche a runtime intervenedo quando individuiamo un
 
 Uno stallo può essere individuando controllando l'assegnamento delle risorse , se l'assegnamento di una risorsa può portare ad uno stallo il processo che richiede quella risorsa non la riceve ( rimane in attesa )
 
+>[!note] 
+>L'individuazione dello stallo a runtime è complesso e porta ad ulteriore comlpessità , per questo la maggior parte dei sistemi operativi non lo implementano
 ### Grafo di assegnazione 
 
 Per rappresentare l'assegnamento delle risorse utilizziamo un **grafo di assegnazione** : 
@@ -2362,4 +2364,57 @@ Ci sono tre tipi di archi :
 
 >[!note] 
 >Una risorsa può offrire una o più istanze 
+>
+>![[Instances.excalidraw]]
+
+>[!example] 
+>![[grafoAssegnazione.excalidraw]]
+>
+>In questo esempio abbiamo : 
+>+ La risorsa $R1$ ha una istanza assegnata a $P2$ e una a $P3$
+>+ La risorsa $R2$ è assegnata a $P1$
+>+ Il processo $P1$ chiede la risorsa $R1$
+>+ Il processo $P3$ chiede la risorsa $R2$
+>+ *Possibile* richiesta futura da parte di $P2$ alla risoesa $R2$ ( non ancora effettuata )
+
+### Grafo sicuro
+
+Un *grafo di assegnazione* è *sicuro* se è privo di stallo **anche** considerando le richieste future 
+
+>[!question] 
+Come si fa a decidere se dato un grafo esiste una situazione di stallo ?
+
++ Se c'è *una* sola *istanza* per *risorsa* :
+	Lo *stallo* avviene se e solo se esiste un ciclo nel grafo
+>[!note] 
+>Per questo caso esistono già algoritmi efficenti per individuare un ciclo in un grafo , ci basterà usare uno di quelli
++ Se ci sono *più* *istanze* per *risorsa* : 
+	Lo *stallo* avviene se esiste un ciclo nel grafo ma non è detto il contrario ( potrebbe essere che la presenza di un ciclo non implichi la presenza di uno stallo )
+#### Algoritmo con grafo di assegnazione 
+
+Vediamo il caso in cui abbiamo al massimo una istanza per risorsa :
+
+Per ogni richiesta di risorsa : 
++ Se la risorsa *non* è *disponibile* il processo *attende*
++ Se la risorsa è disponibile : 
+	1. Simula , sul grafo , l'assegnamento della risorsa al processo 
+	2. Verifica se il grafo contiene uno stallo ( con 1 istanza controllo la presenza di un ciclo ) considerando anche tutte le richieste future
+		+ In caso di stallo il processo viene messo in attesa della risposta
+		+ Se non c'è lo stallo la risorsa viene assegnata e la modifica sul grafo viene confermata
+
+>[!example] Example : Filosofi a Cena 
+
+#### Algoritmo del banchiere
+
+Nel caso abbiamo più istanze per risorsa non possiamo utilizzare l'algoritmo precedente 
+
+>[!example]
+![[Banchiere.excalidraw]]
+>
+>In questo esempio possiamo vedere che $P2$ può rilasciare la risorsa $R2$ che può essere assegnata a $P0$ che a sua volta libererà $R1$ per $P1$ .
+>
+>I processi hanno quindi una cosidetta *sequenza sicura* o di *terminazione* 
+
+
+
 
