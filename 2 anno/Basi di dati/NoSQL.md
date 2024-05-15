@@ -80,7 +80,7 @@ relazioni devono avere un tipo e necessariamente un verso
 
 # 15/05/2024
 
-Couchbase
+**Couchbase**
 
 -.....
 
@@ -126,5 +126,31 @@ se facciamo update dobbiamo propagare l'aggiornamento su doc inestate in altri d
 
 relazioni m:m -> 1:m con m che incorpora l'1 
 
-documento di relazione separato
+documento di relazione separato (not to do, documenti ridondanti)
+
+denormalizzazione in lettura molto buno in scrittura dobbiamo considerare molto di più 
+
+**N1QL**
+
+linguaggio di interrogazione couchbase -> SQL per json 
+
+PRIMARY INDEX -> tutto il set di key all'inteno di uno spazio di key
+deve manterere aggioranto molti bucket
+
+Stesse SELECT -> supporta * per ritornare tutto il doc
+supporta Alias con AS
+
+posso usare la dot annotation 
+
+posso far tornare la key con META().id -> META tutti i metadati del doc
+
+USE KEYS -> cerco doc individuandolo per key 
+
+expiration -> se != 0 quando il doc viene tolto dal sistema 
+
+CREATE INDEX 
+
+posso prendere index con system:indexes
+
+UPSERT update o inser a seconda se c'è la key (update)o no(insert)
 
