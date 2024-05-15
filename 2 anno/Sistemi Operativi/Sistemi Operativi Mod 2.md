@@ -2403,6 +2403,15 @@ Per ogni richiesta di risorsa :
 		+ Se non c'è lo stallo la risorsa viene assegnata e la modifica sul grafo viene confermata
 
 >[!example] Example : Filosofi a Cena 
+>
+>Rappresentiamo il problema nel seguente modo : 
+>![[Pasted image 20240515134831.png]]
+>Simuliamo ora che il filosofo 0 chiede la bacchetta di sinistra 
+>![[Pasted image 20240515135422.png]]
+>Non essendoci alcun ciclo non abbiamo nessuno stallo , la prima volta che incontriamo uno stallo è quando il quinto filosofo chiede la bacchetta di sinistra 
+>![[Pasted image 20240515135551.png]]
+>Visto che si crea un ciclo il quinto filosofo dovrà attendere che si liberi la risorsa alla sua sinistra , questa infatti verrà richiesta dal filosofo 3 che inizierà a mangiare liberando sucessivamente la bachetta destra e facendo proseguire il filosofo 4
+>![[Pasted image 20240515135814.png]]
 
 #### Algoritmo del banchiere
 
@@ -2413,7 +2422,63 @@ Nel caso abbiamo più istanze per risorsa non possiamo utilizzare l'algoritmo pr
 >
 >In questo esempio possiamo vedere che $P2$ può rilasciare la risorsa $R2$ che può essere assegnata a $P0$ che a sua volta libererà $R1$ per $P1$ .
 >
->I processi hanno quindi una cosidetta *sequenza sicura* o di *terminazione* 
+>I processi hanno quindi una cosidetta *sequenza sicura* o di *terminazione* : $<P2,P0,P1>$
+
+
+>[!important] Definition : Sequenza Sicura
+>
+>Una sequenza $<P1,P2,\dots,Pi,\dots,Pk>$ di processi è una *sequenza sicura* se ogni processo $Pi$ nella sequenza può ottenere tutte le risorse che necessita ( incluse quelle future ) da quelle disponibili inizialmente più quelle possedute dai processi che lo precedono nella sequenza 
+>
+>Ossia una sequenza di che permette ai processi di ottenere tutte le risorse che necessitano e quindi di rilasciarle a vantaggio dei processi sucessivi
+
+Per computare se esiste almeno una sequenza sicura si può utilizzare il seguente algoritmo : 
+1. *Cerca* un processo che possa *ottenere* *tutte* le *risorse* necessarie ( incluse quelle future ) da quelle disponibili , se questo processo non esiste allora l'algorimo fallisce ( non esiste una sequenza sicura , lo stallo è inevitabile )
+2. *Rilascia* tutte le *risorse* possedute dal processo , aggiungilo alla *sequenza sicura* e toglilo dal grafo
+3. Se ci sono ancora processi nel grafo ritorna al punto 1 , altrimenti ritorna la sequenza sicura
+
+L'algorimo del *banchiere* è lo stesso dell'algoritmo con grafo di assegnazione ma utilizziamo la presenza di una sequenza sicura per individuare potenziali stalli :
+
+Per ogni richiesta di risorsa : 
++ Se la risorsa *non* è *disponibile* il processo *attende*
++ Se la risorsa è disponibile : 
+	1. Simula , sul grafo , l'assegnamento della risorsa al processo 
+	2. Verifica se il grafo contiene uno stallo ( se *non esiste* una *sequenza sicura* ) considerando anche tutte le richieste future
+		+ In caso di stallo il processo viene messo in attesa della risposta
+		+ Se non c'è lo stallo la risorsa viene assegnata e la modifica sul grafo viene confermata
+
+>[!example]
+>
+>Consideriamo il seguente esempio : 
+>![[Pasted image 20240515135937.png]]
+>
+>Supponiamo che i processi richiedano le risorse nel seguente ordine : 
+>1. $P1$ chiede $R1$
+>2. $P3$ chiede $R2$
+>3. $P1$ chiede $R2$
+>4. $P2$ chiede $R2$
+>5. $P3$ chiede $R1$
+>
+>Se non facciamo alcun controllo dello stallo raggiungiamo una situazione di stallo 
+>
+>![[Pasted image 20240515140301.png]]
+>
+>Utilizziamo l'algoritmo del banchiere : 
+>Simuliamo $P1$ chiede $R1$ : 
+>![[Pasted image 20240515141120.png]]
+>In questo caso abbiamo che $<P1,P2,P3>$ è una sequenza sicura in quanto $P1$ può ottenere $R2$ , rilasciando le proprie risorse $P2$ può ottere $R2$ , che , rilasciando le sue risorse permette a $P3$ di ottenere $R1$ e $R2$ 
+>Concludiamo quindi che possiamo assegnare $R1$ a $P1$ e continuare l'assegnamento
+>
+>Simuliamo $P3$ chiede $R2$ :
+>![[Pasted image 20240515141431.png]]
+>In questo caso nessuno dei tre processi può ottenere tutte le risorse necessarie , non esiste quindi una sequenza sicura
+>
+>Metteremo quindi $P3$ in attesa : 
+>![[Pasted image 20240515141615.png]]
+>
+>Proseguendo potremmo accettare le richieste di $P1$ e $P2$ giungendo alla seguente situazione : 
+>![[Pasted image 20240515141728.png]]
+>
+>Dove avremo che $<P1.P2,P3>$ è sempre una sequenza sicura e di conseguenza abbiamo evitato lo stallo a runtime
 
 
 
