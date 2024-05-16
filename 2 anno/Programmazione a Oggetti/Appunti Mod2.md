@@ -1360,3 +1360,26 @@ per il template system basta che abbia i metodi con la firma corretta
 
 member types -> typedef dentro le classi diventano membri 
 standard types
+
+end ritorna un elemento speciale che rappresenta il segnale di stop dell'iterazione , in memoria nullptr -> in altri casi non è detto che sia questo 
+
+se l'oggetto è const fa un const_iterator altrimenti mi da iterator normale 
+
+operatori binari + - * / %  &  | solo const
+implace assignment += -=  -> non const perchè lvalue si modifica
+
+. non si può overloadare :: 
+
+smart pointer
+
+```cpp
+
+shared_ptr // perchè sono thread safe
+
+```
+
+c++ non è gc 
+
+smart_pointer -> reference counting -> conta le volte che viene riferito fa le stesse cose dei ptr 
+il copy constructor incrementa un numero destructor decrementa -> quando gli passo una copia dello smart pointer anche l'altro ha un pointer -> counter a 2 fine scope -> delete -> counter -- 
+quando muoio anchio -> counter va a 0 -> faccio delete 
