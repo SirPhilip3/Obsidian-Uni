@@ -895,7 +895,6 @@ In questo modo il tipo di una *classe* è definito come :
 >Implementare due interfaccie che hanno metodi con la stessa firma e implementazione di default è *proibito* ( detto *diamond problem* )
 
 ![[DiamondProblem.excalidraw]]
-
 ### Estensione di intefacce 
 
 Una interfaccia può *estendere* un'altra interfaccia 
@@ -1760,3 +1759,4 @@ boolean forward = speedAnnotation.forward(); // ritorna forward()
 >[!todo]
 >Forse da fare 
 >#todo
+

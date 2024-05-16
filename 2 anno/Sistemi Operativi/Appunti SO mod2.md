@@ -1607,3 +1607,4 @@ Se non riesco ad ottenere una sequenza sicura c'è uno stallo
 >  Se tutti richiedono tutto non ci sono abbastanza risorse per soddisfare tutti
 
 Compiti vecchi , stessi esercizi ma a risposta multipla 
+

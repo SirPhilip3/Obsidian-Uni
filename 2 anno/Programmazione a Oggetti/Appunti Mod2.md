@@ -1355,3 +1355,8 @@ list è un container constant time insertion and removal of elements (linked lis
 ad oggetti avrei tipo comune in java
 
 per il template system basta che abbia i metodi con la firma corretta 
+
+# 16/05/2024 +++
+
+member types -> typedef dentro le classi diventano membri 
+standard types
