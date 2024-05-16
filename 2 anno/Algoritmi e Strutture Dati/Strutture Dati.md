@@ -4100,7 +4100,7 @@ Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$
 >[!note]
 >Un grafo *isomorfo* può essere detto *uguale* ( rappresenta la stessa relazione ) ad un altro grafo
 
-Un *grafo* è detto **Auto-complementare** se $G \simeq \overline G$
+Un *grafo* è detto **Auto-complementare** se $G \approx\overline G$
 
 >[!note]
 >Non esiste un algoritmo di tempo polinomiale che , dati due grafi , ritorni la funzione di isomorfismo tra di essi , qualora esistesse 
@@ -4114,7 +4114,7 @@ Un *grafo* è detto **Auto-complementare** se $G \simeq \overline G$
 ![[deg_seq.excalidraw]]
 >
 >Questo grafo ha come *degree sequence* : $deg\_seq = <1,2,2,3>$
-1. $NCC(G_1) = NCC(G_2)$
+4. $NCC(G_1) = NCC(G_2)$
 	Dove $NCC$ rappresenta il *Numero di Componenti Connesse*
 5. $\omega_{G_1} = \omega_{G_2}$
 	Dove $\omega$ rappresenta il *Clique number* ossia la cardinalità della *clique massima* , questa è la *clique* ( *sottografo completo* ) con il più grande numero di vertici , una *clique massimale* invece è una *clique* che non è contenuta in una *clique* più grande

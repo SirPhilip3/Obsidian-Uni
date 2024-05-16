@@ -154,3 +154,38 @@ posso prendere index con system:indexes
 
 UPSERT update o inser a seconda se c'è la key (update)o no(insert)
 
+# 16/05/2024
+
+**Redis**
+
+modellazione : key-value db
+
+qualsiasi valore binario come key , anche stringa vuota , (512mb max dim)
+
+larger key -> more time to search + more memory 
+
+`recordtype:id:subtype` 
+
+Redis string -> struttura dati std -> come key - value 
+mappando stringa in altra stringa
+
+set solo se non esiste la key NX
+XX solo se esite la sovrascrivo
+
+x : time to leave
+
+px in millisecond
+
+dati non sono divisi in cartelle -> raggruppa le key
+
+operazioni di incr -> decr ( su stringe anche se su int )
+exists -> verifica la presenza
+del -> remove key
+type -> ritorna il ripo della key
+
+list data type -> linked list 
+
+Lrange -> ritorna el compresi tra i due inde 0-1 o 1-0
+Ltrim al di fuori dell'intervallo rimossi
+llen lunghezza lista 
+blpop / brpop tolgie ultimi 2 o primi 2 el
