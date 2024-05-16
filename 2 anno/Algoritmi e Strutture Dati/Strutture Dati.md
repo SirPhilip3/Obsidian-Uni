@@ -3847,7 +3847,7 @@ In un *grafo* i nodi $i$ e $j$ sono *adiacenti* se esiste un arco che li collega
 
 ### Lista di Adiacenza
 
-La *lista di adiacenza* implementa i grafi attraverso l'uso di un array di dimensione $n$ che contiene , in ciascuna posizione , un puntatore ad un lista conctenata 
+La *lista di adiacenza* implementa i grafi attraverso l'uso di un array di dimensione $n$ che contiene , in ciascuna posizione , un puntatore ad un lista concatenata 
 
 Ogni posizione dell'array indica un *nodo* del grafo da cui partono la lista degli *archi* *uscenti*  , ogni cella della lsita concatenata contiene l'informazione sul *nodo* a cui arriva quell'arco
 
