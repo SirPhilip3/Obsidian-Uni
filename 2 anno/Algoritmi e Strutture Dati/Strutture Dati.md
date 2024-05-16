@@ -4075,7 +4075,6 @@ $$out\_deg(i)=\sum_{j=1}^n a_{ij} \quad \text{ossia la somna della $i$-esima rig
 
 Vale che la somma degli $in\_deg$ e $out\_deg$ rappresenta il numero totale di archi presenti all'interno di un grafo orientato , possiamo anche vederlo come : 
 $$\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m $$
-
 Per i grafi *orientati* vale anche che all'interno della diagonale di $A$ è presente il numero di cicli che passano su quel vertice
 ### Isomorfismo di grafi
 
