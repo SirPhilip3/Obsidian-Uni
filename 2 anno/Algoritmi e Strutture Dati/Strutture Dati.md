@@ -3927,7 +3927,7 @@ Questa rappresentazione è utilizzata nel caso in cui abbiamo un *grafo sparso* 
 ## Componente Connessa
 
 Dato un grafo $G=(V,E)$  , una *componente connessa* di $G$ è un sottoinsieme di *vertici* $V'$ tale che :
-+ Il sottografo indotto da $V'$ ( $G[V']$ ) è conness
++ Il sottografo indotto da $V'$ ( $G[V']$ ) è connesso
 + $V'$ non è contenuto in nessun insieme di *vertici* che indica un sottografo connesso
 	In altre parole non è possibile aggiungere un vertice esterno ad una componente connessa e ottenere un grafo connesso
 
@@ -3988,7 +3988,7 @@ Non possiamo creare un *grafo* tale che ogni vertice ha un *grado* diverso
 
 **Dimostrazione** per assurdo
 	Supponiamo che esista un grafo $G$ tale che tutti i $0\le deg(u)\le n-1$ 
-	Allora avremo che dovranno esistere vertici con $deg(u)=0$ ma anche uno con $deg(u)=n-1$ ciò significa che dovrebbero esistere due *vertici* uno che abbia 0 archi e uno che si collegato a tutti i *vertici* **Impossibile** 
+	Allora avremo che dovranno esistere vertici con $deg(u)=0$ ma anche uno con $deg(u)=n-1$ ciò significa che dovrebbero esistere due *vertici* uno che abbia 0 archi e uno che sia collegato a tutti i *vertici* ==Impossibile== 
 
 #### Somma dei gradi
 
@@ -4050,7 +4050,7 @@ $$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} 2\cdot f(u) + \sum_{u \in D} 1$$
 $$= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|$$
 $$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
 $$|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)$$
-Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anchesso *pari*
+Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anch'esso *pari*
 
 ### Proprietà
 
@@ -4061,6 +4061,7 @@ Considerando un grafo $G=(V,E)$ *non orientato* senza veritici *isolati* ( $deg(
 Voglia dimostrare che se prendiamo l'insieme di veritici $V_1$ di grado $1$ allora $|V_1| \ge 2$ 
 
 **Dimostrazione** : 
+>[!todo] 
 
 #### Grado di un Grafo Orientato
 
@@ -4103,7 +4104,6 @@ Un *grafo* è detto **Auto-complementare** se $G \simeq \overline G$
 
 >[!note]
 >Non esiste un algoritmo di tempo polinomiale che , dati due grafi , ritorni la funzione di isomorfismo tra di essi , qualora esistesse 
-
 #### Proprietà necessarie ma non sufficenti per l'*isomorfismo*
 
 1. $|V_1| = |V_2|$
@@ -4149,8 +4149,6 @@ Possiamo dire che $G=(V,E)$ *grafo non orientato* ha :
 >Perchè questo si verifichi deve essere che $a_{ij} \neq 0$ e $a_{ij}^{(2)} \neq 0$ , 
 >+ $a_{ij} \neq 0$ : avviene se esiste un arco tra $i$ e $j$
 >+ $a_{ij}^{(2)} \neq 0$ : avviene se esiste un cammino di lunghezza $2$ che congiunge $i$ e $j$
-
-
 ### Connettività , Aciclicità
 
 In *grafi non orientati* $G$ è *connesso* se $\forall u ,v \in V \quad u \neq v \quad \exists \ \text{un cammino che li collega}$
@@ -4209,7 +4207,6 @@ Riportando questi nell'eqazione originale avremo :
 $$|V|\ge \frac{n+1}{2} + \frac{n+1}{2}$$
 $$n \ge n +1$$
 Che è un ==Assurdo== , possiamo quindi dire che $G$ deve essere per forza connesso 
-
 ### Grafi Aciclici non orientati
 
 Condizione *necessaria* perchè un grafo sia *aciclico* : $|E| \le |V|-1$ 
@@ -4884,8 +4881,6 @@ Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando 
 ![[ShiftedDijkstra.excalidraw]]
 >
 >Come si può notare lo *shift* ha causato il cambiamento del cammino minimo , non possiamo quindi *shiftare* i pesi per risolvere il problema dei pesi negativi
-
-
 #### Bellman-Ford
 
 >[!note]
