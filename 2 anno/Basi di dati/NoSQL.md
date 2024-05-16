@@ -189,3 +189,12 @@ Lrange -> ritorna el compresi tra i due inde 0-1 o 1-0
 Ltrim al di fuori dell'intervallo rimossi
 llen lunghezza lista 
 blpop / brpop tolgie ultimi 2 o primi 2 el
+
+altro data type -> hash -> primo el key poi coppie key-value
+
+set -> stringe non ripetute ne ordinate , non posso recuperare un inidice ??? 
+
+smembers -> tutti gli el del set 
+s.is member -> per trovare el in un set 
+
+persistenza poliglotta in sistema -> più dbms che convivono per gesitre info differenti o per gestire dati differenti 
