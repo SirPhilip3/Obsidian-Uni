@@ -4345,7 +4345,7 @@ Diciamo che $T\in MST(G)$ , abbiamo 2 casi :
 + $(u,v)\in T$ , in questo caso abbiamo già concluso la dimostrazione 
 + $(u,v)\notin T$ 
 	1. *cuci* : aggiungi $(u,v)$ in $T$ = $T'$ , avendo aggiunto un arco ad uno *spanning tree* si formerà un ciclo 
-	2. *taglia* : togliamo l'arco che crea il ciclo $T'-(x,y)=T''$ , il grafo risultante sarà anch'esso un $MST$ poichè : $w(T'') = w(T) +w(u,v) -w(x,y)$ e sapendo che $w(u,v)\le w(x,y)$ avremo che $w(T)\le w(T'')\le w(T)\implies w(T'')=w(T)$ quesot vorrà dire che $w(T'')$ divrà contenere $(u,v)$ , l'arco minimo dell'albero 
+	2. *taglia* : togliamo l'arco che crea il ciclo $T'-(x,y)=T''$ , il grafo risultante sarà anch'esso un $MST$ poichè : $w(T'') = w(T) +w(u,v) -w(x,y)$ e sapendo che $w(u,v)\le w(x,y)$ avremo che $w(T)\le w(T'')\le w(T)\implies w(T'')=w(T)$ questo vorrà dire che $w(T'')$ divrà contenere $(u,v)$ , l'arco minimo dell'albero 
 ##### Teorema Fondamentale degli MST
 
 Sia $G=(V,E,w)$ un grafo non orientato e connesso dove $w : E \to \mathbb{R}$ è una funzione peso sugli archi . 
