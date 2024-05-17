@@ -4415,7 +4415,6 @@ L'implementazione può essere fatta in 2 modi differenti :
 	+ `Find_Set(x)` scorre l'albero fino alla radice e ritorna la radice ( $\log n$ )
 
 Con questa struttura dati possiamo scrivere il seguente algoritmo che restituisce le componenti connesse di un grafo $G$ 
-
 ```pseudo
 	\begin{algorithm}
 	\caption{$\text{Connected Components}$}
