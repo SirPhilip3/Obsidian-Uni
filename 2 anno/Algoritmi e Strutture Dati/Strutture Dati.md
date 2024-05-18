@@ -4494,7 +4494,7 @@ Indichiamo con $n$ il numero di vertici e $m$ il numero di archi
 
 La complessità è data da :
 + Il primo `for each` ha complessità $O(n)$
-+ L'ordinamento ha complessità $O(m \log m)$ ( visto che è la complessità migliore pe un algoritmo di ordinamento basato sui confronti )
++ L'ordinamento ha complessità $O(m \log m)$ ( visto che è la complessità migliore per un algoritmo di ordinamento basato sui confronti )
 + Il secondo `for each` viene svolto $m$ volte e le operazioni `find_set` e `union` hanno complessità $O(\log m)$ , avremo quindi che la complessità totale sarà $O(m\log m)$
 
 La complessità totale sarà : $O(n + m \log m + m \log m) = O(m \log m)$ 
