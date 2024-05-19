@@ -5007,7 +5007,6 @@ La **complessità** sarebbe :
 
 Possiamo fare di meglio ? 
 Si grazie alla *programmazione dinamica* 
-
 ##### Floyd-Warshall
 
 L'algortimo di *Floyd-Warshall* ha complessità $\Theta(n^3)$ che risulta essere meglio di tutte le complessità ottenute nel precedente esempio ( solo nel caso in cui abbiamo tutti i pesi $>0$ e grafo sparso allora *Iterated_Djikstra* fa meglio )
