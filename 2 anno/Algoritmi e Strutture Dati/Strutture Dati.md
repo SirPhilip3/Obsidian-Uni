@@ -4784,10 +4784,10 @@ $$\delta(s,v)=\delta(s,v)$$
 	1. Righe `2-4` : La procedura `Init_SS` ha tempo di esecuzione $\Theta(n)$ poichè scorrerà per forza l'intero grafo 
 	2. Righe `5-7` : il ciclo `while` compie $n$ iterazioni , ora la complessità delle rimanenti operazioni dipende da come abbiamo implementato la $Q$
 		1. Se è stata implementata con un *heap binario* : 
-			La `Extract_min` avrà complessità $\log n$ poich dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $n\log n$
+			La `Extract_min` avrà complessità $\log n$ poichè dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $n\log n$
 		3. Se è stata implementata con un *array lineare* :
 			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ 
-	3. Righe `8-9` : il ciclo `for` viene svolto tante volte qunato l'*out-degree* del nodo appena estratto $u$ , notiamo che visto che viene svolto per $n$ volte all'interno del ciclo `while` possiamo trovare il numero di iterazioni totali risolvendo : $$\sum_{i=1}^n \text{out-deg}(i)=m$$
+	3. Righe `8-9` : il ciclo `for` viene svolto tante volte quanto l'*out-degree* del nodo appena estratto $u$ , notiamo che visto che viene svolto per $n$ volte all'interno del ciclo `while` possiamo trovare il numero di iterazioni totali risolvendo : $$\sum_{i=1}^n \text{out-deg}(i)=m$$
 	  All'interno del ciclo `for` svolgiamo la `Relax` , la sua complessità dipende dal'implementazione di $Q$ , avremo quindi 2 casi :
 		1. *heap binario* : 
 			Ha complessità $\log n$ poichè può cambiare la key di $Q$ e deve quindi essere ribilanciato
@@ -4868,6 +4868,8 @@ $$d[u]\le \delta(s,y) \quad \text{per 5}$$
 $$d[u]\le \delta(s,u)\quad \text{per 7}$$
 Possiamo quindi dire che deve essere $d[u]=\delta(s,u)$ e questo è un *assurdo*
 
+>[!note] 
+>Possiamo interrompere l'algoritmo prima dell'estrazione dell'ultimo vertice oichè nel momento in cui viene estratto tutti gli altri apparterranno a $S$ e non verrà eseguita nessuna `Relax` 
 ##### Dijkstra con pesi negativi 
 
 Come abbiamo detto *Dijkstra* non è corretto se vi sono dei pesi negativi all'interno 
@@ -4910,7 +4912,7 @@ Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando 
 + Il ciclo `for` esterno verrà svolto per $n-1$ volte ( dove $n$ indica $|V|$ ) 
 + Il ciclo `for` interno verrà svolto per $m$ volte ( il numero di achi presenti nel grafo )
 + La `Relax` ha costo costante poichè non stiamo utilizzando alcuna coda per $Q$
-+ Il secondo ciclo `for` esterno ( ha il compito di ritornare false se vi sono cicli negativi all'interno del grafo , se vi sono cicli negativi inatti non possiamo più fidarci della risposta dell'algoritmo in quanto i cammini minimi potrebbero ciclare all'infinito nei cicli negativi ) viene eseguito $m$ volte ( il numero degli archi )
++ Il secondo ciclo `for` esterno ( ha il compito di ritornare false se vi sono cicli negativi all'interno del grafo , se vi sono cicli negativi infatti non possiamo più fidarci della risposta dell'algoritmo in quanto i cammini minimi potrebbero ciclare all'infinito nei cicli negativi ) viene eseguito $m$ volte ( il numero degli archi )
 
 Avremo quindi che la complessità finale sarà : 
 $$T(n,m)=n+(n-1)\cdot m + m = \Theta(n\cdot m)$$
