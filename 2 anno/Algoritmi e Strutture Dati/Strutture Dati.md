@@ -5284,7 +5284,6 @@ Visto che l'algoritmo non è corretto potremmo pensare di modificare il modo in 
 
 >[!warning] 
 >Per questo problema non esiste un modo per ordinare i vertici in modo da raggiungere la soluzione corretta
-
 ## Teoria della $NP$ completezza
 
 ### Problemi 
@@ -5294,7 +5293,7 @@ Parliamo in modo generico di *problemi*
 Un *problema* può essere rappresentato in modo astratto da due insiemi : 
 $$\mathcal{I} = \text{Questo rappresenta l'insieme delle istanze}$$
 >[!example] 
->Queste *istanze* possono essere : nel problema dei camminimi minimi tutti i possibili , infiniti , grafi orientati e pesati 
+>Queste *istanze* possono essere : nel problema dei cammini minimi tutti i possibili , infiniti , grafi orientati e pesati 
 
 $$\mathcal{S} = \text{Questo rappresenta l'insieme delle soluzioni}$$
 >[!example] 
@@ -5304,7 +5303,6 @@ Un **problema** quindi può essere scritto come una relazione binaria tra le sue
 $$\mathcal{P} \subseteq \mathcal{I} \times \mathcal{S}$$
 Un **Algoritmo** invece è una serie di istruzioni che prende come *input* un'istanza dell'insieme delle istanze e come *output* una particolare soluzione : 
 ![[Algorithm.excalidraw]]
-
 #### Tipologie di Problemi 
 
 ![[Problems.excalidraw]]
@@ -5352,7 +5350,7 @@ Un'altra divisione dei *problemi* può essere fatta a seconda di cosa calcolano 
 
 >[!example] GRAFO HAMILTONIANO
 >
->Un grafo non orientato è detto hamiltoniano se ha un ciclo hamiltoniano al suo interno , ossia se essite un cammino che tocchi tutti i vertici 
+>Un grafo non orientato è detto hamiltoniano se ha un ciclo hamiltoniano al suo interno , ossia se esite un cammino che tocchi tutti i vertici 
 >
 >Il problema del grafo *hamiltoniamo* ha le seguenti due verioni : 
 >+ la decisionale che determina se un grafo è *hamiltoniano*
@@ -5360,7 +5358,6 @@ Un'altra divisione dei *problemi* può essere fatta a seconda di cosa calcolano 
 
 >[!important] 
 >Se abbiamo un problema di ottimizzazione e consideriamo la sua versione decisionale allora avranno la stessa complessità
-
 ### Classi di problemi decisionali
 
 #### Classe $P$
@@ -5381,7 +5378,7 @@ Il compito dell'*algoritmo di verifica* è quello di verificare se l'*istanza po
 >[!example] CICLO HAMILTONIANO
 >
 >Supponiamo di avere come certificato una permutazione dei vertici del grafo ( questo poichè per essere hamiltoniano dobbiamo avere un cammino che passi per tutti i vertici ) 
->Dovremmo quindi avere un algoritmo che verifichi che questa permutazione di vertici costituisca di fatto un ciclo hamiltoniamo , questo può essere fatto semplicemente scorrendo la lista di vertici e verificando che essis siano connessi tra di loro da un arco
+>Dovremmo quindi avere un algoritmo che verifichi che questa permutazione di vertici costituisca di fatto un ciclo hamiltoniamo , questo può essere fatto semplicemente scorrendo la lista di vertici e verificando che essi siano connessi tra di loro da un arco
 >
 >Poichè questa verifica può essere eseguita in tempo polinomiale questo problema è $NP$
 
