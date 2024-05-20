@@ -5173,12 +5173,12 @@ Non dimostriamo la correttezza dell'algoritmo ma sappiamo che risulterà essere 
 
 Potremmo aver fatto diverse scielte su come abbiamo ordinato le attività : 
 1. *Ordinamento per tempo di inizio minore* :
-	In questo caso l'algoritmo non sarebbe corretto poichè se fosse presente una attività che inizia subito ed è anche la più lunga di tutte allora verrebbe scielta solo questa e nessun'altra
+	In questo caso l'algoritmo *non* sarebbe *corretto* poichè se fosse presente una attività che inizia subito ed è anche la più lunga di tutte allora verrebbe scielta solo questa e nessun'altra
 >[!example] 
 >![[Pasted image 20240429140121.png]]
 >In questo caso viene scielta subito l'attività $1$ e non potremmo scieglerne nessun'altra poichè saranno incompatibili
-1. *Ordinamento per durata minore* :
-	Anche in questo caso l'algoritmo non sarebbe stato corretto poichè potremmo aver avuto tante attività di durata maggiore e altre di durata minore che però fanno in modo di non essere compatibili con quelle di durata maggiore , in questo caso verrebbero scielte solamente le minori attività di durata minore e non le altre che potrebbero aver formato un insieme di dimensioni maggiori 
+2. *Ordinamento per durata minore* :
+	Anche in questo caso l'algoritmo *non* sarebbe stato *corretto* poichè potremmo aver avuto tante attività di durata maggiore e altre di durata minore che però fanno in modo di non essere compatibili con quelle di durata maggiore , in questo caso verrebbero scielte solamente le minori attività di durata minore e non le altre che potrebbero aver formato un insieme di dimensioni maggiori 
 >[!example] 
 >![[Pasted image 20240429140443.png]]
 >In questo caso avremmo preso le attività $3,5,7$ mentre le attività $1,2,4,6$ sarebbero state maggiori
