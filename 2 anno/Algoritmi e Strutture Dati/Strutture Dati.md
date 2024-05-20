@@ -5086,7 +5086,7 @@ Possiamo dividere un cammino tra $i$ e $j$ in due sottocammini quelli che passan
 ![[Pasted image 20240426174605.png]]
 
 Definiamo quindi il seguente insieme : 
-$$\hat{\mathcal{D}}^{(k)}_{i,j}=\big\{ p | p \in \mathcal{D}_{i,k}^{(k)} \quad \text{passanti per k} \ \big\}$$
+$$\hat{\mathcal{D}}^{(k)}_{i,j}=\big\{ p | p \in \mathcal{D}_{i,j}^{(k)} \quad \text{passanti per k} \ \big\}$$
 Quindi potremmo costruire il seguente insieme : 
 $$\mathcal{D}^{(k)}_{i,j} = \hat{\mathcal{D}}^{(k)}_{i,j} \cup \mathcal{D}_{i,j}^{(k-1)}$$
 Possiamo quindi riscrivere la definizione di distanza nel seguente modo : 
