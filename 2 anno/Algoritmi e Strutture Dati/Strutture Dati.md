@@ -2429,7 +2429,7 @@ Possiamo concludere che il limite inferiore di complessità per gli algoritmi ba
 	*HeapSort* e *MergeSort* sono algoritmi di ordinamento per confronti asintoticamente *ottimali* , questo poichè il limite superiore di esecuzione ( $O(n \log n)$ ) di questi algoritmi coincide con il limite inferiore degli algoritmi basati sul confronto 
 ### Counting Sort
 
-Per ricavare una complessità minore di degli algoritmi basati sul confronto non possiamo svolgere confronti all'interno dell'algoritmo di sorting , per evitare ciò abbiamo bisogno di fare delle *assunzioni* 
+Per ricavare una complessità minore degli algoritmi basati sul confronto non possiamo svolgere confronti all'interno dell'algoritmo di sorting , per evitare ciò abbiamo bisogno di fare delle *assunzioni* 
 
 Nel caso del **Counting Sort** , esso è applicabile solo se i dati in input rispettano la seguente *assunzione* : I numeri da ordinare sono interi in un intervallo che va da 0 a $k$ per qualche intero $k$
 
@@ -2507,7 +2507,6 @@ $$T(n)=\Theta(k)+\Theta(n)+\Theta(k)+\Theta(n) = \Theta(k+n)$$
 #### Esempio di Esecuzione
 
 ![[CountingSort.excalidraw]]
-
 ### Radix Sort
 
 Il *Radix Sort* ci permette di estendere i casi di utilizzo del *Counting Sort*
