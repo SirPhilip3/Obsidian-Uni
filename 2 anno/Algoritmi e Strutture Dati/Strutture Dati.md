@@ -4350,7 +4350,7 @@ Valgono le seguenti ipotesi :
 + $(S,S-V)$ un talgio di $G$ che **rispetta** A ( ossia se gli archi di A stanno in S o S-V o entrambi ma non devono esserci archi di A che attraversano il taglio )
 + Un arco $(u,v)$ è un *arco leggero* che attraversa il taglio 
 
-Allora avremo che il *teorema fondamentale degli MST* afferma che $A \cup (u,v)$ è contenuto in qualche $MST$ . Si può dire che $(u,v)$ è **sicuro** per A
+Allora avremo che il *teorema fondamentale degli MST* afferma che $A \cup (u,v)$ è contenuto in qualche $MST$ . Si può dire che $(u,v)$ è **sicuro** per $A$
 
 **Dimostrazione** : ( sempre per il *cuci e taglia* ) 
 
@@ -4378,7 +4378,7 @@ Se G è un grafo non orientato connesso , pesato allora avremo le seguenti ipote
 2. Sia $C$ una componente connessa della foresta $G_A=(V,A)$
 3. Sia $(u,v)$ un arco leggero che connette $C$ ad un'altra componente connessa della foresta $G_A$
 
-Allora $(u,v)$ è *sicuro* per $A$ cioè $A \cup \{u,v\}$ è contenuto n qualche $MST$
+Allora $(u,v)$ è *sicuro* per $A$ cioè $A \cup \{u,v\}$ è contenuto in qualche $MST$
 #### Strutture Dati per Insiemi Disgiunti
 
 >[!note] 
@@ -4501,7 +4501,7 @@ L'algoritmo di *Prim* a differenza dell'algoritmo di *Kruskal* costruisce un alb
 
 L'algoritmo si serve di una struttura dati formata da una coda di minima priorità $Q$ che memorizza i vertici del grafo per estrarli uno alla volta sulla base del campo `Key[u]` , $u \in V$ , che contiene il minore tra i pesi degli archi $u$ che attraversano un taglio 
 
-La *key* rappresenta la chiave della coda di priorità $Q$ , se volgio quindi estrarre un arco leggero mi basterà prendere la *key* con il valore minore , dopo aver aggiunto un arco devo però aggiornare i campi *key* dei vertici rimaneti visto che il taglio adesso non comprende più il vertice scelto
+La *key* rappresenta la chiave della coda di priorità $Q$ , se voglio quindi estrarre un arco leggero mi basterà prendere la *key* con il valore minore , dopo aver aggiunto un arco devo però aggiornare i campi *key* dei vertici rimaneti visto che il taglio adesso non comprende più il vertice scelto
 
 Per ogni vertice inoltre abbiamo un campo `predecessore` che è un puntatore al suo predecessore ( utilizzato per costruire l'albero che stiamo cercando )
 
@@ -4516,7 +4516,6 @@ Il campo *key* deve essere aggiornato infatti potremmo avere il seguente caso :
 >L'ordine di estrazione non è importante , tanto troveremo al massimo un MST diverso ma sarebbe comunque un MST
 
 **Algoritmo** : 
-
 ```pseudo
 	\begin{algorithm}
 	\caption{MST\_Prim(G,w,r)}
