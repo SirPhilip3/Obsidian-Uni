@@ -5465,7 +5465,6 @@ $$(\ P \cap NPC \ )\neq \emptyset \implies P =NP$$
 >$\le_p$ non è *simmetrica* poichè se supponiamo che lo sia avremmo che ........ 
 >
 >$\le_p$ vale solo tra $NPC$
-
 ##### Teorema di Cook
 
 *Cook* dimostra che il problema $CIRCUIT-SAT$ è un $NPC$ 
