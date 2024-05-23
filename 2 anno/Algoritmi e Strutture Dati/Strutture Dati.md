@@ -3764,14 +3764,12 @@ Definiamo con *sottografo* di $G(V,E)$ come $G'(V',E')$ con $V' \subseteq V$ e $
 ![[subgraph.excalidraw]]
 
 L'importante è che i *nodi* che vogliamo nel *sottografo* siano presenti anche senza alcun *arco* , questo poichè l'insieme vuoto è sempre un sottoinsieme di $E$ , non è un *sottografico* se invece aggiungiamo degli *archi* non presenti nel *grafo* originale 
-
 ### Sottografo indotto
 
 Un *sottografo indotto* è un particolare sottografo che ha la seguente caratteristica : $E' = E \cap V' \times V'$ , significa che , dato un sottoinsieme $V'$ dei vertici di $G$ il sottoalbero indotto $G[V']$ contiene *tutti gli archi* incidenti ai nodi di $V'$ 
 
 >[!example]
 ![[SottografoIndotto.excalidraw]]
-
 ## Cammino
 
 Un *cammino* tra due vertici $u$ e $v$ è una sequenza di vertici $<x_0,x_1,\dots,x_q>$ tali che $x_1=u$ e $x_q=v$ e deve esistere un arco tra un vertice $x_i$ e il suo sucessivo $x_{i+1}$ ossia : $(x_i,x_{i+1}) \in E\forall i=0,\dots,q-1$
@@ -3988,7 +3986,6 @@ Non possiamo creare un *grafo* tale che ogni vertice ha un *grado* diverso
 **Dimostrazione** per assurdo
 	Supponiamo che esista un grafo $G$ tale che tutti i $0\le deg(u)\le n-1$ 
 	Allora avremo che dovranno esistere vertici con $deg(u)=0$ ma anche uno con $deg(u)=n-1$ ciò significa che dovrebbero esistere due *vertici* uno che abbia 0 archi e uno che sia collegato a tutti i *vertici* ==Impossibile== 
-
 #### Somma dei gradi
 
 Notiamo che la somma dei *gradi* può essere scritta come $2\ \cdot$ numero archi 
