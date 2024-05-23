@@ -4592,7 +4592,7 @@ Il problema che ora affrontiamo è quello di determinare il cammino minimo tra d
 >L'insieme dei cammini può anche essere scritto nel seguente modo : 
 >$C(u,v) = \{p|p\ \text{è un cammino tra u e v}\}$
 
-La *Distanza tra 2 vertici* sarà :
+La *distanza tra 2 vertici* sarà :
 $$\delta(u,v)=\begin{cases}
 \min w(p) & \text{se} \ C(u,v)\neq \emptyset \\
 +\infty & \text{se} \ C(u,v)= \emptyset \\
@@ -4606,7 +4606,6 @@ Possiamo descrivere i tre casi nel seguente modo :
 Facciamo un esempio : 
 
 ![[Distance.excalidraw]]
-
 #### Quattro tipi di problemi
 
 I problemi che possiamo risolvere si possono dividere a seconda del numero di sorgenti e destinazioni 
@@ -4620,7 +4619,6 @@ I problemi 2 e 3 sono interscambiabili basterà invertire il verso del grafo
 
 >[!note] 
 >Il problema 1 risulta avere una simile complessità al problema 2 perchè comunque dovremo cercare l'intero grafo
-
 #### Proprietà dei cammini minimi
 
 >[!important] 
@@ -4655,7 +4653,6 @@ Per ogni vertice ( $\forall u \in V$ ) avremo :
 	\end{algorithmic}
 	\end{algorithm}
 ```
-
 *Relax*
 Utilizzato per abbassare il valore $d$ di un vertice 
 ```pseudo
@@ -4669,7 +4666,6 @@ Utilizzato per abbassare il valore $d$ di un vertice
 	\end{algorithmic}
 	\end{algorithm}
 ```
-
 >[!example] 
 >![[relax.excalidraw]]
 
@@ -4695,7 +4691,6 @@ $G'=(V',E')$ è un albero di cammini minimi , sottografo di $G(V,E,w)$ dove avre
 
 >[!example] 
 ![[MinimumTreeWalks.excalidraw]]
-
 #### Proprietà della Diseguaglianza triangolare
 
 Sia $G=(V,E)$ un grafo con $s\in V$ , $(u,v)\in E$ allora :
@@ -4727,7 +4722,7 @@ Distinguiamo 2 momenti nell'algoritmo :
 	1. Se $v\neq s$ varrà che $d[v]=+\infty \ge \delta(s,v)$ , questo verifica banalmente la proprietà del limite inferiore
 	2. Se $v=s$ sappiamo che $\delta(s,s) = 0$ se non esistono cicli negativi che passano per la sorgente altrimenti $\delta(s,s)=-\infty$ , in entrambi i casi $\delta(s,s)\le 0 = d[s]$
 	Abbiamo quindi dimostrato che subito dopo l'inzializzazione la proprietà è vera
-2. Supponiamo per assurodo che $v$ sia il primo vertice per cui la proprietà è violata
+2. Supponiamo per assurdo che $v$ sia il primo vertice per cui la proprietà è violata
 	Al termine di questa `Relax` verrà che : 
 	$d[u]+w(u,v)=d[v]$ ma per ipotesi avremo che $d[u]+w(u,v)< \delta(s,v)$ 
 	applico quindi la diseguaglianza triangolare ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ nonsarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
@@ -4767,7 +4762,6 @@ $$\delta(s,v)=\delta(s,v)$$
 	\end{algorithmic}
 	\end{algorithm}
 ```
-
 **Spiegazione** :
 
 >[!todo] 
@@ -4779,7 +4773,7 @@ $$\delta(s,v)=\delta(s,v)$$
 	1. Righe `2-4` : La procedura `Init_SS` ha tempo di esecuzione $\Theta(n)$ poichè scorrerà per forza l'intero grafo 
 	2. Righe `5-7` : il ciclo `while` compie $n$ iterazioni , ora la complessità delle rimanenti operazioni dipende da come abbiamo implementato la $Q$
 		1. Se è stata implementata con un *heap binario* : 
-			La `Extract_min` avrà complessità $\log n$ poichè dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $n\log n$
+			La `Extract_min` avrà complessità $\log n$ poichè dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $O(n\log n)$
 		3. Se è stata implementata con un *array lineare* :
 			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ 
 	3. Righe `8-9` : il ciclo `for` viene svolto tante volte quanto l'*out-degree* del nodo appena estratto $u$ , notiamo che visto che viene svolto per $n$ volte all'interno del ciclo `while` possiamo trovare il numero di iterazioni totali risolvendo : $$\sum_{i=1}^n \text{out-deg}(i)=m$$
@@ -4805,7 +4799,6 @@ L'implementazione scielta dipende da come è fatto il grafo , avremo 2 casi :
 | ***denso***  | $n^2\log n$ |   $n^2$   |
 Avremo quindi che in caso di grafo *sparso* preferiremo l'implementazione con l'*heap binario* , mentre nel caso di grafo *denso* preferiremo l'implementazione con l'*array lineare*
 
-
 **Correttezza** : 
 
 >[!warning] 
@@ -4820,7 +4813,7 @@ Allora alla fine dell'algortimo di *Dijkstra* si ha :
 >Non dimostreremo il secondo punto
 
 Dimostriamo quindi la seguente effermazione : 
-	$\forall u \in V$ all'atto dell'estrazione di $u$ dalla coda $Q$ risutletà che $d[u]=\delta(s,u)$ ( se questo è vero all'estrazione allora dovrà essere vero anche alla fine dell'algoritmo poichè sappiamo che quando $d[u]=\delta(s,u)$ questo non potrà più cambiare per come è scritta la `Relax`)
+	$\forall u \in V$ all'atto dell'estrazione di $u$ dalla coda $Q$ risultetà che $d[u]=\delta(s,u)$ ( se questo è vero all'estrazione allora dovrà essere vero anche alla fine dell'algoritmo poichè sappiamo che quando $d[u]=\delta(s,u)$ questo non potrà più cambiare per come è scritta la `Relax`)
 
 **Dimostrazione** per assurdo :
 
@@ -4830,7 +4823,7 @@ Supponiamo *per assurdo* che esista un vertice $u\in V$ tale che al momento dell
 
 1. $u$ non può essere sorgente , avremo infatti che $d[u] = 0 = \delta(s,s)$ 
 >[!note] 
->$\delta(s,s)$ non può valere $-\infty$ poichè abbiamo suppsto di avere solo pesi $\ge 0$ all'interno del grafo $G$
+>$\delta(s,s)$ non può valere $-\infty$ poichè abbiamo supposto di avere solo pesi $\ge 0$ all'interno del grafo $G$
 2. Al momento dell'estrazione di $u$ , $S \neq \emptyset$ perchè in $S$ ( insieme dei vertici estratti ) ci sarà almeno la sorgente $s$
 3. $u$ deve essere *raggiungibile* da $s$ ( altrimenti avremo che $\delta(s,u)=+\infty = d[u]$ )
 
@@ -4842,7 +4835,7 @@ Prendiamo quindi i vertici $x$ e $y$ che delimitano l'arco che attraversa questo
 
 Quindi possiamo dire che :
  4. $d[x]=\delta(s,x)$ : visto che :
-	 1. ci troviamo in un cammino minimo e sottocammini di un cammino minimo sono anchessi minimi 
+	 1. ci troviamo in un cammino minimo e sottocammini di un cammino minimo sono anch'essi minimi 
 	 2. sappiamo che entrambi fanno parte dei vertici già estratti che necessaramente hanno $d[x]=\delta(s,x)$ 
 	 3. Inoltre sappiamo per ipotesi che $u$ è il primo verice per cui non vale questa proprietà
  5. $d[y]=\delta(s,x)+w(x,y)=\delta(s,y)$ :
