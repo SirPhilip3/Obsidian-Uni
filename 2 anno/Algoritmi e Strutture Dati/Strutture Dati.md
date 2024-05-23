@@ -5395,7 +5395,6 @@ $$NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale per il qual
 >[!note] 
 >$P \subseteq NP$ : 
 >Se un problema è risolvibile polinomialmente allora è verificabile polinomialmente
-
 #### Classe $Co-NP$
 
 La *classe* $Co-NP$ e ( classi di problemi il cui complemento è $NP$ )
@@ -5421,6 +5420,18 @@ In questo caso parliamo di *riducibilità polinomiale* ossia :
 
 Potremmo quindi dire che : 
 + Se $\mathcal{P_1} \le_P \mathcal{P_2}$ e $\mathcal{P_2} \in P$ allora anche $\mathcal{P_1}\in P$ 
+
+>[!important] Dimostrazione
+>
+>Supponiamo che $\mathcal{P_1}\leq_p \mathcal{P}_2$ e che $\mathcal{P_2} \in P$
+>Per definizione di $\leq_p$ : $\exists$ un algoritmo $f$ calcolabile in tempo polinomiale tale che mappi le istanze di $\mathcal{P_1}$ in istanze equivalenti di $\mathcal{P_2}$ 
+>Poichè $\mathcal{P_2} \in P$ allora avremo un algoritmo polinomiale che risolve $P_2$ 
+>Possiamo quindi risolvere $P_1$ nel seguente modo : 
+>+ Data un istanza di $\mathcal{P_1}$ calcoliamo con $f$ un'istanza equivalente di $\mathcal{P_2}$ in tempo polinomiale
+>+ Utilizziamo ora l'algoritmo polinomiale di $\mathcal{P_2}$ per risolvere l'istanza tradotta
+>
+>Abbiamo quindi visto che il problema può essere risolto in tempo polinomiale ( trasformazione + algoritmo di $\mathcal{P_2}$ ) 
+>Possiamo concludere che $\mathcal{P_1}\in P$
 
 Questa proprietà soddisfa le seguenti proprietà : 
 + **Riflessività** : 
@@ -5462,9 +5473,18 @@ $$(\ P \cap NPC \ )\neq \emptyset \implies P =NP$$
 >rivedi dimostrazione
 
 >[!note] 
->$\le_p$ non è *simmetrica* poichè se supponiamo che lo sia avremmo che ........ 
->
->$\le_p$ vale solo tra $NPC$
+>$\le_p$ *simmetrica* vale solo tra $NPC$
+>>[!important] Dimostrazione
+>>Supponiamo che $\mathcal{P}$ e $Q$ $\in NPC$
+>>
+>>Per definizione sappiamo che $NPC \subset NP \implies \forall \mathcal{P'} \in NP : \mathcal{P'}\leq_p \mathcal{P''}$ dove $\mathcal{P''}\in NPC$ 
+>>
+>>Quindi $\forall \mathcal{P'} \in NPC$ è riducibile a qualsiasi altro $\mathcal{P''}\in NPC$
+>>Quindi $\exists$ $f$ e $g$ algoritmi calcolabili in tempo polinomiale tali per cui : 
+>>+ $\mathcal{P} \leq_p Q : \exists\ f \ |\ i \in \mathcal{P} \iff f(i) \in Q$
+>>+ $Q \leq_p \mathcal{P} : \exists\ g\ |\ i \in Q \iff g(i) \in \mathcal{P}$
+>>
+>>Quindi per qualsiasi coppia di problemi $\mathcal{P}$ e $Q$ in $NPC$ vale che $\mathcal{P} \leq_p Q$ e $Q \leq_p \mathcal{P}$
 ##### Teorema di Cook
 
 *Cook* dimostra che il problema $CIRCUIT-SAT$ è un $NPC$ 
