@@ -1756,7 +1756,7 @@ Soglie per il *p-value* :
 > $p=\Pr(Z > 3.61)=1-\Phi(3.61)=0.0002$
 > o in `r` : `{r}1-pnorm(3.61)`
 > 
-> Quindi possiamo concluder che l'aggioernamento è stato effiacce ad un livello di significatività ben più basso del $5\%$
+> Quindi possiamo concludere che l'aggioernamento è stato effiacce ad un livello di significatività ben più basso del $5\%$
 #### Campioni non indipendenti
 
 Cosa succede se in situazioni nelle quali non possiamo assumere l'*indipendenza* di due campioni ne assumiamo invece l'*indipendenza* ? 
