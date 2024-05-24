@@ -4837,11 +4837,11 @@ Quindi possiamo dire che :
  4. $d[x]=\delta(s,x)$ : visto che :
 	 1. ci troviamo in un cammino minimo e sottocammini di un cammino minimo sono anch'essi minimi 
 	 2. sappiamo che entrambi fanno parte dei vertici già estratti che necessaramente hanno $d[x]=\delta(s,x)$ 
-	 3. Inoltre sappiamo per ipotesi che $u$ è il primo verice per cui non vale questa proprietà
+	 3. Inoltre sappiamo per ipotesi che $u$ è il primo vertice per cui non vale questa proprietà
  5. $d[y]=\delta(s,x)+w(x,y)=\delta(s,y)$ :
 	 1. Questo per la *proprietà della convergenza* in quanto quando abbiamo estratto $x$ svolgiamo la relax su tutti i veritici adiacenti e faremo quindi anche $d[y]=d[x]+w(x,y)$ ( questo viene sempre svolto perchè so di essere su un cammino minimo e quindi sicuramente $d[x]>d[y]+w(x,y)$ ) e dal punto prima abbiamo che $d[y]=\delta(s,x)+w(x,y)$ abbiamo inoltre che questo sarà $\delta(s,y)$ poichè ci troviamo su un cammino minimo
  6. $d[u]\le d[y]$ :
-	 1. Pochè stiamo per estrarre il nodo $u$ siccome l'algorimo estrare il vertice avente campo $d$ minore avremo che $d[u]\le d[y]$
+	 1. Poichè stiamo per estrarre il nodo $u$ siccome l'algorimo estrae il vertice avente campo $d$ minore avremo che $d[u]\le d[y]$
  7. $\delta(s,y)\le \delta(s,u)$ : 
 	 1. poichè i pesi devono essere $\ge 0$ se aggiungo un arco al cammino questo influisce sul peso finale del cammino solo in modo positivo
  8. $\delta(s,u)\le d[u]$ : 
@@ -4911,7 +4911,7 @@ Avremo 2 casi da considerare :
 	1. $d[u]=\delta(s,u)\quad \forall u \in V$
 	2. $G_{\pi}$ è un albero di cammini minimi
 	3. L'algoritmo restituisce `True`
-2. Se $G$ contiene cicli negativi raggiungibili da $s$ allora l'agortimo restituisce `False`
+2. Se $G$ contiene cicli negativi raggiungibili da $s$ allora l'agoritmo restituisce `False`
 
 **Dimostrazione** 1.1
 
