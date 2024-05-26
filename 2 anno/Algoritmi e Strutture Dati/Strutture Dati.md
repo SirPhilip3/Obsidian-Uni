@@ -4924,7 +4924,7 @@ Se $\delta(s,u) \in \mathbb{R}$ allora esisterà un cammino $p=<x_0 = s , x_1 , 
 
 $p$ può avere al massimo $n-1$ archi in totale ( visto che è *semplice* ) nel caso in cui attraversa tutti i veritici del grafo
 
-Poichè sottocammini di un cammino minimo sono anchessi minimi possiamo applicare il teorema della convergenza tante volte quante sono le passate dell'algoritmo e verificare che alla fine dell'algoritmo avremo $d[u]=\delta(s,u)$
+Poichè sottocammini di un cammino minimo sono anch'essi minimi possiamo applicare il teorema della convergenza tante volte quante sono le passate dell'algoritmo e verificare che alla fine dell'algoritmo avremo $d[u]=\delta(s,u)$
 
 ![[DimoBellmanFord.excalidraw]]
 
@@ -4935,7 +4935,7 @@ $$\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)$$ Questo in modo che fallisca se
 
 Utilizziamo la *disuguaglianza triangolare* :
 $$\delta(s,v)\le \delta(s,u)+w(u,v)$$
-Ma avendo dimostrato nella dimostrazione precedente che $d[u]=\delta(s,u)$ e $d[v]=\delta(s,v)$ possiamo conludere che : 
+Ma avendo dimostrato nella dimostrazione precedente che $d[u]=\delta(s,u)$ e $d[v]=\delta(s,v)$ possiamo concludere che : 
 $$d[v]\le d[u]+w(u,v)$$
 
 **Dimostrazione** 2
@@ -4967,7 +4967,6 @@ Notiamo che generalmente *Dijkstra* ha una migliore complessità rispetto a *Bel
 
 >[!example] 
 >>[!todo] 
-
 #### Cammini minimi tra tutte le coppie di vertici
 
 >[!note] 
@@ -5063,9 +5062,9 @@ Definiamo ora $d_{i,j}^{(k)}$ come il peso del cammino minimo tra $i$ e $j$ dove
 $$d_{i,j}^{(k)} = \min_{p \in \mathcal{D}_{i,j}^{(k)}} w(p)$$
 In pratica tra tutti i cammini minimi presenti in $\mathcal{D}_{i,j}$ , $d_{i,j}^{(k)}$ sarà il peso minimo tra tutti i cammini minimi 
 
-Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : $$\delta(i,j)=d_{ij}^{(n)}$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'alogritmo di *Floyd-Warshall*
+Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : $$\delta(i,j)=d_{ij}^{(n)}$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'algoritmo di *Floyd-Warshall*
 
-Ora per dimostrare che l'algoritmo è corretto ci basterà dimostrare la verridicità di : 
+Ora per dimostrare che l'algoritmo è corretto ci basterà dimostrare la veridicità di : 
 $$d_{ij}^{(k)} = \min\{ d_{ij}^{k-1} , d_{ik}^{k-1}+d_{kj}^{k-1}\}$$
 Possiamo dividere un cammino tra $i$ e $j$ in due sottocammini quelli che passano per $k$  e quelli che non passano per $k$ , poichè stiamo assumendo che i cammini siano semplici abbiamo la sicurezza che $k$ non è compreso in nessuno dei due insiemi di sottocammini $\mathcal{D}_{i,k}^{(k-1)}$ e $\mathcal{D}_{k,j}^{(k-1)}$ e che tutti i vertici compresi in tali sottocammini abbiano valore minore o uguale a $k-1$ 
 
