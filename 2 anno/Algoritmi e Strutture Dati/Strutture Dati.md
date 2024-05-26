@@ -3839,7 +3839,6 @@ In un *grafo* i nodi $i$ e $j$ sono *adiacenti* se esiste un arco che li collega
 
 >[!note] 
 >$j$ è adiacente a $i$ solo se ho un vertice che va *da $i$ a $j$* un vertice orientato al contrario non funziona
-
 ## Implementazione
 
 ### Lista di Adiacenza
@@ -3999,7 +3998,7 @@ Se rappresentiamo il *grafo* con una matrice di adiacenza il *grado* può essere
 
 #### Moltiplicazioni della martice di adiacenza
 
-Consideriamo un grafo $G=(V,E)$ *non orientato* allora avremo che $A_G$ sarà la *matrice di adiacenza*di $G$ , cosa rappresenterà $A \times A = A^2 = (a_{ij}^{(2)}) = \sum_{l=1}^n a_{ik}\cdot a_{lj}$ 
+Consideriamo un grafo $G=(V,E)$ *non orientato* allora avremo che $A_G$ sarà la *matrice di adiacenza* di $G$ , cosa rappresenterà $A \times A = A^2 = (a_{ij}^{(2)}) = \sum_{l=1}^n a_{ik}\cdot a_{lj}$ 
 
 Cosa rappresenta nei seguenti casi : 
 + $i==j$
@@ -4058,7 +4057,6 @@ Voglia dimostrare che se prendiamo l'insieme di veritici $V_1$ di grado $1$ allo
 
 **Dimostrazione** : 
 >[!todo] 
-
 #### Grado di un Grafo Orientato
 
 Per grafo $G=(V,E)$ *orientato* avremo che possiamo suddividere il grado di un vertice in : 
@@ -4074,7 +4072,7 @@ $$\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m $$
 Per i grafi *orientati* vale anche che all'interno della diagonale di $A$ è presente il numero di cicli che passano su quel vertice
 ### Isomorfismo di grafi
 
-Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$ è un *isomorfismo* se valgono le seguenti prorpietà : 
+Dati due grafi $G_1 = (V_1,E_1)$ e $G_2 = (V_2,E_2)$ allora $\phi : V_1 \to V_2$ è un *isomorfismo* se valgono le seguenti propietà : 
 1. $\phi$ è biunivoca ( o bigettiva )
 2. Deve preservare l'adiacenza tra i vertici : $(u,v) \in E_1 \iff (\phi(u), \phi(v))\in E_2$ 
 
