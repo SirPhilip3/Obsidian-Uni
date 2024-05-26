@@ -4723,7 +4723,7 @@ Distinguiamo 2 momenti nell'algoritmo :
 2. Supponiamo per assurdo che $v$ sia il primo vertice per cui la proprietà è violata
 	Al termine di questa `Relax` verrà che : 
 	$d[u]+w(u,v)=d[v]$ ma per ipotesi avremo che $d[u]+w(u,v)< \delta(s,v)$ 
-	applico quindi la diseguaglianza triangolare ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ nonsarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
+	applico quindi la diseguaglianza triangolare ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ non sarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
 
 #### Proprietà della convergenza
 
@@ -4735,7 +4735,7 @@ Per la proprietà del limite inferiore :
 $$\delta(s,v)\le d[v]$$
 Per la proprietà della `Relax` : 
 $$\delta(s,v)\le d[u]+w(u,v)$$
-Per ipotesi ( $d(u)=\delta(s,u)$ ) avremo che : 
+Per ipotesi ( $d[u]=\delta(s,u)$ ) avremo che : 
 $$\delta(s,v)\le \delta(s,u)+w(u,v)$$
 Poichè siamo su un *cammino minimo* : 
 $$\delta(s,v)=\delta(s,v)$$
