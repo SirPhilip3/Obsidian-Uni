@@ -1957,7 +1957,6 @@ Quindi $A$ e $B$ risultano correlate solamente perchè $A$ è correlata con $C$ 
 >C'era una correlazione dell'85% tra la popolazione di una città tedesca e il numero di cicogne avvistate nella città 
 >Potrebbe portarci a dire che le cicogne portano bambini 
 >Siamo di fronte ad un caso di *correlazione spuria* : in questo caso la variabile $C$ era il numero di case che aumentando a cuasa dell'espansione della città aumentavano anche i camini dove potevano nidificare le cicogne e di conseguenza il numero di cicogne avvistate aumentava
-
 #### Intervalli di confidenza e verifica delle ipotesi
 
 Nel modello di *regressione lineare semplice* il parametro di interesse è il coefficente angolare $\upbeta_1$ 
@@ -1996,7 +1995,6 @@ $$H_0 : \upbeta_1 = 0 \quad \text{contro} \quad H_A : \upbeta_1 \neq 0$$
 La statistica test $T$ è quindi pari a : 
 $$T = \frac{\hat\upbeta_1}{\widehat{SE}(\hat\upbeta_1)}$$
 Se il test porta al *rifiuto* dell'ipotesi nulla allora il predittore è statisticamente significativo
-
 #### Relazioni lineari e non lineari 
 
 Se il test di significatività indica che non si può rifiutare l'ipotesi nulla vuol dire che *non* vi è una *relazione lineare* fra il predittore e la risposta 
@@ -2043,7 +2041,6 @@ dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione
 >![[Pasted image 20240507145255.png]]
 
 Per risolvere questi problemi potremmo utilizzare un modello differente :
-
 #### Modello log-log
 
 Consideriamo una *retta di regressione* con predittore e risposta trasformate su scala logaritmica : 
@@ -2112,7 +2109,6 @@ Se l'*assunzione* di *relazione lineare* fra la risposta e il predittore è vali
 
 >[!todo] 
 >Controlla i precedenti 3 capitoli non ho capito
-
 #### Verifica della normalità
 
 L'assunzione di *normalità* può essere valutata con il grafico *quantile - quantile*
@@ -2144,8 +2140,7 @@ L'assunzione di *omoschedasticità* può essere valutata tramite il grafico a di
 In questo caso vediamo che essendo la *varianza* non costante la dispersione dei dati cambia con l'aumento di $x$ ( non è detto che la varianza aumenti ) 
 
 ![[Pasted image 20240508084634.png]]
-Qui invece vediamo che la varianza è costante e quindi anche i dati sono distribuiti all'interno di un intervallo preciso
-
+Qui invece vediamo che la varianza è costante e quindi anche i dati sono distribuiti all'interno di un intervallo precisozf
 #### Verifica dell'assunzione di indipendenza
 
 L’assunzione di *indipendenza* può essere valutata tramite il grafico a dispersione dei residui rispetto all’indice delle osservazioni
