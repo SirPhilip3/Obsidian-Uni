@@ -4287,7 +4287,7 @@ Il primo vertice di questo taglio deve essere contenuto nell'insieme $S$ e il se
 >Un arco con peso minimo che attraversa un *taglio* si dice **arco leggero**
 
 >[!note] Fatto cruciale
->Se $(u,v)$ è un ( posson essere molteplici ) *arco leggero* allora $(u,v)$ appartiene ad un **MST** 
+>Se $(u,v)$ è un ( possono essere molteplici ) *arco leggero* allora $(u,v)$ appartiene ad un **MST** 
 
 **Tecnica del cuci e taglia** 
 
@@ -4402,7 +4402,7 @@ L'implementazione può essere fatta in 2 modi differenti :
 + **Liste concatenate**
 	+ `make_set(x)` semplicemente inizializza una cella con il valore $x$ e il puntatore `next` a `nullptr`
 	+ `Union(x,y)` semplicemente concateniamo le 2 liste
-	+ `Find_Set(x)` siamo costretti a scorrere l'intera lista
+	+ `Find_Set(x)` siamo costretti a scorrere l'intera lista ( $O(n)$ )
 + **Alberi radicati** 
 	Costruiamo un albero binario radicato rispetto al rappresentate dell'insieme
 	+ `Union(x,y)` visto che utilizziamo gli alberi quando facciamo la `union` è meglio che bilanciamo l'albero altrimenti la ricerca non è efficente ( questo avrà complessità $\log n$ )
