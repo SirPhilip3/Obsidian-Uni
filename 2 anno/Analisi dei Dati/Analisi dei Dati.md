@@ -1287,7 +1287,6 @@ Possiamo risolvere il problema notando che il valore massiamo di $\hat{p}(1-\hat
 Possiamo quindi sostituire $\hat{p}(1-\hat{p})$ con $0.25$ per ottenere la dimensione campionaria :
 $$n\ge 0.25 \bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
 che assicura che il margine d'errore sai inferiore a $\Delta$ ( per qualunque $\hat{p}$ )
-
 #### Piccoli campioni : distributzione $T$
 
 Consideriamo in campione casuale semplice di dimensione $n$ da una distribuzione normale con media $\mu$ e *varianza ignota* $\sigma^2$ 
@@ -1489,7 +1488,7 @@ La probablilità di *rifiutare* $H_0$ quando è *falsa* ( ossia abbiamo fatto al
 $$\beta(\theta)=\Pr(\text{ Rifiutare $H_0$ quando $H_A$ è vera })$$
 La *potenza* dipende da $\theta$ perchè $H_A$ contiene solitamente diversi valori di $\theta$ 
 >[!note] 
->La *potenza* è la probabilità di non commettere un errrore del $II$ tipo 
+>La *potenza* è la probabilità di non commettere un errore del $II$ tipo 
 
 >[!hint] 
 >Spesso i test si costruiscono fissando il *livello di significatività* ossia la probabilità di commettere un errore del $I$ tipo
@@ -1557,8 +1556,6 @@ $$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+
 >[!note] 
 >Sigma $\sigma$ è relativa a $\mu_0$
 
->[!note] 
->In un esercizio quando ho l'ultimo caso invece di usare $\hat p = \frac{n \hat p_1 + m \hat{p}_2}{n+m}$ uso la formula : $\hat p = (\frac{\text{casi positivi 1} + \text{casi positivi 2}}{n + m})$ ha senso è solo una formulazione diversa di quella di prima perchè $\hat{p}$ è la media ossia $\frac{\text{casi positivi}}{n}$
 
 >[!example] 
 >>[!todo] 
@@ -2179,7 +2176,6 @@ Dove :
 >$2$ per la retta di regressione , $k-1$ per modelli polinomiali di ordine $k$ 
 
 Possiamo utilizzare $R^2_{adj}$ per sciegliere che termini tenere nel modello
-
 #### Punti influenti 
 
 All'interno dei dati potremmo avere dei dati che influenzano molto la retta di regressione ma non sono rappresentanti del'insieme completo di dati
