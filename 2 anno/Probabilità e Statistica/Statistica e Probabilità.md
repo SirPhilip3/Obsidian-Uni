@@ -1293,7 +1293,7 @@ qnorm(p, mean , sd)
 >Gli stessi comandi sono utilizzati per la normale standard con $mean=0$ e $sd=1$
 #### Normale Standard
 
-La *normale standard* ( $Z\sim N(0,1)$ ) ha come funzione di  *ripartizione* viene indicata con $\Phi$ 
+La *normale standard* ( $Z\sim N(0,1)$ ) ha come funzione di *ripartizione* viene indicata con $\Phi$ 
 Tutte le altre *normali* possono essere ricondotte alla standard attraverso la *standardizzazine*
 $$X\sim N(\mu,\sigma^2)\implies Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$
 Sappiamo anche che :
