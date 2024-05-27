@@ -3591,6 +3591,26 @@ Dove :
 
 Il quarto caso rappresenta il caso in cui i due caratteri considerati $x_i$ e $x_j$ sono differenti , in questo caso dovremmo cercare la stringa con massima lunghezza in 2 casi : $l\ [\  i+1, j \ ]$ e $l\ [\  i, j-1 \ ]$ , tra i due dovremmo ritornare il massimo che rappresenta la stringa palindroma di massima lunghezza 
 
+```c
+LPS(s) -> int
+	n <- s.length
+	if n <= 1 
+		return n
+	crea matrice dp n*n
+	return LPS_TD(s,dp,1,n)
+
+LPS_TD(s,dp,i,j) -> int
+	if i == j 
+		return 1
+	if i > j
+		return 0
+	if s[i] == s[j]
+		dp[i,j] = 2 + LPS_TD(s,dp,i+1,j-1)
+	else if s[i] != s[j]
+		dp[i,j] = max{LPS_TD(s,dp,i,j-1) , LPS_TD(s,dp,i+1,j)}
+	return d[i,j]
+```
+
 #### 2
 
 Abbiamo un *multinsieme* ( insieme di numeri anche ripetuti ) di numeri naturali , questi sono *prefettamente bilanciati* se posso dividere il multinsieme in due sottoinsiemi che abbiano la stessa somma
@@ -3623,11 +3643,80 @@ Abbiamo due differenti *casi base* :
 
 *Casi ricorsivi* : 
 + $i>0 \ \land \ I[i-1] > sum$ : ciò significa che abbiamo ancora elementi da sommare ( $i>0$ ) ma l'elemento in cui ci troviamo è da solo maggiore della somma richiesta , ciò significa che per risolvere il problema dobbiamo escludere quell'elemento dalla somma ( ossia svolgiamo $\text{isSubSetSum}(i-1,sum)$ ) 
-+ $i>0 \ \land \ I[i-1] \le sum$ : ciò significa che abbiamo ancora elementi da sommare ( $i>0$ ) e l'emento in cui ci troviamo è minore della somma richiesta , ciò significa che abbiamo 2 possibilità : 
++ $i>0 \ \land \ I[i-1] \le sum$ : ciò significa che abbiamo ancora elementi da sommare ( $i>0$ ) e l'elemento in cui ci troviamo è minore della somma richiesta , ciò significa che abbiamo 2 possibilità : 
 	1. Lo prendiamo perchè venga utilizzato nella somma ( $\text{isSubSetSum}(i-1,sum-I[i-1])$ )
 	2. Non lo prendiamo nella somma ( $\text{isSubSetSum}(i-1,sum)$ )
 	Ora l'*or* di questi due risultati ci dirà se almeno uno dei due ritorna `true` , ossia $I$ è *perfettamente bilanciato* 
 
+top-down
+```c
+isSubSetSum(set, n, sum) -> bool : 
+	if sum == 0: 
+		return true 
+	if n == 0 and sum != 0: 
+		return false 
+	if set[n-1] > sum: 
+		return isSubSetSum(set, n-1, sum) 
+	return isSubSetSum(set, n-1, sum) or isSubSetSum(set, n-1, sum - set[n-1])
+```
+bottom-up
+```c
+isSubSetSum(set, n, sum) -> bool
+	create a 2D array dp of size (n+1) x (sum+1) 
+	for i from 0 to n: 
+		dp[i][0] = true 
+	for j from 1 to sum: 
+		dp[0][j] = false 
+	for i from 1 to n: 
+		for j from 1 to sum: 
+			if set[i-1] > j: 
+				dp[i][j] = dp[i-1][j] 
+			else: 
+				dp[i][j] = dp[i-1][j] or dp[i-1][j - set[i-1]] 
+	return dp[n][sum]
+```
+---
+```cpp
+using namespace std;
+
+// A utility function that returns true if there is
+// a subset of arr[] with sun equal to given sum
+bool isSubsetSum(int arr[], int n, int sum,
+				vector<vector<int> >& dp)
+{
+	// Base Cases
+	if (sum == 0)
+		return true;
+	if (n == 0 && sum != 0)
+		return false;
+
+	// return solved subproblem
+	if (dp[n][sum] != -1) {
+		return dp[n][sum];
+	}
+
+	// If last element is greater than sum, then
+	// ignore it
+	if (arr[n - 1] > sum)
+		return isSubsetSum(arr, n - 1, sum, dp);
+
+	/* else, check if sum can be obtained by any of
+		the following
+		(a) including the last element
+		(b) excluding the last element
+	*/
+	// also store the subproblem in dp matrix
+	return dp[n][sum]
+		= isSubsetSum(arr, n - 1, sum, dp)
+			|| isSubsetSum(arr, n - 1, sum - arr[n - 1],
+							dp);
+}
+```
+
+---
+```c
+
+```
 #### 3 
 
 Abbiamo un array di lunghezza $n$ composto da numeri positivi strettamente maggiori di 0 , ci chiediamo quante *sottosequenze* ( gli indici devono essere strettamete maggiori del precedente ma non sucessivi ) ci sono con prodotto $\le k$ 
@@ -3658,7 +3747,11 @@ In questo problema abbiamo un unico *caso base* :
 	La soluzione finale sarà quindi data da : $\text{nsub}(m,j-1) + \text{nsub}(m/a_j\ ,j-1) +1$
 >[!note]
 >Dobbiamo anche aggiungere $1$ poichè l'elemento stesso , visto che è $a_j\le m$ , fa parte dell'insieme delle soluzioni
- 
+
+```c
+
+```
+
 # Grafi
 
 I *grafi* rappresentano il concetto matematico di relazione binaria
