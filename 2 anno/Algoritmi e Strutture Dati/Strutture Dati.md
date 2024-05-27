@@ -4724,7 +4724,6 @@ Distinguiamo 2 momenti nell'algoritmo :
 	Al termine di questa `Relax` verrà che : 
 	$d[u]+w(u,v)=d[v]$ ma per ipotesi avremo che $d[u]+w(u,v)< \delta(s,v)$ 
 	applico quindi la diseguaglianza triangolare ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ non sarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
-
 #### Proprietà della convergenza
 
 In un *cammino minimo* $p=<s,\dots,u,v>$ per una qualche coppia di veritici $u,v\in V$ ad un certo punto , dopo una certa `Relax` avremo che $d[u]=\delta(s,u)$ ( abbiamo trovato il cammino minimo ) allora chiamare `Relax(u,v,w(u,v))` farà sì che $d[v]=\delta(s,v)$ 
