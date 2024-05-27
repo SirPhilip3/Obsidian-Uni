@@ -4814,7 +4814,7 @@ Dimostriamo quindi la seguente effermazione :
 
 **Dimostrazione** per assurdo :
 
-Supponiamo *per assurdo* che esista un vertice $u\in V$ tale che al momento della sua estrazione si avrà : $d[u]\neq \delta(s,u)$  e che $u$ sia il primo vertice per il quale accade 
+Supponiamo *per assurdo* che esista un vertice $u\in V$ tale che al momento della sua estrazione si avrà : $d[u]\neq \delta(s,u)$ e che $u$ sia il primo vertice per il quale accade 
 
 **Osservazioni** : 
 
@@ -4822,7 +4822,7 @@ Supponiamo *per assurdo* che esista un vertice $u\in V$ tale che al momento dell
 >[!note] 
 >$\delta(s,s)$ non può valere $-\infty$ poichè abbiamo supposto di avere solo pesi $\ge 0$ all'interno del grafo $G$
 2. Al momento dell'estrazione di $u$ , $S \neq \emptyset$ perchè in $S$ ( insieme dei vertici estratti ) ci sarà almeno la sorgente $s$
-3. $u$ deve essere *raggiungibile* da $s$ ( altrimenti avremo che $\delta(s,u)=+\infty = d[u]$ )
+3. $u$ deve essere *raggiungibile* da $s$ ( altrimenti avremo che $\delta(s,u)=+\infty = d[u]$ 
 
 Ci poniamo nell'istante in cui $s$ è già stato estratto ( $s\in S$ ) ma $u$ no ( $u \in Q$ dove $Q=V - S$ )
 Visto che $u$ è *raggiungibile* dovrà esistere un *cammino minimo* $p$ tra $u$ e $s$ 
@@ -4836,7 +4836,7 @@ Quindi possiamo dire che :
 	 2. sappiamo che entrambi fanno parte dei vertici già estratti che necessaramente hanno $d[x]=\delta(s,x)$ 
 	 3. Inoltre sappiamo per ipotesi che $u$ è il primo vertice per cui non vale questa proprietà
  5. $d[y]=\delta(s,x)+w(x,y)=\delta(s,y)$ :
-	 1. Questo per la *proprietà della convergenza* in quanto quando abbiamo estratto $x$ svolgiamo la relax su tutti i veritici adiacenti e faremo quindi anche $d[y]=d[x]+w(x,y)$ ( questo viene sempre svolto perchè so di essere su un cammino minimo e quindi sicuramente $d[x]>d[y]+w(x,y)$ ) e dal punto prima abbiamo che $d[y]=\delta(s,x)+w(x,y)$ abbiamo inoltre che questo sarà $\delta(s,y)$ poichè ci troviamo su un cammino minimo
+	 1. Questo per la *proprietà della convergenza* in quanto quando abbiamo estratto $x$ svolgiamo la relax su tutti i vertici adiacenti e faremo quindi anche $d[y]=d[x]+w(x,y)$ ( questo viene sempre svolto perchè so di essere su un cammino minimo e quindi sicuramente $d[x]>d[y]+w(x,y)$ ) e dal punto prima abbiamo che $d[y]=\delta(s,x)+w(x,y)$ abbiamo inoltre che questo sarà $\delta(s,y)$ poichè ci troviamo su un cammino minimo
  6. $d[u]\le d[y]$ :
 	 1. Poichè stiamo per estrarre il nodo $u$ siccome l'algorimo estrae il vertice avente campo $d$ minore avremo che $d[u]\le d[y]$
  7. $\delta(s,y)\le \delta(s,u)$ : 
@@ -4846,7 +4846,7 @@ Quindi possiamo dire che :
 
 Ricostruiamo l'*assurdo* sulla base delle precedenti osservazioni , ci basterà dimostrare che : 
 $$\delta(s,u)\le d[u]\le \delta(s,u)$$
-+ $\delta(s,u)\le d[u]$ per la proprietà del limite inferiore 
++ $\delta(s,u)\le d[u]$ : per la proprietà del limite inferiore 
 + $d[u]\le\delta(s,u)$ : possiamo ricondurci a questo grazie alla precedenti osservazioni : 
 $$d[u]\le d[y] \quad \text{per 6}$$
 $$d[u]\le \delta(s,y) \quad \text{per 5}$$
@@ -4854,7 +4854,7 @@ $$d[u]\le \delta(s,u)\quad \text{per 7}$$
 Possiamo quindi dire che deve essere $d[u]=\delta(s,u)$ e questo è un *assurdo*
 
 >[!note] 
->Possiamo interrompere l'algoritmo prima dell'estrazione dell'ultimo vertice oichè nel momento in cui viene estratto tutti gli altri apparterranno a $S$ e non verrà eseguita nessuna `Relax` 
+>Possiamo interrompere l'algoritmo prima dell'estrazione dell'ultimo vertice poichè nel momento in cui viene estratto tutti gli altri apparterranno a $S$ e non verrà eseguita nessuna `Relax` 
 ##### Dijkstra con pesi negativi 
 
 Come abbiamo detto *Dijkstra* non è corretto se vi sono dei pesi negativi all'interno 
