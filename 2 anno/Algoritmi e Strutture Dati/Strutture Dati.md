@@ -3328,7 +3328,7 @@ L'*edit distance* rappresenta il minimo numero di *modifiche* ( inserimento , ca
 #### LCS
 
 >[!note]
->Una *sottostringa* è diversa da una *sottosequenza* , infatti la *sottostringa* è una sequenza di caratteri *consecutivi* mentere una *sottosequenza* è una sequenza ordinata di caratteri ( mi basta sapere che i loro indici siano strettamente maggiori non che siano consecutivi ( possono in pratica esserci buchi nella sequenza ) )
+>Una *sottostringa* è diversa da una *sottosequenza* , infatti la *sottostringa* è una sequenza di caratteri *consecutivi* mentre una *sottosequenza* è una sequenza ordinata di caratteri ( mi basta sapere che i loro indici siano strettamente maggiori non che siano consecutivi ( possono in pratica esserci buchi nella sequenza ) )
 
 Il problema del *Longest Common Subsequence* si pone il seguente problema : date due sequenze $X=x_1,\dots,x_m$ e $Y=y_1,\dots,y_n$ vogliamo trovare una sequenza $W$ tale che sia sottoseqeuenza di $X$ e $Y$ e che sia di *lunghezza massima* 
 
@@ -3354,7 +3354,7 @@ Controlliamo riusciamo a ridurci ad un problema risolvibile attraverso la *progr
 Dato $X=x_1,\dots,x_m$ consideriamo $k\le m$  con $x^k$ rappresentante il prefisso ( i primi $k$ caratteri di $X$ ) di lunghezza $k$ di $X$
 
 >[!note]
->Per una seqeunza di $m$ caratteri avermo che il numero massimo di prefissi sarà $m+1$ ( $+1$ poichè dobbiamo includere anche la sequenza vuota )
+>Per una seqeunza di $m$ caratteri avremo che il numero massimo di prefissi sarà $m+1$ ( $+1$ poichè dobbiamo includere anche la sequenza vuota )
 >>[!example]
 >>Per $X=ACG$ avremo i seguenti *prefissi* : $X^0=\epsilon$ , $X^1=A$ , $X^2=AC$ , $X^3=ACG$
 
