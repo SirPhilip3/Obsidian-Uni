@@ -2585,7 +2585,7 @@ Distinguiamo quindi in 2 casi :
 
 ## Tabelle ad indirizzamento diretto
 
-Una tabella ad induruzzamento diretto viene utilizzata per memorizzare dati indicizzati da una *chiave* ( un numero ) 
+Una tabella ad indirizzamento diretto viene utilizzata per memorizzare dati indicizzati da una *chiave* ( un numero ) 
 
 **Caratteristiche** : 
 + Sono costituite da un insieme dinamico al fine dell'implementazione delle operazioni di *inserimento* , *ricerca* e *cancellazione*
@@ -2621,7 +2621,6 @@ direct_access_delete(T, x)
 	T[x.Key] = NIL
 ```
 Complessità : $O(1)$
-
 ### Conclusioni
 
 **Vantaggi** : 
@@ -2655,7 +2654,6 @@ Le collisioni si possono risolvere in 2 modi :
 
 Inseriamo tutti gli elementi associati ad una stessa cella in una lista concatenata 
 La cella $j$ contiene un puntatore alla testa della lista se sono memorizzati degli elementi , altrimenti si memorizza $NIL$ 
-
 ##### Operazioni con il concatenamento 
 
 **Inserimento** :
@@ -2804,7 +2802,7 @@ $$h(k)=(k\cdot q \mod 2^w)>> (w-p)$$
 Eseguiamo lo shift a destra di $w-p$ posizioni in modo da inserire degli 0 nelle posizioni lasciate libere in modo che i $p$ bit più significativi di $r_0$ si spostino nelle posizioni $p$ più a destra
 ###### Hashing Randomizzato
 
-Esistono insieme di *funzioni hash* ben costruite tra le quali il programma scieglie casualmente quale utilizzare durante l'esecuzione , in questo modo non è possibile che un attacante sappia la funzione di hash utilizzata per protare a pessime prestazioni  
+Esistono insieme di *funzioni hash* ben costruite tra le quali il programma scieglie casualmente quale utilizzare durante l'esecuzione , in questo modo non è possibile che un attacante sappia la funzione di hash utilizzata per portare a pessime prestazioni  
 ### Indirizzamento aperto
 
 Le tabelle hash ad indirizzamento aperto non utilizzano una struttura dati esterna per gestire le collisioni
@@ -4577,7 +4575,7 @@ Dato un *grafo orientato* $G=(V,E)$ avente pesi sugli archi ( $w: E \to \mathbb{
 Il problema che ora affrontiamo è quello di determinare il cammino minimo tra due vertici 
 
 >[!note] 
->Gli algoritmi che studieremo saranno applicabili sia a grafi non orientati ( possimao convertirli in grafi orientati duplicando gli archi e mettendoli in direzioni opposte con lo stesso peso )
+>Gli algoritmi che studieremo saranno applicabili sia a grafi non orientati ( possiamo convertirli in grafi orientati duplicando gli archi e mettendoli in direzioni opposte con lo stesso peso )
 
 >[!important] Definizione
 >Avendo due $u,v \in V$ : $v$ è raggiungibile da $u$ se $\exists$ un cammino tra $u$ e $v$ altrimenti viene detto *irraggiungibile*   
