@@ -4167,7 +4167,7 @@ Se $G$ è $2$-regolare allora per il *lemma della stretta di mano* avremo che :
 $$\sum_{u\in V} deg(u) = 2\cdot m$$
 $$n\cdot deg(u) = 2\cdot m$$
 $$2\cdot n = 2\cdot m \implies n=m$$
-
+>[!note] 
 Possiamo dimostrare che il numero di vertici di grado dispari è sempre pari
 
 Dividiamo $V$ in due sottoinsiemi di vertici : 
@@ -4191,7 +4191,7 @@ Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sa
 
 Considerando un grafo $G=(V,E)$ *non orientato* senza veritici *isolati* ( $deg()=0$ ) e per cui abbiamo che : $|E|=|V|-1$ 
 
-Voglia dimostrare che se prendiamo l'insieme di veritici $V_1$ di grado $1$ allora $|V_1| \ge 2$ 
+Voglia dimostrare che se prendiamo l'insieme di vertici $V_1$ di grado $1$ allora $|V_1| \ge 2$ 
 
 **Dimostrazione** : 
 >[!todo] 
@@ -4349,7 +4349,7 @@ Condizione *necessaria* perchè un grafo sia *aciclico* : $|E| \le |V|-1$
 + $n=2$ : avremo 2 nodi ed al massimo un arco tra di loro : la condizione è verificata
 
 *Ipotesi Induttiva* : 
-	La propriteà vale per ogni grafo con $|V|=n$ , verifichiamo per $n+1$
+	La proprietà vale per ogni grafo con $|V|=n$ , verifichiamo per $n+1$
 
 *Passo induttivo* : 
 
@@ -4507,7 +4507,7 @@ Possiamo quindi dire che $A\cup (u,v)\subseteq T''$ poichè $A$ era un insieme d
 
 ###### Corollario del Teorema Fondamentale
 
-In pratica è al riscrittura delle ipotesi che però portano alla stessa conclusione : 
+In pratica è la riscrittura delle ipotesi che però portano alla stessa conclusione : 
 
 Se G è un grafo non orientato connesso , pesato allora avremo le seguenti ipotesi : 
 1. $A \subseteq E$ è un sottoinsieme di archi contenuto in qualche $MST$ 
