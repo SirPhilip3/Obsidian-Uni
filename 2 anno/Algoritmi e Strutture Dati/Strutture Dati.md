@@ -4880,7 +4880,8 @@ $$\delta(s,v)=\delta(s,v)$$
 
 *Intuizione* : estrae una radice alla volta e rilasserà gli archi uscenti da quel vertice
 
->[!note] 
+>[!note]
+>Queue rispetto a $d$ -> con array devo trovare il minimo n con heap binario const + ribil = log n  
 >Extract min rispetto a $d$ 
 ```pseudo
 	\begin{algorithm}
