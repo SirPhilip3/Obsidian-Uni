@@ -4462,7 +4462,7 @@ Utilizziamo la tecnica del *cuci e taglia* per la dimostrazione
 
 1. $T' = T \cup (u,v)$ -> si forma un ciclo , sicuramente avremo un arco $(x,y)$ che attraversa il taglio
 2. $T'' = T' - (x,y)$ -> $T''$ è uno *spanning tree* , poichè $(u,v)$ è un arco leggero unico avremo che $w(u,v) < w(x,y)$ 
-	Avremo quindi che : $w(T'')=w(T)-w(u,v)+w(x,y)$ ma essendo che $w(u,v)-w(x,y)<0$ questo è **assurdo** 
+	Avremo quindi che : $w(T'')=w(T)+w(u,v)-w(x,y)$ ma essendo che $w(u,v)-w(x,y)<0$ questo è **assurdo** poichè per ipotesi abbiamo detto che $T$ non era un $MST$
 
 **Osservazione**
 
@@ -4498,7 +4498,7 @@ Sia $T\in MST(G)$ tale che $A \subseteq T$
 
 Possiamo quindi dire che $A\cup (u,v)\subseteq T''$ poichè $A$ era un insieme di archi tranne quelli sul taglio , $(u,v)$ invece è l'arco che abbiamo scielto da aggiungere in $T$ questo inoltre fa parte del taglio , avremo quindi che $A \cup (u,v) \subseteq T''$
 
->[!note] 
+>[!warning] 
 >Se nel metodo *cuci e taglia* facciamo prima il taglia del cuci non è la stessa cosa e porta ad un risultato scorretto
 
 >[!example]
@@ -4682,7 +4682,7 @@ Il campo *key* deve essere aggiornato infatti potremmo avere il seguente caso :
 	Il campo `Key[u]` di ogni nodo viene inizializzato a $\infty$ tranne per la radice che è inizializzata a 0 
 	Il campo $\pi$ di ogni nodo viene inizializzato a `NIL` 
 + *Estrazione* : 
-	Finchè $Q$ non è vuoto viene estratto il minimo da $Q$ cioè il vertice del grafo che non è ancora stato estratto avente campo `Key` minore.
+	Finchè $Q$ non è vuoto viene estratto il minimo da $Q$ cioè il vertice del grafo che non è ancora stato estratto avente campo *`Key` minore.*
 	Questo prevede anche l'aggiornamento del *taglio* che divide i nodi appartenenti a $Q$ sai nodi $V-Q$
 + *Aggiornamento campi* :
 	L'estrazione di un elemento di $Q$ va aggiunto all'insieme $V-Q$ , questo porta alla conseguenza che il *taglio* va aggiornato
@@ -4700,7 +4700,7 @@ Poichè ogni ciclo del `while` aggiungiamo un arco leggero avremo che sicurament
 
 + L'inizializzazione ha complessità $O(n)$ 
 + *Extract_Min* : visto che il minimo si trova sulla radice dell'albero dovremo aggiornare l'albero , questo costa $\log n$
-+ Il *for each* viene svolto per il numero di archi adiacenti a $u$ ( ossia il grado di quel vertice ) , visto che questo viene svolto per tutti i nodi allora verrà svolto $2 \cdot m$ 
++ Il *for each* viene svolto per il numero di archi adiacenti a $u$ ( ossia il grado di quel vertice ) , visto che questo viene svolto per tutti i nodi allora verrà svolto $2 \cdot m$ ( visto che potrei dover modificare le key potrei anche dover aggiornare la coda $Q$ che costa $log \ n$ )
 
 Avremo quindi in totale che la complessità sarà : 
 $$n+n\log n + 2m\log n$$
@@ -4860,10 +4860,10 @@ Distinguiamo 2 momenti nell'algoritmo :
 2. Supponiamo per assurdo che $v$ sia il primo vertice per cui la proprietà è violata
 	Al termine di questa `Relax` verrà che : 
 	$d[u]+w(u,v)=d[v]$ ma per ipotesi avremo che $d[u]+w(u,v)< \delta(s,v)$ 
-	applico quindi la diseguaglianza triangolare ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ non sarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
+	applico quindi la *diseguaglianza triangolare* ottenendo $d[u]+w(u,v) \le \delta(s,u)+w(u,v)$ che risulterà essere $d[u]< \delta(s,u)$ ma questo è *assurdo* perchè allora $v$ non sarebbe il primo vertice ad infrangere la proprietà ma sarebbe $u$
 #### Proprietà della convergenza
 
-In un *cammino minimo* $p=<s,\dots,u,v>$ per una qualche coppia di veritici $u,v\in V$ ad un certo punto , dopo una certa `Relax` avremo che $d[u]=\delta(s,u)$ ( abbiamo trovato il cammino minimo ) allora chiamare `Relax(u,v,w(u,v))` farà sì che $d[v]=\delta(s,v)$ 
+In un *cammino minimo* $p=<s,\dots,u,v>$ per una qualche coppia di vertici $u,v\in V$ ad un certo punto , dopo una certa `Relax` avremo che $d[u]=\delta(s,u)$ ( abbiamo trovato il cammino minimo ) allora chiamare `Relax(u,v,w(u,v))` farà sì che $d[v]=\delta(s,v)$ 
 
 **Dimostrazione** :
 
@@ -4880,7 +4880,7 @@ $$\delta(s,v)=\delta(s,v)$$
 *Intuizione* : estrae una radice alla volta e rilasserà gli archi uscenti da quel vertice
 
 >[!note]
->Queue rispetto a $d$ -> con array devo trovare il minimo n con heap binario const + ribil = log n  
+>Queue rispetto a $d$ -> con array devo trovare il minimo n con heap binario const + ribil = logn  
 >Extract min rispetto a $d$ 
 ```pseudo
 	\begin{algorithm}
@@ -4913,7 +4913,7 @@ $$\delta(s,v)=\delta(s,v)$$
 		1. Se è stata implementata con un *heap binario* : 
 			La `Extract_min` avrà complessità $\log n$ poichè dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $O(n\log n)$
 		3. Se è stata implementata con un *array lineare* :
-			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ 
+			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ ( in totale $O(n^2)$poichè viene svolto per $n$ volte )
 	3. Righe `8-9` : il ciclo `for` viene svolto tante volte quanto l'*out-degree* del nodo appena estratto $u$ , notiamo che visto che viene svolto per $n$ volte all'interno del ciclo `while` possiamo trovare il numero di iterazioni totali risolvendo : $$\sum_{i=1}^n \text{out-deg}(i)=m$$
 	  All'interno del ciclo `for` svolgiamo la `Relax` , la sua complessità dipende dal'implementazione di $Q$ , avremo quindi 2 casi :
 		1. *heap binario* : 
@@ -4950,7 +4950,7 @@ Allora alla fine dell'algortimo di *Dijkstra* si ha :
 >[!note] 
 >Non dimostreremo il secondo punto
 
-Dimostriamo quindi la seguente effermazione : 
+*Dimostriamo* quindi la seguente effermazione : 
 	$\forall u \in V$ all'atto dell'estrazione di $u$ dalla coda $Q$ risultetà che $d[u]=\delta(s,u)$ ( se questo è vero all'estrazione allora dovrà essere vero anche alla fine dell'algoritmo poichè sappiamo che quando $d[u]=\delta(s,u)$ questo non potrà più cambiare per come è scritta la `Relax`)
 
 **Dimostrazione** per assurdo :
@@ -4969,12 +4969,14 @@ Ci poniamo nell'istante in cui $s$ è già stato estratto ( $s\in S$ ) ma $u$ no
 Visto che $u$ è *raggiungibile* dovrà esistere un *cammino minimo* $p$ tra $u$ e $s$ 
 Inoltre visto che $u$ si trova in $Q$ avremo necessariamente un arco che attraversa il taglio tra gli insiemi $S$ e $Q$ 
 
+![[Pasted image 20240528231551.png]]
+
 Prendiamo quindi i vertici $x$ e $y$ che delimitano l'arco che attraversa questo taglio
 
 Quindi possiamo dire che :
  4. $d[x]=\delta(s,x)$ : visto che :
 	 1. ci troviamo in un cammino minimo e sottocammini di un cammino minimo sono anch'essi minimi 
-	 2. sappiamo che entrambi fanno parte dei vertici già estratti che necessaramente hanno $d[x]=\delta(s,x)$ 
+	 2. sappiamo che entrambi fanno parte dei vertici già estratti che necessariamente hanno $d[x]=\delta(s,x)$ 
 	 3. Inoltre sappiamo per ipotesi che $u$ è il primo vertice per cui non vale questa proprietà
  5. $d[y]=\delta(s,x)+w(x,y)=\delta(s,y)$ :
 	 1. Questo per la *proprietà della convergenza* in quanto quando abbiamo estratto $x$ svolgiamo la relax su tutti i vertici adiacenti e faremo quindi anche $d[y]=d[x]+w(x,y)$ ( questo viene sempre svolto perchè so di essere su un cammino minimo e quindi sicuramente $d[x]>d[y]+w(x,y)$ ) e dal punto prima abbiamo che $d[y]=\delta(s,x)+w(x,y)$ abbiamo inoltre che questo sarà $\delta(s,y)$ poichè ci troviamo su un cammino minimo
@@ -5064,7 +5066,7 @@ Se $\delta(s,u) \in \mathbb{R}$ allora esisterà un cammino $p=<x_0 = s , x_1 , 
 
 $p$ può avere al massimo $n-1$ archi in totale ( visto che è *semplice* ) nel caso in cui attraversa tutti i vertici del grafo
 
-Poichè sottocammini di un cammino minimo sono anch'essi minimi possiamo applicare il teorema della convergenza tante volte quante sono le passate dell'algoritmo e verificare che alla fine dell'algoritmo avremo $d[u]=\delta(s,u)$
+Poichè sottocammini di un cammino minimo sono anch'essi minimi possiamo applicare il teorema della *convergenza* tante volte quante sono le passate dell'algoritmo e verificare che alla fine dell'algoritmo avremo $d[u]=\delta(s,u)$
 
 ![[DimoBellmanFord.excalidraw]]
 
@@ -5168,7 +5170,7 @@ Ciò che fa l'algortimo è il seguente :
 Prende dalla matrice $k-1$ i valori di $d_{ij}$ che viene confrontato con la somma dei valori trovati sulla stessa matrice a $d_{ik}$ e $d_{kj}$ , il minimo tra questi due valori verrà scritto nella nuova matrice $k$
 
 >[!todo] 
->Sopiegazione un pò di merda
+>Migliora spiegazione
 
 **Complessità** : 
 
