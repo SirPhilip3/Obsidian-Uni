@@ -3715,7 +3715,41 @@ bool isSubsetSum(int arr[], int n, int sum,
 
 ---
 ```c
+// Returns true if arr[] can be partitioned
+// in two subsets of equal sum, otherwise false
+bool findPartiion(int arr[], int n)
+{
+	int sum = 0;
+	int i, j;
 
+	// Calculate sum of all elements
+	for (i = 0; i < n; i++)
+		sum += arr[i];
+
+	if (sum % 2 != 0)
+		return false;
+
+	bool part[sum / 2 + 1][n + 1];
+
+	// initialize top row as true
+	for (i = 0; i <= n; i++)
+		part[0][i] = true;
+
+	// initialize leftmost column,
+	// except part[0][0], as 0
+	for (i = 1; i <= sum / 2; i++)
+		part[i][0] = false;
+
+	// Fill the partition table in bottom up manner
+	for (i = 1; i <= sum / 2; i++) {
+		for (j = 1; j <= n; j++) {
+			part[i][j] = part[i][j - 1];
+			if (i >= arr[j - 1])
+				part[i][j] = part[i][j] || part[i - arr[j - 1]][j - 1];
+		}
+	}
+	return part[sum / 2][n];
+}
 ```
 #### 3 
 
@@ -3740,7 +3774,7 @@ In questo problema abbiamo un unico *caso base* :
 >[!note]
 >$a_j$ rappresenta il $j$-esimo elemento del vettore di input
 
-+ $a_j >m \land j>0$ : ciò significa che l'elemento che stiamo ispezionando è maggiore del valore da trovare , visto che vi sono ancora elementi da visitare ( $j>0$ ) possiamo non scieglere l'elemento per essere incluso nella moltiplicazione e continuare a cercare : $\text{nsub}(m,j-1)$ 
++ $a_j >m \land j>0$ : ciò significa che l'elemento che stiamo ispezionando è maggiore del valore da trovare , visto che vi sono ancora elementi da visitare ( $j>0$ ) possiamo non sciegliere l'elemento per essere incluso nella moltiplicazione e continuare a cercare : $\text{nsub}(m,j-1)$ 
 + $a_j \le m\land j > 0$ : ciò significa che abbiamo ancora elementi e l'elemento che stiamo ispezionando è minore del valore da trovare , ciò significa che abbiamo 2 casi : 
 	1. Lo includiamo nella moltiplicazione : ciò significa che dovremo toglierlo dalla moltiplicazione e continuare a cercare ( visto che abbiamo ancora elementi ) -> $\text{nsub}(m/a_j,j-1)$
 	2. Non lo includiamo nella moltiplicazione : ciò significa che dovremo cercare all'interno della rimanente parte del vattore -> $\text{nsub}(m,j-1)$
@@ -3749,6 +3783,22 @@ In questo problema abbiamo un unico *caso base* :
 >Dobbiamo anche aggiungere $1$ poichè l'elemento stesso , visto che è $a_j\le m$ , fa parte dell'insieme delle soluzioni
 
 ```c
+Funzione num_subsequences(a, k):
+    Inizializza n come la lunghezza di a
+    Inizializza dp come una matrice di zeri di dimensione (k+1) x (n+1)
+    
+    Per ogni i da 0 a n:
+        Imposta dp[0][i] a 1
+
+    Per ogni i da 1 a k:
+        Per ogni j da 1 a n:
+            Se a[j-1] è maggiore di i:
+                Imposta dp[i][j] a dp[i][j-1]
+            Altrimenti:
+                Imposta dp[i][j] a dp[i][j-1] + dp[i / a[j-1]][j-1] + 1
+
+    Ritorna dp[k][n]
+Fine Funzione
 
 ```
 
