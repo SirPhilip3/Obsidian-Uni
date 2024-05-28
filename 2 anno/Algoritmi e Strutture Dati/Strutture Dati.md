@@ -2459,13 +2459,13 @@ counting_sort(array A, array B, int n, int k)
     for(int i=0;i<k; i++) 
 	    C[i] = 0;
     // ASSUMPTION: All elements in arr is < k
-    for(int i=0;i<size;i++) 
-	    C[A[i]]++;
+    for(int j=0;j<size;j++) 
+	    C[A[j]]++;
     for(int i=k-1;i>0;i--) 
 	    C[i-1] += C[i];
     for(int j=0;j<size;j++) {
         B[C[A[j]]] = A[j];
-        C[a[j]]--;
+        C[A[j]]--;
 ```
 
 #### Spiegazione
@@ -3932,7 +3932,6 @@ Un *grafo* si dice *connesso* se presi due vertici del grafo esiste almeno un ca
 ![[camminiGrafo.excalidraw]]
 E' un *grafo connesso*
 
-
 Un *grafo* *disconnesso* invece presenta almeno una coppia di vertici non raggiungibili da un cammino
 
 >[!example]
@@ -3989,7 +3988,7 @@ Ogni posizione dell'array indica un *nodo* del grafo da cui partono la lista deg
 ![[Pasted image 20240320082151.png]]
 
 **Vantaggi** : 
-+ L'occupazione di memoria creace linearmente rispetto ad $n$
++ L'occupazione di memoria cresce linearmente rispetto ad $n$
 
 **Svantaggi** : 
 + I tempi di accesso non sono ottimi : 
@@ -4136,7 +4135,7 @@ Se rappresentiamo il *grafo* con una matrice di adiacenza il *grado* può essere
 
 #### Moltiplicazioni della martice di adiacenza
 
-Consideriamo un grafo $G=(V,E)$ *non orientato* allora avremo che $A_G$ sarà la *matrice di adiacenza* di $G$ , cosa rappresenterà $A \times A = A^2 = (a_{ij}^{(2)}) = \sum_{l=1}^n a_{ik}\cdot a_{lj}$ 
+Consideriamo un grafo $G=(V,E)$ *non orientato* allora avremo che $A_G$ sarà la *matrice di adiacenza* di $G$ , cosa rappresenterà $A \times A = A^2 = (a_{ij}^{(2)}) = \sum_{l=1}^n a_{il}\cdot a_{lj}$ 
 
 Cosa rappresenta nei seguenti casi : 
 + $i==j$
@@ -4294,7 +4293,7 @@ Abbiamo che :
 
 La *base* dell'induzione sarà : 
 	$$n=2 \quad |E|=1 \ \ \ |V| = 2 \quad |E|=|V|-1 \quad \text{come volevasi dimostrare}$$
-Supponiamo ora che la proprietà valga per un grafo con $n-1$ vertici e dimostriamo la proprietà per $n$ vertici
+Supponiamo ora che la propietà valga per un grafo con $n-1$ vertici e dimostriamo la proprietà per $n$ vertici
 
 *Passo induttivo* : per $n\ge 3$
 
@@ -4320,7 +4319,7 @@ $$|E|\ge |V|-1$$
 >
 >Possiamo vedere infatti che la condizione precedente è verificata ossia $|E|\ge |V|-1 = 5\ge 6-1$ ma il grafo non è connesso 
 
-#### Condizione sufficente per la connettività di un grafo
+#### Condizione **sufficente** per la connettività di un grafo
 
 Se $G=(V,E)$ è un grafo non orientato allora questo sarà connesso se il grado di ogni vertice è : 
 $$deg(u)\ge \frac{n-1}{2}$$
@@ -4355,12 +4354,12 @@ Condizione *necessaria* perchè un grafo sia *aciclico* : $|E| \le |V|-1$
 
 Rimuoviamo un vertice $Z$ dal grafo $G$ con $n=|V|$ , avremo quindi $G' = [V -\{Z\}]$ ( sottografo indotto )
 Questo è composto da $k$ componenti connesse $V_1,V_2,\dots,V_k$ 
-Per ogni componente connessa varrà quindi l'ipotesi induttiva $|E_i|\le |V_1|-1$ 
+Per ogni componente connessa varrà quindi l'ipotesi induttiva $|E_i|\le |V_i|-1$ 
 Ricordiamoci che dobbiamo arrivare alla seguente equazione : $|E|\le |V|-1$
 Notiamo che $|E|$ può essere riscritto nel seguente modo : 
 $$|E|=\sum^{k}_{i=1} |E_i|+\deg(Z)$$
 Considerando $|E_i|\le |V_i|-1$ possiamo scrivere :
-$$|E|=\sum^{k}_{i=1} (|V_i-1|)+\deg(Z)$$
+$$|E|=\sum^{k}_{i=1} (|V_i|-1)+\deg(Z)$$
 $$|E|=\sum^{k}_{i=1} |V_i| -k+\deg(Z)$$
 $$|E|=|V| -1 -k+\deg(Z)$$
 Questo poichè la somma delle cardinalità dei componenti connessi risulta essere tutti i nodi di $|V|$ meno quello che abbiamo tolto all'inizio 
@@ -4408,7 +4407,7 @@ Dato un grafo possono esitere più alberi di copertura
 #### Alberi di copertura minimi
 
 Dato un grafo $G(V,E,\omega)$ dove $\omega$ rappresenta una funzione peso $\omega : E\to R$ relativa agli archi di $G$ 
-Allora l'*albero di copertura minimo* ( *MInimum Spanning Tree* ( *MST* ) ) DI $G$ è un albero di copertura avente la somma dei pesi sugli archi minima 
+Allora l'*albero di copertura minimo* ( *Minimum Spanning Tree* ( *MST* ) ) di $G$ è un albero di copertura avente la somma dei pesi sugli archi minima 
 
 >[!example] 
 ![[MST.excalidraw]]
@@ -4452,7 +4451,7 @@ $T$ è un **MST** di $G$
 >[!important] 
 Questo ci dice che se $(u,v)$ è un arco leggero che attraversa $(S,V-S)\implies \exists\ T \in MST(G)\ \text{t.c.}\ (u,v)\in T$  
 
-Dimostriamo ora che se $(u,v)$ è l'*unico* arco leggero che attravversa il taglio $(S,V-S)$
+Dimostriamo ora che se $(u,v)$ è l'*unico* arco leggero che attraversa il taglio $(S,V-S)$
 $$\implies \forall\ T \in MST(G) \ \text{t.c.} \ (u,v) \in T$$
 Ossia tutti gli alberi di copertura minimi conterranno quell'arco
 
