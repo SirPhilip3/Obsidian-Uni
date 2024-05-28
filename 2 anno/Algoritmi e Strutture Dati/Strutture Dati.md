@@ -3610,10 +3610,9 @@ LPS_TD(s,dp,i,j) -> int
 		dp[i,j] = max{LPS_TD(s,dp,i,j-1) , LPS_TD(s,dp,i+1,j)}
 	return d[i,j]
 ```
-
 #### 2
 
-Abbiamo un *multinsieme* ( insieme di numeri anche ripetuti ) di numeri naturali , questi sono *prefettamente bilanciati* se posso dividere il multinsieme in due sottoinsiemi che abbiano la stessa somma
+Abbiamo un *multinsieme* ( insieme di numeri anche ripetuti ) di numeri naturali , questi sono *prefettamente bilanciati* se posso dividere il multinsieme in *due* sottoinsiemi che abbiano la stessa somma
 
 >[!example] Comprendiamo il problema
 >Abbiamo per esempio l'insieme $I=1,7,3,3$ , questo può essere diviso in $I_1 =1,3,3$ e $I_2=7$ , avendo la stessa somma ( $7$ ) possiamo dire che $I$ è *perfettamente bilanciato*
@@ -3648,7 +3647,7 @@ Abbiamo due differenti *casi base* :
 	2. Non lo prendiamo nella somma ( $\text{isSubSetSum}(i-1,sum)$ )
 	Ora l'*or* di questi due risultati ci dirà se almeno uno dei due ritorna `true` , ossia $I$ è *perfettamente bilanciato* 
 
-top-down
+recursive
 ```c
 isSubSetSum(set, n, sum) -> bool : 
 	if sum == 0: 
@@ -3675,14 +3674,11 @@ isSubSetSum(set, n, sum) -> bool
 				dp[i][j] = dp[i-1][j] or dp[i-1][j - set[i-1]] 
 	return dp[n][sum]
 ```
----
+--- memorization
 ```cpp
-using namespace std;
-
 // A utility function that returns true if there is
 // a subset of arr[] with sun equal to given sum
-bool isSubsetSum(int arr[], int n, int sum,
-				vector<vector<int> >& dp)
+bool isSubsetSum(int arr[], int n, int sum, vector<vector<int>>& dp)
 {
 	// Base Cases
 	if (sum == 0)
@@ -3690,13 +3686,12 @@ bool isSubsetSum(int arr[], int n, int sum,
 	if (n == 0 && sum != 0)
 		return false;
 
-	// return solved subproblem
+	// abbiamo risolto un sottoproblema
 	if (dp[n][sum] != -1) {
 		return dp[n][sum];
 	}
 
-	// If last element is greater than sum, then
-	// ignore it
+	// If last element is greater than sum, then ignore it
 	if (arr[n - 1] > sum)
 		return isSubsetSum(arr, n - 1, sum, dp);
 
@@ -3706,14 +3701,11 @@ bool isSubsetSum(int arr[], int n, int sum,
 		(b) excluding the last element
 	*/
 	// also store the subproblem in dp matrix
-	return dp[n][sum]
-		= isSubsetSum(arr, n - 1, sum, dp)
-			|| isSubsetSum(arr, n - 1, sum - arr[n - 1],
-							dp);
+	return dp[n][sum] = isSubsetSum(arr, n - 1, sum, dp)
+			|| isSubsetSum(arr, n - 1, sum - arr[n - 1], dp);
 }
 ```
-
----
+--- 
 ```c
 // Returns true if arr[] can be partitioned
 // in two subsets of equal sum, otherwise false
@@ -3725,7 +3717,7 @@ bool findPartiion(int arr[], int n)
 	// Calculate sum of all elements
 	for (i = 0; i < n; i++)
 		sum += arr[i];
-
+	// non posso dividere in due se la somma di tutti i numeri è dispari
 	if (sum % 2 != 0)
 		return false;
 
@@ -3782,24 +3774,29 @@ In questo problema abbiamo un unico *caso base* :
 >[!note]
 >Dobbiamo anche aggiungere $1$ poichè l'elemento stesso , visto che è $a_j\le m$ , fa parte dell'insieme delle soluzioni
 
+bottom-up
 ```c
-Funzione num_subsequences(a, k):
-    Inizializza n come la lunghezza di a
-    Inizializza dp come una matrice di zeri di dimensione (k+1) x (n+1)
-    
-    Per ogni i da 0 a n:
-        Imposta dp[0][i] a 1
+int productSubSeqCount(vector<int> &arr, int k)
+{
+    int n = arr.size();
+    int dp[k + 1][n + 1] = 0;
 
-    Per ogni i da 1 a k:
-        Per ogni j da 1 a n:
-            Se a[j-1] è maggiore di i:
-                Imposta dp[i][j] a dp[i][j-1]
-            Altrimenti:
-                Imposta dp[i][j] a dp[i][j-1] + dp[i / a[j-1]][j-1] + 1
-
-    Ritorna dp[k][n]
-Fine Funzione
-
+    for (int i = 1; i <= k; i++) {
+        for (int j = 1; j <= n; j++) {
+        
+            // number of subsequence using j-1 terms
+            dp[i][j] = dp[i][j - 1];
+            
+            // if arr[j-1] > i it will surely make product greater
+            // thus it won't contribute then
+            if (arr[j - 1] <= i)
+                // number of subsequence using 1 to j-1 terms
+                // and j-th term
+                dp[i][j] += dp[i/arr[j-1]][j-1] + 1;
+        }
+    }
+    return dp[k][n];
+}
 ```
 
 # Grafi
