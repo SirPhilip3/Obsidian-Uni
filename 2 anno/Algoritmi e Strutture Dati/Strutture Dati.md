@@ -4879,6 +4879,9 @@ $$\delta(s,v)=\delta(s,v)$$
 #### Dijkstra
 
 *Intuizione* : estrae una radice alla volta e rilasserà gli archi uscenti da quel vertice
+
+>[!note] 
+>Extract min rispetto a $d$ 
 ```pseudo
 	\begin{algorithm}
 	\caption{DIJKSTRA(G,w,s)}
@@ -5059,7 +5062,7 @@ Se $\delta(s,u) \in \mathbb{R}$ allora esisterà un cammino $p=<x_0 = s , x_1 , 
 >[!note] 
 >Esiste sempre un cammino minimo *semplice* poichè visto che non esitono cicli negativi questi possono essere solo $\ge 0$ e per questo possono sempre essere eliminati dal cammino minimo
 
-$p$ può avere al massimo $n-1$ archi in totale ( visto che è *semplice* ) nel caso in cui attraversa tutti i veritici del grafo
+$p$ può avere al massimo $n-1$ archi in totale ( visto che è *semplice* ) nel caso in cui attraversa tutti i vertici del grafo
 
 Poichè sottocammini di un cammino minimo sono anch'essi minimi possiamo applicare il teorema della convergenza tante volte quante sono le passate dell'algoritmo e verificare che alla fine dell'algoritmo avremo $d[u]=\delta(s,u)$
 
@@ -5074,7 +5077,6 @@ Utilizziamo la *disuguaglianza triangolare* :
 $$\delta(s,v)\le \delta(s,u)+w(u,v)$$
 Ma avendo dimostrato nella dimostrazione precedente che $d[u]=\delta(s,u)$ e $d[v]=\delta(s,v)$ possiamo concludere che : 
 $$d[v]\le d[u]+w(u,v)$$
-
 **Dimostrazione** 2
 
 Dimostriamolo per *assurdo* : 
@@ -5141,7 +5143,7 @@ e $w_{ij}$ per indicare l'elemento della matrice alla righa $i$ e colonna $j$ , 
 $$w_{ij}=\begin{cases}
 0 & \text{se} \ i =j \\ w(i,j) & \text{se}\ i\ne j \land (i,j)\in E \\ \infty & \text{se}\ i\ne j \land (i,j)\notin E
 \end{cases}$$
-L'algortimo restituirà un'ulteriore matrice detta *matrice delle distanze* $D$ per cui alla fine dell'algoritmo avermo che $d_{ij}=\delta(i,j)$ ( ossia la distanza vera tra $i$ e $j$ ) 
+L'algortimo restituirà un'ulteriore matrice detta *matrice delle distanze* $D$ per cui alla fine dell'algoritmo avremo che $d_{ij}=\delta(i,j)$ ( ossia la distanza vera tra $i$ e $j$ ) 
 
 ```pseudo
 	\begin{algorithm}
