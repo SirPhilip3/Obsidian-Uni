@@ -5478,9 +5478,9 @@ Un'altra divisione dei *problemi* può essere fatta a seconda di cosa calcolano 
 >
 >Un grafo non orientato è detto hamiltoniano se ha un ciclo hamiltoniano al suo interno , ossia se esite un cammino che tocchi tutti i vertici 
 >
->Il problema del grafo *hamiltoniamo* ha le seguenti due verioni : 
+>Il problema del grafo *hamiltoniamo* ha le seguenti due versioni : 
 >+ la decisionale che determina se un grafo è *hamiltoniano*
->+ la versione di ottimizzione invece resituisce il ciclo *hamiltoniamo* presente
+>+ la versione di ottimizzione invece restituisce il ciclo *hamiltoniamo* presente
 
 >[!important] 
 >Se abbiamo un problema di ottimizzazione e consideriamo la sua versione decisionale allora avranno la stessa complessità
@@ -5543,7 +5543,7 @@ Il *complemento* di un *problema decisionale* $\mathcal{P}$ è il problema $\mat
 Questa proprietà è simile a quella che sfruttiamo per ricondurci ad un problema già risolto quando cerchiamo di risolvere un problema nuovo 
 
 In questo caso parliamo di *riducibilità polinomiale* ossia :
-	Dati due problemi decisionali $\mathcal{P}_1$ e $\mathcal{P_2}$ diciamo che $\mathcal{P_1}$ è riducibile polinomialmente al problema $\mathcal{P_2}$ ( $\mathcal{P_1} \le_P \mathcal{P_2}$ ) se esiste un algoritmo polinomiale che mappi le istanze del problema $\mathcal{P_1}$ in istanze *equivalenti* ( ossia da istanze positive a positive o da negative a negative ) del problema $\mathcal{P_2}$ 
+	Dati due problemi decisionali $\mathcal{P}_1$ e $\mathcal{P_2}$ diciamo che $\mathcal{P_1}$ è riducibile polinomialmente al problema $\mathcal{P_2}$ ( $\mathcal{P_1} \le_P \mathcal{P_2}$ ) se esiste un algoritmo polinomiale che mappi le istanze del problema $\mathcal{P_1}$ in istanze *equivalenti* ( ossia da istanze positive a positive o da negative a negative ) del problema $\mathcal{P_2}$ ( $P_1$ non è più difficile di $P_2$ )
 
 Potremmo quindi dire che : 
 + Se $\mathcal{P_1} \le_P \mathcal{P_2}$ e $\mathcal{P_2} \in P$ allora anche $\mathcal{P_1}\in P$ 
