@@ -22,7 +22,7 @@ Il sistema operativo deve *gestire la competizione* ( *race condition* ) per le 
 >[!example]
 >+ Le stampe su una stampante devono essere accodate e non "mischiate"
 >+ L'accesso al disco deve garantire che diversi processi non scrivano inavvertitamente sullo stesso blocco
->+ Garantire l'equietà per la distribuzione del tempo di CPU ai processi
+>+ Garantire l'equità per la distribuzione del tempo di CPU ai processi
 
 Il sistema operativo *virtualizza* l'hardware in modo da dare l'impressione ad ogni processo di avere l'intera macchina a disposizione , i processi non si accorgono di altri processi in esecuzione contemporaneamente ( possiamo vedere solo se la nostra esecuzione è rallentata ma non conosciamo cosa causa questo rallentamento )
 
@@ -58,7 +58,7 @@ I processi dispongono di funzioni che gli permettono di comunicare tra di loro :
 + `{c} recieve(&m)`
 	Riceve un messaggio e lo salva in `&m`
 
-Queste due funzioni primitive vengono realizzate attraverso chianate di sistema ( *System Call* ) dette *InnerProcess Communication* ( **IPC** )
+Queste due funzioni primitive vengono realizzate attraverso chiamate di sistema ( *System Call* ) dette *Inter Process Communication* ( **IPC** )
 
 Il mittente e destinatario possono essere comunicati *direttamente* o *indirettamente*
 #### Nominazione Diretta
@@ -190,11 +190,11 @@ Ci sono due possibilità :
 La chiamate a sistema `fork` permette di creare un processo duplicato del processo genitore 
 
 >[!note]
->`fork` appartiene allo standard *POSIX* ( *Portable Operating System Interface* ) di *IEEE* ( *Institute of Eletrical and Elctronics Engineers* ) sraà quindi utilizzabile in tutti i sistemi che supportano *POSIX* 
+>`fork` appartiene allo standard *POSIX* ( *Portable Operating System Interface* ) di *IEEE* ( *Institute of Eletrical and Elctronics Engineers* ) sarà quindi utilizzabile in tutti i sistemi che supportano *POSIX* 
 
 La chiamata `fork` crea un nuovo processo che :
 + condivide l'area codice del processo genitore ( essendo immutable , read-only )
-+ Utilizza una *copia* dell'area dati del processo genitore ( potrebbero essere modificati dal processo se non facessimo una copia potrebbe portare ad infonsistenze )
++ Utilizza una *copia* dell'area dati del processo genitore ( potrebbero essere modificati dal processo se non facessimo una copia potrebbe portare ad inconsistenze )
 
 Per sapere che abbiamo creato un processo figlio basta osservare il valore dato in ritorno dalla chiamata `fork` :
 + se il valore è $0$ allora so di essere il processo figlio
