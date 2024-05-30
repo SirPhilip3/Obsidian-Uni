@@ -327,7 +327,6 @@ Se eseguiamo questo codice in un sistema *multicore* questi verrano eseguiti in 
 Mentre se il sistema è *single-core* i due processi vengono eseguiti in time-sharing portando ad un output suddiviso in blocchi di esecuzione dei due processi  
 
 >[!todo]
-
 ### Exec
 
 Per eseguire un programma differente da quello che ha effettuato la `frok` si utilizzala chiamata di sistema `exec`
@@ -397,7 +396,7 @@ Se invece runniamo il seguente comando :
 ```c
 execlp("ls2","ls2","-l",NULL);
 ```
-Riitorneremo un errore in quanto `{bash}ls2` non è un comando riconosciuto , in questo caso infatti il risultato sarà : 
+Ritorneremo un errore in quanto `{bash}ls2` non è un comando riconosciuto , in questo caso infatti il risultato sarà : 
 ```bash
 provo a eseguire ls
 non scrivo questo!
@@ -420,7 +419,7 @@ non scrivo questo!
 ```
 
 >[!warning]
->Qualora si verificassero errori all'interno del programma invocato l'`exec` *non fallisce* , quindi non ritorna e non esegue nessuna istruzione del programma che l'ha invocata
+>Qual'ora si verificassero errori all'interno del programma invocato l'`exec` *non fallisce* , quindi non ritorna e non esegue nessuna istruzione del programma che l'ha invocata
 ```c
 if (execlp("ls","ls","-z",NULL) == -1) {
       perror("errore durante la exec");
