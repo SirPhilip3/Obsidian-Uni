@@ -391,7 +391,7 @@ $$\mathbb{P}[A_{i_k}\cap\dots \cap A_{i_k}]=\mathbb{P}[A_{1_k}]\cdot\dotsc\cdot\
 
 Se $C_1, C_2, \dotsc$  Sono una partizione dell'evento certo , la probabilità di un qualsiasi evento $A$ può essere scritta come :
 $$\mathbb{P}[A]=\sum_i\mathbb{P}[A\cap C_i]=\sum_i\mathbb{P}[C_1]\cdot\mathbb{P}[A|C_i]$$
-La prima uguaglianz aderiva dal fatto che l'evento $A$ è l'unione delle intersezioni tra l'evento stesso e le partizioni :
+La prima uguaglianza deriva dal fatto che l'evento $A$ è l'unione delle intersezioni tra l'evento stesso e le partizioni :
 $$A=\bigcup_i(A\cap C_i)$$
 che sono a due a due *disgiunti* 
 La seconda uguaglianza deriva invece dalla definizione di *probabilità condizionata*
@@ -409,7 +409,7 @@ Questa può essere derivata da :
 + $$\mathbb{P}[C_m|A]=\frac{\mathbb{P}[C_m\cap A]}{\mathbb{P}[A]}$$
 	Derivante dalla definizione di *probabilità condizionata*
 + $$\mathbb{P}[C_m\cap A]=\mathbb{P}[C_m]\cdot \mathbb{P}[A|C_m]$$
-	Derivante dalla fromula delle *probabilità composte*
+	Derivante dalla formula delle *probabilità composte*
 + $$\mathbb{P}[A]=\sum_i\mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]$$
 	Derivante dalla legge della *probabilità totale*
 
@@ -451,7 +451,7 @@ Consideriamo l'estrazione di 2 palline con reinserimento
 
 Avremo che lo *spazio campionario* risulta essere :
 $$\Omega=\{(B1,B1),(B1,N3),(N3,N3),(N3,B2),\dots\}$$
-Per rappresentare questi eventi numericamebte potremmo assegnare ad ogni possibile un valore numerico :
+Per rappresentare questi eventi numericamente potremmo assegnare ad ogni possibile un valore numerico :
 $$\Omega=\{2,4,6,5,\dots\}$$
 
 In questo caso ad ogni coppia di palline estratte gli assegnamo la somma dei loro valori
@@ -519,7 +519,7 @@ $$\mathbb{P}[X \in A]=\mathbb{P}[X\le2]=P_X(1)+P_X(2)=\frac{2}{7}+\frac{2}{7}=\f
 
 Una *variabile aleatoria continua* X assume valori in un insieme continuo di punti ( un sottoinsieme di $\mathbb{R}$ non numerabile )
 
-In questo caso non possiamo assgnare una probabilità ad ogni elemento dello *spazio campioanrio* poichè esso contiene infiniti elementi
+In questo caso non possiamo assegnare una probabilità ad ogni elemento dello *spazio campionario* poichè esso contiene infiniti elementi
 Per questo si assegna la probabilità ad ogni sottoinsieme di suoi possibili valori , questa sarà l'area sottesa ad una curva 
 
 La funzione che rappresenta la *densità di probabilità* deve seguire le seguenti regole :
@@ -528,7 +528,7 @@ La funzione che rappresenta la *densità di probabilità* deve seguire le seguen
 
 **Densità di Probabilità** 
 
-Una *funzione* $f(x)$ con le prorpietà precedenti viene chiamata *densità di probabilità* 
+Una *funzione* $f(x)$ con le propietà precedenti viene chiamata *densità di probabilità* 
 
 Una volta assegnata una densità di probabilità alla variabile aleatoria continua X si può determinare la probabilità di ogni evento A
 $$\mathbb{P}[X \in A]=\int_A f(x)\ dx$$
@@ -562,7 +562,7 @@ $$x = \begin{cases}
 >#todo
 
 Come prima cosa verifichiamo che $f(x)$ sia davvero una densità :
-+ $f(x)\ge 0, \forall x \in \mathbb{R}$  :  poichè è un esponenziale moltilicato per un numero positivo
++ $f(x)\ge 0, \forall x \in \mathbb{R}$  :  poichè è un esponenziale moltiplicato per un numero positivo
 + $\int_0^{+\infty} 2e^{-2x}\ dx = 1$
 
 Abbiamo quindi verificato che siamo effettivamente davanti ad una *desità di probabilità* 
@@ -579,7 +579,7 @@ $$\mathbb{P}[X\in B]=\mathbb{P}[X\in (-1,1) ]=\int_{-1}^0 0\ dx + \int_{0}^1 2e^
 #### Funzione di ripartizione
 
 Si dice *funzione di ripartizione* ( o distribuzione comulativa ) di una variabile aleatoria $X$ la funzione $F : \mathbb{R}\rightarrow [0 ,1 ]$ così definita
-$$F(x)=\mathbb{P}[X\le x], \quad \forall x \in \mathbb{R}$$ 
+$$F(x)=\mathbb{P}[X\le x], \quad \forall x \in \mathbb{R}$$
 La funzione di ripartizione in un dato punto $x$ è semplicemente la probabilità che la varibile $X$ assuma valori minori o al più uguali a $x$ .
 Per questo il suo dominio è $[0,1]$
 
@@ -595,7 +595,7 @@ Rappresenta la somma delle probabilità
 Se $X$ è una variabile *discreta* con valori $\{x_1,x_2,\dots\}$ e funzione di probabilità $P(x_i)=p_i$
 
 $$F(x)=\sum_{i:x_i\le x}\mathbb{P}[X=x_i]=\sum_{i:x_i\le x} p_i$$
-La *funzione di riaprtizione* di una *variabile* discreta è una funzione costante a tratti con salti in corrispondenza dei punti di massa $x_1, x_2,\dots$  
+La *funzione di ripartizione* di una *variabile* discreta è una funzione costante a tratti con salti in corrispondenza dei punti di massa $x_1, x_2,\dots$  
 
 ![[Pasted image 20231109114806.png]]
 
@@ -624,7 +624,7 @@ $$F(x)=\int_{-\infty}^{x} f(t) \ dt$$
 
 #### Costanti Caratterisitiche 
 
-Una *costante caratteristica* o indice è un numero associato ad una variabile aleatoria o alla sua distribuzione di probabilità e sintetizza l'infromazione di interesse sul fenomeno rappresentato dalla variabile 
+Una *costante caratteristica* o indice è un numero associato ad una variabile aleatoria o alla sua distribuzione di probabilità e sintetizza l'informazione di interesse sul fenomeno rappresentato dalla variabile 
 
 Alcune *costanti caratteristiche* sono :
 + Il *valore atteso* che è un indice di posizione ( media )
@@ -647,11 +647,10 @@ $$P_X(x)=\begin{cases}
    \frac{1}{7} &\text{se } x=4; \\
    0 &\text{altrimenti}
 \end{cases}$$
-
 Allora : $$\mathbb{E}[X]=1\frac{2}{7}+2\frac{2}{7}+3\frac{2}{7}+4\frac{1}{7}=\frac{16}{7}$$
 ###### Valore atteso di una variabile aleatoria continua
 
-Se $X$ è una variabile aletaoria continua con densità $f(x)$ allora il *valore atteso* o *media* di $X$ è :
+Se $X$ è una variabile aleatoria continua con densità $f(x)$ allora il *valore atteso* o *media* di $X$ è :
 $$\mathbb{E}[X]=\int_\mathbb{R}xf(x)\ dx$$
 **Esempio** :
 
@@ -681,7 +680,6 @@ $$P_X(x)=\begin{cases}
    0 &\text{altrimenti}
 \end{cases}$$
 Allora $$\text{Var}[X]=1\frac2 7 + 2^2\frac2 7 + 3^2\frac 3 7 + 4^2\frac 1 7-\bigg(\frac {16} 7 \bigg)^2$$
-
 ###### Varianza di una variabile aleatoria continua
 
 Se $X$ è una variabile aletaoria continua con densità $f(x)$ allora la *varianza* di $X$ è :
@@ -721,7 +719,7 @@ $$F(q_{\alpha}) = \mathbb{P}[X\le q_{\alpha}]\ge \alpha$$
 
 I *quantili* sono *indici di posizione* che generalizzano il concetto di mediana di una distribuzione
 
-Per una variabile aleaotria continua ( con funzione di ripartizione $F$ continua ) il quantile di livello $\alpha$ p l'unico punto $q_{\alpha}$ in cui :
+Per una variabile aleatoria continua ( con funzione di ripartizione $F$ continua ) il quantile di livello $\alpha$ è l'unico punto $q_{\alpha}$ in cui :
 $$F(q_{\alpha})=\mathbb{P}[X\le q_{\alpha}]=\alpha$$
 
 Vari *quantili* particolari :
@@ -734,7 +732,7 @@ Vari *quantili* particolari :
 
 #### Distribuzione Uniforme Discreta 
 
-Consideriamo una varaibile aleatoria $X$ che assume un numero finito di valori , $\{x_1,\dots,x_n\}$ , tutti con la stessa probabilità $p_i=1/n, \ i=\ 1,\dots,n$
+Consideriamo una variabile aleatoria $X$ che assume un numero finito di valori , $\{x_1,\dots,x_n\}$ , tutti con la stessa probabilità $p_i=1/n, \ i=\ 1,\dots,n$
 
 Si dice allora che $X$ ha una *distribuzione uniforme* e si scrive :
 $$X \sim U\{x_1,\dots,x_n\}$$
