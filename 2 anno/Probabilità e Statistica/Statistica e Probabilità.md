@@ -296,8 +296,8 @@ Prima dell'arrivo di un'informazione ho un'idea di probabilità con l'arrivo di 
 
 Sia B un evento di probabilità positiva. La *probabilità condizionata* dell'evento A dato l'evento B è :
 $$\mathbb{P}[A|B]=\frac{\mathbb{P}[A\cap B]}{\mathbb{P}[B]}$$
-+ Evento condizionato : $A$ ( ciò che cambia )
-+ Evento condizionante : $B$ ( ciò che fa cambiare )
++ Evento condizionato : $A$ ( ciò che *cambia* )
++ Evento condizionante : $B$ ( ciò che *fa cambiare* )
 + Probabilità di A in presenza di B : $\mathbb{P}[A|B]$
 
 **Esempio** : 
