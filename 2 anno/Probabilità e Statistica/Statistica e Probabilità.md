@@ -4,7 +4,7 @@
 
 ### Principio fondamentale del calcolo combinatorio
 
-Se una scelta può essere fatta in $m_1$ modi dviersi e un'altra scelta può essere fatta in $m_2$ modi diversi allora esistono in totale :
+Se una scelta può essere fatta in $m_1$ modi diversi e un'altra scelta può essere fatta in $m_2$ modi diversi allora esistono in totale :
 $$m_1{\times}m_2$$ possibilità di scelta
 
 Esempio : 
@@ -24,7 +24,7 @@ Esempio :
 
 ### Disposizioni
 
-Considerieamo un insieme di $n$ elementi. Una *Disposizione* di $r$ di essi è una scelta ordinata di $r$ elementi tra quegli $n$ 
+Consideriamo un insieme di $n$ elementi. Una *Disposizione* di $r$ di essi è una scelta ordinata di $r$ elementi tra quegli $n$ 
 
 + **Disposizione con ripetizione** : uno stesso elemento può essere scelto più di una volta 
 	La *Disposizione con ripetizione* di $n$ elementi presi $r$ alla volta sono in numero di :
@@ -50,9 +50,9 @@ Esempio :
 Le permutazioni delle lettere *I , L , A* sono $3! = 6$ :
 $ILA,IAL,LIA,LAI,AIL,ALI$
 
-### Combianzioni
+### Combinazioni
 
-In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ elementi si chiama **combianzione** di $n$ elemento presi $r$ alla volta ( *senza ordine* )
+In generale, un sottoinsieme di numerosità $r$ scelto da un insieme con $n$ elementi si chiama **combinazione** di $n$ elementi presi $r$ alla volta ( *senza ordine* )
 	Il numero di combinazioni di $n$ elementi $r$ alla volta è :
 	$$\frac{n\times(n-1)...\times(n-r+1)}{r!} = \binom{n}{r}$$
 	**Coefficiente binomiale** $n$ su $r$
@@ -99,9 +99,9 @@ Anche i singoli *risultati* possono essere visti come *eventi* ( detti *eventi e
 $\Omega$ viene detto *evento certo* poichè sicuramente si verificherà 
 
 Esempi :
-	Un dato da un punteggio superiore a 4 : $A=\{5,6\}$
-	Otteniamo almeno 3 teste da 4 lanci di una moneta :
-	$$A=\{TTTC,TTCT,TCTT,CTTT,TTTT\}$$
++ Un dado da un punteggio superiore a 4 : $A=\{5,6\}$
++ Otteniamo almeno 3 teste da 4 lanci di una moneta :
+$$A=\{TTTC,TTCT,TCTT,CTTT,TTTT\}$$
 
 Due *eventi* A e B si dicono *incompatibili* ( *disgiunti* ) se non è possibile che siano entrambi veri, cioè se $A\cap B=\emptyset$ 
 ![[Disgiunti.excalidraw]]
