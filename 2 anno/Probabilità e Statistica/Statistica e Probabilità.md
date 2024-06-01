@@ -910,7 +910,7 @@ Se la popolazione viene considerata infinita non si distingue tra estrazioni con
 
 **Esempio** :
 
-Un motore di ricerca cerca una parola in una sequenza infinita di siti web bindipendenti , il 20% dei siti contentgono la parola cercata.
+Un motore di ricerca cerca una parola in una sequenza infinita di siti web bindipendenti , il 20% dei siti contengono la parola cercata.
 Qual'è la probabilità che 5 dei primi 10 siti visitati contengono la parola cercata ?
 E la probabilità che *almeno* 5 dei primi 10 siti la contengano ? 
 
@@ -1058,8 +1058,6 @@ Nel problema precedente potevamo scrivere :
 ```R
 dpois(0,10)+dpois(1,10)+dpois(2,10)+dpois(3,10)
 ```
-
-
 ##### Approssimazione Poisson per la Binomiale 
 
 Quando $n\rightarrow \infty$ e $p \rightarrow 0$ ma in modo tale che il prodotto $np\rightarrow \lambda$ rimane costante, allora la funzione di probabilità di una variabile aleatoria binomiale di parametri $n$ e $p$ si può approssimare con la funzione di probabilità di una *Poisson* di parametro $\lambda$ :
@@ -1120,7 +1118,7 @@ La probabilità non cambia sapendo che le precedenti ripetizioni siano state un 
 Questo può essere dimostrato nel seguente modo :
 $$\mathbb{P}[X\gt m + n| X\gt m]=\frac{\mathbb{P}[X\gt m + n]}{\mathbb{P}[X\gt m]}$$
 Come da definizione di *probabilità condizionata*
-Sostutiamo ora tenendo conto che $\mathbb{P}[X\gt k]=(1-p)^k$
+Sostituamo ora tenendo conto che $\mathbb{P}[X\gt k]=(1-p)^k$
 $$\frac{(1-p)^{m+n}}{(1-p)^m}=\frac{(1-p)^m(1-p)^n}{(1-p)^m}=(1-p)^n=\mathbb{P}[X\gt n]$$
 
 La probabilità quindi di $m+n$ sapendo la probabilità di $m$ ( gli elementi prima ) risulta essere la probablità di $n$ , ossia la probabilità risulta indipendente dalla probabilità degli elementi precedenti ( $m$ )
@@ -1135,7 +1133,7 @@ Supponiamo che $X$ conti il numero di pagine da visitare per trovare per la prim
 	$$
 	\mathbb{P}[X=15]=0.2\times0.8^{14}=0.0088
 	$$
-2. Dato che i primi 4 siti visitati non contenevano la parola cercata , qual'è la probabilità di doveren visitare più di 10 in tutto per trovvare la parola cercata ?
+2. Dato che i primi 4 siti visitati non contenevano la parola cercata , qual'è la probabilità di doverne visitare più di 10 in tutto per trovare la parola cercata ?
 	$$
 	\mathbb{P}[X\gt10|X\gt4]=\mathbb{P}[X\gt10-4]=\mathbb{P}[X\gt6]=(1-0.2)^6=0.2621
 	$$
@@ -1238,7 +1236,7 @@ La *distribuzione normale stadard* è :
 $$X\sim N(0,1)$$
 Avrà come funzione di ripartizione :
 $$f(x)=c\cdot e^{-\frac{x^2}{2}}$$
-Troviamo ora $c$ utilizzando la proprietà che è una funnzione di densità e quindi devve soddisfare la seguente equazione :
+Troviamo ora $c$ utilizzando la proprietà che è una funzione di densità e quindi deve soddisfare la seguente equazione :
 $$
 c\int_{-\infty}^{+\infty} e^{-\frac{x^2}{2}}dx=1
 $$
@@ -1323,7 +1321,6 @@ Quando $n$ è grande allora la funzione di ripartizione di una variabile aleator
 
 Avremo che : 
 $$Bin(n,p)\approx N(np\ ,\ np(1-p))$$
-
 >[!attention]
 >L'approssimazione viene utilizzata nella pratica quando $np(1-p)\ge 10$
 >Oppure quando $n$ è molto grande e $0.05\le p \le 0.95$
