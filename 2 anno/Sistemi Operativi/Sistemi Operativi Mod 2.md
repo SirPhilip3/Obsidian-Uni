@@ -287,7 +287,7 @@ Cosa succede alla terminazione di un processo figlio o padre ? :
 + Se il figlio termina prima del genitore questo dovrebbe accorgersi della sua terminazione e raccogliere le informazioni del suo *PCB* ( *Process Control Block* ) , se questo non viene svolto dal processo genitore si dice che il processo figlio è un processo **zombie** ( questi vengono segnati come `<defunct>` se facciamo un `{bash}ps` )
 
 I processi *orfani* vengono "adottati" dal processo `init` che ciclicamente raccoglie le loro informazioni e libera la memoria 
-Se il genitore di un processo *zombie* termina questo diventa *zombie orfano* che viengono anch'essi "adottati" dal processo `init`
+Se il genitore di un processo *zombie* termina questo diventa *zombie orfano* che vengono anch'essi "adottati" dal processo `init`
 
 >[!example]
 >>[!todo]
@@ -339,8 +339,8 @@ Questa chiamata **sostituisce** *codice* e *dati* di un processo con quelli di u
 
 Da notare come la `exec` "butta via" la copia dei dati creata dalla `fork` , questo è chiaramente *inefficente* soprattutto quando l'`exec` viene eseguita subito dopo una `fork`
 
-Per rendere questa operazione più efficente viene copiata inizialmente dalla `fork` solo la *page-table* e le pagine contententi i dati sono etichettate come *read-only*
-Quando si tenta di scrivere queste pagine genrea un errore che verrà gestito dal kernel :
+Per rendere questa operazione più efficente viene copiata inizialmente dalla `fork` solo la *page-table* e le pagine contenenti i dati etichettati come *read-only*
+Quando si tenta di scrivere queste pagine si genera un errore che verrà gestito dal kernel :
 + Copia al volo la pagina fisica e aggiorna la *page-table* in modo da farla puntare alla nuova copia
 + Imposta le pagine a *read-write* in quanto da ora in poi le due copie sono indipendenti 
 
@@ -364,7 +364,7 @@ execvp("command", argv[])
 >La presenza della `p` alla fine del nome della `exec` indica che viene utilizzato il path della shell ( non necessitiamo di scrivere l'intero path ) 
 
 >[!note]
->Le prime due varianti prendono in input un lista di argomenti terminata da `NULL` ( il primo argomento contiene il nome del file associato al programma da eseguire ) , mentre le altre due prendono i parametri sotto froma di un array di stringe
+>Le prime due varianti prendono in input un lista di argomenti terminata da `NULL` ( il primo argomento contiene il nome del file associato al programma da eseguire ) , mentre le altre due prendono i parametri sotto forma di un array di stringe
 
 #### Valore di ritorno
 

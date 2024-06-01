@@ -1848,7 +1848,6 @@ In generale velgono i seguenti risultati :
 + La somma di $n$ variabili aleatorie $Po(\lambda_i)$ , $i=1,\dots,n$ indipendenti è una $Po(\sum_i \lambda_i)$ 
 + La somma di $n$ variabili aleaotrie $Exp(\lambda)$ idipendenti è una $Ga(n,\lambda)$
 + La somma di $n$ variabili aleatorie $N(\mu_i , \sigma_i^2)$ indipendenti è una Normale $N(\sum_i \mu_i , \sum_i \sigma_i^2)$ 
-
 ### Media Campionaria
 
 Siano $X_1,\dots,X_n$ variabili aleatorie indipendenti e tutte con la stessa distribuzione 
@@ -1877,9 +1876,9 @@ Sia $X_1,\dots,X_n$ una sequenza di variabili aleatorie con funzioni di ripartiz
 	Diciamo che $\{X_n\}$ *converge in probabilità* a $X$ e scriviamo $X_n\overset{p}\rightarrow X$ se : 
 	$$\mathbb{P}[|X_n-X|>\epsilon] \rightarrow 0, \quad \forall\epsilon>0$$
 + **Converge in distribuzione**
-	Diciamo che $\{X_n\}$ *converge in distribuzione* a $X$ e scriviamo $X_n\overset{d}\rightarrow X$ se in ogni punto $x$ di continutà per $F$ :
+	Diciamo che $\{X_n\}$ *converge in distribuzione* a $X$ e scriviamo $X_n\overset{d}\rightarrow X$ se in ogni punto $x$ di continuità per $F$ :
 	$$F_n(x)\rightarrow F(x)$$
-+ **Converge in quasi ceramente o con probabilità 1**
++ **Converge in quasi certamente o con probabilità 1**
 	Diciamo che $\{X_n\}$ *converge in quasi certamente o con probabilità 1* a $X$ e scriviamo $X_n\rightarrow X$ se:
 	$$\mathbb{P}[X_n\rightarrow X]=1$$
 >[!todo]
@@ -1888,7 +1887,7 @@ Sia $X_1,\dots,X_n$ una sequenza di variabili aleatorie con funzioni di ripartiz
 
 #### Legge debole
 
-Sia $X_1,\dots,X_n$ una sequenza di varaibili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ e $Var[X_i]=\sigma^2 < +\infty$ allora :
+Sia $X_1,\dots,X_n$ una sequenza di variabili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ e $Var[X_i]=\sigma^2 < +\infty$ allora :
 $$\overline X_n \overset{p}\rightarrow \mu$$
 Ossia la media campionatoria di $n$ variabili aleatorie identicamente distribuite corrisonde al valore atteso della distribuzione dalla quale sono campionate 
 
@@ -1908,7 +1907,7 @@ $$\frac{\sum_{i=1}^nX_i}{n}\overset{p}\rightarrow\mathbb{E}[X_i]=p=1/90$$
 >La probabilità di estrarre un 53 ad ogni estrazione non cambia acnche quando non si osserva il 53 per molto tempo
 ### Teorema del limite centrale ( TLC )
 
-Sia $X_1,\dots,X_n$ una sequenza di varaibili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ e $Var[X_i]=\sigma^2 < +\infty$ allora : 
+Sia $X_1,\dots,X_n$ una sequenza di variabili aleatorie con la stessa distribuzione con $\mathbb{E}[X_i]=\mu$ e $Var[X_i]=\sigma^2 < +\infty$ allora : 
 $$\frac{\overline X_n - \mu}{\sigma/\sqrt{n}}\overset{d}\rightarrow \mathcal{N}(0,1)$$
 Oppure :
 $$\frac{\sum_{i=1}^nX_i- n\mu}{\sigma\cdot \sqrt{n}}\overset{d}\rightarrow \mathcal{N}(0,1)$$
@@ -1937,10 +1936,10 @@ $$=1-\Phi(1.95)=0.0256$$
  
 Una *catena di Markov* è un modello per descrivere un sequenza di eventi per i quali la probabilità per ogni evento dipende dalla probabilà del precedente
 
-Sia $X_0,X_1,X_2,\dots$  una sucessione di variabili casuali ( discrete ) a valori in un insieme finito $S = \{1,2,\dots,M\}$ detto *spazio degli stati*
+Sia $X_0,X_1,X_2,\dots$  una successione di variabili casuali ( discrete ) a valori in un insieme finito $S = \{1,2,\dots,M\}$ detto *spazio degli stati*
 Allora $X=\{X_n\}_{n\ge0}$ è una *catena di Markov* omogenea se : 
 $$P(X_{n+1}=j\ | \ X_n = i,X_{n-1} = i_{n-1},\dots,X_0 = i_0 )\implies P(X_{n+1}=j\ |X_n=i)=p_{ij}$$
-In pratice se la probabilità di $X_{n+1}$ dipende solo dalla probabilità del suo precedente $X_n$
+In pratica se la probabilità di $X_{n+1}$ dipende solo dalla probabilità del suo precedente $X_n$
 
 $P=(p_{ij})_{ij}$  viene detta *matrice di transizione* ed ogni $p_{ij}$ sono le *probabilità di transizione*
  $$P=\begin{pmatrix} p_{11} & p_{12} & \dots & p_{1M} \\ p_{21} & p_{22} & \dots & p_{2M} \\ \vdots & \vdots & \ddots & \vdots \\ p_{M1} & p_{M2} & \dots & p_{MM}\end{pmatrix}$$
@@ -1956,7 +1955,7 @@ Conoscere la matrice di transizione e la funzione di probabilità dello stato in
 
 Inoltre abbiamo le seguenti restrizioni :
 + non ci sono mai due giorni consecutivi di sole
-+ se oggi c'è sole domani deniva o piove con la stessa probabilità
++ se oggi c'è sole domani nevica o piove con la stessa probabilità
 + se nevica o piove , con probabilità 0.5 domani rimane invariato, con probabilità 0.5 domani cambia a caso  
 
 Se oggi c'è il sole come sarà il tempo tra due giorni ? 
