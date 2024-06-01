@@ -1002,8 +1002,7 @@ int main(int argc, char * argv[])
 
 Per fare in modo che l'input provenga dal primo comando e l'output del secondo venga scritto sullo `stdout` dobbiamo ridirezionare lo stream , per fare questo usiamo la chiamata di sistema `dup2(fd[1],1)` questo fa sì che il descrittore dello `stdout` ( 1 ) sia quello che viene puntato da `fd[1]` ( in pratica diventano interscambiabili ) , in questo modo tutto ciò che mandiamo allo standard output verrà mandato alla *pipe* , dopo il ridirezionamento possiamo chiudere il descrittore della *pipe* in quanto non verrà più utilizzato
 
-Alla fine i descrittore dello standard output e standard input vengono chiusi da `execlp`
-
+Alla fine il descrittore dello standard output e standard input vengono chiusi da `execlp`
 ##### Atomicità
 
 Le scritture sulle *pipe* sono atomiche ( ossia vengono eseguite in un unico blocco ) se inferiori alla dimensione di `PIPE_BUF` ( `limits.h` ) ossia 4096 bytes 
@@ -1012,7 +1011,6 @@ Sopra questa dimensione l'atomicità non è garantita , sopra tale dimensione se
 >[!todo]
 >inserisci example
 >#todo
-
 #### Pipe con nome
 
 Queste *pipe* vengono costruite con il comando `mkfifo` 
@@ -1027,7 +1025,7 @@ Da questo momento la *pipe* è presente nel filesystem è qualsiasi processo con
 >La *open* è boccante in lettura finchè qualche altro processo non la apre in scrittura 
 
 >[!example]
->Creiamo un processo *lettore* ( il destinatario ) che accetta , su una *pipe con nome* , messsaggi provenienti da più processi *scrittori* ( i mittenti ) che mandano 3 messaggi e poi terminano .
+>Creiamo un processo *lettore* ( il destinatario ) che accetta , su una *pipe con nome* , messaggi provenienti da più processi *scrittori* ( i mittenti ) che mandano 3 messaggi e poi terminano .
 >Quando tutti gli scrittori chiudono la *pipe* il lettore ottiene 0 come valore di ritorno della `read` ed esce
 
 **Lettore**
@@ -1091,7 +1089,7 @@ int main() {
         perror("errore apertura pipe"); exit(1);
     }
     for (i=1; i<=3; i++){     // scrive tre volte la stringa
-        write (fd,message,strlen(message)+1); // include terminatore
+        write(fd,message,strlen(message)+1); // include terminatore
         sleep(2);
     }
     close(fd);    // chiude il descrittore
