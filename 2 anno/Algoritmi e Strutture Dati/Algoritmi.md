@@ -114,8 +114,6 @@ Se $T_n$ è l'*albero delle ricorsioni* di `Fib2(n)` allora vale che :
 	$$\text{numero di foglie} \space f(T_n) = F_n\space \text{ennesimo numero di fibonacci}$$
 **Dimostrazione**
 >[!todo]
-
-
 ### Proposizione 2 :
 Se $T_n$ è un albero dove i *nodi interni* hanno esattamente 2 figli ( ossia è un albero binario ) allora : 
 	$$\text{numero di nodi interni }i(T_n) = f(T_n)-1 \implies F_n -1$$
@@ -188,7 +186,6 @@ $$T(n)=3+(n-2)+(n-1)=2n$$
 La *complessità* risulterà quindi essere **lineare**
 
 Questo algoritmo può essere ulteriormente migliorato diminuendo la *complessità spaziale* 
-
 ## Fib4
 
 ```c
@@ -231,7 +228,7 @@ In cui $\exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n
 
 Esempio :
 
-Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete realzione : $f(n)\le c\cdot g(n)$   ( Ossia che $f(n)$ stia sotto $c\cdot g(n)$  ) 
+Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete relazione : $f(n)\le c\cdot g(n)$   ( Ossia che $f(n)$ stia sotto $c\cdot g(n)$  ) 
 
 ![[Ogrande.excalidraw]]
 
