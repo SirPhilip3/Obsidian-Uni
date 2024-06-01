@@ -258,7 +258,6 @@ Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un 
 
 ![[Omega.excalidraw]]
 
-
 Esempio :
 $$\frac{1}{2}n^2-3n=\Omega\big(n^2\big)$$
 Applicando la definizione :
@@ -376,7 +375,7 @@ $$n\le n^2\space\space \forall n\ge1$$
 Avremo quindi che $\sqrt n \le n$
 ## Proprietà
 
-$$f(n)=O\Big(g(n)\Big) \Leftrightarrow g(n) = \Omega\Big(g(n)\Big)$$
+$$f(n)=O\Big(g(n)\Big) \Leftrightarrow g(n) = \Omega\Big(f(n)\Big)$$
 Per dimostrare la precedente proprietà bisogna dimostrare sia $\Rightarrow$ che $\Leftarrow$
 
 Dimostriamo $\Rightarrow$
@@ -393,7 +392,6 @@ $$\frac{1}{c}\cdot f(c)\le g(n)$$
 Ponendo $c'=\frac{1}{c}$ e sciegliendo $n_0'=n_0$ la proprietà è dimostrata
 
 La dimostrazione è equivalente per $\Leftarrow$
-
 ### Prorietà Transitiva
 
 La seguente proprietà e valida per $O$ , $\Omega$ , $\Theta$
@@ -492,7 +490,6 @@ La stessa dimostrazione può essere svolta per $\omega(g(n))\ \cap \ O(g(n))=\em
 
 Anche $\Theta (g(n))$ ha un simile comportamento a $o(g(n))$ e $\omega (g(n))$ per quanto riguarda i *limiti* , infatti possiamo scrivere che :
 $$\text{Se}\quad\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} = l \quad \text{con $0 \lt l \lt \infty$ } \quad \implies \quad f(n)=\Theta(g(n))$$
-
 ## Lim e O notation riassunto
 
 $$\lim_{n\rightarrow \infty} \frac{f(n)}{g(n)} \begin{cases} 0 & \implies f(n) = O(g(n)) \\ l & \implies f(n)=\Theta(g(n)) \\ \infty & \implies f(n)=\Omega(g(n)) \end{cases}$$
@@ -552,7 +549,6 @@ Ciò significa : una funzione che è la somma di una funzione $f(n)$ ad una funz
 La precedente proprietà può anche essere riscritta nel seguente modo :
 $$\text{Considerando}\quad o(f(n))=h(n)\quad \text{e} \quad f(n)+h(n)=g(n) \quad \text{Avremo che :}$$
 $$g(n)=\Theta{f(n)}$$
-
 # Metodi per la stima della complessità di un Algoritmo
 
 Facciamo un Esempio :
@@ -685,7 +681,6 @@ Vedi [Fib2](#Fib2)
 ### Metodo dell'interazione
 
 Si cerca di sviluppare la ricorsione fino all'identificazione di un *pattern*
-
 #### Esempio 1 :
 In un algoritmo che ha come complessità :
 $$T(n) = \begin{cases} c+T(\frac{n}{2}) & n\ge 2 \\ 1 & n=1 \quad\text{caso base}\end{cases}$$
@@ -708,7 +703,6 @@ Siccome non ci interessano le costanti possiamo dedurre che :
 $$T(n)=O(\log_2 n)$$
 Se consideriamo il *terema Master* potremmo dire :
 $$T(n)=\Theta(\log_2 n)$$
-
 #### Esempio 2 :
 
 $$T(n) = \begin{cases} 9\cdot T(\frac{n}{3})+n & n\ge 2 \\ 1 & n=1 \quad\text{caso base}\end{cases}$$
@@ -740,7 +734,6 @@ $$T(n)=\Theta(n^2)$$
 ### Metodo della sostituzione
 
 Il metodo della *sostituzione* consiste nel fare una ipotesi sulla complessità dell'algoritmo ( grazie all'esperienza e alla conoscenza di altri teoremi ) e poi *dimostrarla* 
-
 #### Esempio
 
 $$T(n) = \begin{cases} 1 & n=1 \quad\text{caso base} \\ T(\lfloor\frac{n}{2}\rfloor)+n & n\ge 2  \end{cases}$$
@@ -794,7 +787,7 @@ Perchè il *teorema* possa essere applicato dobbiamo avere soddifatte le seguent
 + $a\ge1$
 + $b\gt1$
 
-Utilizzeremo inoltre un paramtro $d$ :
+Utilizzeremo inoltre un parametro $d$ :
 $$d=\log_b a$$
 Il *teorema* comprende 3 casi : 
 #### $split+merge \lt \text{chiamate ricorsive}$ 1 caso $f(n)<g(n)$
