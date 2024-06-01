@@ -1471,7 +1471,7 @@ $X_t$ : numero di eventi in un intervallo di tempo $t$
 
 **Esempio** : 
 
-Il numero di messaggi in arrivo ad un casella di posta elettronice segue un processo di Poisson nel tempo con una media di 12 messaggi ogni 10 minuti
+Il numero di messaggi in arrivo ad un casella di posta elettronica segue un processo di Poisson nel tempo con una media di 12 messaggi ogni 10 minuti
 
 Se sciegliamo il minuto come unità di misura del tempo abbiamo :
 $\lambda$ : numero medio di messaggi in un minuto = $12/10$
@@ -1495,7 +1495,7 @@ Questa si può calcolare in 2 modi differenti
 + Cosiderando che il numero di messaggi arrivati in 15 minuti devono essere uguali a 0
 	$\mathbb{P}[X_{15}=0]\sim Po(12/10 \cdot 15) = Po(18)$
 	$\mathbb{P}[X_{15}=0] = \frac{(12/10\times 15)^0}{0!}e^{-12/10\times 15}=e^{-18}$ 
-+ Considerando che il primo messaggio che deve arrivare deve arrivare dopo 15 minuti
++ Considerando che il primo messaggio che deve arrivare arriverà dopo 15 minuti
 	$\mathbb{P}[T>15]\sim Exp(12/10) = e^{-12/10\times 15}= e^{-18}$
 
 ### Distribuzioni Congiunte
@@ -1505,10 +1505,9 @@ Distribuzioni costituite da due o più *variabili aleatorie*
 Quando abbiamo solo una *coppia* di variabili aleatorie si dice che abbiamo una **Distribuzione Bivaria** 
 
 Quando abbiamo un numero di variabili maggiore di 1 si dice sempre che stiamo parlando di **Distribuzioni Multivarie**
-
 #### Funzioni di Ripartizione
 
-La *funzione di ripartizione congiunta* di una coppia di variabili aleatorie $(X,Y)$ è una funzione $F : \mathbb{R}^2\rightarrow [0,1]$ definta nel seguente modo :
+La *funzione di ripartizione congiunta* di una coppia di variabili aleatorie $(X,Y)$ è una funzione $F : \mathbb{R}^2\rightarrow [0,1]$ definita nel seguente modo :
 $$F(x,y)=\mathbb{P}[X\le x, Y\le y], \quad \forall(x,y)\in \mathbb{R}$$
 Si possono trovare le *funzioni di ripartizione* delle singole variabili aleatorie nel seguente modo :
 $$F_X(x)=\mathbb{P}[X\le x]$$
@@ -1566,7 +1565,7 @@ Possiamo ora calcolare le seguenti probabilità :
 $$=1-(0.2+0.2+0.1)=0.5$$
 ##### Per variabili aleatorie continue
 
-Si dice che $X$ e $X$ sono *congiunte continue* se esiste una funzione $f:\mathbb{R}^2\rightarrow \mathbb{R}$ integrabile e tale che abbia le seguenti caratteristiche :
+Si dice che $X$ e $Y$ sono *congiunte continue* se esiste una funzione $f:\mathbb{R}^2\rightarrow \mathbb{R}$ integrabile e tale che abbia le seguenti caratteristiche :
 + $f(x,y)\ge 0, \quad \forall(x,y) \in \mathbb{R}^2$
 + $\int\int_{\mathbb{R}^2}f(x,y)dxdy=1$
 
@@ -1630,7 +1629,7 @@ f(x)=1-x
 
 ![[Pasted image 20231208162532.png]]
 
-Cosiderando questo esempio con 2 variabili aleatorie *discrete* , per verficiare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddifino la seguente proprietà :
+Cosiderando questo esempio con 2 variabili aleatorie *discrete* , per verificiare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddisfino la seguente proprietà :
 $$p(x,y)=p_X(x)p_Y(y)$$
 Nel nostro caso però non tutte le coppie soddisfano questa proprietà :
 $$p(1,1)=0.10\ne p_X(1)p_Y(1)=0.50\cdot 0.30$$
@@ -1641,14 +1640,14 @@ Considerando il caso in cui $X$ e $Y$ sono *variabili aleatorie indipendenti*  c
 
 ![[Pasted image 20231209163104.png]]
 
-Sapendo le marginali e che queste sono indipendenti possiamo ricostriìuire la distribuzione congiunta , possiamo infatti calcolare :
+Sapendo le marginali e che queste sono indipendenti possiamo ricostruire la distribuzione congiunta , possiamo infatti calcolare :
 $$p(0,0)=\mathbb{P}[X=0,Y=0]=\mathbb{P}[X=0]\cdot\mathbb{P}[Y=0]=0.5\cdot 0.7=0.35$$
 $$p(0,1)=\mathbb{P}[X=0,Y=1]=\mathbb{P}[X=0]\cdot\mathbb{P}[Y=1]=0.5\cdot 0.2=0.10$$
 Così via per tutte le coppie di $x$ e $y$ otteniamo :
 
 ![[Pasted image 20231209163407.png]]
 
-Aquato punto potremmo calcolare :
+A questo punto potremmo calcolare :
 
 $$\mathbb{P}[X+Y=1]=\mathbb{P}[X=0,Y=1]+\mathbb{P}[X=1,Y=0]=0.21+0.10=0.31$$
 **Esempio** :
@@ -1664,7 +1663,6 @@ $$\int_0^{12}\Bigg(\int_0^{12-x}\frac15e^{-y/5}dy\Bigg)\frac15e^{-x/5}\ dx$$
 $$\int_0^{12}\Bigg(\int_0^{12-x}\frac15e^{-y/5}dy\Bigg)\frac15e^{-x/5}\ dx$$
 $$\int_0^{12}\bigg(1-e^{-(12-x)/5}\bigg)\frac15e^{-x/5}dx$$
 $$\bigg(1-e^{-(12-x)/5}\bigg)-\frac{12}{5}e^{-12/5}=0.69156$$
-
 #### Probabilità condizionata
 
 ##### Discrete
@@ -1740,10 +1738,9 @@ $E[X]=0\cdot0.5+1\cdot0.5=0.5$
 $E[Y]=0\cdot0.4+1\cdot0.3+2\cdot0.25+3\cdot0.15=1.05$
 
 Possiamo quindi dire che $E[X+Y]=E[X]+E[Y]=0.5+1.05=1.55$
-
 #### Covarianza
 
-La *covarianza* fra die variabili aleatorie $X$ e $Y$ è il valore atteso della particolare traformazione :
+La *covarianza* fra due variabili aleatorie $X$ e $Y$ è il valore atteso della particolare traformazione :
 $g(x,y)=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]$
 
 Avremo quindi :
@@ -1763,7 +1760,6 @@ La *covarainza* può essere trovata anche semplicemente osservando come la funzi
 Si può notare che la funzione si bilancia tra il suo ramo destro e sinistro per questo la *covarianza* sarà : $Cov[X,Y]=0$ , questà può anche essere semplicemente calcolata 
 
 Visto che la *covarianza* è 0 possiamo concludere che $X$ e $Y$ sono incorrelate
-
 ###### Proprietà della Covarianza :
 
 1. $Cov[X,Y]=Cov[Y,X]$
