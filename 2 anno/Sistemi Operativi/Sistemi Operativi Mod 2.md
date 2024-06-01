@@ -576,7 +576,7 @@ Comportamenti di **default** :
 La chiamata di sistema `{c}alarm(n)` manda un `SIGALRM` dopo $n$ secondi .
 Il default handler termina il programma
 >[!note]
->La shell analizza lo stato di uscita del programma e stama il motivo della terminazione ( in questo caso stamperebbe "Alarm clock" )
+>La shell analizza lo stato di uscita del programma e stampa il motivo della terminazione ( in questo caso stamperebbe "Alarm clock" )
 
 >[!example]
 ```c
@@ -621,7 +621,7 @@ int main() {
 }
 ```
 
-Dopo 3 secondi arriva il segnale `SIGALRM` , a questo punto avendo rimappato l'*handler* verrà chiamata la funzione `{c}alarmHandler()` che stampa `{c}"questo me lo gestico io!"` e reimposta l'allarme doppo 3 secondi . A questo punto la funzione ritorna al punto in cui il programma era stato interrotto ( ossia all'interno del ciclo `{c}while` ) , qui attenderemo che arrivi il sucessivo segnale che lancerà di nuovo `{c}alarmHandler()` etcc...
+Dopo 3 secondi arriva il segnale `SIGALRM` , a questo punto avendo rimappato l'*handler* verrà chiamata la funzione `{c}alarmHandler()` che stampa `{c}"questo me lo gestico io!"` e reimposta l'allarme dopo 3 secondi . A questo punto la funzione ritorna al punto in cui il programma era stato interrotto ( ossia all'interno del ciclo `{c}while` ) , qui attenderemo che arrivi il sucessivo segnale che lancerà di nuovo `{c}alarmHandler()` etcc...
 
 ```bash
 $ ./alarm
@@ -738,7 +738,10 @@ $ ./kill
  6721 è vivo !
  6721 è vivo !
  6721 è vivo !
- 6720 è vivo ! <==== risveglia 6720 6721 è vivo ! 6720 è vivo ! 6721 è  vivo ! >
+ 6720 è vivo ! <==== risveglia 6720 
+ 6721 è vivo ! 
+ 6720 è vivo ! 
+ 6721 è vivo ! 
 ```
 #### Mascherare i segnali
 
@@ -767,23 +770,27 @@ Per gestire gli insiemi di segnali ( che sono rappresentati dal tipo `sigset_t` 
 #include <unistd.h>
 #include <stdlib.h>
 int main() {
-        sigset_t newmask,oldmask;
+	sigset_t newmask,oldmask;
 
-        sigemptyset(&newmask);          // insieme vuoto
-        sigaddset(&newmask, SIGINT);    // aggiunge SIGINT alla "maschera"
-        // setta la nuova maschera e memorizza la vecchia
-        if (sigprocmask(SIG_BLOCK, &newmask, &oldmask) < 0) {
-                perror("errore settaggio maschera"); exit(1); }
+	sigemptyset(&newmask);          // insieme vuoto
+	sigaddset(&newmask, SIGINT);    // aggiunge SIGINT alla "maschera"
+	// setta la nuova maschera e memorizza la vecchia
+	if (sigprocmask(SIG_BLOCK, &newmask, &oldmask) < 0) {
+		perror("errore settaggio maschera"); 
+		exit(1); 
+	}
 
-        printf("Sono protetto!\n");
-        sleep(3);
+	printf("Sono protetto!\n");
+	sleep(3);
 
-        // reimposta la vecchia maschera
-        if (sigprocmask(SIG_SETMASK, &oldmask, NULL) < 0) {
-                perror("errore settaggio maschera"); exit(1); }
+	// reimposta la vecchia maschera
+	if (sigprocmask(SIG_SETMASK, &oldmask, NULL) < 0) {
+		perror("errore settaggio maschera"); 
+		exit(1);
+	}
 
-        printf("Non sono piu' protetto!\n");
-        sleep(3);
+	printf("Non sono piu' protetto!\n");
+	sleep(3);
 }
 ```
 
@@ -802,7 +809,7 @@ $ a.out
 >Tramite la chiamata a sistema `sigpending` è possibile ottenere l'insieme dei segnali "pendenti" ( ossia quei segnali non ancora inviati al processo , quelli mascherati )
 
 >[!note]
->`{c}sigprocmask`  non aderisce allo standard *ANSI* ( *ISO C99* ) ma solamente allo standard *POSIX* , la gestione dei segnali da parte di *ANSI-C* è si riduce quindi a `signal` , `raise(sig)` ( equivalente di `kill(getpid(),sig)` ) e `abort()`
+>`{c}sigprocmask`  non aderisce allo standard *ANSI* ( *ISO C99* ) ma solamente allo standard *POSIX* , la gestione dei segnali da parte di *ANSI-C* si riduce quindi a `signal` , `raise(sig)` ( equivalente di `kill(getpid(),sig)` ) e `abort()`
 >*ANSI-C* non prevede quindi multi-processing e non prevede l'invio di segnali ad altri processi
 #### Attendere un segnale tramite `pause`
 
