@@ -1072,6 +1072,16 @@ $$
 $$
 ###### Caso 3
 
+Per *ipotesi* sappiamo che $\exists \ 0 < c < 1$ e $f(n)=\Omega(n ^ {d+\epsilon})$  
+La *Tesi* che dobbiamo dimostrare è $T(n)=f(n)$ 
+
+$$a\cdot f\bigg (\frac{n}{b}\bigg ) \le c \cdot f(n)$$
+Dove $a\cdot f\big (\frac{n}{b}\big )$ rappresenta il costo totale del $1°$ livello e $c \cdot f(n)$ rappresenta il costo totale della prima chiamata ricorsiva 
+
+La disequazione rappresenta che il tempo del primo livello è minore del tempo per finire la $1°$ chiamata ricorsiva
+
+$$\forall i \quad a^i\cdot f\bigg(\frac{n}{b^i}\bigg) \le c^i \cdot f(n)$$
+Dove $i$ rappresenta l'$i$-esimo livello 
 >[!todo]
 >completa 3° caso
 >#todo 

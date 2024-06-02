@@ -4110,12 +4110,11 @@ Per *grafi non orientati* il grado rappresentra il numero di vertici adiacenti a
 ![[Degree.excalidraw]]
 
 L'*intorno* ( l'insieme dei vertici per cui esiste un arco tra $u$ e $v$ ) di $u$ è rappresentato nel seguente modo : $N(u)=\{ v\in V | (u,v)\in E \}$ potremmo quindi scrivere : $deg(u)=|N(u)|$
-
 ### Proprietà
 
 Non possiamo creare un *grafo* tale che ogni vertice ha un *grado* diverso
 
-**Dimostrazione** per assurdo
+**Dimostrazione** per assurdo 
 	Supponiamo che esista un grafo $G$ tale che tutti i $0\le deg(u)\le n-1$ 
 	Allora avremo che dovranno esistere vertici con $deg(u)=0$ ma anche uno con $deg(u)=n-1$ ciò significa che dovrebbero esistere due *vertici* uno che abbia 0 archi e uno che sia collegato a tutti i *vertici* ==Impossibile== 
 #### Somma dei gradi
