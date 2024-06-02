@@ -1086,7 +1086,8 @@ int main() {
     snprintf(message,lunghezza+1,"Saluti dal processo %d",getpid()); // metto la stringa nell'array + 0x00 
     fd = open(PNAME,O_WRONLY); // apre la pipe in scrittura
     if ( fd < 0 ) {    
-        perror("errore apertura pipe"); exit(1);
+        perror("errore apertura pipe"); 
+        exit(1);
     }
     for (i=1; i<=3; i++){     // scrive tre volte la stringa
         write(fd,message,strlen(message)+1); // include terminatore
@@ -1153,12 +1154,10 @@ consumatore(){
 ```
 
 Se utilizziamo una *send asincrona* ( bloccante solo quando il buffer è pieno ) e una *recieve sincrona* otteniamo una soluzione soddisfacente : il consumatore attende se non ci sono dati da consumare , il produttore attende se non c'è spazio nel buffer
-
 #### Memoria condivisa
 
-Il modello a *memoria condivisa* viene utilizzato dai *thread* ( un filone di istruzioni all'interno di un processo )  , in quanto questi condividono le risorse del loro processo padre .
+Il modello a *memoria condivisa* viene utilizzato dai *thread* ( un filone di istruzioni all'interno di un processo ) , in quanto questi condividono le risorse del loro processo padre .
 Quando abbiamo più thread in un singolo processo si parla di *multi-threading* . In questo caso ogni *thread* avrà un ID distinto ma condivideranno la memoria del loro processo di origine
-
 ##### Produttore/Consumatore con memoria condivisa e buffer illimitato
 
 Utilizzeremo la memoria come *canale di comunicazione* senza ricorrere a meccanismi di comunicazione tra processi come le *PIPE*
@@ -1189,7 +1188,7 @@ Consumatore() {
 ```
 
 >[!warning]
->Il *consumatore* non attende che vi siano elementi nel buffer e quindi legge memoria "sporca" nel caso sia eseguito pipù velocemente del *produttore* . Visto che non possiamo fare assunzioni sullo scheduling dobbiamo introdurre un meccanismo di attesa 
+>Il *consumatore* non attende che vi siano elementi nel buffer e quindi legge memoria "sporca" nel caso sia eseguito più velocemente del *produttore* . Visto che non possiamo fare assunzioni sullo scheduling dobbiamo introdurre un meccanismo di attesa 
 
 >[!solution]
 >Utilizziamo la tecnica *busy-waiting* : il thread cicla a vuoto finchè non ci sono elementi da consumare
@@ -1218,7 +1217,6 @@ Consumatore() {
 
 >[!note]
 >La soluzione assume l'esistenza di un buffer illimitato
-
 ##### Produttore/Consumatore con memoria condivisa e buffer circolare
 
 Utilizziamo un buffer circolare di dimensione `MAX` 
@@ -1313,7 +1311,7 @@ Consumatore() {
 ```
 
 >[!warning]
->I thread aggiornano la variabile `contatore` contemporaneamente , questo crea interferenze compromettendo l'integrità dei dati
+>Se i thread aggiornano la variabile `contatore` contemporaneamente , questo crea interferenze compromettendo l'integrità dei dati
 
 >[!example]
 >In pseudo-assembly avremo che la modifica del contatore sarà : 
@@ -1384,7 +1382,7 @@ Utilizziamo una variabile booleana globale `turno` inizializzata a 1 .
 I *thread* eseguono codice che dipende dal proprio ID
 
 ```c
-int turno = 1; // in nessuna szezione critica
+int turno = 1; // in nessuna sezione critica
 
 t0{
 	....
