@@ -944,7 +944,6 @@ Quindi la condizione risulta verificata per $c=\frac{1}{3}$
 Possiamo quindi conludere che la complessità risulta essere :
 $$T(n)=\Theta(n)$$
 Poichè deve essere che $T(n)=\Theta(f(n))\quad f(n)=n$
-
 #### Dimostrazione Teorema Master
 
 Come *prima* cosa dobbiamo trasformare la formula generale di un algoritmo divide et impera da una formula ricorsiva ad una formula non ricorsiva
