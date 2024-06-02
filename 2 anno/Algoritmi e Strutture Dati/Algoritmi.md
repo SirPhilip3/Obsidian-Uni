@@ -1074,16 +1074,27 @@ $$
 
 Per *ipotesi* sappiamo che $\exists \ 0 < c < 1$ e $f(n)=\Omega(n ^ {d+\epsilon})$  
 La *Tesi* che dobbiamo dimostrare è $T(n)=f(n)$ 
-
 $$a\cdot f\bigg (\frac{n}{b}\bigg ) \le c \cdot f(n)$$
 Dove $a\cdot f\big (\frac{n}{b}\big )$ rappresenta il costo totale del $1°$ livello e $c \cdot f(n)$ rappresenta il costo totale della prima chiamata ricorsiva 
 
 La disequazione rappresenta che il tempo del primo livello è minore del tempo per finire la $1°$ chiamata ricorsiva
-
 $$\forall i \quad a^i\cdot f\bigg(\frac{n}{b^i}\bigg) \le c^i \cdot f(n)$$
 Dove $i$ rappresenta l'$i$-esimo livello 
->[!todo]
->completa 3° caso
->#todo 
+$$T(n) = \sum_{i=0}^{\log_b a} a^i \cdot f\bigg(\frac{n}{b^i}\bigg)$$
+Questa sommatoria sarà per definizione 
+$$\le \sum_{i=0}^{\log_b a} c^i \cdot f\big(n\big)$$
+$$\le f(n) \cdot \sum_{i=0}^{\log_b a} c^i$$
+$\sum_{i=0}^{\infty} c^i$ sarà sicuramente maggiore di $\sum_{i=0}^{\log_b a} c^i$ possiamo quindi sostituirla visto che sicuramente sarà maggiore di $a\cdot f(\frac{n}{b})$ 
 
-#### 
+Visto che $\sum_{i=0}^{\infty} c^i$ è una prograssione geometrica convergente per $c<1$ potremmo sostituirla con : $$\frac{1}{1-c}$$
+avremo quindi che :
+$$\le f(n)\frac{1}{1-c}$$
+$$\implies T(n) = O(f(n))$$
+Dobbiamo solo dimostrare che : 
+$$T(n) = \Omega(f(n))$$
+Questo è vero poichè se 
+$$T(n) = a\cdot T\bigg(\frac{n}{b}\bigg)+f(n)$$
+Per *ipotesi* e sapendo che $a\cdot T(\frac{n}{b})$ è $\ge 0$ allora questo implicherà che $T(n)$ sarà sicuramente maggiore di $f(n)$
+
+Possiamo quindi concludere che :
+$$T(n) = \Theta(f(n))$$
