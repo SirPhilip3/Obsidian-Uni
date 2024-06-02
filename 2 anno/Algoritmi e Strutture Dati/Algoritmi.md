@@ -386,7 +386,6 @@ Per ipotesi avremo quindi che :
 $$\exists\space c\gt0 , \exists\space n_0\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_0 : f(n)\le c\cdot g(n)$$
 Ciò che vogliamo dimostrare è : 
 $$\exists\space c'\gt0 , \exists\space n_0'\in \mathbb{N}\space \text{t.c.}\space \forall n \ge n_0' : c'\cdot f(n)\le g(n)$$
-
 Dall'ipotesi abbiamo che :
 $$\frac{1}{c}\cdot f(c)\le g(n)$$
 Ponendo $c'=\frac{1}{c}$ e sciegliendo $n_0'=n_0$ la proprietà è dimostrata
@@ -400,7 +399,6 @@ Se :
 $$f(n)=O\Big(g(n)\Big)\space \text{e} \space g(n)=O\Big(h(n)\Big)$$
 Allora :
 $$f(n)=O\Big(h(n)\Big)$$
-
 Dimostrazione :
 
 Ipotesi :
@@ -444,7 +442,6 @@ Visto che :
 $$o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$$
 Abbiamo anche che :
 $$ \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=0 \implies f(n)=o\Big(g(n)\Big)=O\Big(g(n)\Big)$$
-
 Esempi :
 $$log\ n =O(\sqrt n) $$
 $$\lim_{n \to \infty} \frac{log_e\ n}{\sqrt n} = \lim_{n \to \infty} \frac{\frac{1}{n}}{\frac{1}{2}\cdot n^{\frac{-1}{2}}} \quad \text{(per L'Hôpital)}$$
@@ -480,7 +477,7 @@ $$\exists\space c'\gt0\space , \exists\space n_0' \in \mathbb{N}\space \text{t.c
 1. Poichè abbiamo che per *o-piccolo* abbiamo che la definizione deve valere per ogni $c$ allora scielgieremo come $c$ $c'$ 
 2. Per far valere entrambe le difinizioni dobbiamo sciegliere un $n\ge max\{n_0,n_0'\}$
 
-Avendi fatto queste 2 considerazioni possiamo concludere che :
+Avendo fatto queste 2 considerazioni possiamo concludere che :
 $$f(n)\lt c'\cdot g(n)\le f(n)$$
 Questo è evidentemente *assurdo* ; abbiamo quindi dimostrato che : $o(g(n))\ \cap \ \Omega(g(n))=\emptyset$
 
