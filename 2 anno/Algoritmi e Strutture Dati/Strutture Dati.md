@@ -3324,7 +3324,6 @@ L'*edit distance* rappresenta il minimo numero di *modifiche* ( inserimento , ca
 >+ Inseriamo una $T$ in coda a $S_2$
 >+ Inseriamo una $G$ in coda a $S_2$
 >L'*edit distance* risulta quindi essere 4
-
 #### LCS
 
 >[!note]
@@ -3825,7 +3824,6 @@ Quindi il *massimo* numero di *vertici* sarà : $n^2$ visto che $E = V \times V 
 
 >[!note] 
 >In generale non è detto che due nodi collegati abbiano sia l'arco $(primo,secondo)$ che $(secondo,primo)$
-
 ## Grafi non orientati
 
 Un *grafo non orientato* $G$ è una coppia $G=(V,E)$ dove $V$ è l'insieme di vertici e $E\subseteq V \times V$ è l'insieme di archi su cui valgono le seguenti proprietà : 
@@ -3841,7 +3839,7 @@ $$\forall i \in V,\quad  (i,i) \notin E$$
 
 **Definizione alternativa** 
 
-Un *grafo non orientato* $G=(V,E)$ è costituito dall'insieme di veritici $V$ e dall'insieme di archi $E \subseteq \binom V 2$
+Un *grafo non orientato* $G=(V,E)$ è costituito dall'insieme di vertici $V$ e dall'insieme di archi $E \subseteq \binom V 2$
 
 >[!note]
 >Dove $\binom V 2$ rappresenta l'insieme di tutti gli insiemi di 2 elementi presenti in $V$  , questo ci dice che formalmente l'ordine non conta a differenza della dicitura $V \times V$ 
@@ -3893,7 +3891,6 @@ I pesi possono rappresentare informazioni es :
 + I pesi sugli archi rappresentano la distanza tra due stazioni
 
 Un *grafo pesato* sui vertici e sugli archi $G(V,E,w_1,w_2)$ , dove $w_1$ rappresenta una funzione che assegna ad ogni vertice un numero reale e $w_2$ rappresenta una funzione che assegna ad ogni arco un numero reale  
-
 ## Sottografo
 
 Definiamo con *sottografo* di $G(V,E)$ come $G'(V',E')$ con $V' \subseteq V$ e $E'\subseteq E \cap V' \times V'$ 
@@ -3967,7 +3964,6 @@ Un *albero* può essere *libero* se privo di gerarchia , *radicato altrimenti*
 
 Un *grafo acicliclo disconnesso* è detto *foresta*
 ![[foresta.excalidraw]]
-
 ## Adiacenza
 
 In un *grafo* i nodi $i$ e $j$ sono *adiacenti* se esiste un arco che li collega 

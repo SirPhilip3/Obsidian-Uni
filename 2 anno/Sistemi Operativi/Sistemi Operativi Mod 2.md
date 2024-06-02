@@ -2196,7 +2196,6 @@ Monitor rw {
 ## Thread in Java
 
 In *java* i *Monitor* sono implementati in una forma semplificata 
-
 ### Creazione di Thread in Java
 
 I thread in *Java* vengono creati estendendo la classe `Thread` e definendo il metodo `run` ( ciò che il thread eseguirà ) . Per eseguire il nuovo thread è sufficiente invocare il metodo `start`
