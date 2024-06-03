@@ -1874,7 +1874,7 @@ La differenza tra *signal* e *notify* stà nel come gestiscono il riavvio di un 
 + *signal* : 
 	Il thread che viene sbloccato dalla *signal* va subito in esecuzione nel Monitor mentre il thread che ha eseguito la *signal* attende su una coda prioritaria che il thread sbloccato esca dal Monitor
 + *notify* : 
-	Il thread che viene sbloccato dalla *notify* si mette in coda per riavvedere al monitor mentre il thread che ha eseguito la *notify* prosegue la sua esecuzione
+	Il thread che viene sbloccato dalla *notify* si mette in coda per riaccedere al monitor mentre il thread che ha eseguito la *notify* prosegue la sua esecuzione
 
 Con la *signal* siamo sicuri che il thread sbloccato verrà eseguito immediatamente mentre con la *notify* verrà eseguito in base allo scheduler , ciò significa che potrebbero essere eseguiti altri thread cambiando eventualmente lo stato del Monitor 
 ### Produttore - Consumatore
@@ -1957,7 +1957,7 @@ La procedura `leggi` è più o meno la stessa cosa
 
 Lo schema precedente funziona perchè i thread sbloccati dalla `signal` vengono eseguiti immediatamente. Infatti , se così non fosse , un consumatore potrebbe accadere che il dato venga consumato da un altro thread consumatore prima che il thread sbloccato vada in esecuzione 
 
-Questo può accadere se utilizziamo la `notify` invece che la `signal` , in questo caso dobbiamo racchiudere la `wait` denstro un ciclo `while` in modo che se lo stato del Monitor si è omdificato il thread possa bloccarsi nuovametne . In questo caso il codice diventa : 
+Questo può accadere se utilizziamo la `notify` invece che la `signal` , in questo caso dobbiamo racchiudere la `wait` dentro un ciclo `while` in modo che se lo stato del Monitor si è modificato il thread possa bloccarsi nuovametne . In questo caso il codice diventa : 
 
 ```c
 while (contatore == MAX)
@@ -2062,7 +2062,7 @@ Monitor tavola {
 
 	void siediti() {
 		while(sedie == 0)
-			sedia.wait(); // anttendo che ci sia una sedia libera
+			sedia.wait(); // attendo che ci sia una sedia libera
 		// occupa una sedia
 		sedie--;
 	}
@@ -2103,7 +2103,7 @@ Scrittore {
 }
 ```
 
-Per realizzare il *Monitor* dobbiamo sapere se c'è uno scrittore in sezione scritica oppure il numero esatto di lettori in sezione critica. 
+Per realizzare il *Monitor* dobbiamo sapere se c'è uno scrittore in sezione critica oppure il numero esatto di lettori in sezione critica. 
 
 I *lettori* entrano se non c'è uno scrittore in sezione scritica , lo *scrittore* entra se non c'è nessuno in sezione critica 
 
