@@ -319,7 +319,6 @@ $$c_1=1$$
 $$c_2=\sqrt2$$
 $$n_0=10$$
 Abbiamo scielto $n_0=10$ poichè soddisfa entrambe le condizioni
-
 ## Ulteriori Dimostrazioni
 
 ### $log\space n=O(n)$
