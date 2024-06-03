@@ -2263,10 +2263,9 @@ dove `this` indica a quale oggetto fare riferimento per ottenere il *lock* impli
 
 >[!important] Definizione
 >Un'insieme $S$ di *processi* o *thread* è in **stallo** se ogni $p$ di $S$ attende un evento che può essere causato solo da processi o thread appartenenti  d $S$  
-
 ### Condizioni necessarie per lo stallo
 
-Parlando in generali di *risorse* avremo che uno stallo avviene sotto alcune condizioni : 
+Parlando in generale di *risorse* avremo che uno stallo avviene sotto alcune condizioni : 
 + *Mutua esclusione* :
 	Quando una risorsa può essere utilizzata solo da un processo alla volta
 + *Possesso e attesa* : 
