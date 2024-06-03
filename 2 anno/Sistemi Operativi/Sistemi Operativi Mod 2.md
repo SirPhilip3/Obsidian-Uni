@@ -2349,7 +2349,7 @@ Possiamo prevenire uno stallo anche a runtime intervenedo quando individuiamo un
 Uno stallo può essere individuando controllando l'assegnamento delle risorse , se l'assegnamento di una risorsa può portare ad uno stallo il processo che richiede quella risorsa non la riceve ( rimane in attesa )
 
 >[!note] 
->L'individuazione dello stallo a runtime è complesso e porta ad ulteriore comlpessità , per questo la maggior parte dei sistemi operativi non lo implementano
+>L'individuazione dello stallo a runtime è complesso e porta ad ulteriore complessità , per questo la maggior parte dei sistemi operativi non lo implementano
 ### Grafo di assegnazione 
 
 Per rappresentare l'assegnamento delle risorse utilizziamo un **grafo di assegnazione** : 
@@ -2422,7 +2422,6 @@ Nel caso abbiamo più istanze per risorsa non possiamo utilizzare l'algoritmo pr
 >In questo esempio possiamo vedere che $P2$ può rilasciare la risorsa $R2$ che può essere assegnata a $P0$ che a sua volta libererà $R1$ per $P1$ .
 >
 >I processi hanno quindi una cosidetta *sequenza sicura* o di *terminazione* : $<P2,P0,P1>$
-
 
 >[!important] Definition : Sequenza Sicura
 >
