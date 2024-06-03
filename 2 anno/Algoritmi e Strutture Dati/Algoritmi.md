@@ -630,7 +630,7 @@ Avremo quindi che la complessità totale sarà :
 $$while = O\Big(N(n)\cdot\big(f(n)+g(n)\big)\Big)$$
 ### Esempio
 
-Abbiamo un il seguente algoritmo :
+Abbiamo il seguente algoritmo :
 ```c
 Alg(int n) -> n 
 int a , i , j
@@ -1045,7 +1045,7 @@ $$T(n)=\Theta(n^d)$$
 Per *ipotesi* sappiamo che $\exists\ \epsilon\gt 0,\ f(n)=O(n^{d})$
 La *Tesi* che dobbiamo dimostrare è : $T(n)=\Theta(n^d\cdot \log n)$
 
-Come prima applichiamo l'*ipotesi* alla complessità totale al livello $i$-esimo
+Come prima cosa applichiamo l'*ipotesi* alla complessità totale al livello $i$-esimo
 $$
 a^i\cdot f\Big(\frac{n}{b^i}\Big)=a^i\cdot \Theta\Bigg(\Big(\frac{n}{b^i}\Big)^{d}\Bigg)
 $$
