@@ -2290,7 +2290,6 @@ Lo stallo può essere gestito in vari modi :
 #### Prevenzione
 
 Per prevenire la formazione di uno stallo dobbiamo negare una delle condizioni per l'avvenimento dello stallo ( in quanto devono valere tutte assieme perchè avvenga uno stallo )
-
 ##### Negare mutua esclusione
 
 Non possiamo evitarla poichè questa dipende dal tipo di risorsa e come questa viene utilizzata
