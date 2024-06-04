@@ -4626,7 +4626,7 @@ L'algoritmo di *Prim* a differenza dell'algoritmo di *Kruskal* costruisce un alb
 
 L'algoritmo si serve di una struttura dati formata da una coda di minima priorità $Q$ che memorizza i vertici del grafo per estrarli uno alla volta sulla base del campo `Key[u]` , $u \in V$ , che contiene il minore tra i pesi degli archi $u$ che attraversano un taglio 
 
-La *key* rappresenta la chiave della coda di priorità $Q$ , se voglio quindi estrarre un arco leggero mi basterà prendere la *key* con il valore minore , dopo aver aggiunto un arco devo però aggiornare i campi *key* dei vertici rimaneti visto che il taglio adesso non comprende più il vertice scelto
+La *key* rappresenta la chiave della coda di priorità $Q$ , se voglio quindi estrarre un arco leggero mi basterà prendere la *key* con il valore minore , dopo aver aggiunto un arco devo però aggiornare i campi *key* dei vertici rimanenti visto che il taglio adesso non comprende più il vertice scelto
 
 Per ogni vertice inoltre abbiamo un campo `predecessore` che è un puntatore al suo predecessore ( utilizzato per costruire l'albero che stiamo cercando )
 
