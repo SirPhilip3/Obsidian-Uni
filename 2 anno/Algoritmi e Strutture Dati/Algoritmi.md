@@ -442,7 +442,7 @@ $$o\Big(g(n)\Big)\subset O\Big(g(n)\Big)$$
 Abbiamo anche che :
 $$ \lim_{n\rightarrow\infty} \frac{f(n)}{g(n)}=0 \implies f(n)=o\Big(g(n)\Big)=O\Big(g(n)\Big)$$
 Esempi :
-$$log\ n =O(\sqrt n) $$
+$$log\ n =O(\sqrt n)$$
 $$\lim_{n \to \infty} \frac{log_e\ n}{\sqrt n} = \lim_{n \to \infty} \frac{\frac{1}{n}}{\frac{1}{2}\cdot n^{\frac{-1}{2}}} \quad \text{(per L'Hôpital)}$$
 $$\lim_{n \to \infty} \frac{2}{\sqrt n}=0$$
 Avremo quindi che : 

@@ -3847,7 +3847,6 @@ Un *grafo non orientato* $G=(V,E)$ è costituito dall'insieme di vertici $V$ e d
 
 Troviamo ora la *cardinalità di $E$* :
 $$\left|\binom V 2\right|=\binom {|V|}2 = \frac{n(n-1)}{2}$$
-
 ## Altre suddivisioni dei grafi
 
 I *grafi* possono essere divisi a seconda della loro *densità* : 
@@ -3870,7 +3869,6 @@ Avremo che $\delta$ differenzierà per i *grafi orientati* e *non* :
 	$$\delta(G)= \frac{|E|}{n^2} \to \frac{|E|}{|V|^2}$$
 + Per quelli *non orientati* avremo che : 
 	$$\delta(G)=\frac{|E|}{\left|\binom V 2\right|}= \frac{|E|}{\frac{n(n-1)}{2}}=\frac{2\cdot |E|}{n(n-1)}$$
-
 ## Grafi Pesati
 
 I *grafi pesati* sono un'altra tipologia di *grafo* che hanno valori numerici collegati agli *archi* , *vertici* o entrambi
@@ -3886,7 +3884,7 @@ Un *grafo pesato* sugli *archi* $G(V,E,w)$ , dove $w$ rappresenta una funzione c
 ![[grafopesatoA.excalidraw]]
 
 I pesi possono rappresentare informazioni es :
-+ I veritici rappresentano delle stazioni
++ I vertici rappresentano delle stazioni
 + Gli archi rappresentano la tratta tra 2 stazioni 
 + I pesi sugli archi rappresentano la distanza tra due stazioni
 
@@ -3988,7 +3986,7 @@ Ogni posizione dell'array indica un *nodo* del grafo da cui partono la lista deg
 
 **Svantaggi** : 
 + I tempi di accesso non sono ottimi : 
-	Per verificare l'essitenza di un arco è necessario scorrere le liste concatenate che è un'operazione lenta rispetto all'accesso diretto degli array
+	Per verificare l'esitenza di un arco è necessario scorrere le liste concatenate che è un'operazione lenta rispetto all'accesso diretto degli array
 
 >[!note]
 >L'utilizzo di questa struttura dati conviene in *grafi sparsi* visto che ho pochi archi e non devo sprecare molto tempo per la ricerca 
@@ -4016,7 +4014,7 @@ In pratica metteremo 1 in quelle caselle le cui coordinate rappresentano un arco
 >[!note]
 >Questo metodo risulta essere più efficente ( dal punto di vista temporale ) rispetto alla *lista di adiacenza* poichè per vedere se abbiamo un arco tra due nodi $i$ e $j$ ci basterà vedere se la cella $a[\ i\ ][\ j\ ]$ contiene 1 o 0
 >
->Dal punto di vista spaziale abbiamo un consumocostante di $\Theta(n^2)$
+>Dal punto di vista spaziale abbiamo un consumo costante di $\Theta(n^2)$
 
 Questa soluzione risulta essere preferibili nel caso di *grafi densi* se non ho problemi di spazio
 
@@ -4052,7 +4050,6 @@ Nel caso di *grafi orientati* metteremo :
 Se questo metodo viene utilizzato con *grafi non orientati* utilizzeremo 1 per indicare sia l'arrivo che la partenza 
 
 Questa rappresentazione è utilizzata nel caso in cui abbiamo un *grafo sparso* ( in modo che abbiamo poche colonne per diminuire la complessità spaziale )
-
 ## Componente Connessa
 
 Dato un grafo $G=(V,E)$  , una *componente connessa* di $G$ è un sottoinsieme di *vertici* $V'$ tale che :
@@ -4127,7 +4124,6 @@ Notiamo che la somma dei *gradi* può essere scritta come $2\ \cdot$ numero arch
 	*Dimostrazione* : possiamo dimostrare notando che si conta due volte ogni arco
 
 Se rappresentiamo il *grafo* con una matrice di adiacenza il *grado* può essere calcolato sommando tutti i valori della riga corrispondente ad $i$ , se abbiamo un *grafo non orientato* questo vale anche per la somma della colonna 
-
 #### Moltiplicazioni della martice di adiacenza
 
 Consideriamo un grafo $G=(V,E)$ *non orientato* allora avremo che $A_G$ sarà la *matrice di adiacenza* di $G$ , cosa rappresenterà $A \times A = A^2 = (a_{ij}^{(2)}) = \sum_{l=1}^n a_{il}\cdot a_{lj}$ 
