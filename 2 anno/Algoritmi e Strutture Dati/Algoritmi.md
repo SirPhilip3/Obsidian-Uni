@@ -390,7 +390,7 @@ $$\frac{1}{c}\cdot f(c)\le g(n)$$
 Ponendo $c'=\frac{1}{c}$ e sciegliendo $n_0'=n_0$ la proprietà è dimostrata
 
 La dimostrazione è equivalente per $\Leftarrow$
-### Prorietà Transitiva
+### Proprietà Transitiva
 
 La seguente proprietà e valida per $O$ , $\Omega$ , $\Theta$
 
