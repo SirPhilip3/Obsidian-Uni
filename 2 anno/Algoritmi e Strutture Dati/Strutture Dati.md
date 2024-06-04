@@ -4163,7 +4163,8 @@ Possiamo dimostrare che il numero di vertici di grado dispari è sempre pari
 Dividiamo $V$ in due sottoinsiemi di vertici : 
 $$P=\{ u \in V | deg(u)\ \text{è pari} \ \}$$
 $$D=\{ u \in V | deg(u)\ \text{è dispari} \ \}$$
-$P$ e $D$ costituiscono quindi due *partizioni* di $V$ dove avremo che $P \cup D = V$ e $P\cap D = \emptyset$ 
+$P$ e $D$ costituiscono quindi due *partizioni* di $V$ dove avremo che $P \cup D = V$ e $P\cap D = \emptyset$
+
 Sviluppiamo quindi il *lemma della stretta di mano* : 
 $$2\cdot m = \sum_{u\in V} deg(u)$$
 $$= \sum_{u\in P} deg(u) + \sum_{u\in D} deg(u)$$
@@ -4174,12 +4175,11 @@ $$= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|$$
 $$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
 $$|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)$$
 Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anch'esso *pari*
-
 ### Proprietà
 
 #### Esistono almeno 2 vertici con grado 1 ( sono *Terminali* )
 
-Considerando un grafo $G=(V,E)$ *non orientato* senza veritici *isolati* ( $deg()=0$ ) e per cui abbiamo che : $|E|=|V|-1$ 
+Considerando un grafo $G=(V,E)$ *non orientato* senza vertici *isolati* ( $deg()=0$ ) e per cui abbiamo che : $|E|=|V|-1$ 
 
 Voglia dimostrare che se prendiamo l'insieme di vertici $V_1$ di grado $1$ allora $|V_1| \ge 2$ 
 
@@ -4309,7 +4309,6 @@ $$|E|\ge |V|-1$$
 ![[Notconnected.excalidraw]]
 >
 >Possiamo vedere infatti che la condizione precedente è verificata ossia $|E|\ge |V|-1 = 5\ge 6-1$ ma il grafo non è connesso 
-
 #### Condizione **sufficente** per la connettività di un grafo
 
 Se $G=(V,E)$ è un grafo non orientato allora questo sarà connesso se il grado di ogni vertice è : 
