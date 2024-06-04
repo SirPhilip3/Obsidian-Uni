@@ -4903,7 +4903,7 @@ $$\delta(s,v)=\delta(s,v)$$
 		1. Se è stata implementata con un *heap binario* : 
 			La `Extract_min` avrà complessità $\log n$ poichè dovremo ribilanciare l'*heap* ad ogni estrazione , poichè è svolto per $n$ volte avremo che la complessità totale di `Extract_min` sarà $O(n\log n)$
 		3. Se è stata implementata con un *array lineare* :
-			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ ( in totale $O(n^2)$poichè viene svolto per $n$ volte )
+			La `Extract_min` non necessità di ribilanciamento ma saremo costretti a cercare l'intero array per trovare il minimo , la complessità sarà quindi $O(n)$ ( in totale $O(n^2)$ poichè viene svolto per $n$ volte )
 	3. Righe `8-9` : il ciclo `for` viene svolto tante volte quanto l'*out-degree* del nodo appena estratto $u$ , notiamo che visto che viene svolto per $n$ volte all'interno del ciclo `while` possiamo trovare il numero di iterazioni totali risolvendo : $$\sum_{i=1}^n \text{out-deg}(i)=m$$
 	  All'interno del ciclo `for` svolgiamo la `Relax` , la sua complessità dipende dal'implementazione di $Q$ , avremo quindi 2 casi :
 		1. *heap binario* : 

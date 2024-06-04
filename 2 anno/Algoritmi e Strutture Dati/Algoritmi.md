@@ -1084,7 +1084,7 @@ $\sum_{i=0}^{\infty} c^i$ sarà sicuramente maggiore di $\sum_{i=0}^{\log_b a} c
 
 Visto che $\sum_{i=0}^{\infty} c^i$ è una prograssione geometrica convergente per $c<1$ potremmo sostituirla con : $$\frac{1}{1-c}$$
 avremo quindi che :
-$$\le f(n)\frac{1}{1-c}$$
+$$\le f(n)\cdot \frac{1}{1-c}$$
 $$\implies T(n) = O(f(n))$$
 Dobbiamo solo dimostrare che : 
 $$T(n) = \Omega(f(n))$$
