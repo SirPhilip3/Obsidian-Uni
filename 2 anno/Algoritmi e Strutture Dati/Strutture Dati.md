@@ -4941,7 +4941,7 @@ Allora alla fine dell'algortimo di *Dijkstra* si ha :
 >Non dimostreremo il secondo punto
 
 *Dimostriamo* quindi la seguente effermazione : 
-	$\forall u \in V$ all'atto dell'estrazione di $u$ dalla coda $Q$ risultetà che $d[u]=\delta(s,u)$ ( se questo è vero all'estrazione allora dovrà essere vero anche alla fine dell'algoritmo poichè sappiamo che quando $d[u]=\delta(s,u)$ questo non potrà più cambiare per come è scritta la `Relax`)
+	$\forall u \in V$ all'atto dell'estrazione di $u$ dalla coda $Q$ risultetà che $d[u]=\delta(s,u)$ ( se questo è vero all'estrazione allora dovrà essere vero anche alla fine dell'algoritmo poichè sappiamo che quando $d[u]=\delta(s,u)$ questo non potrà più cambiare per come è scritta la `Relax` )
 
 **Dimostrazione** per assurdo :
 
