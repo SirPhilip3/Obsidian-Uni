@@ -18,7 +18,6 @@
 	Valore dello *stimatore* corrispondente al particolare campione osservato
 
 Il *campione* ha di per s'è un *errore* rispetto al *parametro* 
-### Errori
 
 Vi sono due diverse tipologie di errore :T
 + **Errori campionari** : sono inevitabili
@@ -104,7 +103,7 @@ per tutti i possibili valori di $\theta$
 
 La distorsione di $\hat\theta$ è :
 $$Bias(\hat\theta)=E(\hat\theta)-\theta$$
-Uno stimatore non distorto è uno stimatore *corretto* in media se in media non sottostima o svrastima il parametro 
+Uno stimatore non distorto è uno stimatore *corretto* in media se in media non sottostima o sovrastima il parametro 
 
 La *media campionaria* è uno *stimatore non distorto* della media di popolazione , questo può essere dimostrato nel seguente modo : 
 $$E(\overline X)=E\Bigg(\frac 1n \sum_{i=1}^n X_i\Bigg)=\frac 1n \sum_{i=1}^n E(X_i)=\frac 1n \sum_{i=1}^n \mu = \mu$$
