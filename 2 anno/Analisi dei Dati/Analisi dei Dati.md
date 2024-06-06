@@ -544,7 +544,6 @@ $$m_k=\frac 1 n \sum_{i=1}^n x_i^k \quad (m_1 = \overline x\ )$$
 >[!note]
 >+ $M_k$ è uno *stimatore* di $\mu_k$
 >+ $m_k$ è una *stima* di $\mu_k$
-
 #### Momenti centrali
 
 >[!important]
