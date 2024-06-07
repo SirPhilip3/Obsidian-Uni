@@ -631,7 +631,7 @@ $$L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)$$
 >>I fattori binomiali possono essere eliminati , possiamo quindi rimuovere i termini costanti dal calcolo della verosimiglianza
 >>$$L(\theta)=\theta^{11}(1-\theta)^4$$ 
 
-#### Log.verosimiglianza
+#### Log-verosimiglianza
 
 La *log-verosimiglianza* è definita come : 
 $$l(\theta)=\log L(\theta)$$
