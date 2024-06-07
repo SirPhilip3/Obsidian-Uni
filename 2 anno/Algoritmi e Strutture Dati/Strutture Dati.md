@@ -5214,7 +5214,7 @@ $d_{ij}^{(k)}$ rappresenta dunque il peso del cammino minimo tra $i$ e $j$ i cui
 ## Algoritmi Greedy
 
 Un *algoritmo greedy* o goloso è : 
-	Un alogritmo *iterativo* in cui ad ogni passo dell'iterazione si compie una *decisione* che sembra essere in quel momento la più promettente per determinare il proseguimento dell'algortimo
+	Un algoritmo *iterativo* in cui ad ogni passo dell'iterazione si compie una *decisione* che sembra essere in quel momento la più promettente per determinare il proseguimento dell'algortimo
 
 >[!example] 
 >Esempio di algoritmi *greedy* sono : *Kruskal* , *Prim* e *Dijkstra*
@@ -5342,7 +5342,7 @@ Una *clique massimale* è una *clique* che non è contenuta in una *clique* più
 Proviamo ad implementare quindi un algoritmo *greedy* che trovi la $clique$ massima dato un grafo $G$ in input
 
 + Oridiniamo secondo il grado dei vertici in modo decrescente ( teoricamente dovremo avere più nodi collegati possibile )
-+ ok : quando il vertice scielto è collegato a tutti quelli presenti in $A$
++ ok : quando il vertice scelto è collegato a tutti quelli presenti in $A$
 
 ```pseudo
 	\begin{algorithm}
