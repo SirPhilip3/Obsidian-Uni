@@ -4472,7 +4472,7 @@ Diciamo che $T\in MST(G)$ , abbiamo 2 casi :
 Sia $G=(V,E,w)$ un grafo non orientato e connesso dove $w : E \to \mathbb{R}$ è una funzione peso sugli archi . 
 Valgono le seguenti ipotesi : 
 + $A \subseteq E$ è un sottoinsieme di archi contenuto in qualche $MST$
-+ $(S,S-V)$ un talgio di $G$ che **rispetta** A ( ossia se gli archi di A stanno in S o S-V o entrambi ma non devono esserci archi di A che attraversano il taglio )
++ $(S,S-V)$ un talgio di $G$ che **rispetta** A ( ossia che gli archi di A stanno in S o S-V o entrambi ma non devono esserci archi di A che attraversano il taglio )
 + Un arco $(u,v)$ è un *arco leggero* che attraversa il taglio 
 
 Allora avremo che il *teorema fondamentale degli MST* afferma che $A \cup (u,v)$ è contenuto in qualche $MST$ . Si può dire che $(u,v)$ è **sicuro** per $A$
