@@ -4895,7 +4895,7 @@ $$\delta(s,v)=\delta(s,v)$$
 >[!todo] 
 
 **Terminazione** : 
-	L'algoritmo sicuramente termina poichè il ciclo `while` estrae sempre un vertice , arriveremo sempre quindi all'insieme vuoto e il ciclo `for` è limitato dal numero di vertici adiacenti ( al massimo tutti gli altri verici del grafo )
+	L'algoritmo sicuramente termina poichè il ciclo `while` estrae sempre un vertice , arriveremo sempre quindi all'insieme vuoto e il ciclo `for` è limitato dal numero di vertici adiacenti ( al massimo tutti gli altri vertici del grafo )
 
 **Complessità** :
 	1. Righe `2-4` : La procedura `Init_SS` ha tempo di esecuzione $\Theta(n)$ poichè scorrerà per forza l'intero grafo 
