@@ -4828,7 +4828,7 @@ Abbiamo 3 casi :
 2. $\delta(s,u) = - \infty$ : tra $s$ e $u$ esiste un ciclo negativo 
 	+ Avremo che $\delta(s,v)\le -\infty + w(u,v)$ ma quindi anche $\delta(s,v)=-\infty$ per via del ciclo negativo , dunque la condizione è verificata 
 3. $\delta(s,u) \in \mathbb{R}$ : esiste un cammino senza cicli tra $s$ e $u$ 
-	+ Sia $p$ il cammino tra $s$ e $u$ allora se l'*unico* cammino tra $s$ e $v$ è costituito dal cammino $p$ e dall'arco tra $(u,v)$  il suo peso risulterà essere pari alla somma peso di $p$ e $w(u,v)$ , ( $\delta(s,v) = \delta(p)+w(u,v)$ ) e visto che potrebbero esserci cammini meno costosi tra $s$ e $v$ questo risulterà essere un limite inferiore 
+	+ Sia $p$ il cammino tra $s$ e $u$ allora se l'*unico* cammino tra $s$ e $v$ è costituito dal cammino $p$ e dall'arco tra $(u,v)$ il suo peso risulterà essere pari alla somma peso di $p$ e $w(u,v)$ , ( $\delta(s,v) = \delta(p)+w(u,v)$ ) e visto che potrebbero esserci cammini meno costosi tra $s$ e $v$ questo risulterà essere un limite inferiore 
 >[!todo] 
 >capire la dimostrazione
 #### Proprietà del limite inferiore
