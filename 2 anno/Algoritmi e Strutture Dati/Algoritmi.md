@@ -955,7 +955,7 @@ Esplicitiamo la ricorsione attraverso l'albero delle ricorsioni
 ![[RerTreeMaster.excalidraw]]
 
 Al livello $i$ avremo che : 
-+ il numero di nodi persenti a quell livello sono : $a^i$
++ il numero di nodi presenti a quel livello sono : $a^i$
 + la dimensione del problema risolto da ogni nodo è pari a : $\frac{n}{b^i}$
 + il tempo necessario per lo svolgimento di ogni nodo sarà quindi una funzione della dimensione del sottoproblema : $f\Big(\frac n {b^i}\Big)$ 
 
