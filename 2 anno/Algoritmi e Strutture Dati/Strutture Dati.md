@@ -4169,7 +4169,7 @@ Sviluppiamo quindi il *lemma della stretta di mano* :
 $$2\cdot m = \sum_{u\in V} deg(u)$$
 $$= \sum_{u\in P} deg(u) + \sum_{u\in D} deg(u)$$
 $$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} (2\cdot f(u)+1)$$
-	Dove questo perchè sappiamo che $deg(u)$ di $P$ è pari e quindi può essere trasformato in $2\cdot f(u)$ ossia come può essere rappresentato un numero pari , il contrario vale per $D$ dove un numero dispari può essere rappresentato con $2\cdot f(u) +1$ 
+Dove questo perchè sappiamo che $deg(u)$ di $P$ è pari e quindi può essere trasformato in $2\cdot f(u)$ ossia come può essere rappresentato un numero pari , il contrario vale per $D$ dove un numero dispari può essere rappresentato con $2\cdot f(u) +1$ 
 $$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} 2\cdot f(u) + \sum_{u \in D} 1$$
 $$= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|$$
 $$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
