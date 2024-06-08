@@ -4486,7 +4486,7 @@ Sia $T\in MST(G)$ tale che $A \subseteq T$
 	2. Tagliamo  $T'' = T' - (x,y)$ ( questo sarà un *minimum spanning tree* di $G$ poichè aggiungiamo un arco leggero del taglio e togliamo un arco leggero ( questo poichè si trova sul taglio che ha come arco leggero $(u,v)$ ) $(x,y)$ )
 	Avremo quindi che $T''$ è un $MST$ di $G$
 
-Possiamo quindi dire che $A\cup (u,v)\subseteq T''$ poichè $A$ era un insieme di archi tranne quelli sul taglio , $(u,v)$ invece è l'arco che abbiamo scielto da aggiungere in $T$ questo inoltre fa parte del taglio , avremo quindi che $A \cup (u,v) \subseteq T''$
+Possiamo quindi dire che $A\cup (u,v)\subseteq T''$ poichè $A$ era un insieme di archi tranne quelli sul taglio , $(u,v)$ invece è l'arco che abbiamo scelto da aggiungere in $T$ questo inoltre fa parte del taglio , avremo quindi che $A \cup (u,v) \subseteq T''$
 
 >[!warning] 
 >Se nel metodo *cuci e taglia* facciamo prima il taglia del cuci non è la stessa cosa e porta ad un risultato scorretto
