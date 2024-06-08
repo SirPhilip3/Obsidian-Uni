@@ -5533,7 +5533,7 @@ Il *complemento* di un *problema decisionale* $\mathcal{P}$ è il problema $\mat
 Questa proprietà è simile a quella che sfruttiamo per ricondurci ad un problema già risolto quando cerchiamo di risolvere un problema nuovo 
 
 In questo caso parliamo di *riducibilità polinomiale* ossia :
-	Dati due problemi decisionali $\mathcal{P}_1$ e $\mathcal{P_2}$ diciamo che $\mathcal{P_1}$ è riducibile polinomialmente al problema $\mathcal{P_2}$ ( $\mathcal{P_1} \le_P \mathcal{P_2}$ ) se esiste un algoritmo polinomiale che mappi le istanze del problema $\mathcal{P_1}$ in istanze *equivalenti* ( ossia da istanze positive a positive o da negative a negative ) del problema $\mathcal{P_2}$ ( $P_1$ non è più difficile di $P_2$ )
+	Dati due problemi decisionali $\mathcal{P}_1$ e $\mathcal{P_2}$ diciamo che $\mathcal{P_1}$ è riducibile polinomialmente al problema $\mathcal{P_2}$ ( $\mathcal{P_1} \le_P \mathcal{P_2}$ ) se esiste un algoritmo polinomiale che mappi le istanze del problema $\mathcal{P_1}$ in istanze *equivalenti* ( ossia da istanze positive a positive o da negative a negative ) del problema $\mathcal{P_2}$ ( $\mathcal{P_1}$ non è più difficile di $\mathcal{P_2}$ )
 
 Potremmo quindi dire che : 
 + Se $\mathcal{P_1} \le_P \mathcal{P_2}$ e $\mathcal{P_2} \in P$ allora anche $\mathcal{P_1}\in P$ 
