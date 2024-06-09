@@ -5519,7 +5519,7 @@ La *classe* $Co-NP$ e ( classi di problemi il cui complemento è $NP$ )
 Il *complemento* di un *problema decisionale* $\mathcal{P}$ è il problema $\mathcal{P}$ per cui le soluzioni sono invertite , ossia $\bar{\mathcal{P}}$ è vero quando $\mathcal{P}$ è falso ed è falso quando $\mathcal{P}$ è vero 
 
 >[!example] 
->Per il problema del *grafo hamiltoniano* avremo che $\bar{\mathcal{P}}$ ritornarà *no* se $G$ è hamiltoniano e *yes* se non lo è 
+>Per il problema del *grafo hamiltoniano* avremo che $\bar{\mathcal{P}}$ ritornerà *no* se $G$ è hamiltoniano e *yes* se non lo è 
 >
 >Vediamo ora se $\bar{\mathcal{P}}$ è $NP$ 
 >
