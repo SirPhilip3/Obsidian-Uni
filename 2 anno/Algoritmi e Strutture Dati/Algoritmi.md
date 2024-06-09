@@ -476,7 +476,7 @@ $$\exists\space c'\gt0\space , \exists\space n_0' \in \mathbb{N}\space \text{t.c
 
 Avendo fatto queste 2 considerazioni possiamo concludere che :
 $$f(n)\lt c'\cdot g(n)\le f(n)$$
-Questo è evidentemente *assurdo* ; abbiamo quindi dimostrato che : $o(g(n))\ \cap \ \Omega(g(n))=\emptyset$
+Questo è evidentemente *assurdo* , abbiamo quindi dimostrato che : $o(g(n))\ \cap \ \Omega(g(n))=\emptyset$
 
 La stessa dimostrazione può essere svolta per $\omega(g(n))\ \cap \ O(g(n))=\emptyset$ 
 
@@ -787,7 +787,6 @@ Il *teorema* comprende 3 casi :
 #### $split+merge \lt \text{chiamate ricorsive}$ 1 caso $f(n)<g(n)$
 
 La complessità di $split+merge$ è *minore* della complessità delle *chiamate ricorsive*
-
 $$f(n)=O\Big(n^{d-\epsilon}\Big)$$
 Se $f(n)$ è $O(n^{d-\epsilon})$  allora per $\epsilon \gt 0$ avremo che 
 $$T(n)=\Theta\Big(n^d\Big)$$
