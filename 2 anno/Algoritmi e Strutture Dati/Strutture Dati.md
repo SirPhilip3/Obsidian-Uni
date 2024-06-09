@@ -4420,7 +4420,7 @@ Il primo vertice di questo taglio deve essere contenuto nell'insieme $S$ e il se
 
 **Dimostrazione** : 
 
-$T$ è un **MST** di $G$
+Supponiamo per ipotesi che $T$ sia un **MST** di $G$
 
 2 casi : 
 + $(u,v) \in T$ : la dimostrazione è finita visto che $(u,v)$ è già in $T$
