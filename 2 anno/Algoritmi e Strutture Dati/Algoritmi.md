@@ -249,12 +249,11 @@ Quando è vera la precedente disequazione
 
 Omega grande di $g(n)$ è definito come l'insieme delle funzioni $f(n)$ per cui vale la seguente *proprietà* :
 $$\bigg\{f(n)\mid\exists\space c\gt0\space , \exists\space n_0 \in \mathbb{N}\space \text{t.c.}\space \forall\space n\ge n_0 : c\cdot g(n)\le f(n)\bigg\}$$
-
 Risulta essere l'esatto contrario di *O-grande*
 
 Esempio :
 
-Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete realzione : $c\cdot g(n)\le f(n)$   ( Ossia che $f(n)$ stia sopra $c\cdot g(n)$  ) 
+Per $O\big(g(n)\big)$ è possibile trovare una costante $c\gt 0$ per cui per un $n$ sufficentemente grande si verifichi la seguete relazione : $c\cdot g(n)\le f(n)$   ( Ossia che $f(n)$ stia sopra $c\cdot g(n)$  ) 
 
 ![[Omega.excalidraw]]
 
@@ -282,7 +281,6 @@ Accade quando $f(n)$ si comporta asintoticamente come $g(n)$
 
 Quindi avremo che :
 $$f(n)=\Theta\big(g(n)\big)\iff f(n)=\Omega\big(g(n)\big) \land\space f(n)=O\big(g(n)\big)$$
-
 Per : 
 $$\frac{1}{2}n^2-3n = \Theta\big(n^2\big)$$
 Quindi si comporta come il termine $n^2$ , in generale tutti i polinomi si comportano come il loro termine di massimo grado
