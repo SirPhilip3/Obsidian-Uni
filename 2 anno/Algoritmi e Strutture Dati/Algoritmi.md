@@ -958,7 +958,7 @@ Al livello $i$ avremo che :
 
 Il tempo totale di svolgimento dell'algoritmo sarà quindi la somma delle complessità di ogni livello ossia il prodotto del numero di nodi per ogni livello e il loro contributo temporale :
 $$T(n)=\sum_{i=0}^{n°\ \text{livelli}}a^i\cdot f\Big(\frac{n}{b^i}\Big)$$
-Il tempo totale dipede ancora da una variabile $n°\ \text{livelli}$ , questa può essere dedotta capendo quando la ricorsione si ferma ( ossia i suoi *casi base* )
+Il tempo totale dipende ancora da una variabile $n°\ \text{livelli}$ , questa può essere dedotta capendo quando la ricorsione si ferma ( ossia i suoi *casi base* )
 In questo caso il *caso base* è quando la dimensione del sottoproblema risulta essere $1$ quindi troviamo il valore di $i$ ( $n° \text{livelli}$ )
 $$
 \frac{n}{b^i}=1 \iff n=b^i\iff i= \log_bn
@@ -1079,7 +1079,7 @@ $$\le \sum_{i=0}^{\log_b a} c^i \cdot f\big(n\big)$$
 $$\le f(n) \cdot \sum_{i=0}^{\log_b a} c^i$$
 $\sum_{i=0}^{\infty} c^i$ sarà sicuramente maggiore di $\sum_{i=0}^{\log_b a} c^i$ possiamo quindi sostituirla visto che sicuramente sarà maggiore di $a\cdot f(\frac{n}{b})$ 
 
-Visto che $\sum_{i=0}^{\infty} c^i$ è una prograssione geometrica convergente per $c<1$ potremmo sostituirla con : $$\frac{1}{1-c}$$
+Visto che $\sum_{i=0}^{\infty} c^i$ è una progressione geometrica convergente per $c<1$ potremmo sostituirla con : $$\frac{1}{1-c}$$
 avremo quindi che :
 $$\le f(n)\cdot \frac{1}{1-c}$$
 $$\implies T(n) = O(f(n))$$

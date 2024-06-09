@@ -4284,12 +4284,12 @@ Abbiamo che :
 
 La *base* dell'induzione sarà : 
 	$$n=2 \quad |E|=1 \ \ \ |V| = 2 \quad |E|=|V|-1 \quad \text{come volevasi dimostrare}$$
-Supponiamo ora che la propietà valga per un grafo con $n-1$ vertici e dimostriamo la proprietà per $n$ vertici
+Supponiamo ora che la propietà valga per un grafo con $n-1$ vertici e dimostriamo la proprietà vale per $n$ vertici
 
 *Passo induttivo* : per $n\ge 3$
 
 Consideriamo un vertice $Z \in V$ , togliamolo dal *grafo* , consideriamo quindi $G[V - \{Z\}]$ ossia il *grafo indotto* da $V - Z$ , questo possiamo dunque rappresentarlo con $G'$ il quale avrà come $|V'| = n-1$ , questo però non può essere usato direttamente poichè togliendo $Z$ potremmo disconnettere il grafo e quindi non essere più nelle ipotesi di avere un *grafo connesso* 
-Indichiamo quindi con $k$ il numero di componenti connesse di cui è costituito $G'$ ( se $G'$ è connesso $k=1$ ) , essendo che ogni *componente connesso* è *connesso* posso utilizzare l'ipotesi induttiva
+Indichiamo quindi con $k$ il numero di componenti connesse di cui è costituito $G'$ ( se $G'$ è connesso $k=1$ ) , essendo che ogni *componente connesso* è *connesso* possiamo utilizzare l'ipotesi induttiva
 Indico con $E_i$ gli archi dell'$i$-esima componente connessa e con $V_i$ i vertici dell'$i$-esima componente connessa , allora possiamo dire per ipotesi induttiva che : 
 $$|E_i|\ge |V_i|-1$$
 Vorrei dimostrare che $|E|\ge |V|-1$ quindi deve essere vero che $|E|\ge \sum_{i=1}^{k}|E_i| +deg(Z)$
