@@ -5076,9 +5076,9 @@ Dimostriamolo per *assurdo* :
 Supponiamo che abbiamo un grafo $G$ contenente almeno un ciclo negativo raggiungibile da $s$ e che , *per assurdo* , l'algoritmo restituice `True`
 
 Osservando l'algoritmo sappiamo che questo restituisce `True` quando $$\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)$$
-Sia $c=<x_0,x_1,\dots,x_q>, \quad x_0=x_q$  il ciclo negativo raggiungibile da $s$ allora dovrà essere che :
+Sia $c=<x_0,x_1,\dots,x_q>, \quad x_0=x_q$  il ciclo negativo raggiungibile da $s$ allora dovrà essere che : 
 $$\sum_{i=1}^q w(x_{i-1},x_i)<0$$
-Visto che l'algoritmo avrà restituito `True` avremo che dovrà essere ( poichè se la proprietà sopra deve valere per tutti gli archi allora dovrà anche valere per un sottoinsieme di archi ) :
+Visto che l'algoritmo avrà restituito `True` avremo che dovrà essere ( poichè se la proprietà sopra deve valere per tutti gli archi allora dovrà anche valere per un sottoinsieme di archi ) : 
 $$\sum^{q}_{i=1}d[x_i] \le \sum^{q}_{i=1}d[x_{i-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)$$
 Visto che ci troviamo su un ciclo e $x_0=x_q$ avremo che le due sommatorie possono essere semplificate nel seguente modo : 
 $$d[x_1]+d[x_2]+\dots+d[x_q]\le d[x_0]+d[x_1]+\dots+d[x_{q-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)$$
