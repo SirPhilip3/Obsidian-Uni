@@ -571,11 +571,9 @@ Consideriamo ora due eventi : $A = (1,2)$ e $B=(-1,1)$  e calcoliamone la probab
 $$\mathbb{P}[X\in A]=\mathbb{P}[X\in (1,2) ]=\int_1^2 2e^{-2x}\ dx = e^{-2}-e^{-4}$$
 $$\mathbb{P}[X\in B]=\mathbb{P}[X\in (-1,1) ]=\int_{-1}^0 0\ dx + \int_{0}^1 2e^{-2x}\ dx  = 1-e^{-2}$$
 
-
 >[!todo]
 >grafico
 >#todo
-
 #### Funzione di ripartizione
 
 Si dice *funzione di ripartizione* ( o distribuzione comulativa ) di una variabile aleatoria $X$ la funzione $F : \mathbb{R}\rightarrow [0 ,1 ]$ così definita
@@ -589,7 +587,6 @@ La *funzione di ripartizione* ha le seguenti proprietà :
 + $\lim_{x\rightarrow -\infty} F(x)=0$ e $\lim_{x\rightarrow +\infty} F(x)=1$ 
 
 Rappresenta la somma delle probabilità 
-
 ##### Funzione di Ripartizione per una variabile discreta
 
 Se $X$ è una variabile *discreta* con valori $\{x_1,x_2,\dots\}$ e funzione di probabilità $P(x_i)=p_i$
@@ -637,7 +634,6 @@ Alcune *costanti caratteristiche* sono :
 
 Se $X$ è una variabile aletaoria discreta con valori $\{x_1,x_2,\dots \}$ e funzione di probabilità $P(x_i)=p_i$ allora il *valore atteso* o *media* di $X$ è :
 $$\mathbb{E}[X]=\sum_ix_ip_i=x_1p_1+x_2p_2+\dots$$
-
 **Esempio** :
 
 Abbiamo un urna 
@@ -852,7 +848,6 @@ $$
 $$
 ##### Proprietà
 ###### Media
-
 $$E[X]=p$$
 Avendo $K$ il numero di successi e $N$ il numero totale degli elementi avremo :
 $$E[X]=\frac K N$$
@@ -984,7 +979,6 @@ Una variabile $X$ che assume valori nell'insieme dei numeri naturali $\mathbb{N}
 $$
 \mathbb{P}[X=k]=\frac{\lambda^k}{k!}\cdot e^{-\lambda}, \quad k=0,1,\dots
 $$
-
 Scriveremo allora 
 $$X\sim Po(\lambda)$$
 
@@ -1008,7 +1002,6 @@ Ad esempio :
 ##### Proprietà
 
 ###### Media
-
 $$\mathbb{E}[X]=\sum_{i=0}^{+\infty}i\frac{\lambda^i}{i!}e^{-\lambda}$$
 >[!todo]
 >spiegazione
@@ -1087,7 +1080,6 @@ Si dice allora che $X$ ha una *distribuzione geometrica* di parametro $p\in(0,1)
 $$X\sim Geo(p)$$
 Avremo che la funzione di probabilità sarà :
 $$\mathbb{P}[X=x]=(1-p)^{x-1}p, \quad x= 1,2,3,\dots$$
-
 ##### Dimostrazione
 
 Possiamo facilmente dimostrare che si tratta di una distribuzione di probabilità nel solito metodo :
@@ -1231,7 +1223,6 @@ La sua funzione di ripartizione è :
 $$f(x)=c\cdot e^{-\frac1 2\Big(\frac{(x-\mu)^2}{\sigma^2}\Big)}, \quad x\in \mathbb{R},\mu\in\mathbb{R},\sigma\gt 0$$
 ![[Pasted image 20231129143220.png]]
 
-
 La *distribuzione normale stadard* è :
 $$X\sim N(0,1)$$
 Avrà come funzione di ripartizione :
@@ -1360,7 +1351,6 @@ Dove $\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}{e^{-x}}dx$ è la *funzione gamma
 $$\mathbb{E}[X]=\frac{\alpha}{\lambda}$$
 ###### Varianza
 $$Var[X]=\frac{\alpha}{\lambda^2}$$
-
 ###### Funzoni R
 
 Per calcolare : $\mathbb{P}[X\le x]$
@@ -1481,7 +1471,6 @@ Possiamo allora calcolare :
 $$\mathbb{P}[\text{più di 20 messaggi in mezz'ora}]= \mathbb{P}[X_{30}>20] = 1-\mathbb{P}[X_{30}\le20]$$
 Può essere calcolata utilizzando la seguente distribuzione : 
 $$X_{30}\sim Po\bigg(\frac{12}{10}30\bigg)=Po(36)$$
-
 ##### Relazione con esponenziale
 
 Associata ad ogni processo di Poisson c'è una variabile aleatoria esponenziale che misura il tempo tra 2 manifestazioni successive del fenomeno in questione 
@@ -1527,7 +1516,6 @@ Allo stesso modo $\lim_{x\rightarrow \infty}F(x,y)$
 
 Il calcolo delle probabilità su una *distribuzione congiunta* può essere sempre calcolata usando la *funzione di ripartizione congiunta* $F(x,y)$ :
 $$\mathbb{P}[a_1<X\le a_2, b_1 < Y \le b_2]=F(a_2,b_2)+F(a_1,b_1)-F(a_1,b_2)-F(a_2,b_1)$$
-
 #### Funzione di probabilità congiunta
 
 ##### Per variabili aleatorie discrete
@@ -1629,7 +1617,7 @@ f(x)=1-x
 
 ![[Pasted image 20231208162532.png]]
 
-Cosiderando questo esempio con 2 variabili aleatorie *discrete* , per verificiare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddisfino la seguente proprietà :
+Cosiderando questo esempio con 2 variabili aleatorie *discrete* , per verificare che $X$ e $Y$ siano indipendenti dobbiamo verificare che tutte le coppie di $x$ e $y$ soddisfino la seguente proprietà :
 $$p(x,y)=p_X(x)p_Y(y)$$
 Nel nostro caso però non tutte le coppie soddisfano questa proprietà :
 $$p(1,1)=0.10\ne p_X(1)p_Y(1)=0.50\cdot 0.30$$
