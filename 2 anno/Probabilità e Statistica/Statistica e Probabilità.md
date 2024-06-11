@@ -1933,7 +1933,7 @@ $P=(p_{ij})_{ij}$  viene detta *matrice di transizione* ed ogni $p_{ij}$ sono le
  $$P=\begin{pmatrix} p_{11} & p_{12} & \dots & p_{1M} \\ p_{21} & p_{22} & \dots & p_{2M} \\ \vdots & \vdots & \ddots & \vdots \\ p_{M1} & p_{M2} & \dots & p_{MM}\end{pmatrix}$$
 Tale che :
 + $p_{ij}\ge 0 ,\ i,j=1,\dots,M$
-+ $\sum_{j=1}^M p_{ij}=1, \ i=1,\dots,M$
++ $\sum_{j=1}^M p_{ij}=1, \ i=1,\dots,M$ ( somma delle riche deve essere 1 )
 
 Conoscere la matrice di transizione e la funzione di probabilità dello stato iniziale $\pi^{(0)}$ permette di calcolare le probabilità condizionate , congiunte e marginali della catena
 
