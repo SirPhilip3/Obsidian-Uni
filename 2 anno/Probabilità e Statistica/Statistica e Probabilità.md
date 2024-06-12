@@ -1,7 +1,7 @@
 # Statistica
 
 ## Probabilità elementare
-
+ 
 ### Principio fondamentale del calcolo combinatorio
 
 Se una scelta può essere fatta in $m_1$ modi diversi e un'altra scelta può essere fatta in $m_2$ modi diversi allora esistono in totale :
