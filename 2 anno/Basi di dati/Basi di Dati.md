@@ -868,7 +868,6 @@ Seguono le stesse regole delle univoche e parziali
 
 ![[Pasted image 20231024131731.png]]
 >[!todo] 
-
 #### Sottoclassi
 
 Per tradurre le *sottoclassi* abbiamo a disposizione 3 possibili soluzioni
@@ -932,8 +931,6 @@ Dopo :
 >[!todo]
 >svolgimento esercizi
 >#todo
-
-
 ## Algebra Relazionale
 
 L'*algebra relaziomale* sono un insieme di operatori che danno come risultato relazioni , possiamo avere :
@@ -976,7 +973,6 @@ La ridenominazione risulta essere utile quando vogliamo unire 2 tabelle ( relazi
 
 In questo caso il `Nome` dell'esame , se volessimo unire le 2 tabelle , andrebbe cambiato :
 $$\rho_{Nome\leftarrow NomeEsame}(Esami)$$
-
 #### Unione e Differenza
 
 Avendo due relazioni R ed S con lo *stesso tipo* 
@@ -991,7 +987,7 @@ La nuova relazione avrà :
 + *cardinalità* : 
 	Sapendo che $|R|=n$ e $|S|=m$
 	Avremo che :
-	+ $|R\cup S|\le n+m$   ( l'unione risulta nella eliminazione dei duplicati per questo $\le$ )
+	+ $|R\cup S|\le n+m$ ( l'unione risulta nella eliminazione dei duplicati per questo $\le$ )
 	+ $max\{0 , n-m\}\le|R-S|\le n$   ( poichè tolgo tutto o non tolgo nulla )
 #### Proiezione
 
@@ -1139,7 +1135,6 @@ Per farlo rispettare necessitiamo di fare delle altre operazioni
 Innazitutto dobbiamo fare una *restrizione* sul prodotto facendo in modo che abbiamo solo le ennuple tale che la `Matricola` sia uguale al `Candidato`
 
 $$\sigma_{\text{Matricola=Candidato}}(Studenti\times Esami)$$
-
 ### Operatori derivati
 #### Giunzione
 
@@ -1156,8 +1151,6 @@ La *giunzione* viene anche chiamata *equijoin*
 **Esempio** :
 Nel caso di prima la formula finale può essere scritta come :
 $$Studenti\underset{Matricola=Candidato}{\bowtie}Esami$$
-
-
 ##### Giunzione naturale 
 $R\bowtie S$
 Con $R(X,Y)$ e $S(Z,X)$
@@ -1237,7 +1230,7 @@ Avremo quindi :
 $$R\overleftrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]\cup$$
 $$\cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$$
 Spiegando :
-+ $R\bowtie S$ : *giunzione naturale* inziale
++ $R\bowtie S$ : *giunzione naturale* iniziale
 + $\cup$ : unisco alla *giunzione naturale* le ennuple non presenti 
 + $\Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]$ : rappresenta le ennuple in R non presente nella *giunzione naturale*
 	+ $(R-\pi_X(R\bowtie S))$ : Abbiamo $R$ a cui togliamo gli elmenti nella *giunzione naturale* ( proiezione su $X$ poichè $R\bowtie S$ ha il tipo come l'unione dei tipi di $R$ e $S$ )
@@ -1337,7 +1330,7 @@ $$R \div S=\{t|t \in \pi_X(R)\land \forall s \in S \quad <t,s>\in R\}$$
 
 **Dimostrazione**
 
-Se compariamo al divisione sulle relazioni e sui numeri
+Se compariamo la divisione sulle relazioni e sui numeri
 
 Nei *numeri* abbiamo :
 $$r\div s = max\{t |t\cdot s \le r\}\quad \text{con $s\neq 0$}$$
@@ -1350,7 +1343,7 @@ $$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
 
 **Esempio** :
 
-Vogliamo ricavare la `Matricola` degli studenti che hanno fatto tutti gli esami che ha fatto anche Anna Rossi ( `Matricola=76366` )
+Vogliamo ricavare la `Matricola` degli studenti che hanno fatto tutti gli esami che ha fatto anche Anna Rossi ( `Matricola = 76366` )
 
 Abbiamo 2 tabelle ricavate così :
 + $ES\_AR=\pi_{Materia}(\sigma_{Candidato='76366'}(Esami))$
@@ -1433,7 +1426,7 @@ Il cui *grado* è : $n+k$
 
 **Esempio**
 
-Vogliamo restiruire per ogni `Candidato` il : n° di esami svolti , il voto minimo , il voto massimo e la media dei suoi voti
+Vogliamo restituire per ogni `Candidato` il : n° di esami svolti , il voto minimo , il voto massimo e la media dei suoi voti
 
 Abbiamo :
 
@@ -1472,7 +1465,7 @@ $$\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Bi
 
 #### Multinsiemi
 
-##### Proiezione senza l'eminazione dei duplicati
+##### Proiezione senza l'eliminazione dei duplicati
 
 $$\pi^b_{A_1,\dots,A_n}(O)$$
 L'apice $b$ ( bag ) indica che si decono mantenere i duplicati sulla *proiezione*
@@ -1511,7 +1504,7 @@ Unione , Intersezione , Differenza con bag ( b ) significa svolgere le operazion
 
 ### Trasformazioni Algebriche
 
-Utilizzate per anticipare *anticipazioni* , *preoiezioni* e *restrizioni* in modo da avere meno ennuple quando dobbiamo svolgere una *moltiplicazione*
+Utilizzate per anticipare *anticipazioni* , *proiezioni* e *restrizioni* in modo da avere meno ennuple quando dobbiamo svolgere una *moltiplicazione*
 
 **Esempio** :
 
