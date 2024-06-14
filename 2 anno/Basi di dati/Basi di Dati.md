@@ -523,7 +523,6 @@ La *conoscenza astratta* sono i fatti generali che descrivono :
 		Condizioni sul modo in cui la *conoscenza concreta* può evolvere nel tempo  
 		Es : `DataNascita` non può cambaire nel tempo 
 
-
 + **Fatti derivabili** : 
 	Es : media dei voti ( da tutti i voti ) , età di una persona ( dalla data di nascita )
 ## Modello dei dati ad Oggetti
@@ -537,7 +536,6 @@ Il *Modello ad oggetti* è caratterizzato dalle seguenti nozioni :
 + Le *Ereditarietà*
 + La *Gerarchia fra tipi*
 + La *Gerarchia fra classi*
-
 ### Oggetto
 
 Un *Oggetto* è un'entità software con :
@@ -611,7 +609,7 @@ Posso renderla più generalistica :
 ![[AssociazioniEx3_1.excalidraw]]
 
 *Associazioni* n-arie
-Le associazioni tra più *classi* vengono rappresentate inserndo una classe intermedia al posto di una *associazione* 
+Le associazioni tra più *classi* vengono rappresentate inserendo una classe intermedia al posto di una *associazione* 
 
 Esempio : Si vuole rappresentare l’associazione tra Voli, Passeggeri e Posti. Per ogni volo, al momento dell’imbarco, viene assegnato un posto a ciascun passeggero
 
