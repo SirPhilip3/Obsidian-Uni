@@ -214,7 +214,7 @@ Abbiamo $X=AB$ e $F=\{ A \rightarrow C, AC \rightarrow D , E \rightarrow F \}$
 
 **Complessità**
 
-Siano $a$ il numero totale di attributi di $T$ e $d$ il numero di dipendenze funzionali $F$ allora : 
+Siano $a$ il numero totale di attributi di $T$ e $d$ il numero di dipendenze funzionali $F$ allora: 
 + Il *while* esterno viene eseguito al più $a$ volte
 + Il *for* interno viene eseguito al più $d$ volte
 + Per verificare se $Y\subseteq X_{new}^+$ ha costo $O(a)$
