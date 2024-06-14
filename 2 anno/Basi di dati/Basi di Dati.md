@@ -131,7 +131,7 @@ Meccanismo di astrazione fondamentale è la **relazione** ( **tabella** ) : insi
 |Zeri|71347|Venezia|1988|
 *Studenti*
 
-*Matricola* è la **primary key** (vincolo di *chiave primaria* ) della tabella ( dovrebbe essere sottolineata )
+*Matricola* è la **primary key** ( vincolo di *chiave primaria* ) della tabella ( dovrebbe essere sottolineata )
 	Non possono esistere 2 elementi che hanno la stesso valore nel campo *matricola* , questa individua in modo univoco uno studente
 
 Creare un database vuoto :
@@ -158,7 +158,7 @@ CREATE TABLE ProveEsami (
 ```
 
 La **primary key** può essere costituita da più attributi ( comunque deve essere un insieme *minimale* di attributi che indentificano univocamente una riga della tabella , altrimenti viene detta *Super key* )
-	
+
 Esempio : 
 Se la *primary key* fosse solo *Matricola* allora uno studente non potrebbe fare più di un esame , se fosse solo *Materia* solo uno studente potrebbe fare quell'esame
 
@@ -182,13 +182,11 @@ Query :
 ```sql
 SELECT Matricola
 FROM   ProveEsami
-WHERE Materia = 'BD' AND Voto = 30;
+WHERE  Materia = 'BD' AND Voto = 30;
 
 /* response : tutte le matricole con voto 30 in BD */
 
-Matricola : 
-
-71523
+Matricola : 71523
 ```
 
 ## Funzionalità dei DBMS
@@ -252,7 +250,7 @@ CREATE VIEW InfCorsi (IdeC , Titolo , NumEsami) AS
 			GROUP BY IdeC, Titolo
 ```
 
-La tabella *InfCorsi* ( conta quanti studenti hanno svolto un esame ) è una tabella *virtuale* : 
+La tabella *InfCorsi* (conta quanti studenti hanno svolto un esame) è una tabella *virtuale* : 
 	Non viene salvata in memoria ma viene ricalcolata ogni volta che la si richiede con una query
 #### Data independence 
 
@@ -261,17 +259,17 @@ La tabella *InfCorsi* ( conta quanti studenti hanno svolto un esame ) è una tab
 	+ richiede la creazione di una nuova vista ( *tabella virtuale* ) in modo che ci sia la stessa visione precente da parte dell'applicazione
 	
 	Esempio : 
-	```sql
-	/* La tabella Studenti divisa in StudentiPartTime e StudentiFullTime */
-	CREATE TABLE StudentiFullTime (...);
-	CREATE TABLE StudentiPartTime (...);
+```sql
+/* La tabella Studenti divisa in StudentiPartTime e StudentiFullTime */
+CREATE TABLE StudentiFullTime (...);
+CREATE TABLE StudentiPartTime (...);
 
-	/* Tabella virtuale che ricrea la tabella Studenti */
-	CREATE VIEW Studenti AS
-		SELECT * FROM StudentiFullTime
-		UNION
-		SELECT * FROM StudentiPartTime
-	```
+/* Tabella virtuale che ricrea la tabella Studenti */
+CREATE VIEW Studenti AS
+	SELECT * FROM StudentiFullTime
+	UNION
+	SELECT * FROM StudentiPartTime
+```
 
 ### DML
 
@@ -296,7 +294,7 @@ Caratteristiche che garantisce il **DBMS** :
 	+ Protezione dei dati da usi non autorizzati :
 		+ limitazione delle operazioni eseguibili ( alcuni utenti possono solo accedere altri possono solo vedere dati statistici etc.. )
 		+ limitazione dell'accesso ai soli utenti autorizzati
-		+ [k-anonimity](s://it.wikipedia.org/wiki/K-anonimato) per proteggere i dati riservati :
+		+ [k-anonimity](https://it.wikipedia.org/wiki/K-anonimato) per proteggere i dati riservati :
 			Un dato di una persona può essere svelato se so i dati di qualcun'altro soprattuto se vi sono poche persone con questo dato ( esempio media ) per questo si può svelare un dato solo se esistono k-1 persone con questo dato 
 + **Affidabilità**
 	Protezione dei dati da : 
