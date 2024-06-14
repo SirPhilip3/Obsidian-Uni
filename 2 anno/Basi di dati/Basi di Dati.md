@@ -1790,7 +1790,7 @@ Se precede `{sql}JOIN` svolge la corrispondente *giunzione esterna*
 
 **Esempio** : 
 
-Esami di tutti gli studenti , con congnome e nome relativo elencando anche gli studenti che non hanno fatto esami 
+Esami di tutti gli studenti , con cognome e nome relativo elencando anche gli studenti che non hanno fatto esami 
 
 ```sql
 SELECT Nome, Cognome, Matricola, Data, Materia 
@@ -1840,7 +1840,6 @@ Gli operatori sono : `{sql}UNION` `{sql}INTERSECT` `{sql}EXCEPT`
 > Gli operatori insiemistici vengono sempre applicati su 2 tabelle
 
 **Esempi** :
-
 ##### 1 
 
 Nome, cognome e matricola degli studenti di Venezia e di quelli che hanno preso più di 28 in *qualche* esame
@@ -1851,7 +1850,7 @@ FROM Studenti
 WHERE Provincia='VE' 
 UNION 
 SELECT Nome, Cognome, Matricola 
-FROM Studenti JOIN Esami ON Matricola=Candidato 
+FROM Studenti JOIN Esami ON Matricola = Candidato 
 WHERE Voto>28
 ```
 
@@ -1925,13 +1924,13 @@ Questo cambia i risultati delle espressioni , necessitiamo l'implementazione di 
 | --- | --------- |
 | U   | U         |
 
-| $p$ | $q$ | $p\land q$ | $p\lor q$ |
-| --- | --- | ---------- | --------- |
-| T   | U   | U          | T         |
-| F   | U   | F          | U         |
-| U   | T   | U          | T         |
-| U   | F   | F          | U         |
-| U   | U   | U          | U         |
+| $p$ | $q$ | $p\land q$ | $p\lor q$ |     |
+| --- | --- | ---------- | --------- | --- |
+| T   | U   | U          | T         |     |
+| F   | U   | F          | U         |     |
+| U   | T   | U          | T         |     |
+| U   | F   | F          | U         |     |
+| U   | U   | U          | U         |     |
 
 `{sql}NULL = 0` non è nè vero nè falso ma *unknown*
 `{sql}NULL = NULL` è *unknown*
@@ -1984,7 +1983,7 @@ Utilizzato principalmente sulle stringhe
 
 `{sql}WHERE Expr LIKE Pattern`
 
-Il `Pattern` può contenere dei caratteris speciali :
+Il `Pattern` può contenere dei caratteri speciali :
 + `%` : indica una sequenza di 0 o più caratteri
 + `_` : indica un carattere qualsiasi
 
