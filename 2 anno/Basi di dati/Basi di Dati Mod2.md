@@ -790,7 +790,6 @@ Una dipendenza che *viola* *BCNF* è detta **Anomala**
 >Inoltre lo schema è scarsamente espressivo poichè se un magazzino non ha alcun articolo all'interno allora questo è come se non esistesse
 
 Per risolvere le anomalie si trasformano questi schemi in schemi "normali" ( *BCNF* , *3NF* , etc... )
-
 ##### Conversione in BCNF
 
 L'algoritmo di conversione in *BCNF* è anche detto algoritmo di *analisi* poichè decompone lo schema originale fino a normalizzazione
@@ -895,10 +894,10 @@ Sia $R(T,F)$ lo schema di partenza :
 >Nessuno schema è contenuto in altro quindi non dobiamo eliminarne alcuno
 >Poichè $\{ A,B,C \}$ è una superchiave per $R$ non è necessario aggiungere altri schemi
 
-##### Proprietà *BCNF*
+##### Proprietà *3NF*
 
 **Preservazione delle Dipendenze**  :
-	E' facile dimostrare che la conversione in *3NF* preserva le dipendenze : poichè per ogni $X\to Y \in G$viene creato uno schema $S_i(XY)$ abbiamo $X\to Y \in \pi_{XY}(G)$ quindi $G$ è contenuto nell'unione delle proiezioni 
+	E' facile dimostrare che la conversione in *3NF* preserva le dipendenze : poichè per ogni $X\to Y \in G$ viene creato uno schema $S_i(XY)$ abbiamo $X\to Y \in \pi_{XY}(G)$ quindi $G$ è contenuto nell'unione delle proiezioni 
 
 **Preservazione dei Dati** : 
 	L'ultimo passo della conversione garantisce che la decomposizione contenga almeno uno schema i cui attributi formano una superchiave dello schema iniziale 
@@ -1040,7 +1039,7 @@ CREATE TABLE Studio (
 ```
 >[!note]
 >Le seguenti operazioni su `Studio` sono impedite : 
->+ Inserimento di una tupla con attributo `president` non `NULL` e non coincidecon l'attributo `code` di una tupla in `MovieExec`
+>+ Inserimento di una tupla con attributo `president` non `NULL` e non coincide con l'attributo `code` di una tupla in `MovieExec`
 >+ Aggiornamento di una tupla per cambiare l'attributo `president` ad un valore non `NULL` che non coincide con l'attributo `code` di una tupla di `MovieExec` 
 >
 >Altre operazioni pericolose su `MovieExec`
