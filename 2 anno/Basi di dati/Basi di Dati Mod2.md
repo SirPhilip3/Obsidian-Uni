@@ -1449,7 +1449,7 @@ Quando una trigger function viene invocata da *Postgres* vengono create nel suo 
 
 ##### Valore di Ritorno
 
-Una trigger function associa ad un *BEFORE trigger per riga* può : 
+Una trigger function associato ad un *BEFORE trigger per riga* può : 
 + ritornare `NULL` per indicare che l'operazione ( `{sql}INSERT, UPDATE` o `{SQL}DELETE` ) sulla riga deve essere abortita
 + nel caso di `{sql}INSERT` o `{sql}UPDATE` ritornare una riga che diventerà la nuova riga che sarà inserita o sostituirà la riga aggiornata 
 + Se non si vuole interferire con l'operazione : 
@@ -1470,7 +1470,7 @@ CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] }
 ```
 
 + Un `{sql}BEFORE` *trigger* per riga può prevenire operazioni o modificarle
-+ La clasusola `WHEN` può fare riferimento a `OLD`e `NEW` per specificare una condizione di attivazione e non può fare uso di sotto-query
++ La clausola `WHEN` può fare riferimento a `OLD`e `NEW` per specificare una condizione di attivazione e non può fare uso di sotto-query
 + Possiamo utilizzare `REFERENCING` per vedere i cambiamenti complessivi nell'intera tabella , non solo nella riga ( solo per `AFTER` trigger )
 ##### Trigger per Statement
 
