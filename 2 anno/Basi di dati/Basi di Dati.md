@@ -1159,9 +1159,9 @@ Avremo quindi che R ed S hanno un attributo in comune : X
 
 Definizione formale :
 $$t\in R \bowtie S\quad \text{sse}\quad t[X\space Y] \in R\ \land\ t[Z\ X]\in S$$
-Ossia l'ennupla $t$ esiste in $R\bowtie S$ se e solo se l'ennupla $t$ con attributi X e Y appartiene alla relazione R e se l'ennupla t con attributi Z e X appartiene alla relazione S
+Ossia l'ennupla $t$ esiste in $R\bowtie S$ se e solo se l'ennupla $t$ con attributi $X$ e $Y$ appartiene alla relazione $R$ e se l'ennupla $t$ con attributi $Z$ e $X$ appartiene alla relazione $S$
 
-In sostanza $R\bowtie S$ restituisce una relazione che ha come attributi X Y Z , in cui l'attributo comune X è presente una sola volta
+In sostanza $R\bowtie S$ restituisce una relazione che ha come attributi $X$ $Y$ $Z$ , in cui l'attributo comune $X$ è presente una sola volta
 
 Fa la giunzione di 2 relazioni basandosi su 2 attributi con lo stesso nome
 
@@ -1217,7 +1217,7 @@ Vi sono 3 tipi di *giunzione esterne* :
 Si rappresenta con 
 $$R\overleftrightarrow{\bowtie}S$$
 
-E restituisce la *giunzione naturale* di R e S estesa con le ennuple di R ed S che non appartengono alla *giunzione naturale* ( queste vengono completate con *NULL* per gli attributi mancanti )
+E restituisce la *giunzione naturale* di $R$ e $S$ estesa con le ennuple di $R$ ed $S$ che non appartengono alla *giunzione naturale* ( queste vengono completate con *NULL* per gli attributi mancanti )
 
 Formalmente avremo :
 
@@ -1269,7 +1269,7 @@ Formalmente :
 $$R\cap S=\{t|t\in R \land t \in S\}$$
 Può essere vista come :
 $$R-(R-S)$$
-+ $R-S$ : indica le ennuple che stanno in R ma non in S
++ $R-S$ : indica le ennuple che stanno in $R$ ma non in $S$
 Se poi sottraiamo a queste $R$ allora avremo l'*intersezione* tra $R$ ed $S$
 
 Ora dimostriamo la precedente formula :
