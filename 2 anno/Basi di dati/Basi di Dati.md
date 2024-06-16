@@ -832,14 +832,14 @@ Una *chiave esterna* può avere come valore *NULL* se essa rappresenta un associ
 
 ![[Pasted image 20231023125801.png]]
 
-La *foreing key* va messa dalla parte della moltelicità N che punta alla molteplicità 1
+La *foreing key* va messa dalla parte della molteplicità N che punta alla molteplicità 1
 Inoltre se sono presenti degli attributi sulla relazione questi devono essere inseriti all'interno della *tabella* che contiene la *foreing key*
 ##### Univoche e parziali
 
 ![[Pasted image 20231023130147.png]]
 
 Se le associazioni sono parziali dalla parte univoca abbiamo 2 scielte su come tradurlo nello schema relazionale :
-+ Mantere la traduzione delle *univoche e totali* permettendo però alla chiave esterna di essere *NULL*
++ Mantenere la traduzione delle *univoche e totali* permettendo però alla chiave esterna di essere *NULL*
 + Creando una nuova classe che colleghi le 2 classi attraverso 2 *key* , una *private key* che identifica l'oggetto questa sarà anche *foreing key* per il verso che non ha la parzialità , per il verso che ha la *parzialità* avremo una foreing key
 	Così facendo essendo che la *primary key* non può mai essere *NULL* se non esiste una relazione nel verso parziale allora semplicemente non essiterà la tabella di connesione
 
