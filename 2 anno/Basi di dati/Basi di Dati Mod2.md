@@ -1319,7 +1319,7 @@ WHEN (OldTuple.netWorth > NewTuple.netWorth)
 >Vogliamo utilizzare un *trigger* per garantire che la media degli stipendi non scenda mai sotto $500.000$ : 
 >1. L'*invariante* può essere violata da un'operazione di inserimento , aggiornamento o cancellazione
 >2. Visto che la media è un'informazione globale della tabella e non di una riga non possiamo ricorrere ad un controllo per riga
->3. Possiamo mantener l'*invariante* annulando l'operazione che l'ha violata cioè riportando la tabella allo stato originale ( `AFTER` )
+>3. Possiamo mantenere l'*invariante* annulando l'operazione che l'ha violata cioè riportando la tabella allo stato originale ( `AFTER` )
 ```sql
 CREATE TRIGGER AvgNetWorthTrigger 
 AFTER UPDATE ON MovieExec 
@@ -1482,7 +1482,7 @@ CREATE TRIGGER name { BEFORE | AFTER } { evt [ OR ... ] }
 	EXECUTE FUNCTION func ( args )
 ```
 
-+ Un trigger per statement viene eseguito una volta anche se nessuna riga è coincolta nell'operazione scatenante
++ Un trigger per statement viene eseguito una volta anche se nessuna riga è coinvolta nell'operazione scatenante
 + Il `WHERE` non supporta `OLD`e `NEW`
 + Possiamo utilizzare `REFERENCING` per vedere i cambiamenti complessivi nell'intera tabella ( solo per `AFTER` trigger ) 
 
@@ -1501,7 +1501,7 @@ L'ordine di esecuzione dei *trigger* dipende dal loro tipo :
 
 >[!example]
 >Trigger per garantire la dipendenza funzionale $A \to B$
-```sql
+```postgresql
 CREATE TRIGGER FuncDep 
 	BEFORE INSERT OR UPDATE ON Relation 
 	FOR EACH ROW 
@@ -1524,7 +1524,6 @@ Le funzioni in SQL possono avere vari utilizzi :
 + Centralizzare lato server una sequenza di operazioni di cui non ci interessano i risultati intermedi ( miglioramento delle performance )
 
 Vedremo le funzioni in *PL/pgSQL*
-
 #### Dichiarazione di Funzioni
 
 Possiamo dichiarare nel seguente modo : 
@@ -1560,14 +1559,15 @@ Il tipo di una variabile può essere un qualsiasi tipo *SQL* . Ci sono inoltre a
 + `SETOF t` : un insieme di elementi di tipo `t` ( utilizzato solo per valori di ritorno )
 
 >[!example]
-```sql
+```postgresql
 CREATE FUNCTION my_concat(a text, b text, uppercase boolean = false)
 RETURN text AS $$
 BEGIN
 	IF uppercase THEN RETURN UPPER(a || '' || b);
 	END IF
 	RETURN LOWER(a || '' || b);
-END; $$ LANGUAGE plpgsql
+END; 
+$$ LANGUAGE plpgsql
 ```
 
 Possiamo involare la funzione nei seguenti modi : 
