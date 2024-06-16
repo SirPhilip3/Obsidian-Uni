@@ -952,7 +952,7 @@ Nel modello di base non viene utilizzato il *NULL*
 #### Ridenominazione
 
 Indicata con $\rho$
-Data una *relazione* R(X) con X insieme di attributi abbiamo che $A \in X$ e $B \notin X$ 
+Data una *relazione* $R(X)$ con $X$ insieme di attributi abbiamo che $A \in X$ e $B \notin X$ 
 Avremo che 
 $$\rho_{A\leftarrow B}(R)$$
 Sarà la relazione R dove A viene ridenominato con B
