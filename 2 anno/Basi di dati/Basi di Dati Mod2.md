@@ -1054,7 +1054,7 @@ CREATE TABLE Studio (
 2. *CASCADE* : applica la stessa modifica ( *DELETE* o *UPDATE* ) sulle tuple che fanno uso della chiave esterna
 3. *SET NULL* : imposta la chiave esterna a *NULL* sulle tuple che fanno uso della stessa
 
-Possiamo specificare una politica diversa per *DELETE* ed *UPDATE* , utilizzando la sintassi *ON DELETE* oppure *ON UPDATE* seguito da *CASCADE* oppure *SET NULL*
+Possiamo specificare una politica diversa per *DELETE* e *UPDATE* , utilizzando la sintassi *ON DELETE* oppure *ON UPDATE* seguito da *CASCADE* oppure *SET NULL*
 
 >[!example]
 ```sql
@@ -1071,10 +1071,10 @@ CREATE TABLE Studio (
 #### CHECK
 
 E' possibile specificare vincoli complessi sul valore di un attributo, usando la sintassi *CHECK* seguita da un'espressione booleana fra parentesi : 
-+ Si può usare qualsiasi espressione ammmessa da *WHERE*
++ Si può usare qualsiasi espressione ammessa da *WHERE*
 >[!warning] 
 >Nello standard SQL si possono riferire altre relazioni tramite sotto-query , questo non è supportato nei DBMS commerciali ( Postgres )
-+ Il vincolo viene controllato ogni volta che una tupla assueme un nuovo valore per quell'attributo ( in pratica quando avviene un `{sql}INSERT` o `{sql}UPDATE` )
++ Il vincolo viene controllato ogni volta che una tupla assume un nuovo valore per quell'attributo ( in pratica quando avviene un `{sql}INSERT` o `{sql}UPDATE` )
 
 >[!note]
 >Non necessariamente significa che il vincolo venga sempre rispettato 
@@ -1086,7 +1086,7 @@ E' possibile specificare vincoli complessi sul valore di un attributo, usando la
 CREATE TABLE MovieExec ( 
 	name CHAR(50), 
 	address VARCHAR(255), 
-	code INT PRIMARY KEY CHECK (code >= 100000), 
+	code INT PRIMARY KEY CHECK ( code >= 100000), 
 	netWorth INT CHECK (netWorth >= 0) 
 )
 ```
