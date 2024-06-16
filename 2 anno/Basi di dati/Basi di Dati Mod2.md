@@ -1600,19 +1600,20 @@ RETURN expr;
 
 Se è necessario ritornare un *record* possiamo utilizzare i parametri di output per definire implicitamente il tipo :
 >[!example]
-```sql
+```postgresql
 CREATE FUNCTION sum_n_product(x int,y int, OUT sum int, OUT prod int)
 AS $$
 BEGIN
 	sum = x + y;
 	prod = x * y;
-END; $$ LANGUAGE plpgsql
+END; 
+$$ LANGUAGE plpgsql
 ```
 
 Una funzione che ritorna un *insieme di valori* ( `SETOF` ) deve costruirlo in modo incrementale tramite le sintassi : 
-```sql
+```postgresql
 RETURN NEXT expr; -- aggiunge un record al risultato
-RETURN QUERY  query; -- aggiunge un insieme al risultato
+RETURN QUERY query; -- aggiunge un insieme al risultato
 ```
 
 L'insieme di valori da ritornare può essere restituito con `RETURN` senza passare alcun argomento o lasciando terminare la funzione
@@ -1771,7 +1772,7 @@ Ciascuna funzione contiene una variabile booleana `FOUND`
 + `SELECT INTO` imposta `FOUND` a `true` se viene assegnata una riga alla variabile corrispondente , `false` altrimenti
 + `UPDATE`,`INSERT` e `DELETE` impostano `FOUND` a `true` se almeno una riga è stata toccata dall'operazione , a `false` altrimenti 
 + Un ciclo `FOR` imposta `FOUND` a `true` se ha iterato almeno una volta a `false` altrimenti
-+ `RETURN QUERY` imposta `FOUND` a `true` se la query ha ritornato alemeno una riga , a `false` altrimenti
++ `RETURN QUERY` imposta `FOUND` a `true` se la query ha ritornato almeno una riga , a `false` altrimenti
 
 >[!example]
 ```sql
