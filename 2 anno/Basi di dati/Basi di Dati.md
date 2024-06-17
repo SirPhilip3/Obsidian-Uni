@@ -905,7 +905,6 @@ In questo caso la tabella della superclasse non è presente poichè le sue sotto
 	- Senza vincolo di disgiunzione è necessario creare 3 classi distinte
 + **Parizionamento verticale**
 	+ Complica il recupero di tutte le informazioni relative ad un'entità ( sono distribuite in più classi )
-
 ##### Che chiave sciegliere ?
 
 + Per relazioni corrispondenti a *classi radice* ( senza superclasse ) :
@@ -915,7 +914,6 @@ In questo caso la tabella della superclasse non è presente poichè le sue sotto
 	+ chiave della corrispondente *superclasse*
 + Relazioni in associazioni *N : N* :
 	+ *concatenazione* delle *chiavi esterne* delle 2 classi
-
 #### Attributi multivalore
 
 Come vengono tradotte le *sequenze* ?
@@ -1141,10 +1139,9 @@ Indicata con $\bowtie$
 
 Utile se vogliamo combinare relazioni correlate tra loro come la precedente 
 $$R\underset{A_i=B_j}{\bowtie}S$$
-Avendo R e S con attributi distinti 
+Avendo $R$ e $S$ con attributi distinti 
 Possiamo espandere la *giunzione* in :
 $$R\underset{A_i=B_j}{\bowtie}S=\sigma_{A_i=B_j}(R\times S)$$
-
 La *giunzione* viene anche chiamata *equijoin* 
 
 **Esempio** :
@@ -1210,7 +1207,6 @@ Vi sono 3 tipi di *giunzione esterne* :
 + *Giunzione esterna completa*
 + *Giunzione esterna destra*
 + *Giunzione esterna sinistra*
-
 ###### Completa
 
 Si rappresenta con 
@@ -1365,7 +1361,6 @@ Spiegazione :
 >completa spiegazione
 >#todo
 
-
 **Dimostrazione** :
 >[!todo]
 >completa dimostrazione
@@ -1467,7 +1462,7 @@ $$\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Bi
 ##### Proiezione senza l'eliminazione dei duplicati
 
 $$\pi^b_{A_1,\dots,A_n}(O)$$
-L'apice $b$ ( bag ) indica che si decono mantenere i duplicati sulla *proiezione*
+L'apice $b$ ( bag ) indica che si devono mantenere i duplicati sulla *proiezione*
 ##### Eliminazione dei duplicati
 
 Per elimirare tutti i duplicati da una relazione O :
