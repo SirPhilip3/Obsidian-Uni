@@ -614,7 +614,6 @@ Le associazioni tra più *classi* vengono rappresentate inserendo una classe int
 Esempio : Si vuole rappresentare l’associazione tra Voli, Passeggeri e Posti. Per ogni volo, al momento dell’imbarco, viene assegnato un posto a ciascun passeggero
 
 ![[AssociazioniEx4.excalidraw]]
-
 ###### Esempio più complesso
 
 Si vogliono modellare alcuni fatti riguardanti una biblioteca universitaria:
