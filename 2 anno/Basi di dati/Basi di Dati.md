@@ -2313,7 +2313,7 @@ GROUP BY s.Matricola ,-- s.Cognome --devo aggiungere s.Cognome anche se non mi s
 
 **Esempio** :
 
-Ritornare il Cognome e il Voto medio degli studenti che hanno svolto gli degli esami dopo il 2006
+Ritornare il Cognome e il Voto medio degli studenti che hanno svolto degli esami dopo il 2006
 
 ```sql
 SELECT s.Cognome, AVG(e.Voto)
