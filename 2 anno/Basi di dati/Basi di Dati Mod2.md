@@ -874,13 +874,12 @@ La verifica se uno schema è *3NF* ha comunque costo *esponenziale* poichè per 
 >+ $\{Numero,Località\}_F^+ = \{ Numero,Loaclità,Prefisso \}$ 
 >
 >Visto che $\{Numero , Prefisso\}$ e $\{Numero , Località\}$ sono chiavi si ha che ogni attributo è primo e quindi siamo in *3NF* 
-
 ##### Conversione in *3NF*
 
 Sia $R(T,F)$ lo schema di partenza : 
 1. Costruisci $G$ una *copertura canonica* di $F$
 2. Sostituisci in $G$ ciascun insieme di dipendenze $X \to A_1,\dots,X\to A_n$ con una singola dipendenza $X\to A_1\dots A_n$
-3. Pe ogni $X \to Y \in G$ crea uno schema $S_i(XY)$
+3. Per ogni $X \to Y \in G$ crea uno schema $S_i(XY)$
 4. Elimina ogni schema contenuo in un'altro schema
 5. Se la decomposizione non contiene alcuno schema i cui attributi costituiscano una superchiave per $R$ aggiungi un nuovo schema $S(W)$ dove $W$ è una chiave di $R$
 
@@ -918,7 +917,7 @@ La conversione in *3NF* non garantisce l'assenza di anomialie
 ### Conversione di schemi di scarsa qualità
 
 Abbiamo 2 principali strategie per migliorare uno schema di scarsa qualità : 
-1. Convertiamo lo schema in *BCNF* per eliminare le anomalie , se notiamo che la conversione non ha preservato le diependenze ci accontentiamo di una conversione in *3NF*
+1. Convertiamo lo schema in *BCNF* per eliminare le anomalie , se notiamo che la conversione non ha preservato le dipendenze ci accontentiamo di una conversione in *3NF*
 2. Convertiamo lo schema in *3NF* in modo da preservare dati e dipendenze sperando di essere fortunati e rimuovere tutte le anomalie . Questo si verifica se la conversione produce un *BCNF*
 
 >[!note]
