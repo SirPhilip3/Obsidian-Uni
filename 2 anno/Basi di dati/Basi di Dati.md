@@ -1389,7 +1389,7 @@ Questo creerà la seguente tabelle :
 |---|---|
 |--|--|
 
-Dove `Stipendio` sarà il calcolo effettuato da : `SalarioLorodo - Trattenute`
+Dove `Stipendio` sarà il calcolo effettuato da : `SalarioLordo - Trattenute`
 
 #### Aggregazione
 
