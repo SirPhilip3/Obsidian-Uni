@@ -400,7 +400,6 @@ In parole povere una dipendenza è ridondante se questa può essere dedotta da a
 >+ $|X|=1$
 >+ $X$ non contiene *attributi* *estranei*
 >+ $X \rightarrow Y$ non è *ridondante*
-
 ##### Copertura Canonica
 
 >[!important] Definizione Copertura Canonica
