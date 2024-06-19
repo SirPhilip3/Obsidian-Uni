@@ -1104,7 +1104,7 @@ CREATE TABLE Studio (
 	president INT CHECK (president in (SELECT code FROM MovieExec)) )
 ```
 
-Nel secondo esempio il `{sql}CHECK` offre meno garanzie rispetto alla `{sql}FOREING KEY` poichè se modificassio `code` questo non verrebbe rilevato nel `CHECK` poichè con la modifica non tocchiamo mai la tabella `Studio` , non viene quindi garantita l'*integrità referenziale*
+Nel secondo esempio il `{sql}CHECK` offre meno garanzie rispetto alla `{sql}FOREING KEY` poichè se modificassimo `code` questo non verrebbe rilevato nel `CHECK` poichè con la modifica non tocchiamo mai la tabella `Studio` , non viene quindi garantita l'*integrità referenziale*
 
 ##### CHECK su Tuple
 
