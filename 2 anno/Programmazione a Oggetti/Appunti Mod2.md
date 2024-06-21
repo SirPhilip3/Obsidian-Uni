@@ -702,6 +702,7 @@ Function test_f =
 ```
 
 entità del primo ordine ( manipolabile come un espressione ) -> hanno un tipo e possono essere messe in variabili 
+
 -> tutti gli oggetti sono entità del primo ordine 
 
 in c posso usare pointer a funzione per trasportare una funzione 
