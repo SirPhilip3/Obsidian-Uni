@@ -156,7 +156,6 @@ A.add(23); // add è aggiunta da Collection poi a reuntime runna il metodo di Ar
 A.add(2); 
 ```
 
-
 ```java
 List<Integer> A = new ArrayList<Integer>(); // subsumption
 A.add(23); // add è aggiunta da Collection poi a reuntime runna il metodo di Arraylist 
@@ -266,7 +265,6 @@ public Iterator<T> iterator() {
 	        return enclosing.get(pos++);} 
 		};  
 }
-
 ```
 
 *nested class*
@@ -327,7 +325,7 @@ meglio nested se lo uso solo solo all'interno altrimenti inquino il package
 ```java
 @Override  
 public Iterator<T> iterator() {  
-  return new Iterator<T>{ // classe anonima  
+	return new Iterator<T>{ // classe anonima  
 	// espressione che istanzia al volo di un oggetto di tipo iterator
 		private int pos=0;
 		
@@ -395,7 +393,7 @@ public Iterator<T> iterator() {
 }
 ```
 
-posso accedere alle variabil del metodo in cui siamo all'interno ,
+posso accedere alle variabili del metodo in cui siamo all'interno ,
 Le classi anonime sono delle *closure* , una anonimus class porta con se lo scope in cui è stata definita
 
 fondamentale per funzioni lambda , programmazione funzionale etcc 
@@ -542,9 +540,7 @@ funzioni binarie 2 modi :
 + `method(T ,T)` , può essere ternaria con il this
 + `method(T)` la seconda è this
 
-map asoscia key->vaklue
-
-
+map associa key->value
 # 19/03/2024
 
 *Mappe* : 
@@ -951,10 +947,7 @@ sia producer che consumer
 ogni oggetto può essere sia un semaforo che un monitor
 
 pattern -> ogni volta che utilizziamo stessa struttura dati metti syncronize su tutti i thread -> se ho bisogno di monitor la wait dentro la syncronize
-
 # 16/04/2024
-
-
 
 ```java
 syncronized(){
