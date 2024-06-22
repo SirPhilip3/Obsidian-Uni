@@ -458,7 +458,7 @@ class Car extends Vehicle{
 }
 ```
 
-In questo caso la classe `{java}Car` erediterà `{java}double speed` e `{java}void accelerate(double a){...}	`
+In questo caso la classe `{java}Car` erediterà `{java}double speed` e `{java}void accelerate(double a){...}`
 
 #### Proprietà
 
@@ -486,7 +486,7 @@ La *classe* che viene *estesa* viene detta **superclasse** , una classe che este
 Quando estendiamo una classe nel costruttore di quella classe dobbiamo chiamare il costruttore della superclasse attraverso `{java}super(...)` passandogli tutti i campi del costruttore che vogliamo chiamare .
 Il costruttore di default della *superclasse* ( quello senza parametri ) viene chiamato implicitamente
 
-Per accedere ai componenti della *superclasse* utilizziamo la keyword `{java}super.`
+Per accedere ai componenti della *superclasse* utilizziamo la keyword `{java}super`
 
 `{java}protected` ora ci permette di rendere visibile un metodo o campo alle suo sottoclassi ma non a tutti :
 
@@ -530,7 +530,7 @@ class test3 extends test2{
 
 le *sottoclassi* di una *superclasse* possono sovrascivere metodi della superclasse
 
-Anche dopo aver sovrascritto un metodo abbiamo l'accesso al metodo della supercalsse attraveros il comando : `{java}super.<components>`
+Anche dopo aver sovrascritto un metodo abbiamo l'accesso al metodo della superclasse attravero il comando : `{java}super.<components>`
 
 **Esempio** :
 
@@ -615,11 +615,10 @@ Se una *firma* definisce un contratto meno restrittivo ( modificatori di visibil
 La *firma* contiene :
 + la classe contenente la definizione del metodo
 + il suo nome
-+ il numero e tipop dei suoi parametri
++ il numero e tipo dei suoi parametri
 
 >[!warning]
 >Non comprende i modificatori
-
 
 Viene fatto l'**Overload** se :
 + Il *nome* è lo stesso
@@ -806,7 +805,7 @@ if(c instanceof Bicycle) // non possibile è sempre falsa
 
 ## Polimorfismo
 
-Ciò che abbiamo definito in precedenza : *Inheritance* , *Subtyping* permettono il polimorfismo infatti ciamiamo uno stesso metodo `{java}accelerate(100)` su diverse istanze della classe `{java}Vehicle` portando a comportamenti differenti a seconda su quale istanza viene chiamato 
+Ciò che abbiamo definito in precedenza : *Inheritance* , *Subtyping* permettono il polimorfismo infatti chiamiamo uno stesso metodo `{java}accelerate(100)` su diverse istanze della classe `{java}Vehicle` portando a comportamenti differenti a seconda su quale istanza viene chiamato 
 
 **Esempio** :
 
@@ -865,7 +864,6 @@ class Truck extends Car implements Loadable{
 >[!warning]
 >implementare una interfaccia significa implementare *tutti* i metodi
 
-
 >[!note]
 >in una classe posso implementare più interfaccie
 
@@ -877,7 +875,7 @@ Se ho più classi che implementano lo stesso metodo nello stesso modo posso dich
 **Esempio** : 
 ```java
 interface Loadable { 
-	default public void chargeLoad(double l) {                              
+	default public void chargeLoad(double l) {
 		this.setLoad(this.getLoad()+l); } 
 	} 
 	
@@ -1165,7 +1163,7 @@ public class Car {
 }
 ```
 
-### clone()
+### clone( )
 
 Ritorna una copia dell'oggetto :
 + Oggetto differente ( refence differente )
@@ -1192,14 +1190,14 @@ class FuelTank{
 } 
 ```
 
-### hashCode()
+### hashCode( )
 
 Ritorna un valore di *hash* per quell'oggetto , questo metodo è implementato per sfruttare i vantaggi dati in termini di complessità computazionale dalle *hash* *tables* 
 
 Il codice computato serve per unire oggetti che potrebbero essere *potenzialmente* `{java}equals()` 
 
 Quando *sovrascriviamo* `{java}equals()` dobbiamo necessariamente anche sovrascrivere `{java}hashCode()` , e viceversa
-### toString()
+### toString( )
 
 Il metodo `{java}toString()` presente nella classe `{java}Object` ritorna la rappresentazione in formato `{java}String` di un oggetto 
 ## String class
@@ -1221,7 +1219,6 @@ La classe stringa supporta la concatenzione di stringhe attravero l'operatore `{
 >[!todo]
 > arrivati a slide 17 pwp Lecture11
 > #todo 
-
 ## Sets
 
 Un `{java}Set` è una collezione di oggetti *iterabili* che non contengono elementi duplicati
@@ -1317,7 +1314,6 @@ a = Integer.valueOf(c).byteValue(); // int -> byte
 c = Long.valueOf(d).intValue(); //long -> int 
 e = Double.valueOf(f).floatValue(); //double -> float
 ```
-
 ## Eccezioni
 
 Esempio di errori in java : 
@@ -1362,12 +1358,11 @@ Essendo che le eccezioni fanno parte dell'interfaccia queste devono essere docum
 #### Ovveriding
 
 Quando sovrascrivo un metodo devo assicurarmi che le eccezioni che lancia il metodo sovrascritto siano le stesse , un sottoinsieme o un sottotipo delle eccezzioni del metodo originale 
-
 #### Checked and unchecked exceptions 
 
 Vi sono 2 tipi di eccezioni che possono essere lanciate :
 + *Unchecked* : non devono essere dichiarate ed estendono `{java}Error` e `{java}RuntimeException`
-+ *Checked* : devono essere dichiarate all'interno del metodo , estendono `{java}Exception` ma non `{java}RuntimeExcception` 
++ *Checked* : devono essere dichiarate all'interno del metodo , estendono `{java}Exception` ma non `{java}RuntimeException` 
 
 Le eccezioni *uncheched* vengono usate quando c'è un errore all'interno della logica del programma dalla quale *non possiamo recuperare* e dovrebbero causare la terminazione del progamma poichè il runtime environment potrebbe essere compromesso
 
