@@ -55,7 +55,7 @@ Le unità sono estratte dalla popolazione con la seguenti caratteristiche :
 
 >[!note]
 >Esistono altre forme di campionamenti più complessi , si dicono *stratificati*
->Utilizzato dove il richio di un campione squilibrato darebbe risultati più difficilmente interpretabili
+>Utilizzato dove il rischio di un campione squilibrato darebbe risultati più difficilmente interpretabili
 
 ### Statistiche campionarie
 
@@ -75,7 +75,7 @@ Statistiche che misurano la variabilità :
 + *varianza* campionaria e *deviazione standard*
 + *scarto interquartile*
 
-Le statisiche sono *variabili casuale* quando calcolate su un campione *casuale* di dati 
+Le statisiche sono *variabili casuali* quando calcolate su un campione *casuale* di dati 
 
 Quando applico una statistica ad una variabile casuale sarà essa stessa una variabile casuale ( rappresenta la strategia che utiliziamo prima di guardare i dati ) , se la applico sui dati avremo di ritorno un valore 
 #### Media campionaria
@@ -159,7 +159,7 @@ La *media* ha il difetto di essere *sensibile* ad osservazioni estreme
 Se modifichiamo solo un dato su 30 dei tempi di elaborazione in modo estremo a 30 minuti la media campionaria passa da 48.23 a 105.9 secondi 
 
 >[!warning]
->Non è chiaramente accettabile che uno stimatore diepnde così tanto da poche osservazioni estreme 
+>Non è chiaramente accettabile che uno stimatore dipenda così tanto da poche osservazioni estreme 
 #### Mediana
 
 La *mediana campionaria* stima la mediana di popolazione 
@@ -237,7 +237,7 @@ La *varianza campionaria* è uno stimatore della varianza di popolazione $\sigma
 >La **deviazione standard campionaria** è la radice quadrata della varianza campionaria : 
 >$$S=\sqrt {S^2}$$
 
-Se stiamo considerando un'unità di misura per i nostri dati allora la *deviazione standard* è la scielta migliore per rappresentare la vairazione dei dati poichè possiede la stessa unità di misura dei dati
+Se stiamo considerando un'unità di misura per i nostri dati allora la *deviazione standard* è la scielta migliore per rappresentare la variazione dei dati poichè possiede la stessa unità di misura dei dati
 
 Un'altra misura che rappresenta la varianza di un insieme di dati è la *deviazione media assoluta* ( *DMA* ) che ha la seguente formula : 
 $$\frac1n \sum_{i=1}^n(|X_i-\overline X|)$$
