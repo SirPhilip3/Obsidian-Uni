@@ -354,7 +354,6 @@ La scelta fra due o più *stimatori* è basata sulle loro proprietà :
 + Se invece uno o entrambi sono distorti allora spesso si scieglie lo stimatore con l'*errore quadratico medio* ( *MSE* ) inferiore 
 >[!warning]
 >Uno stimatore con errore quadratico medio basso ma con distorsione rilevante ( e che non converge a 0 o non con la giusta velocità ) in molti problemi è considerato *inaccettablie* 
-
 ### Intervallo Interquartile
 
 La *varianza* è una misura della varaibilità molto sensibile alle osservazioni estreme
