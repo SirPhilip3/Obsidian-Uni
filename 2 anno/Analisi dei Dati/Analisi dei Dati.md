@@ -668,6 +668,7 @@ Lo stimatore di *massima verosimiglianza* gode di proprietà che valgono solo so
 Una di queste assunzioni di regolarità è che stiamo lavorando con un *problema di stima regolare* 
 
 Possiamo verificare che siamo in un problema di stima regolare se il *supporto* delle variabili casuali non dipenda dal parametro del modello 
+
 Le altre assunzioni richiedono che la funzione di probabilità ( caso discreto ) o di densità ( caso continuo ) del modello sia *sufficente regolare* , in particolare la funzione di probabilità o densità deve essere continua e derivabile per almeno 3 volte ( fino all'ordine 3 ) ( questo perchè necessitieremo di calcolare lo sviluppo di Taylor fino all'ordine 3 )
 
 >[!example]
