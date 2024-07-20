@@ -368,7 +368,6 @@ Questa misura rappresenta il 50% della distribuzione ( il *core* ) ossia le part
 Se la mediana rappresenta bene i nostri dati allora mi aspetto che lo scarto interquartile sia piccolo , questo ci indica che i valori della distribuzione sono molto compatti attorno alla mediana ( la mediana è precisa )
 
 **Intervallo Interquartile Campionario**
-
 $$\widehat {IQR}=\hat Q_3-\hat Q_1$$
 Dove $\hat Q_1$ e $\hat Q_3$ sono il primo e terzo quartile campionario
 
@@ -381,7 +380,7 @@ I valori *anomali* ( outliers ) sono le osservazioni che sono :
 Questi limiti vengono utilizzati poichè se i dati fossero normalmente distribuiti allora meno del $1\%$ delle osservazioni possono essere così esterne da non rispettarli 
 
 >[!example]
->Per l'esempio dei tempi di elaborazione abbimao che : 
+>Per l'esempio dei tempi di elaborazione abbiamo che : 
 >+ Limite inferiore : $-3.5$ ( essendo che stiamo parlando di tempi questo significa che il limite inferore è in realtà 0 )
 >+ Limite superiore : $96.5$ ( il valore $139$ è un *outlier* )
 >>[!note]
@@ -514,14 +513,13 @@ Il *modello statistico* è :
 >Esistono modelli che hanno componenti sia discreti che continui
 ### Metodo dei momenti
 
-Questo risulta esser il metodo più semplice per stimare il parametro ( $\theta$ ) di un modello statistico
+Questo risulta essere il metodo più semplice per stimare il parametro ( $\theta$ ) di un modello statistico
 
 Costruiamo uno stimatore di $\theta$ confrontando : 
 + I *momenti di popolazione* :
 	+ I momenti teorici del modello statistico
 + I *momenti campionari* :
 	+ I momenti che caratterizzano i dati osservati ( le osservazioni )
-
 #### Momenti
 
 >[!important]
@@ -535,7 +533,7 @@ Costruiamo uno stimatore di $\theta$ confrontando :
 
 Il $k$-esimo *momento di popolazione* è : 
 $$\mu_k=E(X^k)$$
-Il $k$-esimo *momento campionario* è :
+Il $k$-esimo *momento campionario* è : 
 $$M_k=\frac 1 n\sum_{i=1}^n X_i^k \quad (M_1 = \overline X\ )$$
 con *valore* osservato : 
 $$m_k=\frac 1 n \sum_{i=1}^n x_i^k \quad (m_1 = \overline x\ )$$
@@ -571,7 +569,7 @@ Per *stimare* il parametro $\theta$ si risolve il sistema di $k$ equazioni otten
 >#todo
 
 $$\begin{cases} \mu_1(\theta) & = M_1 \\ \mu_2(\theta) & = M_2 \\ \dots \ & = \dots \\ \mu_k(\theta) & = M_k\end{cases}$$
-A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare  alcuni momenti semplici con altri centrali se risulta conveniente
+A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare alcuni momenti semplici con altri centrali se risulta conveniente
 
 >[!example]
 >Osserviamo l'istogramma realizzato dai tempi di elaborazione della CPU
