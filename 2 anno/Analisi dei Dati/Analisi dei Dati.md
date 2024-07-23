@@ -644,7 +644,6 @@ Nel caso *discreto* la *log-verosimiglianza* è :
 $$l(\theta)=\sum_{i=1}^n \log Pr(X_i=x_i; \theta)$$
 >[!example]
 >9.7 baron
-
 #### Il caso continuo
 
 Nel caso continuo la probabilità di osservare esattamente un certo valore $x$ è $Pr(X=x)=0$ 
