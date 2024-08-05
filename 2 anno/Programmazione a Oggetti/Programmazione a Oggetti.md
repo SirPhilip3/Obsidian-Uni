@@ -131,7 +131,6 @@ Possiamo dividere i tipi di *java* in 2 categorie :
 + **Reference** : oggetti , array etc... ( tutti questi contengono un pointer all'area di memoria asseganta ad un oggetto , array etc... )
 
 L'utilizzo di *reference* è utile per diminuire la presenza di duplicazioni / ridondanza di dati e codice 
-
 #### Aliasing
 
 *Aliasing* indica che un'area di memoria può essere acceduta tramite più nomi differenti ( ad ogni nome è associato lo stesso pointer ) , consente di effettuare *data-sharig*
@@ -220,7 +219,6 @@ In *byte code* il costruttore è identificato con `init` , `clinit` per i costru
 	+ *abstract* : utilizzato in *metodi* e *classi*
 
 Più modificatori possono essere assegnati ad uno stesso *campo* , *metodo* o *classe* , a patto che siano compatibili
-
 ### new operator
 
 L'operatore *new* è colui che istanzia una classe 
