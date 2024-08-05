@@ -655,10 +655,8 @@ public class Car extends Vehicle {
 
 }
 
-
 public class Truck extends Car {...} // non posso sovrascrivere accelerate poichè final nella sua superclasse
 ```
-
 
 Anche una *classe* può essere dichiarata *final* questo fa in modo che non possa essere estesa 
 
@@ -832,7 +830,7 @@ v3.accelerate(100); // svolge l'implementazione di Truck che eredita l'implement
 
 Ogni classe può al massimo estendere un'altra classe ( *single inheritance* )
 
-Potrebbe essere che più calssi possano condividere delle caratteristiche per esempio :
+Potrebbe essere che più classi possano condividere delle caratteristiche per esempio :
 + `{java}class Truck extends Car` 
 + `{java}class HorseCart extends Vehicle` 
 Ma in entrambi i casi possiamo caricare un camion con tot kg di qualcosa come possiamo caricare un carrello trainato da cavalli con tot kg di qualcosa , abbiamo una ripetizione di codice 
@@ -874,9 +872,10 @@ Se ho più classi che implementano lo stesso metodo nello stesso modo posso dich
 ```java
 interface Loadable { 
 	default public void chargeLoad(double l) {
-		this.setLoad(this.getLoad()+l); } 
+		this.setLoad(this.getLoad()+l);  
 	} 
-	
+}
+
 class Truck extends Car implements Loadable {}
 ```
 
