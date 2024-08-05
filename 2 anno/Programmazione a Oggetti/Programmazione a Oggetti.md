@@ -1296,13 +1296,13 @@ byte a = 3; //int -> byte
 char b = 'a'; // char -> char 
 int c = b; //char -> int 
 c = a; // byte -> int 
-a = c; // int -> byte NON PUSSO FARLO
+a = c; // int -> byte NON POSSO FARLO
 long d = c; //int -> long 
-c = d; //long -> int NON PUSSO FARLO
+c = d; //long -> int NON POSSO FARLO
 float e = c; // int -> float 
 e = d; //long -> float 
 double f = e; //float -> double 
-e = f; //double -> float NON PUSSO FARLO
+e = f; //double -> float NON POSSO FARLO
 ```
 
 ```java
