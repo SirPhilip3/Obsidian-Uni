@@ -1402,7 +1402,6 @@ Il blocco `{java}try{...} catch(...){...}` specifica il codice da eseguire se un
 >Mai catturare eccezioni generiche come : `{java}Throwable , Exception , Error , ...` 
 >I blocchi `{java}catch` non dovrebbero essere vuoti
 
-
 Esiste inoltre il blocco `{java}finally` che viene eseguito in qualunque caso , sia che un'eccezione sia stata lanciata che no
 
 Normalmente utilizzato per riportare lo stato del sistema ad punto accettabile , es chiudere le risorse IO aperte 
