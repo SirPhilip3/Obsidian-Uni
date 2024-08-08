@@ -1121,7 +1121,7 @@ La classe *Object* fornisce dei metodi comuni a tutte le classi :
 + `{java}int hashCode()`
 + `{java}String toString()`
 
-### equals()
+### equals( )
 
 Indica quando un altro oggetto equivale a questo 
 
