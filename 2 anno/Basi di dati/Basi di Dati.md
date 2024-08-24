@@ -900,7 +900,7 @@ In questo caso la tabella della superclasse non è presente poichè le sue sotto
 	Conveniente se le sottoclassi differiscono per pochi attributi
 + **Partizionamento orizzontale**
 	- Complica la visita di tutti gli elementi della supercalsse ( devo visitare entrambe le sottoclassi )
-	- Se vi è un'associzione entrante nella suoperclasse è sconsigliato 
+	- Se vi è un'associzione entrante nella superclasse è sconsigliato 
 	- Senza vincolo di disgiunzione è necessario creare 3 classi distinte
 + **Parizionamento verticale**
 	+ Complica il recupero di tutte le informazioni relative ad un'entità ( sono distribuite in più classi )
