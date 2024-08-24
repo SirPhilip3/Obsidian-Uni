@@ -640,8 +640,7 @@ Si vogliono modellare alcuni fatti riguardanti una biblioteca universitaria:
 + I *libri* :
 	identificati da : 
 	+ la loro *posizione* in biblioteca
-+ Gli *autori* dei libri
-	con le seguenti caratteristiche:
++ Gli *autori* dei libri con le seguenti caratteristiche:
 	+ codice fiscale
 	+ nome 
 	+ cognome
@@ -686,11 +685,11 @@ Anche `ColoredPointint` è un *sottoinsieme* di `ColoredPoint` e quindi di `Poin
 
 ##### Ereditarietà
 
-L'*Ereditarietà* ci permette di definire un tipo oggetto a partire da un altro per differenza , infatti questo metodo ci permette di ereditare tutti gli attributi dell'oggetto "padre" e aggiungerene o ridefinire attributi per differenziare l'oggetto "figlio"
+L'*Ereditarietà* ci permette di definire un tipo oggetto a partire da un altro per differenza , infatti questo metodo ci permette di ereditare tutti gli attributi dell'oggetto "padre" e aggiungerne o ridefinire attributi per differenziare l'oggetto "figlio"
 
 L'*ereditarietà* tra tipi si usa solo per definire sottotipi ( *ereditarietà stretta* ) , in questo caso :
 + gli attributi possono essere aggiunti 
-+ gli attributi possono essere ridefiniti solo specilizzandone il tipo
++ gli attributi possono essere ridefiniti solo specializzandone il tipo
 
 Esempio :
 
@@ -704,7 +703,7 @@ Fra le *classi* può essere definita una relazione di *sottoclasse* ( o sottoins
 + *Vincolo estensionale* : 
 	Se C è sottoclasse di C' allora le entità in C sono un sottoinsieme delle entità in C' 
 + *Vincolo intesionale* : 
-	Se C è ssottoclasse di C' allora il tipo delle entità in C è sottotipo del tipo degli elementi di C'
+	Se C è sottoclasse di C' allora il tipo delle entità in C è sottotipo del tipo degli elementi di C'
 + *Vincolo di disgiunzione*
 	Esempio :
 	![[dis.png]]
@@ -812,7 +811,7 @@ Esempio :
 
 ##### Valori non nulli
 
-Un attributo può avere valore non specificato ( *proprietà praziali* ) per varie ragioni :
+Un attributo può avere valore non specificato ( *proprietà parziali* ) per varie ragioni :
 + non applicabile 
 + sconoscituo al momento
 
