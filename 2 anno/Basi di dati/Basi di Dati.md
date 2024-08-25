@@ -1043,7 +1043,7 @@ In questo caso abbiamo che i duplicati di `VE` risultano essere stati eliminati 
 Indicata con $\sigma$
 
 $$\sigma_{\phi}(R)=\{t|t\in R\land \phi(t)\}$$
-Utilizzata per creare una relazione le cui ennuple sono le ennuple di R che soddifano la condizione $\phi$
+Utilizzata per creare una relazione le cui ennuple sono le ennuple di $R$ che soddisfano la condizione $\phi$
 
 La condizione $\phi$ è una composizione di uguaglianze , disuguaglianze e disequazioni tra attributi ( o tra attributi e costanti )
 $$\phi = A_i\space op\space A_j\space|\space A_i\space op\space c\space|\space\neg \phi\space|\space\phi\land\phi\space|\space\phi\lor\phi $$
@@ -1101,7 +1101,7 @@ La nuova realzione avrà :
 	Avremo che :
 	$|R\times S| = n\times m$
 
-Non ci possono essere duplicati nella relazione risultante poichè epr ipotesi iniziale abbimo che tutti gli attribuit devoni essere distinti tra loro
+Non ci possono essere duplicati nella relazione risultante poichè per ipotesi iniziale abbiamo che tutti gli attribuiti devono essere distinti tra loro
 
 **Esempio** :
 
@@ -1124,7 +1124,7 @@ Con `Esami` :
 |F31|FIS|76366|08.07.06|26|N|
 |B247|BD|76366|28.12.06|28|S|
 
-Il prodotto associa ad ogni ennupla di `Studenti` tutte le ennuple di `Esami` , questo però a livello logico non è corretto poichè ad uno stidente viene assegnato un esame di un'altro studente ( non viene rispettato il vincolo di *foreing key* ) 
+Il prodotto associa ad ogni ennupla di `Studenti` tutte le ennuple di `Esami` , questo però a livello logico non è corretto poichè ad uno studente viene assegnato un esame di un'altro studente ( non viene rispettato il vincolo di *foreing key* ) 
 
 Per farlo rispettare necessitiamo di fare delle altre operazioni
 
@@ -1151,7 +1151,7 @@ $R\bowtie S$
 Con $R(X,Y)$ e $S(Z,X)$
 
 Avremo quindi che R ed S hanno un attributo in comune : X
-
+ 
 Definizione formale :
 $$t\in R \bowtie S\quad \text{sse}\quad t[X\space Y] \in R\ \land\ t[Z\ X]\in S$$
 Ossia l'ennupla $t$ esiste in $R\bowtie S$ se e solo se l'ennupla $t$ con attributi $X$ e $Y$ appartiene alla relazione $R$ e se l'ennupla $t$ con attributi $Z$ e $X$ appartiene alla relazione $S$
@@ -1217,8 +1217,8 @@ Formalmente avremo :
 
 Avendo $R(X)$ e $S(Y)$
 Dove :
-$A_1,\dots,A_n$ sono attributi di R e non di S
-$B_1,\dots,B_n$ sono attributi di S e non di R
+$A_1,\dots,A_n$ sono attributi di $R$ e non di $S$
+$B_1,\dots,B_n$ sono attributi di $S$ e non di $R$
 
 Avremo quindi : 
 $$R\overleftrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]\cup$$
