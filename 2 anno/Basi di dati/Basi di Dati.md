@@ -1917,13 +1917,13 @@ Questo cambia i risultati delle espressioni , necessitiamo l'implementazione di 
 | --- | --------- |
 | U   | U         |
 
-| $p$ | $q$ | $p\land q$ | $p\lor q$ |     |
-| --- | --- | ---------- | --------- | --- |
-| T   | U   | U          | T         |     |
-| F   | U   | F          | U         |     |
-| U   | T   | U          | T         |     |
-| U   | F   | F          | U         |     |
-| U   | U   | U          | U         |     |
+| $p$ | $q$ | $p\land q$ | $p\lor q$ |
+| --- | --- | ---------- | --------- |
+| T   | U   | U          | T         |
+| F   | U   | F          | U         |
+| U   | T   | U          | T         |
+| U   | F   | F          | U         |
+| U   | U   | U          | U         |
 
 `{sql}NULL = 0` non è nè vero nè falso ma *unknown*
 `{sql}NULL = NULL` è *unknown*
