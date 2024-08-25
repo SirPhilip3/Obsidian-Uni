@@ -1642,7 +1642,7 @@ Cognome e Nome delle persone ( e dei Nonni ) che fanno lo stesso lavoro dei Nonn
 Dove avremo la seguente tabella :
 `{sql}Persone(Id, Nome, Cognome, IdPadre, Lavoro)`
 `PK(Id) , IdPadre FK(Persone)`
-Avremo quindi che ci sarà una ricorsità su `Persone` che indica il Padre di ogni persona legando l'`Id` e il `IdPadre`
+Avremo quindi che ci sarà una ricorsività su `Persone` che indica il Padre di ogni persona legando l'`Id` e l' `IdPadre`
 Ad una Persona corrisponde un nonno se abbiamo una prima relazione con suo padre e una seconda relazione tra suo padre e il padre di suo padre ( il nonno ) 
 
 ```sql
