@@ -1940,6 +1940,7 @@ FROM Studenti
 WHERE Tutor IS NULL
 ```
 
+>[!warning] 
 ```sql
 SELECT *
 FROM Studenti 
