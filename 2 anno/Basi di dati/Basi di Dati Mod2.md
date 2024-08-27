@@ -75,7 +75,7 @@ La teoria della normalizzazione fornisce un insieme di strumenti e algoritmi per
 + **Implicazione** :
 	Per verificare se una certa dipendenza funzionale può essere derivata in una relazione
 + **Chiusura** : 
-	Rappresenta l'insieme di tutti gli attributi derivsbile da un insieme di uno o più attributi ( come le chiavi ) secondo le regole di derivazione
+	Rappresenta l'insieme di tutti gli attributi derivabile da un insieme di uno o più attributi ( come le chiavi ) secondo le regole di derivazione
 ### Dipendenze Funzionali
 
 >[!note] Definizione
@@ -159,7 +159,7 @@ Se $X \rightarrow Y$ allora $XZ \rightarrow Y$
 #### Chiusura
 
 >[!important] Definition
->Dato un insieme $F$ di dipendenze funzioneli la *chiusura* di $F$ ( $F^+$ ) è definita come l'insieme di tutte le dipendenze funzionali logicalmente implicate da $F$ attraverso gli assiomi di *Armstrong*  
+>Dato un insieme $F$ di dipendenze funzionali la *chiusura* di $F$ ( $F^+$ ) è definita come l'insieme di tutte le dipendenze funzionali logicalmente implicate da $F$ attraverso gli assiomi di *Armstrong*  
 $$F^+=\{ X \rightarrow Y | F\vdash X \rightarrow Y \}$$
 
 In pratica : l'insieme di tutte le dipendenze funzionali derivabili da $F$ 
@@ -373,7 +373,7 @@ Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi :
 
 Dato $R(T,F)$ , il problema di verificare se un attributo $A\in T$ è *primo* ha complessità *esponenziale* :
 + Si può dimostrare che il problema è *NP-completo* 
-+ Ciò implica che non esistono soluzioni significativamente più efficenti dell'apporoccio ovvio di generare tutte le possibili chiavi
++ Ciò implica che non esistono soluzioni significativamente più efficenti dell'approccio ovvio di generare tutte le possibili chiavi
 #### Forma Canonica
 
 Vogliamo portare l'insieme delle *dipendenze funzionali* ad una forma più standard , detta *forma canonica* equivalente all'originale 
