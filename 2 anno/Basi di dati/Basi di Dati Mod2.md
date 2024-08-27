@@ -445,7 +445,7 @@ Utilizziamo il seguente algoritmo per ricavare una *copertura canonica* :
 
 >[!example]
 >Sia $F=\{A\rightarrow BC , B\rightarrow C , A\rightarrow B , AB\rightarrow C  \}$
->1. *Decomponiamo* $A\rightarrow BC$ in $A\rightarrow B$ e $A\rightarrow C$ , dato che $A\rightarrow B$ è giaà presente otteniamo $G=\{A\rightarrow C , B\rightarrow C , A\rightarrow B , AB\rightarrow C  \}$
+>1. *Decomponiamo* $A\rightarrow BC$ in $A\rightarrow B$ e $A\rightarrow C$ , dato che $A\rightarrow B$ è già presente otteniamo $G=\{A\rightarrow C , B\rightarrow C , A\rightarrow B , AB\rightarrow C  \}$
 >2. L'unica dipendenza che può contenere attributi estranei è $AB\rightarrow C$ 
 >	Proviamo a togliere $A$ :
 >	Calcoliamo la *chisura* del rimanente : $B_G^+=BC$ , visto che $C$ è presente all'interno della *chiusura* possiamo togliere l'attributo $A$ ( era la stessa cosa se toglievamo prima $B$ )
