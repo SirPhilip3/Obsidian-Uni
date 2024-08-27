@@ -526,7 +526,7 @@ Da questa definizione possiamo anche ricavare un teorema per la *decomposizione*
 Una perdita di informazione è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossere nella relazione originaria
 
 >[!important] Teorema
->Sia $p=\{R_1(T_1),R_2(T_2)\}$ una decomposizione di $R(T,F)$ . $p$ è una decmposizione che *preserva i dati* se e solo se $T_1\cap T_2 \rightarrow T_1 \in F^+$ oppure $T_1\cap T_2 \rightarrow T_2 \in F^+$ 
+>Sia $p=\{R_1(T_1),R_2(T_2)\}$ una decomposizione di $R(T,F)$ . $p$ è una decomposizione che *preserva i dati* se e solo se $T_1\cap T_2 \rightarrow T_1 \in F^+$ oppure $T_1\cap T_2 \rightarrow T_2 \in F^+$ 
 
 >[!important] *Dimostrazione*
 >Dobbiamo dimostrarlo per entrambi i versi del se e solo se : 
@@ -567,7 +567,7 @@ Dopo la decomposizione :
 | a1 | d1 |
 | a1 | d2 |
 | a2 | d2 |
-Se facessimo la `JOIN` vedremmo che ritorneremmo alla tabella originale 
+Se facessimo la `JOIN` vedremo che ritorneremo alla tabella originale 
 
 >[!example] Contro-Esempio
 >Si consideri $R(A,B,C,D)$ con $F=\{ A \to B , C \to D \}$
