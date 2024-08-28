@@ -2024,7 +2024,7 @@ Una volta fatto questo ci basta usare i comandi :
 + `GRANT` : per assegnare permessi a ruoli e ruoli ad utenti
 + `REVOKE` : per rimuovere permessi a ruoli e ruoli ad utenti
 
-I ruoli assegnati  ad un utente non sono *attivi* di default. Lattivazione di un ruolo per ottenere i permessi viene effettuata tramite il comando : 
+I ruoli assegnati ad un utente non sono *attivi* di default. L'attivazione di un ruolo per ottenere i permessi viene effettuata tramite il comando : 
 ```postgresql
 SET ROLE NomeRuolo;
 ```
