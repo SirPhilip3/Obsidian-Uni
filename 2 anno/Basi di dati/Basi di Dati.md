@@ -315,8 +315,6 @@ Tipi di *malfunzionamenti* :
 + **Disastri**
 Ripristino da *malfunzionamenti* tramite *jurnal* e copie di sicurezza ( *backup* ) : 
 	*Riesecuzione* di tutte le operazioni avvenuto dopo l'ultimo *backup* tramite il *journal* in modo da far tornare la base di dati allo stato originale
-
-
 ### Strumenti per amministrazione
 
 Strumenti per l'amministrazione della base di dati :
@@ -786,7 +784,6 @@ I vincoli di integrità che considereremo sono :
 + *valori non nulli*
 
 Un'*istanza* di uno schema di relazione si dice *valida* se rispetta tutti i vincoli definiti su R
-
 ##### Chiavi
 
 Si possono distiguere vari tipi di *chiavi* :
@@ -884,7 +881,6 @@ Nella *relazione unica* creo una *relazione* unica contente tutti gli attributi 
 Nel *partizionamento verticale* mantengo la divisione delle sottoclassi ed inserisco in ogni sotto-relazione la chiave della superclasse come *primary key* e come *foreing key* alla "superelazione" ( la superclasse originale )
 
 ![[Screenshot 2023-10-24 133034.png]]
-
 ##### Parizionamento Orizzontale
 
 Nel *partizionamento orizzontale* creo 3 tabelle indipendenti , le tabelle relative alle sottoclassi dovranno contenere tutti i campi della sovraclasse ( ciò crea duplicazione di dati )
