@@ -879,7 +879,7 @@ Sia $R(T,F)$ lo schema di partenza :
 1. Costruisci $G$ una *copertura canonica* di $F$
 2. Sostituisci in $G$ ciascun insieme di dipendenze $X \to A_1,\dots,X\to A_n$ con una singola dipendenza $X\to A_1\dots A_n$
 3. Per ogni $X \to Y \in G$ crea uno schema $S_i(XY)$
-4. Elimina ogni schema contenuo in un'altro schema
+4. Elimina ogni schema contenuto in un'altro schema
 5. Se la decomposizione non contiene alcuno schema i cui attributi costituiscano una superchiave per $R$ aggiungi un nuovo schema $S(W)$ dove $W$ è una chiave di $R$
 
 >[!example]
@@ -901,7 +901,7 @@ Sia $R(T,F)$ lo schema di partenza :
 	L'ultimo passo della conversione garantisce che la decomposizione contenga almeno uno schema i cui attributi formano una superchiave dello schema iniziale 
 	Poichè la decomposizione preserva le dipendenze essa deve preservare anche i dati 
 
-La conversione in *3NF* non garantisce l'assenza di anomialie
+La conversione in *3NF* non garantisce l'assenza di anomalie
 
 >[!example]
 >Consideriamo $Telefoni(\{ Prefisso , Numero , Località \} , F)$ con $F=\{ Prefisso,Numero \to Località, Località \to Prefisso \}$
