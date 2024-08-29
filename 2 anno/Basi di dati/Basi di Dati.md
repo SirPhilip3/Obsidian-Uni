@@ -2312,7 +2312,6 @@ GROUP BY s.Matricola, s.Cognome , -- e.Data
 HAVING YEAR(Data) > 2006; -- Data deve essere incluso nel GROUP BY
 ```
 
-
  Nel *raggruppamento* si assume che  `{sql}NULL=NULL`
 
 **Esempio** :
