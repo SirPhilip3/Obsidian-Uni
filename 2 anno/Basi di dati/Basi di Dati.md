@@ -2278,7 +2278,6 @@ Calcoliamo quindi le condizinoni sul `{sql}SELECT`
 |--|--|
 |FIS|25.600|
 
-
 >[!note]
 >Gli attributi espressi non aggregati nella `{sql}SELECT` e in `{sql}HAVING` se presenti devono essere inclusi tra quelli citati nella `{sql}GROUP BY` 
 >Gli attributi aggregati (`{sql}AVG(e.Voto)`) vanno scelti tra quelli non raggruppati
