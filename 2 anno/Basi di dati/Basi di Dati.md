@@ -1544,11 +1544,10 @@ Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazional
 
 ## SQL
 
-Chiamato **Strucutred English QUEry Language** o **SEQUEL** o **SQL**
+Chiamato **Strucutred english Query Language** o **SEQUEL** o **SQL**
 
 Si utilizza lo standard SQL:2006
 I sistemi industriali utilizzano uno standard differente includendo funzionalità non previste , non includendone alcune o implementandole in modo differente
-
 ### Caratteristiche
 
 SQL è un linguaggio *dichiarativo* basato sul *calcolo relazionale su ennuple* e *algebra relazionale*
@@ -1563,7 +1562,6 @@ Le tabelle possono avere righe duplicate per :
 SQL comprende :
 + *DML* ( *Data Manipulation Language* ) $\rightarrow$ per svolgere query
 + *DDL* ( *Data Definition Language* ) $\rightarrow$ per definire una base di dati
-
 ### DML
 
 Il construtto base dell'*SQL* è il seguente 
