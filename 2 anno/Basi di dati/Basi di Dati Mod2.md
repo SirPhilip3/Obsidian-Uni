@@ -2062,7 +2062,7 @@ Possiamo gestire l'ereditarietà attraverso le opzioni `INHERIT` ( *default* ) e
 >[!note] Definizione
 >Un *indice* è una struttura dati ausiliaria che ci permette di accedere in modo più efficente alle tuple di una relazione che soddifano una determinata proprietà
 
-Un *indice* su un attributo $A$ di una relazione $R$ è una lista di coppie $(a_i, P_i)$ dove $a_i$ è un valore di $A$presente in almeno una tupla di $R$ e $P_i$ è un insieme di puntatori alle tuple di $R$ per cui $A$ vale $a_i$
+Un *indice* su un attributo $A$ di una relazione $R$ è una lista di coppie $(a_i, P_i)$ dove $a_i$ è un valore di $A$ presente in almeno una tupla di $R$ e $P_i$ è un insieme di puntatori alle tuple di $R$ per cui $A$ vale $a_i$
 Tale lista è ordinata rispetto al valore di $A$ 
 
 In pratica si utilizza una struttura dati simile ad un *Binary Search Tree* per memorizzare l'indice in modo da trovare in modo efficente i puntatori alle tuple che soddisfano una condizione $A$ 
