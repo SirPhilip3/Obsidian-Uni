@@ -2362,7 +2362,7 @@ Visto che una transazione deve essere una sequenza di operazioni *serializzate* 
 
 Ciascuna transazione prende un *lock* *globale* ( blocca qualsiasi altra operaizone sul database ) sul database che viene rialasciato dopo il commit 
 
-*ottimizzazione* : insieme di *lock locali* che blocchino solo porzioni del database e gestione "rilassata" delle transazioni *read only* poichè non possono comprometter l'integrità della base di dati 
+*ottimizzazione* : insieme di *lock locali* che blocchino solo porzioni del database e gestione "rilassata" delle transazioni *read only* poichè non possono compromettere l'integrità della base di dati 
 
 >[!note] 
 >I *DBMS* moderni utilizzano soluzioni senza *lock* come *MVCC* (*multiversion concurrency control*)
@@ -2388,7 +2388,7 @@ Più operazioni *read only* che operano sugli stessi dati possono essere eseguir
 Il livello di isolamento `{postgresql}READ UNCOMMITTED` consente ad una transazione di leggere *dirty data* ossia dati scritti da altre transazioni che non hanno ancora fatto commit ( si svolge una *dirty read* ) 
 
 >[!warning] 
->Potrebbe avvenire che la transazione che ha scritto i *dirty data* potrebbe *abortire* : in tal caso i *dirty data* dovrebbero essere rimossi e non dovrebbero infuenzare le altre transazioni
+>Potrebbe avvenire che la transazione che ha scritto i *dirty data* potrebbe *abortire* : in tal caso i *dirty data* dovrebbero essere rimossi e non dovrebbero influenzare le altre transazioni
 >
 >*SQL* limita l'utilizzo di `{postgresql}READ UNCOMMITTED` a solo transazioni *read only* a meno che lo sviluppatore non decida di rilassare questo vincolo
 
@@ -2399,7 +2399,7 @@ Il livello di isolamento `{postgresql}READ UNCOMMITTED` consente ad una transazi
 
 Il livello di isolamento `{postgresql}READ COMMITTED` impedisce il fenomeno delle *dirty reads* fornendo un maggiore isolamento : 
 + Quando una transazione vuole effettuare una *scrittura* acquisice un *lock* che viene rilasciato solo dopo la sua terminazione
-+ Si può verificare il fenomeno di **unrepeatabel read** : due letture degli stessi dati in momenti diversi possono portare a risultati diversi a causa dell'intervento di un'altra transazione 
++ Si può verificare il fenomeno di **unrepeatable read** : due letture degli stessi dati in momenti diversi possono portare a risultati diversi a causa dell'intervento di un'altra transazione 
 + Si può verificare il fenomeno di **lost update** : la perdita di una modifica da parte di una transazione causata da un aggiornamento operato da un'altra transazione
 
 >[!todo] 
@@ -2413,7 +2413,7 @@ Il livello di isolamento `{postgresql}REPEATABLE READ` impedisce il fenomeno del
 >I *lock* sono a livello di righe ( in modo da aumentare le performance )
 
 >[!warning] 
->Si può verificare il fenomeno dei *fantasmi* : un'altra transazione può aggiungere dati ad una tabella prima che la transazione sia completata andando ad influenzare il risultato ( poichè il risutlato potrebbe essere sull'intera tabella )
+>Si può verificare il fenomeno dei *fantasmi* : un'altra transazione può aggiungere dati ad una tabella prima che la transazione sia completata andando ad influenzare il risultato ( poichè il risultato potrebbe essere sull'intera tabella )
 
 >[!example] 
 >>[!todo] 
@@ -2423,7 +2423,7 @@ Il livello di isolamento `{postgresql}REPEATABLE READ` impedisce il fenomeno del
 Il livello di isolamento di una transazione riguarda esclusivamente ciò che può vedere quella transazione  
 
 >[!example] 
->Se abbiamo una transazione $T$ `{postgresql}SERIALIZABLE` questà dovrà essere svolta come se tutte le atre transazioni siano eseguite interamente prima o dopo $T$ ma se un'altra transazione è `{postgresql}READ UNCOMMITTED` quest'ultima potrà leggere *dirty data* dalla trasnazione $T$
+>Se abbiamo una transazione $T$ `{postgresql}SERIALIZABLE` questà dovrà essere svolta come se tutte le altre transazioni siano eseguite interamente prima o dopo $T$ ma se un'altra transazione è `{postgresql}READ UNCOMMITTED` quest'ultima potrà leggere *dirty data* dalla transazione $T$
 
 #### Transazioni in Postgres
 
