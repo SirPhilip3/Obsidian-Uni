@@ -2330,7 +2330,6 @@ L'esempio precedente dovrà essere eseguito nel seguente modo :
 ![[Serilizable.excalidraw]]
 
 In questo modo solo uno dei due può avere quel posto 
-
 ##### Atomicità 
 
 Nell'esempio precedente se avviene un crash tra 2 operazioni all'interno di una transazione questa non viene più eseguita annullando tutte le modifiche apportate fino al crash ( revert allo stato prima dell'inizio della transazione )
