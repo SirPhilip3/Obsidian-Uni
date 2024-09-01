@@ -523,7 +523,7 @@ Da questa definizione possiamo anche ricavare un teorema per la *decomposizione*
 >Se $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R(T,F)$ ( qualunque ) allora per ogni istanza $r$ di $R(T,F)$ si ha : 
 >$$r\subseteq \pi_{T_1}(r)\bowtie\dots\bowtie \pi_{T_k}(r)$$
 
-Una perdita di informazione è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossere nella relazione originaria
+Una perdita di informazione è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossero nella relazione originaria
 
 >[!important] Teorema
 >Sia $p=\{R_1(T_1),R_2(T_2)\}$ una decomposizione di $R(T,F)$ . $p$ è una decomposizione che *preserva i dati* se e solo se $T_1\cap T_2 \rightarrow T_1 \in F^+$ oppure $T_1\cap T_2 \rightarrow T_2 \in F^+$ 
@@ -742,7 +742,7 @@ Questo *algoritmo* ottimizzato ha complessità *polinomiale*
 >	+ Consideraimo $R_1(\{ A,B \})$ , abbiamo : 
 >		$(\{A\}\cap\{A,B\})_F^+ \ \cap\{A,B\}=A^+_F \cap \{A,B\} = \{A,B\}$
 >		Aggiungiamo quindi $B$ a $FC(A,F,p)$ 
->	+ Consideraimo $R_2(\{ C,C \})$ , abbiamo :
+>	+ Consideraimo $R_2(\{ B,C \})$ , abbiamo :
 >		$(\{A,B\}\cap\{B,C\})_F^+ \ \cap\{B,C\}=B^+_F \cap \{B,C\} = \{B,C\}$
 >		Aggiungiamo quindi $C$ a $FC(A,F,p)$
 
