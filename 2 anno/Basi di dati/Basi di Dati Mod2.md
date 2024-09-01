@@ -958,7 +958,6 @@ Alcuni *vincoli di integrità* :
 >[!example]
 >+ Garantire che l'età di una persona sia sempre un numero positivo
 >+ Garantire che il primario di un ospedale sia anche un dottore 
-
 #### NOT NULL
 
 Un certo attributo non deve essere mai impostato a `{sql}NULL`
