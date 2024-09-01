@@ -2764,7 +2764,7 @@ WITH ProvinceMedia AS (
 	SELECT s.Provincia, AVG(e.Voto) AS Media 
 	FROM Studenti s JOIN Esami e ON s.Matricola=e.Candidato 
 	GROUP BY s.Provincia 
-	) 
+) 
 SELECT Provincia, Media 
 FROM ProvinceMedia 
 WHERE Media = (SELECT MAX(Media) FROM ProvinceMedia)
