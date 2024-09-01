@@ -2560,7 +2560,7 @@ CREATE TABLE Studenti (
 	Cognome VARCHAR(10) NOT NULL,
 	Sesso CHAR(1) CHECK(Sesso IN (‘M’, ‘F’))
 	...
-	)
+)
 ```
 
 ###### Vincoli intra- e inter-relazionali
