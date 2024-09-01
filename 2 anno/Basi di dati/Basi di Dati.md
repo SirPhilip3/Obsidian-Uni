@@ -593,7 +593,7 @@ Le *associazioni* possono avere delle *proprietà*
 Se vi sono più di 1 attributo in una *associazione* allora sarebbe meglio trasformarla in una *classe*
 
 Es : 
-	se vogliamo rendere la precedente associazione storica : 
+	Se vogliamo rendere la precedente associazione storica : 
 ![[AssociazioniEx2_1.excalidraw]]
 
 In cui `Prestiti` ha come proprietà la data di inizio e fine del prestito
@@ -775,7 +775,6 @@ I meccanismi per definire una base di dati con il modello realzionale sono l'*en
 	`Studenti : { (Nome : string, Cognome : string, Matricola : int) }`
 + *Istanza di uno schema* : insieme finito di ennuple di tipo T ( la usa *cardinalità* è il numero di ennuple )
 + *Schema ralezionale di un BD* : insieme di schemi di relazione e vincoli di integrità
-
 #### Vincoli di integrità
 
 I vincoli di integrità che considereremo sono :
