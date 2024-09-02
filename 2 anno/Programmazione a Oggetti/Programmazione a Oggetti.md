@@ -17,7 +17,7 @@ Differenze tra diversi linguaggi :
 Rende il codice *java* molto *portabile* ( basta avere il corretto JRE per quella macchina e il codice eseguirà )
 
 [Naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
-#### Java bytecode
+#### Java bytecode 
 
 Il *java bytecode* è un linguaggi di basso livello indipendete dalla macchina ( è uguale per tutte le macchine ) che viene eseguito dalla *JRE*
 
@@ -124,7 +124,7 @@ Car2.fullBreak();
 Car1 // fuel=30 , speed=0.0 ho modificato anche Car1
 ```
 
-### Tipi
+### Tipi 
 
 Possiamo dividere i tipi di *java* in 2 categorie :
 + **Valori** : int/long , boolean , float/double , char 
