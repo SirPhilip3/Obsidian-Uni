@@ -719,7 +719,7 @@ int race(Vehicle v1, Vehicle v2, double length){
 Se una classe C1 estende un'altra classe C2 allora le sue istanze hanno una interfaccia più grande , tutte le occorrenze di C2 possono essere sostituite da C1
 ### Tipi statici e dinamici
 
-Ogni espressione ha una tipo *static* determinato a compile time e un tipo *dinamico* determinato a execution time 
+Ogni espressione ha un tipo *static* determinato a compile time e un tipo *dinamico* determinato a execution time 
 
 Il tipo *dinamico* può solo essere un sottotipo del tipo *statico* esponendo gli stessi o più membri 
 
