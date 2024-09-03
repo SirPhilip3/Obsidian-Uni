@@ -61,7 +61,7 @@ Somma di due variabili
 
 ![[Pasted image 20231010111432.png]]
 
-#### Perchè usare OOP
+#### Perchè usare OOP 
 
 Il paradigma di programmazione ad oggetti o *OOP* ( *Object Oriented Programming* ) ci consente di creare codice che si concetri nella *riusabilità* , questo avviene attraverso  : 
 + l'*incapsulamento* del codice 
@@ -69,11 +69,11 @@ Il paradigma di programmazione ad oggetti o *OOP* ( *Object Oriented Programming
 + *eridetarietà* che ci permette di estendere e specializzare codice già esistente
 + *polimorfismo* , *metodi dinamici* , *classificazione* ci permetto di realizzare algoritmi riusabili 
 
-# Introduzione al linguaggio
+# Introduzione al linguaggio 
 
-## Classi
+## Classi 
 
-Le classi rappresentano oggetti reali o immaginari , queste consitono di *campi* ( che identificano lo stato di un oggeto ) e *metodi* ( identificano le azioni e il cambio di stato di un oggetto )
+Le classi rappresentano oggetti reali o immaginari , queste consistono di *campi* ( che identificano lo stato di un oggeto ) e *metodi* ( identificano le azioni e il cambio di stato di un oggetto )
 
 Ogni *classe* definisce un *tipo*
 
@@ -131,7 +131,7 @@ Possiamo dividere i tipi di *java* in 2 categorie :
 + **Reference** : oggetti , array etc... ( tutti questi contengono un pointer all'area di memoria asseganta ad un oggetto , array etc... )
 
 L'utilizzo di *reference* è utile per diminuire la presenza di duplicazioni / ridondanza di dati e codice 
-#### Aliasing
+#### Aliasing 
 
 *Aliasing* indica che un'area di memoria può essere acceduta tramite più nomi differenti ( ad ogni nome è associato lo stesso pointer ) , consente di effettuare *data-sharig*
 
@@ -144,6 +144,7 @@ I *costruttori* sono metodi speciali che ci permettono di istanziare una classe 
 
 Il costruttore che viene utilizzato senza averne definito uno è detto di *default* e imposta i valori predefiniti ( a 0 o null ) ai *campi*
 
+>[!important] 
 Se però definiamo un *costruttore* differente da quello di default , quello di default non viene inserito nella classe
 
 Esempio :
@@ -162,6 +163,9 @@ class FuelType{
 ```
 
 *this* può essere utilizzato per chiamare costruttori all'interno di altri costruttori 
+>[!note] 
+>Se lo utilizziamo la chiamata a `{java}this()` in un costruttore questa deve essere la prima istruzione del costruttore
+
 Esempio :
 ```java
 class FuelTank{
@@ -180,7 +184,6 @@ class FuelTank{
 ```
 
 In *byte code* il costruttore è identificato con `init` , `clinit` per i costruttori statici
-
 ### Modificatori
 
 3 tipi di *modificatori*
@@ -196,10 +199,10 @@ In *byte code* il costruttore è identificato con `init` , `clinit` per i costru
 	+ *volatile*
 + *Altri* 
 	+ *static* : utilizzato in *campi* e *metodi*
+		Un *campo statico* è unico per tutti gli *oggetti* istanziati
 		Utilizzato *nelle classi* non in oggetti 
 		*Metodi* statici possono accedere solo a campi statici e a metodi statici e si riferiscono alla *classe* stessa , per questo non si può usare *this*
 		Può essere anche scritto un costruttore statico che segue le regole precedenti e viene eseguito all'inizializzazione della classe ( ancora prima dell'istanziazione di oggetti )
-		Un *campo statico* è unico per tutti gli *oggetti* istanziati
 		Esempi :
 	```java
 	class FuelTank{
@@ -255,7 +258,7 @@ import it.unive.dais.po1.fuel.*;
 class Car{...}
 ```
 
-\* indica l'importazione di tutte le classi presenti nel pacchetto 
+`{java}*` indica l'importazione di tutte le classi presenti nel pacchetto 
 
 ## Encapsulation
 
@@ -527,8 +530,8 @@ class test3 extends test2{
 #### Method Overriding
 
 le *sottoclassi* di una *superclasse* possono sovrascivere metodi della superclasse
-
-Anche dopo aver sovrascritto un metodo abbiamo l'accesso al metodo della superclasse attravero il comando : `{java}super.<components>`
+>[!note] 
+Anche dopo aver sovrascritto un metodo abbiamo l'accesso al metodo della superclasse attraverso il comando : `{java}super.<components>`
 
 **Esempio** :
 
