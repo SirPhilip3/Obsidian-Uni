@@ -1344,7 +1344,7 @@ La *classe* `{java}Throwable` ha un metodo per creare un messaggio , stamparlo e
 Si possono definire nuove eccezzioni estendendo `{java}Throwable` direttamente o indirettamente che possono implementare la propria interfaccia  
 
 Per dichiarare una eccezione all'interno di un metodo dobbiamo : 
-+ dichiarare che quel metodo lancia una determinta eccezione
++ dichiarare che quel metodo lancia una determinata eccezione
 	`{java}int race(...) throws <exc1>, <exc2>`
 
 Anche i metodi che chiamano questo metodo devono dichiarare che lanciano le eccezioni del metodo chiamato
@@ -1395,7 +1395,7 @@ public class CustomException extends Exception{
 
 #### Catching exceptions
 
-Si le eccezioni *checked* che le *unchecked* devono essere *catturate* ( *caught* ) 
+Sia le eccezioni *checked* che le *unchecked* devono essere *catturate* ( *caught* ) 
 
 Il blocco `{java}try{...} catch(...){...}` specifica il codice da eseguire se un'eccezione viene lanciata all'interno del codice controllato dal `{java}try` 
 
@@ -1462,8 +1462,7 @@ Le *Assertions* controllano se una condizione è vera , il codice può continuar
 `{java}assert <condition> :<message>`
 
 Di default le *assertion* non sono controllate , vengono abilitate attraverso il flag `{java}-ea` nel compiler 
-Quando sono abilitate se l'asserzione fallisce viene generata l'eccezione `{java}AsserionError` 
-
+Quando sono abilitate se l'asserzione fallisce viene generata l'eccezione `{java}AssertionError` 
 ## Annotations
 
 Le *annotazioni* consentono l'aggiunta di informazioni strutturate al codice 
