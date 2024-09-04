@@ -995,7 +995,7 @@ Questo limita ancora il polimorfismo , per questo necessitiamo di svolgere *dina
 
 Utilizzati per generalizzare l'implementazione di metodi parametrizzando il suo tipo ( es : una lista può essere di interi , float , double etcc )
 
-Possiamo specificare tipi generici per *matodi* e *classi*
+Possiamo specificare tipi generici per *metodi* e *classi*
 
 Questo tipo di polimorifismo viene detto *parametric polymorphis* in quanto utilizziamo un unico simbolo per rappresentare più tipi differenti  
 
