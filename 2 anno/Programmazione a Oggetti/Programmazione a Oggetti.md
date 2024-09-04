@@ -1606,7 +1606,7 @@ static FuelType unmarshall() throws JAXBException, IOException {
 
 La *riflessione* permette di accedere e usare programmaticamente i campi , metodi e costruttori delle classi caricate fino a quel momento in memoria 
 
-La riflessione è implementata da `{java}java.lang.reflect` che forniace varie classi per accedere alle diverse parti di una classe 
+La riflessione è implementata da `{java}java.lang.reflect` che forniasce varie classi per accedere alle diverse parti di una classe 
 ### Class class
 
 `{java}java.lang.class` è il principale punto di inizio della *reflection* , questa classe ha il compito di rappresentare tutti i tipi presenti all'interno del nostro programma 
