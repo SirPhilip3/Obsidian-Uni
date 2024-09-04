@@ -1288,7 +1288,7 @@ Integer A = Integer.valueOf(a);
 ```
 ### Implicit type convertion
 
-Ogni tipo numeri può essere assegnato a qualsiasi altro tipo numerico a patto che supporti un range di valori maggiore ( abbia più bit a disposizione )
+Ogni tipo numerico può essere assegnato a qualsiasi altro tipo numerico a patto che supporti un range di valori maggiore ( abbia più bit a disposizione )
 
 Non è presente però una traduzione implicita tra tipi questa deve essere fatta esplicitamente 
 
