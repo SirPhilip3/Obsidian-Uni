@@ -138,7 +138,7 @@ Se valgono queste due propietà asintotiche allora lo stimatore $\hat\theta$ con
 
 #### Normalità asintotica
 
-Il *teroma del limite centrali* assicura che :
+Il *teroma del limite centrale* assicura che :
 $$Z = \frac{\sqrt{n}(\overline X - \mu)}\sigma \stackrel{d}\rightarrow N(0,1), \quad \text{per}\ n\rightarrow \infty$$
 ( *convergenza a distribuzione* )
 Oppure informalmente : 
