@@ -442,7 +442,7 @@ class Car{
 
 ### Ereditarietà
 
-Un *oggetto* estende le funzionalità di un'altro , ci consente di partire da una classe più astratta via via specilizzandola , un esempio sarebbe creare una classe `{java}class Vehicle` che implementa le caratteristiche comuni a tutti i veicoli ( come la velocità e l'accelerazione ) e sucessivamente specializzandola implementando varie classi che identificano vari tipi di viecoli 
+Un *oggetto* estende le funzionalità di un'altro , ci consente di partire da una classe più astratta via via specializzandola , un esempio sarebbe creare una classe `{java}class Vehicle` che implementa le caratteristiche comuni a tutti i veicoli ( come la velocità e l'accelerazione ) e sucessivamente specializzandola implementando varie classi che identificano vari tipi di veicoli 
 
 **Esempio** 
 
