@@ -866,7 +866,7 @@ class Truck extends Car implements Loadable{
 >[!note]
 >in una classe posso implementare più interfaccie
 
-Se ho più classi che implementano lo stesso metodo nello stesso modo posso dichiarare come `{java}default` una implementazione del metodo nella interfaccia in modo tale che se implemeto una interfaccia in una classe posso non ridefinire il metodo ed avere la sua implentazione di `{java}default` 
+Se ho più classi che implementano lo stesso metodo nello stesso modo posso dichiarare come `{java}default` una implementazione del metodo nella interfaccia in modo tale che se implemento una interfaccia in una classe posso non ridefinire il metodo ed avere la sua implentazione di `{java}default` 
 
 >[!note] 
 >L'implementazione all'interno della interfaccia può dipendere solo da metodi pubblici
@@ -939,7 +939,7 @@ Se però abbiamo dei metodi *sovrascritti* ( *override* ) questi nascondono il c
 >[!note]
 >Possiamo accedere all'implementazione della superclasse nel seguente modo :
 >`{java}super.<component>` 
->Questo ci permette di evitare la duplicazione di codice , in quanto se parte del metodo *sovrascitto* è già implementato nella superclasse ci basterà chiamare l'implementazione della super classe
+>Questo ci permette di evitare la duplicazione di codice , in quanto se parte del metodo *sovrascitto* è già implementato nella superclasse ci basterà chiamare l'implementazione della superclasse
 >Ci permette inoltre di nascondere l'implementazione di parte del codice alle sottoclassi 
 
 ### Prima Implementazione
@@ -997,7 +997,7 @@ Utilizzati per generalizzare l'implementazione di metodi parametrizzando il suo 
 
 Possiamo specificare tipi generici per *metodi* e *classi*
 
-Questo tipo di polimorifismo viene detto *parametric polymorphis* in quanto utilizziamo un unico simbolo per rappresentare più tipi differenti  
+Questo tipo di polimorifismo viene detto *parametric polymorphis* in quanto utilizziamo un unico simbolo per rappresentare più tipi differenti
 
 Un tipo *generico* può essere visto come un parametro che sostituiamo con il tipo che vogliamo quando gli passiamo un tipo 
 
