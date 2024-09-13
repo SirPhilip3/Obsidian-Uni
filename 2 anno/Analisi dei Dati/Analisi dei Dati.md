@@ -1272,7 +1272,7 @@ $$\text{margine d'errore} = z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
 La dimensione campionaria che assicura che *margine d'errore* $\le \Delta$ è pari a : 
 $$n\ge \hat{p}(1-\hat{p})\bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
 >[!warning] 
->Quests diseguaglianza però coinvolge $\hat{p}$ che non è nota prima della raccolta del campione
+>Questa diseguaglianza però coinvolge $\hat{p}$ che non è nota prima della raccolta del campione
 
 Possiamo risolvere il problema notando che il valore massiamo di $\hat{p}(1-\hat{p})$ è $0.25$ che si ottiene con $\hat{p} = 0.5$ 
 
