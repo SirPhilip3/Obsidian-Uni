@@ -1,3 +1,8 @@
+---
+creation: 2024-09-17T13:49:00
+tags:
+  - progetto
+---
 Progetto con 3 - 5 persone
 
 Obiettivo : 
