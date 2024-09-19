@@ -7,3 +7,6 @@ L'obbiettivo dell'*analisi predittiva* è quello di acquisire conoscenza da un i
 I tools dell'*analisi predittiva* si dividono in : 
 + [[Supervised Learning]]
 + [[Unsupervised Learning]]
+
+>[!note] 
+>Slide 51 first ppt
