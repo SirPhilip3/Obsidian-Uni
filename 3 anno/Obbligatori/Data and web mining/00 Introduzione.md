@@ -17,7 +17,6 @@ Senza una consegna fissa possiamo darlo in qualsiasi sessione d'esame , sarà un
 Valutazione :
 	Qualità del codice , del report , numero dei metodi spiegati e profondità dell'analisi
 
-
 ```python
 import micropip
 await micropip.install('numpy')
