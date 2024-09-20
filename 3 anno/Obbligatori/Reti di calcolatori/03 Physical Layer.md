@@ -84,3 +84,39 @@ Ci sono però alcune limitazioni riguardanti i *ricevitori* :
 Possiamo calcolare il massimo teoretico di $bit/s$ attraverso due teoremi : 
 + ![[Nyquist Theorem]]
 + ![[Shannon Theorem]]
+>[!danger] 
+>Il [[Shannon Theorem|teorema di Shannon]] è più restrittivo di quello di [[Nyquist Theorem|Nyquist]] 
+>Infatti non potremmo arrivare ad una capacità maggiore di $C_S$ anche se [[Nyquist Theorem|Nyquist]] lo permette
+
+When $S/N$ diminuisce il *ricevitore* ha sempre più difficoltà a distinguere [[Noise]] dal vero *segnale* 
+
+Il *segnale* dovrà quindi portare meno informazioni in modo che sia più semplice decodificarle 
+
+>[!note] 
+>Praticamente se abbiamo un dato $S/N$ non possiamo avere una quantità arbitraria di livelli $M$ 
+>
+>L'[[SNR]] determina il massimo numero di livelli e quindi il miglio encoding da usare 
+
+>[!note] 
+>$B$ , $S$ , $N$ sono dati da un certo link ma il *trasmettitore* può scieglere solo $M$ ( che deve essere scelto in modo che $C_N \le C_S$ ) 
+
+>[!example] 
+>
+>Abbiamo i seguenti dati :
+>+ Potenza trsamissiva iniziale $100mW \ (mW = 10^{-3} W)$
+>+ [[Noise]] : $0.0001 mW$ 
+>+ [[Attenuation]] : la potenza originale viene ridotta ad $1/25$ ad ogni $km$
+>+ [[Bandwidth]] : $2.2MHz$
+>  
+>Maximum [[Bit-rate]] at $2km$ considerando il [[Noise|rumore]] :
+>+ Dopo $2km$ il segnale sarà ridotto a $\frac{100}{25\cdot 25} = 0.16mW$
+>+ L'[[SNR]] sarà : $\frac{0.16}{0.0001} = 1600$
+>+ Usando la legge di [[Shannon Theorem|Shannon]] avremo :
+>$$C_S = 2.200.000 \cdot \log_2(1+1600) \simeq 23 Mb/s$$
+>
+>Quale [[Modulazione]] usiamo ?
+
+
+
+
+
