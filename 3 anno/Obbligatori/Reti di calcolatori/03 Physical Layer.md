@@ -31,4 +31,6 @@ Per aumentare il [[Bit-rate]] possiamo fare due cose :
 
 #### 1. Ridurre la durata di un simbolo
 
+Potremmo aumentare il *Baud ra*
+
 #### 2. Codificare più di un bit per simbolo
