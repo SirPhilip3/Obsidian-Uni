@@ -483,7 +483,7 @@ Un *albero $k$-ario completo* è un albero $k$-ario in cui vslgono le seguenti c
 
 **Esempio** :
 
-![[Strutture Dati 2023-11-15 13.29.53.excalidraw]]
+![[Strutture Dati k-ario.excalidraw]]
 
 ### Esercizio
 
