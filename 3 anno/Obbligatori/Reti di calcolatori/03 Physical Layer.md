@@ -115,6 +115,16 @@ Il *segnale* dovrà quindi portare meno informazioni in modo che sia più sempli
 >$$C_S = 2.200.000 \cdot \log_2(1+1600) \simeq 23 Mb/s$$
 >
 >Quale [[Modulazione]] usiamo ?
+>+ Invertendo la formula di [[Nyquist Theorem|Nyquist]] avremo :
+>$$M = 2 ^{\frac{C_S}{2B}} = 2^{\lfloor \frac{23.000.000}{4.400.000} \rfloor} = 2^{\lfloor 5.227 \rfloor} = 32$$
+>Avremo che questo porterà $C_N$ ad essere minore di $C_S$ :
+>$$C_N = 2 B \log_2 (M) = 2 \cdot 2.200.000 \cdot 5 = 22Mb/s < C_S$$
+>
+>>[!note] 
+>>Se usassimo un $M$ maggiore , per esempio $=6$ avremo che :
+>>$$C_N = 2 \cdot 2.200.000\cdot 6 = 26.4Mb/s$$
+>>
+>>Ma visto che sappiamo che il limite teorico è $23Mb/s$ avremo che in media $3.4Mb/s$ di traffico conterranno errori , dovremmo ritrasmettere questi dati ma questo riducerebbe il [[Bit-rate]] , inoltre gli errori sarebbero distribuiti in modo *randominco* e sarebbe quindi impossibile capire che bit ri-trasmettere
 
 
 
