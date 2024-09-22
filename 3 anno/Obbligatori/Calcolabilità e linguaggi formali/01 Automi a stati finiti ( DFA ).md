@@ -74,7 +74,7 @@ Avremo che $|Q| = n$ e $|\sum| = m$ e quindi abbiamo che $\delta$ dovrà essere 
 >Proviamo a trovare il suo *linguaggio* 
 >
 >
-| Stringhe accettate | Stringhe rifiutate |
+| Stringhe **accettate** | Stringhe rifiutate |
 | ------------------ | ------------------ |
 | 1                  | 0                  |
 | 11                 | 00                 |
@@ -94,10 +94,42 @@ Ulteriori esempi di *DFA* e dei loro *linguaggi* :
 >![[DFA_2.excalidraw]]
 >
 >
-| Accettate | Rifiutate |
+| **Accettate** | Rifiutate |
 | --------- | --------- |
 | 1         | 0         |
 | 11        | 010       |
 | 101       | 000       |
 >
->In questo caso vengono utilizzati gli stati per memmorizzare l'ultimo bit letto dall'*input* , avremo allora che il linguaggio del [[DFA]] sarà 
+>In questo caso vengono utilizzati gli stati per memmorizzare l'ultimo bit letto dall'*input* , avremo allora che il linguaggio del [[DFA]] sarà :
+>$$L(D) : \{ w \in \{0,1\}* | \text{ultimo carattere di $w$ sia 1} \}$$
+
+>[!example] Example 2
+>
+>![[DFA_3.excalidraw]]
+>
+>
+| **Accettate**                | Rifiutate |
+| ---------------------------- | --------- |
+| 0                            | 1         |
+| $\epsilon$ ( stringa vuota ) | 11        |
+| 010                          | 101       |
+>
+>Il linguaggio sarà l'opposto di quello precedente :
+>$$L(E) = \{ w\in \{ 0,1 \}* | \text{ultimo carattere di $w$ sia 0 oppure $w = \epsilon$} \}$$
+
+>[!example] Example 3
+>
+>![[DFA_4.excalidraw]]
+>
+>
+| **Accettate** | Rifiutate |
+| ------------- | --------- |
+| baab          | abb       |
+| a             | bba       |
+>
+>In questo caso abbiamo che il primo passaggio determina in che *branch* del [[DFA]] continueremo l'esecuzione , questo avrà memorizzato con che carattere abbiamo iniziato l'*input* , sucessivamente la stringa di *input* verrà accettata solamente se finirà con la stessa lettera con cui ha iniziato
+
+![[Linguaggio]]
+
+![[Stringhe di un Linguaggio]]
+![[Linguaggio Regolare]]
