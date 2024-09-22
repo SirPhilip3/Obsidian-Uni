@@ -133,3 +133,6 @@ Ulteriori esempi di *DFA* e dei loro *linguaggi* :
 
 ![[Stringhe di un Linguaggio]]
 ![[Linguaggio Regolare]]
+
+![[Operazioni Regolari]]
+
