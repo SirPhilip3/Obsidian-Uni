@@ -48,6 +48,9 @@ Se alla fine della stringa di *input* sono in uno stato finale si dice che la st
 
 ![[DFA]]
 
+>[!note] 
+>Accettiamo le stringhe vuote $\iff$ $F = q_0$
+
 >[!example] 
 >Caratteriziamo formalmente il *DFA* precedente :
 ![[First_DFA.excalidraw]]
@@ -69,6 +72,32 @@ Avremo che $|Q| = n$ e $|\sum| = m$ e quindi abbiamo che $\delta$ dovrà essere 
 
 >[!example] 
 >Proviamo a trovare il suo *linguaggio* 
+>
+>
+| Stringhe accettate | Stringhe rifiutate |
+| ------------------ | ------------------ |
+| 1                  | 0                  |
+| 11                 | 00                 |
+| 1101               | 110                |
+| 011                | $\emptyset$        |
+| 01011              |                    |
+>
+>Possiamo quindi descrivere il linguaggio basandoci sugli esempi fatti precedentemente nel seguente modo ( in linguaggio naturale ) : 
+>$L(D)$ : l'insieme delle stringhe con almeno un $1$ e dopo l'ultimo $1$ ha un numero pari di $0$
 
+#todo Dimostrazione di correttezza
 
+Ulteriori esempi di *DFA* e dei loro *linguaggi* :
 
+>[!example] Example 1
+>
+>![[DFA_2.excalidraw]]
+>
+>
+| Accettate | Rifiutate |
+| --------- | --------- |
+| 1         | 0         |
+| 11        | 010       |
+| 101       | 000       |
+>
+>In questo caso vengono utilizzati gli stati per memmorizzare l'ultimo bit letto dall'*input* , avremo allora che il linguaggio del [[DFA]] sarà 
