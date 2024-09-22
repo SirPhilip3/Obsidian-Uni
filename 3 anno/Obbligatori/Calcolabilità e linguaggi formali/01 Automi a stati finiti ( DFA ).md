@@ -48,3 +48,27 @@ Se alla fine della stringa di *input* sono in uno stato finale si dice che la st
 
 ![[DFA]]
 
+>[!example] 
+>Caratteriziamo formalmente il *DFA* precedente :
+![[First_DFA.excalidraw]]
+>
+>$M_1 = (Q,\sum, \delta,q_0,F)$
+>1. $Q = \{ q_1,q_2,q_3 \}$
+>2. $\sum = \{0,1\}$
+>3. $q_0 = q_1$
+>4. $F = \{ q_2 \}$
+>5. $\delta$ :
+>
+>|       |   0   |   1   |
+| :---: | :---: | :---: |
+| $q_1$ | $q_1$ | $q_2$ |
+| $q_2$ | $q_3$ | $q_2$ |
+| $q_3$ | $q_2$ | $q_2$ |
+
+Avremo che $|Q| = n$ e $|\sum| = m$ e quindi abbiamo che $\delta$ dovrà essere $n\times m$ 
+
+>[!example] 
+>Proviamo a trovare il suo *linguaggio* 
+
+
+
