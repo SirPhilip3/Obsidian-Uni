@@ -29,4 +29,4 @@ I *[sociogrammi](https://en.wikipedia.org/wiki/Sociogram) di Moreno* sono consid
 >Questa divisione del gruppo è stata prodotta dall'applicazione del metodo di *Girvan & Newman* sul grafo originale , il risultato è molto vicino alla divisione reale del gruppo indicando che questo metodo è un *buon predittore* dell'*evoluzione sociale* del gruppo
 
 >[!example] 
->Chains of Affection
+>**Chains of Affection**
