@@ -19,3 +19,30 @@ L'*output* viene fornito attraverso HTTP e CSS
 ---
 # Javascript Tour
 
+```js
+let x; // dichiarazione di variabile
+x = 0; // assegnazione
+
+// TIPI
+
+x = 1; // numeri
+x = 0.01; // possono essere Integers o Reals
+x = "Hello world"; // Stringhe
+x = 'Hello world'; // stringhe possono anche essere determinata da ''
+x = true; // Booleani
+x = null; // null è un valore speciale che indica 'senza valore'
+x = undefined; // un'altro valore speciale
+
+// Un datatype importante è l'oggetto , un oggetto è una collezione di coppie nome valore o una mappa stringa -> valore
+
+let book = {
+	topic: "Javascript",
+	edition: 7
+};
+
+book.topic // => "Javascript"
+book["edition"] // => 7
+book.author = "Dio"; // Crea una nuova proprietà con l'assegnamento
+
+```
+
