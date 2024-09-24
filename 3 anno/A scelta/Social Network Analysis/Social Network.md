@@ -30,3 +30,9 @@ I *[sociogrammi](https://en.wikipedia.org/wiki/Sociogram) di Moreno* sono consid
 
 >[!example] 
 >**Chains of Affection**
+>
+>Descrive la struttura delle relazioni romantiche e sessuali degli studenti di una scuola superiore americana per un periodo di 18 mesi 
+>
+>![[Pasted image 20240924084226.png]]
+>La forma osservata era molto simile alle dinamiche di diffusione di malattie 
+
