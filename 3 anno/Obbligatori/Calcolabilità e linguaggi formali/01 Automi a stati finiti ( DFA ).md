@@ -137,3 +137,4 @@ Ulteriori esempi di *DFA* e dei loro *linguaggi* :
 ![[Operazioni Regolari]]
 
 ![[Chiusura linguaggi regolari]]
+
