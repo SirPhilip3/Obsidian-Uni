@@ -54,3 +54,5 @@ Facciamo un esempio di esecuzione :
 ![[NFA_0.excalidraw]]
 
 ![[NFA]]
+
+![[Linguaggio NFA]]

@@ -129,7 +129,7 @@ Ulteriori esempi di *DFA* e dei loro *linguaggi* :
 >
 >In questo caso abbiamo che il primo passaggio determina in che *branch* del [[DFA]] continueremo l'esecuzione , questo avrà memorizzato con che carattere abbiamo iniziato l'*input* , sucessivamente la stringa di *input* verrà accettata solamente se finirà con la stessa lettera con cui ha iniziato
 
-![[Linguaggio]]
+![[Linguaggio DFA]]
 
 ![[Stringhe di un Linguaggio]]
 ![[Linguaggio Regolare]]
