@@ -13,6 +13,8 @@ Un diagramma *time-sequence* descrive l'interazione tra gli host che stanno comu
 >[!note] 
 >La trasmissione non essendo istantanea forma una retta diagonal , dall'alto al basso
 
+# Errors
+
 >[!warning] 
 >I bit possono essere *flippati* ossia il [[Noise]] potrebbe far credere al ricevitore che il bit è differente rispetto a quello che era stato mandato 
 >
@@ -30,3 +32,5 @@ Un diagramma *time-sequence* descrive l'interazione tra gli host che stanno comu
 >Il ricevitore potrebbe percepire un numero di bit *maggiore* rispetto a quelli inviati originariamente a causa di un *disallineamento* dei *clock*
 >
 >![[Pasted image 20240925112308.png]]
+>
+>Per ovviare a questo problema utilizziamo il ![[Manchester Encoding]]
