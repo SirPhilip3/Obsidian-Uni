@@ -462,6 +462,9 @@ Due importanti caratteristiche delle gerarchie :
 Una *Istanza di Associazione* è un fatto che correla due o più *entità* stabilendo un legame logico tra di loro 
 	Es : l'utente `Tizio` *ha in prestito* una copia della `Divina Commedia`
 
+>[!note] 
+>Da sinistra verso destra , dall'alto vero il basso
+
 Un’**associazione** $R(X, Y)$ fra due collezioni di entità $X$ ed $Y$ è un insieme di *istanze di associazione* tra elementi di $X$ e $Y$, che varia in generale nel tempo. 
 Il prodotto cartesiano $(X \times Y)$ è detto *dominio* dell’associazione.
 
@@ -477,7 +480,7 @@ Un'*Associazione* è caratterizzata dalle seguenti proprietà strutturali :
 	- *multivalore* : 
 		per ogni elemento di X esiste un associazione con più di un elemento di Y
 	+ Combinazioni delle *molteplicità* : 
-		+ `Frequenta(Studenti, Corsi)`
+		+ `Frequenta(Studenti, Corsi)` 
 			ha molteplicità ( **N : M** ) ( *uno studente* frequenta *più corsi* , *un corso* è frequentato da *molti studenti* )
 		+ `Insegna(Professori, Corsi)`
 			ha moltelpicità ( **1 : N** ) ( *un corso* è insegnato da *un solo professore* , *un professore* insegna *più corsi* )
@@ -496,13 +499,13 @@ Un'*Associazione* è caratterizzata dalle seguenti proprietà strutturali :
 Esempi :
 + `NataA(Persone, Città)`
 	ha *cardinalità* ( **N : 1** ) ( *una persona* è nata in un *unica città* , *in una città* sono nate *più persone* )
-	è *totale* su `Persone` , *parziale* su `Città`
+	è *totale* su `Persone` , *parziale* su `Città` ( se non c'è un'ospedale etcc... )
 + `HaVisitato(Persone, Città)`
 	ha *cardinalità* ( **N : M** ) ( *più persone* hanno visitato *una città* , *più città* sono visitate da *una persona* )
 	è *parziale* su `Persone` e `Città` ( una persona può non aver visitato nessuna città , una città può non essere mai visitata da nessuna persona )
 + `èSindacoDi(Persone, Città)`
 	ha *cardinalità* ( **1 : 1** ) ( *una persona* è sindaco di una *sola città* , *una citta* può avere un *solo sindaco*)
-	è *parziale* su `Persone` e `Città` ( una persona può non essere sindaco di nessuna città , una città può non avere nessun sindaco ( durante le elezioni ) )
+	è *parziale* su `Persone` e `Città` ( una persona può non essere sindaco di nessuna città , una città può non avere nessun sindaco ( durante le elezioni ) , prob *totale* ) 
 
 #### Conoscenza Astratta
 
@@ -516,13 +519,15 @@ La *conoscenza astratta* sono i fatti generali che descrivono :
 - **Vincoli di Integrità** :
 	+ **Vincoli di integrità statici** :
 		Condizioni della *conoscenza concreta* che devono essere soddisfatte indipendentemente da come evolve l'universo del discorso 
-		Es : `Stipendio` deve sempre essere positivo
+		Es : `Stipendio` deve sempre essere positivo 
 	+ **Vincoli di integrità dinamici** : 
 		Condizioni sul modo in cui la *conoscenza concreta* può evolvere nel tempo  
 		Es : `DataNascita` non può cambaire nel tempo 
 
 + **Fatti derivabili** : 
 	Es : media dei voti ( da tutti i voti ) , età di una persona ( dalla data di nascita )
+
+Key attributi che costituiscono la key è minimale se ne tolgo uno l'insieme rimanente non è più chiave
 ## Modello dei dati ad Oggetti
 
 Un **Modello dei dati** è un insieme di meccanismi di astrazione per descrivere la struttura della conoscenza concreta ciò avviene attraverso *schemi* simili ai diagrammi ER ( entità-relazione )
