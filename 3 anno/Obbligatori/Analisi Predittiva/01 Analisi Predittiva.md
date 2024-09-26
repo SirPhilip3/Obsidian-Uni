@@ -22,9 +22,14 @@ Abbiamo 2 principali motivazioni per *stimare* $m$ :
 + ![[Inference]]
 >[!note] 
 >Alcune volte la *modellazione* potrebbe essere svolta sia per [[Prediction]] che per [[Inference]] , dipende dalla domanda che ci poniamo 
+
+>[!important] Generalizability
+>Vogliamo *predittori* che :
+>+ catturino i trend nei dati
+>+ ignorino fluttuazioni randomiche nei dati
 >>[!example] 
->>
+>>![[Pasted image 20240926092439.png]]
 
+>[!warning] 
+>Vogliamo evitare di estrapolare dati troppo al di fuori del dominio dei nostri dati di partenza
 
->[!note] 
->Slide 51 first ppt
