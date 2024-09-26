@@ -424,12 +424,12 @@ Una *propietà* è una coppia < Attributo , Valore >
 
 Esempi :
 
-|Tipo Entità|Proprietà|
-|---|---|
-|Studente|Nome,AnnoNascita,Matricola,e-mail,...
-|Esame|Materia,Candidato,Voto,Lode,...
-|Auto|Modello,Colore,Cilindrata,Targa
-|Decrizione bibliografica|Autori,Titolo,Editore,Anno,...
+| Tipo Entità              | Proprietà                             |
+| ------------------------ | ------------------------------------- |
+| Studente                 | Nome,AnnoNascita,Matricola,e-mail,... |
+| Esame                    | Materia,Candidato,Voto,Lode,...       |
+| Auto                     | Modello,Colore,Cilindrata,Targa       |
+| Decrizione bibliografica | Autori,Titolo,Editore,Anno,...        |
 
 ##### Collezione
 
