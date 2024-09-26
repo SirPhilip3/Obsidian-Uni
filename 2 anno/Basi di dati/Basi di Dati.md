@@ -569,6 +569,9 @@ Una *classe* è un insieme di *oggetti* dello stesso tipo , modificabile con ope
 
 Es : `Persone`
 
+>[!note] 
+>Nomi sempre al plurale
+
 ![[SrudentiExClass.excalidraw]]
 
 ##### Tipi degli attributi
