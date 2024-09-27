@@ -601,7 +601,7 @@ Le *associazioni* possono avere delle *proprietà*
 Se vi sono più di 1 attributo in una *associazione* allora sarebbe meglio trasformarla in una *classe*
 
 Es : 
-	Se vogliamo rendere la precedente associazione storica : 
+	Se vogliamo rendere la precedente associazione storica ( perchè posso avere più prestiti per lo stesso libro nel tempo ) : 
 ![[AssociazioniEx2_1.excalidraw]]
 
 In cui `Prestiti` ha come proprietà la data di inizio e fine del prestito
