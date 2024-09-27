@@ -56,3 +56,27 @@ Facciamo un esempio di esecuzione :
 ![[NFA]]
 
 ![[Linguaggio NFA]]
+
+>[!example] 
+>Scriviamo quindi la definizione del primo [[NFA]]
+>
+>![[NFA_1.excalidraw]]
+>
+>+ $Q = \{ q_1,q_2,q_3,q_4 \}$
+>+ $\Sigma = \{0,1\}$ ( $\epsilon$ non fa parte del linguaggio )
+>+ $q_0 = q_1$
+>+ $F = \{q_4\}$ 
+>+ $\delta$ :
+>  
+>  |   -   |        0        |        1        | $\epsilon$      |
+| :---: | :-------------: | :-------------: | --------------- |
+| $q_1$ |    $\{q_1\}$    |  $\{q_1,q_2\}$  | $\{\emptyset\}$ |
+| $q_2$ |    $\{q_3\}$    | $\{\emptyset\}$ | $\{q_3\}$       |
+| $q_3$ | $\{\emptyset\}$ |    $\{q_4\}$    | $\{\emptyset\}$ |
+| $q_4$ |    $\{q_4\}$    |    $\{q_4\}$    | $\{\emptyset\}$ |
+
+
+
+
+
+
