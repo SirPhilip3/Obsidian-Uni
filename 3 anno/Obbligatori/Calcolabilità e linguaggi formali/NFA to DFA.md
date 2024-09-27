@@ -15,7 +15,7 @@ Per ogni [[NFA]] $N$ esiste un [[DFA]] $D$ tale che il linguaggio $L(D) = L(N)$
 Sia $N=(Q\ ,\Sigma\ ,\delta\ ,q_0\ ,F\ )$ un [[NFA]] e costruiamo un [[DFA]] $D=(Q'\ ,\Sigma\ ,\delta'\ ,q_0'\ ,F'\ )$
 
 >[!note]
->I $\Sigma$ devono essere uguali per riconoscere lo stesso [[Linguaggio Regolare]]
+>I $\Sigma$ devono essere uguali per riconoscere lo stesso [[Linguaggio Regolare DFA]]
 >
 
 *Ipotesi* : 

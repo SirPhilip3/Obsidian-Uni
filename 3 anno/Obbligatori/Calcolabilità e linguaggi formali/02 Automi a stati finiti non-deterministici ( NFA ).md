@@ -79,6 +79,5 @@ Facciamo un esempio di esecuzione :
 
 ![[DFA to NFA]]
 
-
-
+![[Linguaggio Regolare NFA]]
 

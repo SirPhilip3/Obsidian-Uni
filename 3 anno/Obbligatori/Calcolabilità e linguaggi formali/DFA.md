@@ -6,7 +6,7 @@ tags:
 La definizione formale di *DFA* è la seguente :
 
 Il *DFA* è rappresentatno da una quintupla : 
-$$DFA : (\ Q,\ \sum ,\ \delta ,\ q_0 ,\ F\ )$$
+$$DFA : (\ Q,\ \Sigma ,\ \delta ,\ q_0 ,\ F\ )$$
 Dove : 
 + $Q$ : è un insieme finito di *stati*
 + $\sum$  : è un insieme finito di *input*
