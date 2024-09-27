@@ -75,7 +75,9 @@ Facciamo un esempio di esecuzione :
 | $q_3$ | $\{\emptyset\}$ |    $\{q_4\}$    | $\{\emptyset\}$ |
 | $q_4$ |    $\{q_4\}$    |    $\{q_4\}$    | $\{\emptyset\}$ |
 
+![[NFA to DFA]]
 
+![[DFA to NFA]]
 
 
 

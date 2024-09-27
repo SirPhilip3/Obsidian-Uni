@@ -38,5 +38,18 @@ Avremo quindi che :
 >Proviamo a costruire il corrispondente [[DFA]] :
 ![[Starting_NFA.excalidraw]]
 >
+>Innanzitutto dobbiamo trovare $q_0' = E(\{1\}) = \{1,3\}$ ( poichè attraverso una $\epsilon$-transizione possiamo raggiungere $3$ ) 
 >
-
+>Abbiamo che $Q'=\{\emptyset,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}$
+>
+>Gli stati accettanti saranno quindi quegli stati che contengono o $\{1\}$ o $\{3\}$ o entrambi
+>$$F' = \{ \{1\},\{1,2\},\{1,3\},\{1,2,3\} \}$$
+>
+>Determiniamo quindi la funzione di transizione :
+>+ Lo stato $\{2\}$ va in $\{2,3\}$  con *input* $a$ poichè in $N$ lo stato $2$ va sia in $2$ che in $3$ con l'*input* $a$ e non possiamo procedere attraverso nessuna $\epsilon$-transizione 
+>+ Lo stato $\{3\}$ va in $\{1,3\}$ con *input* $a$ poichè in $N$ lo stato $3$ va in $1$ con $a$ e attraverso una $\epsilon$-transizione $1$ va in $3$
+![[DFAfromDFA.excalidraw]]
+>
+>Notiamo che vi sono due *stati* che non sono raggiungibili ( hanno solo archi uscenti ) , possiamo toglierli dal [[DFA]]
+>
+![[CorrectedDFA.excalidraw]]
