@@ -1,7 +1,7 @@
 ---
 creation: 2024-09-25T08:55:00
 tags:
-  - Definizione
+  - Dimostrazione
 ---
 Dimostriamo che se $A$ e $B$ sono **Regolari** allora $A\ o\ B$ è *regolare*  
 
@@ -35,4 +35,4 @@ Dove :
 	\delta_1(q,a) & \text{se} \ q \in Q_1 \land q \notin F_1 \\ 
 	\delta_2(q,a) & \text{se} \ q \in Q_2 \\ 
 	\delta_1(q,a) & \text{se} \ q \in F_1 \land a \neq \epsilon \ \text{(le loro eventuali transizioni $\epsilon$ non voglio toccarle)} \\ 
-	\{q_2\} \cup \delta_1(q,a) & \text{se} \ q \in F_1 \land a = \epsilon \end{cases}$$
+	\{q_2\} \cup \delta_1(q,a) & \text{se} \ q \in F_1 \land a = \epsilon \ \text{(se ho delle $\epsilon$-transizioni sugli stati accettanti non voglio rimpiazzarle)} \end{cases}$$
