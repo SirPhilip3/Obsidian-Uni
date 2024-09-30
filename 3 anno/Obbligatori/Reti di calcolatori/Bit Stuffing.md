@@ -60,5 +60,9 @@ Il numero di bit che aggiungeremo dipenderà se parliamo di :
 >+ La legge di [[Shannon Theorem|Shannon]] ci dice che $C_S = B \log_2(1+222) \simeq 156 Mb/s$
 >+ [[Nyquist Theorem|Nyquist]] ci dice che stiamo trasmettendo $C_N = 2 \times 20 \log_2(16) = 160 Mb/s > C_S$
 >+ Ciò significa che in media avremo $4 Mb/s$ di dati contengono errori : $BER = \frac{4}{160} = 0.025$ 
->+ La probabilità di ricevere 12 bit ( i due *marker* ) in modo corretto 
+>+ La probabilità di ricevere 12 bit ( i due *marker* ) in modo corretto è : $p = (1-0.025)^12 \simeq 0.74$ 
+>>[!warning] 
+>>Ciò significa che con un [[BER]] di solo 2.5% il 26% dei *frame* verrà perso 
+
+
  

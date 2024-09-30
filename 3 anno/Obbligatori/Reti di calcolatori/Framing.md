@@ -3,11 +3,7 @@ creation: 2024-09-25T12:06:00
 tags:
   - Definizione
 ---
-Un *frame* è l'unità base di informazione scambiata tra due host connessi direttamente 
-
->[!important] Definizione
->Un *frame* è una sequenza di bit che ha una lunghezza massima e una particolare *sintassi* o *struttura*
-
+![[Frame]]
 >[!question] 
 >Come fa il ricevitore a capire che siamo all'inizio di un *frame* ? 
 
