@@ -1817,7 +1817,7 @@ Altrimenti si potrebbe verificare eccesive richieste in memoria secondaria per l
 
 Poichè i processi mostrano località aumentare il numero di page frame oltre una certa soglia non ha nessun effetto sul tasso di page fault
 
-![[Screenshot 2024-01-17 221149 2.png]]
+![[Screenshot 2024-01-17 221149.png]]
 
 Il **Working Set** delle pagine di un processo : $W(t,w)$ rappresenta l'insieme delle pagine alle quali un processo fa riferimento
 
