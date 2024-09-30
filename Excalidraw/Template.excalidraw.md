@@ -1,0 +1,12 @@
+---
+excalidraw-plugin: parsed
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
+
+
+%%
+# Drawing
+```json
+{"type":"excalidraw","version":2,"source":"https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.9.3","elements":[],"appState":{"gridSize":null,"viewBackgroundColor":"#ffffff"}}
+``
+%%

@@ -46,5 +46,19 @@ Il numero di bit che aggiungeremo dipenderà se parliamo di :
 >
 >Quindi generalmente è meglio avere grandi *marker* e avere grandi frame in modo da compensare l'overhead fisso dei *marker* 
 
-
+>[!example] 
+>Abbiamo un *link* con i seguenti parametri : 
+>+ *marker* di lunghezza 6
+>+ $B = 20MHz$
+>+ $M = 16$
+>+ $S/N = 222$ [[SNR]] 
+>  
+>Qual'è la probabilità che l'intero frame venga perso ?
+>
+>Perchè ciò avvenga il *reciever* non deve riuscire a trovare l'inizio o la fine del frame 
+>
+>+ La legge di [[Shannon Theorem|Shannon]] ci dice che $C_S = B \log_2(1+222) \simeq 156 Mb/s$
+>+ [[Nyquist Theorem|Nyquist]] ci dice che stiamo trasmettendo $C_N = 2 \times 20 \log_2(16) = 160 Mb/s > C_S$
+>+ Ciò significa che in media avremo $4 Mb/s$ di dati contengono errori : $BER = \frac{4}{160} = 0.025$ 
+>+ La probabilità di ricevere 12 bit ( i due *marker* ) in modo corretto 
  
