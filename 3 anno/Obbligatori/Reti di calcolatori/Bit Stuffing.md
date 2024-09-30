@@ -30,5 +30,21 @@ Il numero di bit che aggiungeremo dipenderà se parliamo di :
 	Assumiamo che la probabilità di avere un 0 o 1 sia una variabile di [[Bernulli]] con $p=0.5$ 
 	La probabilità quindi di avere 5 uni consecutivi sarà : $\frac{1}{2^5} = \frac{1}{32}$ quindi in media avremo che circa il $3\%$ della capacità viene persa 
 
+>[!example] 
+>Calcoliamo l'overhead medio per un *frame* :
+>+ Tramettiamo sempre frame di 64 bit
+>+ Assumiamo che il *marker* è : 011110
+>
+>Ogni 64 bit dovremmo aggiungere $6 \cdot 2 = 12$ bit per i *maker*
+>Ogni 3 bit dovremo avere aggiungere uno zero , questo avviene con una probabilità di $1/8$
+>All'interno di una stringa di 64 bit avremo 62 sottostringe possibili di 3 bit quindi alla fine avremo una media di $\frac{62}{8} \sim 8$ bit di overhead 
+>Sommati ai 12 bit del *marker* avremo 20 bit di overhead : $20/64 \sim 23\%$ della capacità viene persa
+>
+
+>[!note] 
+>Più grandi sono i *marker* più l'overhead fisso aumenta , ma più lo rimpicciolisco più sarà la probabilità di dover usare bit di *stuffing* 
+>
+>Quindi generalmente è meglio avere grandi *marker* e avere grandi frame in modo da compensare l'overhead fisso dei *marker* 
+
 
  
