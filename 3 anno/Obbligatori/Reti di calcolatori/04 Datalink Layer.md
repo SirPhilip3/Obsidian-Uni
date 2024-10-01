@@ -32,5 +32,21 @@ Possiamo definire un [[DFA]] che rappresenti il flusso di informazioni
 >[!note] Spiegazione
 >+ All'inizio ( `start` ) la macchina aspetta che vi sia un [[SDU]] da inviare
 >+ Una volta ricevuti i dati da inviare fa una `Data.req(SDU)` al livello inferiore , questo farà [[Bit Stuffing]] se necessario
->+ Una volta inviati i dati la macchina aspetta la ricezione di un [[Acknowledgment]] 
+>+ Una volta inviati i dati la macchina aspetta la ricezione di un [[Acknowledgment]]
+>+ Una volta ricevuto l'[[Acknowledgment]] la macchina ritorna allo stato iniziale 
+
 **Ricevitore**
+
+![[Pasted image 20241001103347.png]]
+
+>[!note] Spiegazione
+>+ All'inizio ( `start` ) la macchina aspetta che vi sia un [[Frame]] di dati che può ricevere
+>+ Il frame ricevuto da `recvd(D(SDU))` viene inviato ai livelli superiori da `Data.ind(SDU)`  
+>+ I dati vengono processati dai livelli superiori ( siamo passati nel secondo stato )
+>+ Una volta processati i dati viene inviato un [[Acknowledgment]] al *mittente*
+
+## Gestione degli errori
+
+### Error Detection 
+
+Il modo più semplice per identificare gli *errori* sono i [[Parity Bit]] 
