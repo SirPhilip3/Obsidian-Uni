@@ -64,5 +64,5 @@ Il numero di bit che aggiungeremo dipenderà se parliamo di :
 >>[!warning] 
 >>Ciò significa che con un [[BER]] di solo 2.5% il 26% dei *frame* verrà perso 
 
-
- 
+>[!note] 
+>Lo *stuffing* può essere fatto anche per altre dimensioni di dati : byte , caratteri etcc

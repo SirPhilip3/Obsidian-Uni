@@ -14,3 +14,6 @@ Inseriamo un *marker* ( sequenza ben definita di bit ex : ‘01111110’ ) alla 
 >
 
 Una soluzione è il ![[Bit Stuffing]]
+![[Frame Preamble]]
+
+Per semplificare la programmazione ai layer superiori aggiungiamo un *layer* in cui abbiamo un primitiva che invia [[Frame]] , non bit , in questo modo il livello inferiore si occuperà del [[Bit Stuffing]] e dell'aggiunta dei *marker*
