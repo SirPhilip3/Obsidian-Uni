@@ -49,4 +49,20 @@ Possiamo definire un [[DFA]] che rappresenti il flusso di informazioni
 
 ### Error Detection 
 
-Il modo più semplice per identificare gli *errori* sono i [[Parity Bit]] 
+Il modo più semplice per identificare gli *errori* sono i ![[Parity Bit]] 
+Per controllare la *parità* al *ricevitore* assumendo che *odd parity* venga usata ci basterà controllare che il [[Frame]] ricevuto contenga un numero dispari di `1`
+
+>[!example] 
+>+ `111011011` viene ricevuto : *ok*
+>+ `001100110` : *not ok*
+
+Se *non* ci sono *errori* il *ricevitore* semplicemente rimuove il bit in più e invia il [[Frame]] agli strati superiori
+
+Se invece c'è un errore il *ricevitore* potrebbe :
++ Mandare un segnale al *mittente* chiedendo di rimandare il [[Frame]]
++ Ignorare completamente il [[Frame]]
+
+>[!note] 
+>Il comportamento dipende dal design del [[Data Link Layer]]
+
+![[CRC]]
