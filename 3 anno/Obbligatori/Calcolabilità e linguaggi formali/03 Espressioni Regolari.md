@@ -37,4 +37,18 @@ Le *espressioni regolari* ( *regexp* ) sono un formalismo per descrivere i [[Lin
 >
 >Dimostriamo formalmente che $(0 \cup 1)\ o\ 0^*$ è una *regexp*
 >
->La *regexp* è valida solo se le due parti della 
+>La *regexp* è valida solo se le due parti della concatenazione sono delle *regexp* valide (regola 5): 
+>1. $0 \cup 1$ : risulta essere valida se $0$ e $1$ sono delle *regexp* , lo sono visto che siamo nel caso base ( regola 1 )
+>2. $0^*$ : è una *regexp* se $0$ è una *regexp* , lo è per la regola 1
+>
+>Possiamo concludere quindi che $(0 \cup 1)\ o\ 0^*$ è una *regexp* valida per la definizione
+
+>[!important] Convenzioni
+>
+>+ L'operatore $o$ viene di solito eliso
+>+ L'ordine delle operazioni è il seguente : 
+>	1. $^*$
+>	2. $o$
+>	3. $\cup$
+
+![[Linguaggio di una Regexp]]
