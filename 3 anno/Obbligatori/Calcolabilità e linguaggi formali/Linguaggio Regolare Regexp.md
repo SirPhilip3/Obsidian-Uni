@@ -7,6 +7,24 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 
 >[!important] Dimostrazione
 >
->Essendo un $\iff$ dovremo dimostrare $\implies$ e $\longleftarrow$ : 
+>Essendo un $\iff$ dovremo dimostrare $\implies$ e $\Longleftarrow$ : 
 >
->Iniziamo dimostrando $\implies$ : Sia $R$ una *regexp* allora $L(R)$ è regolare
+>1. Iniziamo dimostrando $\implies$ : Sia $R$ una *regexp* allora $L(R)$ è *regolare* :
+>
+>La dimostrazione si fa per *induzione* sulla struttura di $R$ , dividiamo quindi in casi : 
+>1. Sia $R=a$ per qualche $a$ allora $L(R) = \{a\}$ 
+>   Dimostriamo che $L(R)$ è *regolare* costuendo un [[DFA]] :
+>   ![[Regex_dim1.excalidraw]]
+>2. Sia $R =\epsilon$ allora $L(R)=\{\epsilon\}$
+>   Dimostriamo che $L(R)$ è *regolare* costruendo un [[DFA]] :
+>   ![[Regex_dim2.excalidraw]]
+>3. Sia $R=\emptyset$ allora $L(R) = \emptyset$
+>   Dimostriamo che $L(R)$ è *regolare* costruendo un [[DFA]] :
+>   ![[Regex_dim3.excalidraw]]
+>4. Sia $R = R_1 \cup R_2$ allora $L(R) = L(R_1)\cup L(R_2)$
+>   $L(R_1)$ e $L(R_2)$ hanno un operatore in meno rispetto a $L(R)$ , posso quindi applicare l'*ipotesi induttiva* : so che il teorema vale per $R_1$ e $R_2$ quindi so che $L(R_1)$ e $L(R_2)$ sono **regolari** , concludo dicendo che $L(R)=L(R_1)\cup L(R_2)$ è **regolare** pouchè i linguaggi regolari sono *chiusi* rispetto all'unione ( [[A ∪ B]] )
+>5. Posso fare lo stesso ragionamento rispetto all'$\cup$ anche per la $o$
+>6. Posso fare lo stesso ragionamento rispetto all'$\cup$ anche per la $^*$ 
+>
+>Questo ci fa capire che possiamo costruire dei [[DFA]] o [[NFA]] equivalenti alla *regexp*
+
