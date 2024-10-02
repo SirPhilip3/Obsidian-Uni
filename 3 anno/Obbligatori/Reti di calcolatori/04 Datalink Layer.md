@@ -68,3 +68,4 @@ Se invece c'è un errore il *ricevitore* potrebbe :
 ![[CRC]]
 
 ![[Internet Checksum]]
+
