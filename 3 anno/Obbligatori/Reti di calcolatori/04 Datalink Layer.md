@@ -66,3 +66,5 @@ Se invece c'è un errore il *ricevitore* potrebbe :
 >Il comportamento dipende dal design del [[Data Link Layer]]
 
 ![[CRC]]
+
+![[Internet Checksum]]
