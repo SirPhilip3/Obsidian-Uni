@@ -27,4 +27,21 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 >6. Posso fare lo stesso ragionamento rispetto all'$\cup$ anche per la $^*$ 
 >
 >Questo ci fa capire che possiamo costruire dei [[DFA]] o [[NFA]] equivalenti alla *regexp*
-
+>![[Regexp to NFA]]
+>
+>2. Dimostriamo $\Longleftarrow$ :
+>Se $A$ è **regolare** allora esiste una *regexp* $R$ tale che $L(R)=A$ 
+>
+>**IDEA** : sia $A$ *regolare* allora esiste un [[DFA]] $D$ tale che $L(D) = A$ , ci basterà quindi trasformare un [[DFA]] in una *regexp* 
+>
+>Per arrivare alla [[03 Espressioni Regolari|regexp]] partendo da un [[DFA]] a $k$ stati  , costuiamo prima un ![[GNFA]] a $k+2$ stati 
+>
+>Via via toglieremo degli archi fino ad avere uno solo , la sua etichetta sarà la *regexp* che ci interessa 
+>
+>In dettaglio il [[GNFA]] deve soddisfare le seguenti caratteristiche : 
+>+ Avere un solo stato iniziale
+>+ Avere un solo stato accettante , differente da quello iniziale
+>+ Lo stato iniziale ha archi in *uscita* verso tutti gli altri stati e nessun arco in *entrata*
+>+ Lo stato accettante deve avere archi in entrata da tutti gli altri stati e nessun arco in uscita 
+>+ Il resto del grafo è completamente connesso 
+>  

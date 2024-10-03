@@ -33,3 +33,4 @@ tags:
 >>![[DFA+pozzo.excalidraw]]
 >>
 >>Possiamo sempre aggiungere un nuovo nodo *pozzo* dove se trovo il nuovo carattere dell'alfabeto rifiuto sempre la stringa , in questo modo il [[Linguaggio DFA]] non cambia anche se abbiamo aggiunto un elemento a $\sum$
+
