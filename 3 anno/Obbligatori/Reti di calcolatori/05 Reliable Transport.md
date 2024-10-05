@@ -31,5 +31,7 @@ Il metodo più semplice per implementarlo è l'utilizzo di un *singolo* bit che 
 ![[Pasted image 20240925122810.png]]
 
 1. Siamo nello stato iniziale in cui aspettiamo dei dati da inviare ( `Wait for D(0,..)` )
-2. 
+2. Alla presenza di dati `Data.req(SDU)` : 
+	1. Manda i dati assieme al primo bit di sequenza `0` ( `send(D(0,SDU,CRC))` )
+	2. Inizia un 
 ### Macchina a stati del ricevitore
