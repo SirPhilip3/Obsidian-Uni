@@ -70,3 +70,38 @@ Il metodo più semplice per implementarlo è l'utilizzo di un *singolo* bit che 
 >
 >Il *TTL* sarà quindi : $20.024$ , il [[Bit-rate]] sarà quindi : $\frac{1500 \cdot 8}{0.020024} \simeq 0.6 Mb/s$
 
+Questo è dato dal fatto che dobbiamo aspettare l'[[Acknowledgment]] per ogni singolo [[Frame]] , questo è una forma di [[Protocol Overhead]] introdotto per rendere la trasmissione affidabile 
+
+>[!note] 
+>L'*RTT* è limitato dalla velocità del mezzo che trasporta l'informazione
+
+### Pipelining
+
+Al posto di mandare un [[Frame]] alla volta mandiamo un insieme di [[packet]] senza aspettare un [[Acknowledgment]] per ogni pacchetto 
+
+![[Pasted image 20241006215314.png]]
+
+#### Sliding Window
+
+I numeri di sequenza ora sono interi , i due devono mettersi daccordo sulla dimensione della finestra 
+
+>[!example] 
+>Abbiamo una finestra di grandezza 5 , ciò significa che il *sender* manderà 5 [[Frame]] e poi si fermerà 
+>All'arrivo dei [[Frame]] il *reciever* invierà i relativi [[Acknowledgment]] , specifici per il numero di sequenza relativi 
+>Quando il *sender* riceve gli [[Acknowledgment]] dei numeri più bassi della seqeunza muove la finestra a destra in modo da inviare nuovi [[Frame]]
+>
+>![[Pasted image 20241006215947.png]]
+>
+>![[Pasted image 20241006220419.png]]
+>
+
+Per fare in modo che la finestra abbia numero finito di *numeri di sequenza* ci basterà definire i bit che vogliamo assegnagli $n$ allora il numero massimo di sequenza sarà : $2^n -1$ , quando arriviamo al numero massimo ci basterà ritornare all'inizio
+#### Frame Loss
+
+Come gestiamo la perdita di qualche [[Frame]] ?
+
+>[!note] 
+>Una politica che gestisce la perdita di [[Frame]] deve essere *veloce* , non importa se non è perfetta , questo perchè un server potrebbe dover gestire centinaia di migliaia di connessioni allo stesso tempo 
+
+##### Go-back-n
+
