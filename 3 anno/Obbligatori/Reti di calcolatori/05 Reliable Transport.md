@@ -33,5 +33,15 @@ Il metodo più semplice per implementarlo è l'utilizzo di un *singolo* bit che 
 1. Siamo nello stato iniziale in cui aspettiamo dei dati da inviare ( `Wait for D(0,..)` )
 2. Alla presenza di dati `Data.req(SDU)` : 
 	1. Manda i dati assieme al primo bit di sequenza `0` ( `send(D(0,SDU,CRC))` )
-	2. Inizia un 
+	2. Inizia un *timer* 
+	3. Passa allo stato sucessivo
+3. Siamo nello stato in cui aspettiamo un [[Acknowledgment]] che abbia come *bit* di sequenza `0` , abbiamo due possibilità :
+	1. Se riceviamo un [[Acknowledgment]] con il bit di sequenza a  `1` ( `recvd(C(0K1))` ) o il *timer* finisce :
+		1. Rimandiamo il [[Frame]] precedente `send(D(0,SDU,CRC))`
+		2. Ri-iniziamo il *timer* `restart_timer()`
+	2. Se riceviamo un [[Acknowledgment]] con bit di sequenza a `0` ( `recvd(C(OK0))` ):
+		1. Cancelliamo il *timer* `cancel_timer()`
+		2. Passiamo allo stato sucessivo
+4. Aspettiamo che ci siano dei dati con [[Acknowledgment]] a `1` da inviare 
+5. Alla presenza di 
 ### Macchina a stati del ricevitore
