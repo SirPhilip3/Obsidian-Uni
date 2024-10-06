@@ -48,4 +48,25 @@ Il metodo più semplice per implementarlo è l'utilizzo di un *singolo* bit che 
 
 ![[Pasted image 20241006172807.png]]
 
-1. 
+1. Il *ricevitore* inizia dallo stato in cui aspettiamo che arrivi un dato che abbia come numero di sequenza `0` 
+	1. Se ricevo un [[Frame]] con numero di sequenza `1` e il [[Frame]] ha una [[Internet Checksum]] *corretta* rimango nello stesso stato
+	2. Se ricevo un [[Frame]] con un numero di sequenza `0` e ha una [[Internet Checksum]] *corretta* passiamo al prossimo stato
+2. Nello stato sucessivo processeremo i dati
+3. Una volta processato il [[Frame]] mandiamo un [[Acknowledgment]] con numero di sequenza `0` 
+4. Nello stato sucessivo aspetteremo un [[Frame]] con numero di sequenza `1` 
+>[!note] Dopo questo il ciclo continua
+
+>[!warning] 
+>Se il *sender* e *reciever* non sono sincronizzati le due macchine vanno in loop e non c'è modo per re-sincronizzarle se non riavviando entrambe le macchine
+
+## Performance
+
+>[!example] 
+>Assumiamo che abbiamo 20ms di *RTT* ( *round trip time* ) 
+>Assumiamo che il [[Frame]] sia $1500B = 1500 \cdot 8 \text{bit}$ (grandezza standard di un [[packet]])
+>Assumiamo che il link sia un gigabit : $10^9$ b/s
+>Ci vorrà $\frac{1500 \cdot 8}{10^9} = 0.012 ms$ per inviare un [[Frame]]
+>Un [[Frame]] di [[Acknowledgment]] è fatto di due bit ( uno per l'header e uno per il numero di sequenza ) , ci metteremo quindi $\frac{2}{10^9}ms$ , questo tempo è abbastanza basso per essere ignorato
+>
+>Il *TTL* sarà quindi : $20.024$ , il [[Bit-rate]] sarà quindi : $\frac{1500 \cdot 8}{0.020024} \simeq 0.6 Mb/s$
+
