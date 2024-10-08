@@ -48,5 +48,23 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 >+ Il resto del grafo è completamente connesso 
 >  
 >>[!example] 
-![[First-GNFA.excalidraw]]
+>>![[First-GNFA.excalidraw]]
+>>Per rendere il grafo leggibile mancano diversi archi per renderlo completamente connesso
+>>
+>
+>**Eliminare stadi**
+>
+>Facciamo un esempio generale : 
+>![[GNFA_cut1.excalidraw]]
+>
+>Se cancello $Q_{rip}$ devo estendere $R_4$ con tutte le altre possibili strade che ho perso
+>![[GNFA_cut2.excalidraw]]
+>
+>Rippando finchè abbiamo solo 2 stati : quello *iniziale* e quello *accettante* , con l'arco tra di loro che rappresenta la [[03 Espressioni Regolari|regexp]]
+>
+>![[GNFAtoRegexpRes.excalidraw]]
+>
+>>[!example] 
+>>Facciamo un esempio di derivazione di [[03 Espressioni Regolari|regexp]] da un [[NFA]] :
+![[GNFAtoRegexpEx.excalidraw]]
 
