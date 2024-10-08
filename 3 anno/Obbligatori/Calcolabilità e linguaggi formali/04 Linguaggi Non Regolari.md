@@ -12,3 +12,6 @@ creation: 2024-10-08T09:56:00
 
 Per dimostrare la *non regolarità* di un **Linguaggio** utilizzeremo il seguente *lemma* : 
 ![[Pumping Lemma]]
+
+Come possiamo *utilizzarlo* : 
+

@@ -23,4 +23,7 @@ tags:
 >Il [[DFA]] che rappresenta $s=xy^iz$ sarà : 
 >![[xyiz.excalidraw]]
 >
->
+>Verifchiamo che le tre condizioni imposte prima siano corrette : 
+>1. Possiamo accettare $xy^iz$ ( possiamo accettare anche con $i=0$ )
+>2. La $y$ è non vuota poichè se lo fosse non avrei almeno un arco e quindi lo stato non si ripeterebbe 
+>3. $|xy|$ limitata da $p$ 
