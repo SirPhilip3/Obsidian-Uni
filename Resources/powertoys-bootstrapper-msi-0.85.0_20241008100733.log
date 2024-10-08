@@ -1,0 +1,84 @@
+[4880:1048][2024-10-08T10:07:33]i001: Burn v3.14.1.8722, Windows v10.0 (Build 22631: Service Pack 0), path: C:\ProgramData\Package Cache\{0951498d-92df-416f-a604-43884994e690}\PowerToysSetup-0.85.0-x64.exe
+[4880:1048][2024-10-08T10:07:33]i000: Initializing string variable 'InstallFolder' to value '[ProgramFiles64Folder]PowerToys'
+[4880:1048][2024-10-08T10:07:33]i000: Initializing string variable 'MsiLogFolder' to value '[LocalAppDataFolder]\Microsoft\PowerToys\'
+[4880:1048][2024-10-08T10:07:33]i000: Initializing version variable 'MinimumVersion' to value '0.0.0.0'
+[4880:1048][2024-10-08T10:07:33]i000: Initializing version variable 'TargetPowerToysVersion' to value '0.85.0'
+[4880:1048][2024-10-08T10:07:33]i000: Initializing version variable 'DetectedPowerToysVersion' to value '0.0.0.0'
+[4880:1048][2024-10-08T10:07:33]i000: Initializing version variable 'DetectedPowerToysUserVersion' to value '0.0.0.0'
+[4880:1048][2024-10-08T10:07:33]i000: Initializing version variable 'DetectedWindowsBuildNumber' to value '0'
+[4880:1048][2024-10-08T10:07:33]i003: This bundle is being run by a related bundle as type 'Upgrade'.
+[4880:1048][2024-10-08T10:07:33]i009: Command Line: '"-burn.clean.room=C:\ProgramData\Package Cache\{0951498d-92df-416f-a604-43884994e690}\PowerToysSetup-0.85.0-x64.exe" -burn.filehandle.attached=612 -burn.filehandle.self=620 -uninstall -quiet -burn.related.upgrade -burn.ancestors={228b8326-dca9-4139-88df-d5001d11b6eb} -burn.filehandle.self=1288 -burn.embedded BurnPipe.{5640056E-1B24-49B4-A029-17085DAF6314} {000EF380-E088-41A3-83DA-2D220C82AFE9} 21760'
+[4880:1048][2024-10-08T10:07:33]i000: Setting string variable 'WixBundleLog' to value 'C:\Users\FILIPP~1\AppData\Local\Temp\powertoys-bootstrapper-msi-0.85.0_20241008100733.log'
+[4880:1048][2024-10-08T10:07:33]i000: Setting string variable 'WixBundleManufacturer' to value 'Microsoft Corporation'
+[4880:1AB8][2024-10-08T10:07:33]i000: Setting numeric variable 'WixStdBALanguageId' to value 1033
+[4880:1AB8][2024-10-08T10:07:33]i000: Setting version variable 'WixBundleFileVersion' to value '0.85.0.0'
+[4880:1048][2024-10-08T10:07:33]i100: Detect begin, 3 packages
+[4880:1048][2024-10-08T10:07:33]i000: Product or related product not found: {D8B559DB-4C98-487A-A33F-50A8EEE42726}
+[4880:1048][2024-10-08T10:07:33]i000: Setting version variable 'DetectedPowerToysUserVersion' to value '0.0.0.0'
+[4880:1048][2024-10-08T10:07:33]i000: Setting version variable 'DetectedPowerToysVersion' to value '0.85.1.0'
+[4880:1048][2024-10-08T10:07:33]i000: Setting string variable 'DetectedWindowsBuildNumber' to value '22631'
+[4880:1048][2024-10-08T10:07:33]i000: Registry key not found. Key = 'Software\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+[4880:1048][2024-10-08T10:07:33]i000: Setting numeric variable 'HasWebView2PerUser' to value 0
+[4880:1048][2024-10-08T10:07:33]i000: Setting numeric variable 'HasWebView2PerMachine' to value 1
+[4880:1048][2024-10-08T10:07:33]i102: Detected related bundle: {228b8326-dca9-4139-88df-d5001d11b6eb}, type: Upgrade, scope: PerMachine, version: 0.85.1.0, operation: None
+[4880:1048][2024-10-08T10:07:33]i052: Condition 'HasWebView2PerMachine OR HasWebView2PerUser' evaluates to true.
+[4880:1048][2024-10-08T10:07:33]i103: Detected related package: {266446AE-C5DA-4A29-86A9-48128C1DBF00}, scope: PerMachine, version: 0.85.1.0, language: 0 operation: Downgrade
+[4880:1048][2024-10-08T10:07:33]i101: Detected package: TerminatePowerToys, state: Absent, cached: Complete
+[4880:1048][2024-10-08T10:07:33]i101: Detected package: WebView2, state: Present, cached: None
+[4880:1048][2024-10-08T10:07:33]i101: Detected package: PowerToysSetup_0.85.0_x64.msi, state: Obsolete, cached: Complete
+[4880:1048][2024-10-08T10:07:33]i052: Condition 'MinimumVersion >= DetectedPowerToysUserVersion' evaluates to true.
+[4880:1048][2024-10-08T10:07:33]i052: Condition 'TargetPowerToysVersion >= DetectedPowerToysVersion OR WixBundleInstalled' evaluates to true.
+[4880:1048][2024-10-08T10:07:33]i052: Condition 'DetectedWindowsBuildNumber >= 19041 OR WixBundleInstalled' evaluates to true.
+[4880:1048][2024-10-08T10:07:33]i199: Detect complete, result: 0x0
+[4880:1048][2024-10-08T10:07:33]i200: Plan begin, 3 packages, action: Uninstall
+[4880:1048][2024-10-08T10:07:33]i214: Plan skipped related bundle: {228b8326-dca9-4139-88df-d5001d11b6eb}, type: Upgrade, because it was previously scheduled.
+[4880:1048][2024-10-08T10:07:33]w321: Skipping dependency registration on package with no dependency providers: WebView2
+[4880:1048][2024-10-08T10:07:33]w321: Skipping dependency registration on package with no dependency providers: TerminatePowerToys
+[4880:1048][2024-10-08T10:07:33]i207: Planned related bundle: {228b8326-dca9-4139-88df-d5001d11b6eb}, type: Upgrade, default requested: None, ba requested: None, execute: None, rollback: None, dependency: None
+[4880:1048][2024-10-08T10:07:33]i201: Planned package: PowerToysSetup_0.85.0_x64.msi, state: Obsolete, default requested: None, ba requested: None, execute: None, rollback: None, cache: No, uncache: Yes, dependency: Unregister
+[4880:1048][2024-10-08T10:07:33]i201: Planned package: WebView2, state: Present, default requested: None, ba requested: None, execute: None, rollback: None, cache: No, uncache: No, dependency: None
+[4880:1048][2024-10-08T10:07:33]i201: Planned package: TerminatePowerToys, state: Absent, default requested: None, ba requested: None, execute: None, rollback: None, cache: No, uncache: Yes, dependency: None
+[4880:1048][2024-10-08T10:07:33]i299: Plan complete, result: 0x0
+[4880:1048][2024-10-08T10:07:33]i300: Apply begin
+[4880:1048][2024-10-08T10:07:33]i010: Launching elevated engine process.
+[4880:1048][2024-10-08T10:07:33]i011: Launched elevated engine process.
+[4880:1048][2024-10-08T10:07:33]i012: Connected to elevated engine.
+[0D7C:633C][2024-10-08T10:07:34]i358: Pausing automatic updates.
+[0D7C:633C][2024-10-08T10:07:34]i359: Paused automatic updates.
+[0D7C:633C][2024-10-08T10:07:34]i371: Updating session, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{0951498d-92df-416f-a604-43884994e690}, resume: Active, restart initiated: No, disable resume: Yes
+[0D7C:633C][2024-10-08T10:07:34]i326: Removed dependency: {0951498d-92df-416f-a604-43884994e690} on package provider: {05A32E51-13FA-4B50-83A4-F2D69558C011}, package PowerToysSetup_0.85.0_x64.msi
+[0D7C:633C][2024-10-08T10:07:34]i351: Removing cached package: PowerToysSetup_0.85.0_x64.msi, from path: C:\ProgramData\Package Cache\{05A32E51-13FA-4B50-83A4-F2D69558C011}v0.85.0\
+[0D7C:633C][2024-10-08T10:07:34]i351: Removing cached package: TerminatePowerToys, from path: C:\ProgramData\Package Cache\CEEB2F4674AB44E9EBCE9175CE716612D979979C\
+[0D7C:633C][2024-10-08T10:07:34]i372: Session end, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{0951498d-92df-416f-a604-43884994e690}, resume: None, restart: None, disable resume: Yes
+[0D7C:633C][2024-10-08T10:07:34]i330: Removed bundle dependency provider: {0951498d-92df-416f-a604-43884994e690}
+[0D7C:633C][2024-10-08T10:07:34]i352: Removing cached bundle: {0951498d-92df-416f-a604-43884994e690}, from path: C:\ProgramData\Package Cache\{0951498d-92df-416f-a604-43884994e690}\
+[0D7C:633C][2024-10-08T10:07:34]i371: Updating session, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{0951498d-92df-416f-a604-43884994e690}, resume: None, restart initiated: No, disable resume: Yes
+[4880:1048][2024-10-08T10:07:34]i399: Apply complete, result: 0x0, restart: None, ba requested restart:  No
+[4880:1048][2024-10-08T10:07:34]i500: Shutting down, exit code: 0x0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: DetectedPowerToysUserVersion = 0.0.0.0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: DetectedPowerToysVersion = 0.85.1.0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: DetectedWindowsBuildNumber = 22631
+[4880:1048][2024-10-08T10:07:34]i410: Variable: HasWebView2PerMachine = 1
+[4880:1048][2024-10-08T10:07:34]i410: Variable: HasWebView2PerUser = 0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: InstallFolder = C:\Program Files\PowerToys
+[4880:1048][2024-10-08T10:07:34]i410: Variable: MinimumVersion = 0.0.0.0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: MsiLogFolder = C:\Users\Filippo Gumiero\AppData\Local\\Microsoft\PowerToys\
+[4880:1048][2024-10-08T10:07:34]i410: Variable: ProgramFiles64Folder = C:\Program Files\
+[4880:1048][2024-10-08T10:07:34]i410: Variable: TargetPowerToysVersion = 0.85.0.0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleAction = 3
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleElevated = 1
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleFileVersion = 0.85.0.0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleInstalled = 1
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleLog = C:\Users\FILIPP~1\AppData\Local\Temp\powertoys-bootstrapper-msi-0.85.0_20241008100733.log
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleManufacturer = Microsoft Corporation
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleName = PowerToys (Preview) x64
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleOriginalSource = C:\Users\Filippo Gumiero\appdata\local\microsoft\powertoys\updates\powertoyssetup-0.85.0-x64.exe
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleOriginalSourceFolder = C:\Users\Filippo Gumiero\appdata\local\microsoft\powertoys\updates\
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleProviderKey = {0951498d-92df-416f-a604-43884994e690}
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleSourceProcessFolder = C:\ProgramData\Package Cache\{0951498d-92df-416f-a604-43884994e690}\
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleSourceProcessPath = C:\ProgramData\Package Cache\{0951498d-92df-416f-a604-43884994e690}\PowerToysSetup-0.85.0-x64.exe
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleTag = 
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleUILevel = 1
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixBundleVersion = 0.85.0.0
+[4880:1048][2024-10-08T10:07:34]i410: Variable: WixStdBALanguageId = 1033
+[4880:1048][2024-10-08T10:07:34]i007: Exit code: 0x0, restarting: No
