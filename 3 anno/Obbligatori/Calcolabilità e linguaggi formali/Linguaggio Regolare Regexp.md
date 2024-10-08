@@ -38,6 +38,8 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 >
 >Via via toglieremo degli archi fino ad avere uno solo , la sua etichetta sarà la *regexp* che ci interessa 
 >
+>![[DFAtoRegexp.excalidraw]]
+>
 >In dettaglio il [[GNFA]] deve soddisfare le seguenti caratteristiche : 
 >+ Avere un solo stato iniziale
 >+ Avere un solo stato accettante , differente da quello iniziale
@@ -45,3 +47,6 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 >+ Lo stato accettante deve avere archi in entrata da tutti gli altri stati e nessun arco in uscita 
 >+ Il resto del grafo è completamente connesso 
 >  
+>>[!example] 
+![[First-GNFA.excalidraw]]
+
