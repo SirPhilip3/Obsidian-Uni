@@ -28,3 +28,8 @@ I *simboli* possono essere divisi in due **classi**
 ![[Simboli Terminali]]
 
 ![[Derivazione]]
+
+Possiamo notare che il [[Linguaggio Formale]] dell'esempio iniziale può essere scritto nel seguente modo : 
+$$L(G)=\{ 0^n\#1^n\ | \ n\ge 0 \}$$
+>[!note] 
+>Questo *linguaggio* non è *regolare*
