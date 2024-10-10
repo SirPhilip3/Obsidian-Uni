@@ -6,6 +6,8 @@ creation: 2024-10-08T09:56:00
 >>[!note] 
 >>Non è possibile costruire un [[DFA]] che lo rappresenti poichè dovremmo avere infiniti stati per memorizzare il numero di $0$ e $1$ 
 
+^ddb1cb
+
 >[!warning] 
 >Per dire che un linguaggio è **non regolare** non è sufficente notare che nell'esempio precedente il [[DFA]] dovrà avere stati infiniti per rappresentate il [[Linguaggio Formale]] infatti :
 >$$\{w | w\ \text{ha un numero uguale di occorrenze di $01$ e $10$}\}$$ è un linguaggio [[Linguaggio Regolare NFA|Linguaggio Regolare]]
