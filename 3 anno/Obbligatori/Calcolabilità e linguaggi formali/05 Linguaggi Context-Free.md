@@ -21,10 +21,60 @@ Definizione di **Linguaggio Context-Free** :
 >	\State $A \to 0A|1A|\epsilon$
 >	\end{algorithmic}
 >	\end{algorithm}
->```
+>	```
+>
+>>[!note] 
+>>Abbiamo rimosso il requisito delle tre $1$ nello [[Start Symbol]] e poi aggiunto espressività per creare una stringa qualsiasi
+>
+>2. Stringhe che inizino e finiscono con lo stesso simbolo  
+>	```pseudo
+>	\begin{algorithm}
+>	\begin{algorithmic}
+>	\State $S \to 0A0|1A1|0|1$
+>	\State $A \to 0A|1A|\epsilon$
+>	\end{algorithmic}
+>	\end{algorithm}
+>	```
+>3. Stringhe di lunghezza dispari
+>	```pseudo
+>	\begin{algorithm}
+>	\begin{algorithmic}
+>	\State $S \to CP$
+>	\State $C \to 0|1$
+>	\State $P \to 00P|11P|01P|10P|\epsilon$
+>	\end{algorithmic}
+>	\end{algorithm}
+>	```
+>4. Stringhe palindrome
+>	```pseudo
+>	\begin{algorithm}
+>	\begin{algorithmic}
+>	\State $S \to 0S0|1S1|1|0|\epsilon$
+>	\end{algorithmic}
+>	\end{algorithm}
+>	```
+>5. Nessuna stringa
+>	```pseudo
+>	\begin{algorithm}
+>	\begin{algorithmic}
+>	\State $S \to S$
+>	\end{algorithmic}
+>	\end{algorithm}
+>	```
 
->[!note] 
->Abbiamo rimosso il requisito delle tre $1$ nello [[Start Symbol]] e poi aggiunto espressività per creare una stringa qualsiasi
+Verifichiamo la **correttezza** del linguaggio : 
 
->[!example] Esempio di [[Context-Free Grammar|CFG]]
->2. Due stringhe che inizino e finiscono con lo stesso simbolo  
+```pseudo
+	\begin{algorithm}
+	\begin{algorithmic}
+	\State $A \to 0A1 | B$
+	\State $B \to \#$
+	\end{algorithmic}
+	\end{algorithm}
+```
+$$L(G)=\{0^n \#1^n\ |\ n\ge 0 \}$$
+**Dimostriamo** che $w\in L(G)$ se e solo se $w = 0^n\# 1^n$ per qualche $n\ge 0$ :
+1. $\implies$
+
+Sia $w\in L(G)$ allora $A \implies^*\ w$ , per dimostrare questo facciamo *Induzione* sulla lunghezza della [[Derivazione]] , dividiamo i due casi ( derivanti dalla scelta che possiamo fare dallo [[Start Symbol]] ) :
+1. $A \implies 0A1 \implies^* \ w$ : allora 
