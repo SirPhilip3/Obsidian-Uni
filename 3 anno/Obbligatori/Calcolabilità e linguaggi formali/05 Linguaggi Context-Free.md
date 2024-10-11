@@ -61,6 +61,14 @@ Definizione di **Linguaggio Context-Free** :
 >	\end{algorithmic}
 >	\end{algorithm}
 >	```
+>6. Parentesi bilanciate ( sequqenza arbitrariamente lunga di blocchi $a^nb^n$ ) : 
+>	```pseudo
+>	\begin{algorithm}
+>	\begin{algorithmic}
+>	\State $S \to aSb|SS|\epsilon$ 
+>	\end{algorithmic}
+>	\end{algorithm}
+>	```
 
 Verifichiamo la **correttezza** del linguaggio : 
 
@@ -77,4 +85,14 @@ $$L(G)=\{0^n \#1^n\ |\ n\ge 0 \}$$
 1. $\implies$
 
 Sia $w\in L(G)$ allora $A \implies^*\ w$ , per dimostrare questo facciamo *Induzione* sulla lunghezza della [[Derivazione]] , dividiamo i due casi ( derivanti dalla scelta che possiamo fare dallo [[Start Symbol]] ) :
-1. $A \implies 0A1 \implies^* \ w$ : allora 
+1. $A \implies 0A1 \implies^* \ w$ : allora $w=0v1$ con $A\implies^* v$ 
+	Per *ipotesi induttiva* ( poichè $A\implies^* v$ è più piccolo di $A\implies^* w$ ( facciamo meno passi di [[Derivazione]] ) ) $v=0^m\#1^m$ con $m\ge 0$ , ma allora $w=00^m\#1^m1$ che sarà nel formato corretto
+2. $A \implies B \implies^* w$ : in questo caso siamo nel formato corretto poichè avremo che $w=\#$ in ogni caso
+
+2. $\Longleftarrow$
+
+Sia $w = 0^n\#1^n$ con $n\ge 0$ dimostro che $w\in L(G)$ , utilizziamo l'*induzione* su $n$ 
+1. Se $n=0$ : $w=\#$ e quindi $A\implies B\implies \#$ 
+2. Se $n\ge 0$ : $w =0^{m+1}\#1^{m+1}$ con $m\ge 0$ , per l'*ipotesi induttiva* possiamo scrivere $A \implies^* \ 0^m\#1^m$ ma allora possiamo anche scrivere : $A \implies 0A1 \implies^*\ 00^m\#1^m1$ che risulta corrispondere a $w$
+
+![[CFG ambigua]]
