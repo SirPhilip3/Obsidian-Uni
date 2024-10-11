@@ -105,3 +105,20 @@ Come gestiamo la perdita di qualche [[Frame]] ?
 
 ##### Go-back-n
 
+###### Il Ricevitore
+
+Accetta solo [[Frame]] che arrivano in sequenza , quelli *out-of-sequence* vengono scartati.
+
+Il *ricevitore* ritorna sempre un [[Acknowledgment]] contenente il *numero di sequenza* dell'ultimo [[Frame]] *in sequenza* che ha ricevuto 
+
+>[!note] 
+>Gli [[Acknowledgment]] sono *comulativi* ossia questo indica che l'ultimo [[Frame]] e tutti i precedenti sono arrivati correttamente
+
+Il *ricevitore* non ha buffer , conterrà solo due variabili : 
++ `lastack` : l'ultimo *numero di sequenza* che è stato [[Acknowledgment|Acknowledged]] 
++ `next` : il prossimo numero di sequenza che si aspetta di ricevere
+
+![[Pasted image 20241011145836.png]]
+###### Il Mittente
+
+Mantiene un *buffer* che può mantenere l'intera *finestra*
