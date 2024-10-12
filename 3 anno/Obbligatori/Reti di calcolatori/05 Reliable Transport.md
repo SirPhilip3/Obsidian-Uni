@@ -139,4 +139,27 @@ Avremo quindi le seguenti variabili :
 
 Facciamo un **esempio** : 
 >[!example] 
+>![[Pasted image 20241012115000.png]]
 >
+>**B** rifiuta tutti i [[Frame]] che hanno numero di sequenza sucessivo a 1 
+>Dopo aver ricevuto $0$ come [[Acknowledgment]] **A** sposta la *finestra* oltre $0$ , quando il timer termina ( iniziato da $2$ ) **A** reinvia i dati dopo *a* 
+>Ora visto che abbiamo uno spazio libero nella finestra mandiamo *d* 
+>Quando arriva *e* per essere inviato la *finestra* è piena e quindi aspettiamo che si liberi e reinviamo
+
+###### Dimensione massima della finestra
+
+Abbiamo $n$ *bit* nell'header per il numero di sequenza , avremo quindi $2^n$ numeri possibili ma non possiamo utilizzarli tutti poichè :
++ A manda esattamente $2^n$ [[Frame]]
++ B li riceve , manda gli [[Acknowledgment|Ack]] e setta `next` a $0$
++ Tutti gli [[Acknowledgment|Ack]] vengono persi , A finiesce il *timer* e rimanda tutti i [[Frame]] 
++ B li riceve tutti ma visto che `next` è settato a $0$ verrano accettati di nuovo e duplicati
+
+Per risolvere il problema settiamo la grandezza massima della *finestra* a $2^n-1$
+
+##### Limiti del Go-back-n
+
+Quando ci sono troppi [[Frame]] *persi* : 
++ Il *ricevitore* non accetta [[Frame]] fuori sequenza anche se corretti  
++ Il *mittente* ritrasmette tutti i [[Frame]] prima dell'ultimo [[Acknowledgment]] anche se non necessario
+#### Selective Repeat
+
