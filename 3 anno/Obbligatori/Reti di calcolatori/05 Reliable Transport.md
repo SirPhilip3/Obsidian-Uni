@@ -121,4 +121,22 @@ Il *ricevitore* non ha buffer , conterrà solo due variabili :
 ![[Pasted image 20241011145836.png]]
 ###### Il Mittente
 
-Mantiene un *buffer* che può mantenere l'intera *finestra*
+Mantiene un *buffer* che può mantenere l'intera *finestra* 
+1. I [[Frame]] vengono inviati con numeri di sequenza crescenti finchè il *buffer* non si riempie ( al primo [[Frame]] inviato si inizia un timer ) 
+2. Il *mittente* aspetta quindi per un [[Acknowledgment]] prima di inviare altri [[Frame]]  
+3. Quando il *mittente* riceve un [[Acknowledgment]] 
+	1. Rimuove dal *buffer* tutti i [[Frame]] [[Acknowledgment|Acknowledged]] , visto che è comulativo
+	2. Fa ripartire il timer solo se ci sono ancora [[Frame]] non [[Acknowledgment|Acknowledged]] nel suo *buffer*
+4. Se il *timer* scade , il *mittente* assume che tutti i frame non [[Acknowledgment|Acknowledged]] sono persi e ritrasmette tutti i [[Frame]] nel *buffer* 
+
+Avremo quindi le seguenti variabili :
++ `size(buffer)` : numero di [[Frame]] nel *buffer*
++ `seq` : l'ultimo numero di sequenza che è stato inviato
++ `unack` : il numero di sequenza dell'ultimo frame non ancora [[Acknowledgment|Acknowledged]] 
++ un *timer*
+
+![[Pasted image 20241012114712.png]]
+
+Facciamo un **esempio** : 
+>[!example] 
+>
