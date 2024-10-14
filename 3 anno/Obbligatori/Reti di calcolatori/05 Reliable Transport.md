@@ -181,4 +181,8 @@ Quando un timer scade solo il [[Frame]] corrispondente viene reinviato
 
 Nel mondo real i dati non seguno mai una direzione singola , L'[[Acknowledgment|Ack]] non viene quindi inviato separatamente ma viene aggiunto nell'*header* del prossimo [[Frame]] ( **Piggybacking** )
 
-Inoltre visto che facciamo *piggybacking* non mandiamo l'[[Acknowledgment|Ack]] subito dopo
+Inoltre visto che facciamo *piggybacking* non mandiamo l'[[Acknowledgment|Ack]] subito immediatamente ma solo dopo che siano arrivati dei dati da mandare al *mittente* 
+
+>[!note] 
+>La dimensione della finestra dovrebbe essere negoziabile con tra i due in modo che cambi a seconda delle condizioni della rete
+
