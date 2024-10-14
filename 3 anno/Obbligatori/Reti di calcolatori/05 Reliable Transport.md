@@ -163,3 +163,22 @@ Quando ci sono troppi [[Frame]] *persi* :
 + Il *mittente* ritrasmette tutti i [[Frame]] prima dell'ultimo [[Acknowledgment]] anche se non necessario
 #### Selective Repeat
 
+Aggiungiamo un *buffer* anche per il *ricevitore* , questo accetta tutti i [[Frame]] finchè sono all'interno della *finestra* di invio 
+In ogni [[Acknowledgment]] il *ricevitore* riporta :
++ L'ultimo numero di sequenza prima dell'inizio della *finestra*
++ Una lista di [[Frame]] inviati correttamente
+
+![[Pasted image 20241014121549.png]]
+
+Ogni volta che viene *inviato* un [[Frame]] si inizia un timer ( un timer per [[Frame]] ) 
+Quando il *mittente* riceve un [[Acknowledgment]] rimuove tutti i timer dei precedenti [[Frame]] [[Acknowledgment|ACKed]] ,se possibile shifta la *finestra* a destra 
+
+Quando un timer scade solo il [[Frame]] corrispondente viene reinviato
+
+![[Pasted image 20241014121939.png]]
+
+#### Real Protocols
+
+Nel mondo real i dati non seguno mai una direzione singola , L'[[Acknowledgment|Ack]] non viene quindi inviato separatamente ma viene aggiunto nell'*header* del prossimo [[Frame]] ( **Piggybacking** )
+
+Inoltre visto che facciamo *piggybacking* non mandiamo l'[[Acknowledgment|Ack]] subito dopo
