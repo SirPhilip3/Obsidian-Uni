@@ -15,4 +15,5 @@ creation: 2024-10-14T13:04:00
 >Usato per piccole LAN
 >
 
-
+>[!note] 
+>In questo network non ci sono *collisioni* poichè i cavi usuano due circuiti separati per trasmissione e ricezione 

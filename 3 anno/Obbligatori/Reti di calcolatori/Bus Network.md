@@ -15,3 +15,8 @@ creation: 2024-10-14T12:56:00
 >[!important] 
 >Rete utilizzata solo in specifici scenari ( ex CAN-bus )
 
+>[!note] 
+>Possono avvenire *collisioni* se due *host* trasmettono allo stesso tempo , in questo caso il *ricevitore* non riuscirà a distinguere tra i due segnali e dropperà entrambi i [[Frame]]
+>
+>Questo avviene soprattuto in una rete *wireless* poichè il ricevitore possiede una singola radio , se due host comunicano allo stesso tempo vi sono collisioni
+
