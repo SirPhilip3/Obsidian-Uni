@@ -7,7 +7,9 @@ Il **Network Layer** assume che :
 + Il [[Data Link Layer]] sia *almost reliable* ( può avvenire *packet loss* ma è poco frequente )
 + Un [[packet]] contiene i *dati* e un *header* , questi verranno incapuslati in un [[Frame]] del [[Data Link Layer]]
 
-Possiamo aver e
+Possiamo avere due tipi di **Network Layer** : 
++ ![[Datagram-Oriented]]
++ **Circuit-Oriented**
 
 [[Addressing]]
 
