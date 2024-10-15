@@ -17,3 +17,10 @@ Per evitare le *collisioni* vi sono diversi metodi :
 
 >[!note] 
 >Questi metodi possono essere combinati tra loro
+
+Un ulteriore metodo è quello del *Random Access* : 
++ Il *terminale* tenta di inviare dati sempre , se una collisione avviene questa viene rilevata e il [[Frame]] viene re-inviato
+
+Uno dei primi schemi *Random Access* è **ALHOA**
+
+![[S-ALHOA]]
