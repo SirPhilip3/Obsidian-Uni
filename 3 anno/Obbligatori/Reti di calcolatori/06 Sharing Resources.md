@@ -24,3 +24,6 @@ Un ulteriore metodo è quello del *Random Access* :
 Uno dei primi schemi *Random Access* è **ALHOA**
 
 ![[S-ALHOA]]
+
+>[!example] 
+

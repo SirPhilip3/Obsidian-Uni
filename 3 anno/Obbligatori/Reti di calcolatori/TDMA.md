@@ -35,3 +35,9 @@ Viene utilizzato in sistemi in cui si paga per il servizio e uno scheduling pref
 >
 >
 
+>[!note] 
+>Il **TDMA** non arriverà *mai* alla [[Congestion Collapse]] anche se il network è *sovraccarico* 
+>Questo perchè in qualsiasi caso garantiamo uno *slot* in cui trasmettere 
+>
+>La rete sarà quindi a *full efficency* ( anche se droppiamo dei [[Frame]] ) 
+
