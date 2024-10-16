@@ -63,7 +63,7 @@ Se invece c'è un errore il *ricevitore* potrebbe :
 + Ignorare completamente il [[Frame]]
 
 >[!note] 
->Il comportamento dipende dal design del [[Data Link Layer]]
+>Il comportamento dipende dal design del [[DataLink Layer]]
 
 ![[CRC]]
 
