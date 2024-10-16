@@ -14,6 +14,7 @@ Possiamo avere due tipi di **Network Layer** :
 Il *router* è diviso in due funzioni : 
 + ![[Data Plane]]
 + ![[Control Plane]]
+Se avessimo un approccio *centralizzato* potemmo utilizzare i ![[Virtual Circuits]]
 
 ![[Addressing]]
 
@@ -22,6 +23,8 @@ Il *router* è diviso in due funzioni :
 ## Routing Algorithm
 
 ![[Hot Potato Routing]]
+
+
 
 
 [[DV Routing]]
