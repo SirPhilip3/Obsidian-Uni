@@ -96,3 +96,5 @@ Sia $w = 0^n\#1^n$ con $n\ge 0$ dimostro che $w\in L(G)$ , utilizziamo l'*induzi
 2. Se $n\ge 0$ : $w =0^{m+1}\#1^{m+1}$ con $m\ge 0$ , per l'*ipotesi induttiva* possiamo scrivere $A \implies^* \ 0^m\#1^m$ ma allora possiamo anche scrivere : $A \implies 0A1 \implies^*\ 00^m\#1^m1$ che risulta corrispondere a $w$
 
 ![[CFG ambigua]]
+
+![[Forma normale di Chomsky]]

@@ -39,4 +39,5 @@ Una [[Context-Free Grammar|CFG]] $G$ si dice *ambigua* se e solo se esiste $w\in
 
 Una definizione equivalente sarebbe : 
 >[!check] 
->
+>Una [[Context-Free Grammar|CFG]] $G$ si dice *ambigua* se e solo se esiste $w\in L(G)$ tale che $w$ ha almeno due [[Derivazione|Derivazioni]] *"a sinistra"* / *"a destra"* ( ossia che riscrive sempre i [[Simboli Non Terminali]] più a *sinistra* o *destra* ) differenti
+
