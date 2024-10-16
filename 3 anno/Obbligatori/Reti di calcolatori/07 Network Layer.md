@@ -11,6 +11,10 @@ Possiamo avere due tipi di **Network Layer** :
 + ![[Datagram-Oriented]]
 + **Circuit-Oriented**
 
+Il *router* è diviso in due funzioni : 
++ ![[Data Plane]]
++ ![[Control Plane]]
+
 [[Addressing]]
 
 [[DV Routing]]
