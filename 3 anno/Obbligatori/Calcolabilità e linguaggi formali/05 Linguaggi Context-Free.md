@@ -98,3 +98,4 @@ Sia $w = 0^n\#1^n$ con $n\ge 0$ dimostro che $w\in L(G)$ , utilizziamo l'*induzi
 ![[CFG ambigua]]
 
 ![[Forma normale di Chomsky]]
+
