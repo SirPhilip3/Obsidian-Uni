@@ -31,3 +31,4 @@ Definiamo inoltre il seguente **Teorema** :
 >[!important] Teorema
 >Per ogni [[Context-Free Grammar|CFG]] $G$ esiste una [[Context-Free Grammar|CFG]] $H$ in *forma normale di Chomsky* tale che $L(H)=L(G)$ 
 
+Allora avremo un ![[Algoritmo di Conversione in Forma normale di Chomsky]]

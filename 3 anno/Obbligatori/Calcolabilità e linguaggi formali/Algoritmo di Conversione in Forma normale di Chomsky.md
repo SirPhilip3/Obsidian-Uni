@@ -108,9 +108,42 @@ tags:
 >\begin{algorithm}
 >\begin{algorithmic}
 >\State $S \to ASA|aB|a|SA|AS$ 
->\State $A \to b | \color{red}S | \color{gr}$
+>\State $A \to b | \color{red}S | \color{green} ASA | aB | a |SA|AS$
 >\State $B \to b$
 >\State $S' \to \color{green}ASA|aB|a|SA|AS$
+>\end{algorithmic}
+>\end{algorithm}
+>```
+>
+>4. Trasformiamo le regole con più di 2 [[Simboli Non Terminali]] sulla destra in regole con solo 2 [[Simboli Non Terminali]]
+>
+>>[!note] 
+>>Dovermo trasformare quindi $S' \to ASA$ , $A \to ASA$ e $S \to ASA$ aggiungendo una regola $A_1 \to SA$ 
+>
+>```pseudo
+>\begin{algorithm}
+>\begin{algorithmic}
+>\State $S \to AA_1|aB|a|SA|AS$ 
+>\State $A \to b | AA_1 | aB | a |SA|AS$
+>\State $B \to b$
+>\State $S' \to AA_1|aB|a|SA|AS$
+>\State $\color{green} A_1 \to SA$
+>\end{algorithmic}
+>\end{algorithm}
+>```
+>
+>>[!note] 
+>>Ora dovremmo sostituire tutte le regole che hanno sulla destra sia [[Simboli Terminali]] che [[Simboli Non Terminali]] , ossia trasformiamo $S' \to aB$ , $S \to aB$ e $A \to aB$ aggiungendo una nuova regola $U \to a$
+>
+>```pseudo
+>\begin{algorithm}
+>\begin{algorithmic}
+>\State $S \to AA_1|\textcolor{green}{U}B|a|SA|AS$ 
+>\State $A \to b | AA_1 | \textcolor{green}{U}B | a |SA|AS$
+>\State $B \to b$
+>\State $S' \to AA_1|\textcolor{green}{U}B|a|SA|AS$
+>\State $A_1 \to SA$
+>\State $\color{green} U \to a$
 >\end{algorithmic}
 >\end{algorithm}
 >```
