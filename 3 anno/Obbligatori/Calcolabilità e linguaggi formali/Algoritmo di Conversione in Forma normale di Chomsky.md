@@ -75,7 +75,7 @@ tags:
 >\begin{algorithm}
 >\begin{algorithmic}
 >\State $S \to ASA|aB|a|\color{green}SA|AS|S$ 
->\State $A \to B | S | \epsilon$
+>\State $A \to B | S | \color{red}\epsilon$
 >\State $B \to b$
 >\State $S' \to S$
 >\end{algorithmic}
@@ -92,7 +92,7 @@ tags:
 >\begin{algorithm}
 >\begin{algorithmic}
 >\State $S \to ASA|aB|a|SA|AS$ 
->\State $A \to B | S | \epsilon$
+>\State $A \to B | S$
 >\State $B \to b$
 >\State $S' \to \color{green}ASA|aB|a|SA|AS$
 >\end{algorithmic}
@@ -108,9 +108,10 @@ tags:
 >\begin{algorithm}
 >\begin{algorithmic}
 >\State $S \to ASA|aB|a|SA|AS$ 
->\State $A \to b | S | \epsilon$
+>\State $A \to b | \color{red}S | \color{gr}$
 >\State $B \to b$
 >\State $S' \to \color{green}ASA|aB|a|SA|AS$
 >\end{algorithmic}
 >\end{algorithm}
 >```
+
