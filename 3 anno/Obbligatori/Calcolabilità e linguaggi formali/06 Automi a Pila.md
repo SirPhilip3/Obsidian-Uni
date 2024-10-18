@@ -50,6 +50,18 @@ Passiamo da $q_i$ a $q_j$ leggendo in input $w$ , $a$ rappresenta la cima dello 
 >+ $\epsilon \to \epsilon$ : non modifico lo **stack**
 
 >[!example] 
->Costruiamo il **PDA** per $\{0^n1^n | n \ge 0\}$ 
-
+>Costruiamo un **PDA** per $\{0^n1^n | n \ge 0\}$ 
 ![[PDA_test.excalidraw]]
+>>[!note] 
+>>Questo **PDA** non accetta stringhe vuote , per fare ciò dovremmo modificare la transizione tra $a$ e $b$ in $\epsilon, \epsilon \to \epsilon$
+
+>[!example] 
+>Costruiamo un **PDA** per $\{a^ib^jc^k | i,j,k \ge 0 \text{ e } i = j \text{ oppure } i = k \}$ ( ossia stringhe con stesso numero di $a$ e $b$ o stesso numero di $a$ e $c$ )
+![[PDA_ijk.excalidraw]]
+>>[!note] 
+>>Lo stato iniziale può essere anche non accettante tanto tutte le transizioni sono $\epsilon$ transizioni , arriverei lo stesso ad uno stato accettante
+
+>[!example] 
+>Costruiamo un **PDA** per $\{ww^{R} | w \in {0,1}^*\}$ ( ossia stringhe $w$ concatenate dalla sua inversione $w^R$ , `100|001` ) 
+![[PDA_R.excalidraw]]
+
