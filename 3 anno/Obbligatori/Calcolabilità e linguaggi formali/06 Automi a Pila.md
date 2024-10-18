@@ -38,3 +38,18 @@ Lo **stack** è una struttura dati *LIFO* che può fare due operazioni :
 >+ $\delta$ : $Q \times \Sigma_{\epsilon} \times \Gamma_{\epsilon} \to \mathcal{P}(Q\times \Gamma_{\epsilon})$ : è la funzione di transizione
 
 ![[Linguaggio PDA]]
+
+Possiamo rappresentare un **PDA** attraverso la seguente rappresentazione grafica
+
+![[PDA_ex.excalidraw]]
+Passiamo da $q_i$ a $q_j$ leggendo in input $w$ , $a$ rappresenta la cima dello **stack** , $b$ è la nuova cima
+>[!example] 
+>+ $\epsilon \to b$ : `push(b)`
+>+ $a \to b$ : `pop(a)` e `push(b)`
+>+ $a \to \epsilon$ : `pop(a)`
+>+ $\epsilon \to \epsilon$ : non modifico lo **stack**
+
+>[!example] 
+>Costruiamo il **PDA** per $\{0^n1^n | n \ge 0\}$ 
+
+![[PDA_test.excalidraw]]
