@@ -26,7 +26,6 @@ Se avessimo un approccio *centralizzato* potemmo utilizzare i ![[Virtual Circuit
 
 
 
-
 [[DV Routing]]
 
 [[Count to Infinity]]
