@@ -22,9 +22,15 @@ Se avessimo un approccio *centralizzato* potemmo utilizzare i ![[Virtual Circuit
 
 ## Routing Algorithm
 
+### Definitions
+
+![[Routing Table]]
+
+
+
+### Algorithms
+
 ![[Hot Potato Routing]]
-
-
 
 [[DV Routing]]
 
