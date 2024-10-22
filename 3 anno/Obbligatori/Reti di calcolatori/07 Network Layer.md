@@ -32,7 +32,7 @@ Se avessimo un approccio *centralizzato* potemmo utilizzare i ![[Virtual Circuit
 
 ![[Hot Potato Routing]]
 
-[[DV Routing]]
+![[DV Routing]]
 
 [[Count to Infinity]]
 
