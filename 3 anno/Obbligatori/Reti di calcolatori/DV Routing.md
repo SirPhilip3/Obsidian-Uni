@@ -105,7 +105,7 @@ Dopo ulteriori $3 \times n$ secondi la rotta viene rimossa dalla [[Routing Table
 >
 >![[Pasted image 20241022161624.png]]
 
->[!warning] 
+>[!warning] Count to Infinity
 >Ipotiziamo ora che fallisca il nodo tra **D** ed **E** 
 >
 >Il nodo **D** è il primo a rilevare il guasto e setta il costo per **B** , **C** ed **E** a $\infty$ , però il nodo **A** genera il suo *DV* prima che **D** riesca a generare il suo *DV* , questo quindi avendo costi per **B** , **C** ed **E** minore di $\infty$ setterà i costi nella [[Forwarding Table]] di **D** a quelli di **A** sommandoci $1$ ( è come se ora per andare a **B** , **C** ed **E** possa passare per **A** )
@@ -113,4 +113,28 @@ Dopo ulteriori $3 \times n$ secondi la rotta viene rimossa dalla [[Routing Table
 >![[Pasted image 20241022163549.png]]
 >
 >>[!note] 
->>Il r
+>>Il router **D** non può spere che le rotte nel *DV* di **A** passino per se stesso 
+>
+>Il router **D** manderà quindi il suo *DV* ad **A** che però ora non riflette la mancanza di un percorso per **B** , **C** ed **E** , **A** lo riceverà ed aumenterà i suoi costi di $1$ 
+>
+>![[Pasted image 20241022163927.png]]
+>
+>Alla fine i *router* **D** ed **A** arriveranno con i costi settati ad infinito  
+>
+
+Una possibile soluzione possono essere i **Triggered Updates** :
+Ogni volta che un *link* fallisce viene *triggerata* la generazione di un *DV*
+
+Questi non risolvono il problema infatti : 
++ Potrebbe sempre essere che **D** riceva un *DV* da **A** prima che riesca a generare il *DV*
++ Potremmo perdere il [[packet]] contenente il *DV* di **D**
+
+>[!danger] 
+>Il **Count-to-infinity** ( con **Triggered Updates** ) può avvenire se :
+>+ C'è un loop ( un *link* full-duplex è già un loop )
+>+ Ci deve essere un cambio nella topologia della rete
+>+ Un [[packet]] viene perso
+>
+>>[!note] 
+>>Non è importante di come si fatto il network dopo il *link* che fallisce
+

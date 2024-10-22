@@ -26,8 +26,6 @@ Se avessimo un approccio *centralizzato* potemmo utilizzare i ![[Virtual Circuit
 
 ![[Routing Table]]
 
-
-
 ### Algorithms
 
 ![[Hot Potato Routing]]
