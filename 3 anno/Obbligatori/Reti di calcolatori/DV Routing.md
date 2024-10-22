@@ -69,3 +69,48 @@ Per tutte le destinazioni `d` presenti nel vettore `V`
 
 ## Failure Recovery
 
+Visto che ogni $n$ secondi viene aggiorno `R[d].time` allora ogni rotta non può avere un `time` più vecchio di $n$ secondi 
+
+Se una rotta è più vecchia di $3\times n$ secondi il suo costo viene settato a $\infty$
+
+Dopo ulteriori $3 \times n$ secondi la rotta viene rimossa dalla [[Routing Table]]
+
+>[!note] 
+>Dovrebbe essere passato abbastanza tempo per fare in modo che : 
+>+ Possa eventualmente ricevere un *DV* che abbia un costo minore di $\infty$
+>+ I vicini abbiano abbastanza tempo per installare rotte migliori provenienti da qualche altro *router* 
+>+ I *DV* non vengano persi per via di errori di trasmissione
+
+>[!important] 
+>3 viene usato in modo arbitrario
+
+>[!example] 
+>Il link tra **A** e **B** fallisce
+>![[Pasted image 20241022160850.png]]
+>
+>**A** manda il suo *DV*
+>![[Pasted image 20241022161032.png]]
+>
+>**D** manda il suo *DV*
+>![[Pasted image 20241022161057.png]]
+>
+>>[!note] 
+>>A questo punto viene creato un [[Black Holes]] dove tutto il traffico da **C** verso **A** viene perso in **B**
+>
+>**E** manda il suo *DV*
+>
+>![[Pasted image 20241022161243.png]]
+>
+>Adesso non c'è più il [[Black Holes]] su **B** ma non abbiamo ancora la *convergenza* nel network in quanto **C** usa una rotta con 4 *hop* ( `C-B-E-D-A` ) invece degli ottimali 3 ( `C-E-D-A` ) , dopo la convegenza avermo che il network sarà : 
+>
+>![[Pasted image 20241022161624.png]]
+
+>[!warning] 
+>Ipotiziamo ora che fallisca il nodo tra **D** ed **E** 
+>
+>Il nodo **D** è il primo a rilevare il guasto e setta il costo per **B** , **C** ed **E** a $\infty$ , però il nodo **A** genera il suo *DV* prima che **D** riesca a generare il suo *DV* , questo quindi avendo costi per **B** , **C** ed **E** minore di $\infty$ setterà i costi nella [[Forwarding Table]] di **D** a quelli di **A** sommandoci $1$ ( è come se ora per andare a **B** , **C** ed **E** possa passare per **A** )
+>
+>![[Pasted image 20241022163549.png]]
+>
+>>[!note] 
+>>Il r
