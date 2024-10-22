@@ -53,4 +53,19 @@ Periodicamente un *router* invia la sua [[Routing Table]] ( il *distance vector*
 Alla *ricezione* di un *DV* ricevo un certo *Vettore* `V` ad un certo *link* `l` 
 Per tutte le destinazioni `d` presenti nel vettore `V` 
 + Se `d` non è all'interno della [[Routing Table]] allora la aggiungerà alla sua [[Routing Table]] , mettendo come costo la somma del costo indicato nel *DV* e il costo del *link* `l` 
-+ Se `d` è già presente allora solamente se il costo indicato nel *DV* sommato al costo del *link* `l` è minore del costo già persente nella [[Routing Table]] **oppure** se lo ricevo 
++ Se `d` è già presente allora solamente se :
+	Il costo indicato nel *DV* sommato al costo del *link* `l` è minore del costo già persente nella [[Routing Table]] 
+		**oppure**
+	se lo ricevo dal *next-hop* per quella destinazione ( ciò significa che qualcosa è cambiato nel *percorso* per la destinazione )
+
+>[!example] 
+
+
+>[!note] 
+>+ I [[Control Plane Packets]] non sono mai intradati oltre il primo *hop*  
+>+ Ad un certo punto le [[Routing Table]] possono non essere ottimali ( *fasi transitorie* ) ma la convergenza ad uno stato ottimale è garantita in un network statico
+>+ Possiamo avere più configurazioni se abbiamo più *percorsi minimi* , la scelta dipende solo dall'ordine con cui vengono generati i *DV*
+>+ La durata delle *fasi transitorie* dipende dalla sequenza di eventi che avvengono
+
+## Failure Recovery
+
