@@ -66,3 +66,4 @@ Passiamo da $q_i$ a $q_j$ leggendo in input $w$ , $a$ rappresenta la cima dello 
 ![[PDA_R.excalidraw]]
 
 ![[Equivalenza CFG e PDA]]
+
