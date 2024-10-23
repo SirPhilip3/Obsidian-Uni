@@ -25,3 +25,36 @@ Un *router* manda un messaggio di `HELLO` ogni $N$ secondi su tutte le sue inter
 
 ## LSP Flooding
 
+Visto che ogni *router* deve avere una rappresentazione completa della rete prima di potere trovare i cammini migliori un algoritmo di **Flooding** viene usato per distribuire gli *LSP* tra tutti i *router* della rete 
+
+Ogni *router* mantiene un *link state database* ( **LSDB** ) che contiene gli *LSP* ricevuti più di recente 
+
+Quando un *router* riceve un *LSP* verifica con il *sequence number* se è già presente all'interno dell **LSDB** , se era già presente il router non dovrà instradarlo ad altri router 
+
+Se non era presente dentro l'**LSDB** invio l'*LSP* a tutti i miei vicini tranne a quello da dove era arrivato 
+
+```c
+if newer(LSP, LSDB(LSP.Router)): // prende l'ultimo LSP dal DB e lo compara con quello che ci è arrivato
+	LSDB.add(LSP) // rimuove anche gli LSP più vecchi che arrivano dallo stesso router
+	for i in links:
+		if i != l:
+			send(LSP,i) 
+```
+
+>[!note] 
+>Il numero di sequenza non è una timestamp quindi prima o poi dovreà wrappare su se stesso 
+
+>[!example] 
+>Rete dopo il **Flooding**
+>![[Pasted image 20241023103034.png]]
+## Link Failure
+
+Quando un *link* fallisce i due *router* collegati rilevano il fallimento visto che non ricevono più i messaggi di `HELLO` 
+>[!note] 
+>Viene ritenuto un fallimento solo dopo che non riceviamo un `HELLO` per $k\times N$ secondi
+
+Questi genereranno dei nuovi [[Link state packet|LSP]] che non conterrano più quel *link* 
+
+>[!example] 
+>Dopo la propagazione degli [[Link state packet|LSP]] dopo 3 hop 
+![[Immagine 2024-10-23 104348.png]]

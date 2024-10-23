@@ -3,7 +3,7 @@ creation: 2024-10-16T11:23:00
 aliases:
   - PDA
 ---
-kGli *Automi a Pila* ( *pushdown automata* o **PDA** ) sono degli [[NFA]] con però l'aggiunta di uno **stack** 
+Gli *Automi a Pila* ( *pushdown automata* o **PDA** ) sono degli [[NFA]] con però l'aggiunta di uno **stack** 
 
 Lo **stack** è una struttura dati *LIFO* che può fare due operazioni : 
 + *push* : aggiunge un elemento in cima alla coda
@@ -65,3 +65,4 @@ Passiamo da $q_i$ a $q_j$ leggendo in input $w$ , $a$ rappresenta la cima dello 
 >Costruiamo un **PDA** per $\{ww^{R} | w \in {0,1}^*\}$ ( ossia stringhe $w$ concatenate dalla sua inversione $w^R$ , `100|001` ) 
 ![[PDA_R.excalidraw]]
 
+![[Equivalenza CFG e PDA]]
