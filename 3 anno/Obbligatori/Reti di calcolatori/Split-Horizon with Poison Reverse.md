@@ -53,4 +53,18 @@ Un metodo per prevenire questo è vietare l'aggiornamento delle rotte per un cer
 Questo fa in modo che ci sia abbastanza tempo per fare in modo che l'informazione si propaghi tra i vicini evitando che un singolo *packet loss* porti a **Count-to-infinity** 
 
 >[!note] 
->In ``
+>In `RFC1058` vengono settati i seguenti timer :
+>+ 30s : generazione dei *DV*
+>+ 180s : tempo dopo il quale una rotta se non aggiornata viene settata a $\infty$  ( *route timeout* )
+>+ 240s : se dopo 60s dal *route timeout* non ricevo nessun aggiornamento la rotta viene rimossa dalla [[Forwarding Table]]
+>
+>*Cisco* aggiunge un *hold timer* , per 180s dopo che una rotta viene settata a $\infty$ non accettiamo nessun update
+>
+>>[!warning] 
+>>Questo rende la convergenza di un network estremamente lenta
+
+>[!important] 
+>**Split Horizon with Poinson Reverse** risolve solo la cerazione di *loop* composti da due *router* , il **Count-to-infinity** può sempre avvenire dove vi sono *loop* e [[packet]] loss
+>
+>Per risolvere il **Count-to-infinity** i *router* dovrebbero esportare l'intero *cammino* verso la destinazione , questo viene fatto con **path-vector routing protocols** come **BGP** 
+

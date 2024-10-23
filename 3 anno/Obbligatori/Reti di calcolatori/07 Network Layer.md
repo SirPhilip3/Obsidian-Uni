@@ -32,9 +32,6 @@ Se avessimo un approccio *centralizzato* potemmo utilizzare i ![[Virtual Circuit
 
 ![[DV Routing]]
 
-
-
 ![[Split-Horizon with Poison Reverse]]
 
-
-[[Link state Routing]]
+![[Link state Routing]]
