@@ -63,4 +63,28 @@ Questi genereranno dei nuovi [[Link state packet|LSP]] che non conterrano più q
 >>[!note] 
 >>Dopo il secondo *hop* la rete è convergente , il **Flooding** fa in modo che un singolo *router* possa ricevere più copie dello stesso messaggio
 >
->In generale un *link* 
+>In generale un *link* unidirezionale non è funzionale quindi quando i *router* ricevono l' [[Link state packet|LSP]] da **E** rimuoveranno entrambi i link 
+>Per invece poter riutilizzare il *link* i router dovrenno aspettare gli [[Link state packet|LSP]] sia di **B** che di **E** per continuare comunicare
+>
+>Gerneralmente il **Flooding** avviene in parallelo sia da parte di **B** che di **E** 
+>
+>>[!warning] 
+>>Nella fase di transizione della rete si possono creare dei [[Black Holes]] o **loop** 
+>>
+>>Se vengono persi degli [[Link state packet|LSP]] potremmo non raggiungere mai la convergenza , dovremo quindi accoppiarli con degli [[Acknowledgment]]
+## Conclusion
+
+**Pros** :
+
++ I protocolli di tipo [[Link state packet|LSP]] danno più informazioni ai singoli *router* che possono quindi fare scelte migliori 
++ Quando c'è un cambio nella *topologia* della rete gli [[Link state packet|LSP]] fanno **Flooding** molto velocemente la convergenza è quindi *veloce*
++ I messaggi di `HELLO` non vengono propagati in modo che possano essere generati ad alta frequenza $\implies$ la *failure* di un *link* viene rilevata velocemente
+
+**Cons** : 
+
++ *Link-state routing* risulta essere computazionalmente più dispendioso di [[DV Routing]] , *Dijkstra* diventa dispendioso in un grafo grande 
++ Un network molto grande comporta una maggiore probabilità di *failure* , questo comporta [[Link state packet|LSP]] **Flooding** , questi [[packet]] , a differenza di [[DV Routing]] vengono propagati in tutta la rete , questo comporta una ricomputazione continua dei *shortest path*
+
+>[!warning] 
+>Non è scalabile 
+
