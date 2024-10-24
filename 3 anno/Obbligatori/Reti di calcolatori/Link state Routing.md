@@ -57,4 +57,10 @@ Questi genereranno dei nuovi [[Link state packet|LSP]] che non conterrano più q
 
 >[!example] 
 >Dopo la propagazione degli [[Link state packet|LSP]] dopo 3 hop 
-![[Immagine 2024-10-23 104348.png]]
+>
+>![[Screenshot 2024-10-24 at 09-05-43 main (10)_2.jpg]]
+>
+>>[!note] 
+>>Dopo il secondo *hop* la rete è convergente , il **Flooding** fa in modo che un singolo *router* possa ricevere più copie dello stesso messaggio
+>
+>In generale un *link* 
