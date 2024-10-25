@@ -46,5 +46,26 @@ Se $A$ è un linguaggio **Context-Free** allora esiste un intero $p\ge 1$ ( *pum
 >>[!note]  
 >>$b^{|v|+1} \ge b^{|v|}+1$ quando $|v|\ge 2$
 >
+>Consideriamo $w\in A$ con $|w|\ge p$ ossia $|w| \ge b^{|w|}+1$ 
 >
+>Un [[Albero di Parsing]] di altezza $h=1$ può generare al massimo una stringa di lunghezza $b$ ( questo perchè ottengo la stringa di lunghezza massima se sostituisco il [[Simboli Non Terminali|Simbolo Non Terminale]] con il massimo numero di [[Simboli Terminali]] alla sua destra )
+>Aumentando l'altezza dell'[[Albero di Parsing]] avremo che con $h=n$ l'*albero* genererà strighe di lunghezza massima $b^n$ ( scielgo sempre la sostituizione più lunga ) 
+>
+>Fatta questa considerazione l'[[Albero di Parsing]] della stringa $w$ avrà come altezza minima $|v|+1$ ( per via della *pumping length* che abbiamo scelto )
+>
+>Fra tutti gli [[Albero di Parsing]] di $w$ prendiamo quello con il numero minimo di nodi , prendiamo il cammino più lungo di tale [[Albero di Parsing]] che ne definisce l'altezza , questo cammino deve contenere almeno $|v|+1$ [[Simboli Non Terminali]] , questo implica che lungo questo cammino c'è almeno un [[Simboli Non Terminali|Non Terminale]] **R** che si ripete 
+>
+>Ora possiamo dimostrare le varie condizioni del teorema originale : 
+>1. Possiamo pompare la stringa notando che avendo un **R** duplicato possiamo attuare la sostituzione vista nell'**Idea**  
+>2. Dimostriamo per assurdo che $|vy|>0$ :
+>	
+>	Assumiamo per assurdo che $|vy|=0$ cioè $|v|=|y|=0$ , $w=uvxyz$ diventerà $uxz$ , ma allora se sostituiamo il più piccolo albero radicato in **R** al posto di quello più grande otteno un [[Albero di Parsing]] per $uxy$ con meno nodi dell'[[Albero di Parsing]] di partenza 
+>	Questo è **Assurdo** poichè l'[[Albero di Parsing]] di partenza è *minimo*
+>3. Dimostriamo $|vxy| \le p$
+>	
+>	Visto che abbiamo scelto **R** nel cammino più lungo dell'[[Albero di Parsing]] , avremo che l'altezza massima del sottoalbero radicato in **R** sarà $|v|+1$ , questo potrà generare strighe di lunghezza massima $b^{|v|+1}$ ossia $p$
+
+>[!example] 
+
+o
 
