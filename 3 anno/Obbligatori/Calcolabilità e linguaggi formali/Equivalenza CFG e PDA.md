@@ -31,7 +31,8 @@ creation: 2024-10-23T11:04:00
 |  S  |                B                |          B           |                                  B                                   |                B                 |         B         |          b           |                                                                                |
 |  $  |                $                |          $           |                                  $                                   |                $                 |         $         |          $           |                                       $                                        |
 |     | `pop(S)` e `push(A)`, `push(B)` | `pop(A)` , `push(a)` | $a, a \to \epsilon$ tolgo $a$ solo se matcha con la stringa in input | `pop(B)` , `push(B)` , `push(b)` | $b,b\to \epsilon$ | `pop(B)` , `push(b)` | $b,b\to \epsilon$ Abbiamo finito la stringa in input matchandola completamente |
->
+>>
+>> Sia $A$
 
 Da questo possiamo derivare il seguente *corollario* : 
 >[!important] Corollario
