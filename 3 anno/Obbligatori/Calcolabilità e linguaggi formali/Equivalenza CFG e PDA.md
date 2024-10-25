@@ -90,7 +90,23 @@ creation: 2024-10-23T11:04:00
 >
 >+ $\implies$ 
 >
+>Se $A_{pq} \implies^*x$ allora $p$ con **stack** vuoto arriva in $q$ con **stack** vuoto leggendo $x$
 >
+>Dimostrazione per *induzione* sulla lunghezza della [[Derivazione]] 
+>*Caso base* : La computazione è in $1$ passo , l'unica [[Produzioni|Produzione]] possibile che genera una stringa è quella che rimane in $p$ ( $A_{pp} \to \epsilon$ ) ( questo poichè ci servono almeno due transizioni per aggiungere e poi togliere un char dallo **stack** ) 
+>
+>*Passo induttivo* : Consideriamo [[Derivazione|Derivazioni]] di lunghezza $\ge 1$ allora la [[Derivazione]] sarà fatta nel seguente modo : 
+>$$A_{pq} \implies \square \implies^* x$$ 
+>
+>$\square$ dipende da che regola della grammatica applichiamo : 
+>1. $A_{pq} \implies A_{pr}A_{rp} \implies^* x$
+>2. $A_{pq} \implies aA_{rs}b \implies^* x$
+>
+>Nel *primo caso* $x = yz$ dove $A_{pr}\implies^*y$ e $A_{rp}\implies^*z$ , queste essendo più corte dell'ipotesi di partenza ci permettono di applicare l'*ipotesi induttiva* : 
+>+ $p$ con **stack** vuoto passa ad $r$ con **stack** vuoto leggendo $y$
+>+ $r$ con **stack** vuoto passa a $q$ con **stack** vuoto leggendo $z$
+>
+>Questo implica che $p$ con **stack** vuoto passa a $q$ con **stack** vuoto leggendo $yz = x$
 >
 
 Da questo possiamo derivare il seguente *corollario* : 
