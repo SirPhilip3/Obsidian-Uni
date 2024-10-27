@@ -42,3 +42,4 @@ Il *server* ritorna il *sequence number* all'interno del massaggio di **CA** ( *
 
 >[!important] 
 >Visto che l'**ISN** deve essere incluso nell'*header* la sua dimensione deve essere limitata , è importante che il tempo necessario perchè l'**ISN** *wrappi* sia molto più grande dell'**MSL**
+
