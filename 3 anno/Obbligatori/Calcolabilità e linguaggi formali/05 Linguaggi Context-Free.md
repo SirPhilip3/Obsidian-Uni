@@ -61,7 +61,7 @@ Definizione di **Linguaggio Context-Free** :
 >	\end{algorithmic}
 >	\end{algorithm}
 >	```
->6. Parentesi bilanciate ( sequqenza arbitrariamente lunga di blocchi $a^nb^n$ ) : 
+>6. Parentesi bilanciate ( sequenza arbitrariamente lunga di blocchi $a^nb^n$ ) : 
 >	```pseudo
 >	\begin{algorithm}
 >	\begin{algorithmic}

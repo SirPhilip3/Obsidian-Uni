@@ -66,6 +66,55 @@ Se $A$ è un linguaggio **Context-Free** allora esiste un intero $p\ge 1$ ( *pum
 >	Visto che abbiamo scelto **R** nel cammino più lungo dell'[[Albero di Parsing]] , avremo che l'altezza massima del sottoalbero radicato in **R** sarà $|v|+1$ , questo potrà generare strighe di lunghezza massima $b^{|v|+1}$ ossia $p$
 
 >[!example] 
+>Dimostriamo che $B=\{a^nb^nc^n|n\ge 0\}$ non è **Context-Free**
+>
+>>[!note] 
+>>$B=\{a^nb^n|n\ge 0\}$ è un linguaggio **Context-Free**
+>
+>Assumiamo per **assurdo** che $B$ sia **Context-Free** allora deve valere il **Pumping Lemma**
+>
+>Sia $p$ la sua *pumping length* , costruiamo una stringa che contraddica il *pumping lemma* : 
+>Consideriamo $s=a^pb^pc^p$ abbiamo che $s\in B$ e $|s|\ge p$ 
+>
+>Assumiamo $s = uvxyz$ con $|vy| > 0$ e $|vxy|\le p$ 
+>
+>Ragioniamo per casi : 
+>1. $v$ contiene più di un tipo di carattere **oppure** $y$ contiene più di un tipo di carattere ( questo deve avvenire almeno una volta poichè abbiamo detto che $|vy|>0$ )
+>	In questo caso se facciamo 1 *pumping up* la stringa risultante non sta più nel *linguaggio* $B$ poichè non rispetteremo più l'ordine dei caratteri
+>>[!example] 
+>>Abbiamo la stringa $s=aaabbbccc$
+>>Prima del *pumping up* la dividiamo nel seguente modo
+>>
+|  a  |  a  | $\epsilon$ | ab  | bbccc |
+|:---:|:---:|:----------:|:---:|:-----:|
+| $u$ | $v$ |    $x$     | $y$ |  $z$  |
+>>
+>>Dopo il pumping up di $v$ e $y$
+>>
+|  a  |  aa   | $\epsilon$ | abab  | bbccc |
+|:---:|:-----:|:----------:|:-----:|:-----:|
+| $u$ | $v^2$ |    $x$     | $y^2$ |  $z$  |
+>
+>2. $v$ e $y$ contengono al più un simbolo , per esempio $v$ contine delle $a$ e $y$ contiene delle $b$ , in questo caso se facciamo un *pumping up* il numero delle $c$ sarà minore rispetto alle $a$ e $b$ portando la stringa fuori dal linguaggio
 
-o
+>[!example] 
+>Dimostriamo che $D=\{ww|w\in\{0,1\}^*\}$ non è **Context-Free**
+>
+>Assumiamo per assurdo che $D$ sia **Context-Free** allora deve valere il **Pumping Lemma** 
+>Sia $p$ la sua *pumping length* 
+>>[!warning] 
+>>Consideriamo la stringa $s=0^p10^p1$ questa $s \in D$ e $|s|\ge p$ , questa però soddisfa il *pumping lemma* poichè possiamo dividerela nel seguente modo e soddisferà il *pumping lemma* : 
+>>
+| $0\dots0$ | $0$ | $1$ | $0$ | $0\dots1$ |
+| :-------: | :-: | :-: | :-: | :-------: |
+|    $u$    | $v$ | $x$ | $y$ |    $z$    |
+>>
+>>Questa facendo *pumpin up* o *pumping down* rimane nel linguaggio $D$
+>
+>Consideriamo la stringa $s=0^p1^p0^p1^p$ questa $s\in D$ e $|s|\ge p$ 
+
+
+>
+>Osserviamo che se $s=uvxyz$ allora $vxy$ deve stare a cavallo delle due metà , 
+
 
