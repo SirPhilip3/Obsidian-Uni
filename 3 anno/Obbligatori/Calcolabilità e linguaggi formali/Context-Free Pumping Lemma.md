@@ -112,9 +112,11 @@ Se $A$ è un linguaggio **Context-Free** allora esiste un intero $p\ge 1$ ( *pum
 >>Questa facendo *pumpin up* o *pumping down* rimane nel linguaggio $D$
 >
 >Consideriamo la stringa $s=0^p1^p0^p1^p$ questa $s\in D$ e $|s|\ge p$ 
-
-
 >
->Osserviamo che se $s=uvxyz$ allora $vxy$ deve stare a cavallo delle due metà , 
-
-
+>Utilizziamo la terza condizione del *pumping lemma* : $|vxy|\le p$ 
+>
+>Osserviamo che se $s=uvxyz$ allora $vxy$ deve stare a cavallo delle due metà , infatti se la sottostringa è presente solo bella prima o seconda metà di $s$ , questa , con un *pumping up* esce dal *linguaggio* , infatti avremo che una parte della stringa sarà *sbilanciata* rispetto all'altra
+>
+>Se quindi $vxy$ sta a cavallo tra le due metà avremo che con un *pumping up* $s$ diventerà : 
+>$$uv^2xy^2z = 0^p1^i0^j1^p$$
+>Dove $i\neq p$ e $j\neq p$ , la stringa non rientrà più nel linguaggio poichè la prima parte avrà un numero divero di $1$ rispetto alla seconda e la seconda avrà un numero diverso di $0$
