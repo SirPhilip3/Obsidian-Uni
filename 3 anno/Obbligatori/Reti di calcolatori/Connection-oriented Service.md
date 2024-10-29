@@ -82,4 +82,19 @@ Abbiamo bisogno quindi di due *numeri di sequenza* , uno per ogni direzione dell
 
 Visto che abbiamo i *sequence number* possiamo utilizzare i metodi visti in precedenza per garantire integrità dei dati : **Checksum** , **go-back-n** , **selective repeat**
 
-Ci sono però delle differenze : 
+>[!note] 
+>I *numeri di sequenza* sono relativi ai **byte** non ai [[Frame]] 
+
+Per questo il *reciever* deve mantenere un **buffer** visto che la quantità di dati che può ricevere non è conosciuta in precedenza ( non ho una [[Frame]] size )
+
+Finchè il **buffer** ha spazio il *reciever* può mandare dati e via via che l'applicazione termina di processare i dati questi vengono rimossi dal **buffer** 
+
+>[!important] 
+>Gli [[Acknowledgment]] vengono mandati appena i dati vengono messi nel **buffer** non dopo che questi vengono processati
+
+>[!warning] 
+>In questo modo si perde la capacità di throttling , se l'applicazione è lenta a processare i dati il **buffer** potrebbe riempirsi e rifiutare nuovi dati
+### Window Advertising
+
+Il *reciever* aggiunge negli [[Acknowledgment]] anche la dimensione della sua *finestra di ricezione* 
+
