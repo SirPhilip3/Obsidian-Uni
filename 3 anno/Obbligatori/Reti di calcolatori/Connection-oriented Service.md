@@ -98,3 +98,14 @@ Finchè il **buffer** ha spazio il *reciever* può mandare dati e via via che l'
 
 Il *reciever* aggiunge negli [[Acknowledgment]] anche la dimensione della sua *finestra di ricezione* 
 
+Il *sender* manterrà due variabili : 
++ `swin` : la dimensione della sua *sending* window
++ `rwin` : la dimensione della *recieving* window ricevuta nell'[[Acknowledgment]] del *reciever*
+
+In ogni momento il numero di segmenti **unacknowledged** non possono essere maggiori del `min(swin,rwin)`    
+
+>[!example] 
+>![[Pasted image 20241029161159.png]]
+
+>[!note] 
+>La dimensione della *window* può anche essere 0 , in questo caso il *receiver* è completamente sovraccarico , in questo caso il *sender* non invierà nulla finchè non riceverà un 
