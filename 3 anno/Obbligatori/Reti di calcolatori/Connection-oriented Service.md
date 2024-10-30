@@ -132,4 +132,33 @@ In ogni momento il numero di segmenti **unacknowledged** non possono essere magg
 >
 >Ora visto che il counter wrappa , **A** manda ulteriori dati con *numero di sequenza* = 0 , a questo punto vengono ricevuti i dati con [[Acknowledgment]] = 1 , questo verrrà accettato da **B** poichè correttamente si aspetta un *sequence number* = 1   
 >>[!danger] 
->>Abbiamo accettato un 
+>>Abbiamo accettato un [[packet]] duplicato , il data stream viene corrotto 
+
+Dobbiamo quindi rifiutare tutti i pacchetti che arrivano oltre l'**MSL** , questo però diminuisce il **throughput** :
+
+>[!warning] 
+>Anche con *numeri di sequenza* molto grandi , se abbiamo un network molto veloce , questi vrapperano in un tempo molto minore dell'**MSL**
+
+>[!example]
+>Supponiamo di avere un network con velocità di $30Gb/s$  e i *sequence number* sono formati da $32$ bit , visto che ogni sequenza [[Acknowledgment|Ack's]] un byte allora il *sequence number* wrapperà ogni : 
+>$$\frac{2^{32} \times 8}{30 \times 10^9} \simeq 1s$$
+>Questo è molto minore dell'**MSL** 
+
+Quando la capacità è molto alta i ritardi sono molto piccoli quindi l'**MSL** deve essere molto più basso ( nei protocolli moderni ogni [[Acknowledgment]] non indicizza un solo byte ma un multiplo di byte )
+
+## Connection Release
+
+Visto che i dati vengono trasmessi in entrambe le direzioni , entrambi gli *endpoint* devono essere al corrente che la connessione è stata terminata 
+### Graceful Release
+
+Entrambi gli *endpoint* mandano un [[packet]] di disconnessione , **DR** 
+
+>[!note] 
+In questo caso gli *endpoint* si assicurano di avere ricevuto tutti i dati correttamente prima di terminare la connessione 
+
+![[Pasted image 20241030094345.png]]
+### Abrupt Release
+
+Avviene quando la chiusura della connessione è dettata da un evento esterno ( ex  shutdown dell'*endpoint* etcc ) , in questo i dati in transito al momento della disconnessione verranno persi 
+
+![[Pasted image 20241030094702.png]]
