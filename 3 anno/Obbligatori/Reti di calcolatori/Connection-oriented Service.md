@@ -108,4 +108,28 @@ In ogni momento il numero di segmenti **unacknowledged** non possono essere magg
 >![[Pasted image 20241029161159.png]]
 
 >[!note] 
->La dimensione della *window* può anche essere 0 , in questo caso il *receiver* è completamente sovraccarico , in questo caso il *sender* non invierà nulla finchè non riceverà un 
+>La dimensione della *window* può anche essere 0 , in questo caso il *receiver* è completamente sovraccarico , in questo caso il *sender* non invierà nulla finchè non riceverà un [[Acknowledgment]] con una dimensione *positiva* 
+>>[!warning] 
+>>Se viene perso questo [[Acknowledgment]] potremmo entrare in un deadlock
+>
+>Per questo il *sender* manda periodicamente dati vecchi in modo da forzare il *reciever* ad inviare degli [[Acknowledgment]] con la nuova *window size*
+>
+
+### Sequence Number Wrap
+
+>[!error] 
+>
+>Consideriamo un *sequence number* di soli $2$ bit , questo wrapperà quando il counter arriva a $3$ 
+>**B** sta usando *selective repeat* ( accetta dati out-of-order ma manda [[Acknowledgment]] comulativi )
+>
+>![[Pasted image 20241030090808.png]]
+>
+>**A** manda un [[packet]] con *numero di sequenza* $1$ , questo però ritarda ad arrivare a **B** 
+>
+>Nel frattempo riceve dati con *numero di sequenza* fino al $3$ , **B** però non avendo ricevuto ancora i dasti con numero di sequenza $1$ manda l'[[Acknowledgment]] `C(OK,0)` 
+>
+>**A** rimanda i dati con *numero di sequenza* = 1 , **B** muove quindi la finestra in avanti e manda un [[Acknowledgment]] per tutti i dati ricevuti con *numero di sequenza* fino al $3$
+>
+>Ora visto che il counter wrappa , **A** manda ulteriori dati con *numero di sequenza* = 0 , a questo punto vengono ricevuti i dati con [[Acknowledgment]] = 1 , questo verrrà accettato da **B** poichè correttamente si aspetta un *sequence number* = 1   
+>>[!danger] 
+>>Abbiamo accettato un 
