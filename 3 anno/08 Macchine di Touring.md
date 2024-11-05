@@ -71,4 +71,22 @@ creation: 2024-11-05T11:40:00
 >La computazione deve seguire le seguenti **regole** : 
 >1. Sia $M$ nella configurazione $ua\textcolor{orange}{q_i}bv$ e sia $\delta(q_i,b)=(q_j,c,L)$ allora la prossima configurazione sarà : $u\textcolor{orange}{q_j}acv$
 >2. Sia $M$ nella configurazione $ua\textcolor{orange}{q_i}bv$ e sia $\delta(q_i,b)=(q_j,c,R)$ allora la prossima configurazione sarà : $uac\textcolor{orange}{q_j}v$
+>3. Sia $M$ nella configurazione $\textcolor{orange}{q_i}bv$ e sia $\delta(q_i,b)=(q_j,c,L)$ allora la prossima configurazione sarà : $\textcolor{orange}{q_j}cv$
+>4. Sia $M$ nella configurazione $\textcolor{orange}{q_i}bv$ e sia $\delta(q_i,b)=(q_j,c,R)$ allora la prossima configurazione sarà : $c\textcolor{orange}{q_j}v$
+>
+>Una **MdT** **accetterà** un input $w$ se e solo se esistono delle configurazioni $C_1\dots C_k$ tali che : 
+>1. $C_1$ è la configurazione iniziale $q_0 w$
+>2. $C_k$ è una configurazione *accettante* $u q_{accept} v$ per qualche $u,v \in \Gamma^*$
+>3. $\forall i , C_i$ passa in $C_{i+1}$ secondo le regole di computazione date 
 
+>[!note]
+>Visto che $q_{accept}$ e $q_{reject}$ sono stati finali , possiamo riscrivere la funzione di transizionen le seguente modo : $\Gamma = [Q\backslash\{q_{accept},q_{reject}\}]\times \Gamma \to Q \times \Gamma\times\{L,R\}$ 
+
+>[!important] Linguaggio di Touring
+>Un linguaggio $A$ si dive **Touring riconoscibile** se e solo se esiste una **MdT** $M$ tale che $L(M)=A$
+
+>[!note] 
+>Dato un input $w$ una **MdT** $M$ ha solo 3 possibili risultati : 
+>1. $M$ *accetta* $w$
+>2. $M$ *rifiuta* $w$
+>3. $M$ *non termina* ( va in loop quando eseguito su $w$ )
