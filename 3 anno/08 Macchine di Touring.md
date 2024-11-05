@@ -49,5 +49,26 @@ creation: 2024-11-05T11:40:00
 >+ $\delta$ : $Q \times \Gamma \to Q \times \Gamma \times \{L,R\}$ è la funzione di transizione , ossia dato uno stato $Q$ e un simbolo del nastro $\Gamma$ produrremo un nuovo stato $Q$ , un nuovo simbolo del nastro $\Gamma$ e la direzione in cui si muove la testina : $L$ ( sinistra ) o $R$ ( destra )
 >+ $q_0 \in Q$ : è lo stato iniziale
 >+ $q_{accept} \in Q$ : è lo stato di accettazione 
->+ $q_{reject} \in Q$ : è lo stato di accettazione  
+>+ $q_{reject} \in Q$ : è lo stato di rifiuto, con $q_{reject} \neq q_{accept}$ 
+
+>[!note] 
+>Le **MdT** sono *deterministiche* , si dimostrerà che **MdT** non deterministiche equivalgono a **MdT** deterministiche
+
+>[!important] Computazione
 >
+>Possiamo descrivere un momento nella computazione tramite : 
+>+ lo stato interno
+>+ il contenuto del nastro
+>+ la posizione della testina
+>  
+>>[!example] 
+>>$001q_3\textcolor{red}{0}1$ : la testina sta nella quarta posizione e è nello stato $q_3$ 
+>
+>In generale una configurazione ha la forma $uqv$ dove $u$ e $v$ sono stringhe $\in \Gamma^*$  e $q\in Q$
+>
+>Una **MdT** computa passando da una configurazione a quella sucessiva secondo quanto definito da $\delta$ 
+>
+>La computazione deve seguire le seguenti **regole** : 
+>1. Sia $M$ nella configurazione $ua\textcolor{orange}{q_i}bv$ e sia $\delta(q_i,b)=(q_j,c,L)$ allora la prossima configurazione sarà : $u\textcolor{orange}{q_j}acv$
+>2. Sia $M$ nella configurazione $ua\textcolor{orange}{q_i}bv$ e sia $\delta(q_i,b)=(q_j,c,R)$ allora la prossima configurazione sarà : $uac\textcolor{orange}{q_j}v$
+
