@@ -101,4 +101,34 @@ creation: 2024-11-05T11:40:00
 >Facciamo un esempio di rappresentazione grafica di una **Macchina di Touring** 
 >
 >$C=\{w\#w|w\in {0,1}^*\}$ , dare un **MdT** $M$ tale che $L(M)=C$
+![[MdT1.excalidraw]]
 
+>[!example] 
+>**MdT** per $\{0^{2^n}|n \ge 0\}$ , ossia le stringhe di $0$ con lunghezza uguale a potenze di 2 
+>
+>>[!info] Idea
+>>
+>>Ogni passata della testina sul nastro cancelliamo metà degli $0$
+>>
+| 0   | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| x   | 0   | x   | 0   | x   | 0   | x   | 0   |
+| x   | x   | x   | 0   | x   | x   | x   | 0   |
+| x   | x   | x   | x   | x   | x   | x   | 0   |
+>>
+>
+>Su input $w$ :
+>1. Scorri il nastro da sinistra a destra cancellando uno $0$ si uno no
+>2. Se tale passata ha trovato un solo $0$ *accetta* $w$
+>   Se tale passata ha trovato una quantità dispari di $0$ ( $>1$ ) *reject*
+>3. Riavvolgi il nastro a sinsitra e riparti dallo step $1$
+>>[!note] 
+>>1. Visto che non abbiamo un marker di inizio nastro all'inizio shifto tutto l'input a destra e metto un *blank* ( $\sqcup$ ) in prima posizione
+>>2. Sostituisco il primo simbolo con *blank* e in coda aggiungo il primo simbolo presente nella stringa di input
+>>3. Sostituico con *blank* e passo ad uno stato che conta la presenza di uno zero , questo sarà il caso base , se rimangono altri $0$ dopo *reject* , altrimenti se rimane solo il *blank* *accept*
+
+## Varianti della MdT
+
+![[Macchina di Touring con Stay]]
+
+![[Macchina di Touring Multinastro]]
