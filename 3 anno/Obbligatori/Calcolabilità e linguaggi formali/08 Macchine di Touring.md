@@ -132,3 +132,5 @@ creation: 2024-11-05T11:40:00
 ![[Macchina di Touring con Stay]]
 
 ![[Macchina di Touring Multinastro]]
+
+![[Macchina di Touring non Deterministica]]
