@@ -134,3 +134,5 @@ creation: 2024-11-05T11:40:00
 ![[Macchina di Touring Multinastro]]
 
 ![[Macchina di Touring non Deterministica]]
+
+![[Macchina di Touring Enumeratore]]
