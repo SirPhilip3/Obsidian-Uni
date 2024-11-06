@@ -136,3 +136,7 @@ creation: 2024-11-05T11:40:00
 ![[Macchina di Touring non Deterministica]]
 
 ![[Macchina di Touring Enumeratore]]
+
+## Tesi di Church-Touring
+
+![[Tesi di Chruch-Touring]]
