@@ -140,3 +140,26 @@ creation: 2024-11-05T11:40:00
 ## Tesi di Church-Touring
 
 ![[Tesi di Chruch-Touring]]
+
+>[!important] Teorema
+>Se non possiamo dare una **MdT** che risolve un *problema* allora non possiamo nemmeno scriverene un algoritmo risolutivo
+
+>[!example] 
+>Problema delle radici intere di un polinomio ( [10° problema di **Hilbert**](https://en.wikipedia.org/wiki/Hilbert%27s_tenth_problem) )
+>
+>Definire un algoritmo che dato un polinomio ( ex $x^2 - y^2$ ) determina se esso ammette o meno una [[Radice Intera di un Polinomio|Radice Intera]]
+>
+>E' impossibile dimostrare che tale algoritmo non esiste 
+
+>[!example] 
+>Possiamo ridurre il problema precedente al seguente : 
+>
+>Definire un algoritmo che dato un polinomio in *una* sola *variabile* determina se esso ammette o meno una [[Radice Intera di un Polinomio|Radice Intera]]
+>
+>Per definire un **MdT** dobbiamo tradurre il problema in un [[Linguaggio]] da riconoscere , definiamo quindi : 
+>$$A = \{<p>|\ p\text{ è un polinomio in $x$ con radice intera}\}$$
+>>[!note] 
+>>$<p>$ è una funzione che trasforma i polinomi in una loro rappresentazione in forma di *stringa*
+>>>[!example] 
+>>>Possiamo utilizzare il seguente encoding 
+
