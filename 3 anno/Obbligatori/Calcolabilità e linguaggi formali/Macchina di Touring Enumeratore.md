@@ -68,8 +68,8 @@ Un **Enumeratore** :
 
 >[!important] Linguaggio di un **Enumeratore**
 >
->$$\{w\in \Sigma^* | \exists u,v \in \Gamma^* \text{ t.c. } (u\textcolor{orange}{q_i}v,w) \text{ è raggiungibile da } (q_0,\epsilon) \}$$
+>$$\{w\in \Sigma^* | \exists u,v \in \Gamma^* \text{ t.c. } (u\textcolor{orange}{q_p}v,w) \text{ è raggiungibile da } (q_0,\epsilon) \}$$
 >
->Ossia saranno quelle stringhe tale per cui esiste una *configurazione* che 
+>Ossia saranno quelle stringhe tale per cui esiste una *configurazione* per cui la *configurazione* di stapa è raggiungibile dalla *configurazione* iniziale
 
 
