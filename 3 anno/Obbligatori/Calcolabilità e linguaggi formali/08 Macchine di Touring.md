@@ -161,5 +161,27 @@ creation: 2024-11-05T11:40:00
 >>[!note] 
 >>$<p>$ è una funzione che trasforma i polinomi in una loro rappresentazione in forma di *stringa*
 >>>[!example] 
->>>Possiamo utilizzare il seguente encoding 
+>>>Possiamo utilizzare il seguente encoding : $3x^2- 5x +3 \to \text{"+3 | -5 | +3"}$ in cui semplicemente rappresento i suoi coefficenti separati da $|$ 
+>
+>Questo ammette soluzione algoritimica se e solo se $A$ è **Decidibile** 
+>
+>Proviamo a costruire un **Decisore** per $A$
+>>[!note]   
+>>Per la [[Tesi di Chruch-Touring]] possiamo dare lo pseudocodice della **MdT** $M$
+>
+>$M$ = sia in input $<p>$ : 
+>1. Per tutti gli $x = 0,1,-1,2,-2,\dots$ ( per tutti i numeri interi )
+>2. Calcola il valore di $p(x)$
+>3. Se $p(x) = 0$ ritorna *accept*
+>
+>>[!warning] 
+>>Questo però non è un **Decisore** perchè se il polinomio non ha una [[Radice Intera di un Polinomio|Radice Intera]] allora questo algoritmo andrà in loop
+>
+>Se riuscissimo a mettere dei limiti alla computazione allora diventerebbe un **Decisore**
+>
+>E' dimostrabile che la [[Radice Intera di un Polinomio|Radice Intera]] , se esiste , è compresa tra : $-k \frac{C_{max}}{C_1}$ e $+k \frac{C_{max}}{C_1}$ dove : 
+>+ $C_{max}$ : è il coefficente di massimo valore assoluto
+>+ $C_1$ : è il coefficente di grado massimo
+
+
 
