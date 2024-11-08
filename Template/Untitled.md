@@ -1,3 +1,0 @@
----
-creation: {{date}}T{{time}}
----
