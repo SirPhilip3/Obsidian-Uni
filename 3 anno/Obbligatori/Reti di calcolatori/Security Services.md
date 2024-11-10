@@ -6,7 +6,7 @@ Definisce 6 topic principali in cui dedicare risorse per un sistema sicuro :
 + ![[Data authentication]]
 + ![[Data integrity]]
 + ![[Confidentiality]]
-+ **Access control**
++ ![[Access control]]
 + **Non repudiation**
 
 Un ulteriore tema è l'**anonymity** 
