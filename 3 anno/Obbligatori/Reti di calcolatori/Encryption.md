@@ -24,9 +24,21 @@ creation: 2024-11-11T09:16:00
 >+ Utilizza protocolli standard 
 >+ Consenti di utilizzare il servizio solo se supportano l'ultima versione del protocollo
 
+# Hash Functions
 
 ![[Hash Functions]]
 
+## HMAC
+
+>[!danger] Limitazioni
+>
+>![[Pasted image 20241111124718.png]]
+>
+>In questo caso **Eve** può intercettare il messaggio con `plaintext|digest` , creare un nuovo messaggio $M'$ , coputarne l'hash $D'$ ed inviare quel messaggio a **Bob** che , visto che $H(M') = D'$ accetterà il messaggio
+>
+>**Eve** ha rotto [[Data integrity]]
+
+![[HMAC]]
 
 # Encryption in Transit
 
@@ -48,4 +60,3 @@ Solo **Alice** e **Bob** conoscono la chiave di cifratura del messaggio , quindi
 >**E2E** ha dei tradeoff : 
 >+ Puoi utilizzare solo un dispositivo alla volta ( questo perchè la key è mantenuta nel device ) 
 >+ Visto che il server non mantiene i messaggi in chiaro non può fornire servizi ai vari client , tutto deve essere fatto on device
-

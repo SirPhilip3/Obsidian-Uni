@@ -1,5 +1,7 @@
 ---
 creation: 2024-11-11T10:13:00
+aliases:
+  - Funzione di Hashing
 ---
 >[!important] Definizione
 >
@@ -20,5 +22,12 @@ Attraverso le funzioni di **Hashing** possiamo ottenere [[Data integrity]] :
 >>
 >>Per definizione differenti input mapperanno negli stessi output ( visto che l'input ha dimensione arbitraria ) , quando per due messaggi differenti $M$ e $M'$ abbiamo che $H(M)=H(M')=D$  si dice che la funzione hash ammette delle **collisioni**
 >
->4. Dato $D$ , trovare $X$ in modo che $H(X)=D$ deve essere [[Computationally Impossible]]
->5. Dato $X$ , trovare $Y$
+>4. Dato $D$ , trovare $X$ in modo che $H(X)=D$ deve essere [[Computationally Impossible]] ( questo viene garantito by design visto che la funzione può accettare qualsiasi input nella traduzione si perderanno molte informazioni rigurado il messaggio originale )
+>>[!warning] 
+>>
+>>Un attacco bruteforce può essere *computazionalmente fattibile* se possiamo raffinare il *digest* , ossia se data una funzione $d(D,D')$ che calcola la distanza tra due stringhe binarie è vero che $d(D,D'') < d(D,D')$ allora $d(M,M'') < d(M,M')$ , questo non deve essere possibile 
+>>
+>5. Dato $X$ , trovare $Y$ in modo che $H(X)=H(Y)$ deve essere [[Computationally Impossible]] ( **Weak Collision resistance** )
+>>[!important] 
+>>Il **digest** non deve rivelare nessuna infomazione riguradante il messaggio iniziale , ossia se troviamo un documento $M'$ con hash $D$ simile non significa che sia simile a $M$ 
+>1. Trovare due $X$ e $Y$ per cui $H(X)=H(Y)$ deve essere [[Computationally Impossible]] ( **Strong Collision resistance** )
