@@ -40,6 +40,10 @@ creation: 2024-11-11T09:16:00
 
 ![[HMAC]]
 
+## CRAM-MD5
+
+![[CRAM-MD5]]
+
 # Encryption in Transit
 
 ![[Pasted image 20241111091838.png]]
