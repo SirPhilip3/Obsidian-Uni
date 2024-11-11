@@ -19,3 +19,4 @@ Per studiare la sicurezza di un sistema si utilizza il seguente **modello** :
 >[!warning] 
 >
 >La sicurezza di un sistema è sempre un *trade-off* tra usabilità / costo del sistema e sicurezza , infatti più aggiungiamo meccanismi di sicurezza più sarà complesso per l'utente utilizzare il servizio e più costerà al mantenitore del servizio 
+

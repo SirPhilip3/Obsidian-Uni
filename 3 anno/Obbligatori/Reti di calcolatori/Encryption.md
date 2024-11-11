@@ -25,7 +25,6 @@ creation: 2024-11-11T09:16:00
 >+ Consenti di utilizzare il servizio solo se supportano l'ultima versione del protocollo
 
 
-
 ![[Hash Functions]]
 
 
