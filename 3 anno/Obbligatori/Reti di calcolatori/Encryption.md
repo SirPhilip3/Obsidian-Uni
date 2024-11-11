@@ -44,6 +44,9 @@ creation: 2024-11-11T09:16:00
 
 ![[CRAM-MD5]]
 
+# Symmetric Key Encryption
+
+
 # Encryption in Transit
 
 ![[Pasted image 20241111091838.png]]
