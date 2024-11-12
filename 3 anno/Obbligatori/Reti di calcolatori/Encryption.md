@@ -44,9 +44,16 @@ creation: 2024-11-11T09:16:00
 
 ![[CRAM-MD5]]
 
+# Base Encryption Operations
+
+**Encryption** si basa su deu principali operazioni : 
++ ![[Sostituzione]]
++ ![[Trasposizione]] 
 # Symmetric Key Encryption
 
+Un esempio di funzione di *encryption* che funziona a chiave simmetrica è **AES**
 
+Quando **Alice** vuole mandare un messaggio a **Bob** usa **AES** per criptare un messaggio $M$ , il messaggio diventerà quindi : $C=AES(K,M)$  , quando **Bob** riceve il messaggio esso , avendo la chiave $K$ , può ritoranre al messaggio originale nel seguente modo : $M=AES(K,C)$  
 # Encryption in Transit
 
 ![[Pasted image 20241111091838.png]]
