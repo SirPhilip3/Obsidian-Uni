@@ -75,7 +75,7 @@ Quando **Alice** vuole mandare un messaggio a **Bob** usa **AES** per criptare u
 
 ## [[Data integrity|Integrity]] , [[Secrecy]] and [[Data authentication|Authentication]]
 
-Una volta che **Alice** e **Bob** si sono messi daccordo su una *chiave* condivisa $K$ possono usare la stessa $K$ sia per [[HMAC]] che per [[Encryption]]  
+Una volta che **Alice** e **Bob** si sono messi daccordo su una *chiave* condivisa $K$ possono usare la stessa $K$ sia per [[HMAC]] che per [[11 Encryption]]  
 
 ![[Pasted image 20241112105215.png]]
 
@@ -95,14 +95,14 @@ Una volta che **Alice** e **Bob** si sono messi daccordo su una *chiave* condivi
 
 ### Limitations
 
-Assumiamo che [[HMAC]] e [[Encryption]] siano robuste
+Assumiamo che [[HMAC]] e [[11 Encryption]] siano robuste
 Assumiamo inoltre che **Alice** e **Bob** possano condividere la *chiave condivisa* tra di loro
 
 >[!note] 
->Realmente vengono utilizzate due chiavi differenti , una per [[Encryption]] e una per [[HMAC]] 
+>Realmente vengono utilizzate due chiavi differenti , una per [[11 Encryption]] e una per [[HMAC]] 
 
 >[!warning] 
->E' possibile fare ancora *Off-line brute force*
+>E' possibile fare ancora *Off-line brute force* 
 # Encryption in Transit
 
 ![[Pasted image 20241111091838.png]]
