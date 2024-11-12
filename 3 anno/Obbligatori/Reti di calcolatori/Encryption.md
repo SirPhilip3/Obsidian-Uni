@@ -57,11 +57,52 @@ creation: 2024-11-11T09:16:00
 # Perfect Cipher
 
 ![[One-Time-Pad]]
+
+# Modern Algorithms
+
+Algortimi moderni cercano di mixare le due funzioni primitive di [[Trasposizione]] e [[Sostituzione]] in modo da arrivare ad un algoritmo con le seguenti propietà : 
++ La lunghezza delle chiave è fissa e non deve essere lunga come il `plaintext`
++ La correlazione tra $M$ e $C$ è così poca che è [[Computationally Impossible]] recuperare $M$ da $C$ 
+
+Algoritmi moderni applicano multiple iterazione di [[Trasposizione]] e [[Sostituzione]] in modo che , ad ogni iterazione venga tolta in pò di correlazione 
+
+![[Feistel Scheme]]
 # Symmetric Key Encryption
 
 Un esempio di funzione di *encryption* che funziona a chiave simmetrica è **AES**
 
 Quando **Alice** vuole mandare un messaggio a **Bob** usa **AES** per criptare un messaggio $M$ , il messaggio diventerà quindi : $C=AES(K,M)$  , quando **Bob** riceve il messaggio esso , avendo la chiave $K$ , può ritoranre al messaggio originale nel seguente modo : $M=AES(K,C)$  
+
+## [[Data integrity|Integrity]] , [[Secrecy]] and [[Data authentication|Authentication]]
+
+Una volta che **Alice** e **Bob** si sono messi daccordo su una *chiave* condivisa $K$ possono usare la stessa $K$ sia per [[HMAC]] che per [[Encryption]]  
+
+![[Pasted image 20241112105215.png]]
+
+**Step-by-step** : 
+**Alice**
+1. **Alice** usa una schema a *chiave simmetrica* ( **AES** in questo caso ) per trasformare un `plaintext` in `ciphertext` , la chiave deve essere condivisa anche con **Bob**
+2. Il `ciphertext` viene passato attraverso una [[HMAC]] che usa la *chiave condivisa* , il risultato è il `digest` del `ciphertext`
+3. `digest` e `ciphertext` vengono inviate a **Bob**
+
+**Bob**
+4. **Bob** usa il `ciphertext` , assieme alla *chiave condivisa* per produrre attraverso [[HMAC]] un candidato `digest` 
+5. Se il candidato `digest` corrisponde con il `digest` arrivato assieme al `ciphertext` allora significa che il `plaintext` non è stato manipulato in transito
+6. **Bob** utilizza **AES** per ritornare al `plaintext` grazie alla *chiave condivisa* 
+
+>[!note] 
+>Visto che nessuno tranne **Bob** e **Alice** conosce la *chiave condivisa* siamo sicuri che la connessione è *segreta*
+
+### Limitations
+
+Assumiamo che [[HMAC]] e [[Encryption]] siano robuste
+Assumiamo inoltre che **Alice** e **Bob** possano condividere la *chiave condivisa* tra di loro
+
+>[!note] 
+>Realmente vengono utilizzate due chiavi differenti , una per [[Encryption]] e una per [[HMAC]] 
+
+>[!warning] 
+>E' possibile fare ancora *Off-line brute force*
 # Encryption in Transit
 
 ![[Pasted image 20241111091838.png]]
