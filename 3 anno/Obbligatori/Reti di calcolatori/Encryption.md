@@ -49,6 +49,14 @@ creation: 2024-11-11T09:16:00
 **Encryption** si basa su deu principali operazioni : 
 + ![[Sostituzione]]
 + ![[Trasposizione]] 
+>[!important] 
+>
+>Un *cifraio* funziona solo se non c'è nessuna correlazione statistica tra $C$ e $M$ 
+>
+>La [[Trasposizione]] e [[Sostituzione]] hanno abbastanza correlazione per poter rompere il *cifraio* 
+# Perfect Cipher
+
+![[One-Time-Pad]]
 # Symmetric Key Encryption
 
 Un esempio di funzione di *encryption* che funziona a chiave simmetrica è **AES**

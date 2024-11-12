@@ -9,6 +9,9 @@ Dato $K$ come un numero compreso tra $1$ e $25$ , questa sarà la chiave dell'al
 3. Aggiungi $K$ a $N_X$ : $N_X+K \mod{25}$
 4. Rimpiazza $X$ con la lettera dell'alfabeto relativa a $N_X+K \mod{25}$ 
 
+>[!example] 
+>![[Pasted image 20241112092208.png]]
+
 Per *decifrare* il testo facciamo lo stesso solo sottraendo $K$ invece di sommarlo
 
 >[!warning] 
