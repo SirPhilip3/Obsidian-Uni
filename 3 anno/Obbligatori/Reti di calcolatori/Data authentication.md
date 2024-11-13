@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-10T17:28:00
+publish: true
 ---
 Dividiamo l'autenticazione dei dati in due principali sottoservizi
 

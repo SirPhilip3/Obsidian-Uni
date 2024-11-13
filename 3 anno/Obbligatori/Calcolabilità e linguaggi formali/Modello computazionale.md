@@ -2,6 +2,7 @@
 creation: 2024-09-21T21:26:00
 tags:
   - Definizione
+publish: true
 ---
 Un *modello computazionale* è una macchina che ha un *input* ed un *output* 
 

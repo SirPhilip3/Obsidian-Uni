@@ -1,3 +1,6 @@
+---
+publish: true
+---
 __Git__ is a __VCS__ (Version Control System)
 
 __VCS__ have usually a central server where source code is shared, eache changes to the source code needs to be committed locally, pushed from the server and pulled from the server

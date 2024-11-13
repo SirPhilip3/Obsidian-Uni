@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-14T13:22:00
+publish: true
 ---
 In comunicazioni *multi-hop* ( ossia che facciamo più salti per arrivare a destinazione ) il **bottleneck** è il link pi lento che dobbiamo attraversare 
 

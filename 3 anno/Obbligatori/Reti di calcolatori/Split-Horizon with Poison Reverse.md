@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-22T17:03:00
+publish: true
 ---
 Lo *Split-Horizon with Poison Reverse* è una variante del [[DV Routing]] 
 

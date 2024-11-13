@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-02T09:01:00
+publish: true
 ---
 L'*internet checksum* è utilizzata dall'**Internet Protocol** ( **IP** ) 
 

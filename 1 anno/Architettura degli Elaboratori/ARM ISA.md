@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # ARMv8-A ISA
 
 Supporta 3 istruction set:

@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-06T09:48:00
+publish: true
 ---
 In una **MdT** con *stay* la testina non è costretta a sportarsi solo a sinistra $L$ o destra $R$ ma può anche stare ferma ( $S$ )
 

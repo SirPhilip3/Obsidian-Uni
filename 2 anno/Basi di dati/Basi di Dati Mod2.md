@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Normalizzazione
 
 La teoria della *normalizzazione* ci permette di rispondere in modo rigoroso alle seguenti domande:

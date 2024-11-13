@@ -2,6 +2,7 @@
 creation: 2024-10-02T11:04:00
 tags:
   - Teorema
+publish: true
 ---
 $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tale che $L(R)=A$
 

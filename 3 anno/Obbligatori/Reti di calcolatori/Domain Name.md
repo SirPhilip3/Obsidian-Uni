@@ -2,6 +2,7 @@
 creation: 2024-10-30T10:07:00
 tags:
   - Definizione
+publish: true
 ---
 Un *domain name* è una stringa di che può contenere lettere minuscole , `-` e punti
 

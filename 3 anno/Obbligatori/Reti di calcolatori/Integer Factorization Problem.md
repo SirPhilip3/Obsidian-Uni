@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-12T11:39:00
+publish: true
 ---
 Non c'è una soluzione **polinomiale** conoscita per fattorizzare grandi numeri 
 

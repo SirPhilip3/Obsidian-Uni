@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-24T14:17:00
+publish: true
 ---
 Identifica due differenti ruoli :
 + *Server* : colui che offre un servizio

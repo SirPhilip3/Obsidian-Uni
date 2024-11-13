@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-13T09:05:00
+publish: true
 ---
 **RSA** ( **Rivest-Shamir-Adelmann** ) è l'approccio più conosciuto alla **public key encryption**
 
@@ -38,3 +39,15 @@ $d$ è la *private key*
 >Ora assumiamo di avere il seguente $M=00010100$ , ossia $20$ in decimale
 >**Encryption** sarà : $C=20^{13} \mod{77} = 69$
 >**Decryption** sarà : $M = 69^{37} \mod{77}=20$
+
+Le **Proprietà** che otteniamo sono : 
+1. Risulta essere computazionalmente efficente generare `Pub_A` e `Priv_A`
+2. Dato `Pub_A` è computazionalmente efficente generare $C=E(\text{Pub\_A}, M)$
+3. Dato `Priv_A` è computazionalmente efficente generare $M = D(\text{Priv\_A},C)$ 
+4. Dato solo `Pub_A` è [[Computationally Impossible]] derivare `Priv_A`
+5. Dato solo `Pub_A` e $C$ è [[Computationally Impossible]] derivare $M$ 
+
+>[!note] 
+>
+>Rompere **RSA** è considerato [[Computationally Impossible]] per via della *hardness* di  invertire $d\cdot e \mod{\phi(n)}$ ( [[Integer Factorization Problem]] ) per *key* abbastanza lunghe ( più lunghe di 1024 bit )
+

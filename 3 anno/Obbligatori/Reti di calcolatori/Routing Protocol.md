@@ -2,6 +2,7 @@
 creation: 2024-10-21T12:44:00
 tags:
   - Definizione
+publish: true
 ---
 Un *protocollo di routing* è un insieme di specifiche ( formato dei [[packet]] , *macchine a stati* etcc ) che sono usate per implementare gli [[Algoritmi]] presenti nei *router*
 

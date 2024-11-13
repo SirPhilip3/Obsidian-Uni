@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-30T12:49:00
+publish: true
 ---
 Inseriremo un bit addizionale ogni volta che troviamo una sequenza simile al *frame* 
 

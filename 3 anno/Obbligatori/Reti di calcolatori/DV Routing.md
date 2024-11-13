@@ -2,6 +2,7 @@
 creation: 2024-10-22T10:43:00
 tags:
   - Algoritmo
+publish: true
 ---
 In *Distance Vector routing* assumiamo che ogni *link* abbia un costo ( questo può essere il delay , l'inverso della capacità etcc , il costo più semplice è *unitario* per ogni link ) , questo rappresenta la **penalità** che il [[packet]] subisce per passare da quel *link* 
 

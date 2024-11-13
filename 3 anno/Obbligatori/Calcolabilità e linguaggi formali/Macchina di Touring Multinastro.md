@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-06T10:07:00
+publish: true
 ---
 Una **MdT** *multinastro* avrà $k>1$ nastri : 
 + Riceve l'input sul *primo* nastro

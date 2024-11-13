@@ -3,6 +3,7 @@ creation: 2024-09-27T12:27:00
 tags:
   - Corollario
   - Dimostrazione
+publish: true
 ---
 >[!important] 
 >Un [[Linguaggio Formale]] $A$ è **regolare** se e solo se esiste un [[NFA]] che lo riconosce

@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-18T10:56:00
+publish: true
 ---
 Lo *stack* *TCP/IP* è formato da 4 [[Layers]] :
 + ![[Application Layer]]

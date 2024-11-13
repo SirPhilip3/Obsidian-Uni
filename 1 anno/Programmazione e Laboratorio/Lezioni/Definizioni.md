@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 **[[Tipi]] di dato**: Un tipo di dato (o semplicemente tipo) è un insieme di valori sul quale sono definite delle operazioni
 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 ## Passaggio per riferimento (o indirizzo)
 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-23T11:04:00
+publish: true
 ---
 >[!important] Teorema
 >Un linguaggio $A$ è [[05 Linguaggi Context-Free|Context Free]] se e solo se esiste un [[06 Automi a Pila|PDA]] $P$ tale che $L(P)=A$ 

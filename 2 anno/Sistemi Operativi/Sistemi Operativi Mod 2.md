@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Comunicazione tra processi
 
 I processi all'interno di un sistema operativo sono sempre in competizione per l'*utilizzo delle risorse*difatto la *gestione delle risorse* è il compito principale del sistema operativo 

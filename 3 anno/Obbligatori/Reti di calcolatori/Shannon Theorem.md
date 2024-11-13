@@ -3,6 +3,7 @@ creation: 2024-09-20T23:30:00
 tags:
   - Definizione
   - Teorema
+publish: true
 ---
 Il teorema di *Shannon* introduce un limite alla capacità in $bit/s$ tenendo conto del [[Noise]] 
 

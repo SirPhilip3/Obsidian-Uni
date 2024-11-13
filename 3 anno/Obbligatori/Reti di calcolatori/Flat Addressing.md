@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-16T09:20:00
+publish: true
 ---
 In questo caso tutti gli *address* sono indipendenti l'uno dall'altro , per esempio dipendono da un componente hardware 
 

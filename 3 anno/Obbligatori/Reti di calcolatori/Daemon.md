@@ -2,6 +2,7 @@
 creation: 2024-10-21T12:52:00
 tags:
   - Definizione
+publish: true
 ---
 Un *routing daemon* è il software che runna sul *router* ed implementa il [[Routing Protocol]] 
 

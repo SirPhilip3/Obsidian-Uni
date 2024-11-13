@@ -4,6 +4,7 @@ tags:
   - Definizione
 aliases:
   - Produzione
+publish: true
 ---
 Le *produzioni* o *regole* sono un sistema di riscrittura di un certo carattere
 

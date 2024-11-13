@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 Gli **operatori di flusso** `>>` e `<<` sono  indipendenti dal tipo della variabile (overloading) e sono concatenabili
 

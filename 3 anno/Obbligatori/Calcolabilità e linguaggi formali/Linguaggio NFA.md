@@ -2,6 +2,7 @@
 creation: 2024-09-25T10:45:00
 tags:
   - Definizione
+publish: true
 ---
 Sia $N = (Q\ , \sum\ ,\delta\ ,q_0\ ,F\ )$ un [[NFA]] e sia $w$ una stringa costruita con l'alfabeto $\sum$ 
 

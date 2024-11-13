@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-21T21:04:00
+publish: true
 ---
 Un **DFA** ( *Deterministic Finite state Automa* ) è un ![[Modello computazionale]]
  Un *DFA* ha un una quantità finita di memoria , limitata dal numero di stati dell'automa

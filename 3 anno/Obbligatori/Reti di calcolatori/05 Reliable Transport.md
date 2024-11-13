@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-02T09:38:00
+publish: true
 ---
 ![[Ridondanza Tripla]]
 

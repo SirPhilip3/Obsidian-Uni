@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-24T09:51:00
+publish: true
 ---
 Il [[Transport Layer]] deve fare delle assunzioni sul [[07 Network Layer|Network Layer]] ( quello che usiamo su internet è *connectionless* ( non viene formata una connessione formale tra due host ) e *unreliable* )  
 

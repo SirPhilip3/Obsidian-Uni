@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Sistemi di **I/O** usati per collegare il calcolatore a dispositivi esterni
 
 ## Bus

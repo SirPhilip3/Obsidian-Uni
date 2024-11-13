@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-05T17:25:00
+publish: true
 ---
 Il metodo più semplice per poter non solo riconoscere gli errori ma anche correggerli è la **ridondanza tripla** :
 >[!example] 

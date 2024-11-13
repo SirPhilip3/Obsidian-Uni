@@ -2,6 +2,7 @@
 creation: 2024-09-25T08:55:00
 tags:
   - Dimostrazione
+publish: true
 ---
 Dimostriamo che se $A$ e $B$ sono **Regolari** allora $A\ o\ B$ è *regolare*  
 

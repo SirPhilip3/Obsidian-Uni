@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 Le **Reference** ci permettono di non utilizzare i puntatori
 ```c++

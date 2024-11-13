@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-10T17:23:00
+publish: true
 ---
 >[!important] Definizione
 >I dati devono raggiungere la loro destinazione senza subire modifiche 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-30T09:47:00
+publish: true
 ---
 >[!note] 
 >Le applicazioni essendo tutte diverse le une dalle altre sono difficili da standardizzare 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-12T09:34:00
+publish: true
 ---
 **One-Time-Pad** è un *cifraio* perfetto 
 1. **Alice** genera un stringa *random* di $n$ bit , questa viene inviata a **Bob** attraverso un canale sicuro ( assumiamo che **Eve** non possa intercettarlo )

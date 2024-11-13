@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-25T11:10:00
+publish: true
 ---
 Un diagramma *time-sequence* descrive l'interazione tra gli host che stanno comunicando
 

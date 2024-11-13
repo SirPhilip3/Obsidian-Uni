@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-03T14:23:00
+publish: true
 ---
 >[!example] 
 Convertiamo $(ab \cup a)^*$ in un [[NFA]]

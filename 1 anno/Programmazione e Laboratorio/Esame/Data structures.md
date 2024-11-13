@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Singly linked list
 
 è utile quando si devono fare molte aggiunte o eliminazioni dalla testa ( se è solo con il pointer alla testa )  poichè se li facessimo con i vector o gli array bisognerrebbe riallocare dello spazio in memoria in qunato negli array per inserire in testa bisogna spostare di 1 elemento a destra tutto il resto dell'array, invece nelle liste basta che aggiungi un nuovo nodo all'inizio modificando dei puntatori

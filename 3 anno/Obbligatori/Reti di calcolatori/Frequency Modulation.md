@@ -2,6 +2,7 @@
 creation: 2024-09-20T11:42:00
 tags:
   - Definizione
+publish: true
 ---
 Nella *[[Modulazione]] di frequenza* abbiamo :
 + Il segnale *portante* $p(t) = A \cos(2\pi\cdot f_p\cdot t)$ 

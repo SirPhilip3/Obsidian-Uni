@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Tokens helps deifining how an expression is made ( of what elements )
 
 Implementing :

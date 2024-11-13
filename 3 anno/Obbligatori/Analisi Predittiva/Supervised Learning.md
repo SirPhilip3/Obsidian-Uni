@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-17T13:51:00
+publish: true
 ---
 Dati i dati osservati $\{(x_1, y_1), \dots ,(x_n,y_n)\}$ impara un modello statistico che predica $Y$ da $X$ 
 

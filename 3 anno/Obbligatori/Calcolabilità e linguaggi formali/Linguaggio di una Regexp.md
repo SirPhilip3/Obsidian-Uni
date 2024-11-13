@@ -2,6 +2,7 @@
 creation: 2024-10-02T10:24:00
 tags:
   - Definizione
+publish: true
 ---
 Sia $R$ una [[03 Espressioni Regolari|regexp]] definiamo il suo linguaggio $L(R)$ come : 
 1. Se $R=a$ ( singolo carattere ) allora $L(R)=\{a\}$

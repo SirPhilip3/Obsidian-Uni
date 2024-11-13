@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Tipologie di memoria
 
 ### SRAM ( Static Random Access Memory )

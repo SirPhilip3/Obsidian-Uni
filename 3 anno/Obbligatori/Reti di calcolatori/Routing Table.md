@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-21T12:56:00
+publish: true
 ---
 Una *routing table* è una struttura dati che contiene per ogni *destination address* $d$ i seguenti attributi : 
 + `R[d].link` : Rappresenta l'*outgoing link* che viene utilizzato per instradare i [[packet]] vero la destinazione $d$

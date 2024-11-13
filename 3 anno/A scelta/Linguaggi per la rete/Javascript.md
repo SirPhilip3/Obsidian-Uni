@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!note] 
 >Lo standard si chiamerebbe *ECMAScript* l'ultima versione è ES2020 
 >

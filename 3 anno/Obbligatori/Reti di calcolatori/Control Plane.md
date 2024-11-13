@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-16T08:58:00
+publish: true
 ---
 Il *Control plane* ha il compito di creare le [[Forwarding Table]] 
 

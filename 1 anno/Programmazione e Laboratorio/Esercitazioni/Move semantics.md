@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 Each time a function returns something it returns a temporary object that it's copied when assigned to another value in `main` 
 

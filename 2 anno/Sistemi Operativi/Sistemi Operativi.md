@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Cos'è un S.O.
 
 Il **Sistema Operativo** è il software che controlla l'hardware 

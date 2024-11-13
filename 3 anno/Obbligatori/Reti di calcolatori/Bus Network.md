@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-14T12:56:00
+publish: true
 ---
 >[!example] 
 >![[Pasted image 20241014125658.png]]

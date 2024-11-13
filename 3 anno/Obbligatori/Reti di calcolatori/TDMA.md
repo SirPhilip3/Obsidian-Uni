@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-15T09:11:00
+publish: true
 ---
 **TDMA** ( *Time-Division Multiple Access* ) 
 

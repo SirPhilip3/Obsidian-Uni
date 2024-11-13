@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-11T14:47:00
+publish: true
 ---
 **CRMA-MD5** è un protocollo che consente [[Data authentication]] in base alla conoscenza di una *password* e alla conoscenza di un [[Hash Functions|Funzione di Hashing]] 
 

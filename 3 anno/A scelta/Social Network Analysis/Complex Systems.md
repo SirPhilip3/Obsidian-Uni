@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-23T11:47:00
+publish: true
 ---
 *Sistemi complessi* sono composti da : 
 + molte parti interconnesse tra di loro

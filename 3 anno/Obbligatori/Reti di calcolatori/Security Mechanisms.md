@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-10T16:53:00
+publish: true
 ---
 I *Security Machanisms* sono funzioni di base utilizzate per implementare i [[Security Services]] :
 + **Encryption**

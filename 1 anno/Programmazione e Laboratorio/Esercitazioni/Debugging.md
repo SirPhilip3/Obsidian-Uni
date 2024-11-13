@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Errors
 * __Linking-time errors__ : the compiler can't link the dependencies 
 * __Compilation-time errors__ 

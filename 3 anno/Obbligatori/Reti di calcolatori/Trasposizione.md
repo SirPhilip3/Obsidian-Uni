@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-12T09:17:00
+publish: true
 ---
 Prendiamo un testo non cifrato iniziale , lo dividiamo in colonne , ad ogni colonna assegnamo un numero casuale , riordiniamo quindi le colonne e rileggiamo il testo nel nuovo ordine 
 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-26T14:33:00
+publish: true
 ---
 Il *Connection-oriented Service* crea una connessione tra un *client* e un *server* , questa connessione ha uno **stato** ( qualche variabile interna che vengono usate per tracciare l'evoluzione della connessione ) 
 

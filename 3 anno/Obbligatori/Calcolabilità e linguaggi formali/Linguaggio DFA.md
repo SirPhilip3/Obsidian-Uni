@@ -2,6 +2,7 @@
 creation: 2024-09-22T18:32:00
 tags:
   - Definizione
+publish: true
 ---
 Sia $M = (Q\ , \sum \ , \delta \ , q_0\ , F\ )$ e $w = w_1 , w_2,\dots ,w_n$ la stringa tale che per ogni $\forall i \in [1,n] \ w_i \in \sum$ 
 Diciamo che $M$ **accetta** $w$ se e solo se $\exists \ r_0 , r_1, \dots , r_n \in Q$ stati tali che :

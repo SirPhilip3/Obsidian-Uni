@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## V1
 
 Read three varibles from `std::cin` :

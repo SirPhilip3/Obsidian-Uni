@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-12T09:03:00
+publish: true
 ---
 Il **Cifraio di cesare** o ( *ROT-13* , in questo caso $K=13$ ) 
 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Context free grammar
 
 A **CFG** is a set of rules explaining how nonterminal symbols are expanded into a composition of other nonterminal symbols and terminal symbols 

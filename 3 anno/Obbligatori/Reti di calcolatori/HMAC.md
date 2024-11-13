@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-11T14:07:00
+publish: true
 ---
 In **HMAC** ( **Hashed Message Authentication Code** ) , *Alice* e *Bob* prima si mettono daccordo su una *secret key* $K$ e una funzione di hashing cryptografica sicura $H()$ 
 

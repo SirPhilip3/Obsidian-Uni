@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-23T12:50:00
+publish: true
 ---
 Possiamo studiare le interazioni che avvengono tra individui all'interno della società , i *nodi* sono gli individui e i *link* sono le relazioni personali 
 

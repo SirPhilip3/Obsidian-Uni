@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Introduzione
 
 *Java* è un linguaggio orientato agli oggetti

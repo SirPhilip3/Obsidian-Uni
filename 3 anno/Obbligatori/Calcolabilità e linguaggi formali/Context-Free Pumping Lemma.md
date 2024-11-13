@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-25T13:25:00
+publish: true
 ---
 Se $A$ è un linguaggio **Context-Free** allora esiste un intero $p\ge 1$ ( *pumping length* ) tale che ogni stringa $w \in A$ con $|w|\ge p$ può essere suddivisa in 5 parti : $w=uvxyz$ per cui valgono le seguenti $3$ condizioni : 
 + $\forall i\ge 0 \quad uv^ì x y^iz \in A$ ( posso *pompare* la stringa )

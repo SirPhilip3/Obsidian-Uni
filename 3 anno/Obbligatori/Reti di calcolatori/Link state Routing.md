@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-23T09:32:00
+publish: true
 ---
 >[!info] Idea
 >I *router* si scambiano messaggi in modo che ognuno sappia tutta la topografia della rete , in base alla topologia imparata ogni *router* deciderà indipendentemente il cammino minimo tramite un algoritmo di *shortes path* come *Dijkstra*

@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-19T08:22:00
+publish: true
 ---
 Innanzittutto diamo delle definizioni che ci permetteranno di comprendere meglio la gestione del segnale al livello fisico : 
 + ![[Bit-rate]]

@@ -2,6 +2,7 @@
 creation: 2024-09-18T10:45:00
 tags:
   - Definizione
+publish: true
 ---
 Per ogni [[Layers|layer]] abbiamo uno ( o più di uno ) *standard* o *protocollo* che deve rispettare 
 

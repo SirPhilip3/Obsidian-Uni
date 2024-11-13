@@ -1,3 +1,6 @@
+---
+publish: true
+---
 **C++ streams** is a flow of data into or out of a program, more precisly a sequence of bytes that is read or written
 
 Example : 

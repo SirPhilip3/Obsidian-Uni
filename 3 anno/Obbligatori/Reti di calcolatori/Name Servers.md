@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-30T10:12:00
+publish: true
 ---
 Ogni applicazione che deve essere raggiungibile attraverso un [[Domain Name]] deve configurare un valido **domain name server** , questo gestirà le richieste che chiedono di dare un *address* numerico per un certo sottodominio
 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Programming technique in which the function calls itself on a smaller istance of the original problem
 
 3 ingredients to solve recursive problems :

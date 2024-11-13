@@ -2,6 +2,7 @@
 creation: 2024-09-27T13:31:00
 tags:
   - Dimostrazione
+publish: true
 ---
 *Dimostriamo* che se $A$ è **regolare** allora $A*$ è **regolare**
 

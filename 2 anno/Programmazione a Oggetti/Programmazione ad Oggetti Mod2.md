@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Introduzione
 
 I linguaggi di programmaizone si dividono in due principali categorie :

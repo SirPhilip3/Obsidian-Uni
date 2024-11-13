@@ -2,6 +2,7 @@
 creation: 2024-10-16T11:23:00
 aliases:
   - PDA
+publish: true
 ---
 Gli *Automi a Pila* ( *pushdown automata* o **PDA** ) sono degli [[NFA]] con però l'aggiunta di uno **stack** 
 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-01T10:49:00
+publish: true
 ---
 Ci sono due tipi di bit di parità :
 + *parità pari* ( even parity ) : Se ho un numero di bit posti ad `1` pari aggiungo un ulteriore `0` alla fine 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 ```c++
 constexp int a=7

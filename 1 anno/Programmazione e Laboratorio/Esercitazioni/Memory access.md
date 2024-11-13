@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Memory accesses are the main sources of performance degradation
 
 Memory is faster when close to the CPU 

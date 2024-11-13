@@ -2,6 +2,7 @@
 creation: 2024-09-19T14:26:00
 tags:
   - Definizione
+publish: true
 ---
 *SNR* o *Signal to Noise Ratio* rappresenta la seguente equazione : 
 $$SNR = \frac{\text{Potenza del segnale ricevuto}}{\text{Potenza del Noise al ricevitore}}$$

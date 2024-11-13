@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-10T16:50:00
+publish: true
 ---
 Definisce 6 topic principali in cui dedicare risorse per un sistema sicuro : 
 + ![[Data availability]]

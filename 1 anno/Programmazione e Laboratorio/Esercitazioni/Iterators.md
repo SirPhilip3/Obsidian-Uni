@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 An **iterator** is an object that points to an element inside a container , can be used to read the element and/or modify it
 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Datapath a singolo ciclo MIPS: 
 
 ![[nM8IuyM.png]]

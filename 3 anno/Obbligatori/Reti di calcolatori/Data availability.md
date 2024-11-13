@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-10T17:01:00
+publish: true
 ---
 >[!important] Definizione
 >Il servizio deve sempre essere raggiungibile

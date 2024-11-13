@@ -1,3 +1,6 @@
+---
+publish: true
+---
 **Memoria virtuale**: La memoria primaria **RAM** agisce come cache per la memoria secondaria **SSD, dischi** 
 
 Perchè:

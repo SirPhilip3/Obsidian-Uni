@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-02T09:44:00
+publish: true
 ---
 Le *espressioni regolari* ( *regexp* ) sono un formalismo per descrivere i [[Linguaggio Regolare NFA|Linguaggi Regolari]] 
 

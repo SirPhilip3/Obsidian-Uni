@@ -2,6 +2,7 @@
 creation: 2024-10-10T09:42:00
 aliases:
   - CFG
+publish: true
 ---
 Facciamo un sempio di *Context-Free Grammar* o **CFG**
 >[!example] 

@@ -2,6 +2,7 @@
 creation: 2024-09-21T22:44:00
 tags:
   - Definizione
+publish: true
 ---
 La definizione formale di *DFA* è la seguente :
 

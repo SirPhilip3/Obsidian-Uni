@@ -3,6 +3,7 @@ creation: 2024-09-27T10:52:00
 tags:
   - Teorema
   - Dimostrazione
+publish: true
 ---
 Per ogni [[NFA]] $N$ esiste un [[DFA]] $D$ tale che il linguaggio $L(D) = L(N)$
 

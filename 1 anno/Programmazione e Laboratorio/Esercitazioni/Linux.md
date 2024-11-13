@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Filesystem
 
 ![[Immagine 2023-03-04 114650.png]]

@@ -2,6 +2,7 @@
 creation: 2024-10-17T14:13:00
 tags:
   - Algoritmo
+publish: true
 ---
 1. Generiamo un nuovo [[Start Symbol]] $S'$ e aggiungiamo la produzione $S' \to S$ 
 >[!note] 

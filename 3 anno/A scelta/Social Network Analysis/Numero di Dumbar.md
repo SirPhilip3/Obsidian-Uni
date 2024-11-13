@@ -2,6 +2,7 @@
 creation: 2024-09-24T08:43:00
 tags:
   - Example
+publish: true
 ---
 Dumbar si chiese quanto grande un tipico [[Social Network]] 
 

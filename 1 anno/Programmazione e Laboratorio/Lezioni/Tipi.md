@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 - Bool
 	 Tipo elementare nuovo, ha come valori True o False (in C True=1 False!=1)   

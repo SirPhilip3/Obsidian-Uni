@@ -1,3 +1,6 @@
+---
+publish: true
+---
 `std::cin` can be in an  **error state** :
 + extract an int form the stream but the next stream element is not an int
 + when we are at the end of a stream 

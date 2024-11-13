@@ -2,6 +2,7 @@
 creation: 2024-09-18T09:37:00
 tags:
   - Definizione
+publish: true
 ---
 E' il meccanismo di trasmissione per cui più canali trasmissivi in ingresso condividono la stessa capacità trasmissiva disponibile in uscita 
 

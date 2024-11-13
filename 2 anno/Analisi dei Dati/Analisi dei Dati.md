@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Concetti di Base
 
 ## Terminologia

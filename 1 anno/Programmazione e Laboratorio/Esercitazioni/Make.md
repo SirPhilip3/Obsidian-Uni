@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## C++ project directory 
 
 ``` Folders

@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-15T09:38:00
+publish: true
 ---
 *Slotted* **ALHOA** ( algoritmo *ALHOA* dove i terminali devono essere sincronizzati e il tempo viene diviso in *slot* )
 

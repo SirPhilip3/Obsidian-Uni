@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-14T12:36:00
+publish: true
 ---
 Possiamo avere diverse tipologie di *network* :
 + ![[Full Mesh Network]]

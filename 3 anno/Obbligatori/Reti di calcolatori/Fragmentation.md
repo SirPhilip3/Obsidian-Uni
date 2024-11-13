@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-16T09:48:00
+publish: true
 ---
 Generalmente non possiamo assumere che il [[DataLink Layer]] sia lo stesso per tutti i *router* , una feature specifica del [[DataLink Layer]] è però la massima dimensione ( **MTU** , *maximum transfer unit* ) di un [[Frame]] 
 

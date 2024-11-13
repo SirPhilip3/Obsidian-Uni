@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-06T11:02:00
+publish: true
 ---
 Una **MdT** *non deterministica* ha come funzione di transizione : 
 $$\delta : Q \times \Gamma \to \mathcal{P}(Q \times \Gamma \times \{L,R\})$$

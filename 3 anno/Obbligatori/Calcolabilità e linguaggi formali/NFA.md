@@ -2,6 +2,7 @@
 creation: 2024-09-25T10:22:00
 tags:
   - Definizione
+publish: true
 ---
 Un *NFA* è una quintupla $(Q\, \sum,\ \delta,\ q_0,\ F)$ dove : 
 + $Q$ è un insieme finito di *stati*

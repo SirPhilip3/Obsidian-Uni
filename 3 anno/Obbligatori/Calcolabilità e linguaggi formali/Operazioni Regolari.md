@@ -2,6 +2,7 @@
 creation: 2024-09-22T21:21:00
 tags:
   - Definizione
+publish: true
 ---
 Siano $A$ e $B$ due [[Linguaggio DFA|Linguaggi]] *qualsiasi* definiamo le seguenti [[Operazioni Regolari]] :
 1. **Unione** : $A \cup B = \{ w\ |\ w \in A \lor w \in B \}$

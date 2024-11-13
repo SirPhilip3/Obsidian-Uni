@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-17T13:51:00
+publish: true
 ---
 Avendo i dati osservati $\{x_1,\dots,x_n\}$ identichiamo un certo patter o struttura sottostante ai dati
 

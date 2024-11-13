@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-15T11:19:00
+publish: true
 ---
 ## Caratterstiche 
 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-06T11:55:00
+publish: true
 ---
 Un **Enumeratore** ( generatore ) è una **MdT** a cui attachiamo una *stampante*
 

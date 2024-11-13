@@ -6,5 +6,6 @@ aliases:
   - Target
   - Outcome
   - Output
+publish: true
 ---
 E' la *variabile* che vogliamo *predirre* ( $Y$ )

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 __Valgrind__ helps finding this type of errors :
 + out-of-bounds memory accesses
 + invalid memory allocation requests

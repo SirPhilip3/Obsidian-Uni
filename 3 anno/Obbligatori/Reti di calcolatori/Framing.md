@@ -2,6 +2,7 @@
 creation: 2024-09-25T12:06:00
 tags:
   - Definizione
+publish: true
 ---
 ![[Frame]]
 >[!question] 

@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-12T11:49:00
+publish: true
 ---
 Questo protocollo ci permette di negoziare una *chiave segreta simmetrica* tra **Alice** e **Bob** senza condividere informazioni segrete 
 

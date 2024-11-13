@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-16T11:26:00
+publish: true
 ---
 I [[Context-Free Grammar|CFG]] in *forma normale di chomsky* sono una sottoclasse dei [[Context-Free Grammar|CFG]]
 

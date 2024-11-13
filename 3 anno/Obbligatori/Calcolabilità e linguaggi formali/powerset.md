@@ -2,6 +2,7 @@
 creation: 2024-09-25T10:37:00
 tags:
   - Definizione
+publish: true
 ---
 Un *powerset* di un insieme è l'insieme delle parti di quell'insieme
 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 Ogni qualvolta viene svolta una `std::cout` l'output viene salvato temporanemente in un buffer, questo viene liberato e mandato in output dopo che abbia raggiunto una grandezza tale per cui sia conveniente a livello di performance. 
 Per le operazioni di `std::cout` è fondamentale svolgere il flushing in quanto se ciò non viene svolto potrebbe portare a segmentation fault 

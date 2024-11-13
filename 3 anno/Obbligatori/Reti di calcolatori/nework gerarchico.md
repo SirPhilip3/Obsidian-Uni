@@ -2,6 +2,7 @@
 creation: 2024-09-18T09:52:00
 tags:
   - Definizione
+publish: true
 ---
 Un *network gerarchico* è una rete di connessioni che specifica una serie di gerarchie 
 

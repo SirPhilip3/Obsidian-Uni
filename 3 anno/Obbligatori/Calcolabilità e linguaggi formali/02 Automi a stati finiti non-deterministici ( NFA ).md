@@ -2,6 +2,7 @@
 creation: 2024-09-25T09:00:00
 tags:
   - Definizione
+publish: true
 ---
 Iniziamo portando un esempio di [[02 Automi a stati finiti non-deterministici ( NFA )|NFA]] 
 

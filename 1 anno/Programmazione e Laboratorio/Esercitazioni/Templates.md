@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 Helps **abstract the data away** from a class or a function and focus on the algorithms , with templates you can write a generic algorithms that can work on any data type
 

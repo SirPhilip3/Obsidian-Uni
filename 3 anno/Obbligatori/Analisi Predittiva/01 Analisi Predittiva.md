@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-17T13:51:00
+publish: true
 ---
 
 L'obbiettivo dell'*analisi predittiva* è quello di acquisire conoscenza da un insieme di dati per poi utilizzarla per fare predizioni , capire o indentificare altre informazioni

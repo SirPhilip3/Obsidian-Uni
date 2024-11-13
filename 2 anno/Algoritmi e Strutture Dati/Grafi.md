@@ -2,6 +2,7 @@
 creation: 2024-09-23T11:16:00
 tags:
   - Definizione
+publish: true
 ---
 I *grafi* rappresentano il concetto matematico di relazione binaria
 

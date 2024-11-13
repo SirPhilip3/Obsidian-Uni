@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-11T12:11:00
+publish: true
 ---
 Una [[Context-Free Grammar|CFG]] $G$ si dice *ambigua* se e solo se esiste $w\in L(G)$ tale che $w$ ha almeno due [[Albero di Parsing]] differenti
 

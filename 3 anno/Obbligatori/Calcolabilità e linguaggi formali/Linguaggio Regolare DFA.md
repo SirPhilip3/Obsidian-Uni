@@ -2,6 +2,7 @@
 creation: 2024-09-22T18:53:00
 tags:
   - Definizione
+publish: true
 ---
 Un [[Linguaggio DFA]] $A$ si dice **Regolare** se e solo se esiste un [[DFA]] $M$ tale che il [[Linguaggio DFA]] di $M$ è *uguale* ad $A$ 
 

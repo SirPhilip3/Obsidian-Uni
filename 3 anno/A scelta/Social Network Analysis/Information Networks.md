@@ -1,5 +1,6 @@
 ---
 creation: 2024-09-24T09:08:00
+publish: true
 ---
 Un'esempio di *Information Network* è *internet* :
 + I *link* tra le pagine web sono gli *archi* , questi ci permettono di capire come :

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 L'unico linguaggio che la CPU può eseguire è il linguaggio macchina
 
 C'è bisogno di tradurre i linguaggi ad alto livello in linguaggio macchina 2 approcci 

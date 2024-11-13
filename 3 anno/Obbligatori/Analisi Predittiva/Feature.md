@@ -8,5 +8,6 @@ aliases:
   - Regressor
   - Covariate
   - Explanatory variable
+publish: true
 ---
 Sono i dati che abbiamo come *input* per stimare la [[Response]] ( $X$ )

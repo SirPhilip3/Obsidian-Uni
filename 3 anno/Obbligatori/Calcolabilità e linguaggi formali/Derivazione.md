@@ -2,6 +2,7 @@
 creation: 2024-10-10T14:06:00
 tags:
   - Definizione
+publish: true
 ---
 La **Derivazione** di una stringa è la sequenza di riscritture che parte dallo [[Start Symbol]] e termina con una stringa completamente formata da [[Simboli Terminali]]
 

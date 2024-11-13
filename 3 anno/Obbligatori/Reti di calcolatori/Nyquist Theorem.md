@@ -3,6 +3,7 @@ creation: 2024-09-20T23:17:00
 tags:
   - Definizione
   - Teorema
+publish: true
 ---
 Avendo : 
 + $B$ : la [[Bandwidth]] che usiamo

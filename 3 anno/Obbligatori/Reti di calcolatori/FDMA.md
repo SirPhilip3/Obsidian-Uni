@@ -1,5 +1,6 @@
 ---
 creation: 2024-10-15T09:02:00
+publish: true
 ---
 **FDMA** ( *Frequency-Division Multiple Access* ) è un metodo per evitare le *collisioni* usando una differente frequenza per ogni comunicazione
 
