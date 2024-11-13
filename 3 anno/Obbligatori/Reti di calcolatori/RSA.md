@@ -1,23 +1,40 @@
 ---
 creation: 2024-11-13T09:05:00
 ---
-I principi di **Public Key Encryption** sono : 
-+ **Alice** e **Bob** hanno ognuno due *chiavi* 
-+ **Alice** possiede una chiave *pubblica* `Pub_A` e una *privata* `Priv_A`
-+ **Bob** possiede una chiave *pubblica* `Pub_B` e una *privata* `Priv_B`
+**RSA** ( **Rivest-Shamir-Adelmann** ) è l'approccio più conosciuto alla **public key encryption**
 
->[!important] 
->Le chiavi private devono essere mantenute segrete 
+Gli step sono i seguenti : 
 
-Ciò che *cifriamo* con una chiave *pubblica* può essere *decifrato* **solo** con la corrispondente chiave *privata* 
+>[!important] Creation of Keys
+>
+>1. Sciegliamo due grandi numeri primi $p$ e $q$ , questi devono rimanere **segreti** 
+>2. Computiamo $n=pq$ e la [[Funzione di Eulero]] : $\phi(n)=(p-1)(q-1)$ 
+>3. Sicegliamo un itero $e$ in modo che $2 < e <\phi(n)$ che non abbia nessun divisore in comunue con $\phi(n)$ ( sono [[Coprimi]] )
+>4. Determina $d$ in modo che $d\cdot e \mod{\phi(n)}=1$ , ossia che $d$ e $e$ sono inversi in modulo $\phi(n)$
 
-![[Pasted image 20241113091658.png]]
+$(e,n)$ è la *public key* 
+$d$ è la *private key*
 
-**Vantaggi** :
-+ Public key encryption fornisce [[Secrecy]] 
-+ Non necessitiamo di un canale segreto per condividere le chiavi 
+>[!note] 
+>
+>La generazione di `Pub_A` e `Priv_A` avviene nello stesso momento , queste sono il risultato di un processo matematico , c'è un connessione matematica tra di loro , non possono essere generati indipendentemente l'uno dall'altro
 
-## Implementation
+>[!important] Encryption e Decryption
+>
+>Se **Bob** vuole mandare un messaggio $M$ ad **Alice** deve *criptarlo* nel seguente modo: 
+>$$C=M^e \mod{n}$$
+>**Alice** riceverà il messaggio e lo *decripterà* nel seguente modo : 
+>$$M = C^d \mod{n}$$
 
-In pratica vogliamo una funzione $f: D \to R$ con un parametro aggiuntivo $t$ che ha tre *features* : 
-+ 
+>[!example] 
+>
+>1. Scegliamo $p=7$ e $q=11$ allora $n=77$ e $\phi(n)=60$ 
+>2. Scegliamo $e=13$ , questo è *primo* e non ha nessun divisore comune con $60$
+>3. Troviamo $d$ in modo che $(d \cdot 13)\mod{60} = 1$ , ossia $d=37$
+>>[!note] 
+>>
+>>Per calcolare questo numero nella vita reale utilizzeremo un algoritmo efficente come : [Extended Euclidean algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm) 
+>
+>Ora assumiamo di avere il seguente $M=00010100$ , ossia $20$ in decimale
+>**Encryption** sarà : $C=20^{13} \mod{77} = 69$
+>**Decryption** sarà : $M = 69^{37} \mod{77}=20$
