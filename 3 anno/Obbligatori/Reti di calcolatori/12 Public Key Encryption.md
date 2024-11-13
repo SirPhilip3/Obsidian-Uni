@@ -9,6 +9,6 @@ Questa si basa sull'*intrattabilità* di certi problemi :
 
 Gli algoritmi che la implementano sono : 
 + ![[Diffie-Hellman Protocol]]
-+ *RSA* public key encryption
++ ![[RSA]]
 + Elliptic curve encryption 
 
