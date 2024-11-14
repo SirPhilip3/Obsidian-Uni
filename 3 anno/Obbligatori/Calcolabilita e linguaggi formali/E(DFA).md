@@ -1,5 +1,6 @@
 ---
 creation: 2024-11-14T10:07:00
+publish: true
 ---
 Dato un [[DFA]] determinare se esso non accetta nessuna stringa ( ***E**mptiness* problem )
 $$
