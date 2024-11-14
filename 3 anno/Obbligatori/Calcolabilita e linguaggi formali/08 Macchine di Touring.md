@@ -92,11 +92,9 @@ publish: true
 >2. $M$ *rifiuta* $w$
 >3. $M$ *non termina* ( va in loop quando eseguito su $w$ )
 
->[!important] Definizione
->Una **Macchina di Touring** che non va mai in loop per nessun input si dice **Decisore**
+![[Decisore]]
 
->[!important] Definizione
->Un *linguaggio* $A$ si dice **Decidibile** se e solo se esiste un **Decisore** $M$ tale per cui $L(M)=A$
+![[Decidibile]]
 
 >[!example] 
 >Facciamo un esempio di rappresentazione grafica di una **Macchina di Touring** 
