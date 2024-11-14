@@ -14,3 +14,12 @@ $$
 >
 >Costruiamo un [[Decisore]] $M$ per $E_{DFA}$ 
 >>[!example] 
+>>Per costruire il [[Decisore]] consideriamo un [[DFA]] , notiamo che la condizione che ci fa capire che rappresenta un linguaggio vuoto è il fatto chè non vi sono stati accettanti raggiungibili dallo stato iniziale ( oppure non ha stati accettanti )
+>>
+>>![[E(DFA).excalidraw]] 
+>
+>$M$ aspetta un input $<D>$ :
+>1. Marca lo stato iniziale di $D$
+>2. Finchè è possibile maracare nuovi stati , marca gli stati con una transizione in entrata da stati già marcati
+>3. Se abbiamo marcato uno stato accetante *REJECT* altrimenti *ACCEPT*
+>
