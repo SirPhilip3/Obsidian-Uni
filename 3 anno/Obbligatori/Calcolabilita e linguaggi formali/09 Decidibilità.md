@@ -11,3 +11,5 @@ Facciamo degli esempi di problemi **Decidibili** :
 ![[EQ(DFA)]]
 ![[A(CFG)]]
 ![[E(CFG)]]
+
+![[Decidibilità CFG]]

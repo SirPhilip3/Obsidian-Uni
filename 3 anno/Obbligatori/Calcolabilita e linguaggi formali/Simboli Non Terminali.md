@@ -4,6 +4,7 @@ tags:
   - Definizione
 aliases:
   - Non Terminale
+  - Non Terminali
 publish: true
 ---
 I *simboli non terminali* nelle [[Context-Free Grammar|CFG]] ( anche dette *variabili* ) sono rappresentati da lettere maiuscole e rappresentano i simboli che possiamo riscrivere
