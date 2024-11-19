@@ -62,3 +62,5 @@ Le **Proprietà** che otteniamo sono :
 >![[Screenshot 2024-11-19 110512.png]]
 
 ![[Digital Signature]]
+
+## Performance
