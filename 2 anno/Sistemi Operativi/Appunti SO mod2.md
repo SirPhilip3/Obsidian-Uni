@@ -1,3 +1,7 @@
+---
+tags:
+  - appunti
+---
 # 20/02/2024
 
 **Creazione di processi**

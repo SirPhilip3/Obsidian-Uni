@@ -51,3 +51,14 @@ Le **Proprietà** che otteniamo sono :
 >
 >Rompere **RSA** è considerato [[Computationally Impossible]] per via della *hardness* di  invertire $d\cdot e \mod{\phi(n)}$ ( [[Integer Factorization Problem]] ) per *key* abbastanza lunghe ( più lunghe di 1024 bit )
 
+>[!warning] Attacchi
+>
+>Se **Eve** controlla il canale di comunicazione , essa può intercettare il pacchetto con la richiesta da parte di **Alice** di `Pub_B` e rimpiazza `Pub_B` con `Pub_E` , **Alice** a questo punto pensa che la chiave pubblica di **Bob** sia `Pub_E` 
+>
+>Ora se **Alice** vuole cifrare qualcosa per **Bob** userà la chiave pubblica di **Eve** che lo decifrerà , e cifrerà con `Pub_B` e lo manderà a **Bob**
+>
+>**Eve** può leggere e scrivere qualsiasi messaggio di **Alice** o **Bob** tra di loro
+>
+>![[Screenshot 2024-11-19 110512.png]]
+
+![[Digital Signature]]

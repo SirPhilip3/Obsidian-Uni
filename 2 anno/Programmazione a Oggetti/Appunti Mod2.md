@@ -1,3 +1,7 @@
+---
+tags:
+  - appunti
+---
 # 13/02/2024
 
 imperativi -> con assegnamento
