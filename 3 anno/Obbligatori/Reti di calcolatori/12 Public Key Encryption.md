@@ -6,7 +6,7 @@ Con *public key cryptography* **Alice** e **Bob** possono comunicare in sicurezz
 
 Questa si basa sull'*intrattabilità* di certi problemi : 
 + ![[Integer Factorization Problem]]
-+ ![[Discerte Logarithm Problem]]
++ ![[Discrete Logarithm Problem]]
 
 I principi di **Public Key Encryption** sono : 
 + **Alice** e **Bob** hanno ognuno due *chiavi* 

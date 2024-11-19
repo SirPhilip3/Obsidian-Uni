@@ -4,7 +4,7 @@ publish: true
 ---
 Questo protocollo ci permette di negoziare una *chiave segreta simmetrica* tra **Alice** e **Bob** senza condividere informazioni segrete 
 
-Si basa sul [[Discerte Logarithm Problem]]
+Si basa sul [[Discrete Logarithm Problem]]
 
 ## Algorithm
 
@@ -22,7 +22,7 @@ Si basa sul [[Discerte Logarithm Problem]]
 
 >[!important] 
 >
->Anche se **Eve** riesce ad intercettare $m,g,n,r$ per via della difficoltà del [[Discerte Logarithm Problem]] non riuscirà ad ottenere $a$ o $b$ 
+>Anche se **Eve** riesce ad intercettare $m,g,n,r$ per via della difficoltà del [[Discrete Logarithm Problem]] non riuscirà ad ottenere $a$ o $b$ 
 >
 
 >[!warning] 
