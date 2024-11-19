@@ -1,5 +1,8 @@
 ---
 creation: 2024-11-18T12:48:00
+aliases:
+  - Numerabile
+publish: true
 ---
 Un insieme è **numerabile** se e solo se è *finito* oppure ha la stessa [[Cardinalità]] di $\mathbb{N}$ 
 
