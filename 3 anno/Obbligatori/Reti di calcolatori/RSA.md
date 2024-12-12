@@ -64,3 +64,38 @@ Le **Proprietà** che otteniamo sono :
 ![[Digital Signature]]
 
 ## Performance
+
+Eseguendo il comando `openssl speed` otteniamo i seguenti risultati
+
+| `key bits` | `sign`    | `verify`  | `sign/s` | `verify/s` |
+| ---------- | --------- | --------- | -------- | ---------- |
+| ~~512~~        | ~~0.000048s~~ | ~~0.000003s~~ | ~~20740~~    | ~~333503~~     |
+| ~~1024~~       | ~~0.000103s~~ | ~~0.000007s~~ | ~~9716~~     | ~~149899~~     |
+| 2048       | 0.000708s | 0.000021s | 1412     | 47911      |
+| 3072       | 0.002114s | 0.000043s | 473      | 23413      |
+| 4096       | 0.004975s | 0.000072s | 201      | 13873      |
+Dove :
++ *sign* = encryption
++ *verify* = decryption
++ ~~striked~~ = non più utilizzabili perchè troppo insicure
+
+Notiamo che la che l'*encryption* è sempre più veloce della *decryption* 
+
+>[!warning] 
+>Ricordando che $d\cdot e = k \cdot \phi(n) +1$ per un qualche $k$ e che $\phi(n)$ deve essere un numero grande 
+>
+>Significa che se $e$ è piccolo $d$ deve essere grande , ma $d$ deve per forza essere **grande** poichè questo è un *segreto* e quindi deve essere difficile da indovinare 
+>
+>Visto quindi che $e$ può essere piccolo generalmente le implementazioni di [[RSA]] scelgono un numero fisso $e=2^{16}+1 = 65537$ che è *primo* 
+>
+>Visto che le operazioni di *encryption* e *decryption* sono delle esponenziazioni se usiamo un $e$ minore richiederanno meno tempo
+
+
+>[!danger] 
+>Visto che *decryption* è più difficile un attaccante può fare un attacco *DoS* mandando spropositate quantità di traffico cifrato 
+
+>[!note] 
+>Generalmente *encryption* di grandi file è molto lenta , per questo nelle implementazioni si preferisce generare un *digest* dei dati e solo questo verrà *cifrato* :
+>+ $C = E(Priv_A.T = H(M))$
+>+ Quando **Bob** riceve sia $M$ che $C$ calcolerà  $T'=D(Pub_A,C)$ e controllerà che $T'=H(M)$ 
+

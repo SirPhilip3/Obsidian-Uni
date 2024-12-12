@@ -40,3 +40,9 @@ Gli algoritmi che la implementano sono :
 + ![[RSA]]
 + Elliptic curve encryption 
 
+## Conclusion
+
+>[!note] 
+>**AES** è un'approssimazione di [[One-Time-Pad]] 
+
+Questo sarà quindi una soluzione più robusta rispetto ad **RSA** visto che questo si basa su due problemi matematici considerati *Hard* , non essendo effettivamente *impossibili* è probabile che con il miglioramento dei computer sarà possibile rompere la cifratura per **RSA** con chiavi sempre maggiori 
