@@ -42,3 +42,4 @@ $D$ = Su input $w$ :
 >Questa è *corretta* poichè se $M$ sta in $A$ prima o poi verrà accettata anche se per $N$ ( che riconosce $\bar{A}$ ) va in loop 
 >
 
+![[Riducibilità]]
