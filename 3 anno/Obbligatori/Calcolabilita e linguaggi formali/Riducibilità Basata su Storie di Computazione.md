@@ -10,6 +10,8 @@ creation: 2024-12-16T10:19:00
 >2. L'ultima *configurazione* è una *configurazione* **accettante**
 >3. Ogni *configurazione* discende dalla precedente secondo le regole di coputazione di una [[08 Macchine di Touring|MdT]] 
 
+^bd6bb6
+
 >[!note] 
 >
 >In pratica dobbiamo passare da una configurazione iniziale $S$ ad una finale $F$ attraverso la *funzione di transizione* di $M$ 

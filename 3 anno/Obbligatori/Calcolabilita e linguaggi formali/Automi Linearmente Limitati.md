@@ -16,3 +16,5 @@ Un **LBA** è una [[08 Macchine di Touring|MdT]] con un vincolo aggiuntivo :
 ![[Decidibilità A(LBA)]]
 
 ![[Indecidibilità E(LBA)]]
+
+![[Indecidibilità ALL(CFG)]]
