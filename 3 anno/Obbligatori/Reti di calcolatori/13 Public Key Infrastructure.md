@@ -65,7 +65,44 @@ E' possibile anche formare delle *chain of thrust* infatti tutti coloro che si f
 
 >[!warning] 
 >Chi riceve la chiave pubblica di **Alice** può cifrare il traffico verso **Alice** ma non il contrario
-
-
-
 # Public Key Infrastructure
+
+Una **PKI** è un'infrastruttura dove c'è una ![[Certification Authority]] o **CA**
+
+La [[Certification Authority|CA]] ha il compito di firmare chiavi , una chiave firmata è detta :![[Certificate]]
+## Obtaining a Certificate
+
+1. **Alice** crea una ![[Certificate Signing Request]]
+2. **Alice** invia la [[Certificate Signing Request|CSR]] alla [[Certification Authority|CA]] 
+3. La [[Certification Authority]] controlla la sua identità ( eg attraverso dei documenti )
+4. Visto che la [[Certificate Signing Request|CSR]] è firmato con `Priv_A` la [[Certification Authority]] può usare `Pub_A` per verificare la firma , ora la [[Certification Authority|CA]] sa che *Alice* possiede `Priv_A`
+5. La [[Certification Authority]] ritorna un **certificato** valido ossia la [[Certificate Signing Request|CSR]] con la [[Digital Signature]] della [[Certification Authority|CA]] aggiunta :
+$$Cert = \{CSR,E(Priv\_A, CSR)\}$$
+
+>[!note] 
+>Lo standard usato per i *certificati* è [[X.509]] 
+
+>[!note] 
+>+ Questo processo avviene solo una volta per periodo di validità del [[Certificate]]
+>+ Quando il [[Certificate]] è stato inviato al destinatario non necessitiamo più della [[Certification Authority]] , non risulta quindi un *bottleneck* 
+>+ La [[Certification Authority|CA]] non ha bisogno di conoscere la *private key* di colui che richiede il *certificato*
+
+>[!info] Performance
+>
+>Visto che sappiamo che [[12 Public Key Encryption]] è dispendioso , la firma della [[Certification Authority|CA]] è in realtà relativa ad una [[Hash Functions]] dell [[Certificate]] stesso ( escludendo la firma ) , il certificato dovrà quindi contenere la [[Hash Functions]] usata 
+
+## Receiving a Certificate
+
+Quando **Bob** riceve un [[Certificate]] valido per **Alice** , firmato da una [[Certification Authority|CA]] esso fa le seguenti cose : 
++ Controlla che il nome nel certificato sia effettivamente *Alice* 
++ Controlla che il certificato sia valido in quell'istante di tempo 
++ Controlla che la [[Certification Authority|CA]] sia all'interno del suo database di [[Certification Authority|CA]] valide per cui possiede la chiave pubblica
++ Decripta la *signature* con la *chiave pubblica* della [[Certification Authority|CA]] , ottiene un *digest* $D$ 
++ Computa la hash $D'$ del certificato ( senza la *signature* ) 
++ Se $D=D'$ allora il [[Certificate]] è valido e **Bob** ora si fida della *public key* di **Alice** 
+
+## Certificate for Domain Names
+
+Nel caso dei *domini* nel campo *owner* viene inserito un nome di dominio ex `www.alice.com` 
+
+Quando **Bob** naviga 
