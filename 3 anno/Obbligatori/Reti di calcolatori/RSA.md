@@ -90,7 +90,6 @@ Notiamo che la che l'*encryption* è sempre più veloce della *decryption*
 >
 >Visto che le operazioni di *encryption* e *decryption* sono delle esponenziazioni se usiamo un $e$ minore richiederanno meno tempo
 
-
 >[!danger] 
 >Visto che *decryption* è più difficile un attaccante può fare un attacco *DoS* mandando spropositate quantità di traffico cifrato 
 
@@ -99,3 +98,13 @@ Notiamo che la che l'*encryption* è sempre più veloce della *decryption*
 >+ $C = E(Priv_A.T = H(M))$
 >+ Quando **Bob** riceve sia $M$ che $C$ calcolerà  $T'=D(Pub_A,C)$ e controllerà che $T'=H(M)$ 
 
+## Note on Random Numbers
+
+>[!warning] 
+>Il $\mod{n}$ non dovremme mai essere riusato
+
+Infatti se si generano due *key* con lo stesso $n$ è facile fattorizzare $n$ e invertire $e$ 
+
+$n$ viene quindi scelto a *random* nel seguente modo : 
+1. Prendi un a *random* un grande intero $p$ 
+2. Fai un testi di *primarità*
