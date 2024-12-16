@@ -105,4 +105,31 @@ Quando **Bob** riceve un [[Certificate]] valido per **Alice** , firmato da una [
 
 Nel caso dei *domini* nel campo *owner* viene inserito un nome di dominio ex `www.alice.com` 
 
-Quando **Bob** naviga 
+Quando **Bob** naviga sul sito di **Alice** , `www.alice.com` fornice a **Bob** `Pub_A` , questa sarà presente in un [[Certificate]] , se questo è *invalido* ( è stato rilasciato da una [[Certification Authority|CA]] che **Bob** non conoce , il [[Certificate]] è scaduto , il [[Certificate]] è per un altro dominio ) , il broswer non accetterà la connessione con `www.alice.com`
+
+### Trusted [[Certification Authority|CA]]
+
+Visto che vi sono motle [[Certification Authority|CA]] nel mondo come fa **Bob** a decidere di quale fidarsi 
+
+Le [[Certification Authority|CA]] Possono creare una **Web of Trust** perchè le [[Certification Authority|CA]] possono firmarsi i propri [[Certificate]] a vicenda
+
+Esiste poche **Root** [[Certification Authority|CA]] che si firmano i [[Certificate]] da sole , i broswer posseggono queste [[Certification Authority|CA]] 
+
+Quando **Bob** naviga su `www.alice.com` questa deve fornire non solo il [[Certificate]] per lei ma anche tutti i [[Certificate]] fino alla **Root** [[Certification Authority|CA]] 
+
+Il broswer quindi controllerà la catena di certificati dalla foglia `www.alice.com` alla **Root** [[Certification Authority|CA]] 
+
+Alla fine il *broswer* conosce la *public key* del server ma questo non sa nulla riguardo l'utente 
+
+## Certificate Revocation Lists (CRL) 
+
+Se viene persa una *private key* abbiamo necessità di revocare i [[Certificate]] relativi ad essa 
+
+Una **CRL** è una lista di [[Certificate]] che sono stati revocati da una [[Certification Authority|CA]] , una **CRL** è firmata dalla chiave della [[Certification Authority|CA]] 
+
+I broswer periodicamente aggiornano le loro **CRL** 
+
+## Let's Encrypt
+
+#todo 
+
