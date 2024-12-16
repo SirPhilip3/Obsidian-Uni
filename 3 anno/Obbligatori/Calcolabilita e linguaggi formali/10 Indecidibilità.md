@@ -4,7 +4,7 @@ creation: 2024-11-18T10:05:00
 ---
 ![[Linguaggi non Touring Riconoscibili]]
 
-![[Linguaggio Indecidibile]] 
+![[Indecidibilità di A(TM)]] 
 
 ![[notA(TM) non è TR]]
 
