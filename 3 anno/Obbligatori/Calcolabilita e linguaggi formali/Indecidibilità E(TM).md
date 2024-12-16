@@ -25,7 +25,23 @@ Dimostriamo che $A_{TM} \leq E_{TM}$ ossia dimostriamo cche se avessi un [[Decis
 >$S$ = Su input $<M,w>$ 
 >1. Costruiamo una nuova [[08 Macchine di Touring|MdT]] $N$ avente la seguente propietà :
 >   $$L(N) = \begin{cases}\text{Non vuoto} & \text{Se $M$ accetta $w$} \\ \text{Vuoto} & \text{Altrimenti} \end{cases}$$
->2. Eseguiamo $E_{TM}$ su input $<N>$ 
+>2. Eseguiamo $E_{TM}$ su input $<N>$
+>3. Se esso ritorna *Accept* ( $L(N)$ è vuoto ) `REJECT`
+>4. Se esso ritorna *Reject* ( $L(N) \neq \emptyset$ ) `ACCEPT`
+>
+>Costruiamo ora $N$ :
+>$N$ = Su input $x$ :
+>1. Se $x \neq w$ `REJECT`
+>2. Altrimenti simula $M$ su $w$ e ritorna il suo output
+>
+>>[!note] 
+>>$N$ può anche andare in loop , infatti questa non viene mai eseguita , ci serve solo per trasformare $M$ in modo che ne rappresenti gli stati *accettanti* e *rifiutanti* 
+>>
+>>$x$ ci serve solo per ritornare un linguaggio che sia non vuoto quando $M$ accetta $w$
+>
+>Abbiamo quindi costruito un [[Decisore]] per $A_{TM}$ assumendo che ne esista uno per $E_{TM}$ , questo però è un assurdo visto che abbiamo dimostrato l'[[Indecidibilità di A(TM)]] , per [[Riducibilità]] avremo quindi che anche $E_{TM}$ sarà [[Indecidibile]]
+
+
 
 
 

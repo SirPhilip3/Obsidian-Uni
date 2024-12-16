@@ -14,4 +14,4 @@ Intuitivamente diciamo che $A$ è *riducibile a* $B$ ( indicato con $A \leq B$ )
 
 ![[HALT Problem]]
 
-![[E(TM)]]
+![[Indecidibilità E(TM)]]
