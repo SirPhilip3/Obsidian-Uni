@@ -27,3 +27,18 @@ $S$ : Su input $w$ :
 >[!example] 
 ![[A(TM) Mapping Riducibile a HALT(TM)]]
 ![[E(TM) Mapping Riducibile a EQ(TM)]]
+![[A(TM) Mapping Riducibile notE(TM)]]
+
+---
+
+>[!important] Teorema
+>
+>Se $A \leq_M B$ e $B$ è [[Touring Riconoscibili]] allora $A$ è [[Touring Riconoscibili]] 
+
+**Dimostrazione** : 
+
+Dato che $A \leq_M B$ esiste una [[Funzione Calcolabile]] $f$ tale che per ogni stringa $w$ , $w \in A \iff f(w)\in B$ 
+
+Dato che per ipotesi $B$ è [[Touring Riconoscibili]] esiste una [[08 Macchine di Touring|MdT]] $M$ tale che $L(M)=B$ 
+Costruiamo quindi una [[08 Macchine di Touring|MdT]] $N$ tale che $L(N)=A$ : 
+$S$ = Su input $$
