@@ -15,3 +15,7 @@ Intuitivamente diciamo che $A$ è *riducibile a* $B$ ( indicato con $A \leq B$ )
 ![[HALT Problem]]
 
 ![[Indecidibilità E(TM)]]
+
+![[Riducibilità Basata su Storie di Computazione]]
+
+![[Mapping Riducibilità]]
