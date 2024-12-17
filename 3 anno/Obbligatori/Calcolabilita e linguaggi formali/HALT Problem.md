@@ -11,7 +11,7 @@ $$HALT_{TM} = \{ <M,w> | \text{ $M$ MdT che termina su input $w$}\}$$
 **Dimostrazione** : 
 
 >[!note] 
->Usiamo la tecnice della [[Riducibilità]] 
+>Usiamo la tecnice della [[11 Riducibilità]] 
 
 La *dimostrazione* avviene per **Assurdo** 
 

@@ -39,7 +39,7 @@ Dimostriamo che $A_{TM} \leq E_{TM}$ ossia dimostriamo cche se avessi un [[Decis
 >>
 >>$x$ ci serve solo per ritornare un linguaggio che sia non vuoto quando $M$ accetta $w$
 >
->Abbiamo quindi costruito un [[Decisore]] per $A_{TM}$ assumendo che ne esista uno per $E_{TM}$ , questo però è un assurdo visto che abbiamo dimostrato l'[[Indecidibilità di A(TM)]] , per [[Riducibilità]] avremo quindi che anche $E_{TM}$ sarà [[Indecidibile]]
+>Abbiamo quindi costruito un [[Decisore]] per $A_{TM}$ assumendo che ne esista uno per $E_{TM}$ , questo però è un assurdo visto che abbiamo dimostrato l'[[Indecidibilità di A(TM)]] , per [[11 Riducibilità]] avremo quindi che anche $E_{TM}$ sarà [[Indecidibile]]
 
 
 

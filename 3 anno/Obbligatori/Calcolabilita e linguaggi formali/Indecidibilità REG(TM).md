@@ -8,7 +8,7 @@ creation: 2024-12-16T09:44:00
 
 **Dimostrazione** : 
 
-Dimostriamo che $A_{TM} \leq REG_{TM}$ ( $A_{TM}$ [[Riducibilità|Riducibile]] a $REG_{TM}$ ) , ossia dimostriamo che se avessimo un [[Decisore]] $H$ per $REG_{TM}$ potremmp costuire un [[Decisore]] per $A_{TM}$ , questo è **Assurdo** per [[Indecidibilità di A(TM)]] 
+Dimostriamo che $A_{TM} \leq REG_{TM}$ ( $A_{TM}$ [[11 Riducibilità|Riducibile]] a $REG_{TM}$ ) , ossia dimostriamo che se avessimo un [[Decisore]] $H$ per $REG_{TM}$ potremmp costuire un [[Decisore]] per $A_{TM}$ , questo è **Assurdo** per [[Indecidibilità di A(TM)]] 
 
 Costruiamo quindi il decisore $S$ per $A_{TM}$ :
 

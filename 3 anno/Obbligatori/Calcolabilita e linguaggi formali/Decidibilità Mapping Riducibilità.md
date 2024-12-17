@@ -41,4 +41,16 @@ Dato che $A \leq_M B$ esiste una [[Funzione Calcolabile]] $f$ tale che per ogni 
 
 Dato che per ipotesi $B$ è [[Touring Riconoscibili]] esiste una [[08 Macchine di Touring|MdT]] $M$ tale che $L(M)=B$ 
 Costruiamo quindi una [[08 Macchine di Touring|MdT]] $N$ tale che $L(N)=A$ : 
-$S$ = Su input $$
+$S$ = Su input $w$ : 
+1. Calcoliamo $f(w)$ 
+2. Eseguiamo $M$ su $f(w)$ e ritorniamo il suo output 
+
+>[!important] Corollario 
+>
+>Se $A \leq_M B$ e $A$ *non* è [[Touring Riconoscibili|TR]] allora $B$ *non* è [[Touring Riconoscibili|TR]] 
+>
+>Visto che abbiamo dimostrato che [[notA(TM) non è TR]] questo corollario ci permette di dimostrare che alcuni problemi non sono [[Touring Riconoscibili]]
+>
+>>[!example] 
+
+![[EQ(TM) non è TR]]

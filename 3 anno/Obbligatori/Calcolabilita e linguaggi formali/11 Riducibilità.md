@@ -16,6 +16,14 @@ Intuitivamente diciamo che $A$ è *riducibile a* $B$ ( indicato con $A \leq B$ )
 
 ![[Indecidibilità E(TM)]]
 
+---
+
 ![[Riducibilità Basata su Storie di Computazione]]
 
+---
+
 ![[Mapping Riducibilità]]
+
+---
+
+![[Touring Riducibilità]]
