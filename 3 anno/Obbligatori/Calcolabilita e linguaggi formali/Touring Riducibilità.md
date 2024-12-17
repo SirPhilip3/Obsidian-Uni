@@ -41,5 +41,19 @@ Posso costruire un [[Decisore]] per $A$ sostituiendo tutte le chiamate all'[[Ora
 >Se $A\leq_T B$ e $A$ è [[Indecidibile]] allora $B$ è [[Indecidibile]] 
 >
 
-## Corrispon
+## Corrispondenza tra Mapping e Touring Riducibilità
+
+>[!important] Teorema
+>
+>Se $A \leq_M B$ allora $A \leq_T B$ 
+
+**Dimostrazione** : 
+
+Dato che $A \leq_M B$ allora esiste una [[Funzione Calcolabile]] $f$ tale che $\forall w,w \in A \iff f(w)\in B$ 
+
+Costruiamo una [[Macchina di Touring con Oracolo|MdT con Oracolo]] per $B$ che decide $A$ come segue : 
+$S$ : Su input $x$ : 
+1. Calcola $f(w)$
+2. Esegui l'[[Oracolo]] per $B$ su $f(w)$
+3. Ritorna il suo outpur 
 
