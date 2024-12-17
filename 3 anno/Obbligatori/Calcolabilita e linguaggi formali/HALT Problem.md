@@ -6,7 +6,7 @@ $$HALT_{TM} = \{ <M,w> | \text{ $M$ MdT che termina su input $w$}\}$$
 
 >[!important] Teorema
 >
->$HALT_{TM}$ è [[Indecidibilità di A(TM)]]
+>$HALT_{TM}$ è [[Indecidibile]]
 
 **Dimostrazione** : 
 
