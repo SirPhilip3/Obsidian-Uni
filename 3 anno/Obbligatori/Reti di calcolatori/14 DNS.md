@@ -82,6 +82,83 @@ Se qualcuno all'interno della rete locale ha già visitato quel determinato domi
 >
 >**DNS** non è stato ideato con nessun servizio di sicurezza 
 >
->
+>Originalmente **DNS** utilizza [[UDP]] , versioni più recenti usano [[TCP]] 
+### Message Format
 
+![[Pasted image 20241218101828.png]]
+
+Dove : 
++ `Header` : Spazio per gli *header*
++ `Question` : Contiene la domanda per il [[Name Servers]] 
++ `Answer` : Risposte alla question ( [[Resource Record]] )
++ `Authority` : Contiene il campo *authority* ( [[Resource Record]] )
++ `Additional` : Spazio per altre informazioni
+
+#### Header
+
+![[Pasted image 20241218102134.png]]
+
++ Transaction `ID` : è un numero unico che rappresenta la transazione , inviato dal *client* , questo verrà replicato nella *risposta* 
+>[!warning] 
+>Il suo valore deve essere random altrimenti si introducono problemi di sicurezza 
++ *Flags* : 
+	+  `QR` : Query type 
+		+ `0` per *richieste*
+		+ `1` per *risposte*
+	+ `AA` : Se la risposta è `Authoritative` ( `1` ) o meno ( `0` )
+	+ `RD` : La richiesta è *ricorsiva* ( `1` )
+	+ `RA` : Se il server supporta la ricorsione ( `1` )
+	+ `Z` : Per usi futuri
+	+ `RCODE` : Response code `0` OK , errori ( `1-5` )
++ I rimanenti campi rappresentano il numero di : *Questions* , *Answers* , *Authority* e *Additional* presenti nel resto del messaggio , ognuno di questi è un **Resource Record** 
+#### Resource Record 
+
+![[Pasted image 20241218103528.png]]
+
++ `NAME` : Il nome che era stato richiesto 
++ `TYPE` : 
+	+ `A` : Indirizzo *IPv4* dell'*host*
+	+ `AAAA` : Indirizzo *IPv6* dell'*host*
+	+ `NS` : Authoritative Name Server
+	+ `MX` : Mail Exchange
+	+ `CNAME` : Alias per la stessa risorsa
+	+ `SOA` : Dati riguardanti al propietario
+	+ `TXT` : Qualsiasi altra cosa
++ `TTL` : Il tempo per cui questa informazione può essere mantenuta in *cache*
++ `RDLENGTH` : La lunghezza del campo `RDATA`
++ `RDATA` : L'informazione
+
+>[!note] 
+>
+>La lunghezza degli *header* sono di lunghezza fissa , questo ci permette di renderne più facile il parsing in hardware ma limita la possibilità di estensione del protocollo , per questo vengono mantenuti dei bit riservati ad uso futuro
+>>[!example] 
+>>
+>>Il campo `TXT` fa in modo che possiamo scriverci all'interno qualsiasi cosa , e quindi possiamo utilizzarlo per fare anche cose più complesse 
+>>
+
+### Reverse DNS
+
+Quando registriamo un dominio **possiamo** ( non è obbligatorio ) aggiungere un [[Resource Record|RR]] `PTR` dove specifichiamo un dominio nel seguente formato : `<reversed ip>.in-addr.arpa`
+
+In cui il dominio `in-addr.arpa` è usato per fare **reverse lookups** , questo permette di , dato un indirizzo *IP* ritornare un *dominio* 
+
+>[!example] 
+>
+>Se vogliamo sapere il dominio associato a `1.2.3.5` , facciamo una richesta *DNS* per `5.3.2.1.in-addr.arpa` , questo ci ritornerà una lista di *domini* associati ad esso 
+
+>[!note] 
+>L'indirizzo viene rovesciato poichè anche il *reverse DNS* è *gerarchico* , infatti :
+>>[!example] 
+>>1. Inizialmente chiediamo l'indirizzo dei server *DNS* di `in-addr.arpa` 
+>>2. Ad uno di questi *DNS* chiediamo quindi di `5.3.2.1.in-addr.arpa` che risponderà con l'indirizzo per `1.in-addr.arpa` 
+>>3. Chiediamo al *DNS autoritativo* per `1.in-addr.arpa` di risolvere `5.3.2.1.in-addr.arpa` questo ci risponderà con il *DNS autoritativo* per `2.1.in-addr.arpa`
+>>4. Cos'ì via fino a ritrovare l'indirizzo completo `5.3.2.1.in-addr.arpa` 
+
+### WHOIS Protocol
+
+Il protocollo `WHOIS` ci permette di ricevere informazioni legate ad un certo dominio 
+
+Una query `WHOIS` chiede al **Regional Register** ( **RIR** ) l'indirizzo del **Registrar** responsabile per il *dominio* , a cui verra chiesto di dare dei dati riguardanti quel dominio ( *Owner, email* etcc )
+
+### DNS Operations
 
