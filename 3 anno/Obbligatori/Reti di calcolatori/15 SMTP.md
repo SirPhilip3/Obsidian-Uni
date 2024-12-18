@@ -130,7 +130,7 @@ Fa quindi una richiesta al **DNS** usando come `TYPE` `MX` in modo da ricevere u
 
 Ciò che ritornerà sarà un nome di *dominio* per cui fare un altra query **DNS** per risolvere il suo indirizzo *IP*
 
-Ottenuto l'*IP* l'**SMTP** si connette al
+Ottenuto l'*IP* l'**SMTP** si connette all'**SMTP** di destinazione , l'**MTA** però non fa autheticazione e quindi non permetterà **relaying** , solo *email* destinate allo stesso *dominio* saranno accettate
 #### SMTP Authentication
 
 Al primo `EHLO` da parte del *client* il *server* risponde con diversi `250-` con in aggiunta , come commento, i metodi di autenticazione che il server supporta :
@@ -139,3 +139,47 @@ Al primo `EHLO` da parte del *client* il *server* risponde con diversi `250-` co
 ![[Pasted image 20241218130336.png]]
 
 Il *client* sucessivamente ne sceglie una con cui autheticarsi
+
+>[!note] 
+>Quando ci connettiamo ad un **MTA** o **MUA** facciamo sempre la stessa azione , inviare una *mail* 
+>
+>Quando l'**MUA** si connette ad un **MTA** con cui condivide delle credenziali valide , l'**MUA** farà un'autenticazione e l'**MTA** gli permetterà di fare **relaying**
+>>[!warning] 
+>>Se non facciamo l'autenticazione l'**MTA** permetterà di inviare email solo all'interno del proprio dominio
+
+Per rendere questo processo esplicito è stato aggiunto un ulteriore componente : **Mail Submission Agent** ( **MSA** ) ossia un **MTA** che svolge l'autenticazione
+
+>[!example] 
+>![[Pasted image 20241218133150.png]]
+
+>[!note] 
+>In `RFC 5068` viene specificato che l'**MSA** deve supportare la porta di `SUBMISSION` `587` 
+>
+>L'**MSA** deve fare *autenticazione* ( verificare i suoi permessi con l'opertore dell **MSA** ) anche per quelle comunicazioni tra indirizzi email che appartengono allo stesso *dominio*
+>
+>Per un periodo di tempo dopo l'invio della mail l'**MSA** deve essere in grado identificare l'utente autenticato che ha inviato la mail
+
+
+## POP / IMAP
+
+Quando la mail viene ricevuta dal server **SMTP** del destinatario viene salvata dentro una mailbox da dove può essere recuperata tramite un protocollo come **POP** o **IMAP** ( **Mail Delivery Agent** ( **MTA** ) )
+
+### POP3
+
+Quando una mail arriva all'ultimo **MTA** viene invata ad un **MDA** , questo la rende disponibile all'**MUA** del destinatario attraverso un protocollo come **POP3** ( Sostituito da **IMAP** )
+
+Questo è un protocollo testuale con comandi come : 
++ `USER` : seguito dal nome utente
++ `PASS` : seguito dalla password
++ `STAT` : chiede lo stato della mailbox
++ `LIST` : dai una lista di nuovi messaggi 
++ `RETR` : seguito da un numero ritorna l'$n$-esimo messaggio
+
+Le risposte possono essere `+OK` seguito dalla risposta o codici di errore simili a **SMTP**
+
+>[!example] 
+>![[Pasted image 20241218134320.png]]
+
+>[!warning] 
+>Originariamente **POP** consentiva di fare autenticazione senza encryption , per questo è stato esteso per supportare ex [[CRAM-MD5]] 
+

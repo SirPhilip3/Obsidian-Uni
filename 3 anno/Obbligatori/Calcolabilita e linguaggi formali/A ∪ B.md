@@ -35,3 +35,8 @@ publish: true
 >>
 >>Possiamo sempre aggiungere un nuovo nodo *pozzo* dove se trovo il nuovo carattere dell'alfabeto rifiuto sempre la stringa , in questo modo il [[Linguaggio DFA]] non cambia anche se abbiamo aggiunto un elemento a $\sum$
 
+>[!note] 
+>Se $F=F_1 \times F_2$ definiremmo come stati accettanti quelli per i quali entrabi gli elementi della coppia sono accettanti 
+>
+>Ossia $M$ accetterebbe una stringa $w$ solo se sia $M_1$ che $M_2$ la accettano , questo dimostra la [[Chiusura linguaggi regolari]] rispetto all'**intersezione** : $A \cap B$  
+
