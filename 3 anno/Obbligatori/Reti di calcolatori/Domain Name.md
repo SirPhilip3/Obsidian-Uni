@@ -20,4 +20,5 @@ I **TLD** sono ben definiti , invece i livelli inferiori vengono venduti da enti
 >Un *sotto-albero* dell'intero domain tree è detto *zone* ( `www.example.com` , `main.example.com` , `ns.example.com` sono tutti nella stessa *zone* ) 
 
 >[!note] 
->I *domini* sono
+>I *domini* sono *affittati* per un periodo di tempo
+
