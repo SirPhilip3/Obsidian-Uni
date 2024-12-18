@@ -136,6 +136,8 @@ Dove :
 >>Il campo `TXT` fa in modo che possiamo scriverci all'interno qualsiasi cosa , e quindi possiamo utilizzarlo per fare anche cose più complesse 
 >>
 
+>[!note] 
+>Alcuni `TYPE` sono *non-terminali* ossia anche se abbiamo raggiunto un server *autoritativo* non risponde con un *IP* ma con un altri *dominio* , necessiteremo poi un'altra query per risolverlo
 ### Reverse DNS
 
 Quando registriamo un dominio **possiamo** ( non è obbligatorio ) aggiungere un [[Resource Record|RR]] `PTR` dove specifichiamo un dominio nel seguente formato : `<reversed ip>.in-addr.arpa`
@@ -162,3 +164,19 @@ Una query `WHOIS` chiede al **Regional Register** ( **RIR** ) l'indirizzo del **
 
 ### DNS Operations
 
+#### Server Redundancy
+
+Generalmente abbiamo più server *DNS autoritativi* per lo stesso dominio , in modo che se uno non risponde la stessa query viene ripetuta in *round-robin* per gli altri 
+
+>[!note] 
+>Dobbiamo fare *round-robin* poichè la comunicazione è [[UDP]] e quindi non sappiamo distinguere se i pacchetti sono andati persi o il server è down 
+
+>[!warning] 
+>
+>In alcuni casi il servizio viene replicato su diverse macchine , per questo potrebbe essere che per lo stesso dominio il *DNS* ritorni diversi *IP* anche prima che il `TTL` termini , l'*IP* ritornanto sarà scelto a *round-robin* tra quelli forniti dal *DNS*
+
+#### TTL
+
+Il `TTL` può essere : 
++ *grande* : il `DNS` riceve meno richieste
++ *piccolo* : ogni cambiamento viene propagato velocemente 
