@@ -19,7 +19,7 @@ creation: 2024-12-18T11:13:00
 
 ### Internet Message Format
 
-Le *e-mail* sono messaggi testuali , inizialmente in ASCII , 
+Le *e-mail* sono messaggi testuali , inizialmente in ASCII , in cui ogni riga termina con il carattere `CRLF`
 #### Headers
 
 Le *e-mail* ha delle righe iniziali contenenti gli *headers* ( ex : `From, To, Date, CC, BCC, Subject` etcc )
@@ -72,4 +72,70 @@ Campi `MIME` :
 >
 >Generalmente la *boundary* è un valore randomico
 
-## Simple Mail Transfer Protocol
+## Simple Mail Transfer Protocol ( SMTP )
+
+>[!note] 
+>Il *formato* dell'email è rilevante principalmente per gli end-point dell'email , detti *Mail User Agent* ( **MUA** )
+
+Gli **MTA** ( *Mail Transfer Agent* ) invece sono i server che si prendono cura della consegna dell'email 
+
+Per la comunicazione tra **MTA** e **MUA** si utilizzano due protocolli **SMTP** e **POP/IMAP**
+
+>[!example] 
+![[Pasted image 20241218122142.png]]
+
+**SMTP** si è un protocollo *text-based* , questo fa affidamento su un servizio *connection oriented* ( [[TCP]] ) , il *server* ascolta sulla porta `25` dove il client invia comandi testuali in ASCII terminati da `CRLF` , il *server* risponde con un numero di tre cifre che indica se è avvenuto un *errore* o l'operazione ha avuto *successo* ( in aggiunta vi possono essere dei commenti )
+### Comandi
+
+I comandi più usati sono : 
++ `EHLO` : Il *client* saluta il *server*
++ `MAIL FROM` : Il sender
++ `RCPT TO` : Il ricevitore
++ `DATA` : Inizio del messaggio 
++ `QUIT` : Terminazione del messaggio
+
+### Reply Codes
+
++ `2XX` : esito *positivo* 
+	+ `220` : Il servizio è pronto , usato quando la connessione viene aperta
+	+ `250` : Requested mail action , completed
++ `3XX` : esito *positivo* ma necessita più input
++ `4XX` : esito *negativo* ma il problema è temporaneo , puoi riprovare con lo stesso comando più avanti
+	+ `450` : Requested mail action not taken ( mailbox occupata o bloccata per qualche *policy* )
++ `5XX` : esito *negativo* , il problema è permanente , non riprovare
+	+ `550` : Requested action not taken ( mailbox non trovata , non ha accesso o comando rifiutato per motivi di *policy* )
+
+>[!example] 
+>![[Pasted image 20241218124026.png]]
+
+### SMTP Operations
+
+>[!note] 
+>Queste non sono regola ma configurazioni comunemente usate
+
+Il **MUA** viene configurato con il nome di *dominio* di un *server* **SMTP** , si connetterà a questo e svolgerà una certa *autenticazione* con l'**SMTP**
+
+>[!warning] 
+>Inizialmente non c'era autenticazione per **SMTP** 
+
+>[!note] 
+>Se il *client* può mandare *email* a qualsiasi dominio allora diciamo che il server **SMTP** permette il **relaying** di *email* verso altri domini 
+
+Una volta che il server **SMTP** riceve la mail dal **MUA** deve inviarla la server **SMTP** di destinazione 
+
+>[!warning] 
+>Inizialmente non conosce l'indirizzo *IP* del server **SMTP** che gestisce la posta per il *destinatario*
+
+Fa quindi una richiesta al **DNS** usando come `TYPE` `MX` in modo da ricevere una risposta *non-terminale* con più di una opzione classificate secondo uno score ( lower = better , usato per fare *load balancing* ) 
+
+Ciò che ritornerà sarà un nome di *dominio* per cui fare un altra query **DNS** per risolvere il suo indirizzo *IP*
+
+Ottenuto l'*IP* l'**SMTP** si connette al
+#### SMTP Authentication
+
+Al primo `EHLO` da parte del *client* il *server* risponde con diversi `250-` con in aggiunta , come commento, i metodi di autenticazione che il server supporta :
+
+>[!example] 
+![[Pasted image 20241218130336.png]]
+
+Il *client* sucessivamente ne sceglie una con cui autheticarsi
