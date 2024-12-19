@@ -112,3 +112,72 @@ Alcune definizioni :
 + `From` : Questo è quello che il *reciever* vede come il *sender* della mail , questo viene usato come *reciever* se usiamo `Reply-to`
 #### Sender Spoofing
 
+Visto che nella connessione il *client* può usare diversi *domini* per `HELO` , `MAIL FROM` e `From` 
+
+Un *client* **SMTP** può quindi mandare e-mail usando `From` con domini differenti
+
+>[!example] 
+>Quando un dominio viene registrato il *Registrar* fornisce vari indirizzi email con cui mandare email , queste saranno inviate dall'**MTA** del provider con il nosto campo `From` che sarà diverso dal dominio dell'`HELO`
+
+>[!important] 
+Per questo un reciever **MTA** non può rifiutare email perchè il `From` non corrisponde con il dominio presente nell'`HELO`
+
+>[!warning] 
+>Questo viene usato da spammers per fingersi un dominio noto alla vittima , normalmente infatti il `Reply-to` non sarà vero l'indirizzo presente nel `From`
+
+#### Protecting `HELO` and `MAIL FROM`
+
+**SPF** fa in modo che uno spammer non possa usare `HELO` o `MAIL FROM` usando un dominio che non possiede 
+
+Viene aggiunta una entry `SPF` nel record **DNS** di un'organizzazione che specifica gli indirizzi *IP* che possono inviare emails ( mantenuta dentro la `TXT` entry )
+
+>[!example] 
+>```bash
+>unive.it. 86400 IN TXT “v=spf1 ip4:17.18.7.120 -all”
+>```
+>
+>Questo significa : 
+>+ `v=spf1` versione $1$ del protocollo `SPF`
+>+ `17.18.7.120` può mandare email
+>+ `-all` tutti gli altri non possono mandare email
+
+Quando l'**MTA** del ricevente riceve una connessione dall'**MTA** del sender fa le seguenti cose : 
++ Fa un risoluzione **DNS** per i domini specificati in `HELO` e `MAIL FROM` 
++ Verifica che esiste il record `SPF` per entrambi 
++ Controlla che la connessione arriva da indirizzi *IP* consentiti nei record `SPF`
+>[!note] 
+>Pernderà poi una decisione che dipende dalla policy che ha settata
+
+>[!warning] 
+>`SPF` si basa sull'assunzione che un attaccante non può modificare il record **DNS**
+
+##### Syntax
+
+>[!example] 
+>```bash
+>$ dig ietf.org TXT
+>;; ANSWER SECTION :
+>ietf.org. 300 IN TXT 
+>	"v=spf1 ip4:50.223.129.192/26 ip6:2001:559:c4c7::/48 
+>	 a:ietf.org mx:mail.ietf.org ip4:192.95.54.32/27
+>	   ip6:2607:5300:60:9ccf::/64 ip4:54.240.73.154/31
+>	 include:_spf.google.com include:spf.hostedrt.com 
+>	   include:amazonses.com ~all"
+>```
+>
+>>[!note] 
+>>`50.233.192.192/26` è permesso 
+
++ `ipv4/ipv6` : seguito dagli *IP* che possono inviare email ( ossia gli indirizzi che possono comportarsi come **MTA** usando `HELO` o `MAIL FROM` con il dominio `ietf.com` ) 
++ `a` :  stesso di `ipv4/ipv6` ma con un [[Domain Name]] , l'**MTA** risolverà il dominio e controllerà l'*IP*
++ `mx` : stesso ma con un record `MX` , l'**MTA** risolverà il dominio del record `MX` e controllerà l'*IP*
++ `include` : include il record `SPF` di qualche dominio specificato
++ `all` : indica tutto il resto , usato per dare un comportamento di default
++ Qualifiers :
+	+ `+` : Pass ( se omettiamo il qualifier significa *pass* )
+	+ `-` : Fail
+	+ `∼` : Softfail
+	+ `?` : Neutral
+
+##### Decision Delegation
+
