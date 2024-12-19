@@ -102,7 +102,7 @@ Quindi un **MTA** che usa **graylisting** mantiene una lista di indirizzi *IP* c
 
 >[!warning] 
 >Questo è efficente per **MTA** molto utilizzati che quindi rimaranno sempre in whitelist ( ex google ) , mentre **MTA** poco utilizzati avranno molto facilmente la loro prima email ritaradata
-### Sender Policy Framework
+### Sender Policy Framework ( SPF )
 
 Alcune definizioni :
 + `HELO` : Identifica il [[Domain Name]] dell'**MTA** ( il server `SMTP` ) che rappresenta il *client*
@@ -181,3 +181,72 @@ Quando l'**MTA** del ricevente riceve una connessione dall'**MTA** del sender fa
 
 ##### Decision Delegation
 
+Se il server **MTA** trova una regola `SPF` che finisce con `-all` e il client **MTA** non matcha quella regola , allora il server dropperà la mail 
+
+>[!note] 
+>Così è il dominio del *sender* che decide non l'**MTA** 
+
+Se la regola invece termina con `?all` vuol dire che il dominio del *sender* non da una regola precisa , l'**MTA** deciderà quindi cosa fare 
+### DKIM 
+
+Visto che tutti i campi di una email sono generati dall'**MUA** e vengono poi forwardati dall'**MTA** , l'unica entità che può verificare che quei campi siano corretti è l'**MSA**  
+
+`DKIM` è un protocollo che permette di autenticare l'associaizone tra una e-mail e un **MTA** valido 
+
+>[!note] 
+>Questo funziona solamente se l'**MSA** possiede un paio di chiavi pubbliche / private che l'amministratore deve generare e configurare nell'**MSA** 
+
+---
+
+Quando un **MUA** contatta l'**MSA** questo si autentica 
+
+>[!warning] 
+>Quest è l'unico momento in cui una email può essere certificata in quanto il prossimo **MTA** non potrà più fare autenticazione
+
+Quando usiamo `DKIM` l'**MSA** selezionerà dei campi della mail ( potenzialmente il `From` e il body ) e ne farà una [[Digital Signature]] usando la sua *private key* 
+
+Un *digest* della [[Digital Signature]] viene generata e inclusa nell'*header* della mail 
+
+Il prossimo **MTA** che riceverà la mail potrà verificare la [[Digital Signature]] con la [[Public Key]] dell'**MTA** firmataria
+
+#### DKIM Field
+
+>[!example] 
+>```bash
+>DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ietf.org; s=ietf1; t=1730884895; bh=gKKOhIEVnQtATJMEQQoY5UYl3/bV+mlSqzFkKJnzquw=; h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe; b=ILdywWIjDUwI3JoXDLHPdhOBf02HPj9+
+>WyjSYJlFL9S28eiCiR/ybDhCL1BAoYzYhMlLaDQUPo4jYp6FwU82cSjaj7/
+>OIr6JcS0wVcCYLJQaLhRfRUkEA7i9xilpNuBEIyax9Ltt1YHZNvXuZ9m8Bfuapxs1UKL3tW0luG8MU6E=
+>```
+>
+
++ `v` : versione `DKIM` 
++ `a` : [[Hash Functions]] usata 
++ `h` : header firmati
++ `bh` : hash del body ( `sha256` in questo caso )
++ `h` :  [[Digital Signature]] ( firma `rsa` degli header e dell'hash del body )
++ `d,s` : domain e selector , usati per prendere la [[Public Key]]
+
+#### Key Publication
+
+L'amministratore del **MTA** firmatario deve pubblicare la [[Public Key]] tra le informazioni in record **DNS** ( in un campo `TXT` )
+
+>[!important] 
+>Il record **DNS** deve essere pubblicato sotto il dominio `selector._domainkey.domain` , dove `_domainkey` è una stringa fissata 
+>>[!example] 
+>>`ietf1._domainkey.ietf.org`
+
+La chiave sarà recuperata tramite una query **DNS**
+
+>[!example] 
+>```bash
+>dig ietf1.\_domainkey.ietf.org TXT
+>
+>;; ANSWER SECTION :
+>ietf1.\_domainkey.ietf.org. 300 IN TXT ‘‘k = rsa ; p=
+>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNzNnjKTd5cczd2CDzHflCZuv1tMWYwd7zE+deoJ6s/fXR7/n9ZIBnDS5egt7HAHjNjZrmjcoRlfSsNxRJvUQFyYvaU1BT1s8R+mkPgSOqZ4t9HqAVjiczn2B9+dbjdNN+S/zvSyMMuSCSJDKKAXhBpDeQTpeY7/UdP9s6ws0yjQIDAQAB’’
+>```
+#### FQDN + DKIM + SPF
+
+
+
+### DMARC
