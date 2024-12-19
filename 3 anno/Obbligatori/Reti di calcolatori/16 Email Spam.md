@@ -247,6 +247,66 @@ La chiave sarà recuperata tramite una query **DNS**
 >```
 #### FQDN + DKIM + SPF
 
+Possiamo avere la seguente *chain* di requisiti :
+$$\text{Valid IP/domain} \to \text{MTA allowed by SPF} \to \text{DKIM-valid From for a certain domain}$$
 
-
+>[!warning] 
+>Non abbiamo ancora un modo per linkare il *dominio* con il `From` e prendere una decisione
 ### DMARC
+
+#### Alignment check
+
+Gli *Alignment check* sono le decisioni che vengono prese a seconda di come sono settati i campi per `SPF` , `DKIM` , `From` etc..
+
+>[!example] 
+>Un *check* basilare è : 
+>Il `From` deve matchare almeno uno di : 
+>+ `d` nella `DKIM` [[Digital Signature]] 
+>+ uno dei domini verificati da `SPF`
+
+Cosa succede se un *Alignment check* fallisce ? ,
+
+Qualsiasi sia la decisione questa deve essere consistente per ogni **MTA** , questo è deciso dal propietario del dominio 
+#### DMARC
+
+`DMARC` è un protocollo che permette al propietario del dominio di settare una policy di accettazione / rifiuto che tutte le **MTA** devono rispettare 
+
+Viene usato un altro record `TXT` nel **DNS** , acessibile a `_dmarc.domain.com`
+###### Syntax
+
+Campi importanti : 
++ `p` ( policy ) : l'azione che l'**MTA** deve prendere se una *alignment check* fallisce 
+	+ `none` : non fa nulla
+	+ `quarantine` : flagga l'email come sospetta
+	+ `reject` : rifiuta l'email
++ `rua` : l'email a cui vengono riportati fallimenti della policy 
+
+>[!example] 
+>```bash
+>$ dig _dmarc.whitehouse.gov TXT
+>;; ANSWER SECTION :
+>_dmarc.whitehouse.gov. 2012 IN TXT "v=DMARC1 ; p=reject ; rua=mailto:b1fabe8b7f3f41a181ecd1253a794edf@dmarc-reports.cloudflare.net , mailto:reports@dmarc.cyber.dhs.gov"
+>```
+>
+>In questo caso le email vengono rifiutate
+
+# Summary
+
+![[Pasted image 20241219124508.png]]
+
+**Steps** : 
+
+1. Alice usa `SMTP` con il suo **MSA** locale per dire che vuole inviare una mail da `alice@a.com` a `bob@b.com`
+2. L'**MSA** autentica `Alice` con delle credenziali 
+3. L'**MTA** in `a.com` usa `SMTP` per inviare una email usando gli appropiati `HELO`, `Mail From`, `From` e `DKIM-Signature` , l'*IP* sorgente è `1.2.3.4`
+4. `1.2.3.4` viene testato contro *Spamhaus DNSBL* con query : `4.3.2.1.zen.spamhos.com`
+5. Il server **MTA** in `b.com` fa una *reverse DNS query* per l'*IP* del **MTA** client
+6. Questo risolve in `mail.a.com` e controlla che entrambe le risoluzioni matchano
+7. Il server **MTA** fa una query `TXT` al server **DNS** di `a.com` e controlla che la policy `SPF` permette a `1.2.3.4` di inviare email per conto di `a.com`
+8. Il server **MTA** fa una query per un sottodominio `_domainkey` al server **DNS** di `a.com` , riceve un key `DKIM` e controlla la firma della email
+9. Il server **MTA** fa una query per un sottodominio `_dmarc` al server **DNS** di `a.com` , controlla che tutte le policy siano tutte rispettate 
+10. Se tutte le policy sono rispettate la mail viene accetta
+
+
+
+
