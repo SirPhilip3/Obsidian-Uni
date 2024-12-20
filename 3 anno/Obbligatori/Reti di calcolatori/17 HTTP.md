@@ -221,3 +221,69 @@ Altri *header* sono :
 
 ## HTTP Status Code
 
+La linea che indica lo stato della risposta include la versione di **HTTP** seguita da un codice di tre cifre e ulteriori informazioni 
++ `2XX` : Risposta valida 
++ `3XX` : Il documento richiesto non è disponibile sul server
++ `4XX` : Il server ha rilevato un errore nella richiesta **HTTP** fatta dal client
+	+ `400 Bad Request` : Errore di sintassi nella richiesta **HTTP**
+	+ `404 Not Found` : Indica la il documento richiesto non esiste  
++ `5XX` : Errore da parte del server 
+
+>[!example]
+>Request 
+>```bash
+>GET / HTTP/1.0
+>User−Agent : curl/7.19.4 ( universal-apple-darwin10.0 ) libcurl/7.19.4 OpenSSL/0.9.8l zlib/1.2.3
+>Host : www.ietf.org
+>```
+>Response
+>```bash
+>HTTP/1.1 200 OK
+>Date : Mon, 15 Mar 2010 13:40:38 GMT
+>Server : Apache/2.2.4 ( Linux/SUSE ) mod\_ssl/2.2.4 OpenSSL/0.9.8e ( truncated )
+>Last-Modified : Tue, 09 Mar 2010 21:26:53 GMT
+>Content−Length : 17019
+>Content−Type : text/html
+><!DOCTYPE HTML PUBLIC . . . /HTML>
+>```
+## Persistent Connection
+
+Inizialmente una connessione `TCP` era disponibile per una sola richiesta `HTTP` , ora una pagina `HTTP` è formati da centinaia di parti e ognuna richiederebbe una connessione **TCP** 
+
+E' stato aggiunto l'header `Connection: Keep Alive` per fare in modo che si possano fare più richieste per la stessa connesione , quando il *client* invia questo header il *server* risponde con lo stesso *header* specificando il numero di richieste che vuole fare
+
+>[!example] 
+>
+>Request
+>
+>```bash
+>GET / HTTP/1.1
+>Host: www.kame.net
+>User−Agent : Mozilla/5.0 ( Macintosh; U; Intel Mac OS X; en-us )
+>Connection: Keep-Alive
+>```
+>
+>Response
+>```bash
+>HTTP/1.1 200 OK
+>Date : Fri , 19 Mar 2010 09:23:37 GMT
+>Server : Apache/2.0.63 ( FreeBSD ) PHP/5.2.12 with Suhosin−Patch
+>Keep−Alive : timeout=15, max=100
+>Connection : Keep−Alive
+>Content−Length : 3462
+Content−Type : text/html
+>\<html> . . .
+>\</html>
+>```
+## Stateless Operation
+
+>[!note] 
+Ogni richiesta `HTTP` è scorrelata da quelle che ne venivano prima 
+
+Il protocollo `HTTP` non mantiene uno stato 
+
+>[!warning] 
+>Questo non significa che il *backend* non mantega uno stato 
+## HTTP Cookies
+
+Per 
