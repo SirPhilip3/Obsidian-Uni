@@ -190,3 +190,34 @@ Ogni *risposta* contiene tre parti :
 
 ## HTTP Methods
 
++ `GET` : 
+	Usato per ricevere un documento dal server. 
+	E' seguito dal path dell'`URI` del documento richiesto e la versione di **HTTP** usata
++ `HEAD` : 
+	Permette di ricevere le linee *header* di un dato `URI`senza dover ricavare l'intero documento , può essere usato da un client per verificare l'esistenza di un dato documento 
++ `POST` :
+	Usato da un *client* per inviare un documento ad un server , aggiunto alla richiesta **HTTP** come documento *MIME*
+
+>[!example] 
+>`GET` 
+>
+>Per ricevere il documento `http://www.w3.org/MarkUp/` , dobbiamo :
+>1. Aprire una connessione `TCP` su porta `80` con l'host `www.w3.org`
+>2. Invia una richiesta **HTTP** : `GET /MarkUp/ HTTP/1.0`
+
+## HTTP headers
+
+Gli *header* `MIME` sono parzialmente simili a `SMTP` , per esempio per esprimere l'encoding 
+
+Altri *header* sono : 
++ `User-Agent` :
+	Informazioni riguardanti software che runna sul *client* , usato per dare una versione differente per ogni device
++ `Referrer` : 
+	Il precedente sito visitato dal broswer del client , in modo da capire da dove arriva il nostro traffico 
++ `Host` :
+	Il dominio che l'host richiede , nel caso in cui sul server abbiamo più di un dominio con lo stesso server path
++ `Server` :
+	Informazioni sul software che sta runnando sul server 
+
+## HTTP Status Code
+
