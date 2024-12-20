@@ -286,4 +286,66 @@ Il protocollo `HTTP` non mantiene uno stato
 >Questo non significa che il *backend* non mantega uno stato 
 ## HTTP Cookies
 
-Per 
+Un *cookie* è un'informazione generata dal *server* ed inviata al *client* , il *client* ritornerà il *cookie* ad ogni richiesta in modo da far vedere che è lo stesso che lo ha ricevuto inizialmente 
+
+`HTTP` fornisce due *header* `Set-Cookie` e `Cookie` per spostare i *cookies* dal *client* al *server* 
+
+I *cookie* possono essere distinti per il modo in cui vengono usati :
++ *Session Managment* : Usato per il log-in degli utenti
++ *Personalization* : Per settare la lingua , la locazione geografica etcc...
++ *Tracking* : Per profilare l'attività di un utente
+
+>[!warning] Attacchi
+>
+>Se un attaccante ha accesso al *cookie* di sessione questo può essere usato per impersonare la vittima 
+## Performance
+
+Visto che le richieste sono iterative il caricamento di una pagina , a seconda del **Round-Trip-Time** della connessione , potrebbe richiedere diversi secondi 
+
+Inoltre visto che le pagine sono dinamiche , il tempo di elaborazione per la creazione del file *html* introduce un'altro delay , questo problema viene risolto con l'utilizzo di server **proxy** 
+### Proxy
+
+Un server *proxy* è una cache che salva pagine per un certo periodo di tempo , generalmente queste risiedono all'interno del network dell'utente
+
+Il broswer non si connetterà direttamente al server `HTTP` di destinazione ma passa prima per la *proxy* che poi si connetterà al server `HTTP` originale e salverà la pagina 
+
+La prossima volta che il *client* visita quel deteminato sito la *proxy* semplicemente ritornerà il sito cachato 
+
+>[!example] 
+>![[Pasted image 20241220095737.png]]
+
+>[!warning] 
+>Una *proxy* è vulnerabile ad attacchi *MiMT* 
+
+Per sapere se la *proxy* necessita di richiedere la pagina dal server originale `HTTP` fornisce degli *header* che vengono usati per capire se la pagina è cambiata : 
++ `Cache-Control` : 
+	Usato dal server per notificare se la pagina :
+	+ `no-store` : non può essere mantenuta in cache
+	+ `max-age=10` : può essere mantenuta in cache per un numero massimo di secondi 
+	+ `no-cache` : può essere cachata ma le richieste sucessive devono chiedere al server se la pagina è cambiata
++ `If-Modified-Since` :
+	Se il *client* richiede la pagina con questo *header* , viene ritornata solo se la pagina è stata modificata da un certo tempo , altrimenti non viene ritornato nulla dal *server* e viene utilizzata la cache
+
+#### Reverse Proxies
+
+Una *reverse proxy* è una *proxy* che al posto di essere nella stessa rete del *client* è nella stessa rete del *server* 
+
+Questa nasconde il server reale , il *client* manderà le richieste alla *proxy* come se fosse il server reale , la *proxy* inoltrerà poi le richieste ai server , questo è utilizzato per fare load balancing nei server che *hostano* la pagina
+
+### HTTP 2.0
+
+`HTTP 2.0` è stato creato per velocizzare `HTTP` 
+
+Questo non è più un protocollo di testo , le richieste vengono codificate in formato binario 
+
+Il contenuto di una pagina è diviso in *frame* , questi possono essere inviati in parallelo al *client* , in questo modo il *server* può inviare prima oggetti di piccole dimensioni e sucessivamente quelli più grandi , questo fa si che il caricamento delle pagine diventi più veloce
+
+`HTTP 2.0` inoltre può *pushare* contenuti al *client* anche se non sono richiesti , questo fa risparmiare tempo quando il *server* sà di che risorsa il *client* ha bisogno prima che il *client* la richieda 
+#### HoL Blocking
+
+*Head-of-line* blocking è un termine generico utilizzato per indicare quando un grande *job* rallenta i *job* più piccoli 
+
+Nel caso di *HTTP* , il broswer renderizza la pagina in ordine degli elementi che vengono scaricati , quindi se il primo contenuto richiesto è una grande immagine questa blocca il caricamento di altri elementi che potrebbero caricarsi prima 
+
+In `HTTP 2.0` è il *server* a dare una priorità agli elementi che il *client* richiede ( normalmente viene data una priorità alta a elementi testuali piccoli )
+
