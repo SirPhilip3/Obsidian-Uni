@@ -74,5 +74,5 @@ Generalmente questi indirizzi sono divisi in :
 + `16`bit di *Source* e *Destination port*
 + `32`bit per il numero di *sequenza* e *ack*
 + `4`bit per indicare la lunghezza dell'*header* ( **TCP** **Header Length** o *Data Offest* ) , questo indica la lunghezza dell'header in [[words]] di `32`bit ossia la lunghezza massima dell'*header* sarà `64`byte
-+ 
++ `6`bit riservati -> usati per **ECN** ( **Explicit Congestion Notifications** )
 ## Performance
