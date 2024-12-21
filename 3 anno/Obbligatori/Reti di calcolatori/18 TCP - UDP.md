@@ -91,4 +91,44 @@ Generalmente questi indirizzi sono divisi in :
 
 Colui che riceve i dati ha un buffer dove mantiene i dati ricevuti , notificherà l'applicazione di nuovi dati , questo però non è controllato da colui che li invia 
 
+In certi casi vogliamo un comportamento controllato : 
++ `PSH` fa in modo che quando un *reciever* vede un segmento con `PSH` settato mandi tutto il contenuto del buffer all'applicazione
+>[!note] 
+>L'ordine di sequenza viene rispettato 
+
+Se vogliamo invece che un pacchetto venga mandato immediatamente all'applicazione senza che venga messo in queue possiamo usare la flag `URG` e `Urgent Pointer` :
+	Il reciever deve mandare i dati direttamente all'applicazione senza rispettare i *sequence numbers*
+
+>[!note] 
+>`URG` è deprecato e `PSH` non è quasi mai usato
+## Connection Setup
+
+![[Pasted image 20241221175020.png]]
+
+>[!note] 
+>La connessione deve essere iniziata in entrambi i versi 
+
+>[!note] 
+>L'*ack* che mandiamo dopo il pacchetto `SYN` è relativo al prossimo numero di sequenza poichè è quello che ci aspettiamo di ricevere la prossiama volta , ossia : ho ricevuto dati fino ad $x$ , ora mi aspetto $x+1$
+
+## Connection Refusal
+
+![[Pasted image 20241221175558.png]]
+
+Il rifiuto della connessione può avvenire se per esempio non c'è un'applicazione in esecuzione a quella porta 
+
+>[!note] 
+>Per rifiutare la connessione mandiamo un pacchetto di `RST` 
+>>[!important] 
+>>Questo deve comunque rispettare i numeri di sequenza , altrimenti un attacante potrebbe mandare un pacchetto di `RST` che abbia un numero di sequenza all'interno della finestra anche se non valido
+## TCP connection Macchina a Stati
+
+![[Pasted image 20241221180456.png]]
+
+>[!note] 
+>+ "?" significa riceve
+>+ "!" significa invia
+
+
+
 ## Performance
