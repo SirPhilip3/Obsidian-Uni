@@ -75,4 +75,20 @@ Generalmente questi indirizzi sono divisi in :
 + `32`bit per il numero di *sequenza* e *ack*
 + `4`bit per indicare la lunghezza dell'*header* ( **TCP** **Header Length** o *Data Offest* ) , questo indica la lunghezza dell'header in [[words]] di `32`bit ossia la lunghezza massima dell'*header* sarà `64`byte
 + `6`bit riservati -> usati per **ECN** ( **Explicit Congestion Notifications** )
++ **Flags** :
+	+ `SYN` : Usato per iniziare una connessione
+	+ `FIN` : Usato durante il rilascio di una connessione
+	+ `RST` : Chiude la connessione in caso di problemi
+	+ `ACK` : Indica che il campo *acknowledgment* è valido 
+	+ `CWR` , `ECE` : usati per **ECN**
+	+ `PSH` , `URG` : *Push* e *Urgent Pointer*
++ `window` : la dimensione della finestra di ricezione di colui che sta inviando il segmento ( `16`bit )
++ `checksum` : Checksum simile a quella usata in `IP` , che comprende tutto il segmento **TCP** e alcuni header **IP** ( tra cui l'indirizzo **IP** stesso ) ( `16`bit )
+
+>[!note] 
+>Dopo queste parti fisse ci possono essere delle estensioni 
+#### PSH e Urgent Pointer
+
+Colui che riceve i dati ha un buffer dove mantiene i dati ricevuti , notificherà l'applicazione di nuovi dati , questo però non è controllato da colui che li invia 
+
 ## Performance
