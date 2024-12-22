@@ -130,6 +130,33 @@ Il rifiuto della connessione può avvenire se per esempio non c'è un'applicazio
 >+ "!" significa invia
 
 >[!warning] 
->Se I due cercano di connettersi nello stesso istante alle *stesse porte* , ossia entrabi sono nello stato `SYN Sent` 
+>Se I due cercano di connettersi nello stesso istante alle *stesse porte* , ossia entrabi sono nello stato `SYN Sent` , se non ci fosse l'arco `?SYN / !SYN+ACK` questo rimarrebbe in *dealock* invece se riceviamo un `SYN` anche senza l'*ack* passiamo allo stato `SYN RCVD` da dove invieremo l'*ack* e la connessione diventerà *Established*
 
+Per implementare una macchina a stati dobbiamo mantere uno stato all'interno dell'*host* , questo avviene attraverso il `TCB` ( `Transmission Control Block` ) , questo mantiene , per ogni connesione , delle informazioni usate per mantenere lo stato della connessione ( eg i *buffer di ricezione* e *invio* )
+### SYN packet Options
+
+`Maximum Segment Size (MSS)` , ogni *host* setta il suo valore alla lunghezza massima di segmento che può ricevere 
+
+Normalmente questo è settato all'**MTU** della rete , il frame più grande supportato dal network del ricevente che non viene frammentato
+
+>[!note] 
+>La dimensione minima è `536`
+>
+>Il suo valore può essere diverso da rete a rete
+## Connection Release
+
+**TCP** supporta due tipologie di *connection release*
+### Graceful Release
+
+Una *Graceful Release* avviene quando ogni *host* può terminare la sua direzione di connessione dopo aver completato la trasmissione dei dati 
+
+Questo avviene con un segmento `FIN` con numero di sequenza $x$ , ciò significa che ha finito di inviare tutti i dati , l'ultimo segmento valido è $x$ 
+
+L'altro potrà comunque inviare i segmenti *persi* prima di $x$ , aspetterà quindi un `FIN` dall'altra parte
+
+>[!note] 
+>I segmenti `FIN` devono avere un *ack* 
+### Abrupt Release
+
+Una *Abrupt Release* avviene con un segmento con il flag `RST` settato , appena viene ricevuto o inviato 
 ## Performance
