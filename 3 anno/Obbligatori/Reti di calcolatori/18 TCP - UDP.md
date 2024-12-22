@@ -196,7 +196,12 @@ Gli elementi che cambiano invece sono :
 Quando l'applicazione mette dei nuovi dati nel *sending buffer* il layer **TCP** : 
 1. Controlla che il *sending buffer* non contenga più dati rispetto alla dimensione della *recieve window* dell'*host* remoto ( `rcv.wnd` )
 2. Fino a *MSS* byte vengono messi nel payload di un segmento **TCP**
-3. Il numero
+3. Il numero di sequenza del segmento è settato a `snd.nxt` e `snd.nxt` viene aumentato per la lunghezza del payload **TCP**
+4. L'[[Acknowledgment|ack]] viene settato a `rcv.nxt` e il campo `window` del segmento **TCP** è computato in base allo spazio libero nel *receiving buffer* 
 
+>[!note] 
+>I dati vengono mantenuti temporaneamente nel *sending buffer* in caso questi debbano essere reinviati 
 ### Receiving Data
+
+
 ## Performance
