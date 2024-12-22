@@ -158,5 +158,45 @@ L'altro potrà comunque inviare i segmenti *persi* prima di $x$ , aspetterà qui
 >I segmenti `FIN` devono avere un *ack* 
 ### Abrupt Release
 
-Una *Abrupt Release* avviene con un segmento con il flag `RST` settato , appena viene ricevuto o inviato 
+Una *Abrupt Release* avviene con un segmento con il flag `RST` settato , appena viene ricevuto o inviato il `TCB` viene eliminato
+
+>[!note] 
+>Per evitare `RST` ping-pong , un *host* **TCP** che riceve un segmento `RST` non può mai rispondervi con un'altro `RST`
+
+### Connection Release Macchina a Stati
+
+![[Pasted image 20241222174238.png]]
+
+Lo stato *Time Wait* viene utilizzato per fare in modo di essere sicuri che ci sia arrivato l'*ack* per l'ultimo segmento `FIN` 
+
+>[!note] 
+>l'*RFC* dice che deve essere mantenuto per $2\times MSL$ ( 4 minuti ) , visto che questo potrebbe causare una grande occupazione di memoria questo generalmente viene ridotto a $60$ secondi
+>>[!example] 
+>> Se una connessione dura 1 minuto questa deve mantenere la `TCP` per altri 4 minuti , in questo modo $80\%$ del tempo di connessione sarebbe sprecato ad aspettare mantenendo occupata memoria che potrebbe essere allocata ad altre connessioni
+## Reliable Transfer
+
+Originariamente **TCP** utilizzava [[go-back-n]] con [[selective repeat]] usando solo *ack* comulativi 
+### TCB ( Transfer Control Block )
+
+Gli elementi mantenuti nel **TCB** che *non cambiano* mai sono :
++ L'*IP* locale , remoto e le relative porte 
++ *sending buffer* : un buffer che contiene tutti i dati che non hanno ricevuto un [[Acknowledgment|ack]] 
++ *receiving buffer* : un buffer che contiene tutti i dati ricevuti che non sono ancora stati inviati all'applicazione ( perchè o l'applicazione è troppo lenta a processarli o non sono stati ricevuti in sequenza ) 
+
+Gli elementi che cambiano invece sono : 
++ Lo stato corrente della macchina a stati ( `SYN-Sent`,`SYN-Received`,`Established`) 
++ Il `maximum segment size` ( `MSS` )
++ `snd.nxt` : prossimo numero di sequenza in uscita
++ `snd.una` : ultimo numero di sequenza senza un [[Acknowledgment|ack]] presente nel *sending buffer*
++ `snd.wnd` : la dimensione ( in byte ) della *sending window* 
++ `rcv.nxt` : il numero di sequenza del prossimo byte che ci aspettiamo di ricevere 
++ `rcv.wnd` : la dimensione corrente della *recieve window* del destinatario
+### Sending Data
+
+Quando l'applicazione mette dei nuovi dati nel *sending buffer* il layer **TCP** : 
+1. Controlla che il *sending buffer* non contenga più dati rispetto alla dimensione della *recieve window* dell'*host* remoto ( `rcv.wnd` )
+2. Fino a *MSS* byte vengono messi nel payload di un segmento **TCP**
+3. Il numero
+
+### Receiving Data
 ## Performance

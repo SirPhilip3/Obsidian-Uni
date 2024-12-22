@@ -3,6 +3,9 @@ creation: 2024-10-01T09:55:00
 tags:
   - Definizione
 publish: true
+aliases:
+  - ack
+  - ACK
 ---
 Un *acknowledgment* o *ACK* è un pacchetto che non porta dei dati , è semplicemente un segnale per indicare che il pacchetto precedente sia stato *ricevuto* correttamente 
 
