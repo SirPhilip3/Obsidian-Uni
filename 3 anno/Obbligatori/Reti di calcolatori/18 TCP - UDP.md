@@ -129,6 +129,7 @@ Il rifiuto della connessione può avvenire se per esempio non c'è un'applicazio
 >+ "?" significa riceve
 >+ "!" significa invia
 
-
+>[!warning] 
+>Se I due cercano di connettersi nello stesso istante alle *stesse porte* , ossia entrabi sono nello stato `SYN Sent` 
 
 ## Performance
