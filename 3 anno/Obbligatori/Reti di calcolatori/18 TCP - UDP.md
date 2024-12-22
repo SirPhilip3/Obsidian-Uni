@@ -211,6 +211,69 @@ Quando un nuovo segmento arriva , questo può essere un [[Acknowledgment|ack]] :
 Se invece è un pacchetto di dati :
 + Compara il numero di sequenza con `rcv.nxt`
 + Se sono gli stessi allora abbiamo ricevuto dei segmenti in sequenza , possiamo quindi inviarli all'applicazione e `rcv.nxt` viene aggiornato
-+ Se il contenuto del *receiving buffer* contiene dati che possono essere inviati in sequenza all'applicazione all
++ Se il contenuto del *receiving buffer* contiene dati che possono essere inviati in sequenza all'applicazione allora `rcv.nxt` viene aggioranto di conseguenza
++ Il *payload* viene messo nel *receiving buffer*
++ Invia l'[[Acknowledgment|ack]] con la *window size* aggiornata
+
+## TCP Implementation
+
+### Sending Data 
+
+#### Send ASAP
+
+Idealmente appena il *sending buffer* non è vuoto possiamo mandare un segmento **TCP** 
+
+Questo però spreca moltissimo spazio se consideriamo che la dimensione minima di un pacchetto è $40B$ ( $20IP + 20TCP$ ) , ciò significa che se mandiamo $1$ byte sprechiamo il $97\%$ dello spazio
+
+>[!note] 
+>Questo può essere desiderato nel caso di app real-time 
+>>[!example] 
+>>Remote shell
+#### Wait until MSS to Send
+
+In questo modo aspettiamo di riempire al massimo il *payload* per **TCP** prima di inviare dati , questo fa in modo che abbiamo massima efficenza 
+ 
+Se l'applicazione produce dati ad un alto *throughput* questa è una buona decisione 
+
+Se invece l'appllicazione ci mette molto tempo per riempire un buffer , i dati potrebbero aspettare molto tempo prima di essere inviati
+#### Nagle Algorithm
+
+L'*algoritmo di Nagle* è un *trade-off* tra le due precedenti techiche 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Nagle Algorithm}
+	\begin{algorithmic}
+	\If{ $len(data) >= MSS \land rcv.wnd >= MSS$}
+		\State Invia un segmento di dimensione $MSS$
+    \Else
+	    \If{Ci sono dati un-acknowledged}
+		    \State Metti i dati nel buffer finchè l'acknowledgment viene ricevuto
+		\Else
+			\State Manda un segmento $TCP$ contenente al massimo rcv.wnd dati
+        \EndIf
+    \EndIf
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+`1-2` Controlla che la *reciever window* possa ricevere `MSS` dati , e che ne abbiamo abbastanza allora inviamo il segmento con `MSS` dati 
+
+>[!note] 
+>Se il *reciever* vuole rallentare l'invio di dati semplicemente diminuendo la dimensione della *window* in un pacchetto di [[Acknowledgment|ack]]
+>
+
+`3` Altrimenti i dati che ho da inviare o sono meno di `MSS` o la dimensione della *window* del reciever è piccola , a questo punto dobbiamo decidere se ha senso inviare quei dati 
+
+`4-5` Se stiamo aspettando per [[Acknowledgment|ack]] di dati vecchi , aspetta per fare in modo che il buffer si riempia e quando l'[[Acknowledgment|ack]] viene ricevuto invia i dati 
+
+`6-7` Altrimenti non ho inviato dati fin'ora , oppure sono stati tutti [[Acknowledgment|Acknowledged]] , allora posso mandare un piccolo segmento ma solo una volta per **RTT** ( **Rounf Trip Time** )   
+
+>[!note] 
+>Questo algoritmo fa in modo che sia più probabile che segementi più grandi vengano inviati 
+>Questo però rendere **TCP** non adatto per *real-time traffic*
+### Window Size
+
+### Retransmission Time Out
 
 ## Performance
