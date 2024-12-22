@@ -203,5 +203,14 @@ Quando l'applicazione mette dei nuovi dati nel *sending buffer* il layer **TCP**
 >I dati vengono mantenuti temporaneamente nel *sending buffer* in caso questi debbano essere reinviati 
 ### Receiving Data
 
+Quando un nuovo segmento arriva , questo può essere un [[Acknowledgment|ack]] :
++ imposta `rcv.wnd` al valore del campo `window` del segmento ricevuto 
++ compara l'[[Acknowledgment|ack]] con `snd.una`
++ I dati appena [[Acknowledgment|Acknowledged]] sono rimossi dal *sending buffer* e `snd.una` viene aggiornato 
+
+Se invece è un pacchetto di dati :
++ Compara il numero di sequenza con `rcv.nxt`
++ Se sono gli stessi allora abbiamo ricevuto dei segmenti in sequenza , possiamo quindi inviarli all'applicazione e `rcv.nxt` viene aggiornato
++ Se il contenuto del *receiving buffer* contiene dati che possono essere inviati in sequenza all'applicazione all
 
 ## Performance
