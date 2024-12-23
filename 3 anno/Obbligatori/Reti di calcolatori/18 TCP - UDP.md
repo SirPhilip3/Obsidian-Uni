@@ -379,6 +379,22 @@ Se il *sender* ha inviato dati fino a `seq=X` ma riceve un [[Acknowledgment|ack]
 *Fast retransmit* fa in modo che se riceviamo 3 copie dello stesso [[Acknowledgment|ack]] ( questo avviene poichè vuol dire che sta ancora aspettando un segmento mancante ) non aspettiamo che l'**RTO** termini per ritrasmettere 
 ### Delayed ACKs
 
+Visto che molte volte la comunicazione è monodirezionale mandare un [[Acknowledgment|ack]] per ogni *segmento* sarebbe molto inefficente , per questo *Delayed ACKs* manda un [[Acknowledgment|ack]] ogni 2 data frame ricevuti o dopo un certo timeout
+
+Questo fa in modo che si faccia l'[[Acknowledgment]] di più segmenti di dati 
+
+>[!note] 
+>Questo però va contro l'algoritmo di *Nagle*
 ### Selective ACKs
+
+Viene aggiunto un header opzionale dentro il quale il *reciever* può dare l'[[Acknowledgment|ack]] di sequenze di dati contigui che ha ricevuto anche se fuori sequenza
+
+>[!note] 
+>Per via dello spazio presente nell'header **TCP** non possiamo fare l'[[Acknowledgment|ack]] di più di 3 blocchi contigui
+
+>[!example] 
+>L'[[Acknowledgment|ack]] potrebbe contenere qualcosa come $[1100-1200],[1250-1500],[1800-1900]$ nella parte opzionale e $850$ nell'header **TCP** fisso
+>
+>Questo significa : ho ricevuto correttamente dati fino a $850$ e gli intervalli $1100-1200, 1250-1500, 1800-1900$
 
 ## Performance
