@@ -267,14 +267,83 @@ L'*algoritmo di Nagle* è un *trade-off* tra le due precedenti techiche
 
 `4-5` Se stiamo aspettando per [[Acknowledgment|ack]] di dati vecchi , aspetta per fare in modo che il buffer si riempia e quando l'[[Acknowledgment|ack]] viene ricevuto invia i dati 
 
-`6-7` Altrimenti non ho inviato dati fin'ora , oppure sono stati tutti [[Acknowledgment|Acknowledged]] , allora posso mandare un piccolo segmento ma solo una volta per **RTT** ( **Rounf Trip Time** )   
+`6-7` Altrimenti non ho inviato dati fin'ora , oppure sono stati tutti [[Acknowledgment|Acknowledged]] , allora posso mandare un piccolo segmento ma solo una volta per **RTT** ( **Round Trip Time** )   
 
 >[!note] 
 >Questo algoritmo fa in modo che sia più probabile che segementi più grandi vengano inviati 
 >Questo però rendere **TCP** non adatto per *real-time traffic*
 ### Window Size
 
+Essendo che il campo `window` è di `16`bit la dimensione massima della finestra sarà $2^{16}=65536B$ 
 
-### Retransmission Time Out
+In pratica non possiamo mandare più di una finestra di dati per **RTT** , ciò significa che il *throughput* è limitato dall'**RTT**
+
+|   RTT    | Maximum Throughput |
+| :------: | :----------------: |
+|  1 msec  |      524 Mbps      |
+| 10 msec  |     52.4 Mbps      |
+| 100 msec |     5.24 Mbps      |
+| 500 msec |     1.05 Mbps      |
+>[!note] 
+>Questi numeri non soddisfano le velocità odierne
+
+Per questo viene usata un'estensione di **TCP** , questa introduce un moltiplicatore per la dimensione della finestra 
+>[!note] 
+>La **TCP** *Window Scale Option* viene scambiata solo in pacchetti `SYN` e `SYN-ACK`
+>
+
+Questo è un numero compreso tra $0\le S \le 14$ , in questo modo la *receiving window* avrà dimensione `rcv.wnd`$\times 2^S$ , le velocità diventano quindi ( con $S=14$ )
+
+|   RTT    | Maximum Throughput |
+| :------: | :----------------: |
+|  1 msec  |     8590 Gbps      |
+| 10 msec  |      859 Gbps      |
+| 100 msec |      86 Gbps       |
+| 500 msec |      17 Gbps       |
+
+### Retransmission Time Out ( RTO )
+
+Idealmente l'**RTO** è leggermente più grande dell'**RTT** , se alla fine di un **RTT** l'[[Acknowledgment|ack]] non arriva allora dovremmo ritrasmettere i dati 
+
+>[!note] 
+>L'**RTT** dipende dal path che prende quel segmento , questo può variare molto 
+
+>[!warning] 
+>Misurare l'**RTT** è soggetto ad errori 
+>>[!example] 
+>>![[Pasted image 20241223170024.png]]
+>>Se il timer scade e re-inviamo i dati ma poco dopo ci arriva l'[[Acknowledgment|ack]] per quei dati , quale **RTT** prendiamo in considerazione ? 
+
+Una soluzione potrebbe essere quella di ignorare gli **RTT** relativi alla ritrasmissione 
+
+>[!warning] 
+>Non possiamo sapere a chi appartiene l'[[Acknowledgment|ack]] che ci arriva
+
+#### TCP Timestamps
+
+Questa è un'estensione di **TCP** , in ogni segmento **TCP** vengono aggiunte due *timestamp* :
++ *current*
++ L'ultima *timestamp* ricevuta dall'altro *host* 
+
+Questo ci permette di identificare a che segmento appartiene un [[Acknowledgment|ack]] e calcolare l'**RTT** corretto
+
+>[!example] 
+>![[Pasted image 20241223171319.png]]
+
+>[!note] 
+>In reti molto veloci i numeri di sequenza potrebbero wrappare prima di **MSL** , se usiamo le *timestamp* l'ambiguità che si potrebbe creare viene subito risolta visto che anche se avremmo gli stessi numeri di sequenza la *timestamp* ci direbbe che il segmento è vecchio
+
+
+#### RTT Smoothing
+
+Visto che il valore dell'**RTT** varia molto vorremmo appiattirlo , per questo utilizziamo l'algoritmo di *Van Jacobson* 
+
+Questo ha tre variabili : 
++ `rtt` : l'ultimo **RTT** misurato
++ `srtt` : il valore appiattito dell'**RTT** , inizialmente settato a `rtt`
++ `rttvar` : la deviazione stimata dal valore medio dell'**RTT** , inizializzato a `rtt/2`
++ `rto` : il retransmission timer
+
+
 
 ## Performance
