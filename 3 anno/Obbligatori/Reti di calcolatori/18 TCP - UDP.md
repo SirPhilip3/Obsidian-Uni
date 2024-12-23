@@ -332,8 +332,6 @@ Questo ci permette di identificare a che segmento appartiene un [[Acknowledgment
 
 >[!note] 
 >In reti molto veloci i numeri di sequenza potrebbero wrappare prima di **MSL** , se usiamo le *timestamp* l'ambiguità che si potrebbe creare viene subito risolta visto che anche se avremmo gli stessi numeri di sequenza la *timestamp* ci direbbe che il segmento è vecchio
-
-
 #### RTT Smoothing
 
 Visto che il valore dell'**RTT** varia molto vorremmo appiattirlo , per questo utilizziamo l'algoritmo di *Van Jacobson* 
@@ -344,6 +342,43 @@ Questo ha tre variabili :
 + `rttvar` : la deviazione stimata dal valore medio dell'**RTT** , inizializzato a `rtt/2`
 + `rto` : il retransmission timer
 
+>[!note] 
+>L'algoritmo si basa sul concetto di **Exponential Moving Average** ( **EMA** ) , dove dati una serie di valori $s_i$ e un valore $\alpha$ compreso tra $0$ e $1$ ( questo rappresenta quanto conta il valore corrente rispetto a quelli passati , $\alpha = 1$ conta di più l'ultimo valore , $\alpha = 0$ conta di più la precedente media )
+>
+>$$\bar{s} = (1-\alpha)\bar{s}+\alpha s_i$$
 
+Ora l'algoritmo vero e proprio : 
+
+>[!note] 
+>Prima di misurare qualsiasi **RTT** setta **RTO** ad un valore minore di $1s$
+
+Quando misuriamo per la prima volta l'`rtt` : $srtt = rtt$ e $rttvar = rtt/2$ 
+Ogni volta che raccolgiamo un nuovo valore di `rtt` aggiorneremo i valori nel seguente modo : 
+$$srtt = (1-\alpha)\times srtt + \alpha \times rtt$$
+$$rttvar = (1-\beta)\times rttvar + \beta \times|srtt - rtt|$$
+$$rto = srtt + 4 \times rttvar$$
+Dove $\alpha = 1/8$ e $\beta = 1/4$
+
+>[!example] 
+>![[Pasted image 20241223173505.png]]
+
+#### RTO Exponential Backoff
+
+Ora che abbiamo una stima dell'**RTO** dobbiamo aggiustarlo per le condizioni della rete ( congestionata o no )
+
+Per `RFC 6298` raddoppiamo l'**RTO** ogni volta che non riceviamo l'[[Acknowledgment|ack]] per un segmento , dopo aver ricevuto l'[[Acknowledgment|ack]] l'**RTO** viene resettato al valore definito dall'algoritmo 
+
+>[!note] 
+>La logica sarebbe che se il *reciever* è congestionato non può gestire troppi pacchetti al secondo e quindi il *sender* rallenta 
+#### Fast Retransmit
+
+Se il *sender* ha inviato dati fino a `seq=X` ma riceve un [[Acknowledgment|ack]] con `seq=Y<X` , questo potrebbe avvenire per due motivi : 
+1. potrebbe essere che il segmento sucessivo a `seq=Y` sia andato perso e quindi dovremmo ritrasmettere da `Y` in poi ??
+2. Potrebbe essere che i due [[Acknowledgment|ack]] sono invertiti e `seq=X` deve ancora arrivare
+
+*Fast retransmit* fa in modo che se riceviamo 3 copie dello stesso [[Acknowledgment|ack]] ( questo avviene poichè vuol dire che sta ancora aspettando un segmento mancante ) non aspettiamo che l'**RTO** termini per ritrasmettere 
+### Delayed ACKs
+
+### Selective ACKs
 
 ## Performance
