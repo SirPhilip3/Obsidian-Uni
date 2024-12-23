@@ -274,6 +274,7 @@ L'*algoritmo di Nagle* è un *trade-off* tra le due precedenti techiche
 >Questo però rendere **TCP** non adatto per *real-time traffic*
 ### Window Size
 
+
 ### Retransmission Time Out
 
 ## Performance
