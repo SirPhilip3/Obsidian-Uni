@@ -398,3 +398,4 @@ Viene aggiunto un header opzionale dentro il quale il *reciever* può dare l'[[A
 >Questo significa : ho ricevuto correttamente dati fino a $850$ e gli intervalli $1100-1200, 1250-1500, 1800-1900$
 
 ## Performance
+
