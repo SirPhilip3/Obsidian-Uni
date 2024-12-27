@@ -92,7 +92,29 @@ L'*Handshake Protocol* garantisce le seguenti propietà :
 	3. un messaggio di `ServerHelloDone` indicato che ha finito il suo `Hello`
 4. Il *client* invia :
 	1. un `ClientKeyExchange` , in cui il client scambia la chiave con il *server* ( il client ha già una connessione privata con il server ) 
-	2. un `ChangeCipherSpec` : indica che il prosssimo messaggio che verrà scambiato sarà cifrato
+	2. un `ChangeCipherSpec` : indica che il prossimo messaggio che verrà scambiato sarà cifrato
+	3. Come ultimo messaggio il *client* invia `Finished` , questo sarà il primo messaggio cifrato , questo contiene una *hash* di tutti i precedenti messaggi , questo serve per verificare che i messaggi precedenti non siano stati modificati da attacchi **MiTM**
 
+>[!note] 
+>Per 3 **RTT** non riceviamo byte usabili dall'applicazione 
+
+>[!note] One way Authentication 
+>Solo il *server* deve autenticarsi con l'utente , l'utente non ha bisogno di un valido certificato 
 #### TLS Record Protocol
 
+Lo stream di dati deve essere diviso per farmo stare in un **MTU** 
+
+![[Pasted image 20241227222649.png]]
+
+Fornisce due propietà : 
++ *La connessione è privata* : I dati vengono cifrati con **Symmetric Encryption** ( **AES** ) , queste sono generate dal [[19 TLS - SSL#TLS Handshake Protocol|TLS Handshake Protocol]] 
++ *La connessione è reliable* : La reliability viene data dal **MAC** aggiunto ( **SHA-256** )
+#### mTLS ( mutual Authentication )
+
+Ci fidiamo di un servizio solo se entrabi hanno un [[Certificate]] valido 
+
+### TLS 1.3
+
+**TLS 1.2** aveva una superfice di attacco troppo estesa , per questo è stato riscritto completamente eliminando molta superfice di attacco 
+
+Supporta solo $5$ algoritmi di cifratura e autenticazione con un solo schema di blocco ( **AEAD** )
