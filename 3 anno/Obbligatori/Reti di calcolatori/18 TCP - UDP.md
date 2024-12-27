@@ -399,3 +399,64 @@ Viene aggiunto un header opzionale dentro il quale il *reciever* può dare l'[[A
 
 ## Performance
 
+### Window
+
+Il massimo *throughput* di **TCP** è $\frac{window}{RTT}$ 
+#### Sending Window
+
+Facciamo un esempio in cui dobbiamo inviare un grande file , in questo caso il *sender* ha sempre qualcosa da inviare mentre il *reciever* deve semplicemente salvare i dati sul disco
+
+In questo caso per via dell'algoritmo di *Nagle* il *sender* mandarà quanti più segmenti di dimensione **MSS** `swin` accetta ( praticamente tutti ) , questo succede a tempo $t_0$ 
+Assumiamo che la capacità del link sia molto alta in entrambi i versi e che i segmenti sono tutti ricevuti 
+
+I segmenti saranno quindi ricevuti tutti a tempo $t_0 + RTT/2$  , il *reciever* invierà gli [[Acknowledgment|ack]] comulativi e il *sender* li riceverà a tempo $t_0 + RTT$ , il *sending buffer* viene quindi liberato e ricominceremo ad inviare 
+
+Quindi per ogni *RTT* vengono inviati al massimo *window* dati , il massimo *throughput* sarà quindi $\frac{window}{RTT}$
+
+#### Receiving Window
+
+Se il *receiver* non è abbastanza veloce manderà un [[Acknowledgment|ack]] con la grandezza della *reciever window* minore di quella originale $rwnd' < rwnd$ 
+
+In questo caso quando il *sender* riceve l'[[Acknowledgment|ack]] ( a tempo $t_0+RTT$ ) , questo potrà al massimo mandare $window' = min(rwnd',swnd)$ 
+
+>[!note] 
+>La $window'$ sarà sicuramente minore di $window$ ma la formula $\frac{window'}{RTT}$ è ancora valida per calcolare il *throughput*
+
+### Network Congestion
+
+Questo succede quando i *router* lungo il percorso dal *client* al *server* droppano pacchetti 
+
+>[!note] 
+>Questo succede se devono indirizzare troppi pacchetti , le loro code si riempono e devono quindi droppare pacchetti
+
+>[!important] 
+>Stiamo parlando di *network congestion* , il *reciever* e *sender* non hanno problemi a inviare e leggere dati
+>
+>Il *sender* capisce che sta avvenendo network congestion poichè a tempo $t_0 + RTT$ l'[[Acknowledgment|ack]] non permette di liberare l'intero *sending buffer*
+>
+
+>[!important] 
+>La *reciever window* non viene diminuita perchè riesce sempre a leggere tutti i dati 
+
+Se c'è *network congestion* quindi il *sending buffer* conterrà dati non [[Acknowledgment|ACK]]ati ma questo verrà rimpito di nuovi dati e a tempo $t_1$ il *sender* invierà tutto il buffer 
+
+In questo modo il numero medio di dati inviati è ancora $\frac{window}{RTT}$ anche se i dati che verranno ricevuti possono essere duplicati ( visto che non erano stati [[Acknowledgment|ack]]ati per via della congestione ) 
+
+>[!warning] 
+>In questo modo i router intermedi ricevono ancora la stessa quantità di dati continuando la *network congestion*
+>
+>La soluzione sarebbe quella di diminuire $window$  
+#### Implicit Congestion Detection
+
+Il fatto che inviamo direttamente l'intero buffer all'inizio della connessione potrebbe causare il *network congestion* 
+
+Per questo la $window$ iniziale dovrebbe essere piccola e crescere con il tempo 
+
+##### Congestion Window
+
+La $cwnd$ ( *Congestion Window* ) viene inizializzata ad un valore fisso , inizialmente era $MSS$ ora si usa $10\times MSS$ 
+
+>[!note] 
+>Un **MSS** normalmente è `1460B` ( `1500` di **MTU** -  )
+
+
