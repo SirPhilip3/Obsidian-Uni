@@ -111,10 +111,32 @@ Fornisce due propietà :
 + *La connessione è reliable* : La reliability viene data dal **MAC** aggiunto ( **SHA-256** )
 #### mTLS ( mutual Authentication )
 
-Ci fidiamo di un servizio solo se entrabi hanno un [[Certificate]] valido 
-
+Ci fidiamo di un servizio solo se *entrabi* hanno un [[Certificate]] valido 
 ### TLS 1.3
 
 **TLS 1.2** aveva una superfice di attacco troppo estesa , per questo è stato riscritto completamente eliminando molta superfice di attacco 
 
-Supporta solo $5$ algoritmi di cifratura e autenticazione con un solo schema di blocco ( **AEAD** )
++ Supporta solo $5$ algoritmi di cifratura e autenticazione con un solo schema di blocco ( **AEAD** )
++ L'*handshake* iniziale può essere lunga un **RTT** 
++ La sessione può essere ripresa con $0$ **RTT**
++ Implementa **Forward Secrecy**
+#### Forward Secrecy 
+
+Fa in modo che le *chiavi di sessione* non vengano compromesse anche se le *chiavi private* del server sono compromesse 
+
+>[!example] 
+>*Eve* intercetta una comunicazione **TLS** tra *Alice e Bob* e salva il suo contenuto anche se non può ancora decifrarlo 
+>*Eve* riesce a rubare la chiave privata di *Bob*
+>
+>Ora anche se *Eve* è in possesso della chiave privata la **Forward Secrecy** ci garantisce che non possa decifrarne il contenuto 
+
+Questo viene implementato usando [[Public Key]] *effimere* , ossia che vengono generate durante l'*handshake* e eliminate subito dopo essere usate 
+##### Example Protocol
+1. Il *server* invia il suo [[Certificate]] 
+2. Il *client* lo verfica
+3. Il *client* inizia una sessione [[Diffie-Hellman Protocol]] con una chiave *effimera* randomica
+4. Il *server* completa la sessione [[Diffie-Hellman Protocol|Diffie-Hellman]] con qualche altra chiave *effimera* randomica
+5. Sia il *client* che il *server* hanno ora una chiave $K$ 
+6. Da ora in poi il *client* e *server* usano **AES** e [[HMAC]] con chiave $K$ 
+7. Sia il *server* che il *client* eliminano le chiavi effimere
+8. Ora il *client* usa una passaword per autenticarsi 
