@@ -456,7 +456,46 @@ Per questo la $window$ iniziale dovrebbe essere piccola e crescere con il tempo
 
 La $cwnd$ ( *Congestion Window* ) viene inizializzata ad un valore fisso , inizialmente era $MSS$ ora si usa $10\times MSS$ 
 
->[!note] 
->Un **MSS** normalmente è `1460B` ( `1500` di **MTU** -  )
+>[!note] Reminder 
+>Un **MSS** normalmente è `1460B` ( `1500` di **MTU** $-$ `40B` per gli header **IP** e **TCP** ) 
 
+Ad ogni istante quindi la $window = min(cwnd,swnd,rwnd)$ 
+
+>[!note] 
+>Aggiungiamo anche il parametro $sstrash$ ( *slow start threshold* ) , anche questo viene inizializzato ad un piccolo parametro come **MSS**
+##### Slow Start
+
+Un algoritmo per il controlla della *netork congestion* è detto **Slow Start** ( inventato da *Van Jacobson* ) 
+
+Ad ogni $RTT$ se tutti i segmenti sono stati [[Acknowledgment|ACK]]ed $cwnd$ è *raddoppiato*
+Dopo un evento di congestione se $cwnd > sstrash$ il $cwnd$ viene aumentato di un solo **MSS** per **RTT**
+###### Congestion Events
+
+Abbiamo due tipi di eventi di congestione : 
++ `mild congestion` : 
+	Vengono ricevuti tre [[Acknowledgment]] con lo stesso numero di sequenza , proviamo una ritrasmissione e ha successo ( i sucessivi [[Acknowledgment|ack]] confermano la ricezione )
++ `severe congestion` : 
+	Il timer di ritrasmissione scade
+###### Mild Congestion
+
+Se avviene una *mild congestion* allora :
+$$cwnd' = cwnd$$
+$$cwnd = sstrash$$
+$$sstrash = \frac{cwnd'}{2}$$
+Ossia : resettiamo il valore di $cwnd$ a $sstrash$ e $sstrash$ è resettato a *metà* del valore di $cwnd$ prima dell'evento di congestione
+
+>[!example] 
+>![[Pasted image 20241227125050.png]]
+###### Sever Congestion
+
+Se avviene una *severe congestion* allora :
+$$cwnd' = cwnd$$
+$$cwnd = cwnd_0$$
+$$sstrash = \frac{cwnd'}{2}$$
+Ossia : facciamo **slow-start** dall'inizio ( $cwnd=cwnd_0$ ) e resettiamo il valore di $sstrash$ a *metà* del valore di $cwnd$ prima della congestione
+
+>[!example] 
+>![[Pasted image 20241227125358.png]]
+
+#### Explicit Congestion Control ( ECN )
 
