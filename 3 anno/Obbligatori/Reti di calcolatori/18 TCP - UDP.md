@@ -499,3 +499,33 @@ Ossia : facciamo **slow-start** dall'inizio ( $cwnd=cwnd_0$ ) e resettiamo il va
 
 #### Explicit Congestion Control ( ECN )
 
+Può essere che i router che sono *congested* possono segnalare che stanno perdendo pacchetti 
+
+#### Congestion Performance
+
+E' stimabile che il massimo *throughput* è dato da : 
+$$throughput = \min\left(\frac{MSS}{RTT}, \sqrt{\frac{3}{2}} \frac{MSS}{RTT \cdot \sqrt{p}}\right)$$
+Dove $p$ è la probabilità che avvenga un evento di *mild congestion* 
+>[!note] 
+>Assumendo che *severe congestion* è estremamente improbabile
+
+>[!note] 
+>Visto che generalmente l'**MSS** è settato a `1460` il valore finale del *throughput* dipende da **RTT** e $p$
+
+#### Other Congestion Controls
+
+Altri algoritmi sono : 
++ **TCP** *Reno*
++ **TCP** *NewReno*
++ **TCP** *Vegas*
++ **CUBIC** : questo utilizza una curva di aumento della $cwnd$ *cubica* , questo è il default in *Linux* e **BBR** di Google
+### Berkley Sockets
+
+>[!note] 
+>Anche detti *network socket* o *BSD socket*
+
+Un *socket* è un'interfaccia standard ( in *POSIX* ) che media tra le applicazioni e il layer 4 dello stack [[TCP IP]] 
+
+Quando un'applicazione ha bisogno di inviare o ricevere dati dal *network* untilizza una *API* che crea , gestisce e usa i socket 
+
+#todo 
