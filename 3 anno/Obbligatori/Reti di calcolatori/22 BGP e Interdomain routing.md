@@ -118,10 +118,83 @@ Visto però che **D** ha un *path* alternativo per **A** passando attraverso **A
 
 ### BGP Connection
 
+Quando due router **BGP** vogliono comunicare ognuno di loro accetta una connessione **TCP** alla porta `179`
 
+**BGP** può mandare $5$ tipi di messaggi : 
++ `Open` : per iniziaire una connessione **BGP**
++ `Update` : per trasferire informazioni di routing tra router **BGP**
++ `Keepalive` : per controllare se un *peer* è ancora raggiungibile
++ `Notification` : per notificare **BGP** *peer* di errori
++ `Route-refresh` : per supportare capacità di *Route Refresh* 
 
+Il messaggio di `Update` è fatto nel seguente modo : 
+![[Pasted image 20241230164914.png]]
+
+Questo ha due sezioni : 
++ *Routes* di cui un *router* vuole fare il *withdrawal*
++ *Routes* che un *router* vuole annunciare
+
+>[!warning] 
+>Non c'è criptografia o autenticazione in questi pacchetti
 ## BGP Path Prepending
 
+>[!example] 
+>![[Pasted image 20241230165335.png]]
+
+Supponiamo che **1** sia un *multi-homed stub AS* che ha due connessioni :
++ una a $10Gb/s$ principale
++ una a $1Gb/s$ per backup 
+
+L'**AS6** avrà una probabilità del $50\%$ di passare per **AS2** o per **AS3** , vogliamo che tutti utilizzino il path con maggiore capacità se è disponibile
+
+**AS1** annuncia il prefisso `X.Y.Z.0/24` normalmente sul path con maggiore capacità , nel verso invece con minore capacità invece aggiungeremo al *path* **1** ripetuto $6$ volte : `X.Y.Z.0/24` con `path : 1,1,1,1,1,1` 
+
+**AS6** in questo modo riceverà queste due route : 
++ `X.Y.Z.0/24 path : 5,3,1`
++ `X.Y.Z.0/24 path : 4,2,1,1,1,1,1,1`
+
+In questo modo **AS6** utilizzerà sempre il *path* di minore lunghezza per arrivare a **AS1** 
+
+>[!note] 
+>Anche **AS2** e **AS4** passeranno attraverso **AS6** visto che comunque la lunghezza del *path* è minore
+
+Se il link tra **AS3** e **AS5** si rompe verrà *withdrawal* la rotta che passa attraverso **AS3** e quindi l'unica rotta rimasta sarà attraverso la connessione di backup
+
+>[!note] 
+>**AS5** riceverà un aggiornamento con un *path* lungo $9$
+>![[Pasted image 20241230170813.png]]
 ## BGP Anycast
 
+>[!example] 
+>![[Pasted image 20241230171510.png]]
+
+In questo caso **AS1** e **AS6** annunciano lo stesso prefisso , gli *AS* connessi si divideranno in due : 
++ **AS2** e **AS3** si connetteranno ad **AS1**
++ **AS4** e **AS5** si connetteranno ad **AS6**
+Per via della lunghezza del *path*
+
+Questo permette alle grande aziende di instradare traffico ad un server rispetto ad un altro a seconda di dove si trova l'utente 
+
+>[!note] 
+>Questo significa che due *host* possono avere lo stesso indirizzo **IP**
+
+>[!note] 
+>Anche se un *link* fallisce essendo che tutti gli **AS** hanno sia il path verso **AS1** che verso **AS6** ci sarà sempre un backup
+
+>[!warning] 
+>E' possibile avere un **AS** che però ha la stessa lunghezza del *path* verso **AS6** e **AS1**
+>![[Pasted image 20241230171956.png]]
+>
+>**AS7** cambierà destinazione dei pacchetti randomicamente , questo potrebbe causare problemi con servizi che hanno uno stato ( **TCP** ) 
+>
+>Per questo *Anycast* non viene usato con servizi che abbiano uno stato , solo con servizi che siano di tipo *richiesta-risposta* ( **DNS** )
+
 ### BGP Anycast for Root servers
+
+Ci sono 13 root **DNS** server in tutto il mondo ma questi vengon annunciati da decine di **AS** differenti in tutto il mondo , questo fa in modo che la richiesta venga consegnata alla copia del server *root* più vicino
+
+Questo funziona poichè ogni richiesta *DNS* è indipendente dalla precedente quindi anche se **BGP** cambia la decisione di routing non importa 
+
+>[!note] 
+>Per mantere in sync i server vengono aggiornati periodicamente 
+
