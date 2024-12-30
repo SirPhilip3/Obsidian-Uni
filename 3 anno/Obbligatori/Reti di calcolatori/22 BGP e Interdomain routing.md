@@ -98,6 +98,30 @@ Ora **C** sa che per raggiungere `10.150.0.0/24` deve inviare traffico ad **E** 
 ### BGP è un Path Vector Protocol 
 
 **BGP** usa gli stessi principi di [[DV Routing]] con 3 differenze : 
-+ Esporta l'intero *path* verso quell'*AS* , non solo la distanza dalla destinazione ( Per questo è detto *Path Vector* e non *Distance Vector* protocol )
-+ Invia aggiornamenti solo quando qualcosa cambia o quando un vicino chiede per un aggiornamento 
-+ I messaggi di `UPDATE` contengono informazioni solo riguardanti alcuni prefissi non tutta la routing table , solo se la rotta è *nuova* 
+1. Esporta l'intero *path* verso quell'*AS* , non solo la distanza dalla destinazione ( Per questo è detto *Path Vector* e non *Distance Vector* protocol )
+2. Invia aggiornamenti solo quando qualcosa cambia o quando un vicino chiede per un aggiornamento 
+3. I messaggi di `UPDATE` contengono informazioni solo riguardanti alcuni prefissi non tutta la routing table solo se :
+	+ la rotta è *nuova*
+	+ uno dei suoi attributi è cambiato ( tipo il *path* ) 
+	+ la rotta è diventata *unreachable* e deve essere ritirata ( *withdrawn* )
+
+#### Path Withdrawal
+
+Se un **AS** smette di *hostare* un determinato prefisso invia un messaggio di *withdrawal* , i *router* che lo annunciavano invieranno a loro volta un messaggio di *withdrawal*
+
+#### Link Failure
+
+Se il link tra **A** e **D** si rompe , **D** manderà il messaggio di *withdrawal* ai router **B, E, F** 
+Visto però che **D** ha un *path* alternativo per **A** passando attraverso **AS151** , **D** annuncerà il nuovo *path* agli altri 
+
+## BGP Details
+
+### BGP Connection
+
+
+
+## BGP Path Prepending
+
+## BGP Anycast
+
+### BGP Anycast for Root servers
