@@ -9,7 +9,7 @@ Avendo :
 + $B$ : la [[Bandwidth]] che usiamo
 + $M$ : il numero di livelli che codifichiamo 
 
-Allora il ikl [[Bit-rate]] *massimo teoretico* sarà dato da : 
+Allora il [[Bit-rate]] *massimo teoretico* sarà dato da : 
 $$C = 2B\log_2(M)$$
 >[!example] Example 1
 >Usiamo un link con frequenze :
