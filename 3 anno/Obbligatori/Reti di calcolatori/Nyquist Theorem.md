@@ -10,7 +10,7 @@ Avendo :
 + $M$ : il numero di livelli che codifichiamo 
 
 Allora il [[Bit-rate]] *massimo teoretico* sarà dato da : 
-$$C = 2B\log_2(M)$$
+$$C_N = 2B\log_2(M)$$
 >[!example] Example 1
 >Usiamo un link con frequenze :
 >+ minima : $2401 MHz$

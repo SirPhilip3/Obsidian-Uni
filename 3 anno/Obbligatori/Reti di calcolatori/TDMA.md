@@ -34,6 +34,21 @@ Viene utilizzato in sistemi in cui si paga per il servizio e uno scheduling pref
 
 >[!example] Esercizio
 >
+>Consideriamo un **TDMA** in cui :
+>+ $b=100Mb/s$ [[Bit-rate]] 
+>+ $n=5$ terminali 
+>+ $s=1ms$ lunghezza di un singolo slot
+>
+>1. Massima quantità di dati che un *terminale* può inviare in uno *slot* ? 
+>$$s \times b = 10^{-3} s \times 10^8 b/s = 100 kb$$
+>
+>2. Massima quantità di dati che un *terminale* può inviare in $1$ secondo ?
+>
+>Essendoci $5$ *terminali* ognuno avrà : $1000/5 = 200$ *slot* per secondo avremo quindi :
+>$$10^5 \times 200 = 20.000.000 = 20 Mb/s$$
+>
+>3. Assumi che il *terminale* $1$
+>
 >
 
 >[!note] 

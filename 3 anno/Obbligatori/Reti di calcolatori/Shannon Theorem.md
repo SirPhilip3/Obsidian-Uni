@@ -8,7 +8,7 @@ publish: true
 Il teorema di *Shannon* introduce un limite alla capacità in $bit/s$ tenendo conto del [[Noise]] 
 
 La capacità di un canale con [[Bandwidth]] $B$ che è affetto da [gaussian white nose](https://en.wikipedia.org/wiki/White_noise) è data da :
-$$C = B \log_2\bigg(1+\frac{S}{N}\bigg)$$
+$$C_S = B \log_2\bigg(1+\frac{S}{N}\bigg)$$
 Dove $S/N$ è l'[[SNR]] 
 
 >[!note] 
