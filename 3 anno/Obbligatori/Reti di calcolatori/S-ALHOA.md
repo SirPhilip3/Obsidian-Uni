@@ -41,4 +41,9 @@ Quando $G=1$ il *network* è a saturazione , poichè non possiamo inviare più d
 
 Ciò però significa che $P_s=1/e = 0.36$ ossia , in media , perdiamo il $64\%$ dei [[Frame]] 
 
+>[!note] 
+>Massimo Throughput : $C \times 1/e$
+>dove : 
+>+ $C$ : massima capacità calcolata con [[Nyquist Theorem]] e [[Shannon Theorem]]
+
 Se aumentiamo il *carico* ( ossia aumento $G$ ) la probabilità di collisione aumenta e l'efficenza del link dimuisce fino as arrivare alla ![[Congestion Collapse]]
