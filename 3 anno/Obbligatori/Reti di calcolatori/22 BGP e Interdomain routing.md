@@ -37,7 +37,7 @@ Per connettere due **AS** è necessario un **transit agreement** : un contratto 
 >[!note] 
 >Un relazione di transito generalmente include delle tasse , **A** paga **B** in modo che **A** possa raggiungere internet 
 
-# BGP
+# Border Gateway Protocol ( BGP )
 
 Il *routing* tra **ASes** deve usare il protocollo **BGP** ( **Border Gateway Protocol** )
 
