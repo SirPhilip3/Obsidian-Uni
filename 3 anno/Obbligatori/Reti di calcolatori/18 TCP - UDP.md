@@ -159,7 +159,7 @@ L'altro potrà comunque inviare i segmenti *persi* prima di $x$ , aspetterà qui
 ### Abrupt Release
 
 Una *Abrupt Release* avviene con un segmento con il flag `RST` settato , appena viene ricevuto o inviato il `TCB` viene eliminato
-
+ 
 >[!note] 
 >Per evitare `RST` ping-pong , un *host* **TCP** che riceve un segmento `RST` non può mai rispondervi con un'altro `RST`
 
