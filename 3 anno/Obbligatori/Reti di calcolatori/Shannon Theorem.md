@@ -15,4 +15,8 @@ Dove $S/N$ è l'[[SNR]]
 >Possiamo comunicare anche se $S<N$ 
 
 >[!note] 
->La capacità cresce lentamente a causa della funzione $\log_2$ che cresce molto più lentametne rispetto alla lineare
+>La capacità cresce lentamente a causa della funzione $\log_2$ che cresce molto più lentamente rispetto alla lineare
+
+>[!note] 
+>Questo limita la capacità di ricezione del **ricevutore** con un certo [[SNR]] , non limita la quantità di dati che il trasmettitore può inviare
+
