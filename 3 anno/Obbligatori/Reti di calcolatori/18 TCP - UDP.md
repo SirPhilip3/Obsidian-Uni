@@ -438,7 +438,7 @@ Questo succede quando i *router* lungo il percorso dal *client* al *server* drop
 >[!important] 
 >La *reciever window* non viene diminuita perchè riesce sempre a leggere tutti i dati 
 
-Se c'è *network congestion* quindi il *sending buffer* conterrà dati non [[Acknowledgment|ACK]]ati ma questo verrà rimpito di nuovi dati e a tempo $t_1$ il *sender* invierà tutto il buffer 
+Se c'è *network congestion* quindi il *sending buffer* conterrà dati non [[Acknowledgment|ACK]]ati ma questo verrà riempito di nuovi dati e a tempo $t_1$ il *sender* invierà tutto il buffer 
 
 In questo modo il numero medio di dati inviati è ancora $\frac{window}{RTT}$ anche se i dati che verranno ricevuti possono essere duplicati ( visto che non erano stati [[Acknowledgment|ack]]ati per via della congestione ) 
 
