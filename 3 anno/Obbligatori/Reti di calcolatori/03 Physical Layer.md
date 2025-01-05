@@ -59,7 +59,6 @@ f'_p = f_p(1+3\Delta)&\text{if} \ m(t)=11\\
 >Il ricevitore deve essere abbastanza fatto bene per poter percepire la differenza tra le varie frequenze
 
 ---
-
 ### Limitations
 
 Notiamo che se volgiamo aumentare il [[Bit-rate]] dobbiamo per forza aumentare la ![[Bandwidth]]
