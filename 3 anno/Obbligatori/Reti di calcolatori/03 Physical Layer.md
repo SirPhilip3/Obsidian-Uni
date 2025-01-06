@@ -95,7 +95,7 @@ Il *segnale* dovrà quindi portare meno informazioni in modo che sia più sempli
 >[!note] 
 >Praticamente se abbiamo un dato $S/N$ non possiamo avere una quantità arbitraria di livelli $M$ 
 >
->L'[[SNR]] determina il massimo numero di livelli e quindi il miglio encoding da usare 
+>L'[[SNR]] determina il massimo numero di livelli e quindi il miglior encoding da usare 
 
 >[!note] 
 >$B$ , $S$ , $N$ sono dati da un certo link ma il *trasmettitore* può scieglere solo $M$ ( che deve essere scelto in modo che $C_N \le C_S$ ) 

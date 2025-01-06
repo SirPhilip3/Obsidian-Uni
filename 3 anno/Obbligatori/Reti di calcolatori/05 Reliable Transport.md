@@ -59,7 +59,6 @@ Il metodo più semplice per implementarlo è l'utilizzo di un *singolo* bit che 
 
 >[!warning] 
 >Se il *sender* e *reciever* non sono sincronizzati le due macchine vanno in loop e non c'è modo per re-sincronizzarle se non riavviando entrambe le macchine
-
 ## Performance
 
 >[!example] 
