@@ -44,7 +44,7 @@ Un *header* **UDP** contiene 4 campi :
 Visto che il campo *porta* è grande `16`bit ci possono essere un massimo di `65535` differenti applicazioni in esecuzione contemporaneamente su un dato *server*
 
 Generalmente questi indirizzi sono divisi in :
-+ `1<port<1024` *porte* privilegiate , solo processi che hanno privilegi di amministratore possono usare queste porte
++ `1<port<1024` *porte* privilegiate , solo processi che hanno privilegi di amministratore possono usare queste porte6
 + `1024<=port<49152` sono porte *registrate* , protocolli che usano queste *porte* dovrebbero chiedere alla *IETF* di assegnarli una determinata porta
 + Le restanti porte sono dette *effimere* , tutti possono usarle
 
