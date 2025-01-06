@@ -19,7 +19,7 @@ Generalmente uno spammer controlla un numero di computer zombie che si connetton
 Non permettere il **relaying** se un **MUA** non è autenticato , ossia viene fatta la distinzione tra **MTA** e **MSA** 
 
 >[!warning] 
->Il campo `From` può essere *soofato* mettendoci un qualunque indirizzo sorgente se l'utente non è autenticato
+>Il campo `From` può essere *spoofato* mettendoci un qualunque indirizzo sorgente se l'utente non è autenticato
 ### FQDN ( Fully Qualified Domain Name ) check
 
 Si richiede che il comando `HELO`cosa ca porti con se anche un [[Domain Name]] se il *client* ne possiede uno ( è un **MTA** ) o un letterale di indirizzo altrimenti ( ex `123.255.37.2` ) ( è un **MUA** )

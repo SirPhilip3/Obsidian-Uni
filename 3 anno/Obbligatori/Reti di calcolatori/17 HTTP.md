@@ -78,7 +78,7 @@ Visto che **HTML** è semplicemente un file se vogliamo che la pagina carichi de
 
 #### Common Gateway Interface ( CGI )
 
-Aggiungendo del codice *server-side* che cambia la pagina a seconda di una query o di azione che l'utente fa , ciò significa che l'`URL` non pnuta ad un file **HTML** ma ad un file con del codice che viene eseuito server-side e che ritorna una pagina **HTML**
+Aggiungendo del codice *server-side* che cambia la pagina a seconda di una query o di azione che l'utente fa , ciò significa che l'`URL` non punta ad un file **HTML** ma ad un file con del codice che viene eseguito server-side e che ritorna una pagina **HTML**
 
 Un linguaggio con cui possiamo fare questa cosa è **php**
 

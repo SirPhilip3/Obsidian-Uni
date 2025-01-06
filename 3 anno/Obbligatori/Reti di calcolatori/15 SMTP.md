@@ -159,7 +159,6 @@ Per rendere questo processo esplicito è stato aggiunto un ulteriore componente 
 >
 >Per un periodo di tempo dopo l'invio della mail l'**MSA** deve essere in grado identificare l'utente autenticato che ha inviato la mail
 
-
 ## POP / IMAP
 
 Quando la mail viene ricevuta dal server **SMTP** del destinatario viene salvata dentro una mailbox da dove può essere recuperata tramite un protocollo come **POP** o **IMAP** ( **Mail Delivery Agent** ( **MTA** ) )
