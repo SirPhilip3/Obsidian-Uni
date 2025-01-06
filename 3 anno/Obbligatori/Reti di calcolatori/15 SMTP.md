@@ -84,7 +84,7 @@ Per la comunicazione tra **MTA** e **MUA** si utilizzano due protocolli **SMTP**
 >[!example] 
 ![[Pasted image 20241218122142.png]]
 
-**SMTP** si è un protocollo *text-based* , questo fa affidamento su un servizio *connection oriented* ( [[TCP]] ) , il *server* ascolta sulla porta `25` dove il client invia comandi testuali in ASCII terminati da `CRLF` , il *server* risponde con un numero di tre cifre che indica se è avvenuto un *errore* o l'operazione ha avuto *successo* ( in aggiunta vi possono essere dei commenti )
+**SMTP** è un protocollo *text-based* , questo fa affidamento su un servizio *connection oriented* ( [[TCP]] ) , il *server* ascolta sulla porta `25` dove il client invia comandi testuali in ASCII terminati da `CRLF` , il *server* risponde con un numero di tre cifre che indica se è avvenuto un *errore* o l'operazione ha avuto *successo* ( in aggiunta vi possono essere dei commenti )
 ### Comandi
 
 I comandi più usati sono : 
