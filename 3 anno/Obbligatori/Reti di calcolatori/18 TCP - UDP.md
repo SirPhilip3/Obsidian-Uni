@@ -421,7 +421,6 @@ In questo caso quando il *sender* riceve l'[[Acknowledgment|ack]] ( a tempo $t_0
 
 >[!note] 
 >La $window'$ sarà sicuramente minore di $window$ ma la formula $\frac{window'}{RTT}$ è ancora valida per calcolare il *throughput*
-
 ### Network Congestion
 
 Questo succede quando i *router* lungo il percorso dal *client* al *server* droppano pacchetti 
@@ -451,7 +450,6 @@ In questo modo il numero medio di dati inviati è ancora $\frac{window}{RTT}$ an
 Il fatto che inviamo direttamente l'intero buffer all'inizio della connessione potrebbe causare il *network congestion* 
 
 Per questo la $window$ iniziale dovrebbe essere piccola e crescere con il tempo 
-
 ##### Congestion Window
 
 La $cwnd$ ( *Congestion Window* ) viene inizializzata ad un valore fisso , inizialmente era $MSS$ ora si usa $10\times MSS$ 
