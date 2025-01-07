@@ -21,7 +21,7 @@ I protocolli di trasporto fanno affidamento sui servizi offerti dal [[07 Network
 >[!note] 
 >Non può fare *error correction*
 
-**UDP** permette di fare multiplexing ossia permette a varie applicazioni che runnano sulla macchina *host* di scambiarsi [[SDU]] con altre applicazioni in esecuzione su un *host* remoto
+**UDP** permette di fare *multiplexing* ossia permette a varie applicazioni che runnano sulla macchina *host* di scambiarsi [[SDU]] con altre applicazioni in esecuzione su un *host* remoto
 
 Per fare ciò ogni applicazione viene identificata da un numero di **porta**
 
