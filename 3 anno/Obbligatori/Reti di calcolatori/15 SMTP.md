@@ -48,7 +48,6 @@ Ulteriori *header*
 Il **message body** più semplice può essere del testo `ASCII` , ma può anche essere un qualsiasi file binario e allegati
 
 Per questo viene usato il **Multiporpouse Internet Mail Extensions** ( **MIME** ) 
-
 ##### MIME
 
 Campi `MIME` :

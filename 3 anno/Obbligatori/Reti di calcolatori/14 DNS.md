@@ -90,8 +90,8 @@ Se qualcuno all'interno della rete locale ha già visitato quel determinato domi
 Dove : 
 + `Header` : Spazio per gli *header*
 + `Question` : Contiene la domanda per il [[Name Servers]] 
-+ `Answer` : Risposte alla question ( [[Resource Record]] )
-+ `Authority` : Contiene il campo *authority* ( [[Resource Record]] )
++ `Answer` : Risposte alla question ( [[14 DNS#Resource Record|Resource Record]] )
++ `Authority` : Contiene il campo *authority* ( [[14 DNS#Resource Record|Resource Record]] )
 + `Additional` : Spazio per altre informazioni
 
 #### Header
@@ -140,7 +140,7 @@ Dove :
 >Alcuni `TYPE` sono *non-terminali* ossia anche se abbiamo raggiunto un server *autoritativo* non risponde con un *IP* ma con un altri *dominio* , necessiteremo poi un'altra query per risolverlo
 ### Reverse DNS
 
-Quando registriamo un dominio **possiamo** ( non è obbligatorio ) aggiungere un [[Resource Record|RR]] `PTR` dove specifichiamo un dominio nel seguente formato : `<reversed ip>.in-addr.arpa`
+Quando registriamo un dominio **possiamo** ( non è obbligatorio ) aggiungere un [[14 DNS#Resource Record|RR]] `PTR` dove specifichiamo un dominio nel seguente formato : `<reversed ip>.in-addr.arpa`
 
 In cui il dominio `in-addr.arpa` è usato per fare **reverse lookups** , questo permette di , dato un indirizzo *IP* ritornare un *dominio* 
 
