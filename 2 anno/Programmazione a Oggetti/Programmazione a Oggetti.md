@@ -76,7 +76,7 @@ Il paradigma di programmazione ad oggetti o *OOP* ( *Object Oriented Programming
 
 ## Classi 
 
-Le classi rappresentano oggetti reali o immaginari , queste consistono di *campi* ( che identificano lo stato di un oggeto ) e *metodi* ( identificano le azioni e il cambio di stato di un oggetto )
+Le classi rappresentano oggetti reali o immaginari , queste consistono di *campi* ( che identificano lo stato di un oggetto ) e *metodi* ( identificano le azioni e il cambio di stato di un oggetto )
 
 Ogni *classe* definisce un *tipo*
 
@@ -282,7 +282,7 @@ Per modificare l'accessibilità ai dati possono essere utilizzati gli *access mo
 
 Esistono anche i *modules* , sono un file con all'interno il nome delle classe whitelistate per l'esportazione in un file *jar*
 
-Riassunto :
+**Riassunto** :
 
 | - | Same class | Same package | Sottoclassi | Dappertutto |
 | ---- | ---- | ---- | ---- | ---- |
@@ -402,7 +402,7 @@ Una *capsula* è un pacchetto software con una chiara *application programming i
 
 Le *capsule* in java sono pubblicate come *librerie* ossia un insieme di *classi* ( appartenenti a *pacchetti* ) impacchettate assieme pubblicate come un file *jar* ( è un file zippato contente i *.class* e altre informazioni )
 
-Per creare un *jar* viene utilizzato il comando `jar` , un *jar* può essere esseguito specificando il file *.class* che contiene il metodo main quando compiliamo
+Per creare un *jar* viene utilizzato il comando `jar` , un *jar* può essere eseguito specificando il file *.class* che contiene il metodo main quando compiliamo
 
 Il *jar* creato contiene un file `META-INF/MANIFEST.MF` che contiene informazioni generali sulla libreia come :
 + La sua versione : `Manifiest-Version: 1.0`
@@ -466,7 +466,7 @@ In questo caso la classe `{java}Car` erediterà `{java}double speed` e `{java}vo
 
 #### Proprietà
 
-Ogni classe può estendere al massimo un'altra classe ( questa può essere già estesa )
+Ogni classe può estendere al **massimo** un'altra classe ( questa può essere già estesa )
 
 **Esempio**
 
