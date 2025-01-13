@@ -936,7 +936,6 @@ class Truck extends Car implements LoadableUnloadable {
 Per chiamare un metodo usiamo la seguente sintassi : `{java}<reciever>.<method_name>(<parameters>)` , il codice che si vuole eseguire è collegato alla *classe* del `{java}<reciever>` ( alcune volte può essere implicito es `{java}this` , la classe dove siamo ) 
 
 Per questo dobbiamo decidere da quale classe vogliamo iniziale la ricerca dell'implementazione del metodo , ovviamente se la classe non contiene l'implementazione dobbiamo controllare per la sua superclasse  
-
 Se però abbiamo dei metodi *sovrascritti* ( *override* ) questi nascondono il comportamento della superclasse 
 
 >[!note]
