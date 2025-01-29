@@ -4,7 +4,7 @@ publish: true
 ---
 # Introduzione
 
-Internet utilizza [[packet switching]] questo lo rende molto robusto e non preve l'esistenza di un coordinatore globale 
+Internet utilizza [[packet switching]] questo lo rende molto robusto e non prevede l'esistenza di un coordinatore globale 
 + Può estendersi senza una gerarchia pianificata
 + Si può automaticamente rigenerare in caso di guasti 
  
