@@ -808,7 +808,7 @@ Si possono distiguere vari tipi di *chiavi* :
 Altri tipi di chiave sono indicati con `<<UNIQUE>>` oppure `<<CK>>`
 
 + *Chiavi esterne* :
-	Sono un insieme di attributi in una relazione R che riferisce la *chiave primaria* di un'altra realazione S 
+	Sono un insieme di attributi in una relazione R che riferisce la *chiave primaria* di un'altra relazione S 
 	Le *relazioni* sono create con questo meccanismo
 	La *chiave esterna* deve rispettare il vincolo di *integrità refrenziale* ossia essa non può assumere valori non presenti nella chiave a cui si riferisce
 
