@@ -10,7 +10,7 @@ Per raggiungere una comunicazione bi-direzionale sicura possiamo usare :
 + [[Public Key]] *Encryption* per garantire [[Data authentication]] e [[Non repudiation]]
 + [[Certificate]] per avere una **Web of Trust**
 
-A second del layer dello stack [[TCP IP]] in cui vogliamo inserire la sicurezza abbiamo dei *pro* e dei *contro* : 
+A seconda del layer dello stack [[TCP IP]] in cui vogliamo inserire la sicurezza abbiamo dei *pro* e dei *contro* : 
 + Più in basso lo mettiamo più informazioni possiamo cifrare , ma alcune cose potrebbero non funzionare 
 + Più in alto meno supporto dobbiamo avere dal sistema operativo , ma meno infomazioni possiamo cifrare 
 ## IP Encryption
@@ -46,7 +46,7 @@ Questo viene aggiunto al di sopra di [[18 TCP - UDP#Transmission Control Protoco
 >![[Pasted image 20241227163425.png]]
 
 >[!note] 
->La maggior parte dei protocolli origniali non erano sicuri , adesso esistono versioni sicure per ognuno di essi : 
+>La maggior parte dei protocolli originali non erano sicuri , adesso esistono versioni sicure per ognuno di essi : 
 >+ `HTTP` diventa `HTTPS` ( da porta $80$ a $443$ )
 >+ `POP3` diventa `POP3S` ( da porta $110$ a $995$ )
 >+ `IMAP` diventa `IMAPS` ( da porta $143$ a $993$ )

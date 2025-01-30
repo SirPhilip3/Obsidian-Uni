@@ -447,7 +447,7 @@ In questo modo il numero medio di dati inviati è ancora $\frac{window}{RTT}$ an
 >La soluzione sarebbe quella di diminuire $window$  
 #### Implicit Congestion Detection
 
-Il fatto che inviamo direttamente l'intero buffer all'inizio della connessione potrebbe causare il *network congestion* 
+Il fatto che inviamo direttamente l'intero buffer all'inizio della connessione potrebbe causare la *network congestion* 
 
 Per questo la $window$ iniziale dovrebbe essere piccola e crescere con il tempo 
 ##### Congestion Window
