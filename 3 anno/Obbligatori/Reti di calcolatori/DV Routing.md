@@ -70,7 +70,7 @@ Per tutte le destinazioni `d` presenti nel vettore `V`
 
 ## Failure Recovery
 
-Visto che ogni $n$ secondi viene aggiorno `R[d].time` allora ogni rotta non può avere un `time` più vecchio di $n$ secondi 
+Visto che ogni $n$ secondi viene aggiornato `R[d].time` allora ogni rotta non può avere un `time` più vecchio di $n$ secondi 
 
 Se una rotta è più vecchia di $3\times n$ secondi il suo costo viene settato a $\infty$
 

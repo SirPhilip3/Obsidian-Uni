@@ -19,7 +19,7 @@ Every N seconds:
 		send(v, ifc)
 ```
 
-**Split Horizon** : dice al *router* che il suo *orizzonte* non è tutto lo stesso , bensì è diviso tra i *router* che usa come *next-hop* e tutti gli altri ( in pratica ai miei vicini mando solo cammini che stanno nel loro *orizzonte* , ossia quelli che non ha appreso tremite quel vicino a cui sta mandando le rotte )
+**Split Horizon** : dice al *router* che il suo *orizzonte* non è tutto lo stesso , bensì è diviso tra i *router* che usa come *next-hop* e tutti gli altri ( in pratica ai miei vicini mando solo cammini che stanno nel loro *orizzonte* , ossia quelli che non ha appreso tramite quel vicino a cui sta mandando le rotte )
 
 **Poison Reverse** : dice al *router* a cui sta mandando il *DV* che non ha un rotta a qualche destinazione $d$ se questa passa attraverso il vicino stesso ( in pratica setta a $\infty$ il costo per le rotte che prima avevo escluso )
 

@@ -14,7 +14,7 @@ Una *routing table* è una struttura dati che contiene per ogni *destination add
 >>L'altra potrebbe essere gestita dall'amministratore
 
 >[!info] 
->L'*obbiettivo* di un [[Routing Protocol]] è quello di riempire le *routing tabel* in tutti i *router* del network
+>L'*obbiettivo* di un [[Routing Protocol]] è quello di riempire le *routing table* in tutti i *router* del network
 
 >[!note] 
 >Nel *router* tutte le *routing table* sono *unite* in un unica [[Forwarding Table]] su cui ci basiamo per prendere le decisioni di routing per ogni [[packet]]

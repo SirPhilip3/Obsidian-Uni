@@ -2,7 +2,7 @@
 creation: 2024-10-15T10:48:00
 publish: true
 ---
-Il *network layer* permette la trasmissione delle informazioni tra *host* che non sono parte della stessa rete fisica attraverso *router* ( questi hanno più di una *network interface card* ( *NIC* ) doranno quindi prendere una decisione sul *forwarding* ) intermedi
+Il *network layer* permette la trasmissione delle informazioni tra *host* che non sono parte della stessa rete fisica attraverso *router* ( questi hanno più di una *network interface card* ( *NIC* ) dovranno quindi prendere una decisione sul *forwarding* ) intermedi
 
 Il **Network Layer** assume che : 
 + Il [[DataLink Layer]] sia *almost reliable* ( può avvenire *packet loss* ma è poco frequente )

@@ -10,7 +10,7 @@ publish: true
 + Poco costosa , abbiamo bisogno di un solo link che collega tutti
 
 **Cons** : 
-+ Visto che tutte le comunicazioni gestiscono lo stesso link fisico , non posso scalarla su reti di grandi dimension
++ Visto che tutte le comunicazioni gestiscono lo stesso link fisico , non posso scalarla su reti di grandi dimensioni
 + *non robusta* : se il *bus* si rompe la rete viene divisa in due parti 
 
 >[!important] 

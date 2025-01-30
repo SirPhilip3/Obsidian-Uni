@@ -151,7 +151,7 @@ Facciamo un **esempio** :
 Abbiamo $n$ *bit* nell'header per il numero di sequenza , avremo quindi $2^n$ numeri possibili ma non possiamo utilizzarli tutti poichè :
 + A manda esattamente $2^n$ [[Frame]]
 + B li riceve , manda gli [[Acknowledgment|Ack]] e setta `next` a $0$
-+ Tutti gli [[Acknowledgment|Ack]] vengono persi , A finiesce il *timer* e rimanda tutti i [[Frame]] 
++ Tutti gli [[Acknowledgment|Ack]] vengono persi , A finisce il *timer* e rimanda tutti i [[Frame]] 
 + B li riceve tutti ma visto che `next` è settato a $0$ verrano accettati di nuovo e duplicati
 
 Per risolvere il problema settiamo la grandezza massima della *finestra* a $2^n-1$

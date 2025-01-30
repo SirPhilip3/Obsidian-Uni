@@ -8,7 +8,7 @@ publish: true
 >Assumiamo che $A$ voglia mandare un [[packet]] a $B$ 
 >
 >1. $A$ manda il pacchetto alla sua unica interfaccia , l'header conterrà l'address della destinazione $B$  e l'address d'origine $A$ 
->2. Quando $R1$ riceve $A$ , $R1$ sa che può raggiungere $A$ attraverso la sua inerfaccia *West* , aggiorna di conseguenza la sua [[Forwarding Table]] ( $A \\to West$ )
+>2. Quando $R1$ riceve $A$ , $R1$ sa che può raggiungere $A$ attraverso la sua inerfaccia *West* , aggiorna di conseguenza la sua [[Forwarding Table]] ( $A \to West$ )
 >3. Visto che $R1$ non ha una entry per $B$ manda il [[packet]] a tutte le sue interfacce ( tranne quella da cui ho ricevuto il *pacchetto* ) ( **Broadcast** )
 >4. Quando $R2$ riceve un [[packet]] , aggiorna la sua [[Forwarding Table]] con una rotta $A \to West$ , e fa un **Broadcast**
 >5. Il pacchetto arriva a $C$ ma non essendo la destinazione scarta il pacchetto . aggiornando la sua [[Forwarding Table]] con $A \to West$

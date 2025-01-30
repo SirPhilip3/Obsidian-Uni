@@ -10,7 +10,7 @@ publish: true
 + Come prima avendo un solo *link* dedicato per *host* , la performance per costo aumenta 
 
 **Cons** :
-+ Non resistente ai guasti : se un link si sconnette tutto il restatne albero si disconnette
++ Non resistente ai guasti : se un link si sconnette tutto il restante albero si disconnette
 
 >[!important] 
 >Usato per allungare LAN

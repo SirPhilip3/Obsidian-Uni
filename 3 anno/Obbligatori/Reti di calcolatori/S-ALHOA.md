@@ -35,7 +35,7 @@ Se un *terminale* nello stato **Backogged** riceve degli altri dati da inviare l
 ## Performance
 
 Assumiamo che $G$ sia il carico del sistema ( il numero medio di [[Frame]] al secondo che vogliamo inviare in uno slot )
-La probabilità di trasmettere correttamente un [[Frame]] sarà $P_s$ ( la probabilità di avere un solo [[Frame]] trasmettso in uno slot ) : $P_s=Ge^{-G}$ 
+La probabilità di trasmettere correttamente un [[Frame]] sarà $P_s$ ( la probabilità di avere un solo [[Frame]] trasmesso in uno slot ) : $P_s=Ge^{-G}$ 
 
 Quando $G=1$ il *network* è a saturazione , poichè non possiamo inviare più di un [[Frame]] per *slot* 
 
