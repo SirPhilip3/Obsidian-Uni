@@ -42,13 +42,13 @@ Il problema princiaple con **OTP** è che **Alice** per mandare un messaggio di 
 Visto che lunghezza di $N$ equivale a quella di $M$ potremmo mandare direttamente $M$
 
 >[!warning] 
-Una soluzione potrebbe essere riutilizzare la stassa chiave , ma in questo caso porteerbbe alla ripertizione di *byte* ritornando ad un algortimo di [[Sostituzione]]
+Una soluzione potrebbe essere riutilizzare la stassa chiave , ma in questo caso porterebbe alla ripertizione di *byte* ritornando ad un algortimo di [[Sostituzione]]
 
 ### Reducing the Key length
 
 Immaginiamo che **Eve** ha il messaggio *cifrato* $C$ , e sa che è in Italiano 
 
-Assumiamo che la *key* sia lungha $8$ bit e che veiene utilizzata per tutti i char del messaggio 
+Assumiamo che la *key* sia lungha $8$ bit e che viene utilizzata per tutti i char del messaggio 
 
 ![[Pasted image 20241112103011.png]]
 

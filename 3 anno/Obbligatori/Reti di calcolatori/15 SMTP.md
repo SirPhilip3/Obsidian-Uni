@@ -22,7 +22,7 @@ creation: 2024-12-18T11:13:00
 Le *e-mail* sono messaggi testuali , inizialmente in ASCII , in cui ogni riga termina con il carattere `CRLF`
 #### Headers
 
-Le *e-mail* ha delle righe iniziali contenenti gli *headers* ( ex : `From, To, Date, CC, BCC, Subject` etcc )
+Le *e-mail* hanno delle righe iniziali contenenti degli *headers* ( ex : `From, To, Date, CC, BCC, Subject` etc )
 
 >[!example] 
 >```

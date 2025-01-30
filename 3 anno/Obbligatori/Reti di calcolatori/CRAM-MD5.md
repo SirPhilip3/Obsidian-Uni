@@ -21,8 +21,9 @@ Assumiamo che **Alice** ( il *client* ) vuole autenticarsi a **Bob** ( il *serve
 >[!fail] 
 >Questo protocollo è *deprecato* poichè : 
 >1. Utilizza una [[Hash Functions|Funzione di Hashing]] debole ( **MD5** ) 
->	Visto che all'inizio il *client* e *server* devono accordarsi su che [[Hash Functions|Funzione di Hashing]] utiliizare e la connessione non può essere sicura **Eve** potrebbe intercettare il messaggio e costringere **Alice** e **Bob** ad utilizzare una [[Hash Functions|Funzione di Hashing]] debole 
+>	Visto che all'inizio il *client* e *server* devono accordarsi su che [[Hash Functions|Funzione di Hashing]] utilizare e la connessione non può essere sicura **Eve** potrebbe intercettare il messaggio e costringere **Alice** e **Bob** ad utilizzare una [[Hash Functions|Funzione di Hashing]] debole 
 >2. L'autenticazione non è mutua
 >	**Alice** non sa se il *server* con cui sta parlando è realmente **Bob** , per risolvere il problema potremmo ripetere il processo anche per il *server* , ma non è supportato da **CRAM-MD5**
 >3. Può subire *brute force* off-line
 >	Possiamo osservare lo scambio di infomazioni tra **Alice** e **Bob** e dato il *digest* possiamo provare tutte le password possibili off-line ( non dobbiamo mai interagire con il *server* )
+

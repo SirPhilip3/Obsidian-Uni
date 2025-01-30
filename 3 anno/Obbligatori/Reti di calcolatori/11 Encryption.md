@@ -47,7 +47,7 @@ publish: true
 
 # Base Encryption Operations
 
-**Encryption** si basa su deu principali operazioni : 
+**Encryption** si basa su due principali operazioni : 
 + ![[Sostituzione]]
 + ![[Trasposizione]] 
 >[!important] 
@@ -72,7 +72,7 @@ Algoritmi moderni applicano multiple iterazione di [[Trasposizione]] e [[Sostitu
 
 Un esempio di funzione di *encryption* che funziona a chiave simmetrica è **AES**
 
-Quando **Alice** vuole mandare un messaggio a **Bob** usa **AES** per criptare un messaggio $M$ , il messaggio diventerà quindi : $C=AES(K,M)$  , quando **Bob** riceve il messaggio esso , avendo la chiave $K$ , può ritoranre al messaggio originale nel seguente modo : $M=AES(K,C)$  
+Quando **Alice** vuole mandare un messaggio a **Bob** usa **AES** per cifrare un messaggio $M$ , il messaggio diventerà quindi : $C=AES(K,M)$  , quando **Bob** riceve il messaggio esso , avendo la chiave $K$ , può ritornare al messaggio originale nel seguente modo : $M=AES(K,C)$  
 
 ## [[Data integrity|Integrity]] , [[Secrecy]] and [[Data authentication|Authentication]]
 
@@ -108,9 +108,9 @@ Assumiamo inoltre che **Alice** e **Bob** possano condividere la *chiave condivi
 
 ![[Pasted image 20241111091838.png]]
 
-In questo caso il messaggio viene *decriptato* quando raggiunge i server di colui che fornisce il servizio , lo salva e sucessivamente lo encripta di nuove e lo mada a *Bob*
+In questo caso il messaggio viene *decriptato* quando raggiunge i server di colui che fornisce il servizio , lo salva e sucessivamente lo cifra di nuovo e lo mada a *Bob*
 
-In questo caso **Alice** , che può leggere i canali di comunicazione tra gli utenti e il server , non può fare nulla con il messaggio 
+In questo caso **Eve** , che può leggere i canali di comunicazione tra gli utenti e il server , non può fare nulla con il messaggio 
 
 Un threat actor che controlla però i server ( che può essere il service provider stesso ) ha il completo accesso ai dati non criptati 
 # E2E Encryption

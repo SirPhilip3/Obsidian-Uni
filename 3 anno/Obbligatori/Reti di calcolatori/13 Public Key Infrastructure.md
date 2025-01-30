@@ -46,7 +46,7 @@ Sia **Alice** che **Bob** si fidano di **Carl** , ossia :
 >[!important] Certification Process
 >
 >1. **Alice** e **Carl** si scambiano *fingerprint* , stessa cosa tra **Bob** e **Carl**
->2. **Carl** da a **Alice** la seguente *signature* : $S=E(Priv_C,(Pub_A,"Alice"))$ 
+>2. **Carl** dà a **Alice** la seguente *signature* : $S=E(Priv_C,(Pub_A,"Alice"))$ 
 >	**Ossia** : **Carl** cifra sia la `Pub_A` che la sua identità con la sua `Priv_C`
 >	In questo modo chiunque abbia la [[Public Key]] di **Carl** può certificare che una data [[Public Key]] appartiene ad *Alice*
 >3. **Alice** invia `Pub_A` e $S$ a **Bob** che usa `Pub_C` per verificare $S$ , ora **Bob** si fida di **Alice**
@@ -58,7 +58,7 @@ Sia **Alice** che **Bob** si fidano di **Carl** , ossia :
 >Dopo lo scambio di $S$ con **Carl** , **Alice** può inviare la sua chiave assieme ad $S$ , e gli altri possono certificare la sua identità semplicemente possedendo la [[Public Key]] di **Carl** 
 >
 
-E' possibile anche formare delle *chain of thrust* infatti tutti coloro che si fidano di **Carl** possono *certificare* la sua identità con la propria *private key* ,  in questo modo chi non si fida di **Carl** potrà comunicare con **Alice** attraverso qual'unaltro che si fida di **Carl**
+E' possibile anche formare delle *chain of thrust* infatti tutti coloro che si fidano di **Carl** possono *certificare* la sua identità con la propria *private key* ,  in questo modo chi non si fida di **Carl** potrà comunicare con **Alice** attraverso qualcun altro che si fida di **Carl**
 
 >[!example] 
 >![[Pasted image 20241216151905.png]]
@@ -97,7 +97,7 @@ Quando **Bob** riceve un [[Certificate]] valido per **Alice** , firmato da una [
 + Controlla che il nome nel certificato sia effettivamente *Alice* 
 + Controlla che il certificato sia valido in quell'istante di tempo 
 + Controlla che la [[Certification Authority|CA]] sia all'interno del suo database di [[Certification Authority|CA]] valide per cui possiede la chiave pubblica
-+ Decripta la *signature* con la *chiave pubblica* della [[Certification Authority|CA]] , ottiene un *digest* $D$ 
++ Decifra la *signature* con la *chiave pubblica* della [[Certification Authority|CA]] , ottiene un *digest* $D$ 
 + Computa la hash $D'$ del certificato ( senza la *signature* ) 
 + Se $D=D'$ allora il [[Certificate]] è valido e **Bob** ora si fida della *public key* di **Alice** 
 
@@ -109,11 +109,11 @@ Quando **Bob** naviga sul sito di **Alice** , `www.alice.com` fornice a **Bob** 
 
 ### Trusted [[Certification Authority|CA]]
 
-Visto che vi sono motle [[Certification Authority|CA]] nel mondo come fa **Bob** a decidere di quale fidarsi 
+Visto che vi sono molte [[Certification Authority|CA]] nel mondo come fa **Bob** a decidere di quale fidarsi 
 
 Le [[Certification Authority|CA]] Possono creare una **Web of Trust** perchè le [[Certification Authority|CA]] possono firmarsi i propri [[Certificate]] a vicenda
 
-Esiste poche **Root** [[Certification Authority|CA]] che si firmano i [[Certificate]] da sole , i broswer posseggono queste [[Certification Authority|CA]] 
+Esistono poche **Root** [[Certification Authority|CA]] che si firmano i [[Certificate]] da sole , i broswer posseggono queste [[Certification Authority|CA]] 
 
 Quando **Bob** naviga su `www.alice.com` questa deve fornire non solo il [[Certificate]] per lei ma anche tutti i [[Certificate]] fino alla **Root** [[Certification Authority|CA]] 
 

@@ -10,7 +10,7 @@ Gli step sono i seguenti :
 >
 >1. Sciegliamo due grandi numeri primi $p$ e $q$ , questi devono rimanere **segreti** 
 >2. Computiamo $n=pq$ e la [[Funzione di Eulero]] : $\phi(n)=(p-1)(q-1)$ 
->3. Sicegliamo un itero $e$ in modo che $2 < e <\phi(n)$ che non abbia nessun divisore in comunue con $\phi(n)$ ( sono [[Coprimi]] )
+>3. Scegliamo un intero $e$ in modo che $2 < e <\phi(n)$ che non abbia nessun divisore in comunue con $\phi(n)$ ( sono [[Coprimi]] )
 >4. Determina $d$ in modo che $d\cdot e \mod{\phi(n)}=1$ , ossia che $d$ e $e$ sono inversi in modulo $\phi(n)$
 
 $(e,n)$ è la *public key* 
@@ -22,9 +22,9 @@ $d$ è la *private key*
 
 >[!important] Encryption e Decryption
 >
->Se **Bob** vuole mandare un messaggio $M$ ad **Alice** deve *criptarlo* nel seguente modo: 
+>Se **Bob** vuole mandare un messaggio $M$ ad **Alice** deve *cifrarlo* nel seguente modo: 
 >$$C=M^e \mod{n}$$
->**Alice** riceverà il messaggio e lo *decripterà* nel seguente modo : 
+>**Alice** riceverà il messaggio e lo *decifrerà* nel seguente modo : 
 >$$M = C^d \mod{n}$$
 
 >[!example] 
