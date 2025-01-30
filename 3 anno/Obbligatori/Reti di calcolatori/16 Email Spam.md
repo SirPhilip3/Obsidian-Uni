@@ -191,7 +191,7 @@ Se la regola invece termina con `?all` vuol dire che il dominio del *sender* non
 
 Visto che tutti i campi di una email sono generati dall'**MUA** e vengono poi forwardati dall'**MTA** , l'unica entità che può verificare che quei campi siano corretti è l'**MSA**  
 
-`DKIM` è un protocollo che permette di autenticare l'associaizone tra una e-mail e un **MTA** valido 
+`DKIM` è un protocollo che permette di autenticare l'associazione tra una e-mail e un **MTA** valido 
 
 >[!note] 
 >Questo funziona solamente se l'**MSA** possiede un paio di chiavi pubbliche / private che l'amministratore deve generare e configurare nell'**MSA** 
@@ -201,7 +201,7 @@ Visto che tutti i campi di una email sono generati dall'**MUA** e vengono poi fo
 Quando un **MUA** contatta l'**MSA** questo si autentica 
 
 >[!warning] 
->Quest è l'unico momento in cui una email può essere certificata in quanto il prossimo **MTA** non potrà più fare autenticazione
+>Questo è l'unico momento in cui una email può essere certificata in quanto il prossimo **MTA** non potrà più fare autenticazione
 
 Quando usiamo `DKIM` l'**MSA** selezionerà dei campi della mail ( potenzialmente il `From` e il body ) e ne farà una [[Digital Signature]] usando la sua *private key* 
 

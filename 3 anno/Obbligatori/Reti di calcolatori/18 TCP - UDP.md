@@ -120,7 +120,7 @@ Il rifiuto della connessione può avvenire se per esempio non c'è un'applicazio
 >[!note] 
 >Per rifiutare la connessione mandiamo un pacchetto di `RST` 
 >>[!important] 
->>Questo deve comunque rispettare i numeri di sequenza , altrimenti un attacante potrebbe mandare un pacchetto di `RST` che abbia un numero di sequenza all'interno della finestra anche se non valido
+>>Questo deve comunque rispettare i numeri di sequenza , altrimenti un attaccante potrebbe mandare un pacchetto di `RST` che abbia un numero di sequenza all'interno della finestra anche se non valido
 ## TCP connection Macchina a Stati
 
 ![[Pasted image 20241221180456.png]]
@@ -235,7 +235,7 @@ In questo modo aspettiamo di riempire al massimo il *payload* per **TCP** prima 
  
 Se l'applicazione produce dati ad un alto *throughput* questa è una buona decisione 
 
-Se invece l'appllicazione ci mette molto tempo per riempire un buffer , i dati potrebbero aspettare molto tempo prima di essere inviati
+Se invece l'applicazione ci mette molto tempo per riempire un buffer , i dati potrebbero aspettare molto tempo prima di essere inviati
 #### Nagle Algorithm
 
 L'*algoritmo di Nagle* è un *trade-off* tra le due precedenti techiche 
@@ -270,7 +270,7 @@ L'*algoritmo di Nagle* è un *trade-off* tra le due precedenti techiche
 `6-7` Altrimenti non ho inviato dati fin'ora , oppure sono stati tutti [[Acknowledgment|Acknowledged]] , allora posso mandare un piccolo segmento ma solo una volta per **RTT** ( **Round Trip Time** )   
 
 >[!note] 
->Questo algoritmo fa in modo che sia più probabile che segementi più grandi vengano inviati 
+>Questo algoritmo fa in modo che sia più probabile che segmenti più grandi vengano inviati 
 >Questo però rendere **TCP** non adatto per *real-time traffic*
 ### Window Size
 
@@ -406,7 +406,7 @@ Il massimo *throughput* di **TCP** è $\frac{window}{RTT}$
 
 Facciamo un esempio in cui dobbiamo inviare un grande file , in questo caso il *sender* ha sempre qualcosa da inviare mentre il *reciever* deve semplicemente salvare i dati sul disco
 
-In questo caso per via dell'algoritmo di *Nagle* il *sender* mandarà quanti più segmenti di dimensione **MSS** `swin` accetta ( praticamente tutti ) , questo succede a tempo $t_0$ 
+In questo caso per via dell'algoritmo di *Nagle* il *sender* manderà quanti più segmenti di dimensione **MSS** `swin` accetta ( praticamente tutti ) , questo succede a tempo $t_0$ 
 Assumiamo che la capacità del link sia molto alta in entrambi i versi e che i segmenti sono tutti ricevuti 
 
 I segmenti saranno quindi ricevuti tutti a tempo $t_0 + RTT/2$  , il *reciever* invierà gli [[Acknowledgment|ack]] comulativi e il *sender* li riceverà a tempo $t_0 + RTT$ , il *sending buffer* viene quindi liberato e ricominceremo ad inviare 

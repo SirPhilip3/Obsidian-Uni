@@ -38,7 +38,7 @@ Il [[Domain Name]] può essere seguito da un simbolo di `:` e un numero di porta
 L'ultima parte dell'`URI` contiene il *path* fino al documento , generalmente questo è strutturato come in *Unix*
 
 >[!note] 
->Se il *path* non è specificato il server ritornarà un documento di default `404.html`
+>Se il *path* non è specificato il server ritornerà un documento di default `404.html`
 ### Query and Fragment 
 
 La parte di *query* è usata per dare un parametro al *server* ( usato per fare query etcc )
