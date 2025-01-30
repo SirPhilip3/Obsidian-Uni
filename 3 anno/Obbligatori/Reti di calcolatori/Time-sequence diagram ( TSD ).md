@@ -12,7 +12,7 @@ Un diagramma *time-sequence* descrive l'interazione tra gli host che stanno comu
 + Descriviamo la ricezione di un bit come una chiamata di sistema `DATA.ind(bit-value)`
 
 >[!note] 
->La trasmissione non essendo istantanea forma una retta diagonal , dall'alto al basso
+>La trasmissione non essendo istantanea forma una retta diagonale , dall'alto al basso
 
 # Errors
 
