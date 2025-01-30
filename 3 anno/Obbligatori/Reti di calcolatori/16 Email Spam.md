@@ -22,7 +22,7 @@ Non permettere il **relaying** se un **MUA** non è autenticato , ossia viene fa
 >Il campo `From` può essere *spoofato* mettendoci un qualunque indirizzo sorgente se l'utente non è autenticato
 ### FQDN ( Fully Qualified Domain Name ) check
 
-Si richiede che il comando `HELO`cosa ca porti con se anche un [[Domain Name]] se il *client* ne possiede uno ( è un **MTA** ) o un letterale di indirizzo altrimenti ( ex `123.255.37.2` ) ( è un **MUA** )
+Si richiede che il comando `HELO` porti con se anche un [[Domain Name]] se il *client* ne possiede uno ( è un **MTA** ) o un letterale di indirizzo altrimenti ( ex `123.255.37.2` ) ( è un **MUA** )
 
 >[!note] 
 >Se riceve un [[Domain Name]] lo risolve in un *IP* 
@@ -57,9 +57,9 @@ Prima di consentire l'invio di e-mail l'**MTA** farà una query al server **DNSB
 >```bash
 >$ dig 2.0.0.127.zen.spamhaus.org
 >;; ANSWER SECTION :
->2.0.0.127. zen . spamhaus . org . 60 IN A 127.0.0.4
->2.0.0.127. zen . spamhaus . org . 60 IN A 127.0.0.2
->2.0.0.127. zen . spamhaus . org . 60 IN A 127.0.0.10
+>2.0.0.127.zen.spamhaus.org. 60 IN A 127.0.0.4
+>2.0.0.127.zen.spamhaus.org. 60 IN A 127.0.0.2
+>2.0.0.127.zen.spamhaus.org. 60 IN A 127.0.0.10
 >```
 >
 >In questo caso `127.0.0.4` , `127.0.0.2` , `127.0.0.10` sono nella lista

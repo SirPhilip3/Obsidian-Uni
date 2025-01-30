@@ -38,7 +38,7 @@ Le *e-mail* hanno delle righe iniziali contenenti degli *headers* ( ex : `From, 
 Ulteriori *header* 
 + `Message-Id` : Un *ID* unico usato da altre email che referenziano questo messaggio
 + `In-reply-to` : Contiene il `Message-Id` del messaggio a cui sta rispondendo
-+ `Received` : Ogni server che riceve il messaggio aggiunge una riga *recieved*
++ `Received` : Ogni server che riceve il messaggio aggiunge una riga *received*
 + `X-` : Il client o server può aggiungere campi custom che iniziano con `X-`
 
 >[!example] 
@@ -47,7 +47,7 @@ Ulteriori *header*
 
 Il **message body** più semplice può essere del testo `ASCII` , ma può anche essere un qualsiasi file binario e allegati
 
-Per questo viene usato il **Multiporpouse Internet Mail Extensions** ( **MIME** ) 
+Per questo viene usato il **Multipurpose Internet Mail Extensions** ( **MIME** ) 
 ##### MIME
 
 Campi `MIME` :
@@ -59,7 +59,7 @@ Campi `MIME` :
 	+ `image, audio, video, ...` : formati binari 
 >[!note] 
 >Per `multipart` si aggiunge anche un *header* per definire il confine tra le varie parti
-+ `Content-Transfer-Encoding` : la codifica dei dati ( ex ASCII , UTF-8, Base64 etcc )
++ `Content-Transfer-Encoding` : la codifica dei dati ( ex ASCII , UTF-8, Base64 etc )
 
 >[!note] 
 >`multipart` può avere una struttura ad albero 
