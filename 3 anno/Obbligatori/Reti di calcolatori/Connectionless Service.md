@@ -14,6 +14,6 @@ Il *Connectionless Service* offre :
 >>[!example] 
 >>In una applicazione di video streaming non ci interessa ritrasmettere un frame visto che quando ci arriverà il tempo in cui dovevamo servirlo all'utente è già passato 
 
-Per garantire comunque l'**error detection** viene aggiunta una [[Internet Checksum|Checksum]] all'interno dell'*header* , quando riceviamo il [[packet]] semplicemente controlliamo che la checksum computata dai dati del [[packet]] e quella dell'*header* conincidano ( se non coincidono scartiamo il [[packet]] ) 
+Per garantire comunque l'**error detection** viene aggiunta una [[Internet Checksum|Checksum]] all'interno dell'*header* , quando riceviamo il [[packet]] semplicemente controlliamo che la checksum computata dai dati del [[packet]] e quella dell'*header* coincidano ( se non coincidono scartiamo il [[packet]] ) 
 
 Per implementare il **Multiplexing** utilizziamo il concetto di ![[Porte]]

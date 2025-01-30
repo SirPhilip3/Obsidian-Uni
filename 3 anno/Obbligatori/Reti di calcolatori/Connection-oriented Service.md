@@ -24,9 +24,9 @@ Per stabilire la connessione ci basta uno scambio di [[packet]] tra i due *endpo
 
 ### Reliability
 
-Non possiamo utilizzare un *id* da assegnare ad ogni *segment* poichè questo forza il *server* a manetere una coda di tutti gli *id ricevuti*
+Non possiamo utilizzare un *id* da assegnare ad ogni *segment* poichè questo forza il *server* a mantere una coda di tutti gli *id ricevuti*
 
-La *duplicazione* dei [[packet]] potrebbe dipendere da *loop* , visto che questi sono temporanei definimo la **Maximum Segment Life** ( **MSL** ) , questa indica il tempo massimo che un [[packet]] , ed eventualmente l'[[Acknowledgment]] relativo al [[packet]] , può persistere in una rete ( generalmente è 120s )
+La *duplicazione* dei [[packet]] potrebbe dipendere da *loop* , visto che questi sono temporanei definiamo la **Maximum Segment Life** ( **MSL** ) , questa indica il tempo massimo che un [[packet]] , ed eventualmente l'[[Acknowledgment]] relativo al [[packet]] , può persistere in una rete ( generalmente è 120s )
 
 Ora quindi ci basta identificare un numero di sequenza *duplicato* all'interno dei 120 secondi 
 
@@ -127,18 +127,18 @@ In ogni momento il numero di segmenti **unacknowledged** non possono essere magg
 >
 >**A** manda un [[packet]] con *numero di sequenza* $1$ , questo però ritarda ad arrivare a **B** 
 >
->Nel frattempo riceve dati con *numero di sequenza* fino al $3$ , **B** però non avendo ricevuto ancora i dasti con numero di sequenza $1$ manda l'[[Acknowledgment]] `C(OK,0)` 
+>Nel frattempo riceve dati con *numero di sequenza* fino al $3$ , **B** però non avendo ricevuto ancora i dati con numero di sequenza $1$ manda l'[[Acknowledgment]] `C(OK,0)` 
 >
 >**A** rimanda i dati con *numero di sequenza* = 1 , **B** muove quindi la finestra in avanti e manda un [[Acknowledgment]] per tutti i dati ricevuti con *numero di sequenza* fino al $3$
 >
->Ora visto che il counter wrappa , **A** manda ulteriori dati con *numero di sequenza* = 0 , a questo punto vengono ricevuti i dati con [[Acknowledgment]] = 1 , questo verrrà accettato da **B** poichè correttamente si aspetta un *sequence number* = 1   
+>Ora visto che il counter wrappa , **A** manda ulteriori dati con *numero di sequenza* = 0 , a questo punto vengono ricevuti i dati con [[Acknowledgment]] = 1 , questo verrà accettato da **B** poichè correttamente si aspetta un *sequence number* = 1   
 >>[!danger] 
 >>Abbiamo accettato un [[packet]] duplicato , il data stream viene corrotto 
 
 Dobbiamo quindi rifiutare tutti i pacchetti che arrivano oltre l'**MSL** , questo però diminuisce il **throughput** :
 
 >[!warning] 
->Anche con *numeri di sequenza* molto grandi , se abbiamo un network molto veloce , questi vrapperano in un tempo molto minore dell'**MSL**
+>Anche con *numeri di sequenza* molto grandi , se abbiamo un network molto veloce , questi wrapperano in un tempo molto minore dell'**MSL**
 
 >[!example]
 >Supponiamo di avere un network con velocità di $30Gb/s$  e i *sequence number* sono formati da $32$ bit , visto che ogni sequenza [[Acknowledgment|Ack's]] un byte allora il *sequence number* wrapperà ogni : 

@@ -43,7 +43,7 @@ if newer(LSP, LSDB(LSP.Router)): // prende l'ultimo LSP dal DB e lo compara con 
 ```
 
 >[!note] 
->Il numero di sequenza non è una timestamp quindi prima o poi dovreà wrappare su se stesso 
+>Il numero di sequenza non è una timestamp quindi prima o poi dovrà wrappare su se stesso 
 
 >[!example] 
 >Rete dopo il **Flooding**
@@ -67,7 +67,7 @@ Questi genereranno dei nuovi [[Link state packet|LSP]] che non conterrano più q
 >In generale un *link* unidirezionale non è funzionale quindi quando i *router* ricevono l' [[Link state packet|LSP]] da **E** rimuoveranno entrambi i link 
 >Per invece poter riutilizzare il *link* i router dovrenno aspettare gli [[Link state packet|LSP]] sia di **B** che di **E** per continuare comunicare
 >
->Gerneralmente il **Flooding** avviene in parallelo sia da parte di **B** che di **E** 
+>Generalmente il **Flooding** avviene in parallelo sia da parte di **B** che di **E** 
 >
 >>[!warning] 
 >>Nella fase di transizione della rete si possono creare dei [[Black Holes]] o **loop** 
