@@ -42,8 +42,8 @@ Per connettere due **AS** è necessario un **transit agreement** : un contratto 
 Il *routing* tra **ASes** deve usare il protocollo **BGP** ( **Border Gateway Protocol** )
 
 Visto che in questo caso ci sono relazioni commerciali tra i vari **AS** i router non sempre annunciano tutti i loro *prefissi* agli altri , in generale
-+ In una relazione da *customer* al *provider* , il *customer* annuncia tutti suoi prefissi e le rotte che ha imparata dai suoi clienti
-+ In una relazione da *provider* al *customer* , il *provider* annuncia tutte le rotte che sa al suo *cliente*
++ In una relazione da *customer* al *provider* , il *customer* annuncia tutti suoi prefissi e le rotte che ha imparato dai suoi clienti
++ In una relazione da *provider* al *customer* , il *provider* annuncia tutte le rotte che conosce al suo *cliente*
 + In una connessione *shared-cost* una **AS** annuncia solo le sue rotte interne e le rotte che ha imparato dai suoi clienti 
 
 >[!example] 
@@ -99,7 +99,7 @@ Ora **C** sa che per raggiungere `10.150.0.0/24` deve inviare traffico ad **E** 
 
 **BGP** usa gli stessi principi di [[DV Routing]] con 3 differenze : 
 1. Esporta l'intero *path* verso quell'*AS* , non solo la distanza dalla destinazione ( Per questo è detto *Path Vector* e non *Distance Vector* protocol )
-2. Invia aggiornamenti solo quando qualcosa cambia o quando un vicino chiede per un aggiornamento 
+2. Invia aggiornamenti solo quando qualcosa cambia o quando un vicino chiede un aggiornamento 
 3. I messaggi di `UPDATE` contengono informazioni solo riguardanti alcuni prefissi non tutta la routing table solo se :
 	+ la rotta è *nuova*
 	+ uno dei suoi attributi è cambiato ( tipo il *path* ) 
@@ -121,7 +121,7 @@ Visto però che **D** ha un *path* alternativo per **A** passando attraverso **A
 Quando due router **BGP** vogliono comunicare ognuno di loro accetta una connessione **TCP** alla porta `179`
 
 **BGP** può mandare $5$ tipi di messaggi : 
-+ `Open` : per iniziaire una connessione **BGP**
++ `Open` : per iniziare una connessione **BGP**
 + `Update` : per trasferire informazioni di routing tra router **BGP**
 + `Keepalive` : per controllare se un *peer* è ancora raggiungibile
 + `Notification` : per notificare **BGP** *peer* di errori
@@ -191,7 +191,7 @@ Questo permette alle grande aziende di instradare traffico ad un server rispetto
 
 ### BGP Anycast for Root servers
 
-Ci sono 13 root **DNS** server in tutto il mondo ma questi vengon annunciati da decine di **AS** differenti in tutto il mondo , questo fa in modo che la richiesta venga consegnata alla copia del server *root* più vicino
+Ci sono 13 root **DNS** server in tutto il mondo ma questi vengono annunciati da decine di **AS** differenti in tutto il mondo , questo fa in modo che la richiesta venga consegnata alla copia del server *root* più vicino
 
 Questo funziona poichè ogni richiesta *DNS* è indipendente dalla precedente quindi anche se **BGP** cambia la decisione di routing non importa 
 
