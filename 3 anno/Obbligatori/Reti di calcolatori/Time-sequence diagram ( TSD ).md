@@ -26,7 +26,7 @@ Un diagramma *time-sequence* descrive l'interazione tra gli host che stanno comu
 >
 >Il ricevitore potrebbe percepire un numero di bit *minori* rispetto a quelli inviati originariamente a causa di un *disallineamento* dei *clock*
 >
->Questo può avvenire poichè la lettura dei segnali da parte di un ricevitore dipende dal *clock* del ricevitore e del tramettitore , se questi sono *disallineati* il ricevitore potrebbe leggere il segnale in tempi differenti e quindi aggiungere o togliere dati
+>Questo può avvenire poichè la lettura dei segnali da parte di un ricevitore dipende dal *clock* del ricevitore e del trasmettitore , se questi sono *disallineati* il ricevitore potrebbe leggere il segnale in tempi differenti e quindi aggiungere o togliere dati
 >
 >![[Pasted image 20240925111935.png]]
 >

@@ -38,7 +38,7 @@ Potremmo aumentare il [[Baud rate]] , poremmo utilizzare 2 oscillazioni invece d
 >![[Pasted image 20240920222137.png]]
 
 >[!warning] 
->Più lungo *simbolo* è il simbolo più è facile per il *ricevitore* distinguerlo dal [[Noise]] , se invece il *simbolo* è più corto è più difficile da distinguere in canali rumorosi  
+>Più lungo è il *simbolo* più è facile per il *ricevitore* distinguerlo dal [[Noise]] , se invece il *simbolo* è più corto è più difficile da distinguere in canali rumorosi  
 
 #### 2. Codificare più di un bit per simbolo
 
