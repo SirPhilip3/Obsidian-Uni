@@ -16,7 +16,7 @@ Si basa sul [[Discrete Logarithm Problem]]
 
 3. **Alice** manda $m,g,n$ a **Bob** , dove $m=g^a\mod{n}$
 4. **Bob** ritorna $r=g^b\mod{n}$ ad **Alice**
-5. La chiave generata sarà $K=g^{ab}\mod p$  
+5. La chiave generata sarà $K=g^{ab}\mod n$   
 
 ![[Pasted image 20241022122750.png]]
 
