@@ -759,10 +759,6 @@ Ed in quanto `Libri` è una specializzazione di `Documenti` avremo :
 
 ![[Pasted image 20231023114325.png]]
 
->[!todo]
->svolgimento esercizi
->#todo
-
 ## Modello Relazionale
 
 Dobbiamo trasformare il modello *concettuale* ad oggetti al modello logico *relazionale*
@@ -817,7 +813,7 @@ Esempio :
 
 Un attributo può avere valore non specificato ( *proprietà parziali* ) per varie ragioni :
 + non applicabile 
-+ sconoscituo al momento
++ sconosciuto al momento
 
 Per indicare valori non specificati si usa *NULL* 
 
@@ -840,7 +836,7 @@ Inoltre se sono presenti degli attributi sulla relazione questi devono essere in
 
 ![[Pasted image 20231023130147.png]]
 
-Se le associazioni sono parziali dalla parte univoca abbiamo 2 scielte su come tradurlo nello schema relazionale :
+Se le associazioni sono parziali dalla parte univoca abbiamo 2 scelte su come tradurlo nello schema relazionale :
 + Mantenere la traduzione delle *univoche e totali* permettendo però alla chiave esterna di essere *NULL*
 + Creando una nuova classe che colleghi le 2 classi attraverso 2 *key* , una *private key* che identifica l'oggetto questa sarà anche *foreing key* per il verso che non ha la parzialità , per il verso che ha la *parzialità* avremo una foreing key
 	Così facendo essendo che la *primary key* non può mai essere *NULL* se non esiste una relazione nel verso parziale allora semplicemente non essiterà la tabella di connesione
@@ -900,7 +896,7 @@ In questo caso la tabella della superclasse non è presente poichè le sue sotto
 ##### Cosa sciegliere ?
 
 + **Relazione Unica**
-	Conveniente se le sottoclassi differiscono per pochi attributi
+	+ Conveniente se le sottoclassi differiscono per pochi attributi
 + **Partizionamento orizzontale**
 	- Complica la visita di tutti gli elementi della supercalsse ( devo visitare entrambe le sottoclassi )
 	- Se vi è un'associzione entrante nella superclasse è sconsigliato 
@@ -927,12 +923,9 @@ Prima :
 
 Dopo :
 ![[Pasted image 20231025101009.png]]
->[!todo]
->svolgimento esercizi
->#todo
 ## Algebra Relazionale
 
-L'*algebra relaziomale* sono un insieme di operatori che danno come risultato relazioni , possiamo avere :
+L'*algebra relazioanle* sono un insieme di operatori che danno come risultato relazioni , possiamo avere :
 + *Operatori primitivi* ( ridenominazione, proiezione, unione e differenza, restrizione, prodotto )
 + *Operatori derivati* ( giunzione, divisione, ... )
 + *Altri operatori* ( raggruppamento, order by, min, max )
@@ -1544,11 +1537,6 @@ Linguaggi  espressivamente *equivalenti* ai sopra citati viene detto *relazional
 	+ Un'interrogazione del DB è un'espressione che specifica cosa va recuperato ma non come venga recuperato ( operazioni decise dal DBMS ) ( *dichiarativo* )
 + *algebra relazionale*
 	+ Un'interrogazione del DB è un'espressione che specifica oltre a cosa va recuperato anche le operazioni necessarie al loro recupero ( *procedurale* )
-
->[!todo] 
->completa algebra relazionale
->#todo
-
 ## SQL
 
 Chiamato **Strucutred english Query Language** o **SEQUEL** o **SQL**
@@ -1579,7 +1567,7 @@ FROM Tabelle
 ```
 #### SELECT
 
-La `{SQL}SELECT` ci permette di selezionare come sarà fatto la tabella risultante ( la *target list* in algebra relazionale ) 
+La `{SQL}SELECT` ci permette di selezionare come sarà fatta la tabella risultante ( la *target list* in algebra relazionale ) 
 
 `{sql}SELECT *` significa selezionare per la tabella finale tutti gli attributi dati dalla `{sql}FROM` e `{sql}WHERE` 
 
@@ -1818,10 +1806,6 @@ ORDER BY Cognome DESC, Nome DESC
 ```
 
 Quando inseriamo 2 ordinamenti su attributi differenti questi vengono utilizzati in caso di ambiguità nel primo ordinamento 
-
->[!todo]
->riscrivi meglio
->#todo
 #### Operatori Insiemistici
 
 Operatori che possono essere applicate per combinare tabelle con colonne di ugual nome ( se le tabelle hanno attributi con lo stesso tipo ma nome differenti possiamo rinominarle con `{sql}AS` ) e tipo 
@@ -1905,10 +1889,6 @@ FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato
 				JOIN Esami e2 ON s.Matricola = e2.Candidato
 WHERE e.Voto = 18 AND e2.Voto = 30
 ```
-
->[!todo]
->spiegazione
->#todo
 #### NULL
 
 `{sql}NULL` è un valore speciale : `unknown = U` -> nè false nè true 
@@ -2198,10 +2178,6 @@ FROM Studenti s JOIN Esami e ON s.Matricola = e.Candidato
 GROUP BY s.Matricola, s.Cognome 
 HAVING MIN(e.Voto) = 30
 ```
-
->[!todo]
->appunti
->#todo 
 ##### Quantificazione universale ALL
 
 La precedente può essere scritta con l'`{sql}ALL` che è il parallelo dell'`{sql}ANY` per la quantificazione esistenziale 
@@ -2573,14 +2549,14 @@ CREATE TABLE Studenti (
 
 ###### Vincoli intra- e inter-relazionali
 
-+ *intrarelazionali* :
++ *intra-relazionali* :
 	+ `{sql}PRIMARY KEY` : Degnia un insieme di attributi come *chiave primaria*
 	+ `{sql}UNIQUE` : designa un insieme di attributi come chiave ( non primaria ) ( a differenza della *primary key* queste possono assumere valori `{sql}NULL` )
 	+ `{sql}CHECK` : specifica un'espressione che produce un valore booleano
-+ *interrelazionali* :
++ *inter-relazionali* :
 	+ `{sql}FOREING KEY` : 
 		+ rappresenta un insieme di attributi come *chiave esterna*
-		+ designa un eventuale azione ( `{sql}NO ACTION , SET NULL , SET DEFAULT , CASCADE` ) da intraprendere se il voncolo di chiave esterna viene violato a causa di *cancellazione* ( `{sql}ON DELETE` ) o *modifica* ( `{sql}ON UPDATE` ) della riga riferita
+		+ designa un eventuale azione ( `{sql}NO ACTION , SET NULL , SET DEFAULT , CASCADE` ) da intraprendere se il vincolo di chiave esterna viene violato a causa di *cancellazione* ( `{sql}ON DELETE` ) o *modifica* ( `{sql}ON UPDATE` ) della riga riferita
 
 >[!note]
 >Ai vincoli di tabella può essere dato un nome ( per poterli eliminare )
