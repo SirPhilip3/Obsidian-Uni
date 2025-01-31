@@ -416,11 +416,9 @@ Le **proprietà** si distinguono dalle *entità* poichè sono fatti che sono int
 Una *propietà* è una coppia < Attributo , Valore >
 + Tipologie di *proprietà* :
 	+ **Atomica** : non è ulteriormente divisibile ( il nome )
-	+ **Strutturara** : può essere divisibile in parti atomiche ( l'indirizzo è divisibile in : città , cap , via etcc )
-
+	+ **Strutturata** : può essere divisibile in parti atomiche ( l'indirizzo è divisibile in : città , cap , via etcc )
 	+ **Univoca** : quando quella proprietà assume un unico valore ( grado di parentela ) 
 	+ **Multivalore** : quando quella proprietà può assumere più valori ( gli autori di un libro possono essere più di uno )
-
 	+ **Totale** : quando quella proprietà deve assumere sempre almeno un valore ( il nome )
 	+ **Parziale** : quando quella proprietà può non assumere un valore ( numero di telefono )
 
@@ -444,7 +442,7 @@ Esempi :
 ![[CollectionEx.excalidraw]]
 
 > [!caution] 
-> Certi fatti possono essere interpretati come *proprietà* in certi constesti e come *entità* in altri  
+> Certi fatti possono essere interpretati come *proprietà* in certi contesti e come *entità* in altri  
 
 Spesso le collezioni di *entità* sono organizzate in una gerarchia di **specializzazione/generalizzazione (sottoclassi/superclassi)** 
 	Es : nella **B.D.** della biblioteca la collezione degli `Utenti` può essere considerata una *generalizzazione* di `Studenti`e `Docenti`
@@ -493,22 +491,22 @@ Un'*Associazione* è caratterizzata dalle seguenti proprietà strutturali :
 			ha molteplicità ( **1 : 1** ) ( *un professore* dirige *un diaprtimento* , *un dipartimento* è diretto da *un professore* )
 - *totalità* :
 	- *totale* : quando per ogni elemento di $X$ *esiste almeno* un elemento di $Y$ a cui è *associato* 
-	- *parziale* : quando ogni elemento di $X$ può *non avere* alemo un elemento di $Y$ a cui è associato
+	- *parziale* : quando ogni elemento di $X$ può *non avere* almeno un elemento di $Y$ a cui è associato
 	- Esempi :
 		- `Insegna(Professori, Corsi)`
 			è *totale* su `Corsi` in quanto non può esistere un corso del piano di studi senza il corrispondente docente che lo `Insegna`
 			è *parziale* su `Professori` in quanto un professore potrebbe non insegnare corsi 
 
-Esempi :
-+ `NataA(Persone, Città)`
-	ha *cardinalità* ( **N : 1** ) ( *una persona* è nata in un *unica città* , *in una città* sono nate *più persone* )
-	è *totale* su `Persone` , *parziale* su `Città` ( se non c'è un'ospedale etcc... )
-+ `HaVisitato(Persone, Città)`
-	ha *cardinalità* ( **N : M** ) ( *più persone* hanno visitato *una città* , *più città* sono visitate da *una persona* )
-	è *parziale* su `Persone` e `Città` ( una persona può non aver visitato nessuna città , una città può non essere mai visitata da nessuna persona )
-+ `èSindacoDi(Persone, Città)`
-	ha *cardinalità* ( **1 : 1** ) ( *una persona* è sindaco di una *sola città* , *una citta* può avere un *solo sindaco*)
-	è *parziale* su `Persone` e `Città` ( una persona può non essere sindaco di nessuna città , una città può non avere nessun sindaco ( durante le elezioni ) , prob *totale* ) 
+>[!example] 
+>+ `NataA(Persone, Città)`
+>	ha *cardinalità* ( **N : 1** ) ( *una persona* è nata in un *unica città* , *in una città* sono nate *più persone* )
+>	è *totale* su `Persone` , *parziale* su `Città` ( se non c'è un'ospedale etcc... )
+>+ `HaVisitato(Persone, Città)`
+>	ha *cardinalità* ( **N : M** ) ( *più persone* hanno visitato *una città* , *più città* sono visitate da *una persona* )
+>	è *parziale* su `Persone` e `Città` ( una persona può non aver visitato nessuna città , una città può non essere mai visitata da nessuna persona )
+>+ `èSindacoDi(Persone, Città)`
+>	ha *cardinalità* ( **1 : 1** ) ( *una persona* è sindaco di una *sola città* , *una citta* può avere un *solo sindaco*)
+>	è *parziale* su `Persone` e `Città` ( una persona può non essere sindaco di nessuna città , una città può non avere nessun sindaco ( durante le elezioni ) , prob *totale* ) 
 
 #### Conoscenza Astratta
 
@@ -522,15 +520,15 @@ La *conoscenza astratta* sono i fatti generali che descrivono :
 - **Vincoli di Integrità** :
 	+ **Vincoli di integrità statici** :
 		Condizioni della *conoscenza concreta* che devono essere soddisfatte indipendentemente da come evolve l'universo del discorso 
-		Es : `Stipendio` deve sempre essere positivo 
+		Es : `Stipendio` deve essere sempre positivo 
 	+ **Vincoli di integrità dinamici** : 
-		Condizioni sul modo in cui la *conoscenza concreta* può evolvere nel tempo  
-		Es : `DataNascita` non può cambaire nel tempo 
+		Condizioni sul modo in cui la *conoscenza concreta* può evolvere nel tempo
+		Es : `DataNascita` non può cambiare nel tempo 
 
 + **Fatti derivabili** : 
 	Es : media dei voti ( da tutti i voti ) , età di una persona ( dalla data di nascita )
 
-Key attributi che costituiscono la key è minimale se ne tolgo uno l'insieme rimanente non è più chiave
+Key attributi che costituiscono la key è *minimale* se ne tolgo uno l'insieme rimanente non è più chiave
 ## Modello dei dati ad Oggetti
 
 Un **Modello dei dati** è un insieme di meccanismi di astrazione per descrivere la struttura della conoscenza concreta ciò avviene attraverso *schemi* simili ai diagrammi ER ( entità-relazione )
@@ -590,7 +588,7 @@ Es : `Persone`
 
 ##### Associazioni
 
-Le *associazioni* si leggono e creano pensando o da sinistra verso destra o dall'alto al basso
+Le *associazioni* si leggono e creano pensando o da *sinistra verso destra* o dall'*alto al basso*
 
 ![[rappAssociazioni.excalidraw]]
 
@@ -724,20 +722,19 @@ Fra le *classi* può essere definita una relazione di *sottoclasse* ( o sottoins
 	$B\cup C=A$
 
 Ovviamente si possono fare varie combinazioni di questi vincoli :
-+ *Sottoclassi scorrelate*
++ *Sottoclassi scorrelate* ( l'intersezione tra le due *non* è $\emptyset$ e l'unione non rappresenta tutte le entità della superclasse )
 	![[Pasted image 20231023111818.png]]
-+ *Sottoclassi disgiunte*
++ *Sottoclassi disgiunte* ( intersezione tra le due è $\emptyset$ ma l'unione non rappresenta tutte le entità della superclasse )
 	![[Pasted image 20231023111836.png]]
-+ *Sottoclassi copertura*
++ *Sottoclassi copertura* ( l'unione tra le due coincide con la superclasse ma la loro intersezione *non* è $\emptyset$ )
 	![[Pasted image 20231023111856.png]]
-+ *Sottoclassi partizione*
++ *Sottoclassi partizione* ( l'unione tra le due è la superclasse e la loro intersezione è $\emptyset$ )
 	![[Pasted image 20231023111926.png]]
 
 Esempio di *Gerarchia Multipla* :
 ![[Pasted image 20231023112155.png]]
 
-In questo caso se in `Giornalisti` ci fosse un attributo `LavoraPer : string` e in `Fotografi` ci fosse un attributo `LavoraPer : seq string` quando questo verrà ereditato da `Fotogioranlisti` gli attributi saranno incompatibili in quanto di tipo diverso per questo durante la creazione della base di dati si definirà un ordine secondo ilquale bisogna ereditare quell'attributo
-
+In questo caso se in `Giornalisti` ci fosse un attributo `LavoraPer : string` e in `Fotografi` ci fosse un attributo `LavoraPer : seq string` quando questo verrà ereditato da `Fotogiornalisti` gli attributi saranno incompatibili in quanto di tipo diverso per questo durante la creazione della base di dati si definirà un ordine secondo ilquale bisogna ereditare quell'attributo
 #### Integrazione degli Schemi
 
 Se abbiamo 2 schemi con caratteristiche simili possiamo combinarli per avere uno schema più generale
@@ -770,8 +767,8 @@ Ed in quanto `Libri` è una specializzazione di `Documenti` avremo :
 
 Dobbiamo trasformare il modello *concettuale* ad oggetti al modello logico *relazionale*
 
-Le *collezioni* diventano *realzioni* ( *tabelle* )
-Le *associazioni* vengono rappresentate con *chiavi* ( *foreing* )
+Le *collezioni* diventano *relazioni* ( *tabelle* )
+Le *associazioni* vengono rappresentate con *chiavi* ( *foreing key* )
 
 I meccanismi per definire una base di dati con il modello realzionale sono l'*ennupla* e la *relazione*
 
@@ -810,7 +807,7 @@ Altri tipi di chiave sono indicati con `<<UNIQUE>>` oppure `<<CK>>`
 + *Chiavi esterne* :
 	Sono un insieme di attributi in una relazione R che riferisce la *chiave primaria* di un'altra relazione S 
 	Le *relazioni* sono create con questo meccanismo
-	La *chiave esterna* deve rispettare il vincolo di *integrità refrenziale* ossia essa non può assumere valori non presenti nella chiave a cui si riferisce
+	La *chiave esterna* deve rispettare il vincolo di *integrità referenziale* ossia essa non può assumere valori non presenti nella chiave a cui si riferisce
 
 Esempio :
 
@@ -2655,7 +2652,7 @@ CREATE TABLE Nome [AS] EspressioneSELECT
 CREATE TABLE EsamiFino2006 AS (
 	SELECT *
 	FROM Esami e
-	WHERE e.Dara <= '31/12/2006')
+	WHERE e.Data <= '31/12/2006')
 ```
 Crea una tabella `{sql}EsamiFino2006` contente tutte le ennuple di `{sql}Esami` con data minore o uguale `{sql}'31/12/2006'`
 
