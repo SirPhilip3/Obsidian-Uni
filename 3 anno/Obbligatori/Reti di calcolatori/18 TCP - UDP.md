@@ -301,6 +301,8 @@ Questo è un numero compreso tra $0\le S \le 14$ , in questo modo la *receiving 
 | 100 msec |      86 Gbps       |
 | 500 msec |      17 Gbps       |
 
+>[!note] 
+> Il massimo throughput in $b/s$ raggiungibile da una connessione **TCP** è dato da : $\frac{2^{(16 + S)}}{RTT}$ , $RTT$ è la somma dei ritardi per 2 ( poichè rappresenta l'andata e ritorno )
 ### Retransmission Time Out ( RTO )
 
 Idealmente l'**RTO** è leggermente più grande dell'**RTT** , se alla fine di un **RTT** l'[[Acknowledgment|ack]] non arriva allora dovremmo ritrasmettere i dati 
