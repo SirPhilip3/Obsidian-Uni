@@ -55,7 +55,7 @@ Alla *ricezione* di un *DV* ricevo un certo *Vettore* `V` ad un certo *link* `l`
 Per tutte le destinazioni `d` presenti nel vettore `V` 
 + Se `d` non è all'interno della [[Routing Table]] allora la aggiungerà alla sua [[Routing Table]] , mettendo come costo la somma del costo indicato nel *DV* e il costo del *link* `l` 
 + Se `d` è già presente allora solamente se :
-	Il costo indicato nel *DV* sommato al costo del *link* `l` è minore del costo già persente nella [[Routing Table]] 
+	Il costo indicato nel *DV* sommato al costo del *link* `l` è minore del costo già presente nella [[Routing Table]] 
 		**oppure**
 	se lo ricevo dal *next-hop* per quella destinazione ( ciò significa che qualcosa è cambiato nel *percorso* per la destinazione )
 
