@@ -83,12 +83,12 @@ L'*Handshake Protocol* garantisce le seguenti propietà :
 
 
 1. I primi tre messaggi sono la [[18 TCP - UDP#Transmission Control Protocol (TCP)#Connection Setup|3-way handshake TCP]] 
-2. Il clienti invia un `ClientHello` 
+2. Il client invia un `ClientHello` 
 >[!note] 
->Questo contine l'[[Acknowledgment|ack]] per la [[18 TCP - UDP#Transmission Control Protocol (TCP)#Connection Setup|3-way handshake TCP]] , inoltre segnale all'host che supporta **TLS**
+>Questo contine l'[[Acknowledgment|ack]] per la [[18 TCP - UDP#Transmission Control Protocol (TCP)#Connection Setup|3-way handshake TCP]] , inoltre segnala all'host che supporta **TLS**
 3. Il server invia : 
 	1. un `ServerHello` 
-	2. un `Certificate` ( e la catena di [[Certificate]] dalla rotto [[Certification Authority|CA]] al [[Certificate]] del *server* ) del *server*
+	2. un `Certificate` ( e la catena di [[Certificate]] dalla root [[Certification Authority|CA]] al [[Certificate]] del *server* ) del *server*
 	3. un messaggio di `ServerHelloDone` indicato che ha finito il suo `Hello`
 4. Il *client* invia :
 	1. un `ClientKeyExchange` , in cui il client scambia la chiave con il *server* ( il client ha già una connessione privata con il server ) 
