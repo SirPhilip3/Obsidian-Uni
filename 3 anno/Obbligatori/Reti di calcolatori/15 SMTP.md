@@ -30,7 +30,7 @@ Le *e-mail* hanno delle righe iniziali contenenti degli *headers* ( ex : `From, 
 >To : Alice Doe <alice@example.net>, Alice Smith <alice@machine.example>
 >Subject : Hello
 >Date : Mon , 8 Mar 2010 19:55:06 -0600
->his is the " Hello world " of email messages .
+>This is the " Hello world " of email messages .
 >This is the second line of the body
 >```
 

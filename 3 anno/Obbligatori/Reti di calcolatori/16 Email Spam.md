@@ -39,7 +39,7 @@ Se una delle condizioni precedenti non viene soddisfatta l'**MTA** potrebbe rifi
 >Inoltre dobbiamo rendere l'**MTA** identificabile in modo da controllarne la sua reputazione
 >
 >Tutto questo richiede allo *spammer* di almeno possedere un dominio
-### IP balcklisting
+### IP blacklisting
 
 Esistono varie organizzazioni che mantengono una lista di indirizzi *IP* che generano email spam , gli **MTA** controlleranno quindi che l'*IP* di provenienza della mail non sia dentro una di queste liste
 #### DNSBL ( DNS Block List )
@@ -146,7 +146,7 @@ Quando l'**MTA** del ricevente riceve una connessione dall'**MTA** del sender fa
 + Verifica che esiste il record `SPF` per entrambi 
 + Controlla che la connessione arriva da indirizzi *IP* consentiti nei record `SPF`
 >[!note] 
->Pernderà poi una decisione che dipende dalla policy che ha settata
+>Prenderà poi una decisione che dipende dalla policy che ha settata
 
 >[!warning] 
 >`SPF` si basa sull'assunzione che un attaccante non può modificare il record **DNS**
