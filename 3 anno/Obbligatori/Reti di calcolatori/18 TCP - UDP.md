@@ -31,20 +31,20 @@ Per fare ciò ogni applicazione viene identificata da un numero di **porta**
 ### UDP Header
 
 Un *header* **UDP** contiene 4 campi :
-+ Una *porta* fonte di `16`bit
-+ Una *porta* destinazione di `16`bit
-+ Un campo lunghezza di `16`bit
-+ Una [[CRC]] ( *checksum* ) di `16`bit
++ Una *porta* fonte di `16` bit
++ Una *porta* destinazione di `16` bit
++ Un campo lunghezza di `16` bit
++ Una [[CRC]] ( *checksum* ) di `16` bit
 
 >[!note] 
 >La *checksum* viene computata sugli *header* , un sottoinsieme dell'*header* di *IP* ( contenente anche gli indirizzi ) e il *payload*
 
 ### UDP Ports
 
-Visto che il campo *porta* è grande `16`bit ci possono essere un massimo di `65535` differenti applicazioni in esecuzione contemporaneamente su un dato *server*
+Visto che il campo *porta* è grande `16` bit ci possono essere un massimo di `65535` differenti applicazioni in esecuzione contemporaneamente su un dato *server*
 
 Generalmente questi indirizzi sono divisi in :
-+ `1<port<1024` *porte* privilegiate , solo processi che hanno privilegi di amministratore possono usare queste porte6
++ `1<port<1024` *porte* privilegiate , solo processi che hanno privilegi di amministratore possono usare queste porte
 + `1024<=port<49152` sono porte *registrate* , protocolli che usano queste *porte* dovrebbero chiedere alla *IETF* di assegnarli una determinata porta
 + Le restanti porte sono dette *effimere* , tutti possono usarle
 
