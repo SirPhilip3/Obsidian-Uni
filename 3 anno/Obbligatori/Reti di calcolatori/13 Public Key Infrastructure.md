@@ -38,7 +38,7 @@ Su *internet* esistono *key servers* che permettono di caricare la propria [[Pub
 E' un social network di contatti attraverso i quali certificare l'identità di una persona 
   
 Sia **Alice** che **Bob** si fidano di **Carl** , ossia :
-+ Entrabi hanno la sua [[Public Key]] 
++ Entrambi hanno la sua [[Public Key]] 
 + Si fidano che se certifica qualcosa questo sia vero 
 
 **Alice** e **Bob** però non si fidano tra di loro 
@@ -58,7 +58,7 @@ Sia **Alice** che **Bob** si fidano di **Carl** , ossia :
 >Dopo lo scambio di $S$ con **Carl** , **Alice** può inviare la sua chiave assieme ad $S$ , e gli altri possono certificare la sua identità semplicemente possedendo la [[Public Key]] di **Carl** 
 >
 
-E' possibile anche formare delle *chain of thrust* infatti tutti coloro che si fidano di **Carl** possono *certificare* la sua identità con la propria *private key* ,  in questo modo chi non si fida di **Carl** potrà comunicare con **Alice** attraverso qualcun altro che si fida di **Carl**
+E' possibile anche formare delle *chain of thrust* infatti tutti coloro che si fidano di **Carl** possono *certificare* la sua identità con la propria *private key* ,  in questo modo chi non si fida di **Carl** potrà comunicare con **Alice** attraverso qualcun'altro che si fida di **Carl**
 
 >[!example] 
 >![[Pasted image 20241216151905.png]]
