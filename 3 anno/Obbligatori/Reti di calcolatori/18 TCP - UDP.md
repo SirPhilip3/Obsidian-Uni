@@ -486,7 +486,7 @@ Ossia : resettiamo il valore di $cwnd$ a $sstrash$ e $sstrash$ è resettato a *m
 
 >[!example] 
 >![[Pasted image 20241227125050.png]]
-###### Sever Congestion
+###### Severe Congestion
 
 Se avviene una *severe congestion* allora :
 $$cwnd' = cwnd$$
