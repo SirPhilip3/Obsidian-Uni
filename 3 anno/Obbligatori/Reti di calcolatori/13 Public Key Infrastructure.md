@@ -106,7 +106,6 @@ Quando **Bob** riceve un [[Certificate]] valido per **Alice** , firmato da una [
 Nel caso dei *domini* nel campo *owner* viene inserito un nome di dominio ex `www.alice.com` 
 
 Quando **Bob** naviga sul sito di **Alice** , `www.alice.com` fornice a **Bob** `Pub_A` , questa sarà presente in un [[Certificate]] , se questo è *invalido* ( è stato rilasciato da una [[Certification Authority|CA]] che **Bob** non conoce , il [[Certificate]] è scaduto , il [[Certificate]] è per un altro dominio ) , il broswer non accetterà la connessione con `www.alice.com`
-
 ### Trusted [[Certification Authority|CA]]
 
 Visto che vi sono molte [[Certification Authority|CA]] nel mondo come fa **Bob** a decidere di quale fidarsi 

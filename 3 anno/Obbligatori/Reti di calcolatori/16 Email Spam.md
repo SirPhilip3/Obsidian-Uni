@@ -94,7 +94,7 @@ Quindi un **MTA** che usa **graylisting** mantiene una lista di indirizzi *IP* c
 >Un **MTA** non spammer riproverà dopo del tempo e essendo l'*IP* nella *whitelist* l'email verrà inviata ( il delay dipende da come è impostato il server **SMTP** )
 >
 >>[!note] 
->>Per *RFC* il server dovrà accettare la seconda connessione se arriva tra 1 minuto e 24 ore dopo , inoltre dopo un certo perio di inattività *IP* viene rimosso dalla *whitelist*
+>>Per *RFC* il server dovrà accettare la seconda connessione se arriva tra 1 minuto e 24 ore dopo , inoltre dopo un certo periodo di inattività *IP* viene rimosso dalla *whitelist*
 >
 >Un **MTA** *spammer* invece non riproverà
 >>[!warning] 
