@@ -63,7 +63,7 @@ Per tutte le destinazioni `d` presenti nel vettore `V`
 
 
 >[!note] 
->+ I [[Control Plane Packets]] non sono mai intradati oltre il primo *hop*  
+>+ I [[Control Plane Packets]] non sono mai instradati oltre il primo *hop*  
 >+ Ad un certo punto le [[Routing Table]] possono non essere ottimali ( *fasi transitorie* ) ma la convergenza ad uno stato ottimale è garantita in un network statico
 >+ Possiamo avere più configurazioni se abbiamo più *percorsi minimi* , la scelta dipende solo dall'ordine con cui vengono generati i *DV*
 >+ La durata delle *fasi transitorie* dipende dalla sequenza di eventi che avvengono
