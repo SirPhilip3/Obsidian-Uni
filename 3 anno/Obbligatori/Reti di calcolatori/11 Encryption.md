@@ -61,7 +61,7 @@ publish: true
 
 # Modern Algorithms
 
-Algortimi moderni cercano di mixare le due funzioni primitive di [[Trasposizione]] e [[Sostituzione]] in modo da arrivare ad un algoritmo con le seguenti propietà : 
+Algoritmi moderni cercano di mixare le due funzioni primitive di [[Trasposizione]] e [[Sostituzione]] in modo da arrivare ad un algoritmo con le seguenti propietà : 
 + La lunghezza delle chiave è fissa e non deve essere lunga come il `plaintext`
 + La correlazione tra $M$ e $C$ è così poca che è [[Computationally Impossible]] recuperare $M$ da $C$ 
 

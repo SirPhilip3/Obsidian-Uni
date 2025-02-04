@@ -17,7 +17,7 @@ Quando **Bob** riceve la chiave controlla che la sua *fingerprint* sia la stessa
 >[!note] 
 >
 >Questo metodo non scala con *Internet*
-
+ 
 ## Key Servers
 
 Su *internet* esistono *key servers* che permettono di caricare la propria [[Public Key]] assieme a dei *metadati* ( nome , email etcc ) , questa verrà poi replicata su tutti gli altri *key server* 
