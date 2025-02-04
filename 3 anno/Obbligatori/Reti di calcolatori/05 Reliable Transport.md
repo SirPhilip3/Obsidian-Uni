@@ -88,7 +88,7 @@ I numeri di sequenza ora sono interi , i due devono mettersi daccordo sulla dime
 >[!example] 
 >Abbiamo una finestra di grandezza 5 , ciò significa che il *sender* manderà 5 [[Frame]] e poi si fermerà 
 >All'arrivo dei [[Frame]] il *reciever* invierà i relativi [[Acknowledgment]] , specifici per il numero di sequenza relativi 
->Quando il *sender* riceve gli [[Acknowledgment]] dei numeri più bassi della seqeunza muove la finestra a destra in modo da inviare nuovi [[Frame]]
+>Quando il *sender* riceve gli [[Acknowledgment]] dei numeri più bassi della sequenza muove la finestra a destra in modo da inviare nuovi [[Frame]]
 >
 >![[Pasted image 20241006215947.png]]
 >
@@ -115,7 +115,7 @@ Il *ricevitore* ritorna sempre un [[Acknowledgment]] contenente il *numero di se
 >Gli [[Acknowledgment]] sono *comulativi* ossia questo indica che l'ultimo [[Frame]] e tutti i precedenti sono arrivati correttamente
 
 Il *ricevitore* non ha buffer , conterrà solo due variabili : 
-+ `lastack` : l'ultimo *numero di sequenza* che è stato [[Acknowledgment|Acknowledged]] 
++ `lastack` : l'ultimo *numero di sequenza* che è stato [[Acknowledgment|Acknowledged]]
 + `next` : il prossimo numero di sequenza che si aspetta di ricevere
 
 ![[Pasted image 20241011145836.png]]
