@@ -4,7 +4,7 @@ creation: 2024-12-12T13:42:00
 aliases:
   - PKI
 ---
-![[Public Key]]
+ ![[Public Key]]
 
 # Associare una [[Public Key]] ad un identità 
 
