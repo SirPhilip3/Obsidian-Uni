@@ -21,7 +21,7 @@ Every N seconds:
 
 **Split Horizon** : dice al *router* che il suo *orizzonte* non è tutto lo stesso , bensì è diviso tra i *router* che usa come *next-hop* e tutti gli altri ( in pratica ai miei vicini mando solo cammini che stanno nel loro *orizzonte* , ossia quelli che non ha appreso tramite quel vicino a cui sta mandando le rotte )
 
-**Poison Reverse** : dice al *router* a cui sta mandando il *DV* che non ha un rotta a qualche destinazione $d$ se questa passa attraverso il vicino stesso ( in pratica setta a $\infty$ il costo per le rotte che prima avevo escluso )
+**Poison Reverse** : dice al *router* a cui sta mandando il *DV* che non ha un rotta a qualche destinazione $d$ se questa passa attraverso il vicino stesso ( in pratica setta a $\infty$ il costo per le rotte che passano per il vicino a cui sta inviando il *DV* )
 
 >[!example] 
 >**A** invia il *DV* usando **Poison Reverse**
@@ -65,7 +65,7 @@ Questo fa in modo che ci sia abbastanza tempo per fare in modo che l'informazion
 >>Questo rende la convergenza di un network estremamente lenta
 
 >[!important] 
->**Split Horizon with Poinson Reverse** risolve solo la cerazione di *loop* composti da due *router* , il **Count-to-infinity** può sempre avvenire dove vi sono *loop* e [[packet]] loss
+>**Split Horizon with Poison Reverse** risolve solo la cerazione di *loop* composti da due *router* , il **Count-to-infinity** può sempre avvenire dove vi sono *loop* e [[packet]] loss
 >
 >Per risolvere il **Count-to-infinity** i *router* dovrebbero esportare l'intero *cammino* verso la destinazione , questo viene fatto con **path-vector routing protocols** come **BGP** 
 

@@ -53,7 +53,7 @@ Prima di consentire l'invio di e-mail l'**MTA** farà una query al server **DNSB
 >Il processo per entrare ed uscire da una *blocklist* non è trasparente , inoltre degli spammer possono affittare momentaneamente grandi range di *IP* per poi , quando sono entrati nella *blocklist* , cambiarli 
 
 >[!example] 
->Se la query **DNS** non ritorna un valido record `A` allora l'*IP* non è all'interno della *blocklist*
+>Se la query **DNS** non ritorna un valido record `A` allora l'*IP* non è all'interno della *blocklist* ( la query è simile a quella per [[14 DNS#Reverse DNS|Reverse DNS]] )
 >```bash
 >$ dig 2.0.0.127.zen.spamhaus.org
 >;; ANSWER SECTION :

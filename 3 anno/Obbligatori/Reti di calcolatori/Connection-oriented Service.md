@@ -53,7 +53,7 @@ Il *server* ritorna il *sequence number* all'interno del massaggio di **CA** ( *
 >>+ $t_0$ il *client* apre una connessione con $ISN=X$
 >>+ $t_1$ la connessione termina
 >>+ $t_2$ Il *client* apre una nuova connessione con $ISN=X+\Delta$ verso lo stesso *server* ,  svolgiamo $n$ operazioni che fanno wrappare l'**ISN** : $(X +\Delta)\%n = X$
->>+ $t_4$ il *client* riceve quindi un **CA** *acknoledging* $X$ , questo però è ugale alla prima connessione , si riferisce a questa o alla vecchia ? 
+>>+ $t_4$ il *client* riceve quindi un **CA** *acknoledging* $X$ , questo però è uguale alla prima connessione , si riferisce a questa o alla vecchia ? 
 >>
 >
 
