@@ -74,11 +74,11 @@ Abbiamo bisogno quindi di due *numeri di sequenza* , uno per ogni direzione dell
 ![[Pasted image 20241029130213.png]]
 
 1. **A** manda una **CR** a **B** con un *port number* e un *sequence number* $x$
-2. **B** processa la richiesta e crea uno stato per la connessione ( aspetta per il **CA** da parte di **A** ) , ritorna un **CA** contente il suo *sqeuence number* e un [[Acknowledgment]] per il *sequence number* $x$ inviato prima da **A**
+2. **B** processa la richiesta e crea uno stato per la connessione ( aspetta per il **CA** da parte di **A** ) , ritorna un **CA** contente il suo *squence number* e un [[Acknowledgment]] per il *sequence number* $x$ inviato prima da **A**
 >[!note] 
 >La connessione non è ancora stata stabilita
-1. **A** riceve il **CA** e conferma l'[[Acknowledgment]] mandato da **B** , ora per **A** è stata stabilita la connessione , prima di mandare dati deve però fare l'[[Acknowledgment]] del **CA** contenente *sequence number* $y$ mandato da **B** , invia quindi un **CA** con come *numero di sequenza* iniziale $x$   
-2. **B** riceve il **CA** e considera anchesso la connessione come stabilita ( adesso è sicuro che la **CR** iniziale non era duplicata ) , ora le sue comunicazioni inizieranno con numero di sequenza $y$
+3. **A** riceve il **CA** e conferma l'[[Acknowledgment]] mandato da **B** , ora per **A** è stata stabilita la connessione , prima di mandare dati deve però fare l'[[Acknowledgment]] del **CA** contenente *sequence number* $y$ mandato da **B** , invia quindi un **CA** con come *numero di sequenza* iniziale $x$   
+4. **B** riceve il **CA** e considera anchesso la connessione come stabilita ( adesso è sicuro che la **CR** iniziale non era duplicata ) , ora le sue comunicazioni inizieranno con numero di sequenza $y$
 ## Reliable Data Transfer
 
 Visto che abbiamo i *sequence number* possiamo utilizzare i metodi visti in precedenza per garantire integrità dei dati : **Checksum** , **go-back-n** , **selective repeat**
