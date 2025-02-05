@@ -77,7 +77,7 @@ La [[Certification Authority|CA]] ha il compito di firmare chiavi , una chiave f
 3. La [[Certification Authority]] controlla la sua identità ( eg attraverso dei documenti )
 4. Visto che la [[Certificate Signing Request|CSR]] è firmato con `Priv_A` la [[Certification Authority]] può usare `Pub_A` per verificare la firma , ora la [[Certification Authority|CA]] sa che *Alice* possiede `Priv_A`
 5. La [[Certification Authority]] ritorna un **certificato** valido ossia la [[Certificate Signing Request|CSR]] con la [[Digital Signature]] della [[Certification Authority|CA]] aggiunta :
-$$Cert = \{CSR,E(Priv\_A, CSR)\}$$
+$$Cert = \{CSR,E(Priv\_CA, CSR)\}$$
 
 >[!note] 
 >Lo standard usato per i *certificati* è [[X.509]] 
