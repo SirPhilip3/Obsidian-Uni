@@ -5,7 +5,7 @@ publish: true
 
 La teoria della *normalizzazione* ci permette di rispondere in modo rigoroso alle seguenti domande:
 + Quando una rappresentazione è di buona qualità ?
-+ Quando due diverse rappresentazioni sono equivalenti ?
++ Quando due diverse rappresentazioni sono *equivalenti* ?
 ## Problemi di una Base di Dati
 
 I principali problemi delle basi di dati sono i seguenti : 
@@ -43,9 +43,9 @@ Se volessimo inserire un utente anche se non ha preso in prestito nessun libro ?
 
 Se volessimo cancellare una persona ma non il libro ? dovremmo inserire dei valori nulli ( non ideale )
 
-| NomeUtente | Telefono | _CodiceLibro_ | Titolo | Data |
-| ---- | ---- | ---- | ---- | ---- |
-| null | null | XY701B | Adelchi | null |
+| NomeUtente      | Telefono  | _CodiceLibro_ | Titolo  | Data      |
+| --------------- | --------- | ------------- | ------- | --------- |
+| ~~Rossi Carlo~~ | ~~75444~~ | XY701B        | Adelchi | ~~07 07~~ |
 
 Per risolvere le precedenti **Anomalie** dobbiamo sciegliere una modellazione alternativa : utilizziamo 2 tabelle , una contente gli utenti e una i libri con *foreing key* NomeUtente
 
@@ -64,6 +64,7 @@ Per risolvere le precedenti **Anomalie** dobbiamo sciegliere una modellazione al
 | XY701B | Adelchi | 14-01 | Paolicchi Luca |
 | XY008C | Amleto | 17-08 | Paolicchi Luca |
 
+>[!danger] 
 Se invece utilizziamo come *foreing key* Telefono lo schema non sarebbe equivalente allo schema di partenza poichè più persone potrebbero avere lo stesso numero di telefono
 ## Teoria della Normalizzazione
 
@@ -79,6 +80,16 @@ La teoria della normalizzazione fornisce un insieme di strumenti e algoritmi per
 	Per verificare se una certa dipendenza funzionale può essere derivata in una relazione
 + **Chiusura** : 
 	Rappresenta l'insieme di tutti gli attributi derivabile da un insieme di uno o più attributi ( come le chiavi ) secondo le regole di derivazione
+
+### Notazione
+
++ Con prime lettere maiuscole dell'alfabeto ( $A , B , C , \dots$ ) per indicare attributi di una tabella ( eg NomeUtente etcc )
++ Con ultime lettere maiuscole dell'alfabeto per indicare un insieme di attributi ( $T,X,Y,\dots$ )
++ $R(T)$ schema costituito dagli attributi $T$ ( $T = \{A,B,C\}$ )
++ $r$ particolare insieme di dati contenuti nella relazione 
++ $t,u,v, \dots$  particolari righe di una relazione
++ $t[\{A,B,C\}]$ -> i valori della righa $t$ 
++ $A \rightarrow BC$ , B e C dipendono da A ( Titolo e Data dipendono dal CodiceLibro ) 
 ### Dipendenze Funzionali
 
 >[!note] Definizione
@@ -91,8 +102,9 @@ La teoria della normalizzazione fornisce un insieme di strumenti e algoritmi per
 Indichiamo con $R(T,F)$ uno schema relazionale $R(T)$ con le dipendenze funzionali $F$ che tutte le sue istanze ( dello schema relazionale ) valide devono soddisfare 
 ( In pratica $R(T,F)$ indica uno schema relazionale $R(T)$ all'interno del quale sono definite delle dipendenze funzionali $F$ che devono essere soddisfatte per tutte le istanze ( schemi relazionali completi di dati ) dello schema relazionale )
 
-**Esempio** :
->[!todo]
+>[!example] 
+>Se abbiamo la dipendenza $CodiceLibro \rightarrow Titolo, NomeUtente, Data$ 
+>Due righe con stesso CodiceLibro devono avere stesso Titolo, Nome
 #### Dipendenze Derivate
 
 >[!note] Definizione ( *Implicazione Logica* )
