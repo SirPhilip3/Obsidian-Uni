@@ -5464,7 +5464,7 @@ Un'altra divisione dei *problemi* può essere fatta a seconda di cosa calcolano 
 
 >[!example] GRAFO HAMILTONIANO
 >
->Un grafo non orientato è detto hamiltoniano se ha un ciclo hamiltoniano al suo interno , ossia se esite un cammino che tocchi tutti i vertici 
+>Un grafo non orientato è detto *hamiltoniano* se ha un ciclo hamiltoniano al suo interno , ossia se esite un cammino che tocchi tutti i vertici 
 >
 >Il problema del grafo *hamiltoniamo* ha le seguenti due versioni : 
 >+ la decisionale che determina se un grafo è *hamiltoniano*
