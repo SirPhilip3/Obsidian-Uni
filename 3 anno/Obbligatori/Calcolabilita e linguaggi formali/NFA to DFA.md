@@ -29,7 +29,7 @@ Sia $N=(Q\ ,\Sigma\ ,\delta\ ,q_0\ ,F\ )$ un [[NFA]] e costruiamo un [[DFA]] $D=
 
 Con $\epsilon$-tansizioni  
 
-Costruiamo una funzione che preso in imput un insieme di $Q'$ ritorna gli *stati* espandi aggiungendo quelli raggiungibili dalle $\epsilon$-transizioni
+Costruiamo una funzione che preso in input un insieme di $Q'$ ritorna gli *stati* espandi aggiungendo quelli raggiungibili dalle $\epsilon$-transizioni
 $$E(R) = \{ q\ |\ q \text{ può essere raggiunto da qualche $r\in R$ con 0 o più $\epsilon$-transizioni }\}$$
 Avremo quindi che : 
 + $q_0' = E(\{q_0\})$

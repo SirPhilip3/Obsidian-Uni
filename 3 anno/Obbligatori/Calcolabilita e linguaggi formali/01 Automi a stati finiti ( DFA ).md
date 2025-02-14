@@ -116,7 +116,7 @@ Ulteriori esempi di *DFA* e dei loro *linguaggi* :
 | 010                          | 101       |
 >
 >Il linguaggio sarà l'opposto di quello precedente :
->$$L(E) = \{ w\in \{ 0,1 \}* | \text{ultimo carattere di $w$ sia 0 oppure $w = \epsilon$} \}$$
+>$$L(E) = \{ w\in \{ 0,1 \}^* | \text{ultimo carattere di $w$ sia 0 oppure $w = \epsilon$} \}$$
 
 >[!example] Example 3
 >

@@ -22,7 +22,7 @@ Un [[Linguaggio DFA]] $A$ si dice **Regolare** se e solo se esiste un [[DFA]] $M
 
 >[!example] Example 2
 >
->Dimostrare che che l'insieme delle stringhe binarie che contengono la sottostringa $001$ è *regolare*
+>Dimostrare che l'insieme delle stringhe binarie che contengono la sottostringa $001$ è *regolare*
 >
 >Possiamo costruire un [[DFA]] con 3 stati ognuno dei quali memorizza se è stata trovata una parte della sottostringa :
 >

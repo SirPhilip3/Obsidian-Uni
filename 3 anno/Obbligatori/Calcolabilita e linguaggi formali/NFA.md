@@ -4,7 +4,7 @@ tags:
   - Definizione
 publish: true
 ---
-Un *NFA* è una quintupla $(Q\, \sum,\ \delta,\ q_0,\ F)$ dove : 
+Un *NFA* è una quintupla $(Q\ , \sum,\ \delta,\ q_0,\ F)$ dove : 
 + $Q$ è un insieme finito di *stati*
 + $\sum$ è un *alfabeto* finito
 + $q_0$ è lo stato *iniziale* $\in Q$
