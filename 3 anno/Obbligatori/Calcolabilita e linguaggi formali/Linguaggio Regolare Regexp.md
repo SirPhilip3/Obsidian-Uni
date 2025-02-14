@@ -14,7 +14,7 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 >
 >La dimostrazione si fa per *induzione* sulla struttura di $R$ , dividiamo quindi in casi : 
 >1. Sia $R=a$ per qualche $a$ allora $L(R) = \{a\}$ 
->   Dimostriamo che $L(R)$ è *regolare* costuendo un [[DFA]] :
+>   Dimostriamo che $L(R)$ è *regolare* costruendo un [[DFA]] :
 >   ![[Regex_dim1.excalidraw]]
 >2. Sia $R =\epsilon$ allora $L(R)=\{\epsilon\}$
 >   Dimostriamo che $L(R)$ è *regolare* costruendo un [[DFA]] :
@@ -23,7 +23,7 @@ $A$ è **regolare** $\iff$ esiste una [[03 Espressioni Regolari|regexp]] $R$ tal
 >   Dimostriamo che $L(R)$ è *regolare* costruendo un [[DFA]] :
 >   ![[Regex_dim3.excalidraw]]
 >4. Sia $R = R_1 \cup R_2$ allora $L(R) = L(R_1)\cup L(R_2)$
->   $L(R_1)$ e $L(R_2)$ hanno un operatore in meno rispetto a $L(R)$ , posso quindi applicare l'*ipotesi induttiva* : so che il teorema vale per $R_1$ e $R_2$ quindi so che $L(R_1)$ e $L(R_2)$ sono **regolari** , concludo dicendo che $L(R)=L(R_1)\cup L(R_2)$ è **regolare** pouchè i linguaggi regolari sono *chiusi* rispetto all'unione ( [[A ∪ B]] )
+>   $L(R_1)$ e $L(R_2)$ hanno un operatore in meno rispetto a $L(R)$ , posso quindi applicare l'*ipotesi induttiva* : so che il teorema vale per $R_1$ e $R_2$ quindi so che $L(R_1)$ e $L(R_2)$ sono **regolari** , concludo dicendo che $L(R)=L(R_1)\cup L(R_2)$ è **regolare** poichè i linguaggi regolari sono *chiusi* rispetto all'unione ( [[A ∪ B]] )
 >5. Posso fare lo stesso ragionamento rispetto all'$\cup$ anche per la $o$
 >6. Posso fare lo stesso ragionamento rispetto all'$\cup$ anche per la $^*$ 
 >
