@@ -5559,7 +5559,7 @@ La definizione di problema $NP-completo$ è :
 $$NP-completo = \{ \mathcal{P} | \mathcal{P} \ \text{è un problema decisionale tale che :}\ \mathcal{P} \in NP\quad ,\forall \mathcal{P}' \in NP :  \mathcal{P}' \le_P \mathcal{P}  \}$$
 Ossia : 
 1. Il problema $\mathcal{P}$ deve essere un problema $NP$
-2. Tutti i problemi in $NP$ sono riducibili polinomialmente a $\mathcal{P}$
+2. Tutti i problemi in $NP$ sono riducibili polinomialmente a $\mathcal{P}$ ( $\mathcal{P} \leq_p NP$ )
 
 Le classi di problemi sono distribuite come nel seguente insieme :
 
