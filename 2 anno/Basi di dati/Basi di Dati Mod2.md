@@ -104,7 +104,10 @@ Indichiamo con $R(T,F)$ uno schema relazionale $R(T)$ con le dipendenze funziona
 
 >[!example] 
 >Se abbiamo la dipendenza $CodiceLibro \rightarrow Titolo, NomeUtente, Data$ 
->Due righe con stesso CodiceLibro devono avere stesso Titolo, Nome
+>Due righe con stesso CodiceLibro devono avere stesso Titolo, NomeUtente e Data
+>>[!note] 
+>>Possono essereci duplicati all'interno del DB
+
 #### Dipendenze Derivate
 
 >[!note] Definizione ( *Implicazione Logica* )
@@ -401,9 +404,12 @@ Vogliamo portare l'insieme delle *dipendenze funzionali* ad una forma più stand
 
 >[!important] Definizione Attributo Estraneo
 >Sia $X\rightarrow Y \in F$ . L'attributo $A\in X$ è *estraneo* se e solo se $(X-{A})\rightarrow Y \in F^+$
+>
+>>[!note] 
+>>Ossia ci basta che nella chiusura risultante sia presente l'attributo estraneo
+
 
 Ossia se rimuoviamo questi attributi estranei la dipendenza fa ancora parte della chiusura ( ossia non contribuiscono nel determinare univocamente la dipendenza )
-Ossia ci basta che nella chiusura risultante sia presente l'attributo estraneo
 
 >[!important] Definizione Dipendenza Ridondante
 >La dipendenza $X\rightarrow Y \in F$ è *ridondante* se e solo se $X \rightarrow Y\in (F-\{ X \rightarrow Y \})^+$  
