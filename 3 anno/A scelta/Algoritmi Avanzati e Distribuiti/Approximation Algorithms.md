@@ -15,7 +15,7 @@ Using approximation is useful in order to "solve" ( they will not find the optim
 Assume that we are searching for the *minimum* or *maximum* of a determined *cost* function
 
 Let's say that $C^*$ is the *cost* of the **Optimal** solution and $C$ is the cost of the *Approximation Algorithm* 
-
+****
 Than we have a $\rho$ *Approximated Algorithm* if and only if $max(\frac{C}{C^*}, \frac{C^*}{C}) \leq \rho$ 
 
 >[!note] 
