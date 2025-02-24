@@ -480,7 +480,7 @@ Utilizziamo il seguente algoritmo per ricavare una *copertura canonica* :
 La strategia migliore per eliminare le *anomalie* è quella di decomporre lo schema di partenza in schemi più piccoli che godono di particolari proprietà ( *frome normali* ) e che sono equivalenti allo schema originale 
 
 >[!important] Definizione di *Decomposizione* 
->Dato uno schema $R(T)$ , $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R$ se e solo se $\cup_i T_i =T$
+>Dato uno schema $R(T)$ , $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R$ se e solo se $\cup_i T_i =T$ e $\forall i : F_i = \pi_{T_i}(F)$ è la *proiezione* delle dipendenze funzionali $F$ su $T_i$
 
 >[!important] Definizione di *Proiezione*
 >Dati uno schema $R(T,F)$ e $Z\subseteq T$ la *proiezione* di $F$ su $Z$ è definita come l'insieme $\pi_Z(F)=\{ X \to Y \in F^+ | X \cup Y \subseteq Z \}$
@@ -490,13 +490,15 @@ La proiezione $\pi_Z F$ è definita come l'insieme di tutte le dipendenze funzio
 In pratica abbiamo che un insieme di schemi è una decomposizione dello schema originale solo se l'unione degli attributi dei sotto schemi equivalgono agli attributi dello schema iniziale
 
 >[!example]
->
+>$R(ABC), F=\{A\rightarrow C , C \rightarrow B\}$
+>$R_1(AB), F'=\{A \rightarrow B\}$ poichè possiamo derivarla tramite assiomi di armstrong su $R$ , questo perchè $\{X \rightarrow Y \in F^+ |X \cup Y \subseteq Z\}$
+>$R_2(BC), F'' = \{C \rightarrow B\}$
 
 | Proprietario | Abitazione | Telefono |
-| ---- | ---- | ---- |
-| p1 | a1 | t1 |
-| p1 | a2 | t2 |
-| p1 | a3 | t2 |
+| ------------ | ---------- | -------- |
+| p1           | a1         | t1       |
+| p1           | a2         | t2       |
+| p1           | a3         | t2       |
 Viene diviso in : 
 
 | Proprietario | Telefono |
@@ -516,6 +518,12 @@ Viene diviso in :
 Per fare in modo che la *decomposizione* sia equivalente allo schema originario dobbiamo soddisfare le seguenti due proprietà : 
 + *preservi i dati* 
 + *preservi le dipendenze*
+
+>[!important] 
+>Una **perdita di informazione** è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossero nella relazione originaria 
+
+>[!important] 
+>Una **perdita di informazione** avviene qunado al decomposizione perde alcune *dipendenze funzionali* alterando il significato dei dati
 #### Dipendenze che preservano i dati
 
 >[!note]
@@ -544,8 +552,6 @@ Da questa definizione possiamo anche ricavare un teorema per la *decomposizione*
 >Se $p=\{ R_1(T_1),\dots ,R_n(T_n) \}$ è una *decomposizione* di $R(T,F)$ ( qualunque ) allora per ogni istanza $r$ di $R(T,F)$ si ha : 
 >$$r\subseteq \pi_{T_1}(r)\bowtie\dots\bowtie \pi_{T_k}(r)$$
 
-Una perdita di informazione è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossero nella relazione originaria
-
 >[!important] Teorema
 >Sia $p=\{R_1(T_1),R_2(T_2)\}$ una decomposizione di $R(T,F)$ . $p$ è una decomposizione che *preserva i dati* se e solo se $T_1\cap T_2 \rightarrow T_1 \in F^+$ oppure $T_1\cap T_2 \rightarrow T_2 \in F^+$ 
 
@@ -558,6 +564,14 @@ Una perdita di informazione è quindi definita come : proiettando una relazione 
 >	Avremo quindi : $u[T_1 \cap T_2]=v[T_1 \cap T_2]=t[T_1 \cap T_2]$ 
 >	Poichè $T_1 \cup T_2 \to T_1 \in F^+$ da $u[T_1 \cap T_2]=v[T_1 \cap T_2]$ otteniamo $u[T_1]=v[T_1]$ quindi $t=v\in r$
 >+ $\implies$ $\dots$
+
+>[!example] 
+>$R(A,B,C) , F = \{ B \rightarrow C \}$
+>+ $T_1 = {A,B}$
+>+ $T_2 = {B,C}$
+>$t\in AB join BC$ e supponiamo per assurodo che $t \notin r$ , e supponiamo che $t = a_1,b_1,c_2$ allora dovrà essere che in $T_1$ dovrà esserci $a_1 , b_1$ e in $T_2$ dovrà esserci $b_1 , c_2$ ; inoltre dovrà esserci nella tabella originale entrambe le due coppie non necessariamente nella stessa riga ( altrimenti la giunzione non ha senso )
+>
+>Così abbiamo assunto che esista una dipendenza funzionale $B \rightarrow C$ , con questa dipendenza dovrà essere che la riga contenente almeno la coppia $a_1, b_1$ dovrà per forza avere anche $c_2$ , questo contraddice che $t \in$ 
 
 >[!example]
 >Si consideri $R(A,B,C,D)$ con $F=\{ A \to BC \}$
