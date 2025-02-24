@@ -555,7 +555,7 @@ Da questa definizione possiamo anche ricavare un teorema per la *decomposizione*
 >[!important] Teorema
 >Sia $p=\{R_1(T_1),R_2(T_2)\}$ una decomposizione di $R(T,F)$ . $p$ è una decomposizione che *preserva i dati* se e solo se $T_1\cap T_2 \rightarrow T_1 \in F^+$ oppure $T_1\cap T_2 \rightarrow T_2 \in F^+$ 
 
->[!important] *Dimostrazione*
+>[!important]- *Dimostrazione*
 >Dobbiamo dimostrarlo per entrambi i versi del se e solo se : 
 >+ $\impliedby$
 >	Supponiamo che $T_1 \cap T_2 \to T_1 \in F^+$
@@ -569,9 +569,10 @@ Da questa definizione possiamo anche ricavare un teorema per la *decomposizione*
 >$R(A,B,C) , F = \{ B \rightarrow C \}$
 >+ $T_1 = {A,B}$
 >+ $T_2 = {B,C}$
->$t\in AB join BC$ e supponiamo per assurodo che $t \notin r$ , e supponiamo che $t = a_1,b_1,c_2$ allora dovrà essere che in $T_1$ dovrà esserci $a_1 , b_1$ e in $T_2$ dovrà esserci $b_1 , c_2$ ; inoltre dovrà esserci nella tabella originale entrambe le due coppie non necessariamente nella stessa riga ( altrimenti la giunzione non ha senso )
 >
->Così abbiamo assunto che esista una dipendenza funzionale $B \rightarrow C$ , con questa dipendenza dovrà essere che la riga contenente almeno la coppia $a_1, b_1$ dovrà per forza avere anche $c_2$ , questo contraddice che $t \in$ 
+>$t\in AB \bowtie BC$ e supponiamo per assurodo che $t \notin r$ , e supponiamo che $t = a_1,b_1,c_2$ allora dovrà essere che in $T_1$ dovrà esserci $a_1 , b_1$ e in $T_2$ dovrà esserci $b_1 , c_2$ ; inoltre dovrà esserci nella tabella originale entrambe le due coppie non necessariamente nella stessa riga ( altrimenti la giunzione non ha senso )
+>
+>Così abbiamo assunto che esista una dipendenza funzionale $B \rightarrow C$ , con questa dipendenza dovrà essere che la riga contenente almeno la coppia $a_1, b_1$ dovrà per forza avere anche $c_2$ , questo contraddice che $t \notin r$ 
 
 >[!example]
 >Si consideri $R(A,B,C,D)$ con $F=\{ A \to BC \}$
@@ -579,6 +580,9 @@ Da questa definizione possiamo anche ricavare un teorema per la *decomposizione*
 >+ $T_1=\{A,B,C\}$ e $T_2=\{A,D\}$
 >+ $T_1 \cap T_2 = \{A\}$
 >+ $A^+_F=\{A,B,C\}=T_1$ quindi $T_1 \cap T_2 \to T_1 \in F^+$
+
+>[!warning] 
+L'intersezione tra attributi delle due tabelle è *super key* per almeno una delle due tabelle allora preserveremo i dati 
 
 L'esempio precedente possiamo anche visualizzarlo nel seguente modo 
 
@@ -629,7 +633,14 @@ Dopo la decomposizione :
 | ---- | ---- |
 | c1 | d1 |
 | c2 | d2 |
-La `JOIN` qui ritorna l'insieme vuoto poichè non ho elementi in comune
+La `JOIN` qui ritorna l'insieme *vuoto* poichè non ho elementi in comune
+
+>[!example] 
+>$R(A,B,C,D), F=\{A \rightarrow B\}\{BC \rightarrow D\}$
+>+ $T_1 = (A,B), T_2  = (B,C,D)$
+>+ $T_1 \cap T_2 = B$
+>+ $B^+_F = B$ *non preserva i dati*
+
 #### Decomposizioni che preservano le dipendenze
 
 Una disposizione che *preserva le dipendenze* siginifica che l'unione delle dipendenze dei sottoschemi è equivalente alle dipendenze dello schema originario 
@@ -637,26 +648,26 @@ Una disposizione che *preserva le dipendenze* siginifica che l'unione delle dipe
 >[!example] 
 >Decomposizione con Perdita di Dipendenze
 
-Prima della decomposizione
+Prima della decomposizione con $F=\{Macchina \rightarrow Propietario, Telefono \rightarrow Propietario\}$
 
 | Proprietario | Telefono | Macchina |
-| ---- | ---- | ---- |
-| Mario Rossi | 423567 | CG153SE |
-| Mario Rossi | 423567 | PT267MV |
-| Mario Rossi | 542635 | PT267MV |
+| ------------ | -------- | -------- |
+| Mario Rossi  | 423567   | CG153SE  |
+| Mario Rossi  | 423567   | PT267MV  |
+| Mario Rossi  | 542635   | PT267MV  |
 Dopo la decomposizione
 
 | Proprietario | Telefono |
-| ---- | ---- |
-| Mario Rossi | 423567 |
-| Mario Rossi | 542635 |
+| ------------ | -------- |
+| Mario Rossi  | 423567   |
+| Mario Rossi  | 542635   |
 
 | Telefono | Macchina |
-| ---- | ---- |
-| 423567 | CG153SE |
-| 423567 | PT267MV |
-| 542635 | PT267MV |
-Se volessi aggiungere $(Luca Bianchi, 421448, CG153SE)$
+| -------- | -------- |
+| 423567   | CG153SE  |
+| 423567   | PT267MV  |
+| 542635   | PT267MV  |
+Se volessi aggiungere $(Luca\ Bianchi, 421448, CG153SE)$
 + nel primo caso violerei la dipendenza $Macchina\to Proprietario$
 + nel secondo caso non ce ne possiamo accorgere se non dopo la giunzione
 
@@ -664,7 +675,7 @@ Se volessi aggiungere $(Luca Bianchi, 421448, CG153SE)$
 Una decomposizione *preserva le dipendenze* se e solo se l'unione delle dipendenze indotte sui singoli schemi equivale alle dipendenze dello schema originale
 
 >[!important] Definizione di *Decomposizione che Preserva le Dipendenze*
->la decomposizione $p=\{R_1(T_1),\dots,R_n(T_n)\}$ di $R(T,F)$ *preserva le dipendenze* se e solo se $\bigcup_i\pi_{T_i}(F)\equiv F$
+>la decomposizione $p=\{R_1(T_1),\dots,R_n(T_n)\}$ di $R(T,F)$ *preserva le dipendenze* se e solo se $\bigcup_i\pi_{T_i}(F)\equiv F$ ( equivalenti non uguali , ossia hanno stessa chiusura )
 
 Questo può essere verificato algoritmicamente nel seguente modo : 
 + Calcoliamo le proiezioni $\pi_{T_i}(F) = \{ X \to Y \in F^+ | X \cup Y \subseteq T_i \}$
@@ -674,7 +685,7 @@ Questo può essere verificato algoritmicamente nel seguente modo :
 >[!important] Teorema
 >$F\equiv G$ se e solo se $F \subseteq G^+$ e $G \subseteq F^+$
 
->[!Dimostrazione]
+>[!Dimostrazione]-
 >Essendo un se e solo se dobbiamo dimostrare entrambi i versi dell'equivaleza
 >+ Sia $F\equiv G$ allora $F^+ =G^+$ per definizione di equivalenza . Dato che si ha $F\subseteq F^+$ e $G \subseteq G^+$ , ottengo $F\subseteq G^+$ e $G\subseteq F^+$ ( ho sostituito grazie a $F^+ =G^+$ ( def di equivalenza ) )
 >+ Poichè $F\subseteq G^+$ , osservo che $F^+\subseteq (G^+)^+ = G^+$ . Analogamente avremo anche : $G \subseteq F^+$ ottengo $G^+ \subseteq (F^+)^+ = F^+$ concludiamo quindi che $F^+=G^+$ 
