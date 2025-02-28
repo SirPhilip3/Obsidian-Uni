@@ -40,4 +40,5 @@ diffusion -> tutte le lettere del plaintex si devono diffondere ul cyphertext
 
 perfect cyphertext 
 
+xor -> one time pad 
 
