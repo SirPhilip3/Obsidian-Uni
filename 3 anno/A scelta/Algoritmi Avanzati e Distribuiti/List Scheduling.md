@@ -44,9 +44,12 @@ Where :
 >The *optimal* **makespan** $L^*$ will always be $\geq \max_j t_j$ 
 >
 >>[!note] Proof
->>
+>>Some machine will have have to process the most time-consuming job 
 
 
 >[!note] Lemma 2
 >The *optimal* **makespan** $L^*$ will always be $\geq \frac{1}{m} \sum_j t_j$
 >
+>>[!note] Proof
+>>One of $m$ machines must do at least $1/m$ of the total work 
+
