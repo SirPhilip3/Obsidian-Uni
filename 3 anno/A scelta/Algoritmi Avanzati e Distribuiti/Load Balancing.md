@@ -24,3 +24,5 @@ And knowing that :
 # Approximation Algorithms
 
 ![[List Scheduling]]
+
+![[Longest Processing Time (LPT)]]

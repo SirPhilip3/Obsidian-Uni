@@ -33,3 +33,22 @@ In the preprocessing step we simpliy reorder the list of  jobs in *decresing* or
 >**Longes Processing Time** is a $1.5$-approximation algorithm
 
 ## $\rho$ proof
+
+>[!note] Lemma 3 
+>If there are more than $m$ *jobs* than $L^* \geq 2 \cdot t_{m+1}$ 
+>>[!note] Proof
+>>Since the $t_i$ are in descending order by construction , than each one of will take at least $t_{m+1}$ time ( the lowest time )
+>>Since there are $m$ *machines* and $m+1$ *jobs* than at least one machine get's two jobs 
+
+Returning to the basic [[List Scheduling]] approach we will have that : 
+$$L_i = (L_i - t_j) + t_j$$
+We know that :
++ $L_i - t_j \leq L^*$ : trivially because we don't include the last *job*
++ $t_j \leq \frac{1}{2}L^*$ : we can assume that the number of *jobs* are $>m$ and the last scheduled *job* $t_j\leq  t_{m+1}\leq L^*/2$ ( because of *Lemma 3* )
+
+Applying the sobstitution we will have that : 
+$$L_i \leq L^* + L^*/2 \leq 1.5\cdot L^*$$
+
+>[!note] 
+>it can be demonstrated that the real $\rho$ value is $4/3$
+

@@ -49,15 +49,18 @@ The following is a $2$-approximation algorithm
 + $A$ : the set of *edges* that are picked by the algorithm ( e.g. $\{(c,e),(d,g),(a,b)\}$ ) 
 
 **Lemmas** : 
-1. The algorithms givea a *vertex cover*
+1. The algorithms gives a *vertex cover*
 2. The *vertex cover* found has size $\leq2\times \text{optimal solution}$ 
 
-**Demonstraions** :
+**Demonstrations** :
  1. By construnction of the algorithm it gives a *vertex cover*
 ---
 2. 
 
 Suppose we have the *vertex cover* $|A|$ and an optimal solution $|VC^*|$ 
-By construction we need to have at least one endpoint of each edges in $A$ in the ve
 
-#todo 
+By construction we need to have at least one endpoint of each edges in $A$ 
+
+>[!note] 
+>Once an edge gets picked all edges incident on either endpoint are removed 
+
