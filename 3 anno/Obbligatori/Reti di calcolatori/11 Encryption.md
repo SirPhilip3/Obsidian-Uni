@@ -42,7 +42,6 @@ publish: true
 ![[HMAC]]
 
 ## CRAM-MD5
-
 ![[CRAM-MD5]]
 
 # Base Encryption Operations

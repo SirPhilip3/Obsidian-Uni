@@ -57,10 +57,19 @@ The following is a $2$-approximation algorithm
 ---
 2. 
 
-Suppose we have the *vertex cover* $|A|$ and an optimal solution $|VC^*|$ 
+Suppose we have the *vertex cover* $|A|$ and an *optimal solution* $|VC^*|$ 
 
-By construction we need to have at least one endpoint of each edges in $A$ 
+By construction we need to have at least one endpoint of each edge in $A$ in the optimal solution $VC^*$
 
->[!note] 
->Once an edge gets picked all edges incident on either endpoint are removed 
+>[!important] 
+>No two *edges* in $A$ share an endpoint by construction
+>>[!note] 
+>>Once an edge gets picked all edges incident on either endpoint are removed 
+
+So a vertex in $VC^*$ can't cover more than one edge in $A$ , so there must be at least one vertex for each edge in $VC^*$ , this implies that : 
+$$|VC^*| \geq |A|$$
+Since the algorithm selects both endpoint to be added than :
+$$|VC|=2|A|$$
+Considering the previous inequality ( $|A| \leq |VC^*| \implies 2|A| \leq 2|VC^*|$  ) we will have that :
+$$|VC|\leq 2|VC^*|$$
 
