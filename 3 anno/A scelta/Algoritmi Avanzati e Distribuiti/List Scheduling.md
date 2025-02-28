@@ -34,6 +34,9 @@ Where :
 >[!example] 
 >#todo
 
+>[!note] 
+>If we have at most $m$ *jobs* than *list scheduling* becomes an optimal algorithm
+
 # Approximation discussion
 
 >[!important] Theorem
@@ -52,4 +55,10 @@ Where :
 >
 >>[!note] Proof
 >>One of $m$ machines must do at least $1/m$ of the total work 
+
+Let's consider a *job* $j$ that has it's finish time as the finish time of the algorithm ( $L_i$ ) , now suppose it was assigned to machine $i$ , than before it was assigned this machine needed to have *load* : $L_i -t_j$ 
+
+Than we will have that : $L_i - t_j \leq L_k$ for all $1\leq k \leq m$ this because we know that $L_i$ is the finishing time and that we assigned only 1 *job* to the machine , this implies that when it was the machine had the lowest *load* ( as per the algorithm ) 
+
+
 
