@@ -40,4 +40,21 @@ Since we don't want to visit each *vertices* more than once , if we encounter a 
 >[!summary] Definitions
 >$OPT$ : optimal solution for **Metric-TSP** ( as a set of edges )
 >$A$ : edges chosen by the algorithm
->$EC$ : edges in the *Euler*
+>$EC$ : edges in the *Euler* cycle
+
+1. $cost(T)\leq cost(OPT)$ : this is true since *OPT* is a cycle so removing any edge implies building a [[Strutture Dati#Alberi di copertura|spaning tree]] and removing an edge means lowering the cost 
+
+>[!note] 
+>**MST** is a lower bound of **TSP**
+
+2. $cost(EC)=2\cdot cost(T)$ : by construction of *EC* ( doubling each edge ) 
+
+This implies that : $cost(EC)= 2 \cdot cost(T) \leq 2 \cdot cost(OPT)$
+
+3. $cost(A) \leq cost(EC)$ : this is true because of *triangular inequalities* , the shortcut will always have a lower cost since we pass trough less *edges*
+
+So in the end we can conclude that : 
+$$cost(A) \leq 2 \cdot cost(OPT)$$
+# $1.5$-approximation Algorithm
+
+
