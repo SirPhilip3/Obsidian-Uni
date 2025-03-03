@@ -800,7 +800,7 @@ Questo *algoritmo* ottimizzato ha complessità *polinomiale*
 L'obbiettivo delle *forme normali* è garantire che uno schema sia di buona qualità ( questo può essere ottenuto attraverso un processo chiamato *normalizzazione* basato su una decomposizione dello schema di partenza ) 
 
 Caratteristiche fondamentali ad uno schema in *forma normale* :
-+ Non deve contenere anomalie
++ Non deve contenere *anomalie*
 + Il processo di normalizzazione deve *preservare i dati*
 + Il processo di normalizzazione deve *preservare le dipendenze*
 
@@ -810,6 +810,8 @@ Caratteristiche fondamentali ad uno schema in *forma normale* :
 #### Forma Normale di Boyce-Codd ( BCNF )
 
 Un tipo di *forma normale* è quella così detta *BCNF*
+
+Garantisce le prime due propietà
 
 >[!important] Definizione di *BCNF*
 >Uno schema è in *BCNF* se e solo se per ogni dipendenza funzionale non banale $X \to Y \in F^+$ tale che $Y \nsubseteq X$ si ha che $X$ è una *superchiave*
@@ -906,6 +908,8 @@ Possiamo dimostrare che la definizione precedente è valida anche con $F$ invece
 
 La verifica se uno schema è *3NF* ha comunque costo *esponenziale* poichè per il calcolo degli attributi primi richiediamo di trovare tutte le chiavi
 
+Garantisce le ultime due propietà
+
 >[!note]
 >Per definizione ogni schema in *BCNF* è anche in *3NF* ma non viceversa
 
@@ -966,7 +970,7 @@ Abbiamo 2 principali strategie per migliorare uno schema di scarsa qualità :
 2. Convertiamo lo schema in *3NF* in modo da preservare dati e dipendenze sperando di essere fortunati e rimuovere tutte le anomalie . Questo si verifica se la conversione produce un *BCNF*
 
 >[!note]
->Una anomalia che non viene prevenuta da *BCNF* si può verificare quando siamo in presenza di attributi multivalore indipendenti
+>Una anomalia che *non* viene prevenuta da *BCNF* si può verificare quando siamo in presenza di attributi multivalore indipendenti
 >>[!example]
 >>
 | Corso        | LibroDiTesto        | Docente   |
