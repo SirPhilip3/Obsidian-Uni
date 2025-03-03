@@ -30,4 +30,40 @@ Some **Notation** :
 
 ## Greedy Algorithm 
 
-Put the first center at the best possible location for a single center ( $k=1$ ) , than add centers to reduce the covering radius as much as possible each iteration 
+Put the first center at the best possible location for a single center ( $k=1$ ) , than add centers to reduce the covering radius as much as possible 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Greedy-Center-Selection}
+	\begin{algorithmic}
+	\Comment{$s$ ( $S$ , set of sites ) are the sites}
+	\Input $k, n, s_1,s_2,\dots,s_n$
+	\Comment{Otherwise the perfect solution would be $C=S$}
+	\State Assume $k\leq |S|$
+	\State Select any site $s$ and let $C=\{s\}$
+	\State Remove $s$ from $S$
+	\For{$k-1$ times}
+		\State Select a site $s_i$ with $\max dist(s_i, C)$
+		\Comment{Selects the furthest site from any center}
+		\State Add $s_i$ to $C$
+    \EndFor
+    \Return $C$
+	\end{algorithmic}
+	\end{algorithm}
+```
+>[!note] 
+>At the end of the algorithm all centers in $C$ are, between each other , at least $r(C) = \max_i dist(s_i, C)$ apart , by contruction of the algorithm
+
+>[!example]
+>#todo
+>
+
+### Analysis
+
+>[!important] Theorem
+>Let $C^*$ be an optimal set of *centers*. Then $r(C)\leq 2r(C^*)$
+#### $\rho=2$ proof ( by contradiction )
+
+Let's assume that $r(C^*) < \frac{1}{2}r(C)$
+
++ Consider for each *site* $c_i$ in $C$ a circle of radius $\frac{1}{2}r(C)$ around it 
