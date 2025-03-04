@@ -21,7 +21,7 @@ Given a *complete* graph with edge costs satisfying *triangular inequalities* , 
 
 # $2$-approximation Algorithm
 
-1. Find the [[Strutture Dati#Alberi di copertura minimi|minimum spaning tree]] $MST(G)$ ( using [[Strutture Dati#Algoritmo di Prim|Prim]] this step has complexity $O(m \log n)$ or $O(m + n \log n)$ depending on the data structure used )
+1. Find the [[Strutture Dati#Alberi di copertura minimi|minimum spanning tree]] $MST(G)$ ( using [[Strutture Dati#Algoritmo di Prim|Prim]] this step has complexity $O(m \log n)$ or $O(m + n \log n)$ depending on the data structure used )
 2. Double all of it's edges : $T=2\times MST(G)$
 3. Since we have doubled each edge than the graph $T$ is *Eulerian* ( all verteces have an even degree and it's connected ) , we can traverse it visiting each edge exactly once 
 4. Create shortcuts in the *Eulerian* tour in order to create a *tour* 
@@ -42,7 +42,7 @@ Since we don't want to visit each *vertices* more than once , if we encounter a 
 >$A$ : edges chosen by the algorithm
 >$EC$ : edges in the *Euler* cycle
 
-1. $cost(T)\leq cost(OPT)$ : this is true since *OPT* is a cycle so removing any edge implies building a [[Strutture Dati#Alberi di copertura|spaning tree]] and removing an edge means lowering the cost 
+1. $cost(T)\leq cost(OPT)$ : this is true since *OPT* is a cycle so removing any edge implies building a [[Strutture Dati#Alberi di copertura|spanning tree]] and removing an edge means lowering the cost 
 
 >[!note] 
 >**MST** is a lower bound of **TSP**
@@ -57,4 +57,33 @@ So in the end we can conclude that :
 $$cost(A) \leq 2 \cdot cost(OPT)$$
 # $1.5$-approximation Algorithm
 
+We can get a better approximation if we use **Graph matching** :
 
+>[!important] Graph Matching
+>A *matching* $M$ in a graph $G(V,E)$  is a *subset* of *edges* of $G$ so that no *edges* in $M$ are *incident* to a common *vertex* 
+
+>[!example] 
+![[matchingGraph.excalidraw]]
+
+>[!important] Perfect Matching
+>A perfect matching is a *matching* in witch every *vertex* si marched ( covered ) 
+>>[!note] 
+>>In weighted graphs this can have a weight , in the previous example the weight is $16$
+
+>[!note] 
+>The matching problem can be solved in *poly time*
+
+## Algorithm
+
+1. Find an [[Strutture Dati#Alberi di copertura minimi|MST]] 
+2. Find a $M$ = *Minimum weight Perfect Matching* for the verteces that have an odd degree
+3. Add the new nodes to the **MST** : $E = MST + M$  
+4. Find an *Euler* walk of $E$ 
+5. Bypass repeted nodes on the *Euler* walk with *shortcuts* to get a **TSP** *tour*
+
+>[!example] 
+>#todo
+## $\rho = 1.5$ proof
+
+1. $cost(T)\leq cost(OPT)$ : this is true since *OPT* is a cycle so removing any edge implies building a [[Strutture Dati#Alberi di copertura|spanning tree]] and removing an edge means lowering the cost 
+2. $cost(M) \leq 0.5 \times cost(OPT)$ : a *tour* always contains $2$ matching
