@@ -67,3 +67,4 @@ Put the first center at the best possible location for a single center ( $k=1$ )
 Let's assume that $r(C^*) < \frac{1}{2}r(C)$
 
 + Consider for each *site* $c_i$ in $C$ a circle of radius $\frac{1}{2}r(C)$ around it 
++ Exacly one $c_i^*$ will be inside each circle paired with it's corresponding $c_i$

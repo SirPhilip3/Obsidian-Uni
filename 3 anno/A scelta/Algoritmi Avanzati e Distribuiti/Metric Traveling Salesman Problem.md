@@ -79,11 +79,16 @@ We can get a better approximation if we use **Graph matching** :
 2. Find a $M$ = *Minimum weight Perfect Matching* for the verteces that have an odd degree
 3. Add the new nodes to the **MST** : $E = MST + M$  
 4. Find an *Euler* walk of $E$ 
-5. Bypass repeted nodes on the *Euler* walk with *shortcuts* to get a **TSP** *tour*
+5. Bypass repeted nodes on the *Euler* walk with *shortcuts* to get a **TSP** *tour* ( $A$ )
 
 >[!example] 
 >#todo
 ## $\rho = 1.5$ proof
 
 1. $cost(T)\leq cost(OPT)$ : this is true since *OPT* is a cycle so removing any edge implies building a [[Strutture Dati#Alberi di copertura|spanning tree]] and removing an edge means lowering the cost 
-2. $cost(M) \leq 0.5 \times cost(OPT)$ : a *tour* always contains $2$ matching
+2. $cost(M) \leq 0.5 \times cost(OPT)$ : a *tour* always contains $2$ matching this implies that the cost of the *minimum weight perfect matching* is *at most* $0.5 \times cost(OPT)$
+3. By combaning the cost of the [[Strutture Dati#Alberi di copertura|spanning tree]] ( $T$ ) and the cost of the *matching* ( $E$ ) we will have that : $cost(EC) = cost(T)+cost(M) \leq 1.5\times cost(OPT)$
+4. With the *shortcut* we know that $cost(A)\leq cost(EC)\leq 1.5 \times cost(OPT)$
+
+In the end we will have that : 
+$$cost(A)\leq 1.5 \times cost(OPT)$$
