@@ -68,3 +68,11 @@ Let's assume that $r(C^*) < \frac{1}{2}r(C)$
 
 + Consider for each *site* $c_i$ in $C$ a circle of radius $\frac{1}{2}r(C)$ around it 
 + Exacly one $c_i^*$ will be inside each circle paired with it's corresponding $c_i$
++ Consider any site $s$ and its closest center $c_i^*$ in $C^*$ 
+
+>[!warning] Contradiction
+>$dist(s,C)\leq dist(s,c_i)\leq dist(s,c_i^*)+dist(c_i^* ,c_i)\leq 2 r(C^*)$
+
+>[!note] 
+>Unless $P=NP$ there is no $\rho$-approximation algorithm for the *center selection problem* that has $\rho < 2$
+
