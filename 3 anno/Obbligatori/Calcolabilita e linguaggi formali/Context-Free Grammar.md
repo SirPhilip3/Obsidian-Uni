@@ -4,7 +4,7 @@ aliases:
   - CFG
 publish: true
 ---
-Facciamo un sempio di *Context-Free Grammar* o **CFG**
+Facciamo un esempio di *Context-Free Grammar* o **CFG**
 >[!example] 
 >```pseudo
 >	\begin{algorithm}

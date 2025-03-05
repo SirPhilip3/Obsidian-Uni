@@ -21,7 +21,7 @@ Some **Notation** :
 **Propieties** of $dist$ : 
 + $dist(x,x)=0$
 + $dist(x,y)=dist(y,x)$
-+ $dist(x,y)\leq dist(x,z)+dist(z,y)$ ( *triangula inequality* )
++ $dist(x,y)\leq dist(x,z)+dist(z,y)$ ( *triangular inequality* )
 
 >[!important] Goal
 >Our goal is to minimize the function $r(C)$ , considering that $|C| = k$
