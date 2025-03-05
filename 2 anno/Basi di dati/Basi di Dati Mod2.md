@@ -1025,6 +1025,9 @@ CREATE TABLE Movies (
 
 Data una tabella $R(T)$ ed un insieme di attributi $X \subseteq T$ possiamo specificare che nessuna coppia di tuple in $R(T)$ coincida su tutti gli attributi in $X$ a meno che almeno uno di essi non sia `NULL`
 
+>[!note] 
+>Posso avere il valore `NULL`
+
 >[!example]
 ```sql
 CREATE TABLE Movies (

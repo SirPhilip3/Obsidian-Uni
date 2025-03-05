@@ -68,4 +68,13 @@ If some *edge* $i-j$ is uncovered than neither $i$ nor $j$ will be *tight* , but
 >[!important] Hypotesis
 Let $S^*$ be the optimal [[Vertex Cover]] than $w(S) \leq 2 w(S^*)$
 
-$$w(S) = \sum_{i \in S} w_i$$
+$$w(S) = \sum_{i \in S} w_i = \sum_{i \in S}\sum_{e=(i,j)} p_e$$
+This is possible becouse all the nodes in $S$ are *thigh* by definition of the algorithm 
+$$\sum_{i \in S}\sum_{e=(i,j)} p_e \leq \sum_{i \in V}\sum_{e=(i,j)} p_e$$
+Since $S \subseteq V$ and $prices \geq 0$ ( $V$ is the set of all vertices in the graph $G$ ) 
+>[!note] 
+>This is the worst case possible , where we select each *edge* twice since we will count the incident *edges* for each *node* 
+
+$$\sum_{i \in V}\sum_{e=(i,j)} p_e = 2 \times \sum_{e \in E}p_e \leq 2 \times w(S^*)$$
+This for the *fairness* lemma ( $\sum_{e} p_e \leq w(S)$ )
+
