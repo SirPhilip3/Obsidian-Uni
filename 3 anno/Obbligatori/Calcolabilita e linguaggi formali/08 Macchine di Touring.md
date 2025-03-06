@@ -44,7 +44,7 @@ aliases:
  
 >[!important] Definizione Formale
 >
->Una **Macchina di Tuoring** è una settupla : $(Q,\Sigma , \Gamma,\delta,q_0,q_{accept},q_{reject})$
+>Una **Macchina di Touring** è una settupla : $(Q,\Sigma , \Gamma,\delta,q_0,q_{accept},q_{reject})$
 >
 >Dove : 
 >+ $Q$ : è l'insieme degli stati
@@ -66,7 +66,7 @@ aliases:
 >+ la posizione della testina
 >  
 >>[!example] 
->>$001q_3\textcolor{red}{0}1$ : la testina sta nella quarta posizione e è nello stato $q_3$ 
+>>$001q_3\textcolor{red}{0}1$ : la testina sta nella quarta posizione ed è nello stato $q_3$ 
 >
 >In generale una configurazione ha la forma $uqv$ dove $u$ e $v$ sono stringhe $\in \Gamma^*$  e $q\in Q$
 >
@@ -84,7 +84,7 @@ aliases:
 >3. $\forall i , C_i$ passa in $C_{i+1}$ secondo le regole di computazione date 
 
 >[!note]
->Visto che $q_{accept}$ e $q_{reject}$ sono stati finali , possiamo riscrivere la funzione di transizionen le seguente modo : $\Gamma = [Q\backslash\{q_{accept},q_{reject}\}]\times \Gamma \to Q \times \Gamma\times\{L,R\}$ 
+>Visto che $q_{accept}$ e $q_{reject}$ sono stati finali , possiamo riscrivere la funzione di transizione nel seguente modo : $\Gamma = [Q\backslash\{q_{accept},q_{reject}\}]\times \Gamma \to Q \times \Gamma\times\{L,R\}$ 
 
 >[!important] Linguaggio di Touring
 >Un linguaggio $A$ si dive **Touring riconoscibile** se e solo se esiste una **MdT** $M$ tale che $L(M)=A$

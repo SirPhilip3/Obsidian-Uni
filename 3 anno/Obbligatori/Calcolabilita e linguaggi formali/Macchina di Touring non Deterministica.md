@@ -23,7 +23,7 @@ Ossia per ogni simbolo che legge la **MdT** può fare un insieme di mosse non so
 >>>[!warning] 
 >>>Se un cammino va in *loop* anche la computazione deterministica va in loop , la **MdT** non proverà nessun altro cammino
 >>
->>Per risolvere questo problema facciamo una visita **BFS** dell'albero , elsploreremo quindi i seguenti cammini : 
+>>Per risolvere questo problema facciamo una visita **BFS** dell'albero , esploreremo quindi i seguenti cammini : 
 >>$$1,2,3,11,12,13,21,22,\dots$$ 
 >
 >Simuliamo una **MdT** *non deterministica* con una **MdT** *deterministica* avente 3 nastri : 

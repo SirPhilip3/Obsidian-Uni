@@ -24,7 +24,7 @@ Dove :
 >>
 >>>[!info] Idea
 >>>
->>>Salviamo i $k$ nastri in iniziali in un singolo nastro limitando i nastri con un *marker* $\#$ , inoltre per indicare la posizione delle testine nei nastri mettiamo un $\cdot$ sopra al simbolo dove si trova 
+>>>Salviamo i $k$ nastri iniziali in un singolo nastro limitando i nastri con un *marker* $\#$ , inoltre per indicare la posizione delle testine nei nastri mettiamo un $\cdot$ sopra al simbolo dove si trova 
 >>>![[MdTmultuTo1.excalidraw]]
 >>
 >>$S$ = Su input $w=w_1\dots w_n$ : 
