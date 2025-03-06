@@ -8,7 +8,7 @@ $$E_{TM} = \{ <M> | \text{ M è MdT e } L(M) = \emptyset \}$$
 
 **Dimostrazione** : 
 
-Dimostriamo che $A_{TM} \leq E_{TM}$ ossia dimostriamo cche se avessi un [[Decisore]] $H$ per $E_{TM}$ allora potremmo costruire un [[Decisore]] per $A_{TM}$ ( Impossibile per [[Indecidibilità di A(TM)]] ) 
+Dimostriamo che $A_{TM} \leq E_{TM}$ ossia dimostriamo che se avessi un [[Decisore]] $H$ per $E_{TM}$ allora potremmo costruire un [[Decisore]] per $A_{TM}$ ( Impossibile per [[Indecidibilità di A(TM)]] ) 
 
 >[!error] Soluzione errata 
 >
