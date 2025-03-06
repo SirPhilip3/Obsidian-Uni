@@ -55,5 +55,5 @@ Costruiamo una [[Macchina di Touring con Oracolo|MdT con Oracolo]] per $B$ che d
 $S$ : Su input $x$ : 
 1. Calcola $f(w)$
 2. Esegui l'[[Oracolo]] per $B$ su $f(w)$
-3. Ritorna il suo outpur 
+3. Ritorna il suo output
 

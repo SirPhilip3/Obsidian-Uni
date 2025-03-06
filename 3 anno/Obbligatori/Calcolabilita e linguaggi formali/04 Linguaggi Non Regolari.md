@@ -3,7 +3,7 @@ creation: 2024-10-08T09:56:00
 publish: true
 ---
 >[!example] 
->$\{0^n 1^n | n \ge 0\}$ : rappresenta una sequenza di $0$ di lunghezza $n$ seguita dsa una sequenza di $1$ della stessa lunghezza , delle stringhe *accettate* sono : $\{01,0011,000111,\dots\}$ 
+>$\{0^n 1^n | n \ge 0\}$ : rappresenta una sequenza di $0$ di lunghezza $n$ seguita da una sequenza di $1$ della stessa lunghezza , delle stringhe *accettate* sono : $\{01,0011,000111,\dots\}$ 
 >>[!note] 
 >>Non è possibile costruire un [[DFA]] che lo rappresenti poichè dovremmo avere infiniti stati per memorizzare il numero di $0$ e $1$ 
 
