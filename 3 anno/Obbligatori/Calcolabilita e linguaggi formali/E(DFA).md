@@ -20,6 +20,6 @@ $$
 >
 >$M$ aspetta un input $<D>$ :
 >1. Marca lo stato iniziale di $D$
->2. Finchè è possibile maracare nuovi stati , marca gli stati con una transizione in entrata da stati già marcati
+>2. Finchè è possibile marcare nuovi stati , marca gli stati con una transizione in entrata da stati già marcati
 >3. Se abbiamo marcato uno stato accetante *REJECT* altrimenti *ACCEPT*
->
+

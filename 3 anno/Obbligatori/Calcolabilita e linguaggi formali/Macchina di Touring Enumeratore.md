@@ -34,7 +34,7 @@ Un **Enumeratore** :
 >$\Leftarrow$ : Se esiste un **Enumeratore** $E$ tale che $L(E)=A$ allora $A$ è **Touring riconoscibile**
 >
 >Costruisco una **MdT** $M$ per il linguaggio $A$
->$M =$ apetta un input $w$ : 
+>$M =$ aspetta un input $w$ : 
 >1. Simula l'enumeratore $E$
 >2. Ogni volta che $E$ stampa una stringa $v$ verifico se $v=w$ 
 >3. Se $v==w$ allora *accetto* altrimenti torno allo step 1
