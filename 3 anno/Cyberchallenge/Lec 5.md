@@ -40,13 +40,12 @@ solution > whitelist
 se fai backlisting -> molti modi per scrivere localhost
 
 dmz -> ambiente isolato dal resto dei server 
+/static /js 
 
-code injections
-php -> system call una funzione sull'os ; -> exec secodo comando
-\n && || 
+code injection > esegue codice -> in base al linguaggio 
+request -> comunque deve fare richieste dns quindi anche se non accetta funzia lo stesso 
 
-command sob -> $(command) 
+in un ambiente blackbox ' " $ o char speciali per il linguaggio 
 
-subprocess.run() -> runna comando > shell=true -> usa una shell 
-
-
+fix -> non interpretare codice / accettare comandi etcc
+whitelist / sandbox e escaping 
