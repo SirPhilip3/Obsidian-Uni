@@ -24,3 +24,18 @@
 >[!important] 
 >The ultimate goal is to find a *stable* configuration if it exists
 
+# State-flipping algorithm
+
+```pseudo
+	\begin{algorithm}
+	\caption{Hopefield-Flip}
+	\begin{algorithmic}
+	\Input G, w
+	\State $S$ 
+	\Comment{arbitrary start configuration}
+	\While{Current configuration is not stable}
+		\State
+    \EndWhile
+	\end{algorithmic}
+	\end{algorithm}
+```
