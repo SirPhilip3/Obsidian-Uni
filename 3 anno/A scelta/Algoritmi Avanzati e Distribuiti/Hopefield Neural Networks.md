@@ -31,11 +31,46 @@
 	\caption{Hopefield-Flip}
 	\begin{algorithmic}
 	\Input G, w
-	\State $S$ 
-	\Comment{arbitrary start configuration}
+	\State $S \leftarrow$ arbitrary start configuration
 	\While{Current configuration is not stable}
-		\State
+		\State $u \leftarrow$ one unsatisfied node
+		\State $s_u = -s_u$ 
+		\Comment{Flip it's state}
     \EndWhile
+    \Return $S$
 	\end{algorithmic}
 	\end{algorithm}
 ```
+>[!example] 
+>#todo
+
+## Termination Proof
+
+>[!important] Theorem
+>The *algorithm* terminates with a *stable* configuration after at most $W = \sum_e |w_e|$ iterations 
+### Proof 
+
+Let's consider a measure of progress as $\Phi(S) =\sum_{e\ good}|w_e|$ ( the total absolute weight of all *good* edges in the network )
+
+Let's confirm that this measure always increases : 
+
++ Since we always add positive integers clearly $\Phi(S) \ge 0$ 
++ Since at most all of the edges will be *good* we also have an upper bound : $\Phi(S)\leq W$ , where $W=\sum_e |w_e|$ 
+
+Now suppose that we are in a *nonstable* configuration $S$ and we flip the *state* of a node $u$ resulting in a new configuration $S'$ 
+
+>[!note] 
+>When we flip the *state* of $u$ all the *edges* incident to $u$ :
+>+ *bad* will become *good*
+>+ *good* will become *bad*
+>
+>And the edges that wheren't incident will remain the same 
+>
+
+Let :
++ $g_u$ be the total absolute weight of the *good* edges *incident* to $u$
++ $b_u$ be the total absolute weight of the *bad* edges *incident* to $u$
+
+Than we will have that :
+$$\Phi(S') = \Phi(S) - g_u + b_u$$
+This is true since 
