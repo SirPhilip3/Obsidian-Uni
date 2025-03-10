@@ -1181,9 +1181,10 @@ CREATE TABLE MovieExec (
 + Se un vincolo coinvolge più di un attributo e non è una congiunzione di vincoli su attributi indipendenti è *necessario* ricorrere a `CHECK` su tuple per motivi di espressività 
 + Se un vincolo coincolge un solo attributo possiamo scegliere fra i due tipi di `CHECK` ma generalmente i `CHECK` su attributi sono *più efficenti* dei `CHECK` su tuple dato che vengono controllati meno frequentemente
 
->[!todo]
->#todo
->Equivalenze logiche
+>[!note] 
+>+ $A \implies B$ equivale a $\lnot A \lor B$
+>+ $\lnot(A\land B)$ equivale a $\lnot A \lor \lnot B$
+>+ $\lnot(A\lor B)$ equivale a $\lnot A \land \lnot B$
 #### Aggiornare i Vincoli
 
 Possiamo dare un nome ai vincoli anteponendo alla loro dichiarazione `{sql}CONSTRAINT namo_costraint [FOREING KEY , UNIQUE , CHECK . etc...]`
@@ -1209,22 +1210,27 @@ ALTER TABLE nome_tabella ADD [CONSTRAINT nome_vincolo] definizione_vincolo
 ```
 
 >[!example] 
->Tutti i film *horror* devono avere l'anno di produzione sucessivo al 
+>Tutti i film *horror* devono avere l'anno di produzione sucessivo al `1922`
 ```Postgresql
 ALTER TABLE Movies ADD CONSTRAINT horror CHECK NOT genre = "Horror" OR anno > 1922 
 ```
 >[!note] 
 >Se è true `NOT genre="Horror"` non ci interessa che sia stato prodotto dopo 1922 , altrimenti devo controllare che `anno > 1922`
 
+>[!example] 
+>Solo i film di fantascienza possono durare più di 180 minuti
+```Postgresql
+ALTER TABLE Movies ADD CONSTRAINT fantascienza CHECK length <= 180 OR genre = "Fantascienza" 
+```
+>[!note] 
+>Se dura più di 180 minuti deve essere per forza di fantascienza
+>Equivalentemente `CHECK NOT (lenght > 180 AND genre != "Fantascienza")`
+
 >[!warning]
 >Il vincolo che viene aggiunto deve già valere al momento del suo inserimento
 
 >[!note]
 >La *modifica* di un vincolo non è supportata ma può essere effettuata tramite una cancellazione seguita da un inserimento
-
->[!todo]
->#todo
->Add examples
 
 #### Limitazione dei Vincoli
 
@@ -1240,11 +1246,20 @@ Il vincolo :
 	Nessuno può essere il presidente di uno studio senza avere reddito di almeno 100000
 Non può essere esprimibile via `CHECK` a meno che il DBMS non supporta vincoli con sotto-query
 
+>[!error] 
 Soluzione con sotto-query 
 ```sql
 CHECK (100000 <= ALL(SELECT netWorth 
 					 FROM Studio, MovieExec 
 					 WHERE president = code))
+```
+
+>[!example] 
+>Nessun film può essere prodotto da uno studio fondato dopo la sua uscita
+```Postgresql
+CHECK year <= (SELECT year
+				FROM studio s
+				WHERE s.name = studio)
 ```
 
 ##### 2 
@@ -1262,6 +1277,23 @@ Soluzione con sotto-query
 ```sql
 CHECK (10000 >= ALL(SELECT SUM(length) 
 					FROM Movies 
+					GROUP BY studio))
+```
+Oppure , poichè quando inserisco dei dati so lo studio a cui mi riferisco , mi basta controllare che quello studio non supera 10000 , non mi serve controllare quelli che non sto modificando 
+```sql
+CHECK (10000 <= SELECT SUM(length) 
+					FROM Movies m
+					WHERE m.studio = studio
+```
+
+>[!warning]
+>
+>Vincolo : La durata complessiva dei film prodotti da ciascun studio deve essere di almeno 500 minuti
+>
+>Se cancello una riga non viene fatto il check , se cancello il movie che mi fa andare sotto 500 minuti viola il vincolo 
+```sql
+CHECK (500 <= ALL(SELECT SUM(length)
+					FROM Movies
 					GROUP BY studio))
 ```
 
