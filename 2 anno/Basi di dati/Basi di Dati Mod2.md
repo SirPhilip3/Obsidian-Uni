@@ -1208,6 +1208,14 @@ Possiamo *inserire* un nuovo vincolo nel seguente modo :
 ALTER TABLE nome_tabella ADD [CONSTRAINT nome_vincolo] definizione_vincolo
 ```
 
+>[!example] 
+>Tutti i film *horror* devono avere l'anno di produzione sucessivo al 
+```Postgresql
+ALTER TABLE Movies ADD CONSTRAINT horror CHECK NOT genre = "Horror" OR anno > 1922 
+```
+>[!note] 
+>Se è true `NOT genre="Horror"` non ci interessa che sia stato prodotto dopo 1922 , altrimenti devo controllare che `anno > 1922`
+
 >[!warning]
 >Il vincolo che viene aggiunto deve già valere al momento del suo inserimento
 
