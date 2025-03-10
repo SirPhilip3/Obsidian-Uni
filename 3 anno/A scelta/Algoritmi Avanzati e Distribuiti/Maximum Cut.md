@@ -53,4 +53,4 @@ So the sum of all the edges in $A$ , in $B$ and in the *cut* is $\leq 2w(A,B)$ ,
 $$w(A^*,B^*) \leq 2 w(A,B)\implies w(A,B) \geq \frac{1}2 w(A^*,B^*)$$
 ## Improvments
 
-The algorithm can be improved 
+The algorithm can be improved reaching a maximum aproximation of $\frac{16}{17}$
