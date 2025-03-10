@@ -70,7 +70,17 @@ Now suppose that we are in a *nonstable* configuration $S$ and we flip the *stat
 Let :
 + $g_u$ be the total absolute weight of the *good* edges *incident* to $u$
 + $b_u$ be the total absolute weight of the *bad* edges *incident* to $u$
+>[!note] 
+>$g_u$ and $b_u$ are the weights before the *flip*
 
 Than we will have that :
 $$\Phi(S') = \Phi(S) - g_u + b_u$$
-This is true since 
+This is true since the *good* $g_u$ will become *bad* and be subtracted from $S$ and the other way around for $b_u$ 
+
+Since $u$ is *unsitisfied* we know that $b_u > g_u$ and since they are both integers we can write that $b_u \ge g_u +1$ , by substitution we will have : 
+$$\Phi(S') \ge \Phi(S) +1 $$
+This shows us that the value of $\Phi$ *increases* by at least $1$ with every flip until it reaches the maximum of $W$ when it will **Terminate** 
+
+>[!warning] 
+>The execution time could be big if the weights are big 
+
