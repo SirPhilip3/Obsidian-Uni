@@ -32,4 +32,20 @@ cmp -> setta flag usate da jle etcc per salti condizionati
 
 memory / calling conventions 
 
+-02 -> può cambiare pos in memoria delle var 
+
+stack frame -> activation record in cima allo stack -> call add return viene tolta 
+
+32 -> tutti parametri nello stack , 64 solo dal 7 in poi , deve salvare pointer to return 
+
+frame pointer -> pointer al frame precedente 
+
+stack smashing 
+
+64 bit -> primi 6 parametri sui registri 
+
+*red zone* 128 byte sotto rsp -> per var locali 
+cdecl -> calling conventions for x86 , come funzioni ricevono i parametri
+
+malloc , free 
 
