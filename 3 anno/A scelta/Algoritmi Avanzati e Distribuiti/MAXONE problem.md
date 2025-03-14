@@ -79,5 +79,7 @@ For each bit we assign a low probability ( e.g. $0.1$ ) to flip bit
 >+ $s_5 = 11101111\textcolor{green}{1}1 \quad f(s_5) = 9$
 >+ $s_6 = 11101100\textcolor{green}{0}1 \quad f(s_6) = 6$
 
-Since the solution has now a total *fitness* of $38$ from the previous value of $34$ ( an improvment of $\sim 11\%$ ) we can sobstitute the old population with this one
+Since the solution has now a total *fitness* of $38$ from the previous value of $34$ ( an improvment of $\sim 12\%$ ) we can sobstitute the old population with this one
+
+We reapeat the process until a stopping criterion is met
 

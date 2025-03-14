@@ -39,3 +39,5 @@ Random perturbation of the candidate solution
 # Example Algorithm
 
 ![[MAXONE problem]]
+
+![[Traveling Salesman Problem]]
