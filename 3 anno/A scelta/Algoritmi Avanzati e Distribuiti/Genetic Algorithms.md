@@ -1,9 +1,15 @@
 >[!info] Idea
 >A genetic algorithm maintains a population of candidate solutions for the problem and makes it evolve by iteratively applying a set of **stochastic** *operators*
- 
- >[!note] Idea
- >Start with a population of *candidate solutions*
- >Evolve the solution by applying **stochastic** *operators*
+
+Basic Structure : 
+1. Randomly generate an initial population 
+2. Evaluate the *fitness* population
+3. Select parents and *reproduce* the next generation
+4. Replace the old generation with the new one if it improves in the *fitness* function
+5. Repeat from step $2$ for $n$ iterations
+
+>[!important] 
+>The *fitness function* is the only link between a classical *genetic algorithm* and the problem it's solving
 
 # Definitions
 
@@ -13,9 +19,12 @@
 
 The *selection operator* tries to replicate a successfull solution at a rate proportional to their realtive quality ( using the *fitness function* )
 
+>[!note] 
+>Generally the *fitness function* has higher value for instances that are closer to a good solution , this value is used to calculate the probabilty with which a pair of solution is selected for *recombination*
+
 + **Recombination ( cross-over )**
 
-Decomposes two solutions and rabìndomly recompose them in order to form a new solution
+Decomposes two solutions and randomly recompose them in order to form a new solution
 
 + **Mutation**
 
@@ -27,4 +36,6 @@ Random perturbation of the candidate solution
 + **Steady-State**
 	A few members of the original population get replaced in each generation 
 
+# Example Algorithm
 
+![[MAXONE problem]]
