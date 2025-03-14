@@ -408,7 +408,6 @@ Vogliamo portare l'insieme delle *dipendenze funzionali* ad una forma più stand
 >>[!note] 
 >>Ossia ci basta che nella chiusura risultante sia presente l'attributo estraneo
 
-
 Ossia se rimuoviamo questi attributi estranei la dipendenza fa ancora parte della chiusura ( ossia non contribuiscono nel determinare univocamente la dipendenza )
 
 >[!important] Definizione Dipendenza Ridondante
