@@ -938,7 +938,7 @@ Sia $R(T,F)$ lo schema di partenza :
 >+ $R_2(\{ C,D \})$ tramite $C \to D$
 >+ $R_3(\{ B,D \})$ tramite $D \to B$
 >
->Nessuno schema è contenuto in altro quindi non dobiamo eliminarne alcuno
+>Nessuno schema è contenuto in altro quindi non dobbiamo eliminarne alcuno
 >Poichè $\{ A,B,C \}$ è una superchiave per $R$ non è necessario aggiungere altri schemi
 
 ##### Proprietà *3NF*
