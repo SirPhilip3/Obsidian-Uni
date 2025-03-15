@@ -2,3 +2,5 @@
 
 tools
 
+1
+strace ltrace 
