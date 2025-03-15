@@ -1,1 +1,0 @@
-Itroduzione a python 
