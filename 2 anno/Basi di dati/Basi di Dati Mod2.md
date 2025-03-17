@@ -1443,6 +1443,22 @@ UPDATE NewStuff SET year = 1915;
 >[!note]
 >Serve un *trigger* analogo per `{sql}UPDATE`
 
+>[!example] 
+
+```postgresql
+CREATE OR REPLACE FUNCTION price_fn() RETURNS TRIGGER AS $$
+	BEGIN
+	RAISE NOTICE executing price_fn with '% %', old, new
+	RETURN Null -- return old
+	END
+	$$ language plpgsql
+
+CREATE OR REPLACE TRIGGER proce_trigger
+BEFORE UPDATE ON lab.pc -- 
+FOR EACH ROW -- accesso a new and old
+WHEN new.price < old.price -- viola il vincolo -> volgio rifiutare l'aggiornament -> restituisci null , old ritorna le cose vecchie , altri trigger sulla stessa tabella vengono eseguiti comunque
+EXECUTE FUNCTION price_fn();
+```
 ##### Uso dei Trigger
 
 Esistono 2 tipi di *trigger* : 
@@ -1943,8 +1959,6 @@ Una *procedura* può essere invocata attraverso il comando `CALL`
 >Dopo questo gli argomenti sono solo nella domanda di teoria
 
 ---
-
-
 ### Sicurezza e autenticazione
 
 Tutti i principali *DBMS* implementano meccanismi di : 
