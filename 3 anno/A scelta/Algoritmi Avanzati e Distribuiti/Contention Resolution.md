@@ -28,7 +28,7 @@ $$\frac1e\leq \bigg(1-\frac1n\bigg)^{n-1}\leq\frac 12$$
 $$\frac1n\cdot \frac1e\leq\frac1n\cdot\bigg(1-\frac1n\bigg)^{n-1}\leq \frac1n \cdot \frac12$$
 $$\frac{1}{n\cdot e} \leq \Pr[S(i,t)]\leq \frac{1}{2n}$$
 ---
-We **claim** that the probability that a process $i$ fails to access the shared resource in: 
+We **claim** that the probability that a process $i$ *fails* to access the shared resource in: 
 + $e \cdot n$ *round* is at most $1/e$  
 + $e\cdot n \cdot (c \ln n)$ *rounds* is at most $n^{-c}$ 
 
@@ -38,3 +38,18 @@ We **claim** that the probability that a process $i$ fails to access the shared 
 
 ## Proof
 
+Let's indicate with $F(i,t)$ the process $i$ that *fails* to access the shared resource in rounds $1$ through $t$ 
+
+Since we know that the upper bound for the probability of *succeding* to access the resource is $\frac{1}{e \cdot n}$ ( from the previous proof ) , so the probability of *failing* will be $1-\frac{1}{e \cdot n}$ so the probabilty of doing it $t$ times in a row will be :
+$$\bigg(1-\frac{1}{e\cdot n}\bigg)^{t}$$
+Chosing : 
++ $e\cdot n$  we will have : $$\Pr[F(i,t)]\leq \bigg(1-\frac{1}{e\cdot n}\bigg)^{e \cdot n} \leq  \frac{1}{e}$$
++ $e\cdot n \cdot c \ln n$ we will have : $$\Pr[F(i,t)] \leq \bigg(\frac{1}{e}\bigg)^{c\ln n} = n^{-c}$$
+---
+We **claim** that the probability that *all* processes succeed within $2e\cdot n \cdot \ln n$ *rounds* is at least $1-\frac{1}{n}$
+
+## Proof
+
+Let $F(t)$ be the event that at least one of the $n$ processes *fails* to access the shared resource in any of the $t$ *rounds* :
+$$\Pr[F(t)]=\Pr\bigg[\bigcup_{i=1}^n F(i,t)\bigg]\leq \sum_{i=1}^n \Pr[F(i,t)] \leq n\bigg(1-\frac{1}{en}\bigg)^t$$Chosing $t=2e\cdot n \cdot \ln n$ will give us :
+$$\Pr[F(t)]\leq$$
