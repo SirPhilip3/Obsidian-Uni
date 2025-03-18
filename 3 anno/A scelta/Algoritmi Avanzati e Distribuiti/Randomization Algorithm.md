@@ -94,4 +94,11 @@ $$Pr[\text{find a}]=1-(1/2)^k$$
 
 # PseudoRandom generators
 
+In order to allow for fair coin flips in constant time we will use *pseudo-random generators* , these take as input a *seed* , and based on that they will produce a sequence of random numbers 
+
+>[!note] 
+>Given the same *seeds* at different times they will produce the same result 
+
+>[!warning] 
+>*Pseudo-random generators* are not real random number generators but they are good enuogh
 
