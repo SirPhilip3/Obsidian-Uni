@@ -37,3 +37,19 @@ Each agent $j$ must construct a path $P_j$ from node $s$ to it's corresponding t
 	\end{algorithm}
 ```
 
+>[!important] Social Optimum
+>The *social optimum* is the *minimum* total cost of all the *agents* ( the sum of all the path tha agents take )
+>>[!note] 
+>>In general there can be many **Nash equilibra** and they don't necessary equal to the *social optimum*
+
+>[!example] 
+>#todo
+
+>[!important] Theorem
+>There is a *Nash Equilibrium* for which the total cost to all *agents* **exceeds** that of the *social optimum* by at most a factor of $H(k)$ where $H(k)$ is the harmonic number $1+\frac{1}{2}+\frac{1}{3}+\dots+\frac{1}k$ 
+>
+>So the *best* Nash Equilibrium is never more than a factor of $H(k)$ *worse* than the *social optimum*
+
+>[!note] 
+>Finding any *Nash equilibrium* is an $NP-Hard$ problem
+
