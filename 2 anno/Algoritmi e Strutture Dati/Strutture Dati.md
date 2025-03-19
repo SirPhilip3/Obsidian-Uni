@@ -1841,9 +1841,9 @@ La complessità del quicksort è quindi $\Theta(n^2)$ nel caso peggiore , ma la 
 
 Inoltre si tratta di un ordinamento *in loco* , mal'algoritmo *non* è *stabile*
 ### Ottimizzazioni
-#### Randomize quicksort
+#### Randomized quicksort
 
-Ciò che mette in difficolatà il quicksort sono gli array ordinati per fare in modo che non abbiano un impatto nella complessità finale prendiamo un *pivot* casuale , questo abbasserà la probabilità che avvenga il caso peggiore 
+Ciò che mette in difficoltà il quicksort sono gli array ordinati per fare in modo che non abbiano un impatto nella complessità finale prendiamo un *pivot* casuale , questo abbasserà la probabilità che avvenga il caso peggiore 
 
 ```cpp
 randomized_quicksort(array A, int p, int r)
