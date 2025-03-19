@@ -50,6 +50,7 @@ We **claim** that the probability that *all* processes succeed within $2e\cdot n
 
 ## Proof
 
-Let $F(t)$ be the event that at least one of the $n$ processes *fails* to access the shared resource in any of the $t$ *rounds* :
+Let $F(t)$ be the event that *at least one* of the $n$ processes *fails* to access the shared resource in any of the $t$ *rounds* :
 $$\Pr[F(t)]=\Pr\bigg[\bigcup_{i=1}^n F(i,t)\bigg]\leq \sum_{i=1}^n \Pr[F(i,t)] \leq n\bigg(1-\frac{1}{en}\bigg)^t$$Chosing $t=2e\cdot n \cdot \ln n$ will give us :
-$$\Pr[F(t)]\leq$$
+$$\Pr[F(t)]\leq n \cdot n^{-2} = 1/n$$
+Thus the probability that *all* processes will succeed within $2 e \cdot n \ln(n)$ is at least : $$1-1/n$$
