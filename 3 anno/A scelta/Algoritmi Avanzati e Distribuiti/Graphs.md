@@ -30,14 +30,3 @@
 
 >[!important] Degree
 >A *degree* of a vertex of an undirected graph is the number of *indegree* ( edges that are coming into the vertex ) and *outdegree* ( edges that are going away from the vertex ) edges 
-
->[!important] Eulerian circuit
->
->A closed path that *visits* *each* *edge* of the graph exactly *once* ( or each *node* at *least* once )
->>[!note] 
->>It needs to start and finish at the same vertex for the definition of *circuit*
-
->[!important] Hamiltonian circuit
->A closed path that visits all *verteces* exactly once
-
-
