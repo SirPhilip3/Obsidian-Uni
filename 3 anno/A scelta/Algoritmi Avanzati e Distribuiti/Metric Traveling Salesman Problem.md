@@ -5,7 +5,7 @@
 >
 
 >[!important] Eulerian Path Problem
->Given an *undirected* graph find a walk visting every edge exactly once
+>Given an *undirected* graph find a walk visiting every edge exactly once
 
 It can be proven that there is no constant $\rho$ factor approximation algorithm for **TSP** ( unless $P=NP$ )
 
@@ -23,7 +23,7 @@ Given a *complete* graph with edge costs satisfying *triangular inequalities* , 
 
 1. Find the [[Strutture Dati#Alberi di copertura minimi|minimum spanning tree]] $MST(G)$ ( using [[Strutture Dati#Algoritmo di Prim|Prim]] this step has complexity $O(m \log n)$ or $O(m + n \log n)$ depending on the data structure used )
 2. Double all of it's edges : $T=2\times MST(G)$
-3. Since we have doubled each edge than the graph $T$ is *Eulerian* ( all verteces have an even degree and it's connected ) , we can traverse it visiting each edge exactly once 
+3. Since we have doubled each edge than the graph $T$ is *Eulerian* ( all verteces have an even degree and it's connected ) , we can trasverse it visiting each edge exactly once 
 4. Create shortcuts in the *Eulerian* tour in order to create a *tour* 
 
 ## Shortcuts

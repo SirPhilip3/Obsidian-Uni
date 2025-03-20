@@ -59,6 +59,9 @@ The following is a $2$-approximation algorithm
 
 Suppose we have the *vertex cover* $|A|$ and an *optimal solution* $|VC^*|$ 
 
+>[!note] 
+>$A$ is the set of *edges* while $VC^*$ is the set of *verteces*
+
 By construction we need to have at least one endpoint of each edge in $A$ in the optimal solution $VC^*$
 
 >[!important] 
