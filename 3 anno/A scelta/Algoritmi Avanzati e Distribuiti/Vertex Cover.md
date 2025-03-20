@@ -9,7 +9,7 @@ The problem of the **Vertex Cover** ( **VC** ) says the following :
 >[!important] Definition
 >Given a undirected graph $G=(V,E)$ ( where $V$ are *vertices* and $E$ are *edges* ) and an integer $k$  is there a subset of vertices $V'\subseteq V$ such that : 
 >+ $|V'| \le k$
->+ For each of it's *edges* at least one of it's *endpoint* is in $V'$
+>+ For each of $G$ *edges* at least one of it's *endpoint* is in $V'$
 
 >[!success] Optimization Version
 >Gets in *input* a graph $G$ and returns the *Vertex Cover* $V'$ of **minimum** size
@@ -62,7 +62,7 @@ Suppose we have the *vertex cover* $|A|$ and an *optimal solution* $|VC^*|$
 >[!note] 
 >$A$ is the set of *edges* while $VC^*$ is the set of *verteces*
 
-By construction we need to have at least one endpoint of each edge in $A$ in the optimal solution $VC^*$
+By construction we need to have at least one endpoint of each edge present in $A$ in the optimal solution $VC^*$
 
 >[!important] 
 >No two *edges* in $A$ share an endpoint by construction
