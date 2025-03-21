@@ -15,7 +15,7 @@ This is a [[Strutture Dati#Algoritmi Greedy|greedy]] algorithm that considers th
 	    \State $i = \min_k L_k$
 	    \Comment{Machine $i$ has the smallest load}
 	    \State $J(i) \leftarrow J(i) \cup \{j\}$
-	    \Comment{Assegna job $j$ to machine $i$}
+	    \Comment{Assign job $j$ to machine $i$}
 	    \State $L_i \leftarrow L_i + t_j$
 	    \Comment{Update the load of machine $i$}
     \EndFor
