@@ -34,6 +34,8 @@
 Complexity : $O(m)$ , where $m=|E|$ ( number of *edges* )
 
 >[!example]
+>![[FindEulerCircuit.excalidraw]]
+
 # Hamiltonian
 
 

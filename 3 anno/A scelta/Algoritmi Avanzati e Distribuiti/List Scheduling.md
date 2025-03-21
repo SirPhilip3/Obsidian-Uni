@@ -32,7 +32,7 @@ Where :
 >If we utilize a [[Strutture Dati#Code di Priorità|priority queue]] to rapresent the *Loads* of each machine the complexity becomes $O(n \log m)$ instead of $O(n \cdot m)$ ( since we would have had to explore the entire list to find the minimum load )
 
 >[!example] 
->#todo
+![[output.gif.mp4]]
 
 >[!note] 
 >If we have at most $m$ *jobs* than *list scheduling* becomes an optimal algorithm
@@ -60,5 +60,6 @@ Let's consider a *job* $j$ that has it's finish time as the finish time of the a
 
 Than we will have that : $L_i - t_j \leq L_k$ for all $1\leq k \leq m$ this because we know that $L_i$ is the finishing time and that we assigned only 1 *job* to the machine , this implies that when it was the machine had the lowest *load* ( as per the algorithm ) 
 
+#todo 
 
 
