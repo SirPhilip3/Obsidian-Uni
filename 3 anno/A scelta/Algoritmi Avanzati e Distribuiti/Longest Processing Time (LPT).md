@@ -26,12 +26,12 @@ In the preprocessing step we simpliy reorder the list of  jobs in *decresing* or
 	\end{algorithmic}
 	\end{algorithm}
 ```
-
+>[!example] 
+>![[LPT.mp4]]
 # Approximation discussion
 
 >[!important] Theorem 
 >**Longes Processing Time** is a $1.5$-approximation algorithm
-
 ## $\rho$ proof
 
 >[!note] Lemma 3 
