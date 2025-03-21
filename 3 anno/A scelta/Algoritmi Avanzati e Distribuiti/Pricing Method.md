@@ -36,7 +36,7 @@ Each *edge* must be covered by some *vertex* , each *edge* $e=(i,j)$ pays some p
 
 ```pseudo
 	\begin{algorithm}
-	\caption{Weightes-Vertex-Cover-Approx}
+	\caption{Weighted-Vertex-Cover-Approx}
 	\begin{algorithmic}
 	\Input G, w
 	\ForAll{e in E}

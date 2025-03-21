@@ -37,7 +37,7 @@ A *local search algorithm* has a solution $S$ , at a given step it chooses a nei
 >[!note] 
 >Each [[Vertex Cover]] $S$ has at most $n$ neighbors
 
-The local search algorithm will consist in searching all the neighbouring solutions and tring to find the smallest [[Vertex Cover]] 
+The local search algorithm will consist in searching all the neighbouring solutions and trying to find the smallest [[Vertex Cover]] 
 
 >[!example] Possible algorithm
 >

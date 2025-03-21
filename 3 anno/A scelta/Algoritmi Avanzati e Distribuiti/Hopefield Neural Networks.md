@@ -10,13 +10,13 @@
 + If $w_{uv} > 0$ than $u$ and $v$ need to have *different* state
 
 >[!important] 
->In generale no configuration respects all constraints
+>In general no configuration respects all constraints
 
 >[!note] *Good* edge
 >Considering a configuration $S$ , *edge* $e=(u,v)$ is *good* if $w_e s_u s_v < 0$ ( so if $w_e <0$ than $s_u = s_v$ and if $w_e >0$ $s_u \neq s_v$ )
 
 >[!note] *Satisfied* node
->Considering a configuration $S$ a node $u$ is *satisfied* if the total absolute weight of all *good* edges incident to $u$ is at least as large as the total absolute weight of all *bad* edges incident to $u$
+>Considering a configuration $S$ a node $u$ is *satisfied* if the total absolute weight of all *good* edges incident to $u$ is at least *as large as* the total absolute weight of all *bad* edges incident to $u$
 
 >[!note] *Stable* configuration
 >A configuration is *stable* if all nodes are *satisfied* 
