@@ -6,7 +6,7 @@
 	\If{$|S| = 0$} 
 		\Return
     \EndIf
-    \State Cheose a splitter $a_i \in S$ uniformly at random
+    \State Choose a splitter $a_i \in S$ uniformly at random
     \ForAll{$a\in S$}
 	    \If{$a < a_i$} 
 	    \State put a in $S^-$

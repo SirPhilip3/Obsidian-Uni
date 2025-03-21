@@ -1,4 +1,4 @@
-Tring to approximate $\pi$ , by droppin $N$ *needles* of unit ( $1$ ) length in a fllor that is subdivided in boards of witch theys width is $2$ units
+Tring to approximate $\pi$ , by dropping $N$ *needles* of unit ( $1$ ) length in a fllor that is subdivided in boards of witch theys width is $2$ units
 
 Some of the needle will fall between boards 
 >[!important] Leclerc Theorem

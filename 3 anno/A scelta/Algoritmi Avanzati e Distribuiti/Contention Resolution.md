@@ -16,7 +16,7 @@ We **claim** that the probability of success of a process $i$ to access the reso
 $$\frac{1}{e \cdot n} \leq \Pr[S(i,t)] \leq \frac{1}{2n}$$
 ## Proof
 
-Since we need to have only one process access the resource at a certain time $t$ than we need to be sure that none of the reamaining processes are requesting access to the resource : 
+Since we need to have only one process access the resource at a certain time $t$ than we need to be sure that none of the remaining processes are requesting access to the resource : 
 $$\Pr[S(i,t)] = p \cdot (1-p)^{n-1}$$
 By sobstitution we have : 
 $$\Pr[S(i,t)]=1/n \cdot (1-1/n)^{n-1}$$
