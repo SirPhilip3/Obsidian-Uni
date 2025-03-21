@@ -55,9 +55,8 @@ Put the first center at the best possible location for a single center ( $k=1$ )
 >At the end of the algorithm all centers in $C$ are, between each other , at least $r(C) = \max_i dist(s_i, C)$ apart , by contruction of the algorithm
 
 >[!example]
->#todo
+>![[GreedyCenterSelection.mp4]]
 >
-
 ### Analysis
 
 >[!important] Theorem
