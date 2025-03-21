@@ -12,7 +12,7 @@ Find a tour of a given set of cities so that each city is visted only once and t
 
 The *fitness* $f(i)$ of a solution is the *inverse cost* of the corresponding tour , in this way higher cost tour will have less probability to be selected 
 
-## Recombiantion ( Cross-over )
+## Recombination ( Cross-over )
 
 >[!warning] 
 >Normal *cross-over* operation will often lead to inadmissible solutions
@@ -66,7 +66,7 @@ Pick two values at random and than *invert* the *substring* between them
 
 + **Scramble** mutation
 
-Pick a subset of values at random and rearrenge them randomly 
+Pick a subset of values at random and rearrange them randomly 
 
 >[!example] 
 >![[Pasted image 20250314104238.png]]
