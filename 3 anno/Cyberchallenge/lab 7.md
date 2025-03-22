@@ -1,4 +1,4 @@
-Euclide algo impl
+	Euclide algo impl
 
 ```python
 def my_gcd(a,b):
