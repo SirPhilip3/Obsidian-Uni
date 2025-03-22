@@ -28,3 +28,5 @@ piccolo th di fermat
 
 inverso mult  di un qualsis n -> primo dei due coeff 
 se num negatizo -> inverso è mod il numero primo -> tra catena di congruenze -> predi num compreso tra 0 e p
+
+attachi contro rsa
