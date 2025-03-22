@@ -41,3 +41,6 @@ xgcd -> extended  -> due par che fa diventare vera u e1 + v e2 = 1
 
 $c1 ^ u \cdot c2 ^ v = m ^ {e_1 \cdot u} \cdot m ^ {e_2 \cdot v}$ per xgcd -> $m^1$ 
 c -> cyphertext == m\^e1
+
+---
+
