@@ -40,9 +40,13 @@ The following is a $2$-approximation algorithm
 	\end{algorithmic}
 	\end{algorithm}
 ```
-
+ 
 >[!example] 
 ![[VertexCover.excalidraw]]
+
+>[!note] Complexity
+>$O(V \cdot E)$ , at most $|E|$ *iteratrions* each with maximum complexity $O(V)$
+
 ## $\rho$ proof
 
 **Hypotesis** : 
