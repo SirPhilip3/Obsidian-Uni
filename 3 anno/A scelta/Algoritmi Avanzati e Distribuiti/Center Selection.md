@@ -10,9 +10,6 @@
 >>[!note] 
 >>Practically find the smallest radius of the circle starting from one of the $k$ *centers* that applied to all other centers contains all the *sites*
 
->[!example] 
->#todo
-
 Some **Notation** : 
 + $dist(x,y)$ : distance between $x$ and $y$
 + $dist(s_i,C) = \min_{c \in C}dist(s_i, c)$ : distance from $s_i$ ( a *site* ) to it's closest center
@@ -71,6 +68,8 @@ Let's assume that $r(C^*) < \frac{1}{2}r(C)$
 
 >[!warning] Contradiction
 >$dist(s,C)\leq dist(s,c_i)\leq dist(s,c_i^*)+dist(c_i^* ,c_i)\leq 2 r(C^*)$
+
+![[Pasted image 20250323124203.png]]
 
 >[!note] 
 >Unless $P=NP$ there is no $\rho$-approximation algorithm for the *center selection problem* that has $\rho < 2$

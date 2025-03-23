@@ -60,6 +60,17 @@ Let's consider a *job* $j$ that has it's finish time as the finish time of the a
 
 Than we will have that : $L_i - t_j \leq L_k$ for all $1\leq k \leq m$ this because we know that $L_i$ is the finishing time and that we assigned only 1 *job* to the machine , this implies that when it was the machine had the lowest *load* ( as per the algorithm ) 
 
-#todo 
+Now the sum of the *load* ( $L_k$ ) of all the machines will need to be greater or equal to the previous *load* of the machine that rapresent the *makespan* of the system multiplied by $m$ ( number of machine ) , this is *true* because $L_i - t_j$ will be the lowest *load* before assigning the last job 
+$$\sum_k L_k \ge m\cdot (L_i - t_j)$$
+This can be rewritten as : $$L_i - t_j \le \frac{1}{m}\sum_k L_k$$
+>[!note] 
+>The $\sum_k L_k$ ( *total load* ) is the *total time* $\sum_k t_k$ 
 
+$$L_i - t_j \le \frac{1}{m}\sum_k t_k$$
+By **Lemma 2** we can write : 
+$$L_i - t_j \le L^*$$
+The *makespan* will be :
+$$L_i = (L_i - t_j) + t_j \le L^* + L^* \le 2 \cdot L^*$$
+>[!note] 
+>For **Lemma 1** $t_j \leq L^*$ 
 

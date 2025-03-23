@@ -50,5 +50,5 @@ Applying the sobstitution we will have that :
 $$L_i \leq L^* + L^*/2 \leq 1.5\cdot L^*$$
 
 >[!note] 
->it can be demonstrated that the real $\rho$ value is $4/3$
+>It can be demonstrated that the real $\rho$ value is $4/3$
 
