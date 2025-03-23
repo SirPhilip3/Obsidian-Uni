@@ -64,7 +64,7 @@ Now suppose that we are in a *nonstable* configuration $S$ and we flip the *stat
 >+ *bad* will become *good*
 >+ *good* will become *bad*
 >
->And the edges that wheren't incident will remain the same 
+>And the edges that weren't incident will remain the same 
 >
 
 Let :
@@ -77,7 +77,7 @@ Than we will have that :
 $$\Phi(S') = \Phi(S) - g_u + b_u$$
 This is true since the *good* $g_u$ will become *bad* and be subtracted from $S$ and the other way around for $b_u$ 
 
-Since $u$ is *unsitisfied* we know that $b_u > g_u$ and since they are both integers we can write that $b_u \ge g_u +1$ , by substitution we will have : 
+Since $u$ is *unsatisfied* we know that $b_u > g_u$ and since they are both integers we can write that $b_u \ge g_u +1$ , by substitution we will have : 
 $$\Phi(S') \ge \Phi(S) +1 $$
 This shows us that the value of $\Phi$ *increases* by at least $1$ with every flip until it reaches the maximum of $W$ when it will **Terminate** 
 
