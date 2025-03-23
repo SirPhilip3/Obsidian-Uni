@@ -17,7 +17,7 @@ Each *edge* must be covered by some *vertex* , each *edge* $e=(i,j)$ pays some p
 >*Edges* incident to *vertex* $i$ should pay $\leq w_i$ in total , so for each *vertex* $i$ : $$\sum_{e=(i,j)}p_e \leq w_i$$ 
 >
 >>[!note] 
->>In proctice the sum of all the weight on the *edges* incident to a *vertex* $i$ sould be less or equal to the weight on $i$
+>>In practice the sum of all the weight on the *edges* incident to a *vertex* $i$ sould be less or equal to the weight on $i$
 
 >[!important] Lemma
 >For any [[Vertex Cover]] $S$ and any fair prices $p_e : \sum_e p_e \leq w(S)$ 
@@ -41,7 +41,7 @@ Each *edge* must be covered by some *vertex* , each *edge* $e=(i,j)$ pays some p
 	\Input G, w
 	\ForAll{e in E}
 		\State $p_e=0$ 
-		\Comment{Initilly set all the edges weight to 0}
+		\Comment{Initially set all the edges weight to 0}
     \EndFor
     \While{$\exists$ edge $i-j$ such that neither $i$ nor $j$ are tight}
 	    \State Select this edge $e$
