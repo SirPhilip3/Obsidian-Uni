@@ -66,7 +66,7 @@ We can get a better approximation if we use **Graph matching** :
 ![[matchingGraph.excalidraw]]
 
 >[!important] Perfect Matching
->A perfect matching is a *matching* in witch every *vertex* si marched ( covered ) 
+>A perfect matching is a *matching* in whitch every *vertex* si marched ( covered ) 
 >>[!note] 
 >>In weighted graphs this can have a weight , in the previous example the weight is $16$
 
@@ -87,7 +87,7 @@ We can get a better approximation if we use **Graph matching** :
 
 1. $cost(T)\leq cost(OPT)$ : this is true since *OPT* is a cycle so removing any edge implies building a [[Strutture Dati#Alberi di copertura|spanning tree]] and removing an edge means lowering the cost 
 2. $cost(M) \leq 0.5 \times cost(OPT)$ : a *tour* always contains $2$ matching this implies that the cost of the *minimum weight perfect matching* is *at most* $0.5 \times cost(OPT)$
-3. By combaning the cost of the [[Strutture Dati#Alberi di copertura|spanning tree]] ( $T$ ) and the cost of the *matching* ( $E$ ) we will have that : $cost(EC) = cost(T)+cost(M) \leq 1.5\times cost(OPT)$
+3. By combining the cost of the [[Strutture Dati#Alberi di copertura|spanning tree]] ( $T$ ) and the cost of the *matching* ( $E$ ) we will have that : $cost(EC) = cost(T)+cost(M) \leq 1.5\times cost(OPT)$
 4. With the *shortcut* we know that $cost(A)\leq cost(EC)\leq 1.5 \times cost(OPT)$
 
 In the end we will have that : 
