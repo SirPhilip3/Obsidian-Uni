@@ -28,7 +28,6 @@ Given a partition $(A,B)$ move one node from $A$ to $B$ or from $B$ to $A$ if it
 
 We can add a stopping criterion : 
 + When the sum of the weight in each partitions is lower than the weight of the *cut* we can stop the algorithm
-
 ## $\rho = 1/2$ proof
 
 >[!important] Theorem
