@@ -5,7 +5,7 @@ Some of the needle will fall between boards
 >If we drop 1 needle of length $l$ on the floor and the boards are ata a distance $d$ the probability thatit will cross the board is $2 \cdot l / \pi \cdot d$ 
 
 >[!example] 
->In our case $l=1$ and $d=2$ so $(2 \cdot l) / (\pi \cdot d) = (2 \cdot l )/ (2 \cdot \pi) = 1 / \pi$
+>In our case $l=1$ and $d=2$ so $(2 \cdot l) / (\pi \cdot d) = (2 \cdot 1 )/ (2 \cdot \pi) = 1 / \pi$
 
 Then if we drop $n$ needles the number of needle that will cross the board is $k=n/\pi$ 
 
