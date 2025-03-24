@@ -40,4 +40,4 @@ Random perturbation of the candidate solution
 
 ![[MAXONE problem]]
 
-![[Traveling Salesman Problem]]
+![[Random Traveling Salesman Problem]]

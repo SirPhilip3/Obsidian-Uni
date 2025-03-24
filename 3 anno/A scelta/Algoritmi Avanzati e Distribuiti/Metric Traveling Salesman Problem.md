@@ -17,7 +17,7 @@ Given a *complete* graph with edge costs satisfying *triangular inequalities* , 
 >
 >A graph is called *metric* if :
 >+ For any two *vertices* $u,v$ in the graph than $w(u,v)=w(v,u)$ 
->+ The *Triangle Inequlity* holds if for any three vertices $u,v,x$ in the graph $w(u,v) \leq w(u,x)+w(x,v)$
+>+ The *Triangular Inequlity* holds if for any three vertices $u,v,x$ in the graph $w(u,v) \leq w(u,x)+w(x,v)$
 
 # $2$-approximation Algorithm
 
