@@ -56,7 +56,7 @@ Each *edge* must be covered by some *vertex* , each *edge* $e=(i,j)$ pays some p
 
 #### Termination
 
-The algotithm terminates because at least one new node become *tight* after each iteration of the while loop , and since the number of *edges* are finite at some point the algorithm will terminate
+The algorithm terminates because at least one new node become *tight* after each iteration of the while loop , and since the number of *edges* are finite at some point the algorithm will terminate
 #### Correctness
 
 Let $S$ be the set of all *tight* nodes when the algorithm *terminates* than :
@@ -69,7 +69,7 @@ If some *edge* $i-j$ is uncovered than neither $i$ nor $j$ will be *tight* , but
 Let $S^*$ be the optimal [[Vertex Cover]] than $w(S) \leq 2 w(S^*)$
 
 $$w(S) = \sum_{i \in S} w_i = \sum_{i \in S}\sum_{e=(i,j)} p_e$$
-This is possible becouse all the nodes in $S$ are *thigh* by definition of the algorithm 
+This is possible becouse all the nodes in $S$ are *thight* by definition of the algorithm 
 $$\sum_{i \in S}\sum_{e=(i,j)} p_e \leq \sum_{i \in V}\sum_{e=(i,j)} p_e$$
 Since $S \subseteq V$ and $prices \geq 0$ ( $V$ is the set of all vertices in the graph $G$ ) 
 >[!note] 

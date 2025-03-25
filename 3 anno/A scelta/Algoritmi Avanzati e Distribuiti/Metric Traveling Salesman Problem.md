@@ -92,3 +92,4 @@ We can get a better approximation if we use **Graph matching** :
 
 In the end we will have that : 
 $$cost(A)\leq 1.5 \times cost(OPT)$$
+ 
