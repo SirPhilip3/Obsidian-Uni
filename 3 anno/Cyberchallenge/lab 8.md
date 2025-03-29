@@ -8,3 +8,4 @@ vogliamo LD_PRELOAD= -> env per set la priority di che libreria loadda
 `ltrace -p <pid>` -> dynamic function calls
 `strace` > sys call
 
+struct non esiste in asm
