@@ -119,8 +119,54 @@ Where we have that :
 + $\forall x, N_i(x) = N_o(x)=N(x)$ and
 + $\forall y\in N(x): \lambda_x(x,y) = \lambda_y(x,y)$
 
+### Model Restrictions
 #### Reliability Restrictions
 
-+ **Garanteed delivery**
-+ **Partial Reliability**
-+ **Total Reliability**
+>[!important] **Garanteed delivery**
+>Any message that is sent will be recieved uncorrupted
+
+>[!important] **Partial Reliability**
+>There will be no failures 
+
+>[!important] **Total Reliability**
+>
+>No failures have occurred nor will occur ( from the start of the system to it's end )
+
+#### Topological Restictions
+
+>[!important] Connection
+>The graph $G$ must be strongly *connected*
+
+>[!important] Topology
+>+ The graph must be of a maximum *diameter* ( longhest minimum walk between two nodes )
+>+ We can limit its number of *nodes* or *vertices*
+
+#### Time Restriction
+
+>[!important] Bounded Communication Delay
+>
+>There is a constant $\Delta$ that , in abscence of any failures , rapresents the maximum communication delay of any message on any link
+
+
+>[!important] Syncronized clocks 
+>All *clocks* are incremented by one unit simultaneously 
+
+>[!warning] 
+>This is impossible in prictice , we will than consider *asyncronous systems*
+
+### Complexity Measures
+
+In the complexity mesure we consider the *communication cost* as the most important factor ( *computational cost* will be included in the *communication cost* )
+
+We will use two types of measures :
++ The *amount of communication activities*
++ The *time required* for the execution of the computation
+#### Amount of Communication Activities
+
+We use the amount of messages send ( *message cost* ) and the size of the messages ( *bit complexity* ) sent as complexity measures
+
+#### Time
+
+Depending if the *clock* is *sincked* or not we can have two types of complexity : 
++ *Ideal execution delay* : where the *clocks* are syncked and the cost of the transmission is unitary
++ *Casual time complexity* : is the lenght of the longhest chain of casually related message transmission 
