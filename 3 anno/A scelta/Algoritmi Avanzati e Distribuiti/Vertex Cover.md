@@ -42,7 +42,7 @@ The following is a $2$-approximation algorithm
 ```
  
 >[!example] 
-![[VertexCover.excalidraw]]
+![[VertexCover.excalidraw.png]]
 
 >[!note] Complexity
 >$O(V \cdot E)$ , at most $|E|$ *iteratrions* each with maximum complexity $O(V)$
