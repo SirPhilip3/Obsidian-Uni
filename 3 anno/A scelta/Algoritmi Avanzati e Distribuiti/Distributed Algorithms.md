@@ -82,3 +82,45 @@ Various *entities* can have different *roles* , we can create `if` in the *behav
 
 ### Communication
 
+Each message is a *finite sequence of bits*
+
+The communication is *directional* :
++ $N_o(x)$ : *out-neighbors* of entity $x$
+	+ An *entity* $x$ can send messages only to its *out-neighbors* 
++ $N_i(x)$ : in-neighbors of entity $x$
+	+ An *entity* $x$ can recieve messages only from its *in-neighbors* 
++ $N(x) = N_o(x)\cup N_i(x)$ : neighborhood of $x$
+
+We can create a graph describing the *communication topology* : $G(V,A)$ 
++ $V$ are *entities*
++ $A$ arcs defined by $N$ 
+
+>[!example] 
+>#todo
+
+>[!important] Finite Transmission Delays 
+>
+>In abscence of *faults* a message from $x$ to one of it's *out-neighbor* $y$ reaches $y$ in a *finite time* 
+
+>[!important] Local Orientation
+>Each entity can distingush among its neighbors ( both *in-neighbor* and *out-neighbor* )  ( it will assign labels to each out going connection , like port numbers )
+>
+>These lables are rapresented formally as : $\lambda_x(x,y)$ ( for the outgoing label on $x$ ) , $\lambda_y(x,y)$ ( for the incoming label on $y$ )
+>>[!example] 
+![[ConnectionDist.excalidraw]]
+
+>[!important] Message Ordering
+>
+>In abscence of failures , messages transmitted along the same link will follow **FIFO** ( *first in first out* ) ordering
+
+#### Bidirectional Links
+
+Where we have that : 
++ $\forall x, N_i(x) = N_o(x)=N(x)$ and
++ $\forall y\in N(x): \lambda_x(x,y) = \lambda_y(x,y)$
+
+#### Reliability Restrictions
+
++ **Garanteed delivery**
++ **Partial Reliability**
++ **Total Reliability**
