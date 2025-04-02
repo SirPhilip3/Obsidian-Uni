@@ -1,21 +1,50 @@
 # The Problem
 
-
-
+One *entity* wants to send some information to all the other entities of the network 
 # Algo
 
+>[!note] 
+>We need to define the actions that every entity takes indipendently from which entity starts
+## Assumpion / Restrictions
 
-broadcast problem : -> 1 entity wants to share with eveyone
++ We need to have a **Unique Initiatior** ( this is by definition of the problem )
++ The *graph* needs to be **Connected** ( otherwise the problem will be unsolvable )
 
-everybody should recieve the information 
+*Simplifying assumptions :*
++ Total reliability
++ Bidirectional links
 
-restricitions : 
-+ unique initiator -> one entity starts everything
-+ Graph connected -> entities will not recieve the info
-+ Total reliability -> can be solved without
-+ bidirectional links -> can be solved without
+>[!info] Idea
+>If an *entity* has some data it sends it to it's neighbours
+## Algorithm
 
---
-spontaneus impulse event -> the external event that start the algo 
-we can not write the state that will do nothing as it will be implicit
+We will have 3 *states* : $S=\{initiator,sleeping,done\}$ 
+
+```pseudo
+	\begin{algorithm}
+	\caption{FLOOD}
+	\begin{algorithmic}
+	\If{INITIATOR}
+		\State spontaneous impulse event
+		\State $\quad$ Send(I) to N(x)
+		\State $\quad$ become(DONE)
+		\State receving(I)
+		\State $\quad$ do-nothing
+    \EndIf
+    \If{SLEEPING}
+	    \State receiving(I)
+	    \State $\quad$ Send(I) to N(x) - \{sender\}
+	    \State $\quad$ become(DONE)
+		\State spontaneous impulse event
+		\State $\quad$ do-nothing
+    \EndIf
+    \If{DONE}
+		\State receiving(I)
+	    \State $\quad$ do-nothing
+		\State spontaneous impulse event
+		\State $\quad$ do-nothing
+    \EndIf
+	\end{algorithmic}
+	\end{algorithm}
+```
 
