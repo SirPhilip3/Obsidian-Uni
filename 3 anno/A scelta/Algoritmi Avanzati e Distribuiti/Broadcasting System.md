@@ -95,6 +95,15 @@ Since the *worst case* complexity is , in order of magnitude , $O(m)$ we can say
 
 ## Time Complexity
 
+>[!note] Ideal Time
+>
+>In one unit of time ( this includes all the operations done by an *entity* and the time that takes to send the message ) all the neighbours of an *entity* $x$ will recieve a message 
 
+### Worst Case
+
+Since the first message is sent by the initiator and has to reach all the *entities* we will have that the *worst case* complexity will be the longhest distance between the initiator and any other *entity* 
+
+>[!info] Distance
+>Let's define the distance $d(a,b)$ as the minimal number of edges between $a$ and $b$ 
 
 # On Known Topologies
