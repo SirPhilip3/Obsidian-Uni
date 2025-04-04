@@ -68,7 +68,7 @@ Eventually every *entity* that recieve the message ( this will happend because o
 ## Correctness
 
 If $G$ is *connected* and there is *total reliability* than every *entity* will eventually receive the information
-## Complexity
+## Message Complexity
 
 In this case we mesure the **message complexity**  
 ### Worst Case
@@ -76,5 +76,25 @@ In this case we mesure the **message complexity**
 In the worst case we will have that $\leq 2$ messagges will be passing on each edge 
 Since there are $m$ *edges* in the graph we will have that the maximum number of messages send will be : 
 $$\leq 2 m \quad O(m)$$
-
+>[!note] More Precisely
+>
+>Let $s$ be the *initiator* than the total number of messages sent will be : 
+>$$|N(s)| + \sum_{x\neq s}(|N(x)-1|)$$
+>Than we can write that 
+>$$\sum_x |N(X)| - \sum_{x \neq s} 1$$
+>$$2m - (n-1)$$
+>
 ### Lower Bound
+
+Since every *entity* must know the information than at least one message must be recieved by each one of the $n-1$ *entities* that initially don't have the information
+
+A better lower bound would be $m$ , this is true since if we don't transmit at least one message per link we could be missing some *entities*
+
+>[!note] 
+Since the *worst case* complexity is , in order of magnitude , $O(m)$ we can say that **FLOOD** is a *message-optimal* solution
+
+## Time Complexity
+
+
+
+# On Known Topologies
