@@ -147,4 +147,30 @@ But we can build a better algorithm for this specific *topology*
 
 + *Message Complexity* : $n-1$  
 >[!info] Intuition
-> 
+>The algorithm builds a subgraph that is a *tree* , this is solved optimaly by **FLOOD**
+
++ *Time Complexity* : $k$
+>[!info] Intuition
+>Since we send messages to *nodes* who differ for at most one bit and there are at most $k$ positions , than $k$ will be $D(G)$
+
+This optimized algorithm is than *optimal* for the *hypercube* topology
+
+## Complete Graph 
+
+Applying **FLOOD** to a *complete graph* :
+
+>[!note] 
+>In a *complete graph* we have $m=n(n-1)/2$
+
+ + Message Complexity : $2m - (n-1) = 2n(n-1)/2 - (n-1) = n(n-1)-(n-1) = (n-1)^2=O(n^2)$ 
+ + Time Complexity : $1$ ( since the $D(G)=1$ since every node is connected to one another )
+
+### Optimized Version
+
+Since every node is connected to one another , also the intializer node needs to be connected to all of the other nodes , we than just send the information to all of the *neighbours* and the algorithm terminates 
+
++ Message Complexity : $n-1$ ( message to every node except himself )
++ Time Complexity : $1$ ( as before )
+
+This algorithm is *optimal*
+
