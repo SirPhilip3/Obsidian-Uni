@@ -121,3 +121,30 @@ We can than say that the **FLOOD** solution has *optimal time complexity*
 >As before we can improve the bound until $\Omega(m)$ 
 # On Known Topologies
 
+## Trees 
+
+On *trees* **FLOOD** is *optimal* :
+
++ Message Complexity : $2m -(n-1) = 2(n-1)-(n-1) = n-1 = m$ 
+	This is true since a *tree* has $n-1$ *edges* ( $m$ )
++ Time Complexity : $D(G)$ 
+
+## [HyperCube](Model%20Topologies#Hypercubes) 
+
+**FLOOD** applied to an *hypercube* :
+
++ Message Complexity : $2(n \log n/2)- (n-1) = n\log n - (n-1) = O(n \log n)$
+
+But we can build a better algorithm for this specific *topology*
+
+>[!note] 
+>Since we know that **FLOOD** on *trees* is optimal we always try to build a tree and than execute **FLOOD**
+
+### Optimized Algorithm
+
+1. The *initiator* sends a message to all of it's *neighbours*
+2. A node that recieves a message from an arc labeled as $l$ will forward the message only on arcs labeled with $l'< l$
+
++ *Message Complexity* : $n-1$  
+>[!info] Intuition
+> 
