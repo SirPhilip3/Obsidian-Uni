@@ -101,9 +101,23 @@ Since the *worst case* complexity is , in order of magnitude , $O(m)$ we can say
 
 ### Worst Case
 
-Since the first message is sent by the initiator and has to reach all the *entities* we will have that the *worst case* complexity will be the longhest distance between the initiator and any other *entity* 
+Since the first message is sent by the initiator and has to reach all the *entities* we will have that the *worst case* complexity will be the longhest distance between the initiator and any other *entity* ( the so called *radius* of $G$ )
 
 >[!info] Distance
->Let's define the distance $d(a,b)$ as the minimal number of edges between $a$ and $b$ 
+>Let's define the *distance* $d(a,b)$ as the *minimal* number of edges between $a$ and $b$ 
 
+Given that any node can be the initiator we will have that : 
+$$D(G) = Max_{x,y}\{ d(x,y)\}$$
+In the worst case ( where the graph is a line ) we will have that the maximum distance will be the number of *entities* $-1$ ( this because the initiator already has the data )
+$$Time \leq D(G) \leq n -1 = O(n)$$
+### Lower Bound
+
+Since every *entity* needs to recieve the information independently from the distance to the initiator than , since the *diameter* of a graph is the maximum minimum distance between two *entities* , the time complexity can't be less :
+$$T(Broadcast) \geq Max_{x,y}\{d(x,y)\} = D(G)$$
+
+We can than say that the **FLOOD** solution has *optimal time complexity*
+
+>[!note] 
+>As before we can improve the bound until $\Omega(m)$ 
 # On Known Topologies
+
