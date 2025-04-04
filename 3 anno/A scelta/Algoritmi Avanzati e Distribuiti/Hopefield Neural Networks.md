@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!note] Hopefield Network Problem
 >Simple model of an associative memory in which a large collection of units are connected by an underlying network and neighboring units try to correlate their states 
 

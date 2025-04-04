@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Problem
 
 Given $n$ processes $P_1,\dots,P_n$ each one of them compete to access a shared resource ( could be a database or a CPU ) 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Definitions
 
 >[!important] Path

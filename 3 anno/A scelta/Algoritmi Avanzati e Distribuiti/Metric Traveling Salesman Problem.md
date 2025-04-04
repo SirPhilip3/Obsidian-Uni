@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Inapproximability of Traveling Salesman Problem
 
 >[!important] Traveling Salesman Problem ( TSP )

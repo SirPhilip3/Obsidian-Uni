@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Idea
 
 + The same randomized algorithm may provide **different** solutions on the same input 

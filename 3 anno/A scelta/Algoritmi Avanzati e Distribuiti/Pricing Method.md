@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Vertex Cover Pracing Method
 
 ## The Problem

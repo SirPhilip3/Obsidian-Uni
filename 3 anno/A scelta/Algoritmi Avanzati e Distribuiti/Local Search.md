@@ -1,3 +1,6 @@
+---
+publish: true
+---
 We use this method if we can't find an *approximation* algorithm for the problem
 
 >[!note] 

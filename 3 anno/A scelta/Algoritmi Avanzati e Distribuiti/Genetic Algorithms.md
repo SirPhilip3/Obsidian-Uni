@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!info] Idea
 >A genetic algorithm maintains a population of candidate solutions for the problem and makes it evolve by iteratively applying a set of **stochastic** *operators*
 

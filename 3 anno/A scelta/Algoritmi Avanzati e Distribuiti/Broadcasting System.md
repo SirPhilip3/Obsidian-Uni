@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Problem
 
 One *entity* wants to send some information to all the other entities of the network 
@@ -48,3 +51,23 @@ We will have 3 *states* : $S=\{initiator,sleeping,done\}$
 	\end{algorithm}
 ```
 
+>[!note] 
+>In an *asyncronous* system there are diffrerent executions that can depend on the speed of the messages
+
+# Proofs
+
+## Termination
+
+>[!note] Local Termination
+>The *entities* terminate the computation ad different instants of time ( when they enter the *done* state ) , this means that there is no *global termination* , only *local termination*
+
+>[!note] Termination Detection Problem
+>No *entity* knows when the entire process terminates ( *termination detection problem* )
+
+Eventually every *entity* that recieve the message ( this will happend because of the *correctness proof* ) will move to the state *done* and will therefore *terminate*
+## Correctness
+
+If $G$ is *connected* and there is *total reliability* than every *entity* will eventually receive the information
+## Complexity
+
+In orde

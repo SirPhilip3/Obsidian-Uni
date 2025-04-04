@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Problem
 
 Given an *undirected* graph $G=(V,E)$ with *weights* on the edges that are *positive* *integers* , find a partition $(A,B)$ of nodes such that the total weight of edges crossing the cut ( edges that connects two nodes of different partitions ) is *maximized*

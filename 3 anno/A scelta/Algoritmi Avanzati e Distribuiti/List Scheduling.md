@@ -1,3 +1,6 @@
+---
+publish: true
+---
 This is a [[Strutture Dati#Algoritmi Greedy|greedy]] algorithm that considers the jobs to schedule in a fixed order ( a list ) and assigns *job* $j$ to the *machine* that has the lowest **Load** so far 
 
 ```pseudo

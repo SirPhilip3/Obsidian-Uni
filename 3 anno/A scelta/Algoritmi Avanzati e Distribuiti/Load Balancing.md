@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The problem
 
 >[!info] Input

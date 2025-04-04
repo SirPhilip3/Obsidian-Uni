@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Problem 
 
 Find a tour of a given set of cities so that each city is visted only once and the total distance traveled ( the sum of the wrights on the edges ) is minimized

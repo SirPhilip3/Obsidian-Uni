@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ```pseudo
 	\begin{algorithm}
 	\caption{RandomizedQuicksort}

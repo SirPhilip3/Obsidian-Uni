@@ -1,3 +1,6 @@
+---
+publish: true
+---
 The *longest processing time* it's an improvment of the [[List Scheduling]] algorithm 
 
 In the preprocessing step we simpliy reorder the list of  jobs in *decresing* order
