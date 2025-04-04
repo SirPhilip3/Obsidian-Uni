@@ -70,4 +70,11 @@ Eventually every *entity* that recieve the message ( this will happend because o
 If $G$ is *connected* and there is *total reliability* than every *entity* will eventually receive the information
 ## Complexity
 
-In orde
+In this case we mesure the **message complexity**  
+### Worst Case
+
+In the worst case we will have that $\leq 2$ messagges will be passing on each edge 
+Since there are $m$ *edges* in the graph we will have that the maximum number of messages send will be : 
+$$\leq 2 m \quad O(m)$$
+
+### Lower Bound
