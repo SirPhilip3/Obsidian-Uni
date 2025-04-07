@@ -198,3 +198,4 @@ smembers -> tutti gli el del set
 s.is member -> per trovare el in un set 
 
 persistenza poliglotta in sistema -> più dbms che convivono per gesitre info differenti o per gestire dati differenti 
+
