@@ -30,22 +30,40 @@ publish: true
 \begin{algorithmic}
 \State INITIATOR
 	\State $\quad$ Spontaneusly
-		\State $\qquad$ root:= true
+		\State $\qquad$ root := true
 		\State $\qquad$ Tree-neighbours := \{\}
 		\State $\qquad$ send(Q) to N(x)
 		\State $\qquad$ counter := 0
 		\State $\qquad$ become ACTIVE
 \State IDLE
 	\State $\quad$ receiving(Q)
-		\State $\qquad$ root:= false
+		\State $\qquad$ root := false
 		\State $\qquad$ parent := sender
 		\State $\qquad$ Tree-neighbours := \{sender\}
 		\State $\qquad$ send(yes) to sender
-		\State $\qquad$ counter:=1
-		\If{counter= $|N(x)|$}
+		\State $\qquad$ counter := 1
+		\If{counter = $|N(x)|$} 
+		\Comment{In this case we only have 1 neighbour , we are a leaf}
 		\State become DONE
+        \Else 
+        \State send(Q) to N(x)-\{sender\}
+        \State become ACTIVE
         \EndIf
 \State ACTIVE 
+	\State $\quad$ receiving(Q)
+	\State $\qquad$ send(no) to sender
+	\State $\quad$ receiving(yes)
+	\State $\qquad$ Tree-neighbours := Tree-neighbours $\cup$ sender
+	\State $\qquad$ counter := counter + 1
+	\If{counter = $|N(x)|$}
+	\State become DONE
+    \EndIf
+	\State $\quad$ receiving(no)
+	\State $\qquad$ counter := counter + 1
+	\If{counter = $|N(x)|$}
+	\State become DONE
+    \EndIf
 \end{algorithmic}
 \end{algorithm}
 ```
+
