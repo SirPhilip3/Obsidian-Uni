@@ -17,7 +17,7 @@ publish: true
 
 ## Algo
 
-States : $S = \{available,awake,processing\}$
+States : $S = \{available,awake,processing,saturated\}$
 
 >[!note] 
 >At the beginning all the entities are $available$
@@ -46,20 +46,34 @@ This will be considered as his *parent*
 
 If a $processing$ node recieves a message from it's *parent* it becomes $saturated$
 
-
+![[SatuarionPhase.excalidraw.png]]
+%%[[SatuarionPhase.excalidraw.md|🖋 Edit in Excalidraw]]%%
 ### Resolution Phase
 
 This *phase* depends on the application that we want to implement and is started by the $saturated$ nodes 
 
 This generally is a *notification* phase where the saturated nodes do flooding on theyr *non saturated* links sending a *notification* message to theyr children in order to achieve *local termination* 
 
+![[ResolutionPhase.excalidraw.png]]
+%%[[ResolutionPhase.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
 >[!warning] 
 >These phases can happend in parallel
 
+>[!warning] 
+>Depending on the timing of the message we can have different solutions
+
+>[!important] 
+>Exactly *two* $processing$ nodes will become $saturated$ and they will be neighbours
 
 ## Message Complexity
 
+**Worst case** : we have $n$ initiators
 
++ **Activation phase** : Since everyone will be an *initiator* everyone will send a message to it's neighbours , so there will be two messages passing per *edge* $$2(n-1)$$
++ **Saturation phase** : Since everyone will send only one message per edge ( except for the *saturated* edge where there will be two messages ) we will have : $$(n-2) +2 = n$$
++ **Notification phase** : Since only the *saturated* nodes will send messages on they's non saturated links each edge will have $1$ passing message except the saturated node : $$n-2$$
+In total : $$2(n-1)+n+(n-2)=4n -4$$
 ## Leader Selection
 
 In our case the $saturated$ nodes idenitifies a *saturated* arch 
