@@ -17,7 +17,44 @@ $Sinit = AVAILABLE$
 	\begin{algorithmic}
 	\State AVAILABLE
 		\State $\quad$ Spontaneusly
-		\State 
+		\State $\qquad$ send(Activate) to N(x);
+		\State $\qquad$ min:=v(x) 
+		\Comment{min will be the value of the node itself}
+		\State $\qquad$ Neighbours:=N(x)
+		\If{|Neighbours|=1}
+			\State $\qquad$ M:=("Saturation", min)
+			\Comment{if I am a leaf the minimum is my value}
+			\State $\qquad$ parent <= Neighbours
+			\State $\qquad$ send(M) to parent
+			\State $\qquad$ \textbf{become} PROCESSING
+			\Else 
+			\State $\qquad$ \textbf{become} ACTIVE
+        \EndIf
+		\State $\quad$ Receving(M)
+		\State $\quad$ send(Activate) to N(x);
+		\State $\quad$ min:=v(x) 
+		\Comment{min will be the value of the node itself}
+		\State $\quad$ Neighbours:=N(x)
+		\If{|Neighbours|=1}
+			\State $\qquad$ M:=("Saturation", min)
+			\State parent <= Neighbours
+			\State send(M) to parent
+			\State \textbf{become} PROCESSING
+			\Else 
+			\State \textbf{become} ACTIVE
+        \EndIf
+    \State ACTIVE
+	    \State $\quad$ min := MIN\{min ,M\}
+	    \State $\quad$ Neighbours := Neighbours - \{sender\} 
+	    \If{|Neighbours|=1}
+			\State $\qquad$ M:=("Saturation", min)
+			\State $\qquad$ parent <= Neighbours
+			\State $\qquad$ send(M) to parent
+			\State \textbf{become} PROCESSING
+        \EndIf
+    \State PROCESSING
+    
 	\end{algorithmic}
 	\end{algorithm}
 ```
+
