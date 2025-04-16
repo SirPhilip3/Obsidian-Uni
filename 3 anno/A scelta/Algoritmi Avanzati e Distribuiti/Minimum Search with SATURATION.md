@@ -53,8 +53,29 @@ $Sinit = AVAILABLE$
 			\State \textbf{become} PROCESSING
         \EndIf
     \State PROCESSING
-    
+    \State $\quad$ Receving(M)
+		\State $\qquad$ min:=MIN\{min,M\};
+		\State $\qquad$ Notification := ("Resolution",min)
+		\State $\qquad$ send(Notification) to N(x)-parent
+		\If{v(x)=min}
+			\State $\qquad$ \textbf{become} MINIMUM
+		\Else
+			\State $\qquad$ \textbf{become} LARGE
+        \EndIf
+    \State $\quad$ Receving(Notification)
+		\State $\qquad$ send(Notification) to N(x)-parent
+		\If{v(x)=Received\_Value}
+			\State $\qquad$ \textbf{become} MINIMUM
+		\Else
+			\State $\qquad$ \textbf{become} LARGE
+        \EndIf
 	\end{algorithmic}
 	\end{algorithm}
 ```
 
+>[!example] 
+>#todo
+
+# Message Complexity 
+
+Is the same as [[SATURATION technique#Message Complexity|SATURATION technique]] 
