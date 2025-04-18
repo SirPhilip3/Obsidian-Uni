@@ -58,3 +58,42 @@ The time compexity in the worst case will be $2n-1$
 ## As Far
 
 It's not necessary to forward messages with a larger *id* than the ones that we have already seen 
+
+In this way a message from an *entity* will travel as far as it can until it reaches an *entity* that has seen a lower value , if it returns back to the sender this means that the sender is the **LEADER** and all the other *entity* are **FOLLOWER** ( we will need a *notification* message to let the other entities know otherwise they can't know that a message has returned back to it's sender )
+
+![[Pasted image 20250418151547.png]]
+
+### Message Complexity
+
+#### Worst Case
+
+The **worst case** is when all the messages needs to reach the **LEADER** to be terminates , so when all the *entities* have an higher value than the previous one , or when each message encounters always an higher value *entity* until the last one
+
+>[!example] 
+![[WorstCaseRingRanking.excalidraw.png]]
+%%[[WorstCaseRingRanking.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+In this case $1$ will need to transverse $n$ links ( until he comes back ) , $2$ will need to transverse $n-1$ links etcc 
+$$n +(n-1)+(n-2)+\dots+1 = \frac{n(n+1)}{2}$$
+We also need a notification message : 
+$$\frac{n(n+1)}{2}+n = O(n^2)$$
+
+#### Best Case 
+
+In the *best case* instead all the messages stop at the next *entity* ( they find a lower value )
+So only $1$ message will do the full circle , passing all the $n$ *entities* 
+$$n+(n-1)$$
+We also need the final notification message
+$$n+(n-1)+n = O(n)$$
+#### Average Case Complexity
+
+If *entities* are ordered in an equiprobable manner than the $J$-th smallest *id* crosses $\frac{n}{J}$ links 
+
+Than the number of messages sent will be : $$\sum_{J=1}^n (\frac{n}{J}) = n\cdot Hn$$
+Where $H$ is the *harmonic series* $\approx 0.69 \log n$ 
+Than adding the *notification* message we will have : 
+$$n\cdot Hn +n = 0.69 \cdot n \log n + O(n)=O(n \log n)$$
+
+>[!note] 
+>In the *bidirectional* case there are $0.49 n \log n$ messages sent on *average*
+
