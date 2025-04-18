@@ -39,11 +39,45 @@ When the node to be ranked recieves the message it returns a $Notificatio\&Updat
 >
 >It will than update the label of the edge from which the message arrived 
 
+>[!example] 
+>#todo
 ### Message Complexity
 
+The *worst case message complexity* will be when the *ranking* message would need to go back to the *leader* passing each node of the tree , so the worst *topology* for this algorithm would be a *line* where the first node to rank is positioned opposite to the *leader* and the subsequent nodes to be ranked are in ascending order until the last one to be ranked would be the *leader*
 
+>[!example] 
+>![[RankingComplexity.excalidraw.png]]
+>%%[[RankingComplexity.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
+The total messages send will be : 
+$$2(n-1)+2(n-2)+\dots+2(1)=\frac{2(n-1)n}{2}=(n-1)n$$
+So the complexity is $O(n^2)$
 ## Decentralized Ranking
 
+In *decentralized ranking* the ranking message will contain 3 values $(first,second,rank)$
++ $first$ : is the smallest value
++ $second$ : second smallest value known so far 
++ $rank$ : the rank to assign 
+
+>[!note] 
+>The *second* value might be unknown , in this case the value $\infty$ is used , this can happend if we are in a leaf 
+
+$second$ will be updated while the message is traveling to $first$ with a lower value if it is encountered on the links of tree
+
+>[!example]
+>#todo
+>
+
 ### Message Complexity
+
+The worst case complexity will be achieved when the message is forced to go back an forth between the two ends of a linear tree ( imagine that we remove the ranked node an recursively apply the alogrithm ) where the starting node is the second one to rank ( so that the message is forced to go to the other side to rank the first one )
+
+>[!example] 
+![[DecentralizedRanking.excalidraw.png]]
+%%[[DecentralizedRanking.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+In this case the complexity will be : 
+$$2(n-1) + (n-2) + (n-3)+\dots+1 = \frac{(n-1)n}{2}+(n-1)=(n-1)(\frac{n}{2}+1)$$
+>[!note] 
+>The worst case complexity is always $O(n^2)$ but on average we will have less messages 
 
