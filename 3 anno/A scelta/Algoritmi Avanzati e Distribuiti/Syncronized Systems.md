@@ -171,4 +171,6 @@ To comunicate the maximum to an entity with the *pipeline* :
 3. The result will be the dealy of the initial bit minus the delay of the second bit 
 
 >[!example] 
+>![[MaxPipeline.excalidraw.png]]
+%%[[MaxPipeline.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
