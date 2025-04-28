@@ -74,6 +74,11 @@ This generally is a *notification* phase where the saturated nodes do flooding o
 + **Saturation phase** : Since everyone will send only one message per edge ( except for the *saturated* edge where there will be two messages ) we will have : $$(n-2) +2 = n$$
 + **Notification phase** : Since only the *saturated* nodes will send messages on they's non saturated links each edge will have $1$ passing message except the saturated node : $$n-2$$
 In total : $$2(n-1)+n+(n-2)=4n -4$$
+### With $i$ initiators
+#todo
+sat and notification will not change 
+
+2 number of edges and n-i entities that are not send by the entities that are not initiators 
 ## Leader Selection
 
 In our case the $saturated$ nodes idenitifies a *saturated* arch 

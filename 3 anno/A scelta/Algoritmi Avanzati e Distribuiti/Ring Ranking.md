@@ -9,7 +9,7 @@ Given a graph $G$ with the following *topology* :
 + Each *entity* has a sense of direction ( it can distinguish between the *left* and the *right* neighbours )
 
 >[!note] 
->In generale *left* and *right* may not coincide between neighbouring *entities*
+>In general *left* and *right* may not coincide between neighbouring *entities*
 
 >[!important] 
 >Each *entity* must have a different label ( otherwise we can't break the simmetry )
@@ -55,6 +55,10 @@ $$O(n^2)$$
 
 The time compexity in the worst case will be $2n-1$ 
 
+When one entity wakes up alone , each node wakes up 1 unit of time after the previous one , the last that will stop will be $n-1$ 
+
+So : 
+$$n + n-1 = 2n -1$$
 ## As Far
 
 It's not necessary to forward messages with a larger *id* than the ones that we have already seen 
@@ -96,4 +100,17 @@ $$n\cdot Hn +n = 0.69 \cdot n \log n + O(n)=O(n \log n)$$
 
 >[!note] 
 >In the *bidirectional* case there are $0.49 n \log n$ messages sent on *average*
+
+### Time complexity
+
+#todo 
+
+
+Assuming the ring is syncronous 
+In the worst case it will be $2n-1+n$ 
+
+the smallest entity should be woken up at last :
++ $n-1$ to be woken up
++ $n$ to send it's value and come back
++ $n$ for the notification ( not really needed since when you see back yourself than you are a leader and everyone has already seen you )
 
