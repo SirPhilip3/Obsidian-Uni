@@ -84,4 +84,29 @@ $$
 \end{equation}
 $$
 
+The *reciever* :
++ Recieves $b_1$ at time $t_1$
++ Recieves $b_2$ at time $t_2$ and decodes the value with the following equation : $$x = 2 \cdot(2\cdot (t_2 - t_1) + b_2) + b_1$$
 >[!example] 
+>$x = 7$ 
+>*sender* :
+>1. sends $b_1=1$
+>2. waits $1$
+>3. sends $b_2 = 1$ 
+>
+>*reciever* :
+>
+>
+>1. recieves $b_1$ at time $t_1$
+>2. recieves $b_1=1$ at time $t_2 = t_1+1$
+>3. $x=2\cdot (2\cdot (1) +1)+1 = 7$
+
+>[!note] 
+>We could go like this to improve the speed of the algorithm by dividing the message and than using the bits to reconstruct the message
+
+# 3-bit Communication
+
+We use 3 messages to reduce even more the time to wait to encode the message 
+
+*sender* : 
++ 
