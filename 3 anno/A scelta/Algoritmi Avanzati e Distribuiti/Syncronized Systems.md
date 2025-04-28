@@ -109,4 +109,12 @@ The *reciever* :
 We use 3 messages to reduce even more the time to wait to encode the message 
 
 *sender* : 
-+ 
+1. send the initial bit
+2. wait for $\sqrt{x}$ 
+3. send another bit
+4. wait for $\lceil \sqrt{x} \rceil ^2 - x$ 
+5. send another bit
+
+*reciever* : 
+1. recieves the first bit at time $t'$
+2. recieves the second bit at time $t''$ , compute
