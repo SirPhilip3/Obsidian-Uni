@@ -110,11 +110,62 @@ We use 3 messages to reduce even more the time to wait to encode the message
 
 *sender* : 
 1. send the initial bit
-2. wait for $\sqrt{x}$ 
+2. wait for $\lceil\sqrt{x} \rceil$ 
 3. send another bit
 4. wait for $\lceil \sqrt{x} \rceil ^2 - x$ 
 5. send another bit
 
 *reciever* : 
 1. recieves the first bit at time $t'$
-2. recieves the second bit at time $t''$ , compute
+2. recieves the second bit at time $t''$ 
+3. compute $t''-t'$
+4. recieve the final bit at time $t'''$
+5. compute $t'''-t''$ 
+6. decode the number : $$(t'' -t')^2-(t'''-t'')$$
+>[!note] 
+>The *time* complexity will be $O(\lceil\sqrt{x} \rceil)$
+
+>[!example] 
+>$x=23$
+>*sender* : 
+>1. sends $b_0$
+>2. wait $q_0 = \lceil\sqrt{23} \rceil = 5$
+>3. send $b_1$
+>4. wait $q_1 = \lceil \sqrt{23} \rceil ^2 - 23 = 2$
+>5. send $b_2$ 
+>
+>*reciever* : 
+>
+>
+>1. recieve $b_0$ at $t_0 = 1$
+>2. recieve $b_1$ at $t_1 = 6$
+>3. recieve $b_2$ at $t_2 = 8$
+>
+>The decoded number will be : $(6-1)^2 - (8-6) = 25 -2 = 23$
+
+
+# k-bit Communication
+
+We can generalize the previous protocolo using $k$ bits 
+
+The *time complexity* will be : $$O(\lceil k X^{1/k}\rceil)$$
+# Pipeline Communication
+
+If we need to communicate at a distance we have two possibilities : 
++ By replicating the comunication between two entities directly connected on all the pairs of entities 
+>[!example] 
+>
+![[NoPipe.excalidraw.png]]
+%%[[NoPipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
++ By using **pipeline** we just propagate the bits recieved to the next entity until it arrives at it's destination 
+
+>[!example] 
+![[Pipe.excalidraw.png]]
+%%[[Pipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+## Communicate Maximum with Pipeline
+
+To comunicate the maximum to an entity with the *pipeline* :
+1. Wait your own value 
+2. All the other entities will wait it's value minus the time that they needed to wait for the second bit , this only if they have a greater waiting time in respect to the second bit 
+3. The result will be the dealy of the initial bit minus the delay of the second bit 
