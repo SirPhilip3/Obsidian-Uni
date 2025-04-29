@@ -46,7 +46,7 @@ Le *espressioni regolari* ( *regexp* ) sono un formalismo per descrivere i [[Lin
 
 >[!important] Convenzioni
 >
->+ L'operatore $o$ viene di solito eliso
+>+ L'operatore $o$ viene di solito omesso
 >+ L'ordine delle operazioni è il seguente : 
 >	1. $^*$
 >	2. $o$

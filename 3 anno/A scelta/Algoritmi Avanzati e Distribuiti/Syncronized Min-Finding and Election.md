@@ -24,3 +24,17 @@ We modify the speed ( by waiting ) so that it will be proportional to the value 
 >
 >This implies that the **Message Complexity** is : $O(n)$
 
+>[!note] 
+>We always need a final notification for the other *entities* to know the **LEADER**
+
+>[!important] 
+>Removing the assumpion of syncronized start changes only the fact that the *election* messages will also act as *wake-up* messages for the *entities* thar are not *spontaneous initiators*
+
+The **Time Complexity** will instead be : $O(2^i n)$ 
+
+>[!abstract] Proof
+>Since the *leader* will travel along the ring with a speed of $2^{i_x}$ ( where $i_x$ is the value of $x$ ) and since it will be delayed by each *entity* it's total delay will be : $(n-1)(2^{i_x}+1)$ or $O(2^in)$
+
+>[!example] 
+>#todo
+
