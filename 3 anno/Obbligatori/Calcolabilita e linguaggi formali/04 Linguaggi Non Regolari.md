@@ -65,9 +65,8 @@ In pratica dovremo trovare una stringa che soddisfi le seguenti condizioni :
 >Assumiamo per assurdo che $F$ sia *regolare* , possiamo così applicare il [[Pumping Lemma]] con la stringa $s=0^p10^p1$
 >1. $s$ sta nel linguaggio
 >2. $l=2p+2\ge p$ 
->3. Dividiamo la stringa in $s=xyz$ dove $|y|>0$ e $|xy|\le p$ , sfruttando la terza ipotesi del [[Pumping Lemma]] sappiamo che $y$ dovrà stare sicurametne tra i primi $0$ ( poichè $0$ si ripete $p$ volte e quindi $xy$ dovranno per forza essere solo $0$ ) 
+>3. Dividiamo la stringa in $s=xyz$ dove $|y|>0$ e $|xy|\le p$ , sfruttando la terza ipotesi del [[Pumping Lemma]] sappiamo che $y$ dovrà stare sicuramente tra i primi $0$ ( poichè $0$ si ripete $p$ volte e quindi $xy$ dovranno per forza essere solo $0$ ) 
 >   Notiamo quindi che la stringa $xy^2z$ va fuori dal linguaggio poichè diventa $0^{p+k}10^p1$ 
 >
 >Il [[Pumping Lemma]] è quindi *contraddetto* e $F$ dovrà essere *non regolare*
-
 
