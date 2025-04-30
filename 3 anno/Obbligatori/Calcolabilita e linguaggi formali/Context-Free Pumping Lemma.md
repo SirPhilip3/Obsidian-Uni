@@ -116,7 +116,7 @@ Se $A$ è un linguaggio **Context-Free** allora esiste un intero $p\ge 1$ ( *pum
 >
 >Utilizziamo la terza condizione del *pumping lemma* : $|vxy|\le p$ 
 >
->Osserviamo che se $s=uvxyz$ allora $vxy$ deve stare a cavallo delle due metà , infatti se la sottostringa è presente solo bella prima o seconda metà di $s$ , questa , con un *pumping up* esce dal *linguaggio* , infatti avremo che una parte della stringa sarà *sbilanciata* rispetto all'altra
+>Osserviamo che se $s=uvxyz$ allora $vxy$ deve stare a cavallo delle due metà , infatti se la sottostringa è presente solo nella prima o seconda metà di $s$ , questa , con un *pumping up* esce dal *linguaggio* , infatti avremo che una parte della stringa sarà *sbilanciata* rispetto all'altra
 >
 >Se quindi $vxy$ sta a cavallo tra le due metà avremo che con un *pumping up* $s$ diventerà : 
 >$$uv^2xy^2z = 0^p1^i0^j1^p$$
