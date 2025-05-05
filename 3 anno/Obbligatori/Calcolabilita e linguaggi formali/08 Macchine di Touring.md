@@ -5,7 +5,7 @@ aliases:
   - Macchine di Touring
   - MdT
 ---
->[!important]  Definizione
+>	[!important]  Definizione
 > Una **Macchina di Touring** ( **MdT** ) è un modello teorico di un calcolatore con *memoria infinita* ed utilizzabile in modo arbitrario
 >
 >Una **macchina di touring** è formata da : 
