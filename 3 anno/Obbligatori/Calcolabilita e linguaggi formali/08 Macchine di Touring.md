@@ -87,7 +87,7 @@ aliases:
 >Visto che $q_{accept}$ e $q_{reject}$ sono stati finali , possiamo riscrivere la funzione di transizione nel seguente modo : $\Gamma = [Q\backslash\{q_{accept},q_{reject}\}]\times \Gamma \to Q \times \Gamma\times\{L,R\}$ 
 
 >[!important] Linguaggio di Touring
->Un linguaggio $A$ si dive **Touring riconoscibile** se e solo se esiste una **MdT** $M$ tale che $L(M)=A$
+>Un linguaggio $A$ si dice **Touring riconoscibile** se e solo se esiste una **MdT** $M$ tale che $L(M)=A$
 
 >[!note] 
 >Dato un input $w$ una **MdT** $M$ ha solo 3 possibili risultati : 
