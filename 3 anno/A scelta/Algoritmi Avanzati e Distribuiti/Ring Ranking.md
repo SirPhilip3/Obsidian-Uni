@@ -105,7 +105,6 @@ $$n\cdot Hn +n = 0.69 \cdot n \log n + O(n)=O(n \log n)$$
 
 #todo 
 
-
 Assuming the ring is syncronous 
 In the worst case it will be $2n-1+n$ 
 
