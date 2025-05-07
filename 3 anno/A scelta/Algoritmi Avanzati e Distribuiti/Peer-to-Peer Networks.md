@@ -45,7 +45,20 @@ The file sharing is next done *directly* between *peers*
 
 Each *peer* knows a subset of the neighbouring *peers* 
 
->[]
+>[!note] 
+>There are some *cache* servers that maintains as many peers addresses as possible , when a *peer* start it will contact the cache server that will :
+>+ add the new *peer* to it's cached addresses
+>+ send back an initial list of *peers*
+
+### Search in Gnutella
+
+ A *peer* that wants a resource from another *peer* will send the request from *neighbour* to *neighbour* ( *ping* ) until :
+ + The resource is found
+ + The message has reached the *TTL* ( *Time to Leave* ) ( generally a predifined number of steps )
+
+When the resource has been found the *peer* that hosts that resource will simply connect to the intial *peer* ( it's address will be maintained in the *ping* message ) and download the resource 
+
+
 
 # Structured Pure
 
