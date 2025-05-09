@@ -35,7 +35,25 @@ The file sharing is next done *directly* between *peers*
 >+ Robustness : The *index* is a Central point of failure 
 >
 
-## Seach in KaZaA
+## KaZaA
+
+In *KaZaA* there are **Super Peers** that supervise subnetworks , these *Super Peers* executes the queries for the leaves ( normal *peers* ) that they supervise 
+
+*Super Peers* act like a Napster centralized *index* for it's leaves 
+
+Each **Super Peers** will comunicate among themselves and do not have information regarding *peers* supervised by other *Super Peers* 
+
+>[!info] **Joining** the network
+>
+>A *peer* sends a request to one *Super Peer* containing the list of files that he can share 
+
+### Seach in KaZaA
+
+To find a *resource* a *peer* will send a request to it's relative *Super Peer* : 
++ If the resource is found in it's *index* it will return the address of the *peer* and they exchange information directly ( like in *Napster* )
++ Otherwise the *Super Peer* will forward the request to it's neighbouring *Super Peers* until the resource it's found 
+	+ When a resource is found the *Super Peer* will respond with the address of the resource 
+	+ The connection will 
 
 # Unstructured Pure
 ## Gnutella 
@@ -58,8 +76,26 @@ Each *peer* knows a subset of the neighbouring *peers*
 
 When the resource has been found the *peer* that hosts that resource will simply connect to the intial *peer* ( it's address will be maintained in the *ping* message ) and download the resource 
 
+>[!example] 
+![[Gnutella.excalidraw.png]]
+%%[[Gnutella.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
+>[!check] Advantages 
+>
+>+ Completely distributed ( decentralized )
+>+ *Robust* to random node failures 
 
+>[!error] Disadvantages
+>+ We could recieve *redundant* *results* if the resource is in many *peers*
+>+ We could not recieve a result if the resource is stored in a peer that is further than the *TTL*
+>+ One peer could recieve multiple request messages 
+>+ Vulnerable to *Denial of service attacks* ( continuos flooding of the network with fake requests ) 
+
+#### Iterative Deepening
+
+If a resource is not found within the limited *TTL* we increase the *TTL* until :
++ We found the resource
++ We found a *boundary* *TTL* 
 # Structured Pure
 
 
