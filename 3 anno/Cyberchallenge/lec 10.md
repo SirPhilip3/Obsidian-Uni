@@ -42,8 +42,6 @@ se stack smashing sul figlio non crasha il padre -> possiamo usarlo come oracolo
 
 *ASLR* randomizza il base address -> se leaka l'indirizzo del binario -> ez
 
-
-
 shellcode -> possiamo usare nop sled se abbiamo aslr -> aumenta le chance di beccare lo shellcode
 
 Control flow graphs -> visivamente puoi controllare dove finisce il tuo programma
