@@ -21,4 +21,24 @@ Each robot :
 3. Move to the computed destination ( *MOVE* ) 
 >[!warning] 
 >It might not reach it 
-4. *SLEEP* ( to recharge batteries etcc )
+4. *SLEEP* ( to recharge batteries etcc ) 
+5. Return to step $1$
+
+## Limitations
+
+The **Visibility** of a robot may be limited to a determined *radius*
+
+The robots can have different agreement on the *coordinate system* : 
++ Total Agreement 
++ Agreement on axes and one orientation
++ Agreement on axes
++ No agreement 
+
+**Synchronization** :
++ Fully Synchronous ( *FSYNC* )
++ Semi Synchronous ( *SSYNC* )
++ Asynchronous ( *ASYNC* )
+
+#todo 
+# The Gathering Problem
+
