@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Model
 
 + **Autonomous** : there is no central control
