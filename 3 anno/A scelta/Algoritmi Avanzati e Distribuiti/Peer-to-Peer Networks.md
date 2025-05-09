@@ -53,7 +53,18 @@ To find a *resource* a *peer* will send a request to it's relative *Super Peer* 
 + If the resource is found in it's *index* it will return the address of the *peer* and they exchange information directly ( like in *Napster* )
 + Otherwise the *Super Peer* will forward the request to it's neighbouring *Super Peers* until the resource it's found 
 	+ When a resource is found the *Super Peer* will respond with the address of the resource 
-	+ The connection will 
+	+ The two *peers* will than exchange the resource
+
+>[!example] 
+![[c5s16ucx.png]]
+
+>[!check] Advantages
+>+ Efficent search with *Flooding* resticted only to *Super Peers*
+>
+
+>[!error] Disadvantages
+>+ The resource could not be found if it surpasses the *TTL* limit
+>+ *Super Peers* are single point of failure for it's supervised *peers*
 
 # Unstructured Pure
 ## Gnutella 
@@ -98,6 +109,20 @@ If a resource is not found within the limited *TTL* we increase the *TTL* until 
 + We found a *boundary* *TTL* 
 # Structured Pure
 
+## BitTorrent
 
+Files are divided into different parts and spread between *peers* 
+
+Each *peer* that makes a request for a certain file will also host part of it for the other peer to download 
+
+>[!note] 
+>Initially there will be only one *peer* that will host the file but as more *peers* will request it more *peer* will also host part of it to download
+
+>[!example] 
+[![](https://upload.wikimedia.org/wikipedia/commons/3/3d/Torrentcomp_small.gif)](https://it.wikipedia.org/wiki/File:Torrentcomp_small.gif)
 ## Chord
 
++ Each *peer* get's an *ID* ( *SHA-1* of the *IP* ) 
++ Each *resource* get's a *key* ( *SHA-1* of the title etcc )
+
+>[!note] 
