@@ -67,5 +67,39 @@ In this case we can solve the *black hole* problem with $2$ *agents*
 >[!important] Supposition
 >We suppose that each node has directionality ( each node has a port marked as left and one as right )
 
-Two agents strarting from the same *homebase* will explore using *cautious walk* one port each 
+Two agents starting from the same *homebase* will explore using *cautious walk* one port each 
+
+#todo 
+
+## Harmful Agent
+
+An *Harmful agent* is an agent that can move from a node to a neighbouring one arbitrarily fast
+
+>[!important] 
+>+ It **can't** cross a node guarded by an *agent* 
+>+ It is *invisible* to the agents 
+>+ Can permanently see the position of the other agents
+
+### Capturing the Intruder 
+
+Initially all the agents are in an *homebase* and form a team 
+
+>[!important] Goal
+>At the end the agents must '*capture*' the intruder ( surrounding him )
+>
+
+This problem is equivalent to the **Decontamination** problem 
+### Decontamination Problem 
+
+Initially all the agents are in an *homebase* and form a team and the whole network is **Contaminated** except the *homebase* 
+
+An agent cleans a *node* when it enters it 
+
+>[!important] Goal
+>At the end the agents must *clean* the whole network
+
+>[!warning] 
+>A node becomes *contaminated* if it is not protected by an agent and at least one of it's neighbour is contaminated 
+
+#### Decontamination Process
 
