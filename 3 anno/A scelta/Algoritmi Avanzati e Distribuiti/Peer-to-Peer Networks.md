@@ -122,7 +122,19 @@ Each *peer* that makes a request for a certain file will also host part of it fo
 [![](https://upload.wikimedia.org/wikipedia/commons/3/3d/Torrentcomp_small.gif)](https://it.wikipedia.org/wiki/File:Torrentcomp_small.gif)
 ## Chord
 
-+ Each *peer* get's an *ID* ( *SHA-1* of the *IP* ) 
-+ Each *resource* get's a *key* ( *SHA-1* of the title etcc )
-
 >[!note] 
+>Uses *Distribute Hash Tables*
+
++ Each *peer* get's an *ID* ( *SHA-1* of the *IP* ) 
++ Each *resource* get's a *key* ( *SHA-1* of the title etcc ) , to avoid possible collision we use long keys ( `160bit+` )
+
+>[!warning] 
+>
+>*SHA-1* is deprecated 
+
+The hasing should be done so that each *peer* will recieves the same number of resources / keys to store 
+
+In order to keep this *load balancing* each time that a new *peer* joins / parts the network , we regenerate the keys  
+
+#todo 
+
