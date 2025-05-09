@@ -93,6 +93,9 @@ This problem is equivalent to the **Decontamination** problem
 
 Initially all the agents are in an *homebase* and form a team and the whole network is **Contaminated** except the *homebase* 
 
+>[!note] 
+>There can be only the nodes or also the edges that are contaiminated
+
 An agent cleans a *node* when it enters it 
 
 >[!important] Goal
@@ -100,6 +103,11 @@ An agent cleans a *node* when it enters it
 
 >[!warning] 
 >A node becomes *contaminated* if it is not protected by an agent and at least one of it's neighbour is contaminated 
-
 #### Decontamination Process
 
+>[!important] 
+>A node should not be recontaminated
+
+The *agents* need to form a line to block the possibilities or recontamination 
+
+#todo 
