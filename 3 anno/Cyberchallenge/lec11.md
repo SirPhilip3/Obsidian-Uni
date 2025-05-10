@@ -62,3 +62,31 @@ slr abilitato -> base bin -> 6byte  -> prima ci sono null byte -> fgets si ferma
 
 retaddr  -> says ret addr 
 
+ropchain : 
+pop eax
+
+fil@Filippo:~/Ropper$ python3 Ropper.py --file primality_test --search="pop eax"
+[INFO] Load gadgets from cache
+[LOAD] loading... 100%
+[LOAD] removing double gadgets... 100%
+[INFO] Searching for gadgets: pop eax
+
+[INFO] File: primality_test
+0x08048606: pop eax; int 0x80;
+0x08048606: pop eax; int 0x80; pop ebx; pop ecx; ret;
+
+pop ecx -> impostarlo a 0 
+o xor ecx exc -> lo imposta a 0
+
+fil@Filippo:~/Ropper$ python3 Ropper.py --file primality_test --search="pop ecx"
+[INFO] Load gadgets from cache
+[LOAD] loading... 100%
+[LOAD] removing double gadgets... 100%
+[INFO] Searching for gadgets: pop ecx
+
+[INFO] File: primality_test
+0x080488f5: pop ecx; pop ebx; pop ebp; lea esp, [ecx - 4]; ret;
+0x0804860a: pop ecx; ret;
+
+retlibc
+
