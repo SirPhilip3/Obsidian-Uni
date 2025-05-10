@@ -57,3 +57,8 @@ full relro -> la got ro -> all'avvio deve fare il linker
 partial relro > sopra bss dove ci sono le variabili globali non possiamo fare overflow e andare a scrivere nella got 
 
 libc usava partial relro 
+
+slr abilitato -> base bin -> 6byte  -> prima ci sono null byte -> fgets si ferma a nullbyte
+
+retaddr  -> says ret addr 
+
