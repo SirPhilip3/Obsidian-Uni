@@ -81,6 +81,7 @@ When one *agent* will encounter the *black hole* , the other one will continue u
 
 At this point we know exactly where the *black hole* is 
 
+#todo insert animation
 ## Harmful Agent
 
 An *Harmful agent* is an agent that can move from a node to a neighbouring one arbitrarily fast
@@ -99,7 +100,7 @@ Initially all the agents are in an *homebase* and form a team
 >
 
 This problem is equivalent to the **Decontamination** problem 
-### Decontamination Problem 
+#### Decontamination Problem 
 
 Initially all the agents are in an *homebase* and form a team and the whole network is **Contaminated** except the *homebase* 
 
@@ -113,11 +114,18 @@ An agent cleans a *node* when it enters it
 
 >[!warning] 
 >A node becomes *contaminated* if it is not protected by an agent and at least one of it's neighbour is contaminated 
-#### Decontamination Process
+##### Decontaminating a [[Model Topologies#2-dimensional mesh|Mesh]]
 
 >[!important] 
 >A node should not be recontaminated
 
-The *agents* need to form a line to block the possibilities or recontamination 
+The *agents* need to form a line to block the possibilities of recontamination 
 
-#todo 
+>[!important] Assumption
+>+ *Agents* can only move to one of it's neighbour
+>+ Local knowledge for each *agent*
+>+ The system is *asyncronous*
+
+We can adopt 2 strategies : 
++ Using a **Syncronizer**
++ 
