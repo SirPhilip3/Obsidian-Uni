@@ -63,7 +63,7 @@ For each *port* we assign 3 possible values :
 >+ The size of the graph is unknown
 >+ The graph is not *byconnected* ( there must be at least 2 different paths to reach a node )
 
-##### Cautious Walk in a Circle
+##### Cautious Walk in a Ring
 
 In this case we can solve the *black hole* problem with $2$ *agents* 
 
@@ -72,7 +72,14 @@ In this case we can solve the *black hole* problem with $2$ *agents*
 
 Two agents starting from the same *homebase* will explore using *cautious walk* one port each 
 
-#todo 
+Each time they explore a new node they will come back to the *homebase* and add a message to the *whiteboard* saying that the $i^{th}$ node is safe 
+
+When one *agent* will encounter the *black hole* , the other one will continue until the number of **unexplored** *nodes* is $1$ 
+
+>[!important] 
+>We assume that we know the size of the *ring*
+
+At this point we know exactly where the *black hole* is 
 
 ## Harmful Agent
 
