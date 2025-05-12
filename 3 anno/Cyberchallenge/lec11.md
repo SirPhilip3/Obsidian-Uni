@@ -90,3 +90,4 @@ fil@Filippo:~/Ropper$ python3 Ropper.py --file primality_test --search="pop ecx"
 
 retlibc
 
+8 bit dopo canary c'è l'ordrbp -> dopo questo metti rip 
