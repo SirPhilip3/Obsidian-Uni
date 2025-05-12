@@ -123,7 +123,7 @@ Each *peer* that makes a request for a certain file will also host part of it fo
 ## Chord
 
 >[!note] 
->Uses *Distribute Hash Tables*
+>Uses *Distributed Hash Tables*
 
 + Each *peer* get's an *ID* ( *SHA-1* of the *IP* ) 
 + Each *resource* get's a *key* ( *SHA-1* of the title etcc ) , to avoid possible collision we use long keys ( `160bit+` ) ( $m$ is the number of bits in the *hash key* )
@@ -147,4 +147,16 @@ Some *node* will map to *peer* others will be empty
 
 Each *node* has a $successor(k)$ and a $predecessor(k)$ 
 
-Each *node* will maintain a **finger table** , this will contain $m$ entries where the $i$-th entry of node $n$ will contain $$
+Each *node* will maintain a **finger table** , this will contain $m$ entries where the $i$-th entry of node $n$ will contain $succesor((n+2^{i-1})\mod{2^m})$ 
+This way the first entry will always be it's immediate $successor$ 
+
+Every time we want to look for a *key* $k$ we will pass the *query* to the closest $successor$ of $k$ present in the *finger table* ( the largest one whose *ID* is smaller than $k$ ) until a node finds out that the *key* is stored in its immediate successor 
+
+The number of nodes that must be contacted to find a succesor in a $N$-node network is $O(\log N)$
+
+>[!important] 
+>The insertion or removal of a node will generate $O(\log^2 N)$ messages , this because we will need to move the resources and modify the *finger tables* of its $predecessors$ 
+
+>[!example] 
+>#todo
+
