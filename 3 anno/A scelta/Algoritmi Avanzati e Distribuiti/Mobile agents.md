@@ -63,7 +63,7 @@ For each *port* we assign 3 possible values :
 >+ The size of the graph is unknown
 >+ The graph is not *byconnected* ( there must be at least 2 different paths to reach a node )
 
-##### Cautious Walk in a Ring
+##### Black Hole with cautious walk
 
 In this case we can solve the *black hole* problem with $2$ *agents* 
 
@@ -123,9 +123,31 @@ The *agents* need to form a line to block the possibilities of recontamination
 
 >[!important] Assumption
 >+ *Agents* can only move to one of it's neighbour
->+ Local knowledge for each *agent*
 >+ The system is *asyncronous*
 
 We can adopt 2 strategies : 
 + Using a **Syncronizer**
-+ 
++ *Agents* have **Visibility**
+###### Syncronizer
+
+The *agents* that are searching can not see their neighbouring nodes 
+
+There is a special *agent* , the **Sycnronizer** , that coordinates the moves of each agent 
+
+>[!info] Idea
+>Start from the *homebase* and contiguosly clean the *contaminated* network by maintaining a vertical barrier of *agents* ( in order to avoid recontamination ) 
+>
+
+>[!important] Assumption
+>
+>Every *agent* ( also the *syncronizer* ) will start on an angle of the mesh
+>
+
+We have 2 phases : 
+1. *Initialization*
+	The *Syncronizer* will push the *agents* down until the first column is fully sanitized
+2. *Clean Up*
+	
+###### With Visibility
+
+*Agents* can see their neighbouring nodes and so they can move independently 
