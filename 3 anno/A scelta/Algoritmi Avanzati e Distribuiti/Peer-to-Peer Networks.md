@@ -155,8 +155,10 @@ Every time we want to look for a *key* $k$ we will pass the *query* to the close
 The number of nodes that must be contacted to find a succesor in a $N$-node network is $O(\log N)$
 
 >[!important] 
->The insertion or removal of a node will generate $O(\log^2 N)$ messages , this because we will need to move the resources and modify the *finger tables* of its $predecessors$ 
+>The insertion or removal of a node will generate $O(\log^2 N)$ messages , this because we will need to move the resources and modify the *finger tables* of its $predecessors$ and $successors$ 
 
 >[!example] 
->#todo
+>Let's assume that $m=3$  than $2^m = 8$ 
 
+
+ 
