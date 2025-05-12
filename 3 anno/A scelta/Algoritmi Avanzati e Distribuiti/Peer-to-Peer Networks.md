@@ -126,7 +126,7 @@ Each *peer* that makes a request for a certain file will also host part of it fo
 >Uses *Distribute Hash Tables*
 
 + Each *peer* get's an *ID* ( *SHA-1* of the *IP* ) 
-+ Each *resource* get's a *key* ( *SHA-1* of the title etcc ) , to avoid possible collision we use long keys ( `160bit+` )
++ Each *resource* get's a *key* ( *SHA-1* of the title etcc ) , to avoid possible collision we use long keys ( `160bit+` ) ( $m$ is the number of bits in the *hash key* )
 
 >[!warning] 
 >
@@ -136,5 +136,15 @@ The hasing should be done so that each *peer* will recieves the same number of r
 
 In order to keep this *load balancing* each time that a new *peer* joins / parts the network , we regenerate the keys  
 
-#todo 
+### Protocol
 
+Each *peer* and *key* are are arranged in a circle with at most $2^m$ nodes 
+
+>[!note] 
+>$m$ should be chosen large enough to avoid collision
+
+Some *node* will map to *peer* others will be empty 
+
+Each *node* has a $successor(k)$ and a $predecessor(k)$ 
+
+Each *node* will maintain a **finger table** , this will contain $m$ entries where the $i$-th entry of node $n$ will contain $$
