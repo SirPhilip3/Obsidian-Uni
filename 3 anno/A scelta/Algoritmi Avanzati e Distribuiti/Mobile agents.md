@@ -155,9 +155,17 @@ In a *mesh* that is $m\times n$ this will take :
 >[!note] 
 >$m$ is the number of *rows*
 
+>[!example] 
+![[DecontaminationInit.mp4]]
+
 2. *Clean Up*
 
 In the *cleaning* phase the *syncronizer* will push each *agent* forward by one node 
+
+>[!example] 
+>![[DecontaminationCleanup.mp4]]
+
+
 ###### With Visibility
 
 *Agents* can see their neighbouring nodes and so they can move independently 
