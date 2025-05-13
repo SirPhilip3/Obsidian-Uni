@@ -145,9 +145,19 @@ There is a special *agent* , the **Sycnronizer** , that coordinates the moves of
 
 We have 2 phases : 
 1. *Initialization*
-	The *Syncronizer* will push the *agents* down until the first column is fully sanitized
+
+The *Syncronizer* will push the *agents* down until the first column is fully sanitized
+
+In a *mesh* that is $m\times n$ this will take :
++ $m+1$ time
++ $m\cdot(m-1)/2$ moves 
+
+>[!note] 
+>$m$ is the number of *rows*
+
 2. *Clean Up*
-	
+
+In the *cleaning* phase the *syncronizer* will push each *agent* forward by one node 
 ###### With Visibility
 
 *Agents* can see their neighbouring nodes and so they can move independently 
