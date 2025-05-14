@@ -148,8 +148,8 @@ We have 2 phases :
 The *Syncronizer* will push the *agents* down until the first column is fully sanitized
 
 In a *mesh* that is $m\times n$ this will take :
-+ $m-1$ time
-+ $m\cdot(m-1)/2$ moves 
++ $m-1$ *time*
++ $m\cdot(m-1)/2$ *moves* 
 
 >[!note] 
 >$m$ is the number of *rows*
@@ -165,7 +165,7 @@ In the *cleaning* phase the *syncronizer* will push each *agent* forward by one 
 1. The *synchronizer* moves *SOUTH* and forces the encountered *agent* to execute one move *EAST*. 
 2. The *synchronizer* executes one move *EAST*.
 3. The *synchronizer* moves *NORTH* and forces the encountered *agent* to execute one move *EAST*. 
-4. The Synchronizer executes one move *EAST*
+4. The *synchronizer* executes one move *EAST*
 >[!note] 
 >Since the *syncronizer* can't see if the mesh has ended it will need to make a last move to the *east* in order to verify that the *agent* can't be pushed more
 
@@ -181,6 +181,34 @@ The *syncronizer* moves :
 In total we spend : 
 $$(m-1) + (m-1)(n-1) + (n-2) + 1 = mn - 1$$
 
+**Move Complexity** :
+
++ $m$ *agents* do $n-1$ moves *EAST* , $m(n-1)$
++ the *syncronizer* will do : 
+	+ $n-2$ moves *EAST* 
+	+ $m-1$ moves for each column except the last one 
+
+In total : 
+$$\frac{m(m-1)}2 + m(n-1) + n-2 + (m-1)(n-1) = \frac{m^2 +4mn -5m -2}{2}$$
+>[!note] Edge Decontamination
+>We can simply solve also the problem of *edge decontamination* simply adding one last stage at the cleaning process where the *sincronizer* will go *NORTH* ( or *SOUTH* depending on the mesh ) on the last column 
+>
+>This will result in the following complexities :
+>+ *Time complexity* : $mn + m -2$
+>+ *Move coplexity* : $\frac{m^2 +4mn -3m -2}{2}$
+
 ###### With Visibility
 
 *Agents* can see their neighbouring nodes and so they can move independently 
+
+For each *agent* $s$ : 
++ `if` the *Whiteboard* is *empty* 
+	+ $s$ writes `CLEAN` 
+	+ *guards* the node 
+	+ moves *EAST* if all the $N(s)$ , except the one *EAST* are `CLEAN` or `GUARDED`
++ `if` the *Whiteboard* is `CLEAN` 
+	+ move *SOUTH* 
+
+>[!example]
+>#todo animation
+
