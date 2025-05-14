@@ -164,8 +164,6 @@ In the *cleaning* phase the *syncronizer* will push each *agent* forward by one 
 >[!example] 
 >![[DecontaminationCleanup.mp4]]
 
-
-
 ###### With Visibility
 
 *Agents* can see their neighbouring nodes and so they can move independently 
