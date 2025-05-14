@@ -39,7 +39,6 @@ An *Harmful Host* can be considered a *black hole* where :
 
 >[!important] Goal
 At least one agent must survive and know the location of the *black hole*
-
 #### Cautious Walk
 
 For each *port* we assign 3 possible values : 
