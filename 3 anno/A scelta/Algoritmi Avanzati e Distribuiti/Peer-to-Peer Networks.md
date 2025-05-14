@@ -135,7 +135,6 @@ Each *peer* that makes a request for a certain file will also host part of it fo
 The hasing should be done so that each *peer* will recieves the same number of resources / keys to store 
 
 In order to keep this *load balancing* each time that a new *peer* joins / parts the network , we regenerate the keys  
-
 ### Protocol
 
 Each *peer* and *key* are are arranged in a circle with at most $2^m$ nodes 
