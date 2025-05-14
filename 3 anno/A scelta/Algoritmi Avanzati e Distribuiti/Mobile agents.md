@@ -148,7 +148,7 @@ We have 2 phases :
 The *Syncronizer* will push the *agents* down until the first column is fully sanitized
 
 In a *mesh* that is $m\times n$ this will take :
-+ $m+1$ time
++ $m-1$ time
 + $m\cdot(m-1)/2$ moves 
 
 >[!note] 
@@ -159,10 +159,27 @@ In a *mesh* that is $m\times n$ this will take :
 
 2. *Clean Up*
 
-In the *cleaning* phase the *syncronizer* will push each *agent* forward by one node 
+In the *cleaning* phase the *syncronizer* will push each *agent* forward by one node until the mesh is finished 
+
+*Moves* :
+1. The *synchronizer* moves *SOUTH* and forces the encountered *agent* to execute one move *EAST*. 
+2. The *synchronizer* executes one move *EAST*.
+3. The *synchronizer* moves *NORTH* and forces the encountered *agent* to execute one move *EAST*. 
+4. The Synchronizer executes one move *EAST*
+>[!note] 
+>Since the *syncronizer* can't see if the mesh has ended it will need to make a last move to the *east* in order to verify that the *agent* can't be pushed more
 
 >[!example] 
 >![[DecontaminationCleanup.mp4]]
+
+**Time Complexity** :  
+
+The *syncronizer* moves : 
++ $m-1$ time units *North* and *South* ( going up and down the columns ) for $n-1$ columns : $(m-1)(n-1)$
++ $n-2$ time units *East* to move between colums  
+
+In total we spend : 
+$$(m-1) + (m-1)(n-1) + (n-2) + 1 = mn - 1$$
 
 ###### With Visibility
 
