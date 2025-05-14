@@ -73,5 +73,21 @@ This is helpfull since *robots* can :
 
 #todo add examples
 
-# The Gathering Problem
+# The Gathering Problem 
+## The Problem
 
+Initially every robot is in arbitrary position , by the end they should *gather* in the same place 
+
+## In FSYNC
+
+The problem is *solvable* 
+
+>[!check] 
+>
+>Go thowards the *Center-of-Gravity* ( *CoG* ) of the robot group
+>
+>To get the the vector towards which to move :
+>$$\stackrel{\rightarrow}{c} = \frac{1}{N} \sum_{i=1}^{N} \stackrel{\rightarrow}{p_i}$$  
+
+>[!note] 
+>The *CoG* can change over time since we can't be certain that the *agent* will reach it's destination 
