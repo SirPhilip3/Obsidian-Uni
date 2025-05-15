@@ -77,7 +77,6 @@ This is helpfull since *robots* can :
 ## The Problem
 
 Initially every robot is in arbitrary position , by the end they should *gather* in the same place 
-
 ## In FSYNC
 
 The problem is *solvable* 
@@ -89,5 +88,34 @@ The problem is *solvable*
 >To get the the vector towards which to move :
 >$$\stackrel{\rightarrow}{c} = \frac{1}{N} \sum_{i=1}^{N} \stackrel{\rightarrow}{p_i}$$  
 
->[!note] 
+>[!warning] 
 >The *CoG* can change over time since we can't be certain that the *agent* will reach it's destination 
+
+## In SSYNC and ASYNC
+
+A solution to the fact that the *Center of Gravity* can change over time could be using the :
+
+>[!note] Weber Point
+>
+>Given $r_1,\dots , r_n$ the **Weber Point** is the point minimizing the sum of distances to it :
+$$WB = \arg \min \sum_i dist(p,r_i)$$
+>
+>>[!important] 
+>>The *Weber Point* is unique
+>
+>>[!important] 
+>>The *Weber Point* will also be the *Weber Point* for all other point present on the line between $[r_i,WP]$ 
+>
+>This implies that the **Weber Point** will be *invariant* to robots movent towards it 
+
+>[!error] 
+>The **Weber Point** is not computable 
+
+## Gathering for 2 Robots
+
+### In FSYNC
+
+Go to the *middle point* 
+### In SSYNC
+
+One *robot* could wake up only each other round 
