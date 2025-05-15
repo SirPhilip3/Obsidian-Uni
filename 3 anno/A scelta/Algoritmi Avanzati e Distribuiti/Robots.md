@@ -159,5 +159,10 @@ This way each robot will *gather* in each round with a probability of $\frac{1}{
 >![[ThreePointsGather.mp4]]
 
 2. Otherwise they must be in a *triangle shape*
-	1. If the one angle is greather than $120\degree$ than that *robot* will remain still and the other two will reach it 
+	1. If the one angle is *greather* than $120\degree$ than that *robot* will remain still and the other two will reach it 
+>[!example] 
+>![[TriangleGatherPoints.mp4]]
+
+Otherwise the *robots* will meet in the **Center of Equiangularity** ( where each internal angle is the same ( $120\degree$ ) ) 
+
 
