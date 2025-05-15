@@ -118,4 +118,46 @@ $$WB = \arg \min \sum_i dist(p,r_i)$$
 Go to the *middle point* 
 ### In SSYNC
 
+>[!error] 
+>The problem it's *unsolvable*
+
+>[!note] 
+>The robot's in this theoretical model do not have any dimensionality ( they are like points in a plane )
+
 One *robot* could wake up only each other round 
+>[!warning] 
+>This will achieve *convergence* but not gathering
+
+In *general* we can apply $3$ rules to each robot : 
+1. Go to the other robot place 
+2. Stay in place 
+3. Go to some other vacant point
+
+>[!important] 
+>In any case an adversarial actor can :
+>1. If *both* follow rule $1$ , make them both awake
+>2. Else *wake* one robot that does not apply rule $1$
+
+#### With Randomization
+
+We can solve the problem using *randomization* :
++ **Possible rules** :
+	1. Go to the other robots place 
+	2. Stay in place 
++ **Algorithm**
+	1. Flip a coin
+	2. Apply rule $1$ or $2$ according to that flip 
+
+This way each robot will *gather* in each round with a probability of $\frac{1}{2}$ 
+
+## Gathering for 3 and 4 robots
+
+### In SSYNC
+
+1. If the robots are in the *same line* just meet in the middle 
+>[!example] 
+>![[ThreePointsGather.mp4]]
+
+2. Otherwise they must be in a *triangle shape*
+	1. If the one angle is greather than $120\degree$ than that *robot* will remain still and the other two will reach it 
+
