@@ -6,7 +6,7 @@ In **HMAC** ( **Hashed Message Authentication Code** ) , *Alice* e *Bob* prima s
 
 La *secret key* $K$ verrà utilizzata come ulteriore input nella [[Hash Functions|Funzione di Hashing]] :
 $$
-D=HAMC(M,K) = H((K\oplus opad )|(K\oplus ipad)|M)
+D=HMAC(M,K) = H((K\oplus opad )|(K\oplus ipad)|M)
 $$
 Dove : 
 + `opad` e `ipad` sono sequenze di padding usate per allineare $K$ con la lunghezza dell'output di $H()$ , se $K$ è più grande del *digest* verrà sostituita con $H(K)$
