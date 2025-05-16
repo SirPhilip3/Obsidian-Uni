@@ -163,6 +163,7 @@ This way each robot will *gather* in each round with a probability of $\frac{1}{
 >[!example] 
 >![[TriangleGatherPoints.mp4]]
 
-Otherwise the *robots* will meet in the **Center of Equiangularity** ( where each internal angle is the same ( $120\degree$ ) ) 
+Otherwise the *robots* will meet in the **Center of Equiangularity** ( where each internal angle is the same ( $120\degree$ ) ) ( *Fermat Point* )
+
 
 
