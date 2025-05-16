@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # 2-dimensional mesh
 
 A *2D meshes* is a $X \times Y$ grid with each *node* having a distinct label $(x,y)$ ( where $0 \leq x \leq X-1$ and $0 \leq y \leq Y-1$ ) 
@@ -32,18 +35,18 @@ Every node has a label of $k$ bits ( $k$ is the dimension of the *hypercube* ) ,
 Each *arc* label rapresent the position of the bit , starting from the right , where the node labels differ
 
 >[!example] 
-![[1DHyperCube.excalidraw.png]]
+>![[1DHyperCube.excalidraw.png]]
 
 ## 2 dimension (H2)
 
 In order to build a *2D HyperCube* we duplicate **H1** and we add $1$ bit to the nodes label , for the first **H1** we add a $0$ at the end and for the second one a $1$ at the end
 
 >[!example] 
-![[2DHyperCube.excalidraw.png]]
+>![[2DHyperCube.excalidraw.png]]
 ## 3 dimension (H3)
 
 >[!example] 
-![[3DHyperCube.excalidraw.png]]
+>![[3DHyperCube.excalidraw.png]]
 
 An *HyperCube* $H_k$ with $k$ dimensions will have $2^k$ *nodes* , each node has $k$ *arcs* ( $m=n\cdot k /2$ ) 
 

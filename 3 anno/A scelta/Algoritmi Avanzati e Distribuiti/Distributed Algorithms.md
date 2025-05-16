@@ -110,7 +110,7 @@ We can create a graph describing the *communication topology* : $G(V,A)$
 >
 >These lables are rapresented formally as : $\lambda_x(x,y)$ ( for the outgoing label on $x$ ) , $\lambda_y(x,y)$ ( for the incoming label on $y$ )
 >>[!example] 
-![[ConnectionDist.excalidraw]]
+>>![[ConnectionDist.excalidraw]]
 
 >[!important] Message Ordering
 >

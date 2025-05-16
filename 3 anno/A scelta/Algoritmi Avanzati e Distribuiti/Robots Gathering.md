@@ -27,11 +27,11 @@ A solution to the fact that the *Center of Gravity* can change over time could b
 >Given $r_1,\dots , r_n$ the **Weber Point** is the point minimizing the sum of distances to it :
 $$WB = \arg \min \sum_i dist(p,r_i)$$
 >
->>[!important] 
+>>[!important]
 >>
 >>The *Weber Point* is unique
 >
->>[!important] 
+>>[!important]
 >>
 >>The *Weber Point* will also be the *Weber Point* for all other point present on the line between $[r_i,WP]$ 
 >

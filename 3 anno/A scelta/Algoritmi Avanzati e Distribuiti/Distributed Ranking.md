@@ -73,8 +73,8 @@ $second$ will be updated while the message is traveling to $first$ with a lower 
 The worst case complexity will be achieved when the message is forced to go back an forth between the two ends of a linear tree ( imagine that we remove the ranked node an recursively apply the alogrithm ) where the starting node is the second one to rank ( so that the message is forced to go to the other side to rank the first one )
 
 >[!example] 
-![[DecentralizedRanking.excalidraw.png]]
-%%[[DecentralizedRanking.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[DecentralizedRanking.excalidraw.png]]
+>%%[[DecentralizedRanking.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 In this case the complexity will be : 
 $$2(n-1) + (n-2) + (n-3)+\dots+1 = \frac{(n-1)n}{2}+(n-1)=(n-1)(\frac{n}{2}+1)$$

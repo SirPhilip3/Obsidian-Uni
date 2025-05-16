@@ -9,7 +9,7 @@ publish: true
 >A closed path that *visits* *each* *edge* of the graph exactly *once* ( or each *node* at *least* once )
 >>[!note] 
 >>It needs to start and finish at the same vertex for the definition of *circuit*
->![[EulerianCircuit.excalidraw]]
+>>![[EulerianCircuit.excalidraw]]
 
 >[!important] Eulerian graph
 >A *graph* will be *Eulerian* if and only if :

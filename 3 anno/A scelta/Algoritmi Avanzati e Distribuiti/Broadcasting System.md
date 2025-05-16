@@ -91,7 +91,7 @@ Since every *entity* must know the information than at least one message must be
 A better lower bound would be $m$ , this is true since if we don't transmit at least one message per link we could be missing some *entities*
 
 >[!note] 
-Since the *worst case* complexity is , in order of magnitude , $O(m)$ we can say that **FLOOD** is a *message-optimal* solution
+>Since the *worst case* complexity is , in order of magnitude , $O(m)$ we can say that **FLOOD** is a *message-optimal* solution
 
 ## Time Complexity
 

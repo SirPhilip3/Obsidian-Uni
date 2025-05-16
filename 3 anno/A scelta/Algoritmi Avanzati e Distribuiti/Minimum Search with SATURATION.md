@@ -1,3 +1,6 @@
+---
+publish: true
+---
 We can use the [[SATURATION technique]] to solve problems , in this case finding the minimum in a distributed system with *tree topology* 
 
 At the end of the algorithm each *entity* should know whether it is the minimum or not 

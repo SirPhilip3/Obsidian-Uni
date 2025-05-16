@@ -38,7 +38,7 @@ An *Harmful Host* can be considered a *black hole* where :
 ### Report it's Location
 
 >[!important] Goal
-At least one agent must survive and know the location of the *black hole*
+>At least one agent must survive and know the location of the *black hole*
 #### Cautious Walk
 
 For each *port* we assign 3 possible values : 
@@ -155,7 +155,7 @@ In a *mesh* that is $m\times n$ this will take :
 >$m$ is the number of *rows*
 
 >[!example] 
-![[DecontaminationInit.mp4]]
+>![[DecontaminationInit.mp4]]
 
 2. *Clean Up*
 

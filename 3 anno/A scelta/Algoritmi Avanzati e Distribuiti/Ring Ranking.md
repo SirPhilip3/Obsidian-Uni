@@ -74,8 +74,8 @@ In this way a message from an *entity* will travel as far as it can until it rea
 The **worst case** is when all the messages needs to reach the **LEADER** to be terminates , so when all the *entities* have an higher value than the previous one , or when each message encounters always an higher value *entity* until the last one
 
 >[!example] 
-![[WorstCaseRingRanking.excalidraw.png]]
-%%[[WorstCaseRingRanking.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[WorstCaseRingRanking.excalidraw.png]]
+>%%[[WorstCaseRingRanking.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 In this case $1$ will need to transverse $n$ links ( until he comes back ) , $2$ will need to transverse $n-1$ links etcc 
 $$n +(n-1)+(n-2)+\dots+1 = \frac{n(n+1)}{2}$$

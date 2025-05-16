@@ -155,13 +155,13 @@ If we need to communicate at a distance we have two possibilities :
 + By replicating the comunication between two entities directly connected on all the pairs of entities 
 >[!example] 
 >
-![[NoPipe.excalidraw.png]]
-%%[[NoPipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[NoPipe.excalidraw.png]]
+>%%[[NoPipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
 + By using **pipeline** we just propagate the bits recieved to the next entity until it arrives at it's destination 
 
 >[!example] 
-![[Pipe.excalidraw.png]]
-%%[[Pipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[Pipe.excalidraw.png]]
+>%%[[Pipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 ## Communicate Maximum with Pipeline
 
@@ -172,5 +172,5 @@ To comunicate the maximum to an entity with the *pipeline* :
 
 >[!example] 
 >![[MaxPipeline.excalidraw.png]]
-%%[[MaxPipeline.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>%%[[MaxPipeline.excalidraw.md|🖋 Edit in Excalidraw]]%%
 

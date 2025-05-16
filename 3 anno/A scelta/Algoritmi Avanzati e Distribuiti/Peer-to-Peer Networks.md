@@ -56,7 +56,7 @@ To find a *resource* a *peer* will send a request to it's relative *Super Peer* 
 	+ The two *peers* will than exchange the resource
 
 >[!example] 
-![[c5s16ucx.png]]
+>![[c5s16ucx.png]]
 
 >[!check] Advantages
 >+ Efficent search with *Flooding* resticted only to *Super Peers*
@@ -88,8 +88,8 @@ Each *peer* knows a subset of the neighbouring *peers*
 When the resource has been found the *peer* that hosts that resource will simply connect to the intial *peer* ( it's address will be maintained in the *ping* message ) and download the resource 
 
 >[!example] 
-![[Gnutella.excalidraw.png]]
-%%[[Gnutella.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[Gnutella.excalidraw.png]]
+>%%[[Gnutella.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 >[!check] Advantages 
 >
@@ -119,7 +119,7 @@ Each *peer* that makes a request for a certain file will also host part of it fo
 >Initially there will be only one *peer* that will host the file but as more *peers* will request it more *peer* will also host part of it to download
 
 >[!example] 
-[![](https://upload.wikimedia.org/wikipedia/commons/3/3d/Torrentcomp_small.gif)](https://it.wikipedia.org/wiki/File:Torrentcomp_small.gif)
+>![](https://upload.wikimedia.org/wikipedia/commons/3/3d/Torrentcomp_small.gif)
 ## Chord
 
 >[!note] 
@@ -164,7 +164,7 @@ The number of nodes that must be contacted to find a succesor in a $N$-node netw
 >$2$ join the network
 >![[Chord2.excalidraw.png]]
 >%%[[Chord2.excalidraw.md|🖋 Edit in Excalidraw]]%%
->>[!note] 
+>>[!note] Note
 >> Now the closest successor for $1$ is $2$
 >
 >$6$ and $0$ join the network 
@@ -181,8 +181,8 @@ The number of nodes that must be contacted to find a succesor in a $N$-node netw
 >[!example]- 
 >Let's now do the query for item with *id*=$7$ from node $1$ 
 >
-![[Chord5.excalidraw.png]]
-%%[[Chord5.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[Chord5.excalidraw.png]]
+>%%[[Chord5.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 ### Complexity
 
