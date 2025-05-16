@@ -163,7 +163,54 @@ This way each robot will *gather* in each round with a probability of $\frac{1}{
 >[!example] 
 >![[TriangleGatherPoints.mp4]]
 
-Otherwise the *robots* will meet in the **Center of Equiangularity** ( where each internal angle is the same ( $120\degree$ ) ) ( *Fermat Point* )
+Otherwise the *robots* will meet in the **Center of Equiangularity** ( where each internal angle is the same ( $120\degree$ ) ) ( or *first Fermat Point* )
 
+>[!example] 
+>![[FermatPointTriangle.mp4]]
 
+## Gathering in SSYNC for $N\ge3$
 
+>[!important] Moltiplicity point definition
+>
+>A point $p^*$ where there are two or more *robots* 
+>
+
+>[!important] Assumptions
+>
+>+ Initially there are no multiplicity point ( each *robot* will be in a different position )
+>+ *Robots* can detect multiplicity 
+>
+
+**Strategy** : 
+1. Create a ***single*** *multiplicity point* $p^*$ 
+2. Move other *robots* to $p^*$ along "free corridors" ( a line where there are no other *robots* moving in )
+
+>[!warning] 
+>If two or more *multiplicity point* accour than the problem becomes **unsolvable** 
+>
+>New multiplicity point can be created if : 
+>+ two path intersect
+>+ two robots halt permanently after moving a distance 
+
+### Stage 1
+
+>[!important] Definition Smalles Enclosing Circle ( *SEC* )
+>
+>For a given point configuration the *SEC* is : 
+>+ *Unique*
+>+ Computable in polynomial time
+>+ Is invariant while the *points on it* do not move
+
+Creating the *multiplicity point* : 
+1. If $N=3$ , invoke *3-gather*
+2. If $N \ge 3$ calculate the *SEC* 
+	1. $C_{int}$ will be the number of *robots* inside
+	
++ If $|C_{int}| = 0$ go to the *center* of *SEC*
+>[!example] 
++ If $|C_{int}| = 1$ go to the single *internal robot*
+>[!example] 
++ If $|C_{int}| = 2$ : the two internal nodes will need to create one *multiplicity point*
+
+1. Compute the *Voronoi* partition of the robots *on SEC*
+	1. If the *internal robots* do *not share* a cell move to the center f
