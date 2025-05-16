@@ -53,6 +53,8 @@ The robots can have different agreement on the *coordinate system* :
 	+ Each *robot* becomes *ACTIVE* at *unpredictable* times
 	+ Each *Computation* will take a **FINITE** but *unpredictable* amount of time 
 
+>[!example] 
+>![[Illustration-of-activity-intervals-in-the-FSync-SSync-and-Async-scheduling-models.png]]
 ### Multiplicity Detection
 
 + **Weak** multiplicity detection :
