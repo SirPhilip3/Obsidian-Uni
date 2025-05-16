@@ -158,26 +158,24 @@ The number of nodes that must be contacted to find a succesor in a $N$-node netw
 
 >[!example]-
 >Let's assume that $m=3$  than $2^m = 8$ 
->
 >$1$ joins the network , since no other node is in the network it's successors will be itself
-![[Chord1.excalidraw.png]]
-%%[[Chord1.excalidraw.md|🖋 Edit in Excalidraw]]%%
->
+>![[Chord1.excalidraw.png]]
+>%%[[Chord1.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >$2$ join the network
-![[Chord2.excalidraw.png]]
-%%[[Chord2.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[Chord2.excalidraw.png]]
+>%%[[Chord2.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >>[!note] 
 >> Now the closest successor for $1$ is $2$
 >
 >$6$ and $0$ join the network 
 >
-![[Chord3.excalidraw.png]]
-%%[[Chord3.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>![[Chord3.excalidraw.png]]
+>%%[[Chord3.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >
 >Now let's assign the resources $7$ and $1$ ( assign to the closest successor to it's index ) 
 >
 >![[Chord4.excalidraw.png]]
-%%[[Chord4.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>%%[[Chord4.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >
 
 >[!example]- 

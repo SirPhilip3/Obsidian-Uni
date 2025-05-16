@@ -66,5 +66,20 @@ This is called **Proof of Work**
 
 When a *miner* finds a *proof of work* it will *broadcast* the new block to all the nodes in the network , they will than "accept" the new block by starting to create a new block
 
->[!warning] 
+>[!warning]
+>If 2 *miners* finish at the same time when the block will be broadcasted , due to the network latency , some nodes will recieve a block before the other 
 >
+>Each node will create two different chains , adding each a different block , the one that will have the higher sum of $0$'s will be the winner 
+>>[!note] 
+>>Since the reward given for winning will be able to be spent after $100$ blocks we will wait for $100$ block and remove the reward for the loser
+
+>[!note] 
+>For large transaction we wait for $6$ blocks before confirming it ( 6 *miners* will need to agree to the transaction )
+
+## 51% attack
+
+When a *mining pool* has more than $51\%$ of the mining power they can practically run the network by deciding witch transaction to approve etcc
+# Mixers
+
+In order to improve *anonimity* , mixing services will generate lot's of transaction with different addersses before sending the *bitcoin* to the new owner , this way the original sender is *obfuscated* 
+

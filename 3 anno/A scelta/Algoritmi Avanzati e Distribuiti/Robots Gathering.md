@@ -144,9 +144,9 @@ Creating the *multiplicity point* :
 
 2. If the *internal robots* do *not share* a cell : move to the *center* of *SEC*
 
-3. If the *internal robots* *share* one cell : move to the robot defining that cell
+3. If the *internal robots* *share* *one* *cell* : move to the robot defining that cell
 
-4. If the *internal robots* share two cells ( they are in the boundary between two cells ) 
+4. If the *internal robots* *share two cells* ( they are in the boundary between two cells ) 
 	1. The robot closer to the center will move to the *robot* further from the center
 	2. The robot further from the center will move towars one of the defining robots 
 
