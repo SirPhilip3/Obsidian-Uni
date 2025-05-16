@@ -31,4 +31,5 @@ Attraverso le funzioni di **Hashing** possiamo ottenere [[Data integrity]] :
 >5. Dato $X$ , trovare $Y$ in modo che $H(X)=H(Y)$ deve essere [[Computationally Impossible]] ( **Weak Collision resistance** )
 >>[!important] 
 >>Il **digest** non deve rivelare nessuna infomazione riguradante il messaggio iniziale , ossia se troviamo un documento $M'$ con hash $D$ simile non significa che sia simile a $M$ 
->1. Trovare due $X$ e $Y$ per cui $H(X)=H(Y)$ deve essere [[Computationally Impossible]] ( **Strong Collision resistance** )
+>6. Trovare due $X$ e $Y$ per cui $H(X)=H(Y)$ deve essere [[Computationally Impossible]] ( **Strong Collision resistance** )
+
