@@ -70,7 +70,7 @@ When a *miner* finds a *proof of work* it will *broadcast* the new block to all 
 >If 2 *miners* finish at the same time when the block will be broadcasted , due to the network latency , some nodes will recieve a block before the other 
 >
 >Each node will create two different chains , adding each a different block , the one that will have the higher sum of $0$'s will be the winner 
->>[!note] 
+>>[!note] Note
 >>Since the reward given for winning will be able to be spent after $100$ blocks we will wait for $100$ block and remove the reward for the loser
 
 >[!note] 

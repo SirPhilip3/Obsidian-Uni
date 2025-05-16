@@ -66,7 +66,7 @@ We can get a better approximation if we use **Graph matching** :
 >A *matching* $M$ in a graph $G(V,E)$  is a *subset* of *edges* of $G$ so that no *edges* in $M$ are *incident* to a common *vertex* 
 
 >[!example] 
-![[matchingGraph.excalidraw]]
+>![[matchingGraph.excalidraw]]
 
 >[!important] Perfect Matching
 >A perfect matching is a *matching* in whitch every *vertex* si marched ( covered ) 

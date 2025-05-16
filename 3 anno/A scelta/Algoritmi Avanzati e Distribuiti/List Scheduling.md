@@ -35,7 +35,7 @@ Where :
 >If we utilize a [[Strutture Dati#Code di Priorità|priority queue]] to rapresent the *Loads* of each machine the complexity becomes $O(n \log m)$ instead of $O(n \cdot m)$ ( since we would have had to explore the entire list to find the minimum load )
 
 >[!example] 
-![[output.gif.mp4]]
+>![[output.gif.mp4]]
 
 >[!note] 
 >If we have at most $m$ *jobs* than *list scheduling* becomes an optimal algorithm
@@ -43,7 +43,7 @@ Where :
 # Approximation discussion
 
 >[!important] Theorem
-**List scheduling** is a $2$-approximation algorithm 
+>**List scheduling** is a $2$-approximation algorithm 
 ## $\rho$ proof
 
 >[!note] Lemma 1

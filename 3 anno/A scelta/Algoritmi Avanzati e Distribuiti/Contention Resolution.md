@@ -6,7 +6,7 @@ publish: true
 Given $n$ processes $P_1,\dots,P_n$ each one of them compete to access a shared resource ( could be a database or a CPU ) 
 
 >[!warning] 
-The shared resource can only support one access per round , if two or more processes access the resource simultaneously all processes will be locked out 
+>The shared resource can only support one access per round , if two or more processes access the resource simultaneously all processes will be locked out 
 
 # Randomized Algorithm
 

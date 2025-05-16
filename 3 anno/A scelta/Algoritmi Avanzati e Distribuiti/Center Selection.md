@@ -10,7 +10,7 @@ publish: true
 
 >[!success] Optimization Version
 >Select $k$ centers $C$ so that the *maximum* distance between a *site* and the *nearest* center is *minimized*
->>[!note] 
+>>[!note] Note
 >>Practically find the smallest radius of the circle starting from one of the $k$ *centers* that applied to all other centers contains all the *sites*
 
 Some **Notation** : 

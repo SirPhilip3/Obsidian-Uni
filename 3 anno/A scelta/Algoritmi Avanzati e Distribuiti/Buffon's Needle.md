@@ -23,7 +23,7 @@ For the *Leclerc* *theorem* $p$ will be $1/\pi$ and so the vairance will be $1/\
 Than given $X$ the binomial variable that describes the *mean* of $n$ drops with $k$ seccesses we have : 
 $$X = \sum^{n}_{i=1}X_i/n : \Pr\bigg[X=\frac{k}{n}\bigg] = \binom{n}{k}\bigg(\frac1\pi\bigg)^k\cdot \bigg(1-\frac{1}{\pi}\bigg)^{n-k}$$
 Than if we want to have a precision of $\ge 99\%$ we will have : $$\Pr[|X-\frac{1}{pi}|< \epsilon]$$ With number of needles : $$n > \frac{1440}{\epsilon^2}$$ 
- >[!note] 
+ >[!note] Note
  >We can than define an $\epsilon$ , the error that we want to achive 
  
  
