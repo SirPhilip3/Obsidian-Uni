@@ -76,6 +76,10 @@ noone reuse DSA -> k riusato
 
 PRNG attaks
 
+
+
+
+
 DSA -> scelta dei parametri pubblici + scelta delle key + sign
 
 comando a caso da firmare -> prendi la firma -> possiamo ritornare alla private key 
@@ -84,3 +88,5 @@ una volta con x genriamo la firma per gimme the flag -> e poi gli passi
 $$kS = H(m) + xr$$
 $$kS - H(m) = xr$$
 $$\frac{kS-H(m)}{r} = x$$
+g public param
+
