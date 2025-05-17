@@ -76,8 +76,46 @@ noone reuse DSA -> k riusato
 
 PRNG attaks
 
+seed -> usato per determinare tutti i numeri pseudocasuali not secure
+LCG
+-> n(modulo) a b -> coefficenti mult e add -> fissi 
+basta osservare i numeri per romperlo 
++ conosciamo tutti i parametri
+	+ basta l'ultimo numero -> applichi $x_{k+1}=(a\cdot x_k +b )\mod n$
++ n a known
+	+ abbiamo bisogno di $x_{i-1}$ e $x_i$ 
+		1. $x_{k}=(a\cdot x_{k-1} +b)\mod n$
+		2. $b = (x_k - a \cdot x_{k-1}) \mod n$
++ n known
+	+ 3 observation needed
+$$\begin{cases}
+x_k =(a\cdot x_{k-1} +b)\mod n \\
+x_{k-1} = (a\cdot x_{k-2} +b)\mod n
+\end{cases}$$
+$$x_k - x_{k-1} = a(x_{k-1} - x_{k-2})$$
+$$$$
+$$a = t2 * t1^{-1} \mod n$$
++ nothing known
+da tot osservazioni definiamo sequenza $s$ -> differenza tra $x_k$ e $a x_{k-1} + b$ > non ha modulo 
+-> numeri saranno multipli del modulo stesso -> minimo comune divisore -> sarà il modulo -> se $n$ è primo 100% il modulo 
 
+seq -> differenza tra 2 numeri consecutivi -> b si elidono
+$t_{i+1} = t_1 \cdot a \mod n$
 
+..
+
+mersenne twister
+prime mersenne number $n^2 - 1$ 
+
+osserva 624 numeri 
+
+LFSR
+
+binomio caratteristico -> stato iniziale -> se è noto e l=n bit ci basta avere n output per ricostruire il seed
+
+berlekamp massey 
+
+osserva numeri già usciti per prevedere i prossimi
 
 
 DSA -> scelta dei parametri pubblici + scelta delle key + sign
