@@ -93,8 +93,8 @@ x_k =(a\cdot x_{k-1} +b)\mod n \\
 x_{k-1} = (a\cdot x_{k-2} +b)\mod n
 \end{cases}$$
 $$x_k - x_{k-1} = a(x_{k-1} - x_{k-2})$$
-$$$$
 $$a = t2 * t1^{-1} \mod n$$
+una volta a trova b come prima
 + nothing known
 da tot osservazioni definiamo sequenza $s$ -> differenza tra $x_k$ e $a x_{k-1} + b$ > non ha modulo 
 -> numeri saranno multipli del modulo stesso -> minimo comune divisore -> sarà il modulo -> se $n$ è primo 100% il modulo 
