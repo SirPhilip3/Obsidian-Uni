@@ -67,3 +67,9 @@ HMAC -> applicazioni della compression funciton invece di xor con prec ogni volt
 **lenght extension attack** 
 
 *Digital Signature*
+
+ask to sign $R^eM$ -> otteniamo $RM^d(\mod{n})$ -> inverso moltiplicativo di R per avere la firma del messaggio M 
+
+DSA -> digital signature Algorithm
+
+noone reuse DSA -> k riusato
