@@ -150,12 +150,11 @@ Where we have that :
 >
 >There is a constant $\Delta$ that , in abscence of any failures , rapresents the maximum communication delay of any message on any link
 
-
 >[!important] Syncronized clocks 
 >All *clocks* are incremented by one unit simultaneously 
 
 >[!warning] 
->This is impossible in prictice , we will than consider *asyncronous systems*
+>This is impossible in practice , we will than consider *asyncronous systems*
 
 ### Complexity Measures
 
