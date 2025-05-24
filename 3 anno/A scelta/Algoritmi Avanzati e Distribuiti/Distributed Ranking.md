@@ -35,7 +35,7 @@ When the node to be ranked recieves the message it returns a $Notificatio\&Updat
 >[!important] 
 >The *Update* will contain the *new-minimum* , initially assigned to $\infty$ if we were on a leaf or to the new *minimum* value between it's subtree otherwise 
 >
->For each *node* it will check it ther's a lessere value in it's subtrees and update the value on the message 
+>For each *node* it will check it ther's a lesser value in it's subtrees and update the value on the message 
 >
 >It will than update the label of the edge from which the message arrived 
 

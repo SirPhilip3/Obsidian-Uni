@@ -5,7 +5,7 @@ publish: true
 
 Lot's of distributed algorithms ( like [[Distributed Spanning Tree]] ) do not work when we have multiple *initiators*
 
-**Leader Election** algorithms move the system from an initial state where all *entities* are in the *same state* ( generically called *AVAILABLE* ) to a final congifuration where all *entities* are in the same state ( *followers* ) except one ( **Leader** )
+**Leader Election** algorithms move the system from an initial state where all *entities* are in the *same state* ( generically called *AVAILABLE* ) to a final configuration where all *entities* are in the same state ( *followers* ) except one ( **Leader** )
 
 >[!note] 
 >There is no restriction on how many entities *start* the computation nor on who becomes *leader*
