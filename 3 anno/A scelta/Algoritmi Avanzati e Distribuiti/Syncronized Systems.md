@@ -143,7 +143,6 @@ We use 3 messages to reduce even more the time to wait to encode the message
 >
 >The decoded number will be : $(6-1)^2 - (8-6) = 25 -2 = 23$
 
-
 # k-bit Communication
 
 We can generalize the previous protocolo using $k$ bits 

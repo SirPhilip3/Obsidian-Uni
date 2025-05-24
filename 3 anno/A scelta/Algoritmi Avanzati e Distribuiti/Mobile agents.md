@@ -89,7 +89,6 @@ An *Harmful agent* is an agent that can move from a node to a neighbouring one a
 >+ It **can't** cross a node guarded by an *agent* 
 >+ It is *invisible* to the agents 
 >+ Can permanently see the position of the other agents
-
 ### Capturing the Intruder 
 
 Initially all the agents are in an *homebase* and form a team 
