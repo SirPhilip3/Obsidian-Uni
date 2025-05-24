@@ -161,7 +161,7 @@ Where we have that :
 
 In the complexity mesure we consider the *communication cost* as the most important factor ( *computational cost* will be included in the *communication cost* )
 
-We will use two types of measures :
+We will use two types of measures : 
 + The *amount of communication activities*
 + The *time required* for the execution of the computation
 #### Amount of Communication Activities

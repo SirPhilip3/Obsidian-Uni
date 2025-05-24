@@ -59,7 +59,7 @@ We will have 3 *states* : $S=\{initiator,sleeping,done\}$
 ## Termination
 
 >[!note] Local Termination
->The *entities* terminate the computation ad different instants of time ( when they enter the *done* state ) , this means that there is no *global termination* , only *local termination*
+>The *entities* terminate the computation at different instants of time ( when they enter the *done* state ) , this means that there is no *global termination* , only *local termination*
 
 >[!note] Termination Detection Problem
 >No *entity* knows when the entire process terminates ( *termination detection problem* )
@@ -108,7 +108,7 @@ Since the first message is sent by the initiator and has to reach all the *entit
 
 Given that any node can be the initiator we will have that : 
 $$D(G) = Max_{x,y}\{ d(x,y)\}$$
-In the worst case ( where the graph is a line ) we will have that the maximum distance will be the number of *entities* $-1$ ( this because the initiator already has the data )
+In the worst case ( where the graph is a *line* ) we will have that the maximum distance will be the number of *entities* $-1$ ( this because the initiator already has the data )
 $$Time \leq D(G) \leq n -1 = O(n)$$
 ### Lower Bound
 

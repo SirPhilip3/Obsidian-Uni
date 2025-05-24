@@ -25,7 +25,7 @@ Same as per *2D meshes* but now each node has label $(x,y,z)$
 A *torus* is a *2D mesh* that has the connections between the border *nodes* completed with the opposite *node* 
 
 >[!example]
->[![Example of the grid graph (left) and torus graph (right), both with... |  Download Scientific Diagram](https://www.researchgate.net/publication/319662543/figure/fig4/AS:631635653455910@1527605083636/Example-of-the-grid-graph-left-and-torus-graph-right-both-with-dimensions-d-6-5.png) 
+>![Example of the grid graph (left) and torus graph (right), both with... |  Download Scientific Diagram](https://www.researchgate.net/publication/319662543/figure/fig4/AS:631635653455910@1527605083636/Example-of-the-grid-graph-left-and-torus-graph-right-both-with-dimensions-d-6-5.png) 
 # Hypercubes
 
 ## 1 dimension (H1)
