@@ -145,7 +145,7 @@ But we can build a better algorithm for this specific *topology*
 1. The *initiator* sends a message to all of it's *neighbours*
 2. A node that recieves a message from an arc labeled as $l$ will forward the message only on arcs labeled with $l'< l$
 
-+ *Message Complexity* : $n-1$  
++ *Message Complexity* : $n-1$ 
 >[!info] Intuition
 >The algorithm builds a subgraph that is a *tree* , this is solved optimaly by **FLOOD**
 
