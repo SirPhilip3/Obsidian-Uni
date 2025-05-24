@@ -62,3 +62,11 @@ def :
 
 nelle http header referrere -> url da dove parte la richiesta -> settato dal broswer non può essere modificato da js -> non sempre incluso
 
+secret tockens -> attaccante non può leggere o scrivere nel dom -> form possiamo mettere un input hidden con un tocken , server genera un token -> lo invia all'utente e lo usa nel form 
+
+double submit -> token nel cookie -> secure ma non httponly
+
+samesite attribute :
++ strict = tutte le richieste http 
++ lax 
+
