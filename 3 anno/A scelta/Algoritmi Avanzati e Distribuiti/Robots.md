@@ -19,13 +19,12 @@ Each robot has :
 
 Each robot :
 1. Uses its sensors to observe the world ( *LOOK* )
-2. Based on the information gathered in the previous fase calculate a destination point ( *COMPUTE* )
+2. Based on the information gathered in the previous phase calculate a destination point ( *COMPUTE* )
 3. Move to the computed destination ( *MOVE* ) 
 >[!warning] 
 >It might not reach the destination 
 4. *SLEEP* ( to recharge batteries etcc ) 
 5. Return to step $1$
-
 ## Limitations
 
 ### Visibility
