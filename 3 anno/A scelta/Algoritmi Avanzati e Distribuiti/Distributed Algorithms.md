@@ -75,14 +75,12 @@ Where $E$ are the *entities* in the system
 
 >[!important] 
 >Every system can be made symmetric
-
 ### Roles
 
 Various *entities* can have different *roles* , we can create `if` in the *behavioural description* of our *entities* so that *entities* with different *roles* will act in different ways 
 
 >[!note] 
 >All *entities* still retain the same *behavioural description*
-
 ### Communication
 
 Each message is a *finite sequence of bits*
