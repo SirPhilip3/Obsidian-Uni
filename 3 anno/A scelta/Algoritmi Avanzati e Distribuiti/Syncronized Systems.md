@@ -166,7 +166,7 @@ If we need to communicate at a distance we have two possibilities :
 To comunicate the maximum to an entity with the *pipeline* :
 1. Wait your own value 
 2. If the next entity has a greater value than the waiting time between the first and second bit than it will add to the delay the difference between it's value and the current delay 
-3. The result will be the dealy of the initial bit minus the delay of the second bit 
+3. The result will be the delay of the initial bit minus the delay of the second bit 
 
 >[!example] 
 >![[MaxPipeline.excalidraw.png]]
