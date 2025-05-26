@@ -67,7 +67,7 @@ We will have 3 *states* : $S=\{initiator,sleeping,done\}$
 Eventually every *entity* that recieve the message ( this will happend because of the *correctness proof* ) will move to the state *done* and will therefore *terminate*
 ## Correctness
 
-If $G$ is *connected* and there is *total reliability* than every *entity* will eventually receive the information
+If $G$ is *connected* and there is *total reliability* than every *entity* will eventually recieve the information
 ## Message Complexity
 
 In this case we mesure the **message complexity**  
@@ -92,7 +92,6 @@ A better lower bound would be $m$ , this is true since if we don't transmit at l
 
 >[!note] 
 >Since the *worst case* complexity is , in order of magnitude , $O(m)$ we can say that **FLOOD** is a *message-optimal* solution
-
 ## Time Complexity
 
 >[!note] Ideal Time

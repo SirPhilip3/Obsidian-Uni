@@ -3,7 +3,6 @@ publish: true
 ---
 >[!important] Spanning Tree Definition
 >A *spanning tree* $T$ of a *graph* $G=(V,E)$ is an *acyclic* subgraph $T=(V,E')$ of $G$ where $E' \subset E$
-
 # SHOUT Protocol
 
 >[!important] Assumptions
