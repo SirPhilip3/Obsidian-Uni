@@ -81,7 +81,6 @@ In this case $1$ will need to transverse $n$ links ( until he comes back ) , $2$
 $$n +(n-1)+(n-2)+\dots+1 = \frac{n(n+1)}{2}$$
 We also need a notification message : 
 $$\frac{n(n+1)}{2}+n = O(n^2)$$
-
 #### Best Case 
 
 In the *best case* instead all the messages stop at the next *entity* ( they find a lower value )

@@ -3,7 +3,6 @@ publish: true
 ---
 >[!note] 
 >Since all the clocks are perfectly synched we can use time to comunicate between entities
-
 # 2-bit Communication
 
 >[!important] 
