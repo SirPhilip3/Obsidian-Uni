@@ -30,7 +30,6 @@ Anyone can now verify this signature using the *previous owner*'s $\text{Public 
 ## Avoid Double Spending
 
 Each node ( *miner* ) verifies that this is the first spending of that *bitcoin* by that *owner* 
-
 We need to maintain a *global public append-only log* ( a *public ledger* ) of all the transactions , the **block chain** 
 
 >[!note] 

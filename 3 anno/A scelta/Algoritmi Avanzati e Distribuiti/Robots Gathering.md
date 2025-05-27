@@ -12,7 +12,7 @@ The problem is *solvable*
 >
 >Go thowards the *Center-of-Gravity* ( *CoG* ) of the robot group
 >
->To get the the vector towards which to move :
+>To get the vector towards which to move :
 >$$\stackrel{\rightarrow}{c} = \frac{1}{N} \sum_{i=1}^{N} \stackrel{\rightarrow}{p_i}$$  
 
 >[!warning] 
