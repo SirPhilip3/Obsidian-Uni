@@ -100,7 +100,7 @@ A better lower bound would be $m$ , this is true since if we don't transmit at l
 
 ### Worst Case
 
-Since the first message is sent by the initiator and has to reach all the *entities* we will have that the *worst case* complexity will be the longhest distance between the initiator and any other *entity* ( the so called *radius* of $G$ )
+Since the first message is sent by the initiator and has to reach all the *entities* we will have that the *worst case* complexity will be the longest distance between the initiator and any other *entity* ( the so called *radius* of $G$ )
 
 >[!info] Distance
 >Let's define the *distance* $d(a,b)$ as the *minimal* number of edges between $a$ and $b$ 
@@ -153,7 +153,6 @@ But we can build a better algorithm for this specific *topology*
 >Since we send messages to *nodes* who differ for at most one bit and there are at most $k$ positions , than $k$ will be $D(G)$
 
 This optimized algorithm is than *optimal* for the *hypercube* topology
-
 ## Complete Graph 
 
 Applying **FLOOD** to a *complete graph* :
