@@ -1177,7 +1177,7 @@ $$T=R'\times S$$
 
 **Esempio** :
 
-Abbaimo :
+Abbiamo :
 `Studenti(Nome, Matricola <PK>, Cognome)`
 `Esami(Codice <PK>, Matricola <FK>(Studenti), Voto, Materia)`
 
