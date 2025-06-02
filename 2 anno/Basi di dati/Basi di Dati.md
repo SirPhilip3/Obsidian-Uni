@@ -2483,20 +2483,20 @@ Dominio *Voto* che ha tipo `{sql}SMALLINT` e che può avere valore compreso tra 
 
 ###### Tipi Predefiniti
 
-+ **Interi** : `{sql} INTEGER , SMALLINT , ...`
++ **Interi** : `{sql}INTEGER , SMALLINT , ...`
 + **Decimali** : 
 	+ *fissi* : `{sql}NUMERIC(p,s)` , `p` e `s` indicano il numero massimo di numeri prima e dopo la virgola rispettivamente
 	+ *virgola mobile* : `{sql}REAL , FLOAT(p)`
 + **Bit** : 
 	+ `{sql}BIT(x)` , stringa di bit di lunghezza fissa `x` 
-	+ `{sql} BIT VARYING(x)` , la lunghezza massima della stringa di bit è `x` ma può anche essere di lunghezza minore
+	+ `{sql}BIT VARYING(x)` , la lunghezza massima della stringa di bit è `x` ma può anche essere di lunghezza minore
 + **Booleani** : `{sql}BOOLEAN`
 + **Stringhe** : 
 	+ `{sql}CHAR(x) ( o CHARACTER(x) )` , stringa di caratteri di lunghezza `x`
 	+ `{sql}VARCHAR(x) ( o CHAR VARYING(x) o CHARACTER VARYING(x) )`, la lunghezza massima della stringa di char è `x` ma può anche essere di lunghezza minore
 + **Date** : 
-	+ `{sql} DATE` : con attributi : `{sql} year , month , day`
-	+ `{sql}TIME` : con attributi : `{sql} hour , minute , second `
+	+ `{sql}DATE` : con attributi : `{sql} year , month , day`
+	+ `{sql}TIME` : con attributi : `{sql} hour , minute , second`
 	+ `{sql}TIMESTAMP` : contiene  gli attributi sia di `{sql}DATE` che di `{sql}TIME`
 + **Intervalli** : `{sql}INTERVAL {YEAR, MONTH, DAY, HOUR, MINUTE, SECOND}`
 + **Testo o oggetti binari** :
@@ -2764,7 +2764,7 @@ Questa viene tradotta in schema realzionale nel seguente modo :
 
 ![[Pasted image 20231212150938.png]]
 
-Ci sono 2 moetodi per riempire la tabella `Fratelli` :
+Ci sono 2 metodi per riempire la tabella `Fratelli` :
 1. Inserire anche i duplicati nella tabella 
 	**Esempio** :
 
@@ -2782,7 +2782,7 @@ Ci sono 2 moetodi per riempire la tabella `Fratelli` :
 
 Entrambe le soluzioni hanno problematiche :
 
-1. Nel caso dell prima soluzione vi è ridodanza all'interno dei dati , per ottenere una tabella senza ripetizioni dobbiamo escludere una delle due coppie 
+1. Nel caso dell prima soluzione vi è ridondanza all'interno dei dati , per ottenere una tabella senza ripetizioni dobbiamo escludere una delle due coppie 
 
 **Esempio** :
 ```sql
