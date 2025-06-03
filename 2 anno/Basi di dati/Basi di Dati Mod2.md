@@ -1360,7 +1360,7 @@ Un *trigger* utilizza il paradigma *Evento-Condizione-Azione*
 Un evento può convilgere una sola riga o righe multiple per questo abbiamo due *trigger* diversi : 
 + *Trigger per riga* : 
 	Eseguiti per ognuna delle righe coinvolte dall'evento scatenante 
-	Possiamo usare `{sql} OLD ROW` e `{sql}NEW ROW` per riferirsi rispettivamente alla tupla coinvolta dall'evento prima e dopo la sua occorrenza 
+	Possiamo usare `{sql}OLD ROW` e `{sql}NEW ROW` per riferirsi rispettivamente alla tupla coinvolta dall'evento prima e dopo la sua occorrenza 
 + *Trigger per statement* : 
 	Eseguiti una sola volta per evento scatenante 
 	Si può usare `OLD TABLE` e `NEW TABLE`  per riferirsi a tutte le tuple coinvolte dall'evento prima e dopo la sua occorrenza 
