@@ -355,7 +355,7 @@ Esiste un algoritmo ottimizzato per la ricerca di tutte le chiavi :
 	\end{algorithmic}
 	\end{algorithm}
 ```
-
+6
 >[!example]
 >Sia $G=\{ AB \rightarrow C , E \rightarrow A, A \rightarrow E, B \rightarrow F\}$ :
 >1. 
