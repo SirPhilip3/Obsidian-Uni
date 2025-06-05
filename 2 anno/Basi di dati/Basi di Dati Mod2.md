@@ -2200,7 +2200,7 @@ Nel caso avessimo indici formati da più attributi l'ordine di primo grado sarà
 Per questo generalmente non si utilizza come misura del costo di un'operazione il numero di accessi alle tuple poichè ignoriamo l'organizzazione fisica della memoria 
 
 Una metrica migliore è basata sul numero di *pagine* caricate in RAM : 
-+ Ciascuna pagina tipicamente contiene motle tuple 
++ Ciascuna pagina tipicamente contiene molte tuple 
 + Anche se volessimo accedere ad una sola tuple comunque dovremmo caricare la corrispondente pagina in RAM
 + L'accesso a tutte le tuple in una pagina è solo poco più costoso dell'accesso ad una singola tupla 
 
