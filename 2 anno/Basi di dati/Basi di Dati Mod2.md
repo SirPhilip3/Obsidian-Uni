@@ -1968,7 +1968,7 @@ Tutti i principali *DBMS* implementano meccanismi di :
 
 >[!note] Controllo degli accessi
 >
->Il controllo degli accessi è il meccanismo con cui viene verificato che chi richede un'operazione sia effitivamente autorizzato a farla 
+>Il controllo degli accessi è il meccanismo con cui viene verificato che chi richuede un'operazione sia effettivamente autorizzato a farla 
 
 #### Autenticazione 
 
