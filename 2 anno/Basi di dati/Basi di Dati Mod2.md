@@ -1135,7 +1135,7 @@ E' possibile specificare vincoli complessi sul valore di un attributo, usando la
 CREATE TABLE MovieExec ( 
 	name CHAR(50), 
 	address VARCHAR(255), 
-	code INT PRIMARY KEY CHECK ( code >= 100000), 
+	code INT PRIMARY KEY CHECK (code >= 100000), 
 	netWorth INT CHECK (netWorth >= 0) 
 )
 ```
@@ -1178,7 +1178,7 @@ CREATE TABLE MovieExec (
 ##### CHECK su Tuple o Attributi ? 
 
 + Se un vincolo coinvolge più di un attributo e non è una congiunzione di vincoli su attributi indipendenti è *necessario* ricorrere a `CHECK` su tuple per motivi di espressività 
-+ Se un vincolo coincolge un solo attributo possiamo scegliere fra i due tipi di `CHECK` ma generalmente i `CHECK` su attributi sono *più efficenti* dei `CHECK` su tuple dato che vengono controllati meno frequentemente
++ Se un vincolo coinvolge un solo attributo possiamo scegliere fra i due tipi di `CHECK` ma generalmente i `CHECK` su attributi sono *più efficenti* dei `CHECK` su tuple dato che vengono controllati meno frequentemente
 
 >[!note] 
 >+ $A \implies B$ equivale a $\lnot A \lor B$
@@ -1306,7 +1306,7 @@ CREATE ASSERTION <name> CHECK ( <condition> )
 La condizione deve essere vera quando l'asserzione viene creata e continuare a rimanere vera dopo *ogni modifica* del database
 
 >[!note]
->Le *asserzioni* sono più potenti dei `CHECK` ma molto più complicate da implementare efficentemente
+>Le *asserzioni* sono più potenti dei `CHECK` ma molto più complicati da implementare efficentemente
 
 >[!note]
 >Nessun DBMS le implementa poichè toppo inefficenti
