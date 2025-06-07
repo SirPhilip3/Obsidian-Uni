@@ -522,7 +522,7 @@ Per fare in modo che la *decomposizione* sia equivalente allo schema originario 
 >Una **perdita di informazione** è quindi definita come : proiettando una relazione sui sottoschemi e poi facendo la giunzione si ottengono più ennuple di quante ce ne fossero nella relazione originaria 
 
 >[!important] 
->Una **perdita di informazione** avviene qunado al decomposizione perde alcune *dipendenze funzionali* alterando il significato dei dati
+>Una **perdita di informazione** avviene quando la decomposizione perde alcune *dipendenze funzionali* alterando il significato dei dati
 #### Dipendenze che preservano i dati
 
 >[!note]
@@ -1484,7 +1484,7 @@ Poichè i *trigger* sono gestiti dal *DBMS* non c'è alcun modo per sorpassarli 
 
 ##### Svantaggi dei Trigger
 
-I *trigger* sono poco standardizzati e *DBMS* differenti faranno scielte differenti riguardo alcuni aspetti : 
+I *trigger* sono poco standardizzati e *DBMS* differenti faranno scelte differenti riguardo alcuni aspetti : 
 + Il linguaggio utilizzato per scrivere i *trigger* 
 + L'ordine dei *trigger* da svolgere se ve ne sono più di uno sullo stesso evento
 + Possibilità di chiamare un *trigger* all'interno di un'altro trigger , gestione dei *trigger* ricorsivi
