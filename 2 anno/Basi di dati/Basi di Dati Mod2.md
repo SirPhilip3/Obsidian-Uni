@@ -1798,7 +1798,7 @@ CASE
 END
 ```
 
-   Questo costrutto valuta le condizioni nell'ordine in cui sono elencate e restituisce il valore corrispondente alla prima condizione vera. Se nessuna delle condizioni è vera, viene restituito il valore predefinito specificato nella clausola ELSE (facoltativa).
+Questo costrutto valuta le condizioni nell'ordine in cui sono elencate e restituisce il valore corrispondente alla prima condizione vera. Se nessuna delle condizioni è vera, viene restituito il valore predefinito specificato nella clausola ELSE (facoltativa).
 
 >[!example]
 ```sql
@@ -1821,7 +1821,7 @@ CASE espressione_da_valutare
 END
 ```
 
-   Questo costrutto valuta un'espressione specificata e restituisce il risultato corrispondente al primo valore che coincide con l'espressione da valutare. Se nessun valore coincide, viene restituito il risultato predefinito specificato nella clausola ELSE (facoltativa).
+Questo costrutto valuta un'espressione specificata e restituisce il risultato corrispondente al primo valore che coincide con l'espressione da valutare. Se nessun valore coincide, viene restituito il risultato predefinito specificato nella clausola ELSE (facoltativa).
 
 >[!example]
 ```sql
@@ -1901,7 +1901,7 @@ RAISE [ level ] 'format' [, expr [, ... ]]
 				[USING option = expr]
 ```
 Dove : 
-+ `level` indica il *livello* di severità dell'errore ( `DEBUG`, `LOG`, etc... ). Il *livello* di default `EXCEPTION` solleva nache un'*eccezione*
++ `level` indica il *livello* di severità dell'errore ( `DEBUG`, `LOG`, etc... ). Il *livello* di default `EXCEPTION` solleva anche un'*eccezione*
 + `{sql}'format'` è una string formattata ( posso inseri segnaposti da essere sostituiti ) che specifica il messaggio da riportare
 + La clausola `USING` permette di popolare informazioni aggiuntive sull'errore come il codice di errore `ERRCODE`
 
@@ -1919,7 +1919,7 @@ END;
 
 Le condizioni `cond` seguono una sintassi particolare che ci permette di avere condizioni complesse come fare azioni diverse in base al codice di errore
 
-Quando un'eccezione viene catturata, il contenuto delle variabili locali persiste , ma tutti i cambiamenti al database effettuatu nel blocco che ha sollevato l'eccezione vengono **annullati** 
+Quando un'eccezione viene catturata, il contenuto delle variabili locali persiste , ma tutti i cambiamenti al database effettuati nel blocco che ha sollevato l'eccezione vengono **annullati** 
 
 >[!example]
 ```postgresql
@@ -1968,12 +1968,12 @@ Tutti i principali *DBMS* implementano meccanismi di :
 
 >[!note] Controllo degli accessi
 >
->Il controllo degli accessi è il meccanismo con cui viene verificato che chi richuede un'operazione sia effettivamente autorizzato a farla 
+>Il controllo degli accessi è il meccanismo con cui viene verificato che chi richiede un'operazione sia effettivamente autorizzato a farla 
 
 #### Autenticazione 
 
 >[!note] 
->Lo standard *SQL* non definisce uno standard per la gestione degli utenti , vediamo la l'implementazione in *Postgres*
+>Lo standard *SQL* non definisce uno standard per la gestione degli utenti , vediamo l'implementazione in *Postgres*
 
 La creazione di un nuovo utente avviene attraverso una query SQL : 
 ```sql
@@ -1999,7 +1999,7 @@ Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *passw
 ##### Password
 
 >[!example] 
->1. Crazione delll'utente il server si salva : `y=123456`
+>1. Crazione dell'utente il server si salva : `y=123456`
 >2. Il *client* manda lo username e richiede la connessione
 >3. Il *server* richiede la password per quell'username
 >4. Il *client* fornisce la propria password `x=123456`
@@ -2044,7 +2044,7 @@ Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *passw
 
 + Il permesso `TRIGGER` per una *tabella* abilita la definizione di *trigger* *arbitrari* su di essa 
 + Il creatore del trigger deve avere il permesso `TRIGGER` sulla tabella e tutti i permessi richiesti per eseguire l'azione del trigger
-+ Quando un *trigger* viene attivato esso deve essere eseguito con i permessi del suo cretatore indipendentemente da chi ha indotto l'attivazione 
++ Quando un *trigger* viene attivato esso deve essere eseguito con i permessi del suo creatore indipendentemente da chi ha indotto l'attivazione 
 
 >[!warning] 
 >L'uso di *trigger* può portare a scalate di privilegi
@@ -2116,7 +2116,7 @@ Revocare `P` invece ha un comportamento che dipende dal *DBMS* :
 
 #### Ruoli 
 
-Un *ruolo* è un colletore di permessi che permette di introdurre un livello di segmentazione durante la loro assegnazione
+Un *ruolo* è un collettore di permessi che permette di introdurre un livello di segmentazione durante la loro assegnazione
 
 ##### Gestione dei Ruoli 
 
@@ -2136,7 +2136,7 @@ SET ROLE NomeRuolo;
 
 **Pros** : 
 + Possiamo raggruppare insiemi di permessi *logicamente collegati*
-+ Risulta essere meno dispensioso assegnare ruoli rispetto a permessi visto che vi sono molti meno ruoli rispetto ai permessi
++ Risulta essere meno dispendioso assegnare ruoli rispetto a permessi visto che vi sono molti meno ruoli rispetto ai permessi
 + Rimuove errori nell'assegnazione di permessi
 + Le operazioni di revoca sono semplificate 
 + Sono più fedeli al principio di *minimo privilegio*
