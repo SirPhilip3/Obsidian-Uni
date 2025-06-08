@@ -2201,7 +2201,7 @@ Per questo generalmente non si utilizza come misura del costo di un'operazione i
 
 Una metrica migliore è basata sul numero di *pagine* caricate in RAM : 
 + Ciascuna pagina tipicamente contiene molte tuple 
-+ Anche se volessimo accedere ad una sola tuple comunque dovremmo caricare la corrispondente pagina in RAM
++ Anche se volessimo accedere ad una sola tupla comunque dovremmo caricare la corrispondente pagina in RAM
 + L'accesso a tutte le tuple in una pagina è solo poco più costoso dell'accesso ad una singola tupla 
 
 Se una tabella è fortemente "*clusterizzata*" su un certo attributo nella memoria fisica è possibile accedere a molte tuple caricando solo poche pagine : il numero di tuple come stima del costo effettivo risulta essere quindi *pessimistica*
@@ -2214,7 +2214,7 @@ Se una tabella è fortemente "*clusterizzata*" su un certo attributo nella memor
 **Conclusioni Indici** : 
 
 + **Pro** : 
-	Un *indice* su di un asttributo può accelerare di molto l'esecuzione delle query in cui un valore è specificato per quell'attributo o di join che coinvolgono quell'attributo
+	Un *indice* su di un attributo può accelerare di molto l'esecuzione delle query in cui un valore è specificato per quell'attributo o di join che coinvolgono quell'attributo
 + **Contro** : 
 	Ogni indice che utilizziamo rende le operazioni di inserimento , cancellazione e aggiornamento più costose poichè anche l'indice deve essere aggiornato  
 
@@ -2276,7 +2276,7 @@ Un *DBMS* può suggerire automaticamente gli indici migliori sulla base di un *m
 
 >[!note] 
 >Il secondo passo potrebbe essere implementato in modo *greedy* ( non considera altri risultati ) per motivi di efficenza :
->1. Usa i log delle query per stimare il costo delle operaizoni più frequenti
+>1. Usa i log delle query per stimare il costo delle operazioni più frequenti
 >2. Genera un insieme di indici candidati $I$ ed inizializza $J \neq \emptyset$
 >3. Finchè è possibile migliorare i tempi di esecuzione : 
 >	1. Identifica $i_{min} \in I$ ossia l'indice che ottimizza meglio i tempi di esecuzione assumendo di avere già creato gli indici in $J$
@@ -2305,7 +2305,7 @@ SQL permette di *materializzare* una vista in memoria in modo che essa *non veng
 
 Non c'è bisogno di aggiornare `MovieProd` quando : 
 + Modifichiamo tabelle differenti da `Movies` e `MovieExec`
-+ Modifichiamo attrbuti diversi da quelli menzionati nella definizione di `MovieProd`
++ Modifichiamo attributi diversi da quelli menzionati nella definizione di `MovieProd`
 
 >[!important] Approccio Conservativo
 >In tutti i restanti casi rigenero la vista ( è possibile svolgere diverse ottimizzazioni )
@@ -2464,7 +2464,7 @@ Ogni vincolo di integrità può essere quindi assegnato ad una fra tre categorie
 
 Visto che una transazione deve essere una sequenza di operazioni *serializzate* questa ci porta a dei problemi in termini di performance : 
 
-Ciascuna transazione prende un *lock* *globale* ( blocca qualsiasi altra operaizone sul database ) sul database che viene rialasciato dopo il commit 
+Ciascuna transazione prende un *lock* *globale* ( blocca qualsiasi altra operaizone sul database ) sul database che viene rilasciato dopo il commit 
 
 *ottimizzazione* : insieme di *lock locali* che blocchino solo porzioni del database e gestione "rilassata" delle transazioni *read only* poichè non possono compromettere l'integrità della base di dati 
 
