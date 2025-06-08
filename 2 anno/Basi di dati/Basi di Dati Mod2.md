@@ -863,7 +863,7 @@ Sia $R(T,F)$ lo schema di partenza :
 >
 >Calcoliamo $F_2$ su $R_2$ : 
 >+ $\{ Località \}_F^+=\{Località ,Prefisso\}$ da cui nessuna nuova dipendenza
->+ $\{ Prefisso \}_F^+ = \{ Prefisso \}$ da cui nessuna nuova dipendenza
+>+ $\{ Numero \}_F^+ = \{ Numero \}$ da cui nessuna nuova dipendenza
 >
 >Abbiamo quindi $F_1 = \{Località \to Prefisso\}$ e $F_2 = \emptyset$
 >
