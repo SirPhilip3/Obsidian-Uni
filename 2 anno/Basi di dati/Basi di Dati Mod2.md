@@ -2000,7 +2000,7 @@ Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *passw
 
 >[!example] 
 >1. Crazione dell'utente il server si salva : `y=123456`
->2. Il *client* manda lo username e richiede la connessione
+>2. Il *client* manda l'username e richiede la connessione
 >3. Il *server* richiede la password per quell'username
 >4. Il *client* fornisce la propria password `x=123456`
 >5. Il *server* verifica che `x == y` ed autorizza l'accesso
@@ -2012,7 +2012,7 @@ Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *passw
 
 >[!example] 
 >1. In fase di creazione dell'utente il server salva `y=MD5(12345+peter)`
->2. Il *client* manda lo username e richiede la connessione
+>2. Il *client* manda l'username e richiede la connessione
 >3. Il *server* richiede un *MD5* della password poponendo un *salt*
 >4. Il *client* calcola `x=MD5(MD5(123456+peter)+"salt")` e lo invia al server
 >5. Il *server* verifica che `x == MD5(y+"salt")` ed autorizza l'accesso
@@ -2029,7 +2029,7 @@ Posso inoltre definire un metodo di autenticazione : *trust* , *reject* , *passw
 **Politiche base** : 
 1. Quando un oggetto viene creato il suo creatore ne diventa il proprietario
 2. Gli altri utenti possono accedervi solo secondo le modalità stabilite dai *permessi* concessi su di esso
-3. Solo il creatore dell'oggetto può eliminarlo o alterarne la definizione 
+3. Solo il creatore dell'oggetto può eliminarlo o alternarne la definizione 
 ##### Permessi
 
 *SQL* mette a disposizione diversi tipi di permessi , fra cui : 
