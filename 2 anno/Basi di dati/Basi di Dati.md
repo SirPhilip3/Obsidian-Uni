@@ -2550,7 +2550,7 @@ CREATE TABLE Studenti (
 ###### Vincoli intra- e inter-relazionali
 
 + *intra-relazionali* :
-	+ `{sql}PRIMARY KEY` : Degnia un insieme di attributi come *chiave primaria*
+	+ `{sql}PRIMARY KEY` : Designa un insieme di attributi come *chiave primaria*
 	+ `{sql}UNIQUE` : designa un insieme di attributi come chiave ( non primaria ) ( a differenza della *primary key* queste possono assumere valori `{sql}NULL` )
 	+ `{sql}CHECK` : specifica un'espressione che produce un valore booleano
 + *inter-relazionali* :
@@ -2737,7 +2737,7 @@ Perchè si possano modificare le *viste* devono valere le seguenti proprietà :
 
 ##### WITH
 
-Il construtto `{sql}WITH` fornisce un modo alternativo per specificare sottoquery di query più complesse , questa a differenza di una *vista* è temporanea per quella query sucessiva
+Il construtto `{sql}WITH` fornisce un modo alternativo per specificare sottoquery di query più complesse , questa a differenza di una *vista* è temporanea per quella query successiva
 
 **Esempio** :
 
