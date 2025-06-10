@@ -106,7 +106,7 @@ Indichiamo con $R(T,F)$ uno schema relazionale $R(T)$ con le dipendenze funziona
 >Se abbiamo la dipendenza $CodiceLibro \rightarrow Titolo, NomeUtente, Data$ 
 >Due righe con stesso CodiceLibro devono avere stesso Titolo, NomeUtente e Data
 >>[!note] 
->>Possono essereci duplicati all'interno del DB
+>>Possono esserci duplicati all'interno del DB
 
 #### Dipendenze Derivate
 
