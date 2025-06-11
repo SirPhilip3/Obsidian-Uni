@@ -642,7 +642,7 @@ La `JOIN` qui ritorna l'insieme *vuoto* poichè non ho elementi in comune
 
 #### Decomposizioni che preservano le dipendenze
 
-Una disposizione che *preserva le dipendenze* siginifica che l'unione delle dipendenze dei sottoschemi è equivalente alle dipendenze dello schema originario 
+Una disposizione che *preserva le dipendenze* significa che l'unione delle dipendenze dei sottoschemi è equivalente alle dipendenze dello schema originario 
 
 >[!example] 
 >Decomposizione con Perdita di Dipendenze
@@ -1055,7 +1055,7 @@ CREATE TABLE Movies (
 
 Dati una tabella $R(T)$ e $X \subseteq T$ possiamo specificare un vincolo di *integrità referenziale* secondo cui $X$ è una *chiave esterna* di $R(T)$ : 
 + Il vincolo deve riferire una tabella $S(U)$ ed un insieme di attributi $Y\subseteq U$ dichiarati *PRIMARY KEY* o *UNIQUE*
-+ Per ogn *tupla* $t\in R(T)$ tale che tutti gli attributi in $X$ sono diversi da `{sql}NULL` deve esistere una tupla $t'\in S(U)$ tale che $t[X] = t'[Y]$ 
++ Per ogni *tupla* $t\in R(T)$ tale che tutti gli attributi in $X$ sono diversi da `{sql}NULL` deve esistere una tupla $t'\in S(U)$ tale che $t[X] = t'[Y]$ 
 
 >[!note]
 >Implicitamente si chiede che $|X| = |Y|$ 
