@@ -19,7 +19,7 @@ $N$ accetta in input $<M,w>$ :
 >
 >Non è possibile dare un [[Decisore]] per $A_{TM}$
 >
->Assumiamo *per assurdo* che $A_{TM}$ sia [[Decidibile]] , allora essiste un [[Decisore]] $H$ per $A_{TM}$ 
+>Assumiamo *per assurdo* che $A_{TM}$ sia [[Decidibile]] , allora esiste un [[Decisore]] $H$ per $A_{TM}$ 
 >
 >$$
 >H(<M,w>) = \begin{cases} \text{accept} & \text{ se $M$ accept $w$} \\ \text{reject} & \text{altrimenti} \end{cases}
