@@ -28,7 +28,7 @@ publish: true
 >
 >2. *Dimostriamo* che l'insieme dei linguaggi non è [[Insieme Numerabile|Numerabile]]
 >
->Osserviamo che qualsiasi linguaggio si può rappresentare come una stirnga bianaria infinita 
+>Osserviamo che qualsiasi linguaggio si può rappresentare come una stringa binaria infinita 
 >>[!example] 
 >>Dato il seguente linguaggio : 
 >>$L = \{0,00,01\}$
