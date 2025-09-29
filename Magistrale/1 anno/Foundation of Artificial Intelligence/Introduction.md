@@ -4,3 +4,15 @@
 
 email se pelillo + torsello
 
+python
+
+code 2 pp , report 1 pp 
+
++ deductive ai
++ induction 
+
+---
+Introduction 
+
+mimics intelligence
+
