@@ -73,4 +73,30 @@ allows both qualitative and quantitavie modelling
 ---
 PEPA -> spec language
 
-we can define processes -> 
+we can define processes -> can be run in parallels , interct with one another etcc 
+
+duration of an activity -> can be estimed with an averge duration (rand var) -> by guessing or watching the system
+
+*prob theory* : 
+
++ Experiment -> outcome that can not be therminded in advanced -> sample space S -> previous outcomes of 
++ event subset of sample space 
++ event true -> if 
+
+sample space all the possible outcomes 
+$$S = \{(H,H), (H,T),(T,H), (T,T)\}$$
+$$A\subseteq P(S)$$ $$A = \{(H,H), (H,T),(T,H)\}$$
+Event subset of S , A -> all results with at least one **H**ead 
+$$B =\{(H,H),(T,T)\}$$
+event B -> coins are equal
+event accurs when outcome of an experiment is part of that event
+
+other examples ... 
+
+with continuos sample space -> ex $0<= x <= 5$ 
+
+**probability mapping** -> from set of events to real numbers -> to each event it's prob $0<= x <= 1$ 
+$$\sum \text{all the events in sumple space} = 1$$
+2 mutually exclusive events -> P unione = sum of prob
+
+$P(A\cup B) = P(A) + P(B) - P(A \cap B)$ 
