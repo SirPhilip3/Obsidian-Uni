@@ -1,4 +1,6 @@
-CRYPT_26
+psw : CRYPT_26
+
+exam : 1 midterm (nov 26, first 12 lessons) than the other part at the first  session  
 
 [[Non repudiation]]
 [[Data availability]]
