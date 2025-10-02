@@ -172,5 +172,23 @@ the search : $O(b^d)$
 The *search* is implemented in a *LIFO* way , this result in the search exploring fully one route of the *tree* at a time
 
 #todo 
+
+>[!example] 
+
+#### Evaluation
+
+This algorithm is **not** *complete* : if there is a path that has infinite depth towards the side from where the algorithm starts than it will never explore the other branches where a solution may exist
+
+>[!example] 
+
+
+This algorithm is **not** *optimal* : if the problem has more than one solution it may not find the one at minimum depth
+
+>[!example] 
+
+##### Temporal Complexity
+
+##### Spacial Complexity
+
 ### Iterative deepening
 
