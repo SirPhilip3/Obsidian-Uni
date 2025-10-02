@@ -1,18 +1,6 @@
-1 oral exam with pelillo , 1 project torsello
+Exam : 
++ 3 assignments during the semester :
+	+ 2 during the semester ( optional ) 
+	+ 1 during the exam sessions 
 
-3 assignments 2 during semester 1 for whole year sum
-
-email se pelillo + torsello
-
-python
-
-code 2 pp , report 1 pp 
-
-+ deductive ai
-+ induction 
-
----
-Introduction 
-
-mimics intelligence
-
+The assignment consist in solving some problems by writing code ( can be done in groups of max 2 people ) and producing a report ( individual )
