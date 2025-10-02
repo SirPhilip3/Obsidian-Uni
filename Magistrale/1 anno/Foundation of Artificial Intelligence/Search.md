@@ -17,34 +17,85 @@ In order to *reduce* a problem to a graph search :
 >+ *states* : the cities ( ex Vicenza, Padova, Venezia etcc )
 >+ *actions* : moving to a new city 
 >+ *goal test* : reaching your destination
+>``` dot
+>graph G {
+>	rankdir=LR;
+>    Vicenza -- Padova ;
+>    Padova -- Treviso ;
+>    Treviso -- Venezia;
+>    Venezia -- Padova;
+>    Venezia [peripheries=2]
+>}
+>```
 
+## Graph Search
 
-``` dot
-digraph G {
+Since we have efficent algorithm to perform the search on a *Tree* we will convert the *graph* in a *tree* in the following way : 
 
-  subgraph cluster_0 {
-	style=filled;
-	color=lightgrey;
-	node [style=filled,color=white];
-	a0 -> a1 -> a2 -> a3;
-	label = "process #1";
-  }
++ Replace undirected links by $2$ directed links ( back and forward )
++ Avoid loops
 
-  subgraph cluster_1 {
-	node [style=filled];
-	b0 -> b1 -> b2 -> b3;
-	label = "process #2";
-	color=blue
-  }
-  start -> a0;
-  start -> b0;
-  a1 -> b3;
-  b2 -> a3;
-  a3 -> a0;
-  a3 -> end;
-  b3 -> end;
+The resultin *tree* will have numerous duplicated nodes since there may be multiple paths to the same node in the *graph*
 
-  start [shape=Mdiamond];
-  end [shape=Msquare];
-}
-```
+>[!example] 
+>```dot
+>digraph G {
+>  compound=true; // permette agli archi di attraversare i cluster
+>    subgraph cluster_0 {
+>        style=filled;
+>        color=lightgrey;
+>        node [style=filled,color=white];
+>        Sg -> Ag -> Dg -> Gg;
+>        Sg -> Bg -> Dg;
+>        Bg -> Gg;
+>        Dg -> Cg;
+>        Ag -> Cg;
+>        Sg [label="S"];
+>        Ag [label="A"];
+>        Bg [label="B"];
+>        Cg [label="C"];
+>        Dg [label="D"];
+>        Gg [label="G"];
+>        label = "Graph";
+>
+>        // nodo fittizio per collegare il cluster
+>        cl0 [label="", shape=point, style=invis];
+>    }
+>
+>    subgraph cluster_1 {
+>        node [style=filled];
+>        S -> A -> D -> C;
+>        D -> G;
+>        S -> B;
+>        A -> C1;
+>        B -> D1;
+>        B -> G1;
+>        D1 -> C2;
+>        D1 -> G2;
+>        D1 [label="D"]
+>        C2 [label="C"]
+>        C1 [label="C"]
+>        G1 [label="G"]
+>        G2 [label="G"]
+>        
+>        label = "Tree";
+>        color=blue;
+>
+>        // nodo fittizio per collegare il cluster
+>        cl1 [label="", shape=point, style=invis];
+>    }
+>
+>    // freccia tra cluster (in realtà tra i nodi fittizi)
+>    cl0 -> cl1 [lhead=cluster_1, ltail=cluster_0];
+>
+>}
+>```
+
+## Evaluating
+
+4 criteria to evaluate a *search algorithm* :
++ **Completeness** : will it find a solution if one exists
++ **Optimality** : will the algorithm find the *best* solution if one exists
++ **Temporal Complexity** : time to solution find a solution 
++ **Spatial Complexity** : memory required
+
