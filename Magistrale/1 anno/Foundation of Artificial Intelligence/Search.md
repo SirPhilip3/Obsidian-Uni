@@ -253,7 +253,7 @@ iterative_deepening(G , source , is_goal) :
 ##### Temporal Complexity
 
 >[!warning] 
->This is the time complexity give in [baeldung](https://www.baeldung.com/cs/iterative-deepening-vs-depth-first-search) , different from the slides
+>This is the time complexity give in the book ( Artificial Intelligence, A Modern Approach ) , different from the slides
 
 The algorithm explores the start node $d+1$ times , it's children $d$ times and so on
 It explores the nodes at depth $d$ only one time since the *goal* is at depth $d$ 
