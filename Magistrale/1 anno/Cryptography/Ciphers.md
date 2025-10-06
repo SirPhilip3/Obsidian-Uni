@@ -83,5 +83,5 @@ $$D_p(y) = D_p(E_p(x)) = D_p(p(x)) = p^{-1}(p(x)) = x$$
 
 ### Attacks
 
-
+#todo
 ## Polyalphabetic ciphers
