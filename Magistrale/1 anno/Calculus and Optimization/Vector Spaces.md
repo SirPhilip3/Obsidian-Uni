@@ -103,4 +103,23 @@ $\sigma  = 1$
 >The set of polynomials that are the exact degree $n$ is **not** a *vector space* 
 >
 >The *closure* propiety does not hold : 
->given $p(x) = x^4$ and $q(x) = -x^4$ than $p(x)+q(x) = 0$ , but $0$ is not in the *vector space* since we define the degree of a polynomial as the *largest* 
+>given $p(x) = x^4$ and $q(x) = -x^4$ than $p(x)+q(x) = 0$ , but $0$ is not in the *vector space* since we define the degree of a polynomial as the *largest* non null degree , so in this case the degree qould would be $0$
+
+## Dimensions of a Vector Space 
+
+The dimension of a vector space is given by the number of : 
+>[!important] **Linearly Indipendent Vectors** 
+>A set of vectors that rapresents the whole vector space 
+>
+>These are those *vectros* that satisfy the following criteria : 
+>given $v_1, \dots , v_n \in V(K)$ and $\alpha_1, \dots, \alpha_n \in K$ than the *vectors* $\{v_1, \dots , v_n\}$ are *linearly indipendent* if : 
+>$$\alpha_1 v_i + \dots + \alpha_n v_n = w \iff \alpha_1= \dots = \alpha_m = 0$$
+>
+
+>[!example] 
+>$$\alpha_1 \begin{pmatrix} 5 \\ 5 \end{pmatrix} + \alpha_2 \begin{pmatrix} 2 \\ 2 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+>
+>Since in order to get $w$ as a result we would need values of $\alpha$ that are not $0$ these are not *lineraly independent*
+
+
+
