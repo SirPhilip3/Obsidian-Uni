@@ -38,7 +38,69 @@ We define the following operations :
 ( **Distributed propiety** 2 )
 
 >[!example] Some examples of **Vector Spaces**
->
->
->
 
++ $\mathbb{R}(\mathbb{R}) \approx \mathbb{R}$ 
+	This rapresents the *real* numbers with the standard operations amongst *real* numbers
+	
+	*Null vector* : $0$
+	*Opposite vector* : $x \cdot -1$ 
+	*Unit* $\sigma$ : $1$
+
+>[!example] 
+>Why does the multiplication of two negative numbers produce a positive number
+>
+>#todo
+
++ $\mathbb{R}^n(\mathbb{R}) \approx \mathbb{R}^n$ : set of *n-tuplas* 
+
+$$\alpha x = \alpha \begin{pmatrix}
+x_1  \\
+\vdots \\
+x_n 
+\end{pmatrix} = \begin{pmatrix}
+\alpha x_1  \\
+\vdots \\
+\alpha x_n 
+\end{pmatrix}$$
+$$x + y = \begin{pmatrix}
+x_1  \\
+\vdots \\
+x_n 
+\end{pmatrix}  + \begin{pmatrix}
+y_1  \\
+\vdots \\
+y_n 
+\end{pmatrix} = \begin{pmatrix}
+x_1 + y_1  \\
+\vdots \\
+x_n + y_n
+\end{pmatrix}$$
+$$w = \begin{pmatrix}
+0  \\
+\vdots \\
+0 
+\end{pmatrix} $$
++ $M_{m,n}(\mathbb{R})$ : where $M_{m,n}$ is a matrix of $m$ *rows* and $n$ *colums*
+
++ $P_n(x) , x \in \mathbb{R}$ is teh *set* of all the possible *polynomials* of *degree* **at most** $n$ where $x$ is the only unknown variable in the *polynomial* 
+
+>[!example] 
+>$p(x) = p_0 + p_1 x + p_2 x^2+ \dots + p_n x^n$
+
+Given $p_1(x) = x^3-x^2+2x -2 \in P_4(x)$ and $p_2(x) = 2x^2 + 1 \in P_4(x)$ 
+
+$p_1(x) + p_2(x) = x^3 + x^2+2x +0 \in P_4(x)$
+
+$\alpha p(x) = (\alpha p_0) + (\alpha p_1) x + \dots + (\alpha p_n) x^n$ 
+
+The *null vector* is a *polynomial* with all coefficients that are at $0$ 
+
+*Opposite* will be a *polynomial* with all reversed signs 
+
+$\sigma  = 1$ 
+
+>[!warning] 
+>The set of polynomials that are the exact degree $n$ is **not** a *vector space* 
+>
+>The *closure* propiety does not hold : 
+>given $p(x) = x^4$ and $q(x) = -x^4$ than $p(x)+q(x) = 0$ , but $0$ is not in the *vector space* since we define the degree of a polynomial as the *largest* 
