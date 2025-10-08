@@ -149,6 +149,19 @@ In this case we can exploit a task-specific *measure of goodness* in order to "g
 >We define 2 heuristics : 
 >+ $h'_1(n)$ : number of *missplaced* tiles
 >+ $h'_2(n)$ : sum of the [[Manhattan distance]] of each tile to it's desination 
+>
+>#todo
+>add example
 
-### Best First Search ( Greedy )
+### Consistent Heuristics
+
+### Algorithms
+
+#### Best First Search ( Greedy )
+
+Always explore the most promising path first 
+
+#### A*
+
+#### Iterative Deepening A*
 
