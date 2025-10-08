@@ -35,3 +35,4 @@ We can than use **statistical cryptanalysis** in order to decript a *ciphertext*
 + we know the used *chiper*
 + we know the *language* used in the *plaintext*
 
+#todo 
