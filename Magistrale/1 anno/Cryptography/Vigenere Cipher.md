@@ -39,5 +39,11 @@ With this type of *encryption* one *plaintext* letter will *not always* be mappe
 This cipher still maintains most of the structure of the *plaintext*  
 
 There are two methods to break the cipher : 
-+ [Ka](https://en.wikipedia.org/wiki/Kasiski_examination)
++ [Friedrich Kasiski method](https://en.wikipedia.org/wiki/Kasiski_examination)
++ *Wolfe Friedman* method 
+### Wolfe Friedman mathod
+
+The method is composed of *two phases* : 
+1. Recover the *length* $m$ of the key
+2. Recover the *key* itself
 
