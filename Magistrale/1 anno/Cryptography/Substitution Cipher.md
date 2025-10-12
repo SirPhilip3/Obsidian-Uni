@@ -35,4 +35,13 @@ We can than use **statistical cryptanalysis** in order to decript a *ciphertext*
 + we know the used *chiper*
 + we know the *language* used in the *plaintext*
 
-#todo 
+Given the *chipertext* $C$ we compute the frequency of the appearing letters
+
+1. Order the letters of the cyphertext into *decreasing* frequencies
+2. *Substitute* with the corresponding letters in the *language table* ( letters frequencies in a given language famous text )
+
+>[!note] 
+>Letters with similar frequencies may be sobstituted in incorrect order
+
+>[!note] 
+>Useful sobstitutions are the relative *trigraphs* and *digraphs* of the given language
