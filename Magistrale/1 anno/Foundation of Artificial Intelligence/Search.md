@@ -236,6 +236,14 @@ Where :
 This adds a "penalty" for the *lenght* of the path to the *evaluation function*
 
 >[!example] 
+>![[AstarExploration.excalidraw.png]]
+>%%[[AstarExploration.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+
+>[!example] Shortest path search
+> ![[Pasted image 20251013141018.png]]
+
+##### Evaluation
 
 
 
