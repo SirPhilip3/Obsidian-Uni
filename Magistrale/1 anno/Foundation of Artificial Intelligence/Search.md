@@ -149,9 +149,11 @@ In this case we can exploit a task-specific *measure of goodness* in order to "g
 >We define 2 heuristics : 
 >+ $h'_1(n)$ : number of *missplaced* tiles
 >+ $h'_2(n)$ : sum of the [[Manhattan distance]] of each tile to it's desination 
->
->#todo
->add example
+>>[!example] 
+>>Let's c
+
+#todo
+add example
 
 ### Consistent Heuristics
 
