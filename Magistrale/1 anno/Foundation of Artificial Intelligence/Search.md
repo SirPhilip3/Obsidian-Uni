@@ -216,9 +216,28 @@ search(G , source , heuristic , is_goal ) :
 
 ##### Evaluation
 
-+ **Complete**
++ It's *not complete* since it can get stuck in *loops*
++ It has $O(b^m)$ *time complexity* 
+>[!note] 
+>Good *heuristics* can improve performance by a lot
++ It has $O(b^m)$ *space complexity* since it keeps all the nodes in memory
++ It's *not optimal*
 
+>[!example] Example of non optimality
+>![[notoptgreedyex.excalidraw.png]]
+>%%[[notoptgreedyex.excalidraw.md|🖋 Edit in Excalidraw]]%%
 #### A*
+
+It's a *variation* of [[Best First Search (Greedy)]] where the *evaluation* function is : 
+$$f(n) = g(n)+ h'(n)$$
+Where : 
++ $g(n)$ is the path cost from the initial state to node $n$ 
+
+This adds a "penalty" for the *lenght* of the path to the *evaluation function*
+
+>[!example] 
+
+
 
 #### Iterative Deepening A*
 
