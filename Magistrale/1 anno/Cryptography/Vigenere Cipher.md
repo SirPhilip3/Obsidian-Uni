@@ -31,6 +31,8 @@ With this type of *encryption* one *plaintext* letter will *not always* be mappe
 >![[vigene.excalidraw.png]]
 >%%[[vigene.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
+>[!cite] 
+>Animation : https://www.youtube.com/watch?v=RtiXSmQAB2I
 ## Attacks
 
 >[!important] 
