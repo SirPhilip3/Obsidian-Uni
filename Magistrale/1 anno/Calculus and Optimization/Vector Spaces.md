@@ -128,9 +128,26 @@ The dimension of a vector space is given by the number of :
 >[!important] Definition
 >Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
 >
->We say that $s \in \mathbb{R}^n$ is an **affine combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
+>We say that the *vector* $s \in \mathbb{R}^n$ is an **affine combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
 >$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1, \alpha_i \in \mathbb{R}$$
 
 We can give a *geometric rapresentation* considering a set of vectors of size $2$ ( so that the rapresentation is two dimensional ) :  
 
 $s$ are all the *vectors* whos second extreme is on the *line* *between* the two extremes of $v_1$ and $v_2$
+
+>[!example] 
+>
+>![[Tute1_ManimCE_v0.19.0.png]]
+
+### Cone Combination
+
+>[!important] Definition
+>Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
+>
+>We say that the *vector* $z \in \mathbb{R}^n$ is a **cone combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
+>$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \alpha_i \ge 0, i = 1, \dots, m$$
+
+This the following *geometric* two dimensional interpretation of the **cone combination** 
+
+$z$ are all the vectors that stay in the *area* between $v_1$ and $v_2$  
+
