@@ -121,5 +121,16 @@ The dimension of a vector space is given by the number of :
 >
 >Since in order to get $w$ as a result we would need values of $\alpha$ that are not $0$ these are not *lineraly independent*
 
+## Vector Space Combinations
 
+### Affine Combiantion
 
+>[!important] Definition
+>Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
+>
+>We say that $s \in \mathbb{R}^n$ is an **affine combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
+>$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1, \alpha_i \in \mathbb{R}$$
+
+We can give a *geometric rapresentation* considering a set of vectors of size $2$ ( so that the rapresentation is two dimensional ) :  
+
+$s$ are all the *vectors* whos second extreme is on the *line* *between* the two extremes of $v_1$ and $v_2$

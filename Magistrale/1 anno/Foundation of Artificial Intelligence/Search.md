@@ -254,8 +254,43 @@ This adds a "penalty" for the *lenght* of the path to the *evaluation function*
 >+ $x$ a *non-optimal* one
 >+ $n_0,n_1,\dots, n_k = s$ be the path from the root to $s$ , for all $i=0,\dots,k$ we have that $f(n_i)< f(x)$ 
 >
+>We can in fact say that 
+>$$f(n_i) = g(n_i) + h(n_i) = g(s) < g(x) = g(x) + h(x) = f(x) \implies f(n_i) < f(x)$$
+>
+>Then $s$ must be expanded before $x$
 
-We can in fact say that 
-$$f(n_i) = g(n_i) + h(n_i)$$
+**Time** : Exponential
+**Space** : Exponential
+
+**Complete** : Yes ( unless there are *infinitely* many nodes with $f \le f(G)$ )
+
 #### Iterative Deepening A*
+
+Iterative Deepening in this case is used in order to better the *space* complexity of the algorithm by sacrificing visiting some nodes multiple times 
+
+In this case the *cutoff* is the $f-cost$ $(g+h)$ of each iteration 
+
+The next cutoff value is given by the *smallest* $f-cost$ of any node that exceeded the previous *cutoff*
+
+```python
+iterative_deepening (G , source , heuristic , is_goal ) :
+	C =0
+	while C < max_depth :
+		# list of visited nodes with their f
+		L =[( source , heuristic ( source ) ) ]
+		while L :
+			n , f = L . pop ()
+			if is_goal ( n ) :
+				return path ( source , n )
+			# visit adjacent nodes if f < C
+			for v in G . adjacent ( n )
+				fv = depth ( v ) + heuristic ( v )
+				if fv <= C :
+					L . append (( v , fv ) )
+		C +=1 # increase C and restart
+	return FAIL
+```
+
+>[!example] 
+>#todo
 
