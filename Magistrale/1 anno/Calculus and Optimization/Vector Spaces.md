@@ -151,3 +151,60 @@ This the following *geometric* two dimensional interpretation of the **cone comb
 
 $z$ are all the vectors that stay in the *area* between $v_1$ and $v_2$  
 
+>[!example] 
+>![[ConeCombiantion_ManimCE_v0.19.0.png]]
+
+### Convex Combination
+
+>[!important] Definition
+>Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
+>
+>We say that the *vector* $y \in \mathbb{R}^n$ is a **convex combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
+>$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1,\alpha_i \ge 0,\quad \alpha_i \in \mathbb{R} ,i = 1, \dots, m$$
+
+So $y$ is a *convex cobination* if it's both an *affine combination* and a *cone combination*
+
+So geometrically we can rapresent it as the *vector* passing through the two extremes of $v_1$ and $v_2$
+
+>[!example] 
+>![[ConvexCombination_ManimCE_v0.19.0.png]]
+
+## Inner Product ( Scalar )
+
+
+>[!important] Definition
+>The **inner product** '$<\bullet, \bullet>$' is defined as a *function* :
+>$$f : V^n(\mathbb{R}) \times V^n(\mathbb{R}) \rightarrow \mathbb{R}$$
+
+With the following *properties* : 
+
+1. $<x,x>\ge 0$ with $<x,x> = 0 \iff x = 0$ , $\quad \forall x \in V^n(\mathbb{R})$ 
+2. $<x , y +z > = <x,y> + <x,z> \quad \forall x,y,z \in V^n(\mathbb{R})$
+3. $<x,y> = <y,x> \quad \forall x, y \in V^n(\mathbb{R})$
+
+>[!important] **Standard** *inner product*
+>
+>Given *vectors* $x,y \in \mathbb{R}^n$ than by definition :
+>$$<x,y> = x^Ty$$
+
+>[!example] 
+>With
+>$$x = \begin{pmatrix}
+>x_1 \\ \vdots \\ x_n
+>\end{pmatrix} \quad y = \begin{pmatrix}
+>y_1 \\ \vdots \\ y_n
+>\end{pmatrix}$$
+>Than
+>$$<x,y> = x^Ty = \begin{pmatrix}
+>x_1, \dots,x_n
+>\end{pmatrix}\times \begin{pmatrix}
+>y_1 \\ \vdots \\ y_n
+>\end{pmatrix} = \sum_{i=1}^n x_i y_i$$
+## Vector Norms
+
+>[!important] 
+>The **norm** of a *vector* $x \in V^n(\mathbb{R})$ is the *function* from $V^n(\mathbb{R})\rightarrow\mathbb{R}^+ \cup \{0\}$  , indicated with $||\bullet||$ 
+
+With the following *proprieties* :
+1. $||x|| \ge 0$ with $||x||=0 \iff x = 0, \quad \forall x \in V^n(\mathbb{R})$ 
+2. $||\alpha x|| = |\alpha|\ ||x||, \quad $
