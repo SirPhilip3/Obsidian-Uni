@@ -24,4 +24,4 @@ We have two types of ciphers :
 	+ Some are : [[Caesar Cipher]] , [[Shift Cipher]] , [[Substitution Cipher]]
 + **Polyalphabetic** 
 	+ The same letters of the *plaintext* are not always mapped to the same *ciphertext* 
-	+ Some are : [[Vigenere Cipher]]
+	+ Some are : [[Vigenere Cipher]] 

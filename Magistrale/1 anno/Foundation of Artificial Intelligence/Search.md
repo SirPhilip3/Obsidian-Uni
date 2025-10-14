@@ -245,7 +245,17 @@ This adds a "penalty" for the *lenght* of the path to the *evaluation function*
 
 ##### Evaluation
 
+**Optimality** : if $h'$ is a [[Consistent Herusitic]] than $A^*$ is *optimal* : 
 
+>[!important] Proof
+>
+>Let : 
+>+ $s$ be an *optimal* *goal* node 
+>+ $x$ a *non-optimal* one
+>+ $n_0,n_1,\dots, n_k = s$ be the path from the root to $s$ , for all $i=0,\dots,k$ we have that $f(n_i)< f(x)$ 
+>
 
+We can in fact say that 
+$$f(n_i) = g(n_i) + h(n_i)$$
 #### Iterative Deepening A*
 
