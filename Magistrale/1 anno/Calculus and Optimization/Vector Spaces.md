@@ -207,4 +207,5 @@ With the following *properties* :
 
 With the following *proprieties* :
 1. $||x|| \ge 0$ with $||x||=0 \iff x = 0, \quad \forall x \in V^n(\mathbb{R})$ 
-2. $||\alpha x|| = |\alpha|\ ||x||, \quad $
+2. $||\alpha x|| = |\alpha|\ ||x||, \quad \forall x \in V^n(\mathbb{R}), \forall \alpha \in \mathbb{R}$
+3. $||x+y|| \le ||x|| + ||y||, \quad \forall x,y \in V^n(\mathbb{R})$
