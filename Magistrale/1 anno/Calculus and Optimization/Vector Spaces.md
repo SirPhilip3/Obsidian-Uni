@@ -215,3 +215,24 @@ With the following *proprieties* :
 + $||x||_1 = |x_1|+\dots+ |x_n|$
 + $||x||_2 = (x^T x)^{1/2} = [x_1^2 +\dots + x_n^2]^{1/2}$
 + $||x||_\infty = \max_{1\le i \le n}|x_i|$ 
+
+#todo example
+
+## Linear Functions
+
+>[!important] Definition
+>
+>Given the function $f : \mathbb{R}^n \to \mathbb{R}^m$ we say that $f(x)$ is *linear* in $\mathbb{R}^n$ if it satisfies the following *relations* : 
+>1. $f(x+y) = f(x)+f(y), \quad \forall x,y \in \mathbb{R}^n$
+>2. $f(\alpha x) = \alpha f(x), \quad \forall x \in \mathbb{R}^n, \forall \alpha \in \mathbb{R}$
+
+>[!example] 
+>$f(x,y) = 3xy$
+## Affined Functions
+
+>[!important] Definition
+>Given the function $g(x)$ , with $g: \mathbb{R}^n \to \mathbb{R}^m$ we say that $g(x)$ is an *affine function* in $\mathbb{R}^n$ if there exists a function $f(x)$ , *linear* in $\mathbb{R}$ , and the vector $\bar{c} \in \mathbb{R}^m$ , such that 
+>$$g(x) = f(x)+ \bar{c}$$ 
+
+>[!example] 
+>$g(x,y) = 3xy + 5$
