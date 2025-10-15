@@ -255,10 +255,22 @@ Geometrically we can rapresent them in the following way ( with only two *unknow
 >When $f: \mathbb{R} \to \mathbb{R}$ than : 
 >$$\frac{\partial f(x)}{\partial x} \equiv \frac{df(x)}{dx} $$ 
 
-For $p=1$ we use *Gradien* : $\nabla f(x)$ 
+For $p=1$ we use *Gradient* : $\nabla f(x)$ , we can so say that $f \in C^1(\mathbb{R}^n)$ 
 
 Where : 
+$$\nabla f(x) = \begin{pmatrix}
+\frac{\partial f(x)}{\partial x_1} \\ \vdots \\ \frac{\partial f(x)}{\partial x_n}
+\end{pmatrix}$$
 
-For $p=2$ we use *Hessian* : $\nabla^2 f(x)$
+For $p=2$ we use *Hessian* : $\nabla^2 f(x)$ , we can so say that $f \in C^2(\mathbb{R}^n)$ 
 
-#todo 
+Where : 
+$$\nabla^2 f(x) = \begin{pmatrix}
+\frac{\partial^2 f(x)}{\partial x_1 \partial x_1}  & \dots & \frac{\partial^2 f(x)}{\partial x_1 \partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial^2 f(x)}{\partial x_n \partial x_1} & \dots & \frac{\partial^2 f(x)}{\partial x_n \partial x_n}
+\end{pmatrix}$$
+
+>[!important] Definition
+>Given the function $f : \mathbb{R}^n \to \mathbb{R}$ with domain $\mathcal{A} \subseteq \mathbb{R}^n$ we say that the point $x \in \mathcal{A}$ is of **regularity** for $f(x)$ if $\nabla f(x)$ is *defined*
+
+>[!note] 
+>The previous definition simply states that the point $x$ is a *regular* point if $\nabla f(x)$
