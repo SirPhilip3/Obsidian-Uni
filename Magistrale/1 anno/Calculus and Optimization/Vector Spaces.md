@@ -236,3 +236,4 @@ With the following *proprieties* :
 
 >[!example] 
 >$g(x,y) = 3xy + 5$
+
