@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Shift Cipher
 
 The *shift cipher* generalizes the *ceasar cipher* by providing as $k$ a random number $\in Z_{26}$ ( an integer in the range $0-25$ )

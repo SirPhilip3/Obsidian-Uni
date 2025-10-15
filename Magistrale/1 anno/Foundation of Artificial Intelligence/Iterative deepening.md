@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ### Iterative deepening
 
 Perfoms *Depth-First search* up to depth $C$ , if the *goal* is not found at level $C$ increase it until the *goal* is found

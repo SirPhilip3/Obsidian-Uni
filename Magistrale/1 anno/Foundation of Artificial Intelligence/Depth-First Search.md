@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ### Depth-First Search
 
 The *search* is implemented in a *LIFO* ( Last In First Out ) way , this result in the search exploring fully one route of the *tree* at a time

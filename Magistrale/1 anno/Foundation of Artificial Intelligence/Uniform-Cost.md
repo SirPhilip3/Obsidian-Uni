@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Also called *Dijkstra* algorithm it is guided by the minimum cost of a path 
 
 We assume that each path has a different cost and that there is a *minimum* cost $\epsilon$ 

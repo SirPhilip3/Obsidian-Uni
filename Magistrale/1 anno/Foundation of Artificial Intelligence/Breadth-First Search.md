@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ### Breadth-First Search
 
 Search is implemented like a *FIFO* ( First In First Out ) list

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 **Search** algorithms are the backbone of AI. They allow the systematic exploration of alternatives 
 
 We can have : 

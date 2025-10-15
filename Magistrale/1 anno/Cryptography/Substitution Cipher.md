@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Substitution Cipher
 
 We can overcome the limitations of the *shift cipher* by just using a *generic permutation* of the alphabet used to *encode* the message

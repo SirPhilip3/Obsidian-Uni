@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Symmetric Ciphers
 
 Mathematical model to describe a **Symmetric Encryption System** $(P,C,K,E,D)$ where : 

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 **Propieties** : 
 1. The system should be, if not theoretically unbreakable, unbreakable in practice.
 2. [[Kerckhoffs principle]]

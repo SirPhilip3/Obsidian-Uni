@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Caesar Cipher
 
 **Encryption** : All the letters of the message are *substituted* by the one $3$ positions ahead in the alphabeth 

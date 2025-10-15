@@ -1,3 +1,7 @@
+---
+publish: true
+---
+
 >[!important] Definition
 >Let : 
 >+ $V$ be a set of objects ( *vectors* )
