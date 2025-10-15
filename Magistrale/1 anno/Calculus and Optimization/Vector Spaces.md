@@ -222,7 +222,7 @@ With the following *proprieties* :
 
 Geometrically we can rapresent them in the following way ( with only two *unknowns* ) : 
 
-
+![[NormsScene_ManimCE_v0.19.0 1.png]]
 ## Linear Functions
 
 >[!important] Definition
@@ -237,7 +237,6 @@ Geometrically we can rapresent them in the following way ( with only two *unknow
 >[!note] 
 >*Linear functions* **must** pass through the origin
 
-
 ## Affined Functions
 
 >[!important] Definition
@@ -249,3 +248,17 @@ Geometrically we can rapresent them in the following way ( with only two *unknow
 
 ## Continuos Differentiability in $\mathbb{R}^n$ 
 
+>[!important] Definition
+>Given the function $f : \mathbb{R}^n \rightarrow \mathbb{R}$ than we say that $f(x)$ is $p$ **times continuosly differentiable** on the 'closed set' $\mathcal{A}$, if in the 'open set' $\mathcal{B}$ , with $\mathcal{A} \subset \mathcal{B}$  there exists both the *partial* and *mixed* derivatives of $f(x)$ up to order $p$ and they are continuos in $\mathcal{B}$
+
+>[!note] 
+>When $f: \mathbb{R} \to \mathbb{R}$ than : 
+>$$\frac{\partial f(x)}{\partial x} \equiv \frac{df(x)}{dx} $$ 
+
+For $p=1$ we use *Gradien* : $\nabla f(x)$ 
+
+Where : 
+
+For $p=2$ we use *Hessian* : $\nabla^2 f(x)$
+
+#todo 
