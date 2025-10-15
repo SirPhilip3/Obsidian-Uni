@@ -220,7 +220,8 @@ With the following *proprieties* :
 + $||x||_2 = (x^T x)^{1/2} = [x_1^2 +\dots + x_n^2]^{1/2}$
 + $||x||_\infty = \max_{1\le i \le n}|x_i|$ 
 
-#todo example
+Geometrically we can rapresent them in the following way ( with only two *unknowns* ) : 
+
 
 ## Linear Functions
 
@@ -232,6 +233,11 @@ With the following *proprieties* :
 
 >[!example] 
 >$f(x,y) = 3xy$
+
+>[!note] 
+>*Linear functions* **must** pass through the origin
+
+
 ## Affined Functions
 
 >[!important] Definition
@@ -240,4 +246,6 @@ With the following *proprieties* :
 
 >[!example] 
 >$g(x,y) = 3xy + 5$
+
+## Continuos Differentiability in $\mathbb{R}^n$ 
 

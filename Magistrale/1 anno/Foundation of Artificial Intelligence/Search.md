@@ -182,10 +182,10 @@ Consider that :
 + $g(n)$ is the path cost from the initial state to node $n$ 
 + $h'(n)$ is the *estimated* cost of the *shortest* path from $n$ to the goal state
 $$\begin{align*}
-f (n') &= g (n') + h'(n') \\
-&= g (n) + c(n, a, n') + h'(n') \\
-&\ge g (n) + h'(n) \\
-&= f (n)
+f (n') & = g (n') + h'(n') \\
+& = g (n) + c(n, a, n') + h'(n') \\
+& \ge g (n) + h'(n) \\
+& = f (n)
 \end{align*}$$
 $f(n)$ is than a *monotonically increasing* function since passing through $1$ more node will always be more expensive than the normal path 
 #explain
