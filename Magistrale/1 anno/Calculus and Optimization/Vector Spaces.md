@@ -270,7 +270,42 @@ $$\nabla^2 f(x) = \begin{pmatrix}
 \end{pmatrix}$$
 
 >[!important] Definition
->Given the function $f : \mathbb{R}^n \to \mathbb{R}$ with domain $\mathcal{A} \subseteq \mathbb{R}^n$ we say that the point $x \in \mathcal{A}$ is of **regularity** for $f(x)$ if $\nabla f(x)$ is *defined*
+>Given the function $f : \mathbb{R}^n \to \mathbb{R}$ with domain $\mathcal{A} \subseteq \mathbb{R}^n$ we say that the point $\bar{x} \in \mathcal{A}$ is of **regularity** for $f(\bar{x})$ if $\nabla f(x)$ is *defined*
+>>[!note] 
+>>The previous definition simply states that the point $\bar x$ is a *regular* point if $\nabla f(\bar x)$ exists or more simply if $f(\bar x)$ is *differentiable*
 
->[!note] 
->The previous definition simply states that the point $x$ is a *regular* point if $\nabla f(x)$
+## Taylor Expansion
+
+>[!important] Definition
+>
+>Given the function $f(x)$ , let $f : \mathbb{R}^n \to \mathbb{R}$ be $f \in C^m(\mathbb{R^n})$ ( *continuosly differentiable* at least $m$ times ) in the **neighborhood** $I(x, \delta) = \{x \in \mathbb{R}^n : ||x-\bar{x}|| \leq \delta , \delta > 0\}$ of the point $\bar{x}$. Than we have :
+>$$f(x) = \sum^{m}_{h=0} \frac{D^h f(\bar{x})}{h!}(x-\bar{x})^h + R_{m+1}(\bar x) , \quad \lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0$$ 
+
+Where $h$ indicates the order of the *partial derivative* and $D^h f(\bar{x})$ indicares the *partial derivative* of order $h$ computed at point $\bar{x}$ 
+
+The *taylor series* allows us to approximate a function $f(x)$ on a point $\bar{x}$ because by $x$ approaching $\bar{x}$ we have that :
+$$\lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0$$
+### $m=0$
+
+When $m=0$ the *taylor expansion* becomes the following expression :
+$$\frac{D^0 f(\bar{x})}{0!}(x-\bar{x})^0 + R_{0+1}(\bar x)$$
+Simplified it becomes : 
+$$f(\bar{x}) + R_1(\bar{x})$$
+With $(x-\bar{x})^0 \equiv 1$
+
+### $m=1$ 
+
+$$\dots + \frac{D^1 f(\bar{x})}{1!}(x-\bar{x})^1 + R_{2}(\bar x)$$
+$$\dots + \nabla f(\bar{x})^T(x - \bar{x}) +R_2(\bar{x})$$
+### $m=2$
+
+$$\dots + \frac{D^2 f(\bar{x})}{2!}(x-\bar{x})^2 + R_{3}(\bar x)$$
+$$\dots + \frac{1}{2}(x-\bar{x})^T\nabla^2 f(\bar{x})(x-\bar{x})+ R_3(\bar{x})$$
+
+## Directional Derivatives
+
+>[!important] Definition
+>Let $f(x) : \mathbb{R}ìn \to \mathbb{R}$ be $f\in C^1(\mathbb{R}^n)$ ( *continuosly differentiable* in $\mathbb{R}$ only **once** )
+>
+>#todo
+
