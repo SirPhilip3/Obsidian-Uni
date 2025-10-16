@@ -133,5 +133,22 @@ Where $n$ and $n'$ are the lenght of the two *subciphers*
 >[!note] Idea
 >The *idea* is to *shift* one *subcipher* until the *MI* of the first *subcipher* becomes close to the one of the *plaintext* language
 >
->When this happens we know that the applied shift is the relative shift between the two *subcipher*
+>When this happens we know that the applied shift is the relative shift between the two *subcipher* and also between the letters of the key 
+
+Algorithm : 
+
+```python
+key = []
+for i in range(0,m)
+	k=0
+	mick=0
+	for j in range(0,26)
+		mic = MIC(sub[0], shift(j,sub[i]))
+		if(mic > mick)
+			k = j
+			mick = mic
+	key.append(k)
+```
+
+We repeat this process for each letter of the key and get a list of relatie shifts now we can just try all the possible $26$ first letters of the *key* 
 
