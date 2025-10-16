@@ -1,13 +1,24 @@
 #### Legge di Bayes
 
 Sia data la partizione $C_1, C_2, \dotsc$  ( con tutti i suoi elementi tale che abbiano probabilità positiva ) e un evento A ( con probabilità positiva ) Allora avremo che la probabilità condizionata da una qualsiasi partizione sarà :
-$$\mathbb{P}[C_m|A]=\frac{\mathbb{P}[A|C_m]\cdot\mathbb{P}[C_m]}{\sum_i \mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]}$$
+$$
+\mathbb{P}[C_m|A]=\frac{\mathbb{P}[A|C_m]\cdot\mathbb{P}[C_m]}{\sum_i \mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]}
+$$
 Questa può essere derivata da :
-+ $$\mathbb{P}[C_m|A]=\frac{\mathbb{P}[C_m\cap A]}{\mathbb{P}[A]}$$
++ 
+$$
+\mathbb{P}[C_m|A]=\frac{\mathbb{P}[C_m\cap A]}{\mathbb{P}[A]}
+$$
 	Derivante dalla definizione di *probabilità condizionata*
-+ $$\mathbb{P}[C_m\cap A]=\mathbb{P}[C_m]\cdot \mathbb{P}[A|C_m]$$
++ 
+$$
+\mathbb{P}[C_m\cap A]=\mathbb{P}[C_m]\cdot \mathbb{P}[A|C_m]
+$$
 	Derivante dalla formula delle *probabilità composte*
-+ $$\mathbb{P}[A]=\sum_i\mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]$$
++ 
+$$
+\mathbb{P}[A]=\sum_i\mathbb{P}[A|C_i]\cdot\mathbb{P}[C_i]
+$$
 	Derivante dalla legge della *probabilità totale*
 
 **Interpretazione** :
@@ -30,8 +41,16 @@ Evidenziamo gli *eventi* :
 
 Ciò che sappiamo è che il componente e danneggiato e noi vogliamo calcolare la probabilità che questo venga dal produttore Z
 Avremo che dovremo quindi calcolare :
-$$\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}$$
-$$\mathbb{P}[D]=\mathbb{P}[X]\cdot\mathbb{P}[D|X]+\mathbb{P}[Y]\cdot \mathbb{P}[D|Y]+\mathbb{P}[Z]\cdot \mathbb{P}[D|Z]$$
-$$=0.24\cdot0.05+0.36\cdot0.4+0.4\cdot 0.6$$
+$$
+\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}
+$$
+$$
+\mathbb{P}[D]=\mathbb{P}[X]\cdot\mathbb{P}[D|X]+\mathbb{P}[Y]\cdot \mathbb{P}[D|Y]+\mathbb{P}[Z]\cdot \mathbb{P}[D|Z]
+$$
+$$
+=0.24\cdot0.05+0.36\cdot0.4+0.4\cdot 0.6
+$$
 Concludendo avremo :
-$$\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}=\frac{0.4\cdot0.06}{0.072}=0.33$$
+$$
+\mathbb{P}[Z|D]=\frac{\mathbb{P}[D|Z]\cdot \mathbb{P}[Z]}{\mathbb{P}[D]}=\frac{0.4\cdot0.06}{0.072}=0.33
+$$

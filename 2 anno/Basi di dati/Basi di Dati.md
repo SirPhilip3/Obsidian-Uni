@@ -946,11 +946,15 @@ Nel modello di base non viene utilizzato il *NULL*
 Indicata con $\rho$
 Data una *relazione* $R(X)$ con $X$ insieme di attributi abbiamo che $A \in X$ e $B \notin X$ 
 Avremo che 
-$$\rho_{A\leftarrow B}(R)$$
+$$
+\rho_{A\leftarrow B}(R)
+$$
 Sarà la relazione R dove A viene ridenominato con B
 
 Formalizzazione :
-$$\rho_{A\leftarrow B}(R)=\{t\space |\space \exists\space u \in R\quad t.B=u.A\space \land\space \forall C \in X-\{A\}\quad t.C=u.C \}$$
+$$
+\rho_{A\leftarrow B}(R)=\{t\space |\space \exists\space u \in R\quad t.B=u.A\space \land\space \forall C \in X-\{A\}\quad t.C=u.C \}
+$$
 La nuova relazione avrà :
 + *grado* : stesso grado di R
 + *tipo* : stesso tipo di R ma con un attributo modificato $\rho_{A\leftarrow B}(R) : \{( A_1 : T_1 , \dots , B : T , \dots , A_n : T_n )\}$
@@ -964,7 +968,9 @@ La ridenominazione risulta essere utile quando vogliamo unire 2 tabelle ( relazi
 	Esami( Nome , Candidato , Voto )
 
 In questo caso il `Nome` dell'esame , se volessimo unire le 2 tabelle , andrebbe cambiato :
-$$\rho_{Nome\leftarrow NomeEsame}(Esami)$$
+$$
+\rho_{Nome\leftarrow NomeEsame}(Esami)
+$$
 #### Unione e Differenza
 
 Avendo due relazioni R ed S con lo *stesso tipo* 
@@ -987,14 +993,18 @@ Indicata con $\pi$
 Utilizzato per selezionare degli attributi specifici
 
 Data la relazione $R(n)$ con $\{A_1, \dots , A_m\}\subseteq X$
-L'operazione $$\pi_{A_1,\dots,A_m}(R)=\{<t.A_1,\dots,t.A_m>|t\in R\}$$
+L'operazione $$
+\pi_{A_1,\dots,A_m}(R)=\{<t.A_1,\dots,t.A_m>|t\in R\}
+$$
 'Elimina' tutti gli attributi diversi da $A_1,\dots,A_m$
 
 La nuova relazione avrà :
 + *tipo* : $\{(t.A_1,\dots,t.A_m)\}$  ossia il tipo degli attributi che abbiamo selezionato
 + *cardinalità* :
 	Sapendo che $|R|=n$
-	Avremo che :$$|\pi_{A_1,\dots,A_m}(R)|\le n$$
+	Avremo che :$$
+	|\pi_{A_1,\dots,A_m}(R)|\le n
+	$$
 	Anche in questo caso se vi sono duplicati tra gli elementi che selezioniamo queste entry vengono eliminate
 
 	Se gli attributi selezionati sono una *superchiave* ( contengono almeno una *key* ) il numero di ennuple saranno $n$
@@ -1012,7 +1022,9 @@ Abbiamo la seguente relazione
 |Chiara|Scuri|71346|2006|VE|
 
 Possiamo selezionare `Nome, Matricola, Provincia`
-$$\pi_{\text{Nome,Matricola,Provincia}}(Studenti)$$
+$$
+\pi_{\text{Nome,Matricola,Provincia}}(Studenti)
+$$
 La risultante relazione è :
 
 |Nome|*Matricola* `<PK>`|Provincia|
@@ -1025,7 +1037,9 @@ La risultante relazione è :
 In questo caso la *cardinalità* risulterà essere $n$ poichè la relazione risultante contiene la `<PK>`
 
 Se però avessimo :
-$$\pi_{\text{Provincia}}(Studenti)$$
+$$
+\pi_{\text{Provincia}}(Studenti)
+$$
 La risultante relazione è :
 
 |Provincia|
@@ -1038,11 +1052,15 @@ In questo caso abbiamo che i duplicati di `VE` risultano essere stati eliminati 
 
 Indicata con $\sigma$
 
-$$\sigma_{\phi}(R)=\{t|t\in R\land \phi(t)\}$$
+$$
+\sigma_{\phi}(R)=\{t|t\in R\land \phi(t)\}
+$$
 Utilizzata per creare una relazione le cui ennuple sono le ennuple di $R$ che soddisfano la condizione $\phi$
 
 La condizione $\phi$ è una composizione di uguaglianze , disuguaglianze e disequazioni tra attributi ( o tra attributi e costanti )
-$$\phi = A_i\space op\space A_j\space|\space A_i\space op\space c\space|\space\neg \phi\space|\space\phi\land\phi\space|\space\phi\lor\phi $$
+$$
+\phi = A_i\space op\space A_j\space|\space A_i\space op\space c\space|\space\neg \phi\space|\space\phi\land\phi\space|\space\phi\lor\phi 
+$$
 dove $op$ è un'operazione di confronto
 
 La nuova relaziona avrà :
@@ -1060,7 +1078,9 @@ La nuova relaziona avrà :
 
 Trovare i dati degli `Studenti` della `Provincia` di Venezia `VE`
 
-$$\sigma_{\text{Provincia = 'VE'}}(Studenti)$$
+$$
+\sigma_{\text{Provincia = 'VE'}}(Studenti)
+$$
 La relazione risultante sarà :
 
 |Nome|Cognome|*Matricola* `<PK>`|Anno|Provincia|
@@ -1071,7 +1091,9 @@ La relazione risultante sarà :
 
 Trovare il `Nome` , la `Matricola` e l'`Anno` di iscrizione degli `Studenti` di `Venezia`
 
-$$\pi_{\text{Nome,Matricola,Provincia}}(\sigma_{\text{Provincia = 'VE'}}(Studenti))$$
+$$
+\pi_{\text{Nome,Matricola,Provincia}}(\sigma_{\text{Provincia = 'VE'}}(Studenti))
+$$
 La relazione risultante sarà :
 
 |Nome|*Matricola* `<PK>`|Anno|
@@ -1089,7 +1111,9 @@ Deve soddisfare una condizione iniziale ossia che R e S devono avere attributi d
 Le ennuple risultanti vengono ottenute tramite la concatenazione tra le ennuple di R e di S
 
 Avremo quindi :
-$$R\times S=\{<t\cdot A_1,\dots,t\cdot A_n,u\cdot B_1,\dots,u\cdot B_n>| t\in R \land u \in S\}$$
+$$
+R\times S=\{<t\cdot A_1,\dots,t\cdot A_n,u\cdot B_1,\dots,u\cdot B_n>| t\in R \land u \in S\}
+$$
 La nuova realzione avrà :
 + *tipo* : la concatenzione dei tipi di R e S $\{(t\cdot A_1,\dots,t\cdot A_n,u\cdot B_1,\dots,u\cdot B_n>)\}$
 + *cardinalità* : 
@@ -1126,22 +1150,30 @@ Per farlo rispettare necessitiamo di fare delle altre operazioni
 
 Innazitutto dobbiamo fare una *restrizione* sul prodotto facendo in modo che abbiamo solo le ennuple tale che la `Matricola` sia uguale al `Candidato`
 
-$$\sigma_{\text{Matricola=Candidato}}(Studenti\times Esami)$$
+$$
+\sigma_{\text{Matricola=Candidato}}(Studenti\times Esami)
+$$
 ### Operatori derivati
 #### Giunzione
 
 Indicata con $\bowtie$
 
 Utile se vogliamo combinare relazioni correlate tra loro come la precedente 
-$$R\underset{A_i=B_j}{\bowtie}S$$
+$$
+R\underset{A_i=B_j}{\bowtie}S
+$$
 Avendo $R$ e $S$ con attributi distinti 
 Possiamo espandere la *giunzione* in :
-$$R\underset{A_i=B_j}{\bowtie}S=\sigma_{A_i=B_j}(R\times S)$$
+$$
+R\underset{A_i=B_j}{\bowtie}S=\sigma_{A_i=B_j}(R\times S)
+$$
 La *giunzione* viene anche chiamata *equijoin* 
 
 **Esempio** :
 Nel caso di prima la formula finale può essere scritta come :
-$$Studenti\underset{Matricola=Candidato}{\bowtie}Esami$$
+$$
+Studenti\underset{Matricola=Candidato}{\bowtie}Esami
+$$
 ##### Giunzione naturale 
 $R\bowtie S$
 Con $R(X,Y)$ e $S(Z,X)$
@@ -1149,7 +1181,9 @@ Con $R(X,Y)$ e $S(Z,X)$
 Avremo quindi che R ed S hanno un attributo in comune : X
  
 Definizione formale :
-$$t\in R \bowtie S\quad \text{sse}\quad t[X\space Y] \in R\ \land\ t[Z\ X]\in S$$
+$$
+t\in R \bowtie S\quad \text{sse}\quad t[X\space Y] \in R\ \land\ t[Z\ X]\in S
+$$
 Ossia l'ennupla $t$ esiste in $R\bowtie S$ se e solo se l'ennupla $t$ con attributi $X$ e $Y$ appartiene alla relazione $R$ e se l'ennupla $t$ con attributi $Z$ e $X$ appartiene alla relazione $S$
 
 In sostanza $R\bowtie S$ restituisce una relazione che ha come attributi $X$ $Y$ $Z$ , in cui l'attributo comune $X$ è presente una sola volta
@@ -1161,18 +1195,28 @@ La *giunzione naturale* può essere rappressentata anche attraverso *operazioni 
 Siano $X = \{A_1, \dots , A_n\}$ gli attributi comuni di R e S
 
 1. Come prima cosa dobbiamo *ridenominare* gli attributi comuni :
-$$R'=\rho_{A_k\leftarrow RA_k}(R)$$
+$$
+R'=\rho_{A_k\leftarrow RA_k}(R)
+$$
 	Con $k=1,\dots,n$
 	Dove $\{RA_1,\dots , RA_n\}$ devono essere attributi nuovi
 2. Prodotto 
-$$T=R'\times S$$
+$$
+T=R'\times S
+$$
 3. Vogliamo ora svolgere un *equijoin* su $A_k$ e $RA_k$
-	$$N = \sigma_{A_k=RA_k}(T)$$
+	$$
+	N = \sigma_{A_k=RA_k}(T)
+	$$
 	con $k=1,\dots,n$
 	I precedenti 2 passi possono essere riscritti nel seguente modo :
-	$$R'\underset{A_k=RA_k}{\bowtie}S$$
+	$$
+	R'\underset{A_k=RA_k}{\bowtie}S
+	$$
 4. Ora mi basterà selezionare ( fare la *proiezione* ) di uno degli attributo $A$ o $RA$
-	$$\pi_{XYZ}(N)$$
+	$$
+	\pi_{XYZ}(N)
+	$$
 	Dove $X=\{A_1, \dots , A_n\}$ 
 
 **Esempio** :
@@ -1182,9 +1226,13 @@ Abbiamo :
 `Esami(Codice <PK>, Matricola <FK>(Studenti), Voto, Materia)`
 
 Se facciamo la *giunzione naturale* abbiamo :
-$$Studenti\bowtie Esami$$
+$$
+Studenti\bowtie Esami
+$$
 Avremo come risultato l'*equijoin* :
-$$Studenti\underset{Stud.Matricola=Exa.Matricola}{\bowtie}Esami$$
+$$
+Studenti\underset{Stud.Matricola=Exa.Matricola}{\bowtie}Esami
+$$
 >[!warning]
 > Se vi sono più attributi con lo stesso nome dobbiamo capire se volgiamo il comportamento della *giunzione naturale* poichè es :
 >`Studenti.Nome != Esami.Nome`
@@ -1205,7 +1253,9 @@ Vi sono 3 tipi di *giunzione esterne* :
 ###### Completa
 
 Si rappresenta con 
-$$R\overleftrightarrow{\bowtie}S$$
+$$
+R\overleftrightarrow{\bowtie}S
+$$
 
 E restituisce la *giunzione naturale* di $R$ e $S$ estesa con le ennuple di $R$ ed $S$ che non appartengono alla *giunzione naturale* ( queste vengono completate con *NULL* per gli attributi mancanti )
 
@@ -1217,8 +1267,12 @@ $A_1,\dots,A_n$ sono attributi di $R$ e non di $S$
 $B_1,\dots,B_n$ sono attributi di $S$ e non di $R$
 
 Avremo quindi : 
-$$R\overleftrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]\cup$$
-$$\cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$$
+$$
+R\overleftrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]\cup
+$$
+$$
+\cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]
+$$
 Spiegando :
 + $R\bowtie S$ : *giunzione naturale* iniziale
 + $\cup$ : unisco alla *giunzione naturale* le ennuple non presenti 
@@ -1243,7 +1297,9 @@ $R\overrightarrow{\bowtie}S$
 E' un parziale della *giunzione esterna completa*
 
 Ossia :
-$$R\overrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]$$
+$$
+R\overrightarrow{\bowtie}S=R\bowtie S \cup \Big[(R-\pi_X(R\bowtie S))\times\{(B_1=NULL,\dots,B_n=NULL)\}\Big]
+$$
 ###### Sinistra
 
 Si rappresenta con 
@@ -1252,24 +1308,40 @@ $R\overleftarrow{\bowtie}S$
 E' un parziale della *giunzione esterna completa*
 
 Ossia :
-$$R\overleftarrow{\bowtie}S=R\bowtie S \cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]$$
+$$
+R\overleftarrow{\bowtie}S=R\bowtie S \cup\Big[\{(A_1=NULL,\dots,A_n=NULL)\}\times (S-\pi_Y(R\bowtie S)) \Big]
+$$
 #### Intersezione 
 
 Formalmente :
-$$R\cap S=\{t|t\in R \land t \in S\}$$
+$$
+R\cap S=\{t|t\in R \land t \in S\}
+$$
 Può essere vista come :
-$$R-(R-S)$$
+$$
+R-(R-S)
+$$
 + $R-S$ : indica le ennuple che stanno in $R$ ma non in $S$
 Se poi sottraiamo a queste $R$ allora avremo l'*intersezione* tra $R$ ed $S$
 
 Ora dimostriamo la precedente formula :
 
 partiamo quindi da :
-$$t\in R -(R-S)\quad \text{sse}\quad t\in R \land t\notin(R-S)$$
-$$t\in R \land\lnot\Big[ t \in (R-S) \Big]$$
-$$t\in R \land \lnot\Big[t\in R \land t\notin S\Big]$$
-$$t\in R\land \Big[t\notin R \lor t \in S\Big] \quad \text{per deMorgan}$$
-$$t\in R\land t\in S\quad \text{Poichè essendo che $t\in R$ non può essere $t\notin R$}$$
+$$
+t\in R -(R-S)\quad \text{sse}\quad t\in R \land t\notin(R-S)
+$$
+$$
+t\in R \land\lnot\Big[ t \in (R-S) \Big]
+$$
+$$
+t\in R \land \lnot\Big[t\in R \land t\notin S\Big]
+$$
+$$
+t\in R\land \Big[t\notin R \lor t \in S\Big] \quad \text{per deMorgan}
+$$
+$$
+t\in R\land t\in S\quad \text{Poichè essendo che $t\in R$ non può essere $t\notin R$}
+$$
 Essendo arrivati alla definizione iniziale abbiamo concluso la dimostrazione
 #### Divisione
 
@@ -1280,7 +1352,9 @@ $R(XY)$
 $S(Y)$
 
 Vogliamo produrre una relazione $T(X)$ tale che una ennupla $t$ è di $T$ se e solo se per ogni $s$ di $S$ l'ennupla $<t, s>$ appare in $R$
-$$R\div S$$
+$$
+R\div S
+$$
 **Esempio** 
 
 Abbiamo $R$ :
@@ -1316,16 +1390,22 @@ Stessa cosa per $t3$
 $t2$ invece non è concatenato ad $s2$ quindi non possiamo inserirlo nella tabbella $R \div S$
 
 Formalmente quindi avremo che :
-$$R \div S=\{t|t \in \pi_X(R)\land \forall s \in S \quad <t,s>\in R\}$$
+$$
+R \div S=\{t|t \in \pi_X(R)\land \forall s \in S \quad <t,s>\in R\}
+$$
 
 **Dimostrazione**
 
 Se compariamo la divisione sulle relazioni e sui numeri
 
 Nei *numeri* abbiamo :
-$$r\div s = max\{t |t\cdot s \le r\}\quad \text{con $s\neq 0$}$$
+$$
+r\div s = max\{t |t\cdot s \le r\}\quad \text{con $s\neq 0$}
+$$
 Nelle *relazioni* abbiamo :
-$$R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}$$
+$$
+R\div S=max\{T|T\times S\subseteq R\}\quad \text{con $S\neq 0$}
+$$
 
 >[!todo]
 >completa dimostrazione
@@ -1342,14 +1422,18 @@ Abbiamo 2 tabelle ricavate così :
 	Questa rappresenta la tabella con le matricole e gli esami svolti da tutti gli studenti
 
 La tabella che quindi volgiamo sarà data dalla seguente operazione
-$$ES\div ES\_AR$$
+$$
+ES\div ES\_AR
+$$
 
 >[!todo]
 >tabella di spiegazione
 >#todo
 
 L'operazione di $\div$ può essere scritta in termini di *operatori primitivi* nel seguente modo :
-$$R\div S=\pi_{X}(R)-\pi_{X}\big((\pi_X(R)\times S)-R\big)$$
+$$
+R\div S=\pi_{X}(R)-\pi_{X}\big((\pi_X(R)\times S)-R\big)
+$$
 Spiegazione :
 
 >[!todo]
@@ -1363,7 +1447,9 @@ Spiegazione :
 
 #### Proiezione generalizzata
 
-$$\pi_{Exp_1\ \textbf{AS}\ A_1\ ,\ Exp_2\ \textbf{AS}\ A_2 \ ,\ \dots \ , Exp_n\ \textbf{AS}\ A_n } ( R )$$
+$$
+\pi_{Exp_1\ \textbf{AS}\ A_1\ ,\ Exp_2\ \textbf{AS}\ A_2 \ ,\ \dots \ , Exp_n\ \textbf{AS}\ A_n } ( R )
+$$
 
 In questo caso le espressioni $Exp_n$ possono contenere attributi , costanti e operazioni su di essi 
 
@@ -1371,7 +1457,9 @@ In questo caso le espressioni $Exp_n$ possono contenere attributi , costanti e o
 
 Data un relazione : `Utente(Codice, SalarioLordo, Trattenute, ...)`
 
-$$\pi_{\text{Codice, SalarioLordo - Trattenute AS Stipendio }} ( Utente )$$
+$$
+\pi_{\text{Codice, SalarioLordo - Trattenute AS Stipendio }} ( Utente )
+$$
 Questo creerà la seguente tabelle :
 
 |Codice|Stipendio|
@@ -1393,12 +1481,16 @@ Se vogliamo ignorare eventi duplicati ( 23 , 30 , 30 -> il secondo 30 viene igno
 
 #### Raggruppamento
 
-$$A_1,A_2,\dots,A_n\ \gamma \ f_1,f_2,\dots,f_n (R)$$
+$$
+A_1,A_2,\dots,A_n\ \gamma \ f_1,f_2,\dots,f_n (R)
+$$
 
 Dove $f_n$ sono *funzioni di aggregazione* e $A_n$ sono attributi di $R$
 
 L'operatore $\gamma$ restituisce una realzione con tipo :
-$$\{(A_1:T_1,\dots,A_n:T_n\ , f_1:T_{f_1}\ , \dots , f_k : T_{f_k} )\}$$
+$$
+\{(A_1:T_1,\dots,A_n:T_n\ , f_1:T_{f_1}\ , \dots , f_k : T_{f_k} )\}
+$$
 Il cui *grado* è : $n+k$
 
 **Funzionamento** :
@@ -1428,7 +1520,9 @@ Abbiamo :
 |ASD|71523|28.12.06|30|S
 |BD|76366|28.12.06|28|N
 
-$$\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Big(Esami\Big)$$
+$$
+\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Big(Esami\Big)
+$$
 1. Raggruppamento rispetto a `Candidato`
 
 |Materia|Candidato|Data|Voto|Lode|
@@ -1456,17 +1550,23 @@ $$\text{Candidato}\ \gamma \ \text{count(*), min(Voto), max(Voto), avg(Voto)}\Bi
 
 ##### Proiezione senza l'eliminazione dei duplicati
 
-$$\pi^b_{A_1,\dots,A_n}(O)$$
+$$
+\pi^b_{A_1,\dots,A_n}(O)
+$$
 L'apice $b$ ( bag ) indica che si devono mantenere i duplicati sulla *proiezione*
 ##### Eliminazione dei duplicati
 
 Per elimirare tutti i duplicati da una relazione O :
-$$\delta(O)$$
+$$
+\delta(O)
+$$
 ##### Ordinamento
 
 Ordinamento lessicografico degli attributi specificati all'interno della relazione O 
 
-$$\daleth_{A_1,\dots,A_n}(O)$$
+$$
+\daleth_{A_1,\dots,A_n}(O)
+$$
 ##### Unione , Intersezione , Differenza con bag ( b )
 
 Unione , Intersezione , Differenza con bag ( b ) significa svolgere le operazioni insiemisitiche *mantenedo* i duplicati
@@ -1508,7 +1608,9 @@ Prendiamo la relazione `R(A, B, C, D)`
 **Esempio di Ottimizzazione**
 
 Consideriamo le relazioni `R(A, B, C, D)` e `S(E, F, G)` e la seguente espressione da ottimizzare :
-$$\pi_{A,F}(\sigma_{A=100\land F\gt5 \land A=E}(R\times S))$$
+$$
+\pi_{A,F}(\sigma_{A=100\land F\gt5 \land A=E}(R\times S))
+$$
 
 Le espressioni possono essere rappresentate attravero degli *alberi*
 

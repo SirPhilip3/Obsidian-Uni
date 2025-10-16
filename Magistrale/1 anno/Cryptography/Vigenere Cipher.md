@@ -51,5 +51,12 @@ There are two methods to break the cipher :
 The method is composed of *two phases* : 
 1. Recover the *length* $m$ of the key
 2. Recover the *key* itself
+#### $m$ recovery
 
-#todo
+We can use a *statistical* measure in order to recover $m$ 
+
+**Index of Coincidence** : 
+$$
+I_c(x) = \frac{\sum_{i=1}^{26} f_i(f_i-1)}{n(n-1)} \approx \sum_{i=1}^{26} p_i^2
+$$
+

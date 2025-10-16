@@ -5252,9 +5252,11 @@ Inoltre supponiamo di numerare tutti i vertici con numeri naturali compresi tra 
 
 L'algortimo prende in input una matrice $W$ che contiene in $w(i,j)$ il peso dell'arco tra $i$ e $j$
 e $w_{ij}$ per indicare l'elemento della matrice alla righa $i$ e colonna $j$ , $w_{ij}$ potrà quindi prendere i seguenti valori : 
-$$w_{ij}=\begin{cases}
+$$
+w_{ij}=\begin{cases}
 0 & \text{se} \ i =j \\ w(i,j) & \text{se}\ i\ne j \land (i,j)\in E \\ \infty & \text{se}\ i\ne j \land (i,j)\notin E
-\end{cases}$$
+\end{cases}
+$$
 L'algortimo restituirà un'ulteriore matrice detta *matrice delle distanze* $D$ per cui alla fine dell'algoritmo avremo che $d_{ij}=\delta(i,j)$ ( ossia la distanza vera tra $i$ e $j$ ) 
 
 ```pseudo
@@ -5289,9 +5291,13 @@ Visti i tre cicli `for` e la complessità costante dell'operazione all'interno a
 **Correttezza** : 
 
 Avendo $k$ l'etichetta posta sui vertici allora diremo che : $\mathcal{D}_{i,j}$ è un insieme di cammini tali per cui : 
-$$\mathcal{D}_{i,j} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$}\}$$
+$$
+\mathcal{D}_{i,j} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$}\}
+$$
 e 
-$$\mathcal{D}_{i,j}^{(k)} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$, con vertici intermedi di etichetta}\le k\}$$
+$$
+\mathcal{D}_{i,j}^{(k)} = \{p|p\ \text{è un cammino semplice tra $i$ e $j$, con vertici intermedi di etichetta}\le k\}
+$$
 Dove *vertice intermedio* : è un qualsiasi vertice del cammino $p<x_0,x_1,\dots,x_n>$ tale che sia diverso da $x_0$ o $x_n$ 
 
 >[!example] 
@@ -5310,26 +5316,44 @@ Dove *vertice intermedio* : è un qualsiasi vertice del cammino $p<x_0,x_1,\dots
 >
 
 Definiamo ora $d_{i,j}^{(k)}$ come il peso del cammino minimo tra $i$ e $j$ dove i valori dei vertici intermedi hanno valore minore o uguale a $k$ ossia : 
-$$d_{i,j}^{(k)} = \min_{p \in \mathcal{D}_{i,j}^{(k)}} w(p)$$
+$$
+d_{i,j}^{(k)} = \min_{p \in \mathcal{D}_{i,j}^{(k)}} w(p)
+$$
 In pratica tra tutti i cammini minimi presenti in $\mathcal{D}_{i,j}$ , $d_{i,j}^{(k)}$ sarà il peso minimo tra tutti i cammini minimi 
 
-Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : $$\delta(i,j)=d_{ij}^{(n)}$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'algoritmo di *Floyd-Warshall*
+Notiamo che se $k=n$ avremo che il peso minimo sarà preso da tutti i cammini minimi tra $i$ e $j$ , avremo quindi che : $$
+\delta(i,j)=d_{ij}^{(n)}
+$$ossia l'elemento $i,j$-esimo della matrice risultanto dell'algoritmo di *Floyd-Warshall*
 
 Ora per dimostrare che l'algoritmo è corretto ci basterà dimostrare la veridicità di : 
-$$d_{ij}^{(k)} = \min\{ d_{ij}^{k-1} , d_{ik}^{k-1}+d_{kj}^{k-1}\}$$
+$$
+d_{ij}^{(k)} = \min\{ d_{ij}^{k-1} , d_{ik}^{k-1}+d_{kj}^{k-1}\}
+$$
 Possiamo dividere un cammino tra $i$ e $j$ in due sottocammini quelli che passano per $k$  e quelli che non passano per $k$ , poichè stiamo assumendo che i cammini siano semplici abbiamo la sicurezza che $k$ non è compreso in nessuno dei due insiemi di sottocammini $\mathcal{D}_{i,k}^{(k-1)}$ e $\mathcal{D}_{k,j}^{(k-1)}$ e che tutti i vertici compresi in tali sottocammini abbiano valore minore o uguale a $k-1$ 
 
 ![[Pasted image 20240426174605.png]]
 
 Definiamo quindi il seguente insieme : 
-$$\hat{\mathcal{D}}^{(k)}_{i,j}=\big\{ p | p \in \mathcal{D}_{i,j}^{(k)} \quad \text{passanti per k} \ \big\}$$
+$$
+\hat{\mathcal{D}}^{(k)}_{i,j}=\big\{ p | p \in \mathcal{D}_{i,j}^{(k)} \quad \text{passanti per k} \ \big\}
+$$
 Quindi potremmo costruire il seguente insieme : 
-$$\mathcal{D}^{(k)}_{i,j} = \hat{\mathcal{D}}^{(k)}_{i,j} \cup \mathcal{D}_{i,j}^{(k-1)}$$
+$$
+\mathcal{D}^{(k)}_{i,j} = \hat{\mathcal{D}}^{(k)}_{i,j} \cup \mathcal{D}_{i,j}^{(k-1)}
+$$
 Possiamo quindi riscrivere la definizione di distanza nel seguente modo : 
-$$d_{ij}^{(k)}=\min_{p\in \mathcal{D}_{i,j}^{(k)}} w(p)$$
-$$=\min\bigg\{ \min_{p\in \hat{\mathcal{D}}_{i,j}^{(k)}} w(p) , \min_{p\in \mathcal{D}_{i,j}^{(k-1)}} w(p) \bigg\}$$
-$$=\min\bigg\{ \min_{p\in \mathcal{D}_{i,k}^{(k-1)}} w(p) + \min_{p\in \mathcal{D}_{k,j}^{(k-1)}} w(p)\ ,\ d_{ij}^{(k-1)} \bigg\}$$
-$$=\min\bigg\{  d_{ik}^{(k-1)}+d_{kj}^{(k-1)}\ ,\ d_{ij}^{(k-1)} \bigg\}$$
+$$
+d_{ij}^{(k)}=\min_{p\in \mathcal{D}_{i,j}^{(k)}} w(p)
+$$
+$$
+=\min\bigg\{ \min_{p\in \hat{\mathcal{D}}_{i,j}^{(k)}} w(p) , \min_{p\in \mathcal{D}_{i,j}^{(k-1)}} w(p) \bigg\}
+$$
+$$
+=\min\bigg\{ \min_{p\in \mathcal{D}_{i,k}^{(k-1)}} w(p) + \min_{p\in \mathcal{D}_{k,j}^{(k-1)}} w(p)\ ,\ d_{ij}^{(k-1)} \bigg\}
+$$
+$$
+=\min\bigg\{  d_{ik}^{(k-1)}+d_{kj}^{(k-1)}\ ,\ d_{ij}^{(k-1)} \bigg\}
+$$
 $d_{ij}^{(k)}$ rappresenta dunque il peso del cammino minimo tra $i$ e $j$ i cui vertici intermedi sono di valore minore o uguale a $k$ 
 ## Algoritmi Greedy
 
@@ -5349,7 +5373,9 @@ Un *algoritmo greedy* o goloso è :
 
 Supponiamo di avere $n$ attività indicizzate con un numero da $1$ a $n$ di cui conosciamo l'orario di inizio $s_i$ e di fine $f_i$ 
 Due attività $i$ e $j$ sono dette *compatibili* se gli insiemi temporali che occupano sono disgiunti ossia :
-$$[s_i,f_i[\ \cap\ [s_j,f_j[ = \emptyset \implies \text{i e j sono compatibili}$$
+$$
+[s_i,f_i[\ \cap\ [s_j,f_j[ = \emptyset \implies \text{i e j sono compatibili}
+$$
 Vogiamo determinare il massimo numero di attività che sono tra loro *compatibili*
 
 >[!example] 
@@ -5367,7 +5393,9 @@ Ora sciegliamo un'attività , *faccio una verifica* e la inserisco in $A$
 Scielgo un'altra attività  , *verifico se è compatibile* , se sì la aggiungo ad $A$ altrimenti la scarto
 
 Ora ci basta sciegliere un modo con il quale confrontiamo le diverse attività , scegliamo il tempo di fine di ogni attività , ordiniamo le attività quindi in modo crescente secondo questo parametro in modo da ottenere : 
-$$f_1 \le f_2 \le f_3 \le \dots \le f_n$$
+$$
+f_1 \le f_2 \le f_3 \le \dots \le f_n
+$$
 Per sciegliere che attività aggiungere ad $A$ sciegliamo quella per cui il suo inizio è maggiore o uguale al tempo di fine dell'ultima attività inserita in $A$ 
 
 Vediamo qundi l'algoritmo : 
@@ -5527,16 +5555,22 @@ Visto che l'algoritmo non è corretto potremmo pensare di modificare il modo in 
 Parliamo in modo generico di *problemi* 
 
 Un *problema* può essere rappresentato in modo astratto da due insiemi : 
-$$\mathcal{I} = \text{Questo rappresenta l'insieme delle istanze}$$
+$$
+\mathcal{I} = \text{Questo rappresenta l'insieme delle istanze}
+$$
 >[!example] 
 >Queste *istanze* possono essere : nel problema dei cammini minimi tutti i possibili , infiniti , grafi orientati e pesati 
 
-$$\mathcal{S} = \text{Questo rappresenta l'insieme delle soluzioni}$$
+$$
+\mathcal{S} = \text{Questo rappresenta l'insieme delle soluzioni}
+$$
 >[!example] 
 >Le *soluzioni* possono essere : nel problema dei cammini minimi questo può essere l'insieme dei vertici e cammini che costituiscono un possibile cammino minimo 
 
 Un **problema** quindi può essere scritto come una relazione binaria tra le sue possibili *istanze* e le sue possibili *soluzioni* : 
-$$\mathcal{P} \subseteq \mathcal{I} \times \mathcal{S}$$
+$$
+\mathcal{P} \subseteq \mathcal{I} \times \mathcal{S}
+$$
 Un **Algoritmo** invece è una serie di istruzioni che prende come *input* un'istanza dell'insieme delle istanze e come *output* una particolare soluzione : 
 ![[Algorithm.excalidraw]]
 #### Tipologie di Problemi 
@@ -5598,11 +5632,15 @@ Un'altra divisione dei *problemi* può essere fatta a seconda di cosa calcolano 
 
 #### Classe $P$
 La classe $P$ è definita nel seguente modo : 
-$$P = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale risolvibile polinomialmente}\}$$
+$$
+P = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale risolvibile polinomialmente}\}
+$$
 Dove $\mathcal{P}$ è un problema generale
 #### Classe $NP$
 La classe $NP$ è definita nel seguente modo :
-$$NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale verificabile polinomialmente}\}$$
+$$
+NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale verificabile polinomialmente}\}
+$$
 Cosa significa *verificabile* ? :
 ##### Verificabile
 Possiamo partizionare l'insieme delle istanze $\mathcal{I}$ in due sottinsiemi : $\mathcal{L_+}$ ( che include le istanze positive , ossia quelle che ritornano 1 ) e $\mathcal{L_-}$ ( che include le istanze negative , ossia quelle che ritornano 0 ) 
@@ -5619,7 +5657,9 @@ Il compito dell'*algoritmo di verifica* è quello di verificare se l'*istanza po
 >Poichè questa verifica può essere eseguita in tempo polinomiale questo problema è $NP$
 
 Un'altro modo per scrivere la definizione di $NP$ è : 
-$$NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale per il quale posso scrivere un algoritmo di verifica in tempo polinomiale} \}$$
+$$
+NP = \{\mathcal{P} | \mathcal{P}\ \text{è un problema decisionale per il quale posso scrivere un algoritmo di verifica in tempo polinomiale} \}
+$$
 
 >[!example] CLIQUE
 >Un possibile *algoritmo di verifica* per il problema della *CLIQUE* può essere : 
@@ -5678,7 +5718,9 @@ Questa proprietà soddisfa le seguenti proprietà :
 ##### $NP-completi$
 
 La definizione di problema $NP-completo$ è : 
-$$NP-completo = \{ \mathcal{P} | \mathcal{P} \ \text{è un problema decisionale tale che :}\ \mathcal{P} \in NP\quad ,\forall \mathcal{P}' \in NP :  \mathcal{P}' \le_P \mathcal{P}  \}$$
+$$
+NP-completo = \{ \mathcal{P} | \mathcal{P} \ \text{è un problema decisionale tale che :}\ \mathcal{P} \in NP\quad ,\forall \mathcal{P}' \in NP :  \mathcal{P}' \le_P \mathcal{P}  \}
+$$
 Ossia : 
 1. Il problema $\mathcal{P}$ deve essere un problema $NP$
 2. Tutti i problemi in $NP$ sono riducibili polinomialmente a $\mathcal{P}$ ( $\mathcal{P} \leq_p NP$ )
@@ -5691,7 +5733,9 @@ Le classi di problemi sono distribuite come nel seguente insieme :
 >Se vale solo la seconda proprietà degli $NPC$ allora diremo che il problema è $NP-Hard$
 ##### Teorema fondamentale della $NP$ completezza
 
-$$(\ P \cap NPC \ )\neq \emptyset \implies P =NP$$
+$$
+(\ P \cap NPC \ )\neq \emptyset \implies P =NP
+$$
 >[!important] Definition
 > Se esiste un problema che allo stesso tempo è $P$ e $NPC$ allora la classe $P$ coincide con la classe $NP$ 
 
@@ -5740,15 +5784,21 @@ Per dimostrare la $NPC$ *Cook* ha dovuto dimostrare la seconda parte della defin
 
 Avendo dimostrato un problema $NPC$ risulta essere relativamente semplice dimostrare gli altri infatti la seconda proprietà può essere riscritta nel seguente modo per via della *transitività* della *riducibilità polinomiale* : 
 
-$$\exists\ Q \in NPC, \quad Q \le_p \mathcal{P}$$
+$$
+\exists\ Q \in NPC, \quad Q \le_p \mathcal{P}
+$$
 Infatti potremmo avere che :
-$$\forall \mathcal{P}' \in NP, \quad \mathcal{P}' \le_p Q \le \mathcal{P}$$
+$$
+\forall \mathcal{P}' \in NP, \quad \mathcal{P}' \le_p Q \le \mathcal{P}
+$$
 In questo modo ci basterà ricondurci ad un problema per cui abbiamo già dimostrato la $NPC$ per dire che quel problema è $NPC$
 ###### SAT
 
 Supponiamo di avere una *formula booleana* 
 >[!example] 
->$$\Phi = \{ [[(x_1\lor x_2) \to x_3]\lor x_4 ] \land [x_2 \land \lnot x_1 \lor (x_1 \to x_5)]\}$$
+>$$
+>\Phi = \{ [[(x_1\lor x_2) \to x_3]\lor x_4 ] \land [x_2 \land \lnot x_1 \lor (x_1 \to x_5)]\}
+>$$
 
 Vogliamo determinare se esiste una configurazione di $x_1 , x_2,x_3,x_4$ tale che il risultato sia $1$ 
 
@@ -5758,12 +5808,18 @@ Per verificare questo risultato dobbiamo controllare tutte le possibili configur
 ###### Froma normale congiuntiva , 3-SAT , CLIQUE
 
 Nel caso dell'algebra booleana è comodo lavorare con certi formati particolari dotati di una struttura precisa, una di queste è la *forma normale conginutiva* o *FNC* costituita nel seguente modo : 
-$$\Phi = C_1 \land C_2 \land \dots \land C_k$$
+$$
+\Phi = C_1 \land C_2 \land \dots \land C_k
+$$
 Dove $C_k$ rappresenta una *clausola* , ognuna di queste è costituita da una disgiunzione di *letterali* : ossia $\lor$ di variabili o negazioni di variabili : 
-$$C = l_1 \lor l_2 \lor \dots \lor l_q$$
+$$
+C = l_1 \lor l_2 \lor \dots \lor l_q
+$$
 >[!example] 
 >Un esempio di *FNC* è : 
->$$\phi = (x_1 \lor \lnot x_2)\land(x_2 \lor x_3\lor \lnot x_4) \land (x_1 \lor x_4)\land (x_2 \lor x_4)$$
+>$$
+>\phi = (x_1 \lor \lnot x_2)\land(x_2 \lor x_3\lor \lnot x_4) \land (x_1 \lor x_4)\land (x_2 \lor x_4)
+>$$
 >
 
 Per verificare la *soddisfacibilità* di $\Phi$ è necessario che tutte le *clausole* siano vere e che all'interno delle clausole almeno un letterale sia vero
@@ -5788,7 +5844,15 @@ Per dimostrarlo dobbiamo verificare 2 proprietà :
 	Questo ci dice che possiamo trasformare il problema $SAT-3FNC$ in un problema di $CLIQUE$ 
 	
 	Una istanza di $SAT-3FNC$ può essere : 
-	$$\Phi = C_1 \land C_2 \land C_3$$$$C_1 = x_1 \lor \lnot x_2 \lor \lnot x_3$$$$C_1 = \lnot x_1 \lor x_2 \lor x_3$$$$C_1 = x_1 \lor x_2 \lor  x_3$$
+	$$
+	\Phi = C_1 \land C_2 \land C_3
+	$$$$
+	C_1 = x_1 \lor \lnot x_2 \lor \lnot x_3
+	$$$$
+	C_1 = \lnot x_1 \lor x_2 \lor x_3
+	$$$$
+	C_1 = x_1 \lor x_2 \lor  x_3
+	$$
 
 Questa può essere trasformato in un'istanza di $CLIQUE$ nel seguente modo :  
 Avremo un grafo di tanti sottoinsiemi di vertici quante sono le clausole di $\Phi$ e ciascun sottoinsieme ha $k$ vertici , gli archi possono essere costruiti nel seguente modo : 

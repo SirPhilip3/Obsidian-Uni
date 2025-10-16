@@ -86,7 +86,9 @@ Quando applico una statistica ad una variabile casuale sarà essa stessa una var
 Supponiamo che le osservazioni $X_i$ siano variabili *i.i.d.* con valore atteso $E[X]=\mu$ e varianza $Var[X]=\sigma^2$ 
 
 La media campionaria sarà allora : 
-$$\overline X=\frac 1 n \sum_{i=1}^n X_i$$
+$$
+\overline X=\frac 1 n \sum_{i=1}^n X_i
+$$
 $\hat X$ è uno stimatore della media di popolazione $\mu=E[X]$
 
 Per l'esempio precedente la media campionatoria sarà : $\overline x=48.23$ 
@@ -101,51 +103,77 @@ Se il campione è ben costruito allora al crescere di $n$ lo stimatore $\hat\the
 ##### Distorsione
 
 Uno *stimatore* $\hat\theta$ è *non distorto* se :
-$$E[\ \hat\theta\ ]=\theta$$
+$$
+E[\ \hat\theta\ ]=\theta
+$$
 per tutti i possibili valori di $\theta$  
 
 La distorsione di $\hat\theta$ è :
-$$Bias(\hat\theta)=E(\hat\theta)-\theta$$
+$$
+Bias(\hat\theta)=E(\hat\theta)-\theta
+$$
 Uno stimatore non distorto è uno stimatore *corretto* in media se in media non sottostima o sovrastima il parametro 
 
 La *media campionaria* è uno *stimatore non distorto* della media di popolazione , questo può essere dimostrato nel seguente modo : 
-$$E(\overline X)=E\Bigg(\frac 1n \sum_{i=1}^n X_i\Bigg)=\frac 1n \sum_{i=1}^n E(X_i)=\frac 1n \sum_{i=1}^n \mu = \mu$$
+$$
+E(\overline X)=E\Bigg(\frac 1n \sum_{i=1}^n X_i\Bigg)=\frac 1n \sum_{i=1}^n E(X_i)=\frac 1n \sum_{i=1}^n \mu = \mu
+$$
 ##### Consistenza
 
 Uno stimatore $\hat\theta$ è *consistente* se al crescere della dimensione campionaria $n$ il suo errore campionario converge a zero :
-$$Probailità(|\hat\theta-\theta|>\epsilon)\rightarrow 0$$
+$$
+Probailità(|\hat\theta-\theta|>\epsilon)\rightarrow 0
+$$
 Ossia la probabilità che la *distorsione* di $\hat\theta$ sia maggiore di un certo $\epsilon>0$ per $n\rightarrow \infty$ tende a $0$
 
 Questo si può scrivere nel seguente modo ( *convergenza in probabilità* ) :
-$$\hat\theta\stackrel{p}\rightarrow\theta, \quad \text{per}\ n\rightarrow \infty$$
+$$
+\hat\theta\stackrel{p}\rightarrow\theta, \quad \text{per}\ n\rightarrow \infty
+$$
 >[!assioma]
 >La media campionaria è uno *stimatore consistente* della media di popolazione 
 
 Questo poichè la *legge dei grandi numeri* ci assicura che ( solo per campionamenti casuali ) : 
-$$\overline X \stackrel{p}\rightarrow\mu, \quad \text{per} \ n\rightarrow \infty$$
+$$
+\overline X \stackrel{p}\rightarrow\mu, \quad \text{per} \ n\rightarrow \infty
+$$
 La *consistenza* di $\overline X$ può essere verificata anche attraverso la *disuguaglianza di Chebyshev*
-$$Probabilità(|\overline X -\mu|>\epsilon)\le \frac{Var(\overline X)}{\epsilon^2}$$
-$$Var(\overline X)=Var\Bigg(\frac1n \sum_{i=1}^nX_i\Bigg)=\frac1{n^2}\sum_{i=1}^nVar(X_i)=\frac{\sigma^2}n$$
+$$
+Probabilità(|\overline X -\mu|>\epsilon)\le \frac{Var(\overline X)}{\epsilon^2}
+$$
+$$
+Var(\overline X)=Var\Bigg(\frac1n \sum_{i=1}^nX_i\Bigg)=\frac1{n^2}\sum_{i=1}^nVar(X_i)=\frac{\sigma^2}n
+$$
 Sostituendo avremo quindi che : 
-$$Probabilità(|\overline X -\mu|>\epsilon)\le \frac{\sigma^2/n}{\epsilon^2}\rightarrow 0 , \quad \text{per} \ n\rightarrow \infty$$
+$$
+Probabilità(|\overline X -\mu|>\epsilon)\le \frac{\sigma^2/n}{\epsilon^2}\rightarrow 0 , \quad \text{per} \ n\rightarrow \infty
+$$
 ###### Consistenza di stimatori distorti
 
 La *consistenza* non richiede che lo stimatore sia *non distorto*
 
 Risulta essere sufficente che lo *stimatore* sia :
 + *asintoticamente non distorto* :
-$$Bias(\hat\theta)=E(\hat\theta)-\theta \rightarrow 0, \quad \text{per} \ n\rightarrow \infty $$
+$$
+Bias(\hat\theta)=E(\hat\theta)-\theta \rightarrow 0, \quad \text{per} \ n\rightarrow \infty
+$$
 + con *varianza che svanisce asintoticamente* :
-$$Var(\hat\theta)\rightarrow 0,\quad \text{per} \ n\rightarrow \infty $$
+$$
+Var(\hat\theta)\rightarrow 0,\quad \text{per} \ n\rightarrow \infty 
+$$
 Se valgono queste due propietà asintotiche allora lo stimatore $\hat\theta$ converge in *media quadratica* a $\theta$ , la *convergenza* in media quadratica implica la convergenza in probabilità
 
 #### Normalità asintotica
 
 Il *teroma del limite centrale* assicura che :
-$$Z = \frac{\sqrt{n}(\overline X - \mu)}\sigma \stackrel{d}\rightarrow N(0,1), \quad \text{per}\ n\rightarrow \infty$$
+$$
+Z = \frac{\sqrt{n}(\overline X - \mu)}\sigma \stackrel{d}\rightarrow N(0,1), \quad \text{per}\ n\rightarrow \infty
+$$
 ( *convergenza a distribuzione* )
 Oppure informalmente : 
-$$\overline X\sim N\bigg(\mu , \frac{\sigma^2}{n}\bigg) \quad \ \text{per $n$ sufficentemente grande} $$
+$$
+\overline X\sim N\bigg(\mu , \frac{\sigma^2}{n}\bigg) \quad \ \text{per $n$ sufficentemente grande} 
+$$
 >[!note]
 >Lo stimatore $\overline \mu = \overline X$ è approssimativamente distribuito come una variabile casuale normale al crescere della dimesione del campione
 
@@ -169,7 +197,9 @@ La *mediana campionaria* stima la mediana di popolazione
 La mediana è una misura di posizione molto meno sensibile alle osservazioni estreme rispetto alla media 
 
 La *mediana di popolazione* $M$ suddivide la distribuzione della variabile casuale $X$ in due parti uguali ovvero : 
-$$Probabilità(X>M)\le 0.5 \quad \text{e} \quad Probabilità(X<M)\le 0.5$$
+$$
+Probabilità(X>M)\le 0.5 \quad \text{e} \quad Probabilità(X<M)\le 0.5
+$$
 La *mediana campionaria* $\hat M$ è :
 + inferiore al più a metà dei dati campionari e
 + superiore al più a metà dei dati campionari
@@ -203,7 +233,9 @@ Anch'essa come la mediana di popolazione è meno sensibile alle osservazioni est
 #### Quantili, percentili e quartili
 
 Il **quantile** di ordine $p$ è il numero $x$ tale che :
-$$Probabilià(X<x)\le p \quad \text{e} \quad Probabilià(X>x)\le 1-p$$
+$$
+Probabilià(X<x)\le p \quad \text{e} \quad Probabilià(X>x)\le 1-p
+$$
 Il **quantile campionario** di ordine $p$ è :
 + maggiore al più del $100\cdot p \%$ delle osservazioni e
 + minore al più del $100\cdot (1-p) \%$ delle osservazioni
@@ -221,7 +253,9 @@ Un'altro è trovare la mediana della metà corrispondente al quantile del campio
 
 >[!important]
 >La **varianza campionaria** è definita nel seguente modo : 
-$$S^2=\frac 1 {n-1}\sum_{i=1}^n(X_i-\overline X)^2$$
+>$$
+>S^2=\frac 1 {n-1}\sum_{i=1}^n(X_i-\overline X)^2
+>$$
 
 Dove le quantità $X_i-\overline X$ sono dette *scarti dalla media* ( distanza dalla media )
 
@@ -231,31 +265,41 @@ La *varianza campionaria* è uno stimatore della varianza di popolazione $\sigma
 
 >[!note]
 >La varianza campionaria non può essere :
->$$\frac1n \sum_{i=1}^n(X_i-\overline X)$$
+>$$
+>\frac1n \sum_{i=1}^n(X_i-\overline X)
+>$$
 >Poichè questo darebbe come risultato sempre 0 :
->$$\frac1n \sum_{i=1}^n(X_i-\overline X)=\frac1n\sum_{i=1}^nX_i-\frac1n\sum_{i=1}^n\overline X=\overline X - \frac1n n\cdot \overline X = \overline X -\overline X =0$$
+>$$
+>\frac1n \sum_{i=1}^n(X_i-\overline X)=\frac1n\sum_{i=1}^nX_i-\frac1n\sum_{i=1}^n\overline X=\overline X - \frac1n n\cdot \overline X = \overline X -\overline X =0
+>$$
 
 >[!important]
 >La **deviazione standard campionaria** è la radice quadrata della varianza campionaria : 
->$$S=\sqrt {S^2}$$
+>$$
+>S=\sqrt {S^2}
+>$$
 
 Se stiamo considerando un'unità di misura per i nostri dati allora la *deviazione standard* è la scielta migliore per rappresentare la variazione dei dati poichè possiede la stessa unità di misura dei dati
 
 Un'altra misura che rappresenta la varianza di un insieme di dati è la *deviazione media assoluta* ( *DMA* ) che ha la seguente formula : 
-$$\frac1n \sum_{i=1}^n(|X_i-\overline X|)$$
+$$
+\frac1n \sum_{i=1}^n(|X_i-\overline X|)
+$$
 Questa viene spesso utilizzata quando lo *scarto dalla media* è molto grande , altrimenti infatti la *varianza* è ancora più sensibile della *media* ai valori anomali in quanto questa eleva gli scarti alla seconda e quindi valori estremi vengono amplificati 
 
 ##### Calcolo della varianza campionaria
 
 La varianza può essere calcolata con la formula : 
-$$S^2=\frac 1{n-1}\bigg(\sum_{i=1}^n X^2_i-n\overline X^2\bigg)$$
+$$
+S^2=\frac 1{n-1}\bigg(\sum_{i=1}^n X^2_i-n\overline X^2\bigg)
+$$
 Ossia : $E[X^2]-E[X]^2$ approssimativamente ( per grandi valori di $n$ )
 ##### Proprietà della varianza campionaria
 
 Per assicurare la **non distorsione** della varianza campionaria il coefficente deve essere $\frac 1{n-1}$
 >[!todo]
 >Questo deve essere poichè la somma degli scarti dalla media deve essere sempre 0 quindi l'ultimo elemento è già determinato ed avremo quindi solo $n-1$ elementi "liberi" nel campione
->*ricontrolla spiegazione!!!!!!!!*
+>
 
 Si dice spesso infatti che : 
 + $S^2$ sia la *varianza campionaria corretta*
@@ -264,45 +308,69 @@ Si dice spesso infatti che :
 Si può vedere che $\widetilde S^2$ è *distorto* poichè se abbiamo che $E[S^2]=\sigma^2$ allora avremo che $E[\widetilde S^2]=\frac{n-1}n \sigma^2 < \sigma^2$ possiamo anche notare che $E[\widetilde S^2]$ sottostima $E[S^2]$
 
 Si può comunque notare che la distorsione svanisce asintoticamente infatti : 
-$$\lim_{n\rightarrow \infty} \frac{n-1}n \to 1 \quad \text{questo ci porta a dire che : }\quad S^2\sim \widetilde S^2$$
+$$
+\lim_{n\rightarrow \infty} \frac{n-1}n \to 1 \quad \text{questo ci porta a dire che : }\quad S^2\sim \widetilde S^2
+$$
 
 La varianza campionaria ( $S^2$ ) è inoltre uno stimatore **consistente** di $\sigma^2$ 
-$$S^2\stackrel{p}\to \sigma^2 \quad \text{per} \ n\to\infty$$
+$$
+S^2\stackrel{p}\to \sigma^2 \quad \text{per} \ n\to\infty
+$$
 La varianza campionaria ( $S^2$ ) è anche uno stimatore **asintoticamente normale** 
-$$S^2\stackrel{d}\to N\{ \sigma^2,Var(S^2) \}, \quad \text{per} \ n \to\infty$$
+$$
+S^2\stackrel{d}\to N\{ \sigma^2,Var(S^2) \}, \quad \text{per} \ n \to\infty
+$$
 ### Trasformazioni
 
  Una traformazione è l'applicazione di una funzione $g()$ ad una variabile casuale $X$ , di seguito abbiamo varie proprietà :
  + *valore atteso* : 
-	 $$E\{ g(X) \}\neq g\{ E(X) \}$$
+	 $$
+	 E\{ g(X) \}\neq g\{ E(X) \}
+	 $$
 	 L'uguaglianza vale solo se $g()$ è una funzione lineare ( es $aX+b$ )
 + *convergenza in probabilità* : 
-	$$\text{Se}\quad X\stackrel{p}\to \theta \implies g(X)\stackrel{p}\to g(\theta)$$
+	$$
+	\text{Se}\quad X\stackrel{p}\to \theta \implies g(X)\stackrel{p}\to g(\theta)
+	$$
 	Questo vale solo se $g()$ è continua ( esempio vale con $\sqrt{\dots}$ )
 + *normalità asintotica*
-	$$\text{Se} \quad X \stackrel{d}\to N(\theta,\psi^2) \implies g(X)\stackrel{d}\to N(g(\theta),g'(\theta)^2\psi^2)$$
+	$$
+	\text{Se} \quad X \stackrel{d}\to N(\theta,\psi^2) \implies g(X)\stackrel{d}\to N(g(\theta),g'(\theta)^2\psi^2)
+	$$
 	Questo vale solo se $g'(\theta)$ esiste e non è nulla 
 ### Deviazione standard campionaria
 
 La *deviazione standard* $S$ è una funzione di $S^2$ : 
-$$S=g(S^2), \quad \text{con} \ g(\dots)=\sqrt\dots$$
+$$
+S=g(S^2), \quad \text{con} \ g(\dots)=\sqrt\dots
+$$
 Usando le propietà delle trasformazioni possiamo dire che : 
 + $S$ è uno *stimatore* distorto di $\sigma$ infatti :
-$$\sqrt{E(S^2)}\neq E(\sqrt{S^2})\implies \sigma \neq E(S)$$
+$$
+\sqrt{E(S^2)}\neq E(\sqrt{S^2})\implies \sigma \neq E(S)
+$$
 	Quindi sappiamo che :
-	$$Bias(S)=E(S)-\sigma\neq0$$
+	$$
+	Bias(S)=E(S)-\sigma\neq0
+	$$
 >[!note]
 >$S$ divente *non distorto* asintoticamente
 + $S$ è uno *stimatore* consistente di $\sigma$ ( per la seconda regola delle trasformazioni ) 
-$$S\stackrel{p}\to\sigma, \quad \text{per} \ n\to \infty$$
+$$
+S\stackrel{p}\to\sigma, \quad \text{per} \ n\to \infty
+$$
 + $S$ è uno stimatore asintoticamente normale
-$$S\stackrel{d}\to N\bigg(\sigma , \frac{1}{4\sigma^2}Var(S^2)\bigg),\quad \text{per}\ n\to\infty$$
+$$
+S\stackrel{d}\to N\bigg(\sigma , \frac{1}{4\sigma^2}Var(S^2)\bigg),\quad \text{per}\ n\to\infty
+$$
 >[!todo]
 >spiega
 ### Errore standard
 
 La qualità di uno *stimatore* si misura anche in termini della sua variabilità , questa corrisponde alla *deviazione standard* dello stimatore
-$$SE(\hat\theta)=SD(\hat\theta)$$
+$$
+SE(\hat\theta)=SD(\hat\theta)
+$$
 Dove : 
 + $SE$ : standard error
 + $SD$ : standard deviation
@@ -313,9 +381,13 @@ Anche l'*errore standard* può dipendere dai parametri della popolazione e quind
 #### Errore standard della media campionaria
 
 L'*errore standard* dello stimatore media campionaria è ( con la deviazione standard non stimata ) :
-$$SE(\hat\mu)=SE(\overline X)=\frac{\sigma}{\sqrt n} = \sqrt{\frac{Var(X_1)}{n}}$$
+$$
+SE(\hat\mu)=SE(\overline X)=\frac{\sigma}{\sqrt n} = \sqrt{\frac{Var(X_1)}{n}}
+$$
 $SE(\hat\mu)$ viene *stimato* con la deviazione standard campionaria ( stimata ) : 
-$$\widehat{SE}(\hat\mu)=\frac{S}{\sqrt n}$$
+$$
+\widehat{SE}(\hat\mu)=\frac{S}{\sqrt n}
+$$
 Le proprietà delle *trasformazioni* ci dicono che $\widehat{SE}(\hat\mu)$ è uno stimatore di $SE(\hat\mu)$ con le seguenti caratteristiche : 
 + asintoticamente non distorto
 + consistente
@@ -329,22 +401,47 @@ La qualità di uno stimatore viene valutata in termini di :
 	Uno stimatore è tanto più preciso quanto meno è variabile
 
 Le misure di *accuratezza* e *precisione* sono combinate nell'*errore quadratico medio* ( mean square error ) : 
-$$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]$$
+$$
+MSE(\hat\theta)=E[(\hat\theta-\theta)^2]
+$$
 Aggiungo e sottraggo $E(\hat\theta)$
-$$=E[(\hat\theta-E(\hat\theta)+E(\hat\theta)-\theta)^2]$$
+$$
+=E[(\hat\theta-E(\hat\theta)+E(\hat\theta)-\theta)^2]
+$$
 Sviluppiamo il quadrato
-$$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+E[(E(\hat\theta)-\theta)^2]$$
+$$
+=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+E[(E(\hat\theta)-\theta)^2]
+$$
 Visto che il valore medio del valore medio è sempre il valore medio originale abbiamo : 
-$$=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+(E(\hat\theta)-\theta)^2$$
+$$
+=E[(\hat\theta-E(\hat\theta))^2]+2\cdot E[\hat\theta-E(\hat\theta)]\cdot [E(\hat\theta)-\theta]+(E(\hat\theta)-\theta)^2
+$$
 Ora possiamo trovare che il doppio prodotto può essere eliminato attraverso i seguenti passaggi : 
-$$2\cdot E[\hat\theta-E(\hat\theta)]\cdot Bias(\hat\theta)$$
-$$2\cdot [E(\hat\theta)-E(\hat\theta)]\cdot Bias(\hat\theta) = 2\cdot [\ 0\ ]\cdot Bias(\hat\theta) =0 $$
+$$
+2\cdot E[\hat\theta-E(\hat\theta)]\cdot Bias(\hat\theta)
+$$
+$$
+2\cdot [E(\hat\theta)-E(\hat\theta)]\cdot Bias(\hat\theta) = 2\cdot [\ 0\ ]\cdot Bias(\hat\theta) =0 
+$$
 Possiamo quindi concludere che :  
-$$=E[(\hat\theta-E(\hat\theta))^2]+[E(\hat\theta)-\theta]^2\implies Var(\hat\theta)+Bias(\hat\theta)^2$$
+$$
+=E[(\hat\theta-E(\hat\theta))^2]+[E(\hat\theta)-\theta]^2\implies Var(\hat\theta)+Bias(\hat\theta)^2
+$$
 >[!note]
->Osservando che $$E(\hat\theta)-\theta=Bias\implies [E(\hat\theta)-\theta]^2= Bias^2$$ e $$E[(\hat\theta-E(\hat\theta))^2]= E\left[ \hat\theta^2 - 2\hat\theta E(\hat\theta) + E(\hat\theta)^2 \right]=$$
->$$=E(\hat\theta^2) - 2E(\hat\theta)E(\hat\theta) +E(E(\hat\theta)^2)=E(\hat\theta^2) - 2(E(\hat\theta))^2 + (E(\hat\theta))^2=$$
->$$=E(\hat\theta^2) - (E(\hat\theta))^2=Var$$
+>Osservando che 
+>$$
+>E(\hat\theta)-\theta=Bias\implies [E(\hat\theta)-\theta]^2= Bias^2
+>$$ 
+>e 
+>$$
+>E[(\hat\theta-E(\hat\theta))^2]= E\left[ \hat\theta^2 - 2\hat\theta E(\hat\theta) + E(\hat\theta)^2 \right]=
+>$$
+>$$
+>=E(\hat\theta^2) - 2E(\hat\theta)E(\hat\theta) +E(E(\hat\theta)^2)=E(\hat\theta^2) - 2(E(\hat\theta))^2 + (E(\hat\theta))^2=
+>$$
+>$$
+>=E(\hat\theta^2) - (E(\hat\theta))^2=Var
+>$$
 
 >[!note]
 >Se la *precisione* aumenta allora miniuisce l'*accuratezza* e viceversa
@@ -361,7 +458,9 @@ La scelta fra due o più *stimatori* è basata sulle loro proprietà :
 La *varianza* è una misura della varaibilità molto sensibile alle osservazioni estreme
 
 Una misura di variabilità meno sensibile alle osservazioni estreme è data dallo *scarto interquartile* ( *interquartile range* ) :
-$$IQR=Q_3-Q_1$$
+$$
+IQR=Q_3-Q_1
+$$
 Dove $Q_1$ e $Q_3$ indicano il primo e il terzo quartile 
 Questa misura rappresenta il 50% della distribuzione ( il *core* ) ossia le parti più caratteristiche 
 
@@ -370,7 +469,9 @@ Questa misura rappresenta il 50% della distribuzione ( il *core* ) ossia le part
 Se la mediana rappresenta bene i nostri dati allora mi aspetto che lo scarto interquartile sia piccolo , questo ci indica che i valori della distribuzione sono molto compatti attorno alla mediana ( la mediana è precisa )
 
 **Intervallo Interquartile Campionario**
-$$\widehat {IQR}=\hat Q_3-\hat Q_1$$
+$$
+\widehat {IQR}=\hat Q_3-\hat Q_1
+$$
 Dove $\hat Q_1$ e $\hat Q_3$ sono il primo e terzo quartile campionario
 
 ### Valori anomali
@@ -534,11 +635,17 @@ Costruiamo uno stimatore di $\theta$ confrontando :
 >>#todo
 
 Il $k$-esimo *momento di popolazione* è : 
-$$\mu_k=E(X^k)$$
+$$
+\mu_k=E(X^k)
+$$
 Il $k$-esimo *momento campionario* è : 
-$$M_k=\frac 1 n\sum_{i=1}^n X_i^k \quad (M_1 = \overline X\ )$$
+$$
+M_k=\frac 1 n\sum_{i=1}^n X_i^k \quad (M_1 = \overline X\ )
+$$
 con *valore* osservato : 
-$$m_k=\frac 1 n \sum_{i=1}^n x_i^k \quad (m_1 = \overline x\ )$$
+$$
+m_k=\frac 1 n \sum_{i=1}^n x_i^k \quad (m_1 = \overline x\ )
+$$
 
 >[!note]
 >+ $M_k$ è uno *stimatore* di $\mu_k$
@@ -549,15 +656,23 @@ $$m_k=\frac 1 n \sum_{i=1}^n x_i^k \quad (m_1 = \overline x\ )$$
 >Il **momento centrale** rappresenta una misura numerica che fornisce informazioni sulla dipersione o forma di una distribuzione di probablità rispetto alla sua media
 
 Il $k$-esimo *momento centrale di popolazione* è :
-$$\mu_k' = E(X-\mu)^k$$
+$$
+\mu_k' = E(X-\mu)^k
+$$
 Il $k$-esimo *momento centrale campionatorio* è : 
-$$M_k' = \frac 1n \sum_{i=1}^n(X_i-\overline X)^k$$
+$$
+M_k' = \frac 1n \sum_{i=1}^n(X_i-\overline X)^k
+$$
 >[!example]
 >Se abbiamo $k=2$ questo rappresenterà la varianza che però deve essere resa non distorta : 
->$$M_2' = S^2(n-1)/n$$
+>$$
+>M_2' = S^2(n-1)/n
+>$$
 
 con *valore* osservato :
-$$m_k'=\frac 1 n \sum_{i=1}^n(x_i-\overline x)^k \quad (\ m_2' = s^2(n-1)/n\ )$$
+$$
+m_k'=\frac 1 n \sum_{i=1}^n(x_i-\overline x)^k \quad (\ m_2' = s^2(n-1)/n\ )
+$$
 >[!note]
 >+ $M_k'$ è uno *stimatore* di $\mu_k'$
 >+ $m_k'$ è una *stima* di $\mu_k'$
@@ -570,14 +685,18 @@ Per *stimare* il parametro $\theta$ si risolve il sistema di $k$ equazioni otten
 >Understand
 >#todo
 
-$$\begin{cases} \mu_1(\theta) & = M_1 \\ \mu_2(\theta) & = M_2 \\ \dots \ & = \dots \\ \mu_k(\theta) & = M_k\end{cases}$$
+$$
+\begin{cases} \mu_1(\theta) & = M_1 \\ \mu_2(\theta) & = M_2 \\ \dots \ & = \dots \\ \mu_k(\theta) & = M_k\end{cases}
+$$
 A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali , è possibile cambiare alcuni momenti semplici con altri centrali se risulta conveniente
 
 >[!example]
 >Osserviamo l'istogramma realizzato dai tempi di elaborazione della CPU
 >![[Pasted image 20240305204621.png]]
 >Possiamo osservare che rappresenta *approssimativamente* un funzione gamma : 
->$$f(x; \alpha,\lambda)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha -1}e^{-\lambda x}, \quad x>0$$
+>$$
+>f(x; \alpha,\lambda)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha -1}e^{-\lambda x}, \quad x>0
+>$$
 >Dove $\Gamma(.)$ è la funzione gamma
 >Il parametro $\theta = (\alpha , \lambda)$ dove  :
 >+ $\alpha>0$ è detto parametro di forma
@@ -590,11 +709,17 @@ A seconda dei casi di utilizzano i momenti 'semplici' oppure i momenti centrali 
 >+ il valore atteso $m_1 = \overline X = 48.2333$
 >+ la varianza $m_2' = S^2=679.7122$ 
 >Possiamo ora scrivere le due equazioni :
->$$\begin{cases}\mu_1 = E(X) = \alpha / \lambda = m_1 \\ \mu_2' = Var(X) = \alpha / \lambda^2 = m_2' \end{cases}$$
+>$$
+>\begin{cases}\mu_1 = E(X) = \alpha / \lambda = m_1 \\ \mu_2' = Var(X) = \alpha / \lambda^2 = m_2' \end{cases}
+>$$
 >Utilizziamo il *secondo momento centrale* poichè sappiamo già l'espressione per la varianza di una variabile *Gamma*
 >Risolviamo il sistema in modo da trovare $\alpha$ e $\lambda$ 
->$$\begin{cases} \frac{\alpha}{\lambda} = 48.2333 \\ \frac{\alpha}{\lambda^2} = 679.7122 \end{cases}$$
->$$\begin{cases}\alpha = 3.4227 \\ \lambda = 0.0710 \end{cases}$$
+>$$
+>\begin{cases} \frac{\alpha}{\lambda} = 48.2333 \\ \frac{\alpha}{\lambda^2} = 679.7122 \end{cases}
+>$$
+>$$
+>\begin{cases}\alpha = 3.4227 \\ \lambda = 0.0710 \end{cases}
+>$$
 ### Metodo della massima verosimiglianza
 
 Lo stimatore di massima verosimiglianza è quel valore del parametro $\theta$ che massimizza la *funzione di verosimiglianza*
@@ -602,9 +727,13 @@ Lo stimatore di massima verosimiglianza è quel valore del parametro $\theta$ ch
 La *funzione di verosimiglianza* è proporzionale $\propto$ alla probabilità di osservare ciò che è stato effettivamente osservato 
 
 Nel *caso discreto* la funzione di verosimiglianza è quindi proporzionale alla funzione di probabilità congiunta dei dati 
-$$L(\theta) \propto Pr(X_1=x_1,\dots,X_n=x_n;\theta)$$
+$$
+L(\theta) \propto Pr(X_1=x_1,\dots,X_n=x_n;\theta)
+$$
 Che per un campione casuale semplice diventa : 
-$$L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)$$
+$$
+L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)
+$$
 >[!example]
 >Una software house dichiara che l'accuratezza del riconoscimento facciale è dell'80% 
 >Un blogger afferma dichiara che l'accuratezza è invece 70% 
@@ -614,26 +743,38 @@ $$L(\theta)\propto \prod_{i=1}^nPr(X_i=x_i; \theta)$$
 > 1. Individuiamo un modello statistico che potrebbe generare questo tipo di dati 
 > 	In questo caso sembra essere il *binomiale* perchè ad ogni tentativo ci sono 2 possibili risultati : riconoscimento corretto o no ( possiamo rappresentarlo come estraiamo o no )
 > 2. La *verosimiglianza* per $\theta$ è quindi *proporzionale* alla probabilità di osservare 11 successi su 15 prove in un modello binomiale con probabilità di successo $\theta$ :
-> $$L(\theta)= \binom {15} {11} \theta^{11} (1-\theta)^4$$
+> $$
+> L(\theta)= \binom {15} {11} \theta^{11} (1-\theta)^4
+> $$
 > 
 > Supponiamo che abbia ragione la software house allora avremo $\theta=0.8$ e potremmo quindi calcolare la verosimiglianza nel seguente modo : 
-> $$L(0.8) = \binom{15}{11}0.8^{11}0.2^4 = 0.19$$
+> $$
+> L(0.8) = \binom{15}{11}0.8^{11}0.2^4 = 0.19
+> $$
 > ![[Pasted image 20240306124547.png]]
 > Supponiamo che abbia ragione il blogger allora avremo $\theta=0.7$ e potremmo quindi calcolare la verosimiglianza nel seguente modo : 
-> $$L(0.7) = \binom{15}{11}0.7^{11}0.3^4 = 0.22$$
+> $$
+> L(0.7) = \binom{15}{11}0.7^{11}0.3^4 = 0.22
+> $$
 > ![[Pasted image 20240306124557.png]]
 >Ora essendo che la verosimiglianza calcolata per il blogger è maggore di quella per la software house il *nostro* esperimento si accorda maggiormente con quello del blogger 
 >Possiamo inoltre calcolare il rapporto con il quale preferiamo il valore del blogger nel seguente modo : 
->$$\frac{L(0.7)}{L(0.8)}=\frac{\binom{15}{11}0.7^{11}0.3^4 }{ \binom{15}{11}0.8^{11}0.2^4}= 1.17$$
+>$$
+>\frac{L(0.7)}{L(0.8)}=\frac{\binom{15}{11}0.7^{11}0.3^4 }{ \binom{15}{11}0.8^{11}0.2^4}= 1.17
+>$$
 >Ciò ci porta ad affermare che alla luce del nostro esperimento il valore di $\theta$ del blogger è più verosimile per il $17\%$
 >>[!note]
 >>I fattori binomiali possono essere eliminati , possiamo quindi rimuovere i termini costanti dal calcolo della verosimiglianza
->>$$L(\theta)=\theta^{11}(1-\theta)^4$$ 
+>>$$
+>>L(\theta)=\theta^{11}(1-\theta)^4
+>>$$ 
 
 #### Log-verosimiglianza
 
 La *log-verosimiglianza* è definita come : 
-$$l(\theta)=\log L(\theta)$$
+$$
+l(\theta)=\log L(\theta)
+$$
 >[!note]
 >Siccome $\log$ è una funzione crescente massimizzare $L(\theta)$ o $l(\theta)$ è equivalente 
 
@@ -643,22 +784,32 @@ Questo viene fatto poichè fare la derivata ( per trovare il massimo ) delle som
 >Se massimizzassimo senza log i numeri potrebbero assumere valori molto piccoli e il computer che esegue i calcoli potrebbe andare in underflow
 
 Nel caso *discreto* la *log-verosimiglianza* è : 
-$$l(\theta)=\sum_{i=1}^n \log Pr(X_i=x_i; \theta)$$
+$$
+l(\theta)=\sum_{i=1}^n \log Pr(X_i=x_i; \theta)
+$$
 >[!example]
 >9.7 baron
 #### Il caso continuo
 
 Nel caso continuo la probabilità di osservare esattamente un certo valore $x$ è $Pr(X=x)=0$ 
 Dobbiamo quindi trovare la probabilità per un valore piccolo di $h$ : 
-$$Pr(x-h < X < x+h) = \int_{x-h}^{x+h} f(x; \theta) dx \approx 2h\cdot f(x; \theta)$$
+$$
+Pr(x-h < X < x+h) = \int_{x-h}^{x+h} f(x; \theta) dx \approx 2h\cdot f(x; \theta)
+$$
 ![[Pasted image 20240307140449.png]]
 
 Nel caso continuo il metodo della massima verosimiglianza massimizza la probabilità di osservare dei valori *vicini* a ciò che è stato effettivamente osservato
-$$L(\theta)\propto f(x_1, \dots, x_n; \theta)$$
+$$
+L(\theta)\propto f(x_1, \dots, x_n; \theta)
+$$
 Nel caso di un campione casuale ( *i.i.d.* ) abbiamo ( il $2h$ può essere tolto poichè costante ) : 
-$$L(\theta)\propto \prod_{i=1}^n f(x_i; \theta)$$
+$$
+L(\theta)\propto \prod_{i=1}^n f(x_i; \theta)
+$$
 La corrispondente *log-verosimiglianza* è ( a meno di termini costanti che vengono eliminati ) ( il $2h$ può essere tolto poichè costante ) : 
-$$l(\theta) = \sum_{i=1}^n \log f(x_i; \theta)$$
+$$
+l(\theta) = \sum_{i=1}^n \log f(x_i; \theta)
+$$
 >[!example]
 >9.8 baron
 
@@ -688,32 +839,54 @@ Nei problemi regolari di stima le *stimatore di massima verosimiglianza* si trov
 La derivata prima della log-verosimiglianza si chiama *funzione punteggio* ( score function ) 
 
 I punti stazionari della verosimiglianza sono gli zeri della *funzione punteggio* cioè i punti $\overline \theta$ che risolvono l'equazione di verosimiglianza : 
-$$\frac {d}{d\theta}l(\overline \theta)=0$$
+$$
+\frac {d}{d\theta}l(\overline \theta)=0
+$$
 Un punto stazionario di $l(\theta)$ è un massimo locale se la derivata seconda calcolata in quel punto è negativa : 
-$$\frac {d^2}{d\theta^2}l(\overline \theta)<0$$
+$$
+\frac {d^2}{d\theta^2}l(\overline \theta)<0
+$$
 
 ##### Esempio di problema regolare di stima
 
 Consideriamo un campione casuale semplice dalla variabile casuale con densità : 
-$$f(x;\beta\ ) = \begin{cases} \frac{\beta}{x^{\beta+1}} & \text{se} \ x>1, \beta >1 \\ 0 & \text{altrimenti} \end{cases}$$
+$$
+f(x;\beta\ ) = \begin{cases} \frac{\beta}{x^{\beta+1}} & \text{se} \ x>1, \beta >1 \\ 0 & \text{altrimenti} \end{cases}
+$$
 La verosimiglianza per $\beta$ è : 
-$$L(\beta) = \beta^n \prod_{i=1}^n X_i^{-(\beta+1)}$$
+$$
+L(\beta) = \beta^n \prod_{i=1}^n X_i^{-(\beta+1)}
+$$
 La log-verosimiglianza è ( a meno di termini costanti )
-$$l(\beta) = n\log (\beta) - \beta \sum_{i=1}^n \log X_i$$
+$$
+l(\beta) = n\log (\beta) - \beta \sum_{i=1}^n \log X_i
+$$
 L'equazioni di verosimiglianza è : 
-$$\frac n \beta - \sum_{i=1}^n \log X_i = 0$$
+$$
+\frac n \beta - \sum_{i=1}^n \log X_i = 0
+$$
 La sua soluzione è :
-$$\hat\beta = \frac{n}{\sum_{i=1}^n \log X_i}$$
+$$
+\hat\beta = \frac{n}{\sum_{i=1}^n \log X_i}
+$$
 Questo coincide con lo stimatore di massima verosimiglianza poichè : 
-$$l''(\beta)= -\frac n {\beta^2} < 0$$
+$$
+l''(\beta)= -\frac n {\beta^2} < 0
+$$
 ##### Esempio di problema non regolare di stima
 
 Consideriamo un campione casuale semplice dalla variabile casuale con densità $U(0,\theta)$ ovvero : 
-$$f(x;\theta)=\begin{cases} \frac1 \theta & \text{se}\ x\in [0,\theta] \\ 0 & \text{altrimenti} \end{cases}$$
+$$
+f(x;\theta)=\begin{cases} \frac1 \theta & \text{se}\ x\in [0,\theta] \\ 0 & \text{altrimenti} \end{cases}
+$$
 La verosimiglianza di $\theta$ è : 
-$$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ 0 \le X_i \le \theta \ \text{per ogni} \ i \\ 0 & \text{altrimenti} \end{cases}$$
+$$
+L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ 0 \le X_i \le \theta \ \text{per ogni} \ i \\ 0 & \text{altrimenti} \end{cases}
+$$
 Ovvero : 
-$$L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ \max_i X_i \le \theta \ \text{e} \  \min_i X_i \ge 0 \\ 0 & \text{altrimenti} \end{cases}$$
+$$
+L(\theta) = \begin{cases} \frac{1}{\theta^n} & \text{se} \ \max_i X_i \le \theta \ \text{e} \  \min_i X_i \ge 0 \\ 0 & \text{altrimenti} \end{cases}
+$$
 
 >[!example]
 >Facciamo un esempio con un ipotetico dataset di 50 osservazioni in cui il massimo delle osservazioni vale 5
@@ -746,39 +919,62 @@ Sotto *assunzioni* che valgono nei problemi che affronteremo ( **non è necessar
 	$E(\hat\theta)\to \theta,$   per $n\to \infty$ 
 + *consistente*
 	$\hat\theta \stackrel{p}\to \theta$  per $n\to\infty$
-+ *asintoticamente normale* con distribuzione limite : $$\hat\theta \approx N\{\theta, I(\theta)^{-1}\} \quad \text{per n sufficentemente grande}$$
++ *asintoticamente normale* con distribuzione limite : 
+$$
+\hat\theta \approx N\{\theta, I(\theta)^{-1}\} \quad \text{per n sufficentemente grande}
+$$
   Dove $I(\theta)$ è l'*informazione attesa di Fisher* ( corrisponde alla *varianza* )
 
 ###### Informazione Attesa di Fisher
 
 L'*informazione attesa* è definita come : 
-$$I(\theta)=E\bigg\{ -\frac{d^2}{d\theta^2} l(\theta) \bigg\}$$
+$$
+I(\theta)=E\bigg\{ -\frac{d^2}{d\theta^2} l(\theta) \bigg\}
+$$
 Sostiutuendo $l(\theta)$ con la *log-verosimiglianza* avremo : 
-$$=E\bigg\{  -\frac{d^2}{d\theta^2} \sum_{i=1}^n \log f(X_i; \theta) \bigg\}$$
-$$=\sum_{i=1}^nE\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \bigg\}$$
+$$
+=E\bigg\{  -\frac{d^2}{d\theta^2} \sum_{i=1}^n \log f(X_i; \theta) \bigg\}
+$$
+$$
+=\sum_{i=1}^nE\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \bigg\}
+$$
 Nel caso di un *campione casuale semplice* abbiamo :
-$$I(\theta)=n\cdot E\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_1; \theta) \bigg\}$$
+$$
+I(\theta)=n\cdot E\bigg\{  -\frac{d^2}{d\theta^2} \log f(X_1; \theta) \bigg\}
+$$
 Cioè l'informazione del campione è pari a $n$ volte l'informazione contenuta un una singola osservazione
 ###### Informazione attesa e osservata
 
 L'*informazione osservata* è definita come :
-$$J(\theta) = - l''(\theta) = \sum_{i=1}^n \left\{ -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \right\}$$
+$$
+J(\theta) = - l''(\theta) = \sum_{i=1}^n \left\{ -\frac{d^2}{d\theta^2} \log f(X_i; \theta) \right\}
+$$
 Per la *Legge dei grandi numeri* avremo che , per $n \to \infty$ : 
-$$\frac{J(\theta)}{n}\stackrel{p}\to E\{ g(X_1) \} = E\left\{ - \frac{d^2}{d\theta^2}\log f(X_1; \theta) \right\}$$
+$$
+\frac{J(\theta)}{n}\stackrel{p}\to E\{ g(X_1) \} = E\left\{ - \frac{d^2}{d\theta^2}\log f(X_1; \theta) \right\}
+$$
 Ovvero $J(\theta) \approx I(\theta)$ per $n$ sufficentemente grandi 
 
 ##### Errore standard dello stimatore di massima verosimiglianza
 
 Sappiamo che per campioni sufficentemente grandi e modelli che modelli che rispettino le assunzioni di regolarità avremo che lo *stimatore* sarà : 
-$$\hat\theta\approx N\{\theta, I(\theta)^{-1}\}$$
+$$
+\hat\theta\approx N\{\theta, I(\theta)^{-1}\}
+$$
 Quindi l'*errore standard* dello stimatore di massima verosimiglianza $\hat\theta$ è asintoticamente pari a : 
-$$SE(\hat\theta)\approx I(\theta)^{-1/2}$$
+$$
+SE(\hat\theta)\approx I(\theta)^{-1/2}
+$$
 Per un $n$ sufficentemente grande 
 
 Ma visto che non sappiamo $\theta$ dovremmo stimarlo , avremo quindi che la *stima* dell'errore standard di $\hat\theta$ è : 
-$$\widehat{SE}(\hat\theta)=I(\hat\theta)^{-1/2}$$
+$$
+\widehat{SE}(\hat\theta)=I(\hat\theta)^{-1/2}
+$$
 Oppure visto che sappiamo che $J(\theta) \approx I(\theta)$ potremmo anche scrivere : 
-$$\widehat{SE}(\hat\theta)=J(\hat\theta)^{-1/2}$$
+$$
+\widehat{SE}(\hat\theta)=J(\hat\theta)^{-1/2}
+$$
 
 >[!note]
 >Si preferisce la stima con $J$ poichè riflette l'informazione effettivamente contenuta nei dati
@@ -788,7 +984,9 @@ $$\widehat{SE}(\hat\theta)=J(\hat\theta)^{-1/2}$$
 Lo stimatore di *massima verosimiglianza* gode di una proprietà importante di ottimalità 
 
 La *diseguaglianza di Cramèr-Rao* identifica il limite inferiore della *varianza* di uno stimatore $\hat\theta$  *non distorto* di $\theta$ in : 
-$$Var(\hat\theta)\ge I(\theta)^{-1}$$
+$$
+Var(\hat\theta)\ge I(\theta)^{-1}
+$$
 dove $I(\theta)$ è l'*informazione attesa di Fisher*
 
 Uno stimatore non distorto la cui varianza raggiunge il limite di Cramèr-Rao e detto *efficiente*
@@ -801,19 +999,29 @@ Visto che la *varianza* dello stimatore di massima verosimiglianza raggiunge que
 >Lo stimatore $\hat\lambda =\overline X$ è uno stimatore efficente di $\lambda$
 >
 >Infatti la varianza di $\hat\lambda$ è : 
->$$Var(\hat\lambda) = Var(\overline X) = \frac{Var(X_1)}{n}=\frac\lambda n$$
+>$$
+>Var(\hat\lambda) = Var(\overline X) = \frac{Var(X_1)}{n}=\frac\lambda n
+>$$
 >
 >Verifichiamo che questo soddifa il limite di Cramèr-Rao
 >
 >Avremo che la *log-verosimiglianza* per $\lambda$ è :
->$$l(\lambda)=-n\lambda + \log \lambda \sum_{i=1}^n X_i$$
+>$$
+>l(\lambda)=-n\lambda + \log \lambda \sum_{i=1}^n X_i
+>$$
 >
 >Troviamo quindi le due derivate : 
->$$l'(\lambda)=-n + \frac{\sum_{i=1}^nX_i}{\lambda}$$
->$$l''(\lambda)= -\frac{\sum_{i=1}^n X_i}{\lambda^2}$$
+>$$
+>l'(\lambda)=-n + \frac{\sum_{i=1}^nX_i}{\lambda}
+>$$
+>$$
+>l''(\lambda)= -\frac{\sum_{i=1}^n X_i}{\lambda^2}
+>$$
 >
 >L'*informazione attesa* sarà : 
->$$I(\lambda)=E\{-l''(\lambda)\}=E\left(\frac{\sum_{i=1}{n}X_i}{\lambdaì2}\right)=\frac{1}{\lambda^2}\sum_{i=1}^n E(X_i)=\frac{n\lambda}{\lambda^2}=\frac n \lambda$$
+>$$
+>I(\lambda)=E\{-l''(\lambda)\}=E\left(\frac{\sum_{i=1}{n}X_i}{\lambdaì2}\right)=\frac{1}{\lambda^2}\sum_{i=1}^n E(X_i)=\frac{n\lambda}{\lambda^2}=\frac n \lambda
+>$$
 >
 >La cui inversa è la varianza di $\hat\lambda$
 
@@ -856,7 +1064,9 @@ Cerchiamo di stimare la probabilità che si verificasse un cedimento dei 2 o-rin
 Dobbiamo specificare un *modello statistico* che usi l'informazione dei precedenti 23 lanci per prevedere quello che sarebbe successo quel giorno 
 
 Vogliamo specificare un modello che descriva la variabile casuale : 
-$$Y = '\text{cedimento di almeno un o-ring}'$$
+$$
+Y = '\text{cedimento di almeno un o-ring}'
+$$
 In funzione della temperatura $x$ il giorno del lancio
 
 Notiamo che $Y_1, \dots ,Y_{23}$ sono varaibili casuali di *Bernuolli* ossia : 
@@ -864,7 +1074,9 @@ Notiamo che $Y_1, \dots ,Y_{23}$ sono varaibili casuali di *Bernuolli* ossia :
 
 >[!note]
 >Le variabili $Y_1, \dots ,Y_{23}$ non sono identicamente distribuite poichè vogliamo valutare se la probabilità che un o-ring ceda dipenda dalla temperatura 
->$$Y_i \sim Ber(p_i), \quad p_i = Pr(Y_i = 1|x_I), \quad i = 1,\dots,23$$
+>$$
+>Y_i \sim Ber(p_i), \quad p_i = Pr(Y_i = 1|x_I), \quad i = 1,\dots,23
+>$$
 >
 >dove $p_i = g(x_i)$ è una funzione della temperatura
 >
@@ -873,7 +1085,9 @@ Come scegliamo la funzione $g$ ?
 	Potremmo considerare qualsiasi funzione che vada da $\mathbb{R}$ ( la temperatura ) a $[0,1]$ ( probabilità di cedimento dell'o-ring )
 
 Tra le scelte per $g:\mathbb{R}\to[0,1]$ quella più usata è la funzione *logisitica inversa*  
-$$g(z)=\text{invlogit}(z) = \frac{e^z}{1+e^z}$$
+$$
+g(z)=\text{invlogit}(z) = \frac{e^z}{1+e^z}
+$$
 ![[Pasted image 20240314144854.png]]
 
 Consideriamo un *modello di regressione logistica* che collega la probabilità di cedimento di un o-ring alle variazioni della temperatura
@@ -882,11 +1096,17 @@ Consideriamo un *modello di regressione logistica* che collega la probabilità d
 >Il parametro del modello statistico è costituito da due componenti : $\theta = (\alpha,\beta)$
 
 Avremo quindi le due probabilità legate al cedimento degli o-ring descritte nel seguente modo : 
-$$Pr(Y_i=1|x_i)=\frac{e^{\alpha+\beta\ x_i}}{1+e^{\alpha+\beta\ x_i}}$$
-$$Pr(Y_i=0|x_i)=\frac{1}{1+e^{\alpha+\beta\ x_i}}$$
+$$
+Pr(Y_i=1|x_i)=\frac{e^{\alpha+\beta\ x_i}}{1+e^{\alpha+\beta\ x_i}}
+$$
+$$
+Pr(Y_i=0|x_i)=\frac{1}{1+e^{\alpha+\beta\ x_i}}
+$$
 >[!note]
 >Le due probabilità sono state trovate considerando la seguente espressione : 
->$$Pr(Y_i=1|x_i)+Pr(Y_i=0|x_i)=1$$
+>$$
+>Pr(Y_i=1|x_i)+Pr(Y_i=0|x_i)=1
+>$$
 
 Il parametro di interesse è $\beta$ : 
 + se $\beta = 0$ allora la temperatura non ha alcun effetto sul *rischio* di cedimento di un o-ring
@@ -894,19 +1114,27 @@ Il parametro di interesse è $\beta$ :
 + valori negativi di $\beta$ indicano che il *rischio cresce* quando la temperatura scende
   
 Troviamo la *verosimiglianza* basata sui dati : 
-$$L(\alpha,\beta)=\prod_{i=1}^n Pr(Y_i=1)^{y_i}Pr(Y_i=0)^{1-y_i}$$
+$$
+L(\alpha,\beta)=\prod_{i=1}^n Pr(Y_i=1)^{y_i}Pr(Y_i=0)^{1-y_i}
+$$
 >[!note]
 >perchè utilizziamo Pr*Pr
 
-$$=\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\left( \frac{e^{\alpha+70\beta}}{1+e^{\alpha+70\beta}} \right)\times\dots\times \left( \frac{e^{\alpha+58\beta}}{1+e^{\alpha+58\beta}} \right)$$
+$$
+=\left( \frac{1}{1+e^{\alpha+66\beta}} \right)\times\left( \frac{e^{\alpha+70\beta}}{1+e^{\alpha+70\beta}} \right)\times\dots\times \left( \frac{e^{\alpha+58\beta}}{1+e^{\alpha+58\beta}} \right)
+$$
 Le stime di *massima verosimigilianza* sono calcolate numericamente : $\hat\alpha = 15.04$ e $\hat\beta = -0.23$
 
 **Interpretiamo ora i dati** : 
 
 Il modello stiamto è : 
-$$Pr(\text{cedimento o-ring alla temp x}) = \frac{e^{15.04-0.23\ x}}{1+e^{15.04-0.23 \ x}}$$
+$$
+Pr(\text{cedimento o-ring alla temp x}) = \frac{e^{15.04-0.23\ x}}{1+e^{15.04-0.23 \ x}}
+$$
 Calcoliamo quindi la probabilità con $x=31°F$ :
-$$\frac{e^{15.04-0.23\cdot 31}}{1+e^{15.04-0.23 \cdot 31}}=0.9996$$
+$$
+\frac{e^{15.04-0.23\cdot 31}}{1+e^{15.04-0.23 \cdot 31}}=0.9996
+$$
 ![[Pasted image 20240314155131.png]]
 
 >[!warning]
@@ -920,59 +1148,113 @@ $$\frac{e^{15.04-0.23\cdot 31}}{1+e^{15.04-0.23 \cdot 31}}=0.9996$$
 Consideriamo un campione casuale semplice da una variabile casuale *Bernulliana* di parametro $p$ 
 
 Avremo quindi che : 
-$$Pr(X_1=x_1) = p^{x_1}\cdot(1-p)^{1-x_1}$$
+$$
+Pr(X_1=x_1) = p^{x_1}\cdot(1-p)^{1-x_1}
+$$
 La *verosimiglianza* sarà quindi : 
-$$L(p)=\prod_{i=1}^n p^{x_i} \cdot(1-p)^{1-x_i}$$
+$$
+L(p)=\prod_{i=1}^n p^{x_i} \cdot(1-p)^{1-x_i}
+$$
 La *log-verosimiglianza* per $p$ sarà :
-$$l(p)=\sum_{i=1}^n\left[ x_i\log p+(1-x_i)\log(1-p)\right]$$
-$$l(p)=\log p \sum_{i=1}^n X_i + \log(1-n)\left( n -\sum_{i=1}^nX_i\right)$$
-Poichè : $$\sum_{i=1}^n(1-x_i) = \sum_{i=1}^n 1 - \sum_{i=1}^n x_i=n-\sum_{i=1}^nx_i$$
+$$
+l(p)=\sum_{i=1}^n\left[ x_i\log p+(1-x_i)\log(1-p)\right]
+$$
+$$
+l(p)=\log p \sum_{i=1}^n X_i + \log(1-n)\left( n -\sum_{i=1}^nX_i\right)
+$$
+Poichè : $$
+\sum_{i=1}^n(1-x_i) = \sum_{i=1}^n 1 - \sum_{i=1}^n x_i=n-\sum_{i=1}^nx_i
+$$
 Troviamo ora la funzione punteggio : 
-$$l'(p)=\frac{\sum_{i=1}^n X_i}{p}-\frac{n-\sum_{i=1}^nX_i}{1-p}$$
+$$
+l'(p)=\frac{\sum_{i=1}^n X_i}{p}-\frac{n-\sum_{i=1}^nX_i}{1-p}
+$$
 Risolvendo $l'(p)=0$ troveremo lo stimatore di *massima verosimiglianza* : 
-$$\frac{(1-p)\sum_{i=1}^nX_i -np + p\sum_{i=1}^n X_i}{1-p}=0$$
+$$
+\frac{(1-p)\sum_{i=1}^nX_i -np + p\sum_{i=1}^n X_i}{1-p}=0
+$$
 Ci interessa mettere $=0$ solamente al numeratore : 
-$$\sum_{i=1}^nX_i - p\sum_{i=1}^nX_i - np + p \sum_{i=1}^nX_i = 0$$
-$$\sum_{i=1}^nX_i -np = 0$$
-$$p=\frac{\sum_{i=1}^nX_i}{n}$$
+$$
+\sum_{i=1}^nX_i - p\sum_{i=1}^nX_i - np + p \sum_{i=1}^nX_i = 0
+$$
+$$
+\sum_{i=1}^nX_i -np = 0
+$$
+$$
+p=\frac{\sum_{i=1}^nX_i}{n}
+$$
 Ossia visto che sappiamo che $\overline X= \frac{\sum_{i=1}^nX_i}{n}$ avremo che : 
-$$p = \overline X$$
+$$
+p = \overline X
+$$
 Visto che non sappiamo il vero valore di $p$ passiamo alla stima : 
-$$\hat p = \overline X$$
+$$
+\hat p = \overline X
+$$
 >[!warning]
 >Per verificare che effettivamente questo è uno stimatore di *massima verosimiglianza* dobbiamo calcolare la derivata seconda : 
->$$l''(p)=-\frac{\sum_{i=1}^n X_i}{p^2} - \frac{n-\sum_{i=1}^n X_i}{(1-p)^2}$$
+>$$
+>l''(p)=-\frac{\sum_{i=1}^n X_i}{p^2} - \frac{n-\sum_{i=1}^n X_i}{(1-p)^2}
+>$$
 >Ora questo deve essere $<0$ per avere lo stimatore di *massima verosimiglianza* , notiamo che i fattori moltiplicativi sono sempre $<0$ poichè hanno il segno $-$ davanti mentre la prima sommatoria rappresenta la somma di valori che possono essere o $0$ o $1$ , sarà quindi sicuramente positiva ; mentre il secondo fattore moltiplicativo sappiamo che la sommatoria è sicuramente $\le n$ avremo quindi che la sottrazione $x - \sum$ sarà sicurmanete $\ge 0$  
 
 Calcoliamo ora l'errore standard di $\hat p$ : 
 	Sfruttiamo il fatto che sappiamo che la *varianza* di una variabile bernulliana è : $p(1-p)$
-	$$SE(\hat p) = \sqrt{Var(\hat p)} = \sqrt{\frac{Var(X_1)}{n}}=\sqrt{\frac{p\cdot (1-p)}{n}}$$
+	$$
+	SE(\hat p) = \sqrt{Var(\hat p)} = \sqrt{\frac{Var(X_1)}{n}}=\sqrt{\frac{p\cdot (1-p)}{n}}
+	$$
 	Che *stimato* diventa 
-$$\widehat {SE}(\hat p) = \sqrt{\frac{\hat p\cdot(1-\hat p)}{n}}$$ 
+$$
+\widehat {SE}(\hat p) = \sqrt{\frac{\hat p\cdot(1-\hat p)}{n}}
+$$ 
 Possiamo ricavare $\widehat{SE}$ anche attraverso l'*informazione attesa* o l'*informazione osservata* : 
 
 >[!note] Attraverso l'informazione osservata
 >Sappiamo che $J(p)=-l''(p)$ , sarà quindi facile calcolarla sfruttando ciò che abbiamo precedentemente calcolato :
->$$J(p)=\frac{\sum_{i=1}^n X_i}{p^2}+\frac{n-\sum_{i=1}^n X_i}{(1-p^2)}$$
+>$$
+>J(p)=\frac{\sum_{i=1}^n X_i}{p^2}+\frac{n-\sum_{i=1}^n X_i}{(1-p^2)}
+>$$
 >Sappiamo inoltre che $\widehat{SE} = J(\hat p)^{-1/2}$ che ci dice che :
->$$\widehat{SE}=\left( \frac{\sum_{i=1}^n X_i}{p^2}+\frac{n-\sum_{i=1}^n X_i}{(1-p^2)} \right)^{-1/2}$$
+>$$
+>\widehat{SE}=\left( \frac{\sum_{i=1}^n X_i}{p^2}+\frac{n-\sum_{i=1}^n X_i}{(1-p^2)} \right)^{-1/2}
+>$$
 >Siccome $\hat p = \overline X$ segue che $\sum_{i=1}^n X_i = n \hat p$ e quindi 
->$$\widehat {SE}(\hat p) = \left( \frac{n\hat p}{\hat p^2} + \frac{n - n\hat p}{(1-\hat p )^2} \right)^{-1/2}$$
->$$\left( \frac{n}{\hat p} + \frac{n}{(1-\hat p)} \right)^{-1/2}$$
->$$\sqrt{\frac{\hat p(1-\hat p)}{n}}$$
+>$$
+>\widehat {SE}(\hat p) = \left( \frac{n\hat p}{\hat p^2} + \frac{n - n\hat p}{(1-\hat p )^2} \right)^{-1/2}
+>$$
+>$$
+>\left( \frac{n}{\hat p} + \frac{n}{(1-\hat p)} \right)^{-1/2}
+>$$
+>$$
+>\sqrt{\frac{\hat p(1-\hat p)}{n}}
+>$$
 
 >[!note] Attraverso l'informazione attesa
 >Sappiamo che $I(p)=E\{ J(p) \}$ 
->$$=E\left( \frac{\sum_{i=1}^n X_i}{p^2} \right) + E\left( \frac{n-\sum_{i=1}^n X_i}{(1-p)^2} \right)$$
->$$=\left( \frac{\sum_{i=1}^n E(X_i)}{p^2} \right) + \left( \frac{n-\sum_{i=1}^n E(X_i)}{(1-p)^2} \right)$$
+>$$
+>=E\left( \frac{\sum_{i=1}^n X_i}{p^2} \right) + E\left( \frac{n-\sum_{i=1}^n X_i}{(1-p)^2} \right)
+>$$
+>$$
+>=\left( \frac{\sum_{i=1}^n E(X_i)}{p^2} \right) + \left( \frac{n-\sum_{i=1}^n E(X_i)}{(1-p)^2} \right)
+>$$
 >Visto che sappiamo che la bernulliana ha $E[X]=p$ possiamo sostituire : 
->$$=\left( \frac{\sum_{i=1}^n p}{p^2} \right) + \left( \frac{n-\sum_{i=1}^n p}{(1-p)^2} \right)$$
->$$=\left( \frac{n\cdot p}{p^2} \right) + \left( \frac{n-n\cdot p}{(1-p)^2} \right)$$
->$$=\left( \frac{n}{p} \right) + \left( \frac{n}{1-p} \right)$$
->$$=\frac{n}{p(1-p)}$$
+>$$
+>=\left( \frac{\sum_{i=1}^n p}{p^2} \right) + \left( \frac{n-\sum_{i=1}^n p}{(1-p)^2} \right)
+>$$
+>$$
+>=\left( \frac{n\cdot p}{p^2} \right) + \left( \frac{n-n\cdot p}{(1-p)^2} \right)
+>$$
+>$$
+>=\left( \frac{n}{p} \right) + \left( \frac{n}{1-p} \right)
+>$$
+>$$
+>=\frac{n}{p(1-p)}
+>$$
 >
 >Quindi abbiamo che l'erroe standard limite di $\hat p$ è 
->$$\widehat{SE}(\hat p)=I(\hat p)^{-1/2}=\sqrt{\frac{\hat p(1-\hat p)}n}$$
+>$$
+>\widehat{SE}(\hat p)=I(\hat p)^{-1/2}=\sqrt{\frac{\hat p(1-\hat p)}n}
+>$$
 
 >[!warning]
 >In generale le stime dell'errore standard basate su $I$ e $J$ coincidono ma in generale le due stime sono diverse
@@ -988,7 +1270,9 @@ Se $\hat\theta$ è lo *stimatore di massima verosimiglianza* di $\theta$ allora 
 >Dove $F(c)$ è la funzione di ripartizione di una variabile di Poisson
 >
 >La proprietà dell'invarianza dice che lo stimatore di massima verosimiglianza di $\psi$ è : 
->$$\hat \psi = 1-\hat F(c)$$ 
+>$$
+>\hat \psi = 1-\hat F(c)
+>$$ 
 >( ricordandoci che $F(c)$ è in funzione di $\lambda$ )
 >
 >Supponiamo di avere un $c=75$
@@ -996,45 +1280,65 @@ Se $\hat\theta$ è lo *stimatore di massima verosimiglianza* di $\theta$ allora 
 >
 >La stima di massima verosimiglianza dunque è : $\hat \lambda = 62.7$
 >La stima di massima verosimiglianza di $\psi$ è : 
->$$\hat \psi = 1-\sum_{x=0}^{75} \frac{e^{-62.7}(62.7)^x}{x!}$$
+>$$
+>\hat \psi = 1-\sum_{x=0}^{75} \frac{e^{-62.7}(62.7)^x}{x!}
+>$$
 >Oppure con R : 
 >`{r} 1- ppois(75,lambda = 62.7)`
 
 #### Parametro multivalore
 
 Nella gran parte dei casi reali la dimensione del parametro è maggiore di uno : 
-$$\theta = \left( \matrix{\theta_1 \\ \vdots \\ \theta_k}\right)$$
+$$
+\theta = \left( \matrix{\theta_1 \\ \vdots \\ \theta_k}\right)
+$$
 Possiamo estendere i risultati ottenuti finora ad un vettore di parametri , infatti : 
 
 Lo *stimatore* di $\theta$ è un vettore causale : 
-$$\hat\theta = \left( \matrix{\hat\theta_1 \\ \vdots \\\hat \theta_k}\right)$$
+$$
+\hat\theta = \left( \matrix{\hat\theta_1 \\ \vdots \\\hat \theta_k}\right)
+$$
 In cui ogni componente $\hat\theta_r\ (r=1,\dots,k)$ è una variabile casuale
 
 I *momenti* di $\hat\theta$ sono : 
 1. Il *vettore di valori attesi* : 
-	$$\mu = \left( \matrix{\mu_1 \\ \vdots \\ \mu_k}\right)$$
+	$$
+	\mu = \left( \matrix{\mu_1 \\ \vdots \\ \mu_k}\right)
+	$$
 	Con $\mu_r = E(\hat\theta_r), \ r=1,\dots,k$
 2. La *matrice di varianze e covarianze*
-	$$\sum = \left( \matrix{\sigma_1^2 &\sigma_{12} & \dots &\sigma_{1k}\\ \vdots & \vdots & \ddots & \vdots \\ \sigma_{k1} & \sigma_{k2}& \dots& \sigma_k^2 } \right)$$
+	$$
+	\sum = \left( \matrix{\sigma_1^2 &\sigma_{12} & \dots &\sigma_{1k}\\ \vdots & \vdots & \ddots & \vdots \\ \sigma_{k1} & \sigma_{k2}& \dots& \sigma_k^2 } \right)
+	$$
 	Dove $\sigma_{rs} = Cov(\hat\theta_r , \hat\theta_s)$ e $\sigma_r^2 = \sigma_{rr}$ con $r,s=1,\dots,k$
 
 ##### Stimatore di massima verosimiglianza
 
 Nei problemi di stima regolari lo *stimatore di massima verosimiglianza* si ottiene risolvendo le equazioni di verosimiglianza : 
-$$\begin{cases}  \frac{dl(\theta)}{d\theta_1} = 0 \\ \vdots \\ \frac{d l(\theta)}{d\theta_k} = 0\end{cases}$$
+$$
+\begin{cases}  \frac{dl(\theta)}{d\theta_1} = 0 \\ \vdots \\ \frac{d l(\theta)}{d\theta_k} = 0\end{cases}
+$$
 La soluzione è lo stimatore di massima verosimiglianza se la *matrice Hessiana* delle derivate  seconde 
-$$\left(\matrix{\frac{d^2 l(\theta)}{d \theta^2_1} & \frac{d^2 l(\theta)}{d \theta_1 d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ \frac{d^2 l(\theta)}{d \theta_k d\theta_1} & \frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_k^2}}\right)$$
+$$
+\left(\matrix{\frac{d^2 l(\theta)}{d \theta^2_1} & \frac{d^2 l(\theta)}{d \theta_1 d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ \frac{d^2 l(\theta)}{d \theta_k d\theta_1} & \frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & \frac{d^2 l(\theta)}{d \theta_k^2}}\right)
+$$
 è definita negativa 
 
 Nei problemi regolari di stima lo stimatore di massima verosimiglianza ha come distribuzione limite la *normale multivariata* di dimensione $k$  : 
-$$\hat \theta \approx MVN_k(\theta.I(\theta)^{-1})\quad \text{per $n$ sufficentemente grande}$$
+$$
+\hat \theta \approx MVN_k(\theta.I(\theta)^{-1})\quad \text{per $n$ sufficentemente grande}
+$$
 dove $I(\theta)$ è la *matrice dell'informazione attesa* 
-$$\hat\theta \approx MVN_k(\theta,J(\theta)^{-1})\quad \text{per $n$ sufficentemente grande}$$
+$$
+\hat\theta \approx MVN_k(\theta,J(\theta)^{-1})\quad \text{per $n$ sufficentemente grande}
+$$
 dove $J(\theta)$ è la *matrice dell'informazione osservata*
 
 La matrice dell'*informazione attesa* è $I(\theta) = E\{J(\theta)\}$ con :
 
-$$J(\theta)=\left(\matrix{-\frac{d^2 l(\theta)}{d \theta^2_1} & -\frac{d^2 l(\theta)}{d \theta_1 d\theta_2} & \dots & -\frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ -\frac{d^2 l(\theta)}{d \theta_k d\theta_1} & -\frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & -\frac{d^2 l(\theta)}{d \theta_k^2}}\right)$$
+$$
+J(\theta)=\left(\matrix{-\frac{d^2 l(\theta)}{d \theta^2_1} & -\frac{d^2 l(\theta)}{d \theta_1 d\theta_2} & \dots & -\frac{d^2 l(\theta)}{d \theta_1 d\theta_k} \\ \vdots & \vdots & \ddots & \vdots  \\ -\frac{d^2 l(\theta)}{d \theta_k d\theta_1} & -\frac{d^2 l(\theta)}{d \theta_k d\theta_2} & \dots & -\frac{d^2 l(\theta)}{d \theta_k^2}}\right)
+$$
 
 >[!todo]
 >distribuzione normale multivariata
@@ -1055,7 +1359,9 @@ Queste domande sono risposte attraverso gli *intervalli di confidenza*
 ## Intervalli di confidenza 
 
 Un intervallo $[A,B]$ è detto *intervallo di confidenza* per $\theta$ di *livello* $(1-\alpha)100\%$ se contiene il parametro con probablità $(1-\alpha)$ :
-$$\Pr(A\le \theta \le B) = 1- \alpha$$
+$$
+\Pr(A\le \theta \le B) = 1- \alpha
+$$
 >[!note] 
 >La *probabiltà di copertura* dell'intervallo $(1-\alpha)$ viene detta anche *livello di confidenza* 
 
@@ -1082,7 +1388,9 @@ Il metodo più semplice per costruire un *intervallo di confidenza* $[A,B]$ con 
 + *con distribuzione normale* : $N\{\theta, Var(\hat\theta)\}$
 
 In questo caso costruiremo l'*intervallo di confidenza* a partire dallo stimatore *standardizzato* 
-$$Z = \frac{\hat{\theta}-\theta}{SE(\hat{\theta})}$$
+$$
+Z = \frac{\hat{\theta}-\theta}{SE(\hat{\theta})}
+$$
 Che si distribuisce come una variabile casuale *normale standard* $N(0,1)$ ( $Z$ verrà chiamata *statistica Z* )
 
 Dobbiamo trovare i quantili della distribuzione normale standard che identificano un'area di ampiezza pari a $(1-\alpha)$ 
@@ -1090,12 +1398,20 @@ Dobbiamo trovare i quantili della distribuzione normale standard che identifican
 ![[Pasted image 20240328161333.png]]
 
 $z_{\alpha/2}$ è tale che $Pr(Z > z_{\alpha/2}) = \alpha/2$ ossia il quantile di posizione $(1-\alpha /2)$ della distribuzione normale standard
-$$\Pr \Bigg\{ - z_{\alpha/2} \le \frac{\hat{\theta}-\theta}{SE(\hat{\theta})} \le z_{\alpha/2} \Bigg\}=1-\alpha$$
+$$
+\Pr \Bigg\{ - z_{\alpha/2} \le \frac{\hat{\theta}-\theta}{SE(\hat{\theta})} \le z_{\alpha/2} \Bigg\}=1-\alpha
+$$
 Ossia : 
-$$\Pr \{ \hat\theta - z_{\alpha/2} SE(\hat{\theta})\le \theta \le \hat\theta + z_{\alpha/2} SE(\hat{\theta})\}=1-\alpha$$
+$$
+\Pr \{ \hat\theta - z_{\alpha/2} SE(\hat{\theta})\le \theta \le \hat\theta + z_{\alpha/2} SE(\hat{\theta})\}=1-\alpha
+$$
 Possiamo quindi scrivere che : 
-$$A = \hat\theta - z_{\alpha/2}SE(\hat{\theta} \ )$$
-$$B = \hat\theta + z_{\alpha/2}SE(\hat{\theta} \ )$$
+$$
+A = \hat\theta - z_{\alpha/2}SE(\hat{\theta} \ )
+$$
+$$
+B = \hat\theta + z_{\alpha/2}SE(\hat{\theta} \ )
+$$
 >[!note] 
 >Si tratta di un intervallo centrato in $\hat\theta$ con *margine di errore* pari a $z_{\alpha/2} SE(\hat\theta)$
 
@@ -1112,7 +1428,9 @@ Quando possiamo usare la statistica $Z$ ? :
 L'errore standard sarà quindi $SE(\hat\mu) = \sigma / \sqrt{n}$  
 
 L'intervallo di confidenza sarà quindi : 
-$$\bar{X}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+$$
+\bar{X}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}
+$$
 Il quantile $z_{\alpha/2}$ necessario per il caclolo degli intervalli di confidenza può essere ottenuto con il seguente comando , con $\alpha = 0.05$ : 
 ```r
 qnorm(1-0.05/2)  ->  1.959964
@@ -1140,21 +1458,35 @@ Campioni casuali semplici da due popolazioni :
 + $Y_1,\dots,Y_m$ con media $\mu_Y$ e varianza nota $\sigma_Y^2$ 
 
 Calcoliamo unintervallo di confidenza per 
-$$\theta = \mu_X -\mu_Y$$
+$$
+\theta = \mu_X -\mu_Y
+$$
 **Assunzioni** : 
 + I due campioni sono indipendenti
 + Le osservazioni sono normalmente distribuite oppure le numerosità dei due campioni $n$ e $m$ sono grandi 
 
 Uno stimatore non distorto di $\theta$ è 
-$$\hat\theta = \bar{X} - \bar{Y}$$
+$$
+\hat\theta = \bar{X} - \bar{Y}
+$$
 L'*errore standard* dello stimatore è : 
-$$SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}$$
-$$=\sqrt{Var(\bar X)+Var(\bar Y)}$$
-$$=\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}}$$
+$$
+SE(\hat{\theta}) = \sqrt{Var(\hat{\theta})}
+$$
+$$
+=\sqrt{Var(\bar X)+Var(\bar Y)}
+$$
+$$
+=\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}}
+$$
 L'intervallo di confidenza è 
-$$\hat{\theta}\pm z_{\alpha/2}SE(\hat{\theta})$$
+$$
+\hat{\theta}\pm z_{\alpha/2}SE(\hat{\theta})
+$$
 Ossia : 
-$$(\bar X-\bar Y)\pm z_{\alpha/2}\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}}$$
+$$
+(\bar X-\bar Y)\pm z_{\alpha/2}\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}}
+$$
 >[!example] 
 >Esempio 9.14 baron
 
@@ -1164,16 +1496,24 @@ $$(\bar X-\bar Y)\pm z_{\alpha/2}\sqrt{\frac{\sigma^2_X}{n}+\frac{\sigma_Y^2}{m}
 ### Dimensione campionaria 
 
 Gli intervalli di confidenza hanno la seguente forma simmetrica : 
-$$\text{stimatore} \pm \text{margine d'errore}$$
+$$
+\text{stimatore} \pm \text{margine d'errore}
+$$
 Quanto deve essere grande il campione per garantire una data precisione al nostro stimatore ?
 
 Ossia quanto deve valere $n$ affinchè il margine di errore sia inferiore ad un dato valore $\Delta$ , dobbiamo quindi risolvere la seguente diseguaglianza rispetto alla numerosità campionaria $n$ : 
-$$\text{mergine d'errore} \le \Delta$$
+$$
+\text{mergine d'errore} \le \Delta
+$$
 Il margine d'errore è : $z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$
 Quindi dobbiamo risolvere la diseguaglianza : 
-$$z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \le \Delta$$
+$$
+z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \le \Delta
+$$
 Otteniamo quinidi : 
-$$n\ge \bigg( \frac{z_{\alpha/2}\cdot \sigma}{\Delta} \bigg)^2$$
+$$
+n\ge \bigg( \frac{z_{\alpha/2}\cdot \sigma}{\Delta} \bigg)^2
+$$
 >[!note] 
 >Visto che $n$ è un numero intero allora la minima dimensione campionaria che assicura la precisione desiderata sarà il più piccolo intero che soddisfa la diseguaglianza
 
@@ -1202,16 +1542,26 @@ Possiamo avere tre casi possibili :
 Se il campione ha *grandi dimensioni* allora ci aspettiamo che lo stimatore dell'errore standard $\widehat{SE}(\hat{\theta})$ sia *ragionevolmente* vicino al vero errore standard ( $SE(\theta)$ )
 
 Possiamo allora calcolare un intervallo di confidenza di *livello approssimato* $1-\alpha$ con la statistica $\mathbb{Z}$
-$$\hat{\theta}\pm z_{\alpha/2} \widehat{SE}(\hat{\theta})$$
+$$
+\hat{\theta}\pm z_{\alpha/2} \widehat{SE}(\hat{\theta})
+$$
 
 Nel caso della media di una popolazione avremo : 
-$$\hat{\mu}\pm z_{\alpha/2} \frac{\hat\sigma}{\sqrt{n}}$$
+$$
+\hat{\mu}\pm z_{\alpha/2} \frac{\hat\sigma}{\sqrt{n}}
+$$
 Ovvero 
-$$\overline{X}\pm z_{\alpha/2}\frac{\hat S}{\sqrt{n}}$$
+$$
+\overline{X}\pm z_{\alpha/2}\frac{\hat S}{\sqrt{n}}
+$$
 Se abbiamo la differenza di due medie : 
-$$\hat\mu_x-\hat\mu_y \pm z_{\alpha/2} \sqrt{\frac{\hat\sigma^2_x}{n}+\frac{\hat\sigma^2_y}{m}}$$
+$$
+\hat\mu_x-\hat\mu_y \pm z_{\alpha/2} \sqrt{\frac{\hat\sigma^2_x}{n}+\frac{\hat\sigma^2_y}{m}}
+$$
 Ovvero 
-$$\bar X-\bar X \pm z_{\alpha/2} \sqrt{\frac{S^2_x}{n}+\frac{ S^2_y}{m}}$$
+$$
+\bar X-\bar X \pm z_{\alpha/2} \sqrt{\frac{S^2_x}{n}+\frac{ S^2_y}{m}}
+$$
 >[!example] 
 >Esempio 9.16 baron
 
@@ -1222,20 +1572,28 @@ Quando dobbiamo stimare una *proporzione campionaria* non conosciamo la deviazio
 Supponiamo che siamo interessati alla *sottopopolazione* che possiede un certo attributo A
 
 Definiamo la *proporzione della popolazione* con l'attributo A come :
-$$p=Pr(\text{possedere l'attributo A})$$
+$$
+p=Pr(\text{possedere l'attributo A})
+$$
 La corrispondente *proporzione campionaria* è : 
-$$\hat p = \frac{n_A}{n}$$
+$$
+\hat p = \frac{n_A}{n}
+$$
 con $n_A$ il numero di unità con l'attributo A
 
 Possiamo riformulare il problema con le variabili indicatrici :
-$$X_i = \begin{cases}
+$$
+X_i = \begin{cases}
 1  & \text{se l'unità $i$ possiede  l'attributo A}\\ 0 & \text{se l'unità $i$ non possiede l'attributo A}
-\end{cases}$$
+\end{cases}
+$$
 $X_i$ diventa quiondi una variabile *Bernulliana* con parametro $p$ :
 	$E(X_i)=p$ e $Var(X_i)=p(1-p)$ 
 
 Lo stimatore $\hat{p}$ sarà quindi la media campionaria : 
-$$\hat p = \bar X = \frac{1}{n}\sum^{n}_{i=1}X_i$$
+$$
+\hat p = \bar X = \frac{1}{n}\sum^{n}_{i=1}X_i
+$$
 con $E(\hat{p}) = p$ e $Var(\hat{p}) = \frac{p(1-p)}{n}$ 
 
 Quindi lo *stimatore* $\hat{p}$ è quindi : 
@@ -1243,11 +1601,17 @@ Quindi lo *stimatore* $\hat{p}$ è quindi :
 + *asintoticamente normale* 
 
 Per $n$ abbastanza grande la distribuzione di $\hat p$ è *approssimativamente* pari a :
-$$N\bigg(p,\frac{p(1-p)}{n}\bigg)$$
+$$
+N\bigg(p,\frac{p(1-p)}{n}\bigg)
+$$
 L'*errore standard* di $\hat{p}$ stimato sarà quindi : 
-$$\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}=\sqrt{\frac{\bar X(1-\bar X)}{n}}$$
+$$
+\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}=\sqrt{\frac{\bar X(1-\bar X)}{n}}
+$$
 L'intervallo di confidenza per $p$ con livello di confidenza approssimativamente pari a $1-\alpha$ è 
-$$\hat{p}\pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \quad\text{ovvero} \quad \bar{X}\pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{n}}$$
+$$
+\hat{p}\pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \quad\text{ovvero} \quad \bar{X}\pm z_{\alpha/2} \sqrt{\frac{\bar{X}(1-\bar{X})}{n}}
+$$
 
 #### Intervalli di confidenza per la differenza di due proporzioni
 
@@ -1256,24 +1620,38 @@ Supponiamo di avere due popolazioni *indipendenti* di dimensioni $n_1$ e $n_2$
 Vogliamo valutare in quale delle due popolazioni un certo attributo sia più frequente 
 
 Possiamo costruire un *intervallo di confidenza* per la differenza della proporzione di unità con l'attributo : 
-$$\theta= p_1 - p_2$$ 
+$$
+\theta= p_1 - p_2
+$$ 
 Lo stimatore di $\theta$ è la differenza delle proporzioni campionarie 
-$$\hat{\theta} = \hat{p_1}-\hat{p_2}$$
+$$
+\hat{\theta} = \hat{p_1}-\hat{p_2}
+$$
 L'*errore standard* di $\hat{\theta}$ è :
-$$SE(\hat{\theta}) = \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$$
+$$
+SE(\hat{\theta}) = \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}
+$$
 L'*errore standard stimato* è quindi :
-$$\widehat{SE}(\hat{\theta}) = \sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
+$$
+\widehat{SE}(\hat{\theta}) = \sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+$$
 L'intervallo di confidenza con livello di confidenza approssimativamente pari a $(1-\alpha)$ è :
-$$\hat{p}_1-\hat{p}_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
+$$
+\hat{p}_1-\hat{p}_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+$$
 >[!example] 
 >Esempio 9.17 Baron
 
 #### Stimare proporzioni con una precisione prefissata
 
 Il margine d'errore nell'intervallo di confidenza per una proporzione è :
-$$\text{margine d'errore} = z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+$$
+\text{margine d'errore} = z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+$$
 La dimensione campionaria che assicura che *margine d'errore* $\le \Delta$ è pari a : 
-$$n\ge \hat{p}(1-\hat{p})\bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
+$$
+n\ge \hat{p}(1-\hat{p})\bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2
+$$
 >[!warning] 
 >Questa diseguaglianza però coinvolge $\hat{p}$ che non è nota prima della raccolta del campione
 
@@ -1282,7 +1660,9 @@ Possiamo risolvere il problema notando che il valore massiamo di $\hat{p}(1-\hat
 ![[Pasted image 20240419172815.png]]
 
 Possiamo quindi sostituire $\hat{p}(1-\hat{p})$ con $0.25$ per ottenere la dimensione campionaria :
-$$n\ge 0.25 \bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2$$
+$$
+n\ge 0.25 \bigg(\frac{z_{\alpha/2}}{\Delta}\bigg)^2
+$$
 che assicura che il margine d'errore sai inferiore a $\Delta$ ( per qualunque $\hat{p}$ )
 #### Piccoli campioni : distributzione $T$
 
@@ -1296,7 +1676,9 @@ Se $n$ è piccolo allora l'*errore standard stimato* $\frac{S}{\sqrt{n}}$ potreb
 >Da utilizzare quando $n<30$
 
 La conseguenza di sostituire $\sigma$ con la stima consistente $S$ è che la quantità :
-$$T=\frac{\sqrt{n}(\bar X -\mu)}{S}$$
+$$
+T=\frac{\sqrt{n}(\bar X -\mu)}{S}
+$$
 Non ha più una distribuzione normale ma una dsitribuzione **T di Student** con $n-1$ *gradi di libertà*
 
 #### Distribuzione $T$ di Student
@@ -1308,7 +1690,9 @@ Al crescere dei *gradi di libertà* la distribuzione $T$ *converge* alla distrib
 ##### Gradi di Libertà
 
 I *gradi di libertà* corrispondono alla dimensione del vettore usato per stimare la varianza $\sigma^2$ nella statistica $T$ , questa è stimata dalla *varianza campionaria* : 
-$$S^2 = \frac{1}{n-1}\sum^{n}_{i=1}(X_i-\bar X)^2$$
+$$
+S^2 = \frac{1}{n-1}\sum^{n}_{i=1}(X_i-\bar X)^2
+$$
 La *varianza campionaria* è una funzione del vettore dei dati centrali
 
 >[!todo] 
@@ -1316,11 +1700,17 @@ La *varianza campionaria* è una funzione del vettore dei dati centrali
 ##### Intervalli di confidenza per la media basati sulla statistica $T$
 
 L'intervallo di confidenza per la media $\mu$ di una popolazione normale è :
-$$\bar X \pm t_{\alpha/2} \frac{S}{\sqrt{n}}$$
+$$
+\bar X \pm t_{\alpha/2} \frac{S}{\sqrt{n}}
+$$
 dove $t_{\alpha/2}$ è il quantile della distribuzione $T$ con $n-1$ gradi di libertà di posizione $1-\alpha/2$ ovvero il valore tale che :
-$$\Pr(T \ge t_{\alpha/2}) = \alpha/2\quad \text{oppure}\quad \Pr(T \le t_{\alpha/2}) = 1-\alpha/2$$
+$$
+\Pr(T \ge t_{\alpha/2}) = \alpha/2\quad \text{oppure}\quad \Pr(T \le t_{\alpha/2}) = 1-\alpha/2
+$$
 Al crescere di $n$ l'intervallo di confidenza basato sulla statistica $T$ convergerà all'intervallo basato sulla statistica $Z$  :
-$$\bar X \pm z_{\alpha/2}\frac{S}{\sqrt{n}}$$
+$$
+\bar X \pm z_{\alpha/2}\frac{S}{\sqrt{n}}
+$$
 ##### Quantili
 
 Il valore di $t_{\alpha/2}$ si può ottenere grazie ad `R` attraverso la funzione `qt` ( *quantile of the T distribution* ) : $\Pr(T \le t_{\alpha/2})=1-\alpha/2$ ovvero $t_{\alpha/2}$ è il *qunatile* di $T$ di posizione $1-\alpha/2$ 
@@ -1338,18 +1728,24 @@ Consideriamo due campioni casuali semplici normali
 Assumiamo che i campioni siano *indipendenti*
 
 Siamo interessati alla differenza fra le due medie : 
-$$\theta = \mu_X -\mu_Y$$
+$$
+\theta = \mu_X -\mu_Y
+$$
 Abbiamo 2 casi :
 1. Le due varianze sono uguali $\sigma^2=\sigma^2_X=\sigma^2_Y$
 2. Le due varianza sono differenti $\sigma^2_X \ne \sigma^2_Y$
 ###### Varianze uguali
 
 Se le varianze sono uguali allora stimiamo $\sigma^2$ con tutti i dati : 
-$$\hat \sigma^2 = S^2_p = \frac{1}{n+m-2}\bigg\{\sum^{n}_{i=1}(X_i-\bar X)^2+ \sum^{n}_{i=1}(Y_i-\bar Y)^2\bigg\}$$
+$$
+\hat \sigma^2 = S^2_p = \frac{1}{n+m-2}\bigg\{\sum^{n}_{i=1}(X_i-\bar X)^2+ \sum^{n}_{i=1}(Y_i-\bar Y)^2\bigg\}
+$$
 Lo stimatore $S_p^2$ è detto varianza campionaria *pooled* 
 
 In questo caso l'intervallo di confidenza per la differenza delle medie è :
-$$\bar X -\bar Y \pm t_{\alpha/2}S_p \sqrt{\frac{1}{n}+\frac{1}{m}}$$
+$$
+\bar X -\bar Y \pm t_{\alpha/2}S_p \sqrt{\frac{1}{n}+\frac{1}{m}}
+$$
 Dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ con $n+m-2$ *gradi di libertò* 
 
 >[!example] 
@@ -1357,18 +1753,24 @@ Dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione
 ###### Varianze diverse
 
 Il caso in cui le varianze non sono uguali $\sigma^2_X \ne \sigma^2_Y$ è più complicato poichè la statistica $T$ :
-$$T = \frac{(\bar X - \bar Y)-(\mu_X - \mu_Y)}{\sqrt{\frac{S^2_X}{n}+\frac{S^2_Y}{n}}}$$
+$$
+T = \frac{(\bar X - \bar Y)-(\mu_X - \mu_Y)}{\sqrt{\frac{S^2_X}{n}+\frac{S^2_Y}{n}}}
+$$
 non ha più una distribuzione $T$ 
 
 In questo caso si ricorre spesso all'approsimazione di *Satterthwaite*
 
 La distribuzione della statistica $T$ può essere *approssimata* con la distribuzione di una variabile casuale $T$ di Student con gradi di libertà : 
-$$v=\frac{\bigg(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\bigg)^2}{\frac{S_X^4}{n^2(n-1)}+\frac{S_Y^4}{m^2(m-1)}}$$
+$$
+v=\frac{\bigg(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\bigg)^2}{\frac{S_X^4}{n^2(n-1)}+\frac{S_Y^4}{m^2(m-1)}}
+$$
 >[!note] 
 >$v$ non è generalmente un numero intero
 
 L'intervallo di confidenza per la differenza di due medie con l'approssimazione di *Satterthwaite* è :
-$$\bar X -\bar Y\pm t_{\alpha/2} \sqrt{\frac{S_X^2}{n}+ \frac{S_Y^2}{m}}$$
+$$
+\bar X -\bar Y\pm t_{\alpha/2} \sqrt{\frac{S_X^2}{n}+ \frac{S_Y^2}{m}}
+$$
 dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ dellla sitribuzione $T$ di Student con $v$ gradi di libertà
 
 >[!example] 
@@ -1381,15 +1783,21 @@ Sappiamo che sotto assunzioni di regolarità lo stimatore di massima verosimigli
 + asintoticamente normale con distribuzione limite : $N\{ \theta , I(\theta)^{-1} \}$ 
 
 Possiamo usare la distribuzione limite per costruire un intervallo di confidenza approssimato : 
-$$\hat \theta \pm z_{\alpha/2}I(\hat{\theta})^{-1/2}$$
+$$
+\hat \theta \pm z_{\alpha/2}I(\hat{\theta})^{-1/2}
+$$
 Oppure utilizzando l'informazione osservata : 
-$$\hat \theta \pm z_{\alpha/2}J(\hat{\theta})^{-1/2}$$
+$$
+\hat \theta \pm z_{\alpha/2}J(\hat{\theta})^{-1/2}
+$$
 
 >[!example] 
 >Sia $X_1, \dots,X_n$ un campione casuale semplice da una varaibile normale con media 0 e varianza $\sigma^2$ ignota
 >
 >La funzione di densità di $X$ è :
->$$f(x; \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2} \exp \bigg(-\frac{x^2}{2\sigma^2}\bigg)}$$
+>$$
+>f(x; \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2} \exp \bigg(-\frac{x^2}{2\sigma^2}\bigg)}
+>$$
 >
 >Vogliamo calcolare un intervallo di confidenza 90% per $\sigma^2$
 >
@@ -1398,20 +1806,28 @@ $$\hat \theta \pm z_{\alpha/2}J(\hat{\theta})^{-1/2}$$
 >2. $I(\sigma^2)= n/(2\sigma^4)$
 >
 >Lo stimatore di massima verosimiglianza è distribuito approssimativamente come :
->$$N\bigg(\sigma^2,\frac{2\sigma^4}{n}\bigg)\quad \text{per $n$ sufficientemente grande}$$
+>$$
+>N\bigg(\sigma^2,\frac{2\sigma^4}{n}\bigg)\quad \text{per $n$ sufficientemente grande}
+>$$
 >
 >Un intervallo di confidenza con livello approssimato del $90\%$ è quindi : 
->$$\hat \sigma^2 \pm z_{0.05}I(\hat\sigma^2)^{-1/2} \quad \text{oppure} \quad \hat \sigma^2 \pm z_{0.05}J(\hat\sigma^2)^{-1/2}$$ 
+>$$
+>\hat \sigma^2 \pm z_{0.05}I(\hat\sigma^2)^{-1/2} \quad \text{oppure} \quad \hat \sigma^2 \pm z_{0.05}J(\hat\sigma^2)^{-1/2}
+>$$ 
 >
 >In questo particolare caso avremo che $I(\hat \sigma^2)=J(\hat \sigma^2)=n/(2\hat \sigma^4)$
 >
 >L'intervallo di confidenza è 
->$$\hat \sigma^2 \pm z_{0.05} \hat \sigma^2 \sqrt{2/n} \implies \hat \sigma^2 \pm 1.64 \hat \sigma^2 \sqrt{2/n}$$
+>$$
+>\hat \sigma^2 \pm z_{0.05} \hat \sigma^2 \sqrt{2/n} \implies \hat \sigma^2 \pm 1.64 \hat \sigma^2 \sqrt{2/n}
+>$$
 >
 >Supponiamo che un campione di dimensione $60$ abbia dato $\sum^{60}_{i=1} x_i^2 = 164.83$ 
 >
 >L'intervallo di confidenza sarà quindi :
->$$\frac{164.83}{60}\pm 1.64 \bigg(\frac{164.83}{60}\bigg)\sqrt{\frac{2}{60}} = [1.93,3.57]$$
+>$$
+>\frac{164.83}{60}\pm 1.64 \bigg(\frac{164.83}{60}\bigg)\sqrt{\frac{2}{60}} = [1.93,3.57]
+>$$
 
 ##### Intervalli di confidenza e trasformazioni
 
@@ -1420,7 +1836,9 @@ Supponiamo di aver calcolato un intervallo di confidenza $[A,B]$ per un parametr
 Se $\phi$ è una *trasformazione monotona* calcoliamo l'intervallo di confidenza per $\phi$ applicando la funzione $g$ agli estremi dell'intervallo di confidenza per $\theta$
 
 Se $g$ è una *trasformazione monotona crescente* allora l'intervallo per $\phi$ è $[g(A),g(B)]$ poichè :
-$$1-\alpha = \Pr(A\le \theta \le B) = \Pr\{g(A)\le g(\theta)\le g(B)\}$$
+$$
+1-\alpha = \Pr(A\le \theta \le B) = \Pr\{g(A)\le g(\theta)\le g(B)\}
+$$
 Se invece $g$ è *monotona descresente* allora l'intervallo per $\phi$ sarà $[g(B),g(A)]$ 
 ### Verifica delle Ipotesi
 
@@ -1439,8 +1857,12 @@ L'esperimento campionario usato per valure le ipotesi è detto *test* e può por
 
 >[!example] 
 >Se si vuole provare una nuova teoria allora si svolgerà un esperimento per valutare : 
->$$H_0:\{\text{la nuova teoria non è corretta}\}$$
->$$H_A:\{\text{la nuova teoria è corretta}\}$$
+>$$
+>H_0:\{\text{la nuova teoria non è corretta}\}
+>$$
+>$$
+>H_A:\{\text{la nuova teoria è corretta}\}
+>$$
 
 #### Ipotesi alternative
 
@@ -1479,10 +1901,14 @@ Possiamo però calcolare la probabilità di commettere errori del $I$ e del $II$
 
 >[!note] 
 > Il *livello di significatività* di un test è la probablilità di commettere un errore del $I$ tipo 
-> $$\alpha = \Pr(\text{Rifiutate $H_0$ quando è in realtà vera})$$
+> $$
+> \alpha = \Pr(\text{Rifiutate $H_0$ quando è in realtà vera})
+> $$
 
 La probablilità di *rifiutare* $H_0$ quando è *falsa* ( ossia abbiamo fatto al scielta corretta ) è detta *potenza del test* :
-$$\beta(\theta)=\Pr(\text{ Rifiutare $H_0$ quando $H_A$ è vera })$$
+$$
+\beta(\theta)=\Pr(\text{ Rifiutare $H_0$ quando $H_A$ è vera })
+$$
 La *potenza* dipende da $\theta$ perchè $H_A$ contiene solitamente diversi valori di $\theta$ 
 >[!note] 
 >La *potenza* è la probabilità di non commettere un errore del $II$ tipo 
@@ -1507,7 +1933,9 @@ I test di livello prefissato $\alpha$ consistono in tre passaggi :
 Supponiamo di avere lo stimatore $\hat{\theta}$ non distorto e normale ( es media campionaria ) 
 
 Se l'*ipotesi nulla* è $H_0 : \theta = \theta_0$ allora è naturale ( perchè è naturale ???? ) considerare la statistica $Z$ come statistica test 
-$$Z = \frac{\hat\theta-\theta_0}{SE(\hat{\theta})}$$
+$$
+Z = \frac{\hat\theta-\theta_0}{SE(\hat{\theta})}
+$$
 La statistica $Z$ ha distribuzione $\approx$ normale standard sotto l'ipotesi nulla $H_0$
 
 Per valori della statistica $Z$ *vicini allo 0* diremo che l'evidenza empirica non ci permette di rifiutare $H_0$
@@ -1543,7 +1971,9 @@ Si rifiuta per valori sia troppo grandi che troppo piccoli della statistica $Z$ 
 + $\mathcal{A} = (-z_{\alpha/2},z_{\alpha/2})$
 
 Il livello di significatività è : 
-$$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+\Pr(Z > z_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha$$
+$$
+\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+\Pr(Z > z_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha
+$$
 ![[Pasted image 20240424141059.png]]
 
 #### Test Z per medie e proporzioni
@@ -1561,11 +1991,17 @@ $$\Pr(\text{Errore I tipo}) = \Pr(Z \in \mathcal{R}|H_0)=\Pr(Z < -z_{\alpha/2})+
 Se l'ipotesi nulla $H_0 : \theta = \theta_0$ è vera allora , sotto assunzioni di regolarità , lo stimatore di massima verosimiglianza ha distribuzione approssimativamente normale 
 
 Possiamo usare questo risultato per costruire le statistiche test $Z$ : 
-$$Z = I(\theta_0)^{1/2}(\hat{\theta}-\theta_0) \ \text{oppure} \ Z = J(\theta_0)^{1/2}(\hat{\theta}-\theta_0)$$
+$$
+Z = I(\theta_0)^{1/2}(\hat{\theta}-\theta_0) \ \text{oppure} \ Z = J(\theta_0)^{1/2}(\hat{\theta}-\theta_0)
+$$
 Oppure possiamo usare l'errore standard stimato
-$$Z = I(\hat\theta)^{1/2}(\hat{\theta}-\theta_0) \ \text{oppure} \ Z = J(\hat\theta)^{1/2}(\hat{\theta}-\theta_0)$$
+$$
+Z = I(\hat\theta)^{1/2}(\hat{\theta}-\theta_0) \ \text{oppure} \ Z = J(\hat\theta)^{1/2}(\hat{\theta}-\theta_0)
+$$
 Questo poichè se l'ipotesi nulla è vera allora 
-$$\hat\theta \stackrel{p}\to \theta_0\quad \text{per n sufficentemente grande}$$
+$$
+\hat\theta \stackrel{p}\to \theta_0\quad \text{per n sufficentemente grande}
+$$
 
 Per campioni finiti le statistiche costruite con $I(\theta_0)$ anzichè $I(\hat{\theta})$ o con $J(\theta_0)$ anzichè $J(\hat{\theta})$ possono differire anche in modo non trascurabile
 
@@ -1579,9 +2015,13 @@ Quando il campione è di piccole dimensioni la statisitica $Z$ potrebbe avere un
 Se usiamo la distribuzione normale potremmo commettere errori del $I$ tipo con una probabilità maggiore di quella prefissata 
 
 Supponiamo di voler valutare un'ipotesi relativa alla media di un campione di piccole dimensioni da una *popolazione normale* con media $\mu$ e varianza $\sigma^2$ entrambe *ignote* , siamo interessati a valutare l'ipotesi $H_0 : \mu = \mu_0$ con possibili alternative : 
-$$H_A : \mu \ne \mu_0 \qquad H_A : \mu > \mu_0 \qquad H_A : \mu < \mu_0 $$
+$$
+H_A : \mu \ne \mu_0 \qquad H_A : \mu > \mu_0 \qquad H_A : \mu < \mu_0
+$$
 Per valutare le ipotesi utilizzeremo la statistica test $T$ 
-$$T = \frac{\sqrt{n}(\bar X -\mu_0)}{S}$$
+$$
+T = \frac{\sqrt{n}(\bar X -\mu_0)}{S}
+$$
 La statistica $T$ ha distribuzione $T$ di Student con $n-1$ gradi di libertà sotto $H_0$
 ##### Test a una coda
 
@@ -1603,7 +2043,9 @@ Si rifiuta per valori sia troppo grandi che troppo piccoli della statistica $T$ 
 + $\mathcal R = (-\infty, -t_{\alpha/2}]\cup[t_{\alpha/2}, + \infty)$
 + $\mathcal{A} = (-t_{\alpha/2},t_{\alpha/2})$
 Il livello di significatività è : 
-$$\Pr(\text{Errore I tipo}) = \Pr(T \in \mathcal{R}|H_0)=\Pr(T < -t_{\alpha/2})+\Pr(T > t_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha$$
+$$
+\Pr(\text{Errore I tipo}) = \Pr(T \in \mathcal{R}|H_0)=\Pr(T < -t_{\alpha/2})+\Pr(T > t_{\alpha/2})=\frac{\alpha}{2}+\frac{\alpha}{2} = \alpha
+$$
 >[!example] 
 >Esempio 9.28 baron slide 27
 ##### Test a due campioni 
@@ -1612,9 +2054,13 @@ Consideriamo ora ipotesi relative al confronto delle medie di due *popolazioni n
 
 *Ipotesi nulla* : $H_0 : \mu_X - \mu_Y = D$ 
 *Ipotesi alternative* : 
-$$H_A : \mu_X - \mu_Y \neq D \qquad H_A : \mu_X - \mu_Y > D \qquad H_A : \mu_X - \mu_Y < D$$
+$$
+H_A : \mu_X - \mu_Y \neq D \qquad H_A : \mu_X - \mu_Y > D \qquad H_A : \mu_X - \mu_Y < D
+$$
 Spesso si addume $D=0$ per cui avremo che $H_0 : \mu_X = \mu_Y$ e 
-$$H_A : \mu_X \neq \mu_Y \qquad H_A : \mu_X > \mu_Y  \qquad H_A : \mu_X < \mu_Y $$
+$$
+H_A : \mu_X \neq \mu_Y \qquad H_A : \mu_X > \mu_Y  \qquad H_A : \mu_X < \mu_Y 
+$$
 
 Se la dimensione dei due campioni $n$ e $m$ non sono grandi dobbiamo usare un test $T$ a due campioni 
 
@@ -1622,21 +2068,31 @@ Dobbiamo considerare due casi differenti :
 ###### Con varianze uguali
 
 Nel caso di varianze uguali si usa la statistica test $T$ : 
-$$T = \frac{\bar{X}-\bar{Y}-D}{S_p \sqrt{\frac{1}{n}+\frac{1}{m}}}$$
+$$
+T = \frac{\bar{X}-\bar{Y}-D}{S_p \sqrt{\frac{1}{n}+\frac{1}{m}}}
+$$
 Dove $S_p^2$ indica la *varianza pooled* ( incontrata nel calcolo degli intervalli di confidenza ) : 
-$$S_p^2 = \frac{(n-1)\cdot S_X^2 + (m-1)\cdot S_Y^2}{n+m-2}$$
+$$
+S_p^2 = \frac{(n-1)\cdot S_X^2 + (m-1)\cdot S_Y^2}{n+m-2}
+$$
 La statistica $T$ si distribuisce quindi come una variabile casuale $T$ di Student con $n+m-2$ gradi  di libertà sotto $H_0$
 
 >[!example] 
 >Abbiamo i seguenti dati su un pc con un lettore CD (campione $X$) e uno senza (campione $Y$)
->$$n=12, \ \bar{X}=4.8, \ s_X=1.6; \quad m=18,\ \bar{Y}=5.3,\ s_Y = 1.4; \quad s_p = 1.4818$$
+>$$
+>n=12, \ \bar{X}=4.8, \ s_X=1.6; \quad m=18,\ \bar{Y}=5.3,\ s_Y = 1.4; \quad s_p = 1.4818
+>$$
 >
 >Vogliamo vedere se il lettore CD consuma extra enegria e se quindi si riduce la durata della batteria
 >
 >Testiamo dunque :
->$$H_0 : \mu_X = \mu_Y \qquad H_A : \mu_X < \mu_Y$$
+>$$
+>H_0 : \mu_X = \mu_Y \qquad H_A : \mu_X < \mu_Y
+>$$
 >con $\alpha=0.05$ :
->$$t = \frac{\bar{X}-\bar{Y}}{s_p \sqrt{\frac{1}{n}+\frac{1}{m}}} = \frac{4.8-5.3}{1.4818\cdot \sqrt{\frac{1}{12}+\frac{1}{18}}}= -0.9054$$
+>$$
+>t = \frac{\bar{X}-\bar{Y}}{s_p \sqrt{\frac{1}{n}+\frac{1}{m}}} = \frac{4.8-5.3}{1.4818\cdot \sqrt{\frac{1}{12}+\frac{1}{18}}}= -0.9054
+>$$
 >>[!note] 
 >>In questo caso $D=0$ poichè abbiamo assunto che sia $0$
 >
@@ -1644,11 +2100,15 @@ La statistica $T$ si distribuisce quindi come una variabile casuale $T$ di Stude
 ###### Con varianze diverse
 
 Se le varianze sono diverse $\sigma_X^2 \neq \sigma_Y^2$ allora dovremmo utilizzare la seguente statistica test $T$ : 
-$$T = \frac{\bar{X}-\bar{Y}-D}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}}$$
+$$
+T = \frac{\bar{X}-\bar{Y}-D}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}}
+$$
 In questo caso la statistica $T$ **non** si distribuisce esattamente come una variabile casuale $T$ di Student sotto $H_0$
 
 Per risolvere questo problema possiamo utilizzare l'approssimazione di *Satterthwaite* che ci dirà che $T$ ha distribuzione *approssimativamente* $T$ di Student con $v$ gradi di libertà , con $v$ : 
-$$v = \frac{\bigg(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\bigg)^2}{\frac{S_X^4}{n^2(n-1)}+\frac{S_Y^4}{m^2(m-1)}}$$
+$$
+v = \frac{\bigg(\frac{S_X^2}{n}+\frac{S_Y^2}{m}\bigg)^2}{\frac{S_X^4}{n^2(n-1)}+\frac{S_Y^4}{m^2(m-1)}}
+$$
 ##### Riassunto Test $T$
 
 ![[Pasted image 20240430142444.png]]
@@ -1663,11 +2123,17 @@ In pratica possiamo usare gli *intervalli di confidenza* per risolvere problemi 
 
 >[!Dimostrazione]
 >L'ipotesi nulla non viene rifiutata se e solo se il valore osservato della statistica $Z$ appartiene alla regione di accettazione : 
->$$-z_{\alpha/2}<\frac{\hat\theta-\theta_0}{SE(\hat{\theta})}<z_{\aleph/2}$$
+>$$
+>-z_{\alpha/2}<\frac{\hat\theta-\theta_0}{SE(\hat{\theta})}<z_{\aleph/2}
+>$$
 >Ossia : 
->$$\bigg|\frac{\hat\theta-\theta_0}{SE(\hat{\theta})}\bigg|<z_{\aleph/2}$$
+>$$
+>\bigg|\frac{\hat\theta-\theta_0}{SE(\hat{\theta})}\bigg|<z_{\aleph/2}
+>$$
 >Visto che $SE(\hat\theta)>0$ possiamo scrivere : 
->$$|\hat\theta-\theta_0|<z_{\aleph/2}\cdot SE(\hat{\theta})$$
+>$$
+>|\hat\theta-\theta_0|<z_{\aleph/2}\cdot SE(\hat{\theta})
+>$$
 >
 >Questa diseguaglianza mostra che $\theta_0$ dista da $\hat\theta$ meno del margine di errore dell'intervallo di confidenza per $\theta$ con livello di confidenza $1-\alpha$
 
@@ -1744,7 +2210,9 @@ Soglie per il *p-value* :
 > Ci chiediamo se il livello di significatività del $5\%$ è stato superato di poco o molto
 > 
 > Il valore osservato della statistica $Z$ è :
-> $$z=\frac{8.5-7.2}{\sqrt{\frac{1.8^2}{50}+\frac{1.8^2}{50}}} = 3.61$$
+> $$
+> z=\frac{8.5-7.2}{\sqrt{\frac{1.8^2}{50}+\frac{1.8^2}{50}}} = 3.61
+> $$
 > 
 > Il livello di significatività osservato è pari a :
 > $p=\Pr(Z > 3.61)=1-\Phi(3.61)=0.0002$
@@ -1767,25 +2235,35 @@ Abbiamo dati *appaiati* quando le variabili $X$ e $Y$ sono osservate sulle stess
 Ciò vuol dire che i dati appaiati saranno : $(X_1,Y_1),\dots,(X_n,Y_n)$ ( dove nell'esempio di prima $X$ rappresenta dei dati *prima* e $Y$ *dopo* il trattamento )
 
 Avendo l'ipotesi nulla $H_0 : \mu_x = \mu_y$ la statistica test $Z$ o $T$ corretta è ( bisogna aggiungere la covarianza campionaria fra  $X$ e $Y$ : $S_{XY}$ ) : 
-$$Z=\frac{\bar{X}-\bar{Y}}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{n}+\frac{2S_{XY}}{n}}}$$
+$$
+Z=\frac{\bar{X}-\bar{Y}}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{n}+\frac{2S_{XY}}{n}}}
+$$
 Possiamo evitare la *covarianza* se in un test per dati appaiati si utilizza come variabili $D_n=X_n-Y_n$ossia la differenza tra le varaibili dipendenti ( questo perchè dipendono sulla stessa "popolazione" )
 
 Il test quindi può essere risctritto nel seguente modo : $H_0 : \mu_D = 0$ e la statistica $Z$ o $T$ sarà semplicemente : 
-$$Z = \sqrt{n}\frac{\bar{D}}{S_D}$$
+$$
+Z = \sqrt{n}\frac{\bar{D}}{S_D}
+$$
 >[!example] Amazon o libreria?
 >
 >Abbiamo un campione di 15 libri eterogenei , abbiamo i loro costi presi da Amazon o dalla Libreria
 >
 >Possiamo notare che siamo nel caso di test appaiati sul nome del libro ( lo stato prima è ora il costo dalla Libreria e quello dopo il costo da Amazon )
 >Dovremo calcolare la differenza tra tutti i prezzi : 
->$$d_1 = 120 - 101.22 = 18.78 , \dots , d_15 = 155.75 - 126-97 = 28.78$$
+>$$
+>d_1 = 120 - 101.22 = 18.78 , \dots , d_15 = 155.75 - 126-97 = 28.78
+>$$
 >
 >Vorremo verificare l'ipotesi che sia più conveniente comprare da Amazon , avremo quindi che :
->$$H_0 : \mu_d = 0 \ \text{contro} \ H_A : \mu_d > 0$$
+>$$
+>H_0 : \mu_d = 0 \ \text{contro} \ H_A : \mu_d > 0
+>$$
 >Abbiamo inoltre $\bar d = 16.51$ e $s_d=9.42$
 >
 >Il valore osservato della statistica $T$ ( dopo aver controllato la normalità delle differenze di prezzo ) è : 
->$$t=\sqrt{15}\frac{16.51}{9.42}=6.72$$ 
+>$$
+>t=\sqrt{15}\frac{16.51}{9.42}=6.72
+>$$ 
 >Che ci porta nettamente a rifiutare l'ipotesi nulla 
 ### Dipendenza tra Variabili
 
@@ -1803,7 +2281,9 @@ Terminologia :
 + $Y$ è la variabile *risposta*
 
 Nei **modelli di regressione** si valuta la capacità predittiva della variabile $X$ sulla variabile $Y$ attraverso il *valore atteso condizionato* : 
-$$G(x) = E(Y|X=x)$$
+$$
+G(x) = E(Y|X=x)
+$$
 Dove $G(x)$ è una funzione di $x$ la cui forma può essere stimata con i dati 
 
 >[!example] 
@@ -1840,12 +2320,16 @@ Dove $G(x)$ è una funzione di $x$ la cui forma può essere stimata con i dati
 #### Modelli di regressione lineare
 
 Il modello di regressione più semplice è il quello *lineare semplice* o *retta di regressione* , andremo infatti a modellare i dati secondo una retta : 
-$$G(x)=\beta_0 + \beta_1x$$
+$$
+G(x)=\beta_0 + \beta_1x
+$$
 + $\beta_0$ : corrisponde all'*intercetta* della retta
 + $\beta_1$ : è invece il *coefficente angolare* della retta 
   
 Nelle applicazioni è comune considerare diversi *predittori* per migliorare la previsione della *risposta* , in questo caso utilizzeremo il modello di *regressione lineare multipla* :
-$$G(x) = \beta_0 +\beta_1x_1+ \dots + \beta_px_p$$
+$$
+G(x) = \beta_0 +\beta_1x_1+ \dots + \beta_px_p
+$$
 >[!example] 
 >Per prevedere il prezzo di vendita di un immobile possiamo considerare : dimensione , numero di stanze , quartiere etcc... 
 #### Interpretazione dei parametri 
@@ -1858,7 +2342,9 @@ L'*intercetta* è il valore predetto dal modello quando $x=0$ , ovvero $\beta_0 
 >>Nessuno infatti è interessato al prezzo di una casa $Y$ con una dimensione $X$ pari a 0 metri quadri
 
 Il *coefficente angolare* è la variazione della *risposta* quando il *predittore* aumeta di una unità : 
-$$\beta_1 = G(x+1)-G(x) = \{ \beta_0 +\beta_1(x+1) \}-\{ \beta_0 +\beta_1x \} = \beta_1$$
+$$
+\beta_1 = G(x+1)-G(x) = \{ \beta_0 +\beta_1(x+1) \}-\{ \beta_0 +\beta_1x \} = \beta_1
+$$
 Questo ci dice quanto aumetna il prezzo di vendita di una casa all'aumentare della dimensione di un metro quadro 
 
 >[!note] 
@@ -1869,31 +2355,49 @@ I dati consistono in $n$ coppie di osservazioni : $(y_1,x_1),\dots , (y_n,x_n)$
 
 Il metodo de minimi quadrati costruisce la *stima* $\widehat{G}(x)$ della funzione di regressione $G(x)$ minimizzando la somma dei quadrati delle differenze fra le risposte $y_1,\dots,y_n$ e le corrispondenti previsioni basate sul modello di regressione $\hat{y}_1 = \widehat{G}(x_1),\dots,\hat{y}_n=\widehat{G}(x_n)$
 Ossia minimizzando la somma dei quadrati *residui* $e_i = y_i -\hat{y}_i$ ossia : 
-$$\sum^{n}_{i=1} e_i^2 =\sum^{n}_{i=1}(y_i -\hat{y}_i)^2$$
+$$
+\sum^{n}_{i=1} e_i^2 =\sum^{n}_{i=1}(y_i -\hat{y}_i)^2
+$$
 ![[Pasted image 20240502142354.png]]
 
 Otterremo quindi le stime dei parametri $\beta_0$ e $\beta_1$ minimizzando : 
-$$\mathcal{Q} (\beta_0 , \beta_1) = \sum^{n}_{i=1}(y_i -\hat{y}_i)^2 = \sum^{n}_{i=1}\{y_i -(\beta_0+\beta_1x_i)\}^2$$
+$$
+\mathcal{Q} (\beta_0 , \beta_1) = \sum^{n}_{i=1}(y_i -\hat{y}_i)^2 = \sum^{n}_{i=1}\{y_i -(\beta_0+\beta_1x_i)\}^2
+$$
 Ovvero risolvendo il seguente sistema : 
-$$\begin{cases}
+$$
+\begin{cases}
 \frac{d\mathcal{Q}(\beta_0,\beta_1)}{d\beta_0}=0 \\ \frac{d\mathcal{Q}(\beta_0,\beta_1)}{d\beta_1}=0
-\end{cases} $$
+\end{cases} 
+$$
 Da cui avremo : 
-$$\hat{\beta_0} = \bar{y} -\hat{\beta_1}\bar{x}\quad \text{e}\quad \hat{\beta_1}=\frac{s_{xy}}{s_x^2}$$dove : 
-$$s_{xy}=\frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar x)(y_i-\bar y)$$
-$$s_x^2 = \frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar{x})^2$$
+$$
+\hat{\beta_0} = \bar{y} -\hat{\beta_1}\bar{x}\quad \text{e}\quad \hat{\beta_1}=\frac{s_{xy}}{s_x^2}
+$$dove : 
+$$
+s_{xy}=\frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar x)(y_i-\bar y)
+$$
+$$
+s_x^2 = \frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar{x})^2
+$$
 
 >[!example] 
 >Con i dati relativi alla popolazione modiale
 >
 >Abbiamo : 
->$$\bar{x} = 1980, \quad \bar{y}=4558.1,\quad s_x^2 = 4550, \quad s_{xy}=337250$$
+>$$
+>\bar{x} = 1980, \quad \bar{y}=4558.1,\quad s_x^2 = 4550, \quad s_{xy}=337250
+>$$
 >
 >Da cui segue : 
->$$\hat{\beta}_1 = s_{xy}/s_x^2 = 74.1, \quad \hat{\beta}_0 = \bar{y}-\hat{\beta}\bar{x}=-1442201$$
+>$$
+>\hat{\beta}_1 = s_{xy}/s_x^2 = 74.1, \quad \hat{\beta}_0 = \bar{y}-\hat{\beta}\bar{x}=-1442201
+>$$
 >
 >La *retta di regressione* stimata è 
->$$\hat{G}(x)=-142201+74.1x$$
+>$$
+>\hat{G}(x)=-142201+74.1x
+>$$
 >
 >Ora possiamo fare delle previsioni : 
 >+ $\hat{G}(2015)=-1442201+74.1(2015)=7152\ \text{milioni di persone}$
@@ -1903,9 +2407,13 @@ $$s_x^2 = \frac{1}{n-1}\sum^{n}_{i=1}(x_i-\bar{x})^2$$
 Lo stimatore del coefficiente angolare può essere riscritto in funzione del coefficiente di correlazione 
 
 Indichiamo con $r_{xy}$ il *coefficiente di correlazione* : 
-$$r_{xy}=\frac{s_{xy}}{s_ys_x}$$
+$$
+r_{xy}=\frac{s_{xy}}{s_ys_x}
+$$
 Abbiamo :
-$$\hat{\beta}_1 = \frac{s_{xy}}{s_x^2} = \frac{s_{xy}}{s_y s_x}\frac{s_y}{s_x}=r_{xy}\frac{s_y}{s_x}$$
+$$
+\hat{\beta}_1 = \frac{s_{xy}}{s_x^2} = \frac{s_{xy}}{s_y s_x}\frac{s_y}{s_x}=r_{xy}\frac{s_y}{s_x}
+$$
 Quindi : 
 + $\hat{\beta_1}>0$ se $X$ e $Y$ sono correlate positivamente
 + $\hat{\beta_1}<0$ se $X$ e $Y$ sono correlate negativamente 
@@ -1913,18 +2421,28 @@ Quindi :
 #### Decomposizione della varianza
 
 La *varianza totale* delle risposte è descritta dalla *somma dei quadrati totale* : 
-$$SQ_{tot} = \sum^{n}_{i=1}(y_i - \bar{y})^2 = (n-1)s_y^2$$
+$$
+SQ_{tot} = \sum^{n}_{i=1}(y_i - \bar{y})^2 = (n-1)s_y^2
+$$
 Per cui vale la decomposizione 
-$$SQ_{tot} = SQ_{reg} +SQ_{res}$$
+$$
+SQ_{tot} = SQ_{reg} +SQ_{res}
+$$
 dove : 
 + $SQ_{reg}$ è la *somma dei quadrati spiegata* dal modello :
-	$$SQ_{reg} = \sum_{i=1}^n(\hat{y}_i-\bar{y}_i)^2$$
+	$$
+	SQ_{reg} = \sum_{i=1}^n(\hat{y}_i-\bar{y}_i)^2
+	$$
 + $SQ_{res}$ è la *somma dei quadati residua* :
-	$$SQ_{res} = \sum_{i=1}^n({y}_i-\hat{y}_i)^2$$
+	$$
+	SQ_{res} = \sum_{i=1}^n({y}_i-\hat{y}_i)^2
+	$$
 #### Coefficente di determinazione
 
 Il *coefficiente di determinazione* o $R^2$ ( R quadro ) è la proporzione della variazione totale spiegata dal modello di regressione 
-$$R^2 = \frac{SQ_{reg}}{SQ_{tot}}=1-\frac{SQ_{res}}{SQ_{tot}}$$
+$$
+R^2 = \frac{SQ_{reg}}{SQ_{tot}}=1-\frac{SQ_{res}}{SQ_{tot}}
+$$
 
 >[!note] 
 >$R^2$ può assumere valori fra 0 e 1 
@@ -1958,7 +2476,9 @@ Nel modello di *regressione lineare semplice* il parametro di interesse è il co
 Per calcolare intervalli di confidenza e valutare ipotesi su $\upbeta_1$ dobbiamo introdurre delle *assunzioni* : 
 
 Avremo il seguente modello di regressione lineare semplice con *errori normali* :
-$$Y_i=\upbeta_0 +\upbeta_1 x_i +\epsilon_i$$ **Assunzioni** :
+$$
+Y_i=\upbeta_0 +\upbeta_1 x_i +\epsilon_i
+$$ **Assunzioni** :
 + Gli errori $\epsilon_i$ sono variabili casuali *indipendenti* *normali* di media 0 e varianza $\sigma^2$ ( costante per tutti gli $i$ ) 
 + Il predittore ( $x_i$ ) è una quantità *non casuale* 
 
@@ -1969,15 +2489,21 @@ Sotto queste assunzioni $\hat \upbeta_1$ è uno *stimatore non distorto* di $\up
 Siccome $\hat{\upbeta}_1$ è distribuito normalemente allora possiamo calcolare gli *intervalli di confidenza* per $\upbeta_1$ con la statistica $T$ 
 
 L'*intervallo di confidenza* di livello $1-\alpha$ per $\upbeta_1$ è :
-$$\hat{\upbeta}_1 \pm t_{\alpha/2} \widehat{SE}(\hat\upbeta_1)$$
+$$
+\hat{\upbeta}_1 \pm t_{\alpha/2} \widehat{SE}(\hat\upbeta_1)
+$$
 dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ *di student* con $(n-2)$ gradi di libertà , questo perchè ci sono due parametri $\upbeta_0$ e $\upbeta_1$ che devono essere stimati per calcolare $s^2_e$ 
 
 ##### Verifica delle ipotesi su $\upbeta_1$ 
 
 Consideriamo un'ipotesi nulla : 
-$$H_0 : \upbeta_1 = \upbeta_1^0$$
+$$
+H_0 : \upbeta_1 = \upbeta_1^0
+$$
 L'ipotesi può essere valutata con la statistica test $T$
-$$T = \frac{\hat\upbeta_1-\upbeta_1^0}{\widehat{SE}(\hat{\upbeta}_1)}$$
+$$
+T = \frac{\hat\upbeta_1-\upbeta_1^0}{\widehat{SE}(\hat{\upbeta}_1)}
+$$
 che si distribuisce come una variabile casuale $T$ con $n-2$ gradi di libertà sotto l'ipotesi nulla 
 
 ##### Test di significatività del predittore
@@ -1985,9 +2511,13 @@ che si distribuisce come una variabile casuale $T$ con $n-2$ gradi di libertà s
 Possiamo condurlo per valutare se un predittore è *statisticamente significativo* 
 
 Si tratta di un test *bilaterale* in cui l'ipotesi nulla è che il predittore è ininfluente nel modello di regressione lineare , l'ipotesi nulla e alternativa saranno : 
-$$H_0 : \upbeta_1 = 0 \quad \text{contro} \quad H_A : \upbeta_1 \neq 0$$
+$$
+H_0 : \upbeta_1 = 0 \quad \text{contro} \quad H_A : \upbeta_1 \neq 0
+$$
 La statistica test $T$ è quindi pari a : 
-$$T = \frac{\hat\upbeta_1}{\widehat{SE}(\hat\upbeta_1)}$$
+$$
+T = \frac{\hat\upbeta_1}{\widehat{SE}(\hat\upbeta_1)}
+$$
 Se il test porta al *rifiuto* dell'ipotesi nulla allora il predittore è statisticamente significativo
 #### Relazioni lineari e non lineari 
 
@@ -2003,13 +2533,19 @@ Potrebbe essere che esista una qualche *relazione non lineare* fra predittore e 
 #### Previsioni
 
 La previsione della risposta in corrispondenza ad un particolare valore del predittore $x_*$ : 
-$$\hat{y}_* = \hat{\upbeta}_0 + \hat{\upbeta}_1 x_*$$
+$$
+\hat{y}_* = \hat{\upbeta}_0 + \hat{\upbeta}_1 x_*
+$$
 Siccome i paraetri della retta $\upbeta_0$ e $\upbeta_1$ sono stati stimati allora la previsione sarà affetta da *incertezza*
 
 La varianza di $\hat{y}_*$ è :
-$$Var(\hat{y}_*)=\sigma^2 \bigg(1+\frac{1}{n}+\frac{(x_*-\bar{x})^2}{(n-1)s_x^2}\bigg)$$
+$$
+Var(\hat{y}_*)=\sigma^2 \bigg(1+\frac{1}{n}+\frac{(x_*-\bar{x})^2}{(n-1)s_x^2}\bigg)
+$$
 con cui possiamo calcolare l'**intervallo di previsione**
-$$\hat{y}_* \pm t_{\alpha/2}\sqrt{\widehat{Var}(\hat{y}_*)}$$
+$$
+\hat{y}_* \pm t_{\alpha/2}\sqrt{\widehat{Var}(\hat{y}_*)}
+$$
 dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione $T$ con $n-2$ gradi di libertà e la varianza $\sigma^2$ è stiamta con $s_e^2$ 
 
 >[!example] 
@@ -2022,7 +2558,9 @@ dove $t_{\alpha/2}$ è il quantile di posizione $1-\alpha/2$ della distribuzione
 >Avremo i seguenti dati : $\bar{x} = 198.79 \quad, \bar{y} = 283.13,\quad s_x = 899.16,\quad s_y = 930.28$
 >
 >La retta di regressione stimata con il metodo dei minimi quadrati è :
->$$\hat y = 91 +0.97 x$$
+>$$
+>\hat y = 91 +0.97 x
+>$$
 >
 >Con $R^2 = 0.87$ 
 >
@@ -2038,17 +2576,23 @@ Per risolvere questi problemi potremmo utilizzare un modello differente :
 #### Modello log-log
 
 Consideriamo una *retta di regressione* con predittore e risposta trasformate su scala logaritmica : 
-$$\log(Y) = \gamma_0 + \gamma_1 \log(x) + \varepsilon$$
+$$
+\log(Y) = \gamma_0 + \gamma_1 \log(x) + \varepsilon
+$$
 ora la *correlazione* fra le due variabili trasformate diventa $0.96$
 
 >[!warning] 
 >Non possiamo confrontare questa correlazione con la precedente in scala originale
 
 Ora avendo le variabili trasformate $a=\log (y)$ e $b=\log(x)$ avremo le seguenti medie e deviazioni standard
-$$\bar{a} = 1.34, \quad \bar{b}=3.14$,\quad s_a = 3.12 , \quad s_b = 2.45$$
+$$
+\bar{a} = 1.34, \quad \bar{b}=3.14$,\quad s_a = 3.12 , \quad s_b = 2.45
+$$
 
 La *retta di regressione* stimata con il metodo dei minimi quadrati è :
-$$\widehat{\log(y)} = 2.13 + 0.75 \log(x)$$
+$$
+\widehat{\log(y)} = 2.13 + 0.75 \log(x)
+$$
 Con $R^2 = 0.92$
 
 Avremo che la retta rispetta molto di più i dati : 
@@ -2066,12 +2610,16 @@ L'errore standard di $\hat\gamma_1$ è $0.028$
 
 Verifichiamo la significatività di $\gamma_1$
 Il valore osservato della statistica $T$ è :
-$$t = \frac{0.75}{0.038}=26.41$$
+$$
+t = \frac{0.75}{0.038}=26.41
+$$
 porta ad un $p$-value pari a $2\{1-F(26.41)\}<10^{-16}$ 
 Concludiamo che il logaritmo del peso corporeo è un predittore fortemente significativo del logaritmo del peso del cervello 
 
 L'intervallo di confidenza di livello $95\%$ per $\gamma_1$ è :
-$$0.75\pm t_{0.025}0.028 = [0.69,0.81]$$
+$$
+0.75\pm t_{0.025}0.028 = [0.69,0.81]
+$$
 dove $t_{0.025}  = 2$ è il quantile di posizione $0.975$ della distribuzione $T$ con 60 gradi di libertà
 
 **Previsioni**
@@ -2079,11 +2627,15 @@ dove $t_{0.025}  = 2$ è il quantile di posizione $0.975$ della distribuzione $T
 Calcoliamo l'intervallo di previsione del peso del cervello per un mammifero dato il suo peso 
 
 Per esempio fissiamo il peso a $60kg$ . La previsione del logaritmo del peso del cervello è : 
-$$2.13 + 0.75\log(60)=5.2 \ \text{log-grammi}$$
+$$
+2.13 + 0.75\log(60)=5.2 \ \text{log-grammi}
+$$
 La varianza della previsione è pari a $0.496$
 
 L'intervallo di previsione con livello del $95\%$ per il peso del cervello è : 
-$$\bigg[ e^{5.2-2\sqrt{0.496}}, e^{5.2+2\sqrt{0.496}} \bigg] = [46 , \ 715] \ \text{grammi}$$
+$$
+\bigg[ e^{5.2-2\sqrt{0.496}}, e^{5.2+2\sqrt{0.496}} \bigg] = [46 , \ 715] \ \text{grammi}
+$$
 Il risultato ottenuto ha senso per la gran maggioranza dei mammiferi , per la specie umana  no che con $62kg$ di peso corporeo il cui peso medio di cervello è $1320$ grammi
 #### Analisi dei residui
 
@@ -2149,7 +2701,9 @@ Questi dati sono *indipendenti*
 L'assunzione di linearità del modello di regressione può essere superata considerando modelli non-lineari 
 
 I modelli non-lineari più semplici sono i modelli di *regressione polinomiali* , questi contengono potenze del predittore fino ad un certo grado $k$ 
-$$Y_i = \upbeta_0+\upbeta_1 x_i+\upbeta_2 x_i^2 + \dots + \upbeta_kx_i^k + \varepsilon$$
+$$
+Y_i = \upbeta_0+\upbeta_1 x_i+\upbeta_2 x_i^2 + \dots + \upbeta_kx_i^k + \varepsilon
+$$
 Il massimo ordine del polinomio che può essere considerato è $k=n-1$ 
 
 >[!warning] 
@@ -2166,7 +2720,9 @@ Si dimostra che l'indice $R^2$ cresce sempre quando si aggiungono termini al mod
 >$R^2$ aumenta sempre quindi anche se il termine aggiuntivo non aggiunge nulla di rilevante , per questo se cerchiamo di massimizzare $R^2$ arriveremo a fare *overfitting*
 
 Per questo si utilizza $R^2_{adj}$ che penalizza il modello quando un termine non aggiunge nessuna informazione rilevante :
-$$R_{adj}^2 = 1-\frac{SQ_{res}/(n-p)}{SQ_{tot}/n}$$
+$$
+R_{adj}^2 = 1-\frac{SQ_{res}/(n-p)}{SQ_{tot}/n}
+$$
 Dove : 
 + $p$ è il numero dei parametri 
 >[!example] 
