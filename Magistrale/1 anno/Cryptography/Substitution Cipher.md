@@ -25,7 +25,9 @@ $D_k(y) = p^{-1}(y)$
 
 Let's verify the propieties :
 1. 
-$$D_p(y) = D_p(E_p(x)) = D_p(p(x)) = p^{-1}(p(x)) = x$$
+$$
+D_p(y) = D_p(E_p(x)) = D_p(p(x)) = p^{-1}(p(x)) = x
+$$
 2. Since we have a permutation of the alphabet as the *key* we will than have a space of the keys equal to : $26!$ 
 >[!note] 
 >It's now *infeasable* to use **brute force** 

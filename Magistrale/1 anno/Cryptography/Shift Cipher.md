@@ -11,7 +11,9 @@ $D_k(y) = (y -k)\mod{26}$
 >[!note] 
 >The propiety $D_k(E_k(x)) = x$ holds
 >>[!important] Proof
->> $$D_k(E_k(x)) = D_k((x + k) \mod{26}) = ((x + k) \mod{26} - k) \mod{26} = x \mod{26} = x$$
+>> $$
+>> D_k(E_k(x)) = D_k((x + k) \mod{26}) = ((x + k) \mod{26} - k) \mod{26} = x \mod{26} = x
+>> $$
 >>
 >
 

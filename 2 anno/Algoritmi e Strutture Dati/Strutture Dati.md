@@ -3992,8 +3992,10 @@ Ogni posizione dell'array indica un *nodo* del grafo da cui partono la lista deg
 
 La *matrice di adiacenza* $A_G$ ( matrice di adiacenza $A$ del grafo $G$ ) è una matrice di dimensione $n\times n$ i cui elementi assumono i seguenti valori : 
 
-$$a_{ij}=\begin{cases} 1 & \text{se}\ (i,j)\in E \\ 0 & \text{se}\ (i,j)\notin E
-\end{cases}$$
+$$
+a_{ij}=\begin{cases} 1 & \text{se}\ (i,j)\in E \\ 0 & \text{se}\ (i,j)\notin E
+\end{cases}
+$$
 Con $1\le i, j\le n$
 
 In pratica metteremo 1 in quelle caselle le cui coordinate rappresentano un arco che esiste all'interno del grafo
@@ -4076,7 +4078,9 @@ Si rappresenta con $K_n$ e indica il grafo con $n$ vertici e $n^2$ archi se *ori
 ### Grafo complemento
 
 Dato $G=(V,E)$ allora $\overline G=(V,\overline E)$ o $G^C$  è un nuovo grafo costruito sugli stessi *vertici*  ma con tutti gli archi non presenti in $E$ : 
-$$\overline G=(V,\overline E)\implies (u,v)\in \overline E \iff (u,v) \notin E$$
+$$
+\overline G=(V,\overline E)\implies (u,v)\in \overline E \iff (u,v) \notin E
+$$
 ![[Coplemento.excalidraw]]
 
 >[!note]
@@ -4094,8 +4098,14 @@ Un *grafo bipartito* è un grafo che può essere partizionato in due parti tali 
 Se indichiamo con $n_1$ e $n_2$ il numero di *vertici* di ogni *partizione* possiamo dire che il numero di archi di un *grafo bipartito* sono : $n_1\times n_2$
 
 Formalmente possiamo dire : 
-$$\exists\  V_1 , V_2 \subseteq V \ \text{tale che} : $$$$\begin{cases}V_1 \cap V_2 = \emptyset \\ V_1 \cup V_2 = V\end{cases}$$
-$$\text{t.c.}\ \forall (u , v) \in E : (u \in V_1 \land v \in V_2) \lor(u \in V_2 \land v \in V_1)$$
+$$
+\exists\  V_1 , V_2 \subseteq V \ \text{tale che} : 
+$$$$
+\begin{cases}V_1 \cap V_2 = \emptyset \\ V_1 \cup V_2 = V\end{cases}
+$$
+$$
+\text{t.c.}\ \forall (u , v) \in E : (u \in V_1 \land v \in V_2) \lor(u \in V_2 \land v \in V_1)
+$$
 Oppure $G[V_1]$ e $G[V_2]$ sono vuoti
 ## Grado
 
@@ -4118,7 +4128,9 @@ Notiamo che la somma dei *gradi* può essere scritta come $2\ \cdot$ numero arch
 
 **Lemma della stretta di mano** ( solo su grafici non orientati ) : 
 	Sia $G=(V,E)$ un grafo non orientato allora la somma dei gradi dei nodi di $G$ è un numero pari , in particolare il doppio della cardinalità di $E$ 
-	$$\sum_{i=1}^n deg(i)=2\cdot |E|$$
+	$$
+	\sum_{i=1}^n deg(i)=2\cdot |E|
+	$$
 	*Dimostrazione* : possiamo dimostrare notando che si conta due volte ogni arco
 
 Se rappresentiamo il *grafo* con una matrice di adiacenza il *grado* può essere calcolato sommando tutti i valori della riga corrispondente ad $i$ , se abbiamo un *grafo non orientato* questo vale anche per la somma della colonna 
@@ -4136,7 +4148,9 @@ Cosa rappresenta nei seguenti casi :
 	Avremo che $a_{ij}=\sum_{k=1}^n[a_{ik}\cdot a_{kj}]$ dove il prodotto tra $a_{ik}$ e $a_{jk}$ assume come valore 1 se entrambi sono 1 ( ossia c'è un cammino tra $i$ e $k$ e un cammino tra $k$ e $j$ il che implica l'esistenza di un cammino di lunghezza 2 tra $i$ e $j$ ) 0 altrimenti , possiamo quindi dire che la somma di tali cammini indica il *numero di cammini di lunghezza 2 tra $i$ e $j$*
 
 Riassumendo possiamo scrivere : 
-$$a_{ij}^{(2)}=\begin{cases} deg(i) &\text{se}\ i == j\\ \text{n° di cammini di lunghezza 2 tra $i$ e $j$} & \text{se} \ i \neq j \end{cases}$$
+$$
+a_{ij}^{(2)}=\begin{cases} deg(i) &\text{se}\ i == j\\ \text{n° di cammini di lunghezza 2 tra $i$ e $j$} & \text{se} \ i \neq j \end{cases}
+$$
 In **generale** se abbiamo il prodotto di $k$ matrici di adiacenza $A$ allora la matrice risultante rappresenta : 
 + se $i\neq j$ il numero di cammini di lunghezza $k$ tra i nodi $i$ e $j$ 
 
@@ -4152,26 +4166,50 @@ Sono *grafi* con i vertici con lo stesso grado
 Un *grafo* viene detto $k$-regolare se $\forall u \in V : \quad \ deg(u)=k$ 
 
 Se $G$ è $2$-regolare allora per il *lemma della stretta di mano* avremo che : 
-$$\sum_{u\in V} deg(u) = 2\cdot m$$
-$$n\cdot deg(u) = 2\cdot m$$
-$$2\cdot n = 2\cdot m \implies n=m$$
+$$
+\sum_{u\in V} deg(u) = 2\cdot m
+$$
+$$
+n\cdot deg(u) = 2\cdot m
+$$
+$$
+2\cdot n = 2\cdot m \implies n=m
+$$
 >[!note] 
 Possiamo dimostrare che il numero di vertici di grado dispari è sempre pari
 
 Dividiamo $V$ in due sottoinsiemi di vertici : 
-$$P=\{ u \in V | deg(u)\ \text{è pari} \ \}$$
-$$D=\{ u \in V | deg(u)\ \text{è dispari} \ \}$$
+$$
+P=\{ u \in V | deg(u)\ \text{è pari} \ \}
+$$
+$$
+D=\{ u \in V | deg(u)\ \text{è dispari} \ \}
+$$
 $P$ e $D$ costituiscono quindi due *partizioni* di $V$ dove avremo che $P \cup D = V$ e $P\cap D = \emptyset$
 
 Sviluppiamo quindi il *lemma della stretta di mano* : 
-$$2\cdot m = \sum_{u\in V} deg(u)$$
-$$= \sum_{u\in P} deg(u) + \sum_{u\in D} deg(u)$$
-$$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} (2\cdot f(u)+1)$$
+$$
+2\cdot m = \sum_{u\in V} deg(u)
+$$
+$$
+= \sum_{u\in P} deg(u) + \sum_{u\in D} deg(u)
+$$
+$$
+= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} (2\cdot f(u)+1)
+$$
 Dove questo perchè sappiamo che $deg(u)$ di $P$ è pari e quindi può essere trasformato in $2\cdot f(u)$ ossia come può essere rappresentato un numero pari , il contrario vale per $D$ dove un numero dispari può essere rappresentato con $2\cdot f(u) +1$ 
-$$= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} 2\cdot f(u) + \sum_{u \in D} 1$$
-$$= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|$$
-$$2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|$$
-$$|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)$$
+$$
+= \sum_{u\in P} 2\cdot f(u) + \sum_{u\in D} 2\cdot f(u) + \sum_{u \in D} 1
+$$
+$$
+= 2\cdot\left( \sum_{u\in P} f(u) + \sum_{u\in D} f(u) \right) + |D|
+$$
+$$
+2\cdot m= 2\cdot \sum_{u\in V} f(u)  + |D|
+$$
+$$
+|D|=2 \cdot\left( m - \sum_{u\in V} f(u) \right)
+$$
 Che essendo scritto nella forma in cui scriveremmo un qualsiasi numero *pari* sarà anch'esso *pari*
 ### Proprietà
 
@@ -4190,11 +4228,17 @@ Per grafo $G=(V,E)$ *orientato* avremo che possiamo suddividere il grado di un v
 + $out\_deg(u)$ : rappresenta il numero di *archi* *uscenti* in un *vertice* $u$ 
 
 Se abbiamo la *matrice di adiacenza* possiamo calcolarli nei seguenti modi : 
-$$in\_deg(i)=\sum_{j=1}^n a_{ji} \quad \text{ossia la somma della $i$-esima colonna}$$
-$$out\_deg(i)=\sum_{j=1}^n a_{ij} \quad \text{ossia la somna della $i$-esima riga}$$
+$$
+in\_deg(i)=\sum_{j=1}^n a_{ji} \quad \text{ossia la somma della $i$-esima colonna}
+$$
+$$
+out\_deg(i)=\sum_{j=1}^n a_{ij} \quad \text{ossia la somna della $i$-esima riga}
+$$
 
 Vale che la somma degli $in\_deg$ e $out\_deg$ rappresenta il numero totale di archi presenti all'interno di un grafo orientato , possiamo anche vederlo come : 
-$$\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m $$
+$$
+\sum_{i=1}^nin\_deg(i) = \sum_{i=1}^nout\_deg(i)=m
+$$
 Per i grafi *orientati* vale anche che all'interno della diagonale di $A$ è presente il numero di cicli che passano su quel vertice
 ### Isomorfismo di grafi
 
@@ -4242,7 +4286,9 @@ Un *grafo* è detto **Auto-complementare** se $G \approx\overline G$
 #### Traccia di una matrice
 
 Consideriamo una matrice $A = n \times n$ allora la *taccia* di questa è : 
-$$tr(A)=\sum_{i=1}^{n}a_{ii}$$
+$$
+tr(A)=\sum_{i=1}^{n}a_{ii}
+$$
 Ossia la somma dei valori sulla diagonale principale 
 
 Possiamo dire che $G=(V,E)$ *grafo non orientato* ha : 
@@ -4281,7 +4327,9 @@ Abbiamo che :
 **Dimostrazione** per induzione sul numero di vertici del grafo 
 
 La *base* dell'induzione sarà : 
-	$$n=2 \quad |E|=1 \ \ \ |V| = 2 \quad |E|=|V|-1 \quad \text{come volevasi dimostrare}$$
+	$$
+	n=2 \quad |E|=1 \ \ \ |V| = 2 \quad |E|=|V|-1 \quad \text{come volevasi dimostrare}
+	$$
 Supponiamo ora che la propietà valga per un grafo con $n-1$ vertici e dimostriamo la proprietà vale per $n$ vertici
 
 *Passo induttivo* : per $n\ge 3$
@@ -4289,19 +4337,31 @@ Supponiamo ora che la propietà valga per un grafo con $n-1$ vertici e dimostria
 Consideriamo un vertice $Z \in V$ , togliamolo dal *grafo* , consideriamo quindi $G[V - \{Z\}]$ ossia il *grafo indotto* da $V - Z$ , questo possiamo dunque rappresentarlo con $G'$ il quale avrà come $|V'| = n-1$ , questo però non può essere usato direttamente poichè togliendo $Z$ potremmo disconnettere il grafo e quindi non essere più nelle ipotesi di avere un *grafo connesso* 
 Indichiamo quindi con $k$ il numero di componenti connesse di cui è costituito $G'$ ( se $G'$ è connesso $k=1$ ) , essendo che ogni *componente connesso* è *connesso* possiamo utilizzare l'ipotesi induttiva
 Indico con $E_i$ gli archi dell'$i$-esima componente connessa e con $V_i$ i vertici dell'$i$-esima componente connessa , allora possiamo dire per ipotesi induttiva che : 
-$$|E_i|\ge |V_i|-1$$
+$$
+|E_i|\ge |V_i|-1
+$$
 Vorrei dimostrare che $|E|\ge |V|-1$ quindi deve essere vero che $|E|\ge \sum_{i=1}^{k}|E_i| +deg(Z)$
 Ossia il numero di archi del grafo iniziale deve essere equivalente alla somma degli archi di tutte le componenti connesse più gli archi del nodo che ho tolto ( ossia $deg(Z)$ )
 Quindi semplificando : 
-$$|E|\ge \sum_{i=1}^{k}|E_i| +deg(Z)$$
+$$
+|E|\ge \sum_{i=1}^{k}|E_i| +deg(Z)
+$$
 Visto che so che per ipotesi induttiva abbiamo che $|E_i|\ge |V_i|-1$ possiamo scrivere : 
-$$|E|\ge \sum_{i=1}^{k}(|V_i|-1) +deg(Z)$$
-$$|E|\ge \sum_{i=1}^{k}|V_i|-k +deg(Z)$$
+$$
+|E|\ge \sum_{i=1}^{k}(|V_i|-1) +deg(Z)
+$$
+$$
+|E|\ge \sum_{i=1}^{k}|V_i|-k +deg(Z)
+$$
 Visto che abbiamo tolto il vertice $Z$ avremo che la sommatoria può essere riscritta come : 
-$$|E|\ge |V|-1-k +deg(Z)$$
+$$
+|E|\ge |V|-1-k +deg(Z)
+$$
 Essendo che il grafo di partenza è connesso deve essere che $deg(Z)\ge k$ altrimenti non sarebbe connesso , e quindi $deg(Z)-k \ge 0$
 Quindi possiamo sicuramente dire che : 
-$$|E|\ge |V|-1$$
+$$
+|E|\ge |V|-1
+$$
 >[!warning] 
 >Questa condizione non è *sufficente* per dire che il grafo è connesso , possiamo infatti vedere il seguente *controesempio* per verificarlo : 
 ![[Notconnected.excalidraw]]
@@ -4310,7 +4370,9 @@ $$|E|\ge |V|-1$$
 #### Condizione **sufficente** per la connettività di un grafo
 
 Se $G=(V,E)$ è un grafo non orientato allora questo sarà connesso se il grado di ogni vertice è : 
-$$deg(u)\ge \frac{n-1}{2}$$
+$$
+deg(u)\ge \frac{n-1}{2}
+$$
 **Dimostrazione** : 
 	Usiamo la dimostrazione per *assurdo* : 
 
@@ -4322,8 +4384,12 @@ Prendiamo due nodi $u\in V_1$ e $v\in V_2$ questi per ipotesi induttiva ( può e
 
 Lo stesso vale per $|V_2| =\displaystyle \frac{n-1}{2}+1$ 
 Riportando questi nell'eqazione originale avremo : 
-$$|V|\ge \frac{n+1}{2} + \frac{n+1}{2}$$
-$$n \ge n +1$$
+$$
+|V|\ge \frac{n+1}{2} + \frac{n+1}{2}
+$$
+$$
+n \ge n +1
+$$
 Che è un ==Assurdo== , possiamo quindi dire che $G$ deve essere per forza connesso 
 ### Grafi Aciclici non orientati
 
@@ -4345,11 +4411,19 @@ Questo è composto da $k$ componenti connesse $V_1,V_2,\dots,V_k$
 Per ogni componente connessa varrà quindi l'ipotesi induttiva $|E_i|\le |V_i|-1$ 
 Ricordiamoci che dobbiamo arrivare alla seguente equazione : $|E|\le |V|-1$
 Notiamo che $|E|$ può essere riscritto nel seguente modo : 
-$$|E|=\sum^{k}_{i=1} |E_i|+\deg(Z)$$
+$$
+|E|=\sum^{k}_{i=1} |E_i|+\deg(Z)
+$$
 Considerando $|E_i|\le |V_i|-1$ possiamo scrivere :
-$$|E|=\sum^{k}_{i=1} (|V_i|-1)+\deg(Z)$$
-$$|E|=\sum^{k}_{i=1} |V_i| -k+\deg(Z)$$
-$$|E|=|V| -1 -k+\deg(Z)$$
+$$
+|E|=\sum^{k}_{i=1} (|V_i|-1)+\deg(Z)
+$$
+$$
+|E|=\sum^{k}_{i=1} |V_i| -k+\deg(Z)
+$$
+$$
+|E|=|V| -1 -k+\deg(Z)
+$$
 Questo poichè la somma delle cardinalità dei componenti connessi risulta essere tutti i nodi di $|V|$ meno quello che abbiamo tolto all'inizio 
 Avremo quindi che perchè sia vera $|E|\le |V|-1$ dovremmo avere che $\deg(Z) \le k$ 
 ### Grafi connessi e i loro complementi
@@ -4440,7 +4514,9 @@ Supponiamo per ipotesi che $T$ sia un **MST** di $G$
 Questo ci dice che se $(u,v)$ è un arco leggero che attraversa $(S,V-S)\implies \exists\ T \in MST(G)\ \text{t.c.}\ (u,v)\in T$  
 
 Dimostriamo ora che se $(u,v)$ è l'*unico* arco leggero che attraversa il taglio $(S,V-S)$
-$$\implies \forall\ T \in MST(G) \ \text{t.c.} \ (u,v) \in T$$
+$$
+\implies \forall\ T \in MST(G) \ \text{t.c.} \ (u,v) \in T
+$$
 Ossia tutti gli alberi di copertura minimi conterranno quell'arco
 
 **Dimostrazione** per assurdo
@@ -4691,7 +4767,9 @@ Poichè ogni ciclo del `while` aggiungiamo un arco leggero avremo che sicurament
 + Il *for each* viene svolto per il numero di archi adiacenti a $u$ ( ossia il grado di quel vertice ) , visto che questo viene svolto per tutti i nodi allora verrà svolto $2 \cdot m$ ( visto che potrei dover modificare le key potrei anche dover aggiornare la coda $Q$ che costa $log \ n$ )
 
 Avremo quindi in totale che la complessità sarà : 
-$$n+n\log n + 2m\log n$$
+$$
+n+n\log n + 2m\log n
+$$
 Visto che $m \ge n-1$ avremo che $T(n,m)=O(m\log n)$ 
 
 >[!example] 
@@ -4716,11 +4794,13 @@ Il problema che ora affrontiamo è quello di determinare il cammino minimo tra d
 >$C(u,v) = \{p|p\ \text{è un cammino tra u e v}\}$
 
 La *distanza tra 2 vertici* sarà :
-$$\delta(u,v)=\begin{cases}
+$$
+\delta(u,v)=\begin{cases}
 \min w(p) & \text{se} \ C(u,v)\neq \emptyset \\
 +\infty & \text{se} \ C(u,v)= \emptyset \\
 -\infty & \text{se} \ C(u,v)\neq \emptyset\ \text{ed}\ \exists \ \text{cicli di costo negativo tra u e v}
-\end{cases}$$
+\end{cases}
+$$
 Possiamo descrivere i tre casi nel seguente modo : 
 1. Ritorneremo il peso minimo tra i cammini trovati tra $u$ e $v$
 2. La distanza è $+\infty$ se $v$ sono *irraggiungibili*
@@ -4817,7 +4897,9 @@ $G'=(V',E')$ è un albero di cammini minimi , sottografo di $G(V,E,w)$ dove avre
 #### Proprietà della Diseguaglianza triangolare
 
 Sia $G=(V,E)$ un grafo con $s\in V$ , $(u,v)\in E$ allora :
-$$\delta(s,v)\le \delta(s,u)+w(u,v)$$
+$$
+\delta(s,v)\le \delta(s,u)+w(u,v)
+$$
 **Dimostrazione** : 
 
 Abbiamo 3 casi : 
@@ -4856,13 +4938,21 @@ In un *cammino minimo* $p=<s,\dots,u,v>$ per una qualche coppia di vertici $u,v\
 **Dimostrazione** :
 
 Per la proprietà del limite inferiore : 
-$$\delta(s,v)\le d[v]$$
+$$
+\delta(s,v)\le d[v]
+$$
 Per la proprietà della `Relax` : 
-$$\delta(s,v)\le d[u]+w(u,v)$$
+$$
+\delta(s,v)\le d[u]+w(u,v)
+$$
 Per ipotesi ( $d[u]=\delta(s,u)$ ) avremo che : 
-$$\delta(s,v)\le \delta(s,u)+w(u,v)$$
+$$
+\delta(s,v)\le \delta(s,u)+w(u,v)
+$$
 Poichè siamo su un *cammino minimo* : 
-$$\delta(s,v)=\delta(s,v)$$
+$$
+\delta(s,v)=\delta(s,v)
+$$
 #### Dijkstra
 
 *Intuizione* : estrae una radice alla volta e rilasserà gli archi uscenti da quel vertice
@@ -4911,9 +5001,13 @@ $$\delta(s,v)=\delta(s,v)$$
 
 La complessità totale sarà quindi dipendente dalle 2 implementazioni di $Q$ : 
 + **Heap binario** : 
-	$$T(n,m)=n + n\log n +m \log n=O(m\log n)$$
+	$$
+	T(n,m)=n + n\log n +m \log n=O(m\log n)
+	$$
 + **Array lineare** :
-	$$T(n,m)=n+n^2+c\cdot m = O(n^2)$$
+	$$
+	T(n,m)=n+n^2+c\cdot m = O(n^2)
+	$$
 
 L'implementazione scielta dipende da come è fatto il grafo , avremo 2 casi : 
 + grafo *sparso* : in questo caso avremo che $m \approx n$
@@ -4976,12 +5070,20 @@ Quindi possiamo dire che :
 	 1. Per la proprietà del limite inferiore 
 
 Ricostruiamo l'*assurdo* sulla base delle precedenti osservazioni , ci basterà dimostrare che : 
-$$\delta(s,u)\le d[u]\le \delta(s,u)$$
+$$
+\delta(s,u)\le d[u]\le \delta(s,u)
+$$
 + $\delta(s,u)\le d[u]$ : per la proprietà del limite inferiore 
 + $d[u]\le\delta(s,u)$ : possiamo ricondurci a questo grazie alla precedenti osservazioni : 
-$$d[u]\le d[y] \quad \text{per 6}$$
-$$d[u]\le \delta(s,y) \quad \text{per 5}$$
-$$d[u]\le \delta(s,u)\quad \text{per 7}$$
+$$
+d[u]\le d[y] \quad \text{per 6}
+$$
+$$
+d[u]\le \delta(s,y) \quad \text{per 5}
+$$
+$$
+d[u]\le \delta(s,u)\quad \text{per 7}
+$$
 Possiamo quindi dire che deve essere $d[u]=\delta(s,u)$ e questo è un *assurdo*
 
 >[!note] 
@@ -5031,7 +5133,9 @@ Possiamo però circumnavigare questo problema *shiftando* tutti i pesi sommando 
 + Il secondo ciclo `for` esterno ( ha il compito di ritornare false se vi sono cicli negativi all'interno del grafo , se vi sono cicli negativi infatti non possiamo più fidarci della risposta dell'algoritmo in quanto i cammini minimi potrebbero ciclare all'infinito nei cicli negativi ) viene eseguito $m$ volte ( il numero degli archi )
 
 Avremo quindi che la complessità finale sarà : 
-$$T(n,m)=n+(n-1)\cdot m + m = \Theta(n\cdot m)$$
+$$
+T(n,m)=n+(n-1)\cdot m + m = \Theta(n\cdot m)
+$$
 **Correttezza** : 
 
 Avremo 2 casi da considerare : 
@@ -5044,9 +5148,11 @@ Avremo 2 casi da considerare :
 **Dimostrazione** 1.1
 
 Sappiamo che $\nexists$ cicli negativi raggiungibili da $s$ , avremo quindi che :
-$$\forall u \in V, \ne s , \quad \delta(s,u)=\begin{cases}
+$$
+\forall u \in V, \ne s , \quad \delta(s,u)=\begin{cases}
 +\infty  & \text{ovvio dopo $Init\_ss$}\\ \mathbb{R}
-\end{cases}$$
+\end{cases}
+$$
 Se $\delta(s,u) \in \mathbb{R}$ allora esisterà un cammino $p=<x_0 = s , x_1 , \dots , x_q = u>$ minimo *semplice* ( ossia un cammino dove non vi sono vertici ripetuti ) tra $s$ e $u$ 
 
 >[!note] 
@@ -5061,27 +5167,43 @@ Poichè sottocammini di un cammino minimo sono anch'essi minimi possiamo applica
 **Dimostrazione** 1.3
 
 Perchè l'algoritmo ritorni `True` alla fine della dovremmo avere che : 
-$$\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)$$ Questo in modo che fallisca sempre l'`if` ed infine ritorni `True`
+$$
+\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)
+$$ Questo in modo che fallisca sempre l'`if` ed infine ritorni `True`
 
 Utilizziamo la *disuguaglianza triangolare* :
-$$\delta(s,v)\le \delta(s,u)+w(u,v)$$
+$$
+\delta(s,v)\le \delta(s,u)+w(u,v)
+$$
 Ma avendo dimostrato nella dimostrazione precedente che $d[u]=\delta(s,u)$ e $d[v]=\delta(s,v)$ possiamo concludere che : 
-$$d[v]\le d[u]+w(u,v)$$
+$$
+d[v]\le d[u]+w(u,v)
+$$
 **Dimostrazione** 2
 
 Dimostriamolo per *assurdo* : 
 
 Supponiamo che abbiamo un grafo $G$ contenente almeno un ciclo negativo raggiungibile da $s$ e che , *per assurdo* , l'algoritmo restituice `True`
 
-Osservando l'algoritmo sappiamo che questo restituisce `True` quando $$\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)$$
+Osservando l'algoritmo sappiamo che questo restituisce `True` quando $$
+\forall (u,v)\in E, \quad d[v]\le d[u]+w(u,v)
+$$
 Sia $c=<x_0,x_1,\dots,x_q>, \quad x_0=x_q$  il ciclo negativo raggiungibile da $s$ allora dovrà essere che : 
-$$\sum_{i=1}^q w(x_{i-1},x_i)<0$$
+$$
+\sum_{i=1}^q w(x_{i-1},x_i)<0
+$$
 Visto che l'algoritmo avrà restituito `True` avremo che dovrà essere ( poichè se la proprietà sopra deve valere per tutti gli archi allora dovrà anche valere per un sottoinsieme di archi ) : 
-$$\sum^{q}_{i=1}d[x_i] \le \sum^{q}_{i=1}d[x_{i-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)$$
+$$
+\sum^{q}_{i=1}d[x_i] \le \sum^{q}_{i=1}d[x_{i-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)
+$$
 Visto che ci troviamo su un ciclo e $x_0=x_q$ avremo che le due sommatorie possono essere semplificate nel seguente modo : 
-$$d[x_1]+d[x_2]+\dots+d[x_q]\le d[x_0]+d[x_1]+\dots+d[x_{q-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)$$
+$$
+d[x_1]+d[x_2]+\dots+d[x_q]\le d[x_0]+d[x_1]+\dots+d[x_{q-1}]+\sum^{q}_{i=1}w(x_{i-1},x_i)
+$$
 Possiamo eliminare quindi tutti i pesi uguali e rimarremo con $d[q]\le d[x_0]$ ma sapendo che $d[q]=d[x_0]$ possiamo riscrivere l'equazione precedente nel seguente modo : 
-$$\sum^{q}_{i=1}w(x_{i-1},x_i)\ge 0$$
+$$
+\sum^{q}_{i=1}w(x_{i-1},x_i)\ge 0
+$$
 che va contro l'ipotesi iniziale e abbiamo quindi raggiunto l'*assurdo*
 
 **Osservazioni**

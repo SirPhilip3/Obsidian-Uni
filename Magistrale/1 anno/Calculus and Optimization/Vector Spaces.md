@@ -17,28 +17,60 @@ We define the following operations :
 + $\cdot$   : *dot* between two $K$
 
 **Propieties** of a *Vector Space* : 
-0. $$\fcolorbox{green}{}{$x+y\in V(K)$} \forall x, y \in V(K)$$  ( **Closure propiety** )
+0. 
+
+$$
+\colorbox{green}{$x+y\in V(K)$} \forall x, y \in V(K)
+$$ 
+( **Closure propiety** )
 	Given $x,y$ being part of $V(K)$ than the result of the operation of *cross* $+$ must be part of $V(K)$
 
-1. $$\fcolorbox{green}{}{(x + y) + z = x + (y + z)} , \forall x,y,z \in V(K)$$ ( **Associative propiety** )
+1. 
+$$\colorbox{green}{(x + y) + z = x + (y + z)} , \forall x,y,z \in V(K)
+$$
+( **Associative propiety** )
 
-2. $$\fcolorbox{green}{}{$\exists w \in V(K) : x + w = x$} , \forall x \in V(K)$$ ( **Neutral / Null vector** )
+2. 
+$$
+\colorbox{green}{$\exists w \in V(K) : x + w = x$} , \forall x \in V(K)
+$$
+( **Neutral / Null vector** )
 	$w$ is the *null vector* ( for integers this will be $0$ )
 
-3. $$\fcolorbox{green}{}{$\exists \bar x  \in V(K) : x + \bar x = w$}, \forall x \in V(K)$$
+3. 
+$$
+\colorbox{green}{$\exists \bar x  \in V(K) : x + \bar x = w$}, \forall x \in V(K)
+$$
 	It exists $\bar x$ such that *summed* to the original $x$ it will produce the *null vector* ( for integers this will be $-1(x)$ ) , $\bar x$ is called **Inverse / Opposite vector**
 
-4. $$\fcolorbox{green}{}{x+y = y +x}, \forall x,y \in V(K)$$( **Commutative propiety** )
+4. 
+$$
+\colorbox{green}{x+y = y +x}, \forall x,y \in V(K)
+$$
+( **Commutative propiety** )
 
 >[!note] 
 >An *Abelian group* is a *Vector space* such that only the first $5$ rules are satisfied ( it uses only one operand $+$ ) 
 
-5. $$\forall \alpha , \beta \in K , \forall x \in V(K) \implies \fcolorbox{green}{}{$\alpha \bullet x \in V(K) \implies \alpha \bullet (\beta \bullet x ) = (\alpha \cdot \beta)\bullet x$}$$
-6. $$\fcolorbox{green}{}{$\exists \sigma \in K : \sigma \bullet x = x$} , \forall x \in V(K)$$
+6. 
+$$
+\forall \alpha , \beta \in K , \forall x \in V(K) \implies \colorbox{green}{$\alpha \bullet x \in V(K) \implies \alpha \bullet (\beta \bullet x ) = (\alpha \cdot \beta)\bullet x$}
+$$
+7. 
+$$
+\colorbox{green}{$\exists \sigma \in K : \sigma \bullet x = x$} , \forall x \in V(K)
+$$
 	$\sigma$ is a *unit* in the numerical set ( $1$ ) 
-7. $$ \forall \alpha \in K : \fcolorbox{green}{}{$\alpha \bullet (x +y) = \alpha \bullet x + \alpha \bullet y$} ,\forall x, y \in V(K)$$ ( **Distributed propiety** 1 )
+8. 
+$$
+\forall \alpha \in K : \colorbox{green}{$\alpha \bullet (x +y) = \alpha \bullet x + \alpha \bullet y$} ,\forall x, y \in V(K)
+$$
+( **Distributed propiety** 1 )
 
-8. $$\forall x \in V(K), \forall \alpha, \beta \in K : \fcolorbox{green}{}{$ (\alpha \oplus \beta) \bullet x = \alpha \bullet x + \beta \bullet x$}$$
+9. 
+$$
+\forall x \in V(K), \forall \alpha, \beta \in K : \colorbox{green}{$ (\alpha \oplus \beta) \bullet x = \alpha \bullet x + \beta \bullet x$}
+$$
 ( **Distributed propiety** 2 )
 
 >[!example] Some examples of **Vector Spaces**
@@ -57,7 +89,8 @@ We define the following operations :
 
 + $\mathbb{R}^n(\mathbb{R}) \approx \mathbb{R}^n$ : set of *n-tuplas* 
 
-$$\alpha x = \alpha \begin{pmatrix}
+$$
+\alpha x = \alpha \begin{pmatrix}
 x_1  \\
 \vdots \\
 x_n 
@@ -65,8 +98,10 @@ x_n
 \alpha x_1  \\
 \vdots \\
 \alpha x_n 
-\end{pmatrix}$$
-$$x + y = \begin{pmatrix}
+\end{pmatrix}
+$$
+$$
+x + y = \begin{pmatrix}
 x_1  \\
 \vdots \\
 x_n 
@@ -78,12 +113,15 @@ y_n
 x_1 + y_1  \\
 \vdots \\
 x_n + y_n
-\end{pmatrix}$$
-$$w = \begin{pmatrix}
+\end{pmatrix}
+$$
+$$
+w = \begin{pmatrix}
 0  \\
 \vdots \\
 0 
-\end{pmatrix} $$
+\end{pmatrix}
+$$
 + $M_{m,n}(\mathbb{R})$ : where $M_{m,n}$ is a matrix of $m$ *rows* and $n$ *colums*
 
 + $P_n(x) , x \in \mathbb{R}$ is teh *set* of all the possible *polynomials* of *degree* **at most** $n$ where $x$ is the only unknown variable in the *polynomial* 
@@ -117,11 +155,15 @@ The dimension of a vector space is given by the number of :
 >
 >These are those *vectros* that satisfy the following criteria : 
 >given $v_1, \dots , v_n \in V(K)$ and $\alpha_1, \dots, \alpha_n \in K$ than the *vectors* $\{v_1, \dots , v_n\}$ are *linearly indipendent* if : 
->$$\alpha_1 v_i + \dots + \alpha_n v_n = w \iff \alpha_1= \dots = \alpha_m = 0$$
+>$$
+>\alpha_1 v_i + \dots + \alpha_n v_n = w \iff \alpha_1= \dots = \alpha_m = 0
+>$$
 >
 
 >[!example] 
->$$\alpha_1 \begin{pmatrix} 5 \\ 5 \end{pmatrix} + \alpha_2 \begin{pmatrix} 2 \\ 2 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+>$$
+>\alpha_1 \begin{pmatrix} 5 \\ 5 \end{pmatrix} + \alpha_2 \begin{pmatrix} 2 \\ 2 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+>$$
 >
 >Since in order to get $w$ as a result we would need values of $\alpha$ that are not $0$ these are not *lineraly independent*
 
@@ -133,7 +175,9 @@ The dimension of a vector space is given by the number of :
 >Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
 >
 >We say that the *vector* $s \in \mathbb{R}^n$ is an **affine combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
->$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1, \alpha_i \in \mathbb{R}$$
+>$$
+>s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1, \alpha_i \in \mathbb{R}
+>$$
 
 We can give a *geometric rapresentation* considering a set of vectors of size $2$ ( so that the rapresentation is two dimensional ) :  
 
@@ -149,7 +193,9 @@ $s$ are all the *vectors* whos second extreme is on the *line* *between* the two
 >Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
 >
 >We say that the *vector* $z \in \mathbb{R}^n$ is a **cone combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
->$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \alpha_i \ge 0, i = 1, \dots, m$$
+>$$
+>s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \alpha_i \ge 0, i = 1, \dots, m
+>$$
 
 This the following *geometric* two dimensional interpretation of the **cone combination** 
 
@@ -164,7 +210,9 @@ $z$ are all the vectors that stay in the *area* between $v_1$ and $v_2$
 >Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
 >
 >We say that the *vector* $y \in \mathbb{R}^n$ is a **convex combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
->$$s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1,\alpha_i \ge 0,\quad \alpha_i \in \mathbb{R} ,i = 1, \dots, m$$
+>$$
+>s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \sum_{i=1}^{m} \alpha_i = 1,\alpha_i \ge 0,\quad \alpha_i \in \mathbb{R} ,i = 1, \dots, m
+>$$
 
 So $y$ is a *convex cobination* if it's both an *affine combination* and a *cone combination*
 
@@ -178,7 +226,9 @@ So geometrically we can rapresent it as the *vector* passing through the two ext
 
 >[!important] Definition
 >The **inner product** '$<\bullet, \bullet>$' is defined as a *function* :
->$$f : V^n(\mathbb{R}) \times V^n(\mathbb{R}) \rightarrow \mathbb{R}$$
+>$$
+>f : V^n(\mathbb{R}) \times V^n(\mathbb{R}) \rightarrow \mathbb{R}
+>$$
 
 With the following *properties* : 
 
@@ -189,21 +239,27 @@ With the following *properties* :
 >[!important] **Standard** *inner product*
 >
 >Given *vectors* $x,y \in \mathbb{R}^n$ than by definition :
->$$<x,y> = x^Ty$$
+>$$
+><x,y> = x^Ty
+>$$
 
 >[!example] 
 >With
->$$x = \begin{pmatrix}
+>$$
+>x = \begin{pmatrix}
 >x_1 \\ \vdots \\ x_n
 >\end{pmatrix} \quad y = \begin{pmatrix}
 >y_1 \\ \vdots \\ y_n
->\end{pmatrix}$$
+>\end{pmatrix}
+>$$
 >Than
->$$<x,y> = x^Ty = \begin{pmatrix}
+>$$
+><x,y> = x^Ty = \begin{pmatrix}
 >x_1, \dots,x_n
 >\end{pmatrix}\times \begin{pmatrix}
 >y_1 \\ \vdots \\ y_n
->\end{pmatrix} = \sum_{i=1}^n x_i y_i$$
+>\end{pmatrix} = \sum_{i=1}^n x_i y_i
+>$$
 ## Vector Norms
 
 >[!important] 
@@ -241,7 +297,9 @@ Geometrically we can rapresent them in the following way ( with only two *unknow
 
 >[!important] Definition
 >Given the function $g(x)$ , with $g: \mathbb{R}^n \to \mathbb{R}^m$ we say that $g(x)$ is an *affine function* in $\mathbb{R}^n$ if there exists a function $f(x)$ , *linear* in $\mathbb{R}$ , and the vector $\bar{c} \in \mathbb{R}^m$ , such that 
->$$g(x) = f(x)+ \bar{c}$$ 
+>$$
+>g(x) = f(x)+ \bar{c}
+>$$ 
 
 >[!example] 
 >$g(x,y) = 3xy + 5$
@@ -253,21 +311,27 @@ Geometrically we can rapresent them in the following way ( with only two *unknow
 
 >[!note] 
 >When $f: \mathbb{R} \to \mathbb{R}$ than : 
->$$\frac{\partial f(x)}{\partial x} \equiv \frac{df(x)}{dx} $$ 
+>$$
+>\frac{\partial f(x)}{\partial x} \equiv \frac{df(x)}{dx}
+>$$ 
 
 For $p=1$ we use *Gradient* : $\nabla f(x)$ , we can so say that $f \in C^1(\mathbb{R}^n)$ 
 
 Where : 
-$$\nabla f(x) = \begin{pmatrix}
+$$
+\nabla f(x) = \begin{pmatrix}
 \frac{\partial f(x)}{\partial x_1} \\ \vdots \\ \frac{\partial f(x)}{\partial x_n}
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 For $p=2$ we use *Hessian* : $\nabla^2 f(x)$ , we can so say that $f \in C^2(\mathbb{R}^n)$ 
 
 Where : 
-$$\nabla^2 f(x) = \begin{pmatrix}
+$$
+\nabla^2 f(x) = \begin{pmatrix}
 \frac{\partial^2 f(x)}{\partial x_1 \partial x_1}  & \dots & \frac{\partial^2 f(x)}{\partial x_1 \partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial^2 f(x)}{\partial x_n \partial x_1} & \dots & \frac{\partial^2 f(x)}{\partial x_n \partial x_n}
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 >[!important] Definition
 >Given the function $f : \mathbb{R}^n \to \mathbb{R}$ with domain $\mathcal{A} \subseteq \mathbb{R}^n$ we say that the point $\bar{x} \in \mathcal{A}$ is of **regularity** for $f(\bar{x})$ if $\nabla f(x)$ is *defined*
@@ -279,33 +343,49 @@ $$\nabla^2 f(x) = \begin{pmatrix}
 >[!important] Definition
 >
 >Given the function $f(x)$ , let $f : \mathbb{R}^n \to \mathbb{R}$ be $f \in C^m(\mathbb{R^n})$ ( *continuosly differentiable* at least $m$ times ) in the **neighborhood** $I(x, \delta) = \{x \in \mathbb{R}^n : ||x-\bar{x}|| \leq \delta , \delta > 0\}$ of the point $\bar{x}$. Than we have :
->$$f(x) = \sum^{m}_{h=0} \frac{D^h f(\bar{x})}{h!}(x-\bar{x})^h + R_{m+1}(\bar x) , \quad \lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0$$ 
+>$$
+>f(x) = \sum^{m}_{h=0} \frac{D^h f(\bar{x})}{h!}(x-\bar{x})^h + R_{m+1}(\bar x) , \quad \lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0
+>$$ 
 
 Where $h$ indicates the order of the *partial derivative* and $D^h f(\bar{x})$ indicares the *partial derivative* of order $h$ computed at point $\bar{x}$ 
 
 The *taylor series* allows us to approximate a function $f(x)$ on a point $\bar{x}$ because by $x$ approaching $\bar{x}$ we have that :
-$$\lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0$$
+$$
+\lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0
+$$
 ### $m=0$
 
 When $m=0$ the *taylor expansion* becomes the following expression :
-$$\frac{D^0 f(\bar{x})}{0!}(x-\bar{x})^0 + R_{0+1}(\bar x)$$
+$$
+\frac{D^0 f(\bar{x})}{0!}(x-\bar{x})^0 + R_{0+1}(\bar x)
+$$
 Simplified it becomes : 
-$$f(\bar{x}) + R_1(\bar{x})$$
+$$
+f(\bar{x}) + R_1(\bar{x})
+$$
 With $(x-\bar{x})^0 \equiv 1$
 
 ### $m=1$ 
 
-$$\dots + \frac{D^1 f(\bar{x})}{1!}(x-\bar{x})^1 + R_{2}(\bar x)$$
-$$\dots + \nabla f(\bar{x})^T(x - \bar{x}) +R_2(\bar{x})$$
+$$
+\dots + \frac{D^1 f(\bar{x})}{1!}(x-\bar{x})^1 + R_{2}(\bar x)
+$$
+$$
+\dots + \nabla f(\bar{x})^T(x - \bar{x}) +R_2(\bar{x})
+$$
 ### $m=2$
 
-$$\dots + \frac{D^2 f(\bar{x})}{2!}(x-\bar{x})^2 + R_{3}(\bar x)$$
-$$\dots + \frac{1}{2}(x-\bar{x})^T\nabla^2 f(\bar{x})(x-\bar{x})+ R_3(\bar{x})$$
+$$
+\dots + \frac{D^2 f(\bar{x})}{2!}(x-\bar{x})^2 + R_{3}(\bar x)
+$$
+$$
+\dots + \frac{1}{2}(x-\bar{x})^T\nabla^2 f(\bar{x})(x-\bar{x})+ R_3(\bar{x})
+$$
 
 ## Directional Derivatives
 
 >[!important] Definition
->Let $f(x) : \mathbb{R}ìn \to \mathbb{R}$ be $f\in C^1(\mathbb{R}^n)$ ( *continuosly differentiable* in $\mathbb{R}$ only **once** )
+>Let $f(x) : \mathbb{R}^n \to \mathbb{R}$ be $f\in C^1(\mathbb{R}^n)$ ( *continuosly differentiable* in $\mathbb{R}$ only **once** )
 >
 >#todo
 
