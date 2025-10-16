@@ -54,5 +54,58 @@ $D_k(y_1,\dots,y_m) = (y_1,\dots,y_m) \cdot K^{-1} \mod{26}$
 
 ## Attaks
 
-### Known-plaintext attacks
+The *Hill Cipher* is subscetible to attacks that are known as [[Types of Attaks#Known-plaintext attack|Known-plaintext attack]]
+
+Assume than that we know $m$ *pairs* of *plaintexts* and *ciphertexts* 
+
+>[!note] 
+>$m$ is the *block* lenght
+
+We than know that : 
+$$
+\begin{align}
+(y_1^1, \dots, y_m^1) & = & (x_1^1, \dots,x_m^1) K \mod{26} \\
+& \dots & \\
+(y_1^m, \dots, y_m^m) & = & (x_1^m, \dots,x_m^m) K \mod{26}
+\end{align}
+$$
+This ca be written in *matrix* form in the following way : 
+$$
+Y = XK\mod{26}
+$$
+We can than derive the $K$ in the following way : 
+$$
+K = X^{-1} Y \mod{26}
+$$
+>[!note] 
+>Since the *Hill Cipher* is just a *linear tranformation* of a *plaintext* block into a *cipher* block 
+
+>[!example] 
+Given the following pairs : 
+$(5,9) \to (19,4)$ and $(2,5)\to (24,11)$ and $m=2$
+>$$
+>\begin{bmatrix}
+>19 & 4 \\ 24 & 11
+>\end{bmatrix} = \begin{bmatrix}
+>5 & 9 \\ 2 & 5
+>\end{bmatrix} \cdot K \mod{26}
+>$$
+>We need to find $X^{-1}$
+>
+>1. $\det(X) = 5 \cdot 5 - 2 \cdot 9 = 7$
+>2. $\det(X)^{-1} : 7 \times a = 1 \mod{26}$ , $a=15$
+>3. 
+>$$
+>\begin{align}
+>X^{-1} & = 15 \cdot \begin{bmatrix} 5 & -9 \\ -2 & 5 \end{bmatrix} \mod{26}\\ & = 15 \cdot \begin{bmatrix} 5 & 17 \\ 24 & 5 \end{bmatrix} \mod{26}\\ & = \begin{bmatrix} 23 & 21 \\ 22 & 23 \end{bmatrix}  
+>\end{align}
+>$$
+>
+>Than to get the key $K$ : 
+>$$
+>\begin{align}
+>K & = \begin{bmatrix} 23 & 21 \\ 22 & 23 \end{bmatrix}  
+> \cdot \begin{bmatrix} 19 & 4 \\ 24 & 11 \end{bmatrix} \mod{26}\\ & = \begin{bmatrix} 23\cdot 19 + 21\cdot24 & 23 \cdot 4 + 21 \cdot 11 \\ 22\cdot 19 + 23 \cdot 24 & 22\cdot 4 + 23 \cdot 11 \end{bmatrix} \mod{26}\\ & = \begin{bmatrix} 5 & 11 \\ 8 & 3 \end{bmatrix}  
+>\end{align}
+>$$
 
