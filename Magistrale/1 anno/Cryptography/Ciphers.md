@@ -28,4 +28,3 @@ We have two types of ciphers :
 + **Polyalphabetic** 
 	+ The same letters of the *plaintext* are not always mapped to the same *ciphertext* 
 	+ Some are : [[Vigenere Cipher]] , [[Hill Cipher]]
-
