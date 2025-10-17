@@ -387,5 +387,46 @@ $$
 >[!important] Definition
 >Let $f(x) : \mathbb{R}^n \to \mathbb{R}$ be $f\in C^1(\mathbb{R}^n)$ ( *continuosly differentiable* in $\mathbb{R}$ only **once** )
 >
->#todo
+>We say that the function $f(x)$ in the point $x \in \mathbb{R}^n$  admits **directional derivative** $D(f,d)$ along the *direction* $d \in \mathbb{R}^n - \{0\}$ if there exists the limit : 
+>
+>$$
+>D(f,d) = \lim_{\alpha \to 0^+} \frac{f(x+\alpha d) - f(x)}{\alpha}
+>$$
+>
+
+>[!note] 
+>$$
+>D(f,d) = \nabla f(x)^Td
+>$$
+
+>[!example] 
+>Given $f(x_1,x_2,x_3) = x_1 + x_2^2x_3^2$ let's compute the *directional derivative* along the direction $d = \begin{pmatrix}1\\2\\3\end{pmatrix}$ at the point $\bar{x} = \begin{pmatrix}0\\1\\0\end{pmatrix}$
+>
+>$$
+>\begin{align}
+>D(f,d) & = \nabla f(\bar{x})^Td \\ & = \begin{bmatrix}1 \\ 2 x_2 x_3^2 \\ 2x_2^2x_3\end{bmatrix} \cdot \begin{bmatrix} 1\\2\\3\end{bmatrix} \\ & = \begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix} \cdot \begin{bmatrix} 1\\2\\3\end{bmatrix} \\ & = 1
+>\end{align} 
+>$$
+>
+>Given that $1 > 0$ than we know that $f(x_1,x_2,x_3)$ in $\bar{x}$ is *increasing*
+>
+
+## Mean Values Theorem
+
+### First order MVT
+
+>[!important] Definition
+>Given the function $f : \mathbb{R}^n \to \mathbb{R}$ be $f\in C^1(\mathbb{R}^n)$ on the open neighborhood $I(x,\rho) = \{y \in \mathbb{R}^n : ||y -x||< \rho\} \subseteq \mathbb{R}^n$ , with $x \in \mathbb{R}^n$ and $\rho > 0$
+>
+>Ther *exists* a value $\theta \in [0,1]$ such that *for any* $y\in I(x,\rhd)$ : 
+>1. $f(y) = f(x) + \nabla f[x+\theta(y-x)]^T(y-x)$
+>2. $f(y) = f(x)+\nabla f(x)^T(y-x) + o(||y-x||)$
+>
+>Where by definition :
+>$$
+>\lim_{y \to x} \frac{o(||y-x||)}{||y-x||} = 0
+>$$
+>
+
+#todo undertand
 
