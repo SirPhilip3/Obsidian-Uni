@@ -1,3 +1,6 @@
+---
+publish: true
+---
 *Block ciphers* are cryptosystems that "reuse" the same key to encrypt letters or blocks of the *plaintext*
 
 $$

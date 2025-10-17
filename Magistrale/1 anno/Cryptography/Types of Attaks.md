@@ -1,3 +1,6 @@
+---
+publish: true
+---
 In *Cryptoanalysis* we can have $4$ different types of attacks : 
 ## Ciphertext-only attack
 

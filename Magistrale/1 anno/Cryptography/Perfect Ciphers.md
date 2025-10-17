@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!important] Definition
 >A *perfect cipher* is a cipher that can never be broken , even after an unlimited time 
 
