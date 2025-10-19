@@ -67,3 +67,8 @@ $$
 >The base of the *logarithm* amounts to the unit used to send information , for example if we send *bits* at a time it will be $2$
 
 *Properties* : 
+1. $H_b(X) = (\log_b a)H_a(X)$
+2. $H(X) \ge 0$ 
+	With equality $\iff X$  has a $0-1$ distribution ( all probabilies are $0$ except $1$ )
+3. $H(X) \leq \log |\mathcal{X}|$
+	With equality $\iff X$ has a *uniform distribution*
