@@ -45,7 +45,6 @@ Given these *properties* ( and a 4th not treated here ) the *only* remaining cho
 $$
 I(E) = \log \frac{1}{P(E)} = -\log P(E)
 $$
-
 ### Entropy
 
 **Entropy** measures the average amount of *information* produced by the source 
@@ -120,5 +119,24 @@ $$
 >[!example] 
 >Lets have $X$ with the following *range* : $\mathcal{X} = \{1,2,\dots,6\}$ and $Y$ with the following *range* : $\mathcal{Y} = \{even,odd\}$
 >
->Now $H()$
+>Now $H(X|Y) \le H(X)$ this is true since if we know that a number is *even* or *odd* ( $Y$ ) we can reduce the uncertanty of $X$ by $1/2$ 
+>
+>$H(Y|X) = 0$ since once we know the precise number i also know if it's *even* or *odd* 
 
+##### The Chain Rule
+
+Let $X$ and $Y$ be two *discrete* random variables , then : 
+$$
+\begin{align}
+H(X,Y) & = H(X) +H(Y|X) \\
+& = H(Y) + H(X|Y)
+\end{align}
+$$
+More generally given $n$ random variables :
+$$
+H(X_1,\dots,X_n) = H(X_1) + H(X_2|X_1) + \dots + H(X_n|X_1,\dots,X_{n-1})
+$$
+
+### Kullback-Leibler Divergence
+
+#todo
