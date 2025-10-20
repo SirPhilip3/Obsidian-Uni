@@ -74,4 +74,51 @@ $$
 	With equality $\iff X$ has a *uniform distribution*
 
 >[!example] 
->Let $X$ be the toss of an *unbie*
+>Let $X$ be the toss of an *unbiased* coin then : 
+>$$
+>H(X) = \frac{1}{2} \ln_2 2 + \frac{1}{2} \ln_2 2 = 1 
+>$$ 
+>
+>So the average amount of information given by an event that has 2 *equally* likely outcomes is $1$ bit
+>
+
+Generalizing to a *biased* coin we have the following equation : 
+$$
+H(x) = -p\log p - (1-p)\log(1-p)
+$$
+>[!note] Graph
+>![[Pasted image 20251020154409.png]]
+
+#### Joint Entropy
+
+>[!important] Definition
+>Let $X$ and $Y$ be two *discrete* random variables , the *joint entropy* between them is defined as : 
+>$$
+>H(X,Y) = -\sum_x \sum_y p(x,y) \log p(x,y)
+>$$ 
+>
+>Or more generally given $n$ random variables :
+>
+>$$
+>H(X_1, \dots,X_n) = -\sum_{x_1} \dots \sum_{x_n} p(x_1,\dots,x_n) \log p(x_1,\dots,x_n)
+>$$
+
+#### Conditional Entropy
+
+>[!important] Definition
+>Let $X$ and $Y$ be two *discrete* random variables , the *conditional entropy* of $X$ give the event $Y = y$ is the *entropy* of the conditional distribution $p(x | Y =y)$ :
+>$$
+>H(X | Y = y) = -\sum_x p(x|y)\log p(x |y)
+>$$
+
+>[!info] 
+>If we average the entropy for all possible $y$ than we obtain the *conditional entropy* of $X$ given $Y$ :
+>$$
+>H(X|Y) = -\sum_x \sum_y p(x|y)\log p(x|y)
+>$$
+
+>[!example] 
+>Lets have $X$ with the following *range* : $\mathcal{X} = \{1,2,\dots,6\}$ and $Y$ with the following *range* : $\mathcal{Y} = \{even,odd\}$
+>
+>Now $H()$
+
