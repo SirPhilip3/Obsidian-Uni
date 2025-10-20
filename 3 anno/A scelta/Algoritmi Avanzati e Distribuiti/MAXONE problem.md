@@ -31,7 +31,7 @@ At the start we take $6$ string of length $10$ with a random number of $1$'s in 
 In order to produce a probabilty of selection we use the [*Roulette Wheel Method*](https://en.wikipedia.org/wiki/Fitness_proportionate_selection) : 
 
 The individual $i$ will have probability of being chosen equal to :
-$$\frac{f(i)}{\sum_i f(i)}$$
+$$\frac{f(i)}{\sum_k f(k)}$$
 
 The selection is repeated as many times as the number of *individuals* we need to have the same parent population ( *Generational genetic algorithm* ) size ( $6$ in this case )
 ## Recombination ( Cross-over ) 
