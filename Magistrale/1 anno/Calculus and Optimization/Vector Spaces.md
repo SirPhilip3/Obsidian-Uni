@@ -459,22 +459,28 @@ Geometrical rapresentation for $m=1$ : ?????
 >
 
 >[!note] 
->Or all the points present in the *neighborhood* of $x^*$ and in the *domain* $\mathcal{A}$ must be lower than $x^*$ 
+>Or all the points present in the *neighborhood* of $x^*$ and in the *domain* $\mathcal{A}$ must be higher than $x^*$ 
 
 >[!note] *Strict local minimum*
-> #todo 
-
+>If we impose that $x \neq x^*$ than $x^*$ becomes a point of *strict local minimum* ( $f(x^*) < f(x)$ )
 ### Global Minimum
 
 >[!important] Definition
 >
->Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **global minimum** of $f(x)$ , if there exists an *open neighborhood* $I(x^*, \rho) = \{x \in \mathbb{R}^n : ||x - x^*|| < \rho \}$ with *center* $x^*$ and *radius* $\rho > 0$ such that  : 
+>Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **global minimum** of $f(x)$  if : 
 >
 >$$
->f(x^*) \geq f(x), \quad \forall x \in I(x^*, \rho) \cap \mathcal{A}
+>f(x^*) \geq f(x), \quad \forall x \in \mathcal{A}
 >$$
 
+>[!note]
+>Or all the point present in the *domain* $\mathcal{A}$ of the function must be higher than $x^*$ 
+>
 
+>[!note] *Unique global minimum* 
+>
+>
+>
 ### Local Maximum
 
 ### Local Minimum
