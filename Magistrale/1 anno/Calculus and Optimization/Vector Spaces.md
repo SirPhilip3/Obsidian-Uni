@@ -471,11 +471,11 @@ Geometrical rapresentation for $m=1$ : ?????
 >Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **global minimum** of $f(x)$ , if there exists an *open neighborhood* $I(x^*, \rho) = \{x \in \mathbb{R}^n : ||x - x^*|| < \rho \}$ with *center* $x^*$ and *radius* $\rho > 0$ such that  : 
 >
 >$$
->f(x^*) \leq f(x), \quad \forall x \in I(x^*, \rho) \cap \mathcal{A}
+>f(x^*) \geq f(x), \quad \forall x \in I(x^*, \rho) \cap \mathcal{A}
 >$$
-
 
 
 ### Local Maximum
 
 ### Local Minimum
+
