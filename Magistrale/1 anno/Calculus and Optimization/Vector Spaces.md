@@ -418,7 +418,7 @@ $$
 >[!important] Definition
 >Given the function $f : \mathbb{R}^n \to \mathbb{R}$ be $f\in C^1(\mathbb{R}^n)$ on the open neighborhood $I(x,\rho) = \{y \in \mathbb{R}^n : ||y -x||< \rho\} \subseteq \mathbb{R}^n$ , with $x \in \mathbb{R}^n$ and $\rho > 0$
 >
->Ther *exists* a value $\theta \in [0,1]$ such that *for any* $y\in I(x,\rhd)$ : 
+>Ther *exists* a value $\theta \in [0,1]$ such that *for any* $y\in I(x,\rho)$ : 
 >1. $f(y) = f(x) + \nabla f[x+\theta(y-x)]^T(y-x)$
 >2. $f(y) = f(x)+\nabla f(x)^T(y-x) + o(||y-x||)$
 >
@@ -428,6 +428,54 @@ $$
 >$$
 >
 
-#todo undertand
+Geometrical rapresentation for $m=1$ : ?????
+
+### Second order MVT
+
+>[!important] Definition
+>Give the function $f : \mathbb{R}^n \to \mathbb{R}$ be $f\in C^2(\mathbb{R}^n)$  on the open neighborhood $I(x,\rho) = \{y \in \mathbb{R}^n : ||y -x||< \rho\} \subseteq \mathbb{R}^n$ , with $x \in \mathbb{R}^n$ and $\rho > 0$
+>
+>Ther *exists* a value $\theta \in [0,1]$ such that *for any* $y\in I(x,\rho)$ : 
+>1. $f(y) = f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T \nabla^2 f[x+\theta (y-x)](y-x)$
+>2. $f(y) = f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T \nabla^2 f(x)(y-x) + o(||y-x||^2)$
+>
+>Where by definition : 
+>$$
+>\lim_{y \to  x} \frac{o(||y-x||^2)}{||y-x||^2} = 0
+>$$
 
 
+## Local \ Global Maximum \ Minimum
+
+### Local Minimum
+
+>[!important] Definition
+>
+>Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **local minimum** of $f(x)$ , if there exists an *open neighborhood* $I(x^*, \rho) = \{x \in \mathbb{R}^n : ||x - x^*|| < \rho \}$ with *center* $x^*$ and *radius* $\rho > 0$ such that  : 
+>
+>$$
+>f(x^*) \leq f(x), \quad \forall x \in I(x^*, \rho) \cap \mathcal{A}
+>$$
+>
+
+>[!note] 
+>Or all the points present in the *neighborhood* of $x^*$ and in the *domain* $\mathcal{A}$ must be lower than $x^*$ 
+
+>[!note] *Strict local minimum*
+> #todo 
+
+### Global Minimum
+
+>[!important] Definition
+>
+>Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **global minimum** of $f(x)$ , if there exists an *open neighborhood* $I(x^*, \rho) = \{x \in \mathbb{R}^n : ||x - x^*|| < \rho \}$ with *center* $x^*$ and *radius* $\rho > 0$ such that  : 
+>
+>$$
+>f(x^*) \leq f(x), \quad \forall x \in I(x^*, \rho) \cap \mathcal{A}
+>$$
+
+
+
+### Local Maximum
+
+### Local Minimum
