@@ -72,3 +72,6 @@ $$
 	With equality $\iff X$  has a $0-1$ distribution ( all probabilies are $0$ except $1$ )
 3. $H(X) \leq \log |\mathcal{X}|$
 	With equality $\iff X$ has a *uniform distribution*
+
+>[!example] 
+>Let $X$ be the toss of an *unbie*

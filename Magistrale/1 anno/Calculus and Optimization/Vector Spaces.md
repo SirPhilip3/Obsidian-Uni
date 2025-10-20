@@ -428,7 +428,30 @@ $$
 >$$
 >
 
-Geometrical rapresentation for $m=1$ : ?????
+Geometrical rapresentation for $m=1$ : 
+
+![[FirstOrderExpansion_ManimCE_v0.19.0.png]]
+
+>[!example] 
+>Given $f(x_1,x_2) = 3x_1^2 + x_1 \ln(3-x_2)$
+>
+>This function is *continuosly differentiable* on the set $S = \{(x_1,x_2)\in \mathbb{R}^2 : x_2 < 3\}$ 
+>
+>Find the value of $\theta$ for $\bar{x} = \begin{pmatrix}2\\2\end{pmatrix}$ and $\bar{y}= \begin{pmatrix}2 \\ 5/2\end{pmatrix}$
+>
+>$f(\bar{x}) = 12 + 2 \cdot \ln(1) = 12$
+>$f(\bar{y}) = 12 + 2 \cdot \ln(1/2)$
+>
+>$\nabla f(x_1,x_2) = \begin{bmatrix}6 x_1 + \ln(3 -x_2) \\ -\frac{x_1}{3-x_2}\end{bmatrix}$
+>
+>$\bar{x} + \theta(\bar{y}-\bar{x}) = \begin{pmatrix}2 \\ 2\end{pmatrix} + \theta \begin{pmatrix}0 \\ 1/2\end{pmatrix} = \begin{pmatrix}2 \\ 2 +\frac{\theta}{2}\end{pmatrix}$
+>
+>Finally :
+>$$
+>12 + \ln(\frac{1}{2}) = 12 + \begin{bmatrix} 12 + \ln (1- \frac{\theta}{2}) \\ - \frac{2}{1-\frac{\theta}{2}}\end{bmatrix} \cdot \begin{bmatrix}0 \\ \frac{1}{2}\end{bmatrix}
+>$$
+>
+>$\theta \sim 0.557$
 
 ### Second order MVT
 
@@ -443,7 +466,6 @@ Geometrical rapresentation for $m=1$ : ?????
 >$$
 >\lim_{y \to  x} \frac{o(||y-x||^2)}{||y-x||^2} = 0
 >$$
-
 
 ## Local \ Global Maximum \ Minimum
 
@@ -462,7 +484,7 @@ Geometrical rapresentation for $m=1$ : ?????
 >Or all the points present in the *neighborhood* of $x^*$ and in the *domain* $\mathcal{A}$ must be higher than $x^*$ 
 
 >[!note] *Strict local minimum*
->If we impose that $x \neq x^*$ than $x^*$ becomes a point of *strict local minimum* ( $f(x^*) < f(x)$ )
+>If we impose that $x \neq x^*$ and $f(x^*) < f(x)$ to the definition than $x^*$ becomes a point of *strict local minimum* 
 ### Global Minimum
 
 >[!important] Definition
@@ -470,7 +492,7 @@ Geometrical rapresentation for $m=1$ : ?????
 >Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **global minimum** of $f(x)$  if : 
 >
 >$$
->f(x^*) \geq f(x), \quad \forall x \in \mathcal{A}
+>f(x^*) \leq f(x), \quad \forall x \in \mathcal{A}
 >$$
 
 >[!note]
@@ -479,9 +501,38 @@ Geometrical rapresentation for $m=1$ : ?????
 
 >[!note] *Unique global minimum* 
 >
->
+>If we impose that $x \neq x^*$ and $f(x^*) < f(x)$ to the definition than we call $x^*$ a point of *unique global minimum*
 >
 ### Local Maximum
 
-### Local Minimum
+>[!important] Definition
+>
+>Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **local maximum** of $f(x)$ , if there exists an *open neighborhood* $I(x^*, \rho) = \{x \in \mathbb{R}^n : ||x - x^*|| < \rho \}$ with *center* $x^*$ and *radius* $\rho > 0$ such that  : 
+>
+>$$
+>f(x^*) \geq f(x), \quad \forall x \in I(x^*, \rho) \cap \mathcal{A}
+>$$
+>
+
+>[!note] 
+>Or all the points present in the *neighborhood* of $x^*$ and in the *domain* $\mathcal{A}$ must be lower than $x^*$ 
+
+>[!note] *Strict local maximum*
+>If we impose that $x \neq x^*$ and $f(x^*) > f(x)$ to the definition than $x^*$ becomes a point of *strict local maximum* 
+### Global Maximum
+
+>[!important] Definition
+>
+>Let be $\mathcal{A} \subseteq \mathbb{R}^n$ and the function $f: \mathcal{A} \to \mathbb{R}$ , the point $x^* \in \mathcal{A}$ is a **global maximum** of $f(x)$  if : 
+>
+>$$
+>f(x^*) \geq f(x), \quad \forall x \in \mathcal{A}
+>$$
+
+>[!note]
+>Or all the point present in the *domain* $\mathcal{A}$ of the function must be lower than $x^*$ 
+
+>[!note] *Unique global maximum* 
+>
+>If we impose that $x \neq x^*$ and $f(x^*) > f(x)$ to the definition than we call $x^*$ a point of *unique global maximum*
 

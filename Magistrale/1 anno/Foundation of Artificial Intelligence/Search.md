@@ -266,7 +266,6 @@ This adds a "penalty" for the *lenght* of the path to the *evaluation function*
 **Space** : Exponential
 
 **Complete** : Yes ( unless there are *infinitely* many nodes with $f \le f(G)$ )
-
 #### Iterative Deepening A*
 
 Iterative Deepening in this case is used in order to better the *space* complexity of the algorithm by sacrificing visiting some nodes multiple times 
@@ -296,4 +295,6 @@ iterative_deepening (G , source , heuristic , is_goal ) :
 
 >[!example] 
 >#todo
+
+## Adversarial Search 
 
