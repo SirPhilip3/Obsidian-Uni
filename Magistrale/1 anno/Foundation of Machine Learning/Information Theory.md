@@ -1,3 +1,6 @@
+---
+publish: true
+---
 Infromation theory was "invented" by Claude Shannon 
 
 It's a *math theory* that models *communication problems* 
@@ -136,7 +139,66 @@ More generally given $n$ random variables :
 $$
 H(X_1,\dots,X_n) = H(X_1) + H(X_2|X_1) + \dots + H(X_n|X_1,\dots,X_{n-1})
 $$
-
 ### Kullback-Leibler Divergence
 
-#todo
+Given $\bar p = \begin{pmatrix} p_1 \\ \dots \\ p_n \end{pmatrix}$ a *probability vector* such that : 
+1. $p_i \ge 0, \quad \forall i$
+2. $\sum^{n}_{i=1} p_i =1$ 
+
+Or $\bar p \in \mathbb{R}_{\{0,1\} }^n$ ( also known as *standard simplex* $\triangle = \bigg\{ x \in \mathbb{R}^n : \sum_{i=1}^n x_i = 1 , x_i > 0 \bigg\}$ )
+
+Than *Kullback-Leibler (KL) divergence* between $\bar p$ and $\bar q$ $\in \triangle$ is defined as : 
+$$
+D(\bar p || \bar{q}) = \sum_{i=1}^n p_i \log \frac{p_i}{q_i}
+$$
+
+>[!note] 
+>$D(p||q) \ge 0$ with equality $\iff p=q$ 
+>
+>Also the *triangular inequality* **does not hold**
+
+>[!note] 
+>This mesure of *distance* is different from the normal *euclideian distance* : 
+>$$
+>d(\bar{p}||\bar{q}) = ||\bar{p} - \bar{q}||
+>$$
+
+### Mutual Information
+
+>[!summary] 
+>It quantifies the *amount* of information obtained about one random variable by observing the other random variable
+
+Let $X$ and $Y$ be two *discrete random variables* , the **mutual information** between $X$ and $Y$ is : 
+$$
+I(X;Y) = \sum_x \sum_y p(x,y) \log \frac{p(x,y)}{p(x)p(y)}
+$$
+Or reformulated using [Kullback-Leibler Divergence] :
+$$
+I(X;Y) = D\big(p(x,y) || p(x)p(y)\big)
+$$
+
+**Propieties** : 
+
+1.  $\begin{align}I(X;Y) & = H(X) - H(X|Y) \\ & = H(Y) - H(Y | X)\end{align}$
+
+Or in other words $I(X;Y)$ measures the *amount* of information that *travels* on a *channel*
+
+2. $I(X;Y) = I(Y;X)$
+3. $I(X;Y) \ge 0$ , with *equality* $\iff X$ and $Y$ are *independent*
+4. $H(X|Y) \leq H(X)$ , with *equality* $\iff X$ and $Y$ are *independent*
+5. $I(X;Y) = H(X) + H(Y) - H(X,Y)$
+6. $I(X;X) = H(X)$
+
+![[Entropy-mutual-information-relative-entropy-relation-diagram.svg]]
+### Sorce Coding ( Data Compression )
+
+A *code* $C$ for a random variable $X$ with range $\mathcal{X}$ and probability distribution $p(x)$ is a *mapping* : 
+$$
+C : \mathcal{X} \to \mathscr{D}^*
+$$
+Where $\mathscr{D}^*$ is the set of *strings* of symbols from a $D$-ary alphabet :
+$$
+\mathscr{D} = \{0,1,\dots,D-1\}
+$$
+
+$C(x)$ is the *codeword* associated to $x$ and $l(x)$ is it's *lenght*
