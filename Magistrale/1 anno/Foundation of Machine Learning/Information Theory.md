@@ -287,4 +287,86 @@ $C(x)$ is the *codeword* associated to $x$ and $l(x)$ is it's *lenght*
 
 #### Huffman Coding 
 
- 
+ 1. Take the two least probable symbols in the alphabet
+ 2. Combine the two into another one 
+ 3. Repeat ( $1-2$ ) until there are only two symbols 
+ 4. Append two different codes 
+ 5. Take the one obtained by the merging and backpropagate its code to the previous level
+ 6. Repeat ( $4-5$ ) until you arrive at the original distribution 
+
+#todo 
+
+>[!example] 
+>![[Pasted image 20251021124438.png]]
+
+>[!important] Theorem 1
+>*Huffman codes* are optimal and *instantaneous* 
+
+>[!important] Theorem 2
+>If $C_{Huffman}$ is a *Huffman* $D-$ary code for a random variable $X$, then : 
+>$$
+>H_D(X) \leq L(C_{Huffman}) < H_D(X) +1
+>$$
+>
+>>[!note] 
+>>If the distribution is *not* $D-$adic than $H_D(X) < L(C_{Huffman})$
+
+>[!example] Example 1
+>
+>Given $X$ the binary random variable with range $\mathscr{X} = \{x_1,x_2\}$ and $p(x_1) = 2/3$ and $p(x_2) = 1/3$
+>
+>The *Huffman* code is : 
+>+ $x_1 \to 0$
+>+ $x_2 \to 1$
+>
+>$L=1$ , we can't do better than this if we are talking about *lossless* compression
+
+>[!example] Example 2 
+>
+>Consider blocks of two consecutive *symbols* of the previous random varibale , assuming that they are produced *independently* from one another :
+>
+>$$
+>p(x_1,x_1) = \frac{2}{3} \cdot \frac{2}{3} = \frac{4}{9} \quad
+>p(x_1,x_2) = \frac{2}{3} \cdot \frac{1}{3} = \frac{2}{9} \quad
+>p(x_2,x_1) = \frac{1}{3} \cdot \frac{2}{3} = \frac{2}{9} \quad
+>p(x_2,x_2) = \frac{1}{3} \cdot \frac{1}{3} = \frac{1}{9}
+>$$
+>
+>A possible *Huffman* encoding is : 
+>$$x_1x_1 \to 0, \quad x_1x_2 \to 10, \quad x_2x_1 \to 110, \quad x_2x_2 \to 110$$
+>
+>In this case we have $L = \frac{4}{9} \cdot 1 + \frac{2}{9} \cdot 2 +\frac{2}{9} \cdot 3 + \frac{1}{9} \cdot 3 = \frac{17}{9}$ , which per symbol becomes : $L = \frac{17}{18} = 0.944$
+
+>[!note] 
+>By increasing the size of the input blocks we get better performing codes , this will converge towards : 
+>$$
+>H(X) = 0.91830\dots
+>$$ 
+
+### Channel
+
+Let's define the *channel* $\mathscr{C}$ as a *triplet* : 
+$$
+\mathscr{C} = (\mathscr{X}, p(y|x), \mathscr{Y})
+$$
+Where : 
++ $\mathscr{X}$ : input alphabet
++ $p(y|x)$ : it's the probability with which a code $x$ gets trandformed to $y$ ( *forward probability distribution* )
++ $\mathscr{Y}$ : output alphabet
+
+#### Channel Capacity
+
+We define the *capacity* of a *channel* $\mathscr{C}$ as :
+$$
+C = \max_{p(x)} I(X;Y)
+$$
+
+Or the maximum *mutual information*
+
+>[!note] Property 
+>$$
+>O \leq C \leq \min\{\log|\mathscr{X}|, \log|\mathscr{Y}|\}
+>$$
+>
+>Where $C =0$ when $X$ and $Y$ are *independent*
+
