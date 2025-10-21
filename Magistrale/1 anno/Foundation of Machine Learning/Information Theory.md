@@ -361,12 +361,28 @@ $$
 C = \max_{p(x)} I(X;Y)
 $$
 
-Or the maximum *mutual information*
+Or the maximum *mutual information* over all the possible *sources*
 
 >[!note] Property 
 >$$
 >O \leq C \leq \min\{\log|\mathscr{X}|, \log|\mathscr{Y}|\}
 >$$
 >
->Where $C =0$ when $X$ and $Y$ are *independent*
+>Where $C =0$ when $X$ and $Y$ are *independent* ( the worst output is when the output is fully indiepent from the input )
+
+>[!example] Binary Symmetric Channel
+>
+>Is a channel built in the following way :
+>![[Pasted image 20251021133920.png]]
+>
+>This can be written as a matrix :
+>$$
+>\begin{pmatrix}
+>1-p & p \\ p & 1-p
+>\end{pmatrix}
+>$$
+>
+>Where the *rows* are the input and the *columns* the output
+
+
 
