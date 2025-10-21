@@ -75,7 +75,7 @@ $$
 >[!example] 
 >Let $X$ be the toss of an *unbiased* coin then : 
 >$$
->H(X) = \frac{1}{2} \ln_2 2 + \frac{1}{2} \ln_2 2 = 1 
+>H(X) = \frac{1}{2} \log_2 2 + \frac{1}{2} \log_2 2 = 1 
 >$$ 
 >
 >So the average amount of information given by an event that has 2 *equally* likely outcomes is $1$ bit
