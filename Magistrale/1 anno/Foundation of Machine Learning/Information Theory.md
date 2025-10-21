@@ -192,13 +192,99 @@ Or in other words $I(X;Y)$ measures the *amount* of information that *travels* o
 ![[Entropy-mutual-information-relative-entropy-relation-diagram.svg]]
 ### Sorce Coding ( Data Compression )
 
-A *code* $C$ for a random variable $X$ with range $\mathcal{X}$ and probability distribution $p(x)$ is a *mapping* : 
-$$
-C : \mathcal{X} \to \mathscr{D}^*
-$$
-Where $\mathscr{D}^*$ is the set of *strings* of symbols from a $D$-ary alphabet :
-$$
-\mathscr{D} = \{0,1,\dots,D-1\}
-$$
+>[!important] Code Definition
+>A ***code*** $C$ for a random variable $X$ with range $\mathcal{X}$ and probability distribution $p(x)$ is a *mapping* : 
+>$$
+>C : \mathcal{X} \to \mathscr{D}^*
+>$$
+>Where $\mathscr{D}^*$ is the set of *strings* of symbols from a $D$-ary alphabet :
+>$$
+>\mathscr{D} = \{0,1,\dots,D-1\}
+>$$
 
 $C(x)$ is the *codeword* associated to $x$ and $l(x)$ is it's *lenght*
+
+>[!important] Code *Lenght* Definition
+>The **lenght** $L(C)$ of a *code* $C$ is defined as : 
+>$$
+>L(C) = \sum_{x \in \mathscr{X}} p(x)l(x)
+>$$
+
+>[!example] Example 1
+>Let $X$ be a random variable with the following distribution and code assignment : 
+>
+>$$
+>\begin{align}
+>\Pr(X = 1) : \frac{1}{2}, &\quad \text{ code } C(1) = 0 \\
+>\Pr(X = 2) : \frac{1}{4}, &\quad \text{ code } C(2) = 10 \\
+>\Pr(X = 3) : \frac{1}{8}, &\quad \text{ code } C(3) = 110 \\
+>\Pr(X = 4) : \frac{1}{8}, &\quad \text{ code } C(4) = 111 \\
+>\end{align}
+>$$
+>
+>Then : 
+>
+>$$
+>L(C) = \frac{1}{2} \cdot 1 + \frac{1}{4} \cdot 2 + \frac{1}{8} \cdot 3 + \frac{1}{8} \cdot 3 = 1.75
+>$$
+>
+>>[!note] 
+>>$H(X) = 1.75 = L(C)$
+>
+
+>[!example] Example 2
+>Let $X$ be a random variable with the following distribution and code assignment : 
+>
+>$$
+>\begin{align}
+>\Pr(X = 1) : \frac{1}{3}, &\quad \text{ code } C(1) = 0 \\
+>\Pr(X = 2) : \frac{1}{3}, &\quad \text{ code } C(2) = 10 \\
+>\Pr(X = 3) : \frac{1}{3}, &\quad \text{ code } C(3) = 11 \\
+>\end{align}
+>$$
+>
+>Then : 
+>
+>$$
+>L(C) = \frac{1}{3} \cdot 1 + \frac{1}{3} \cdot 2 + \frac{1}{3} \cdot 2 = 1.66
+>$$
+>
+>>[!note] 
+>>$H(X) = \log_2 3 = 1.58 \neq L(C)$
+>
+
+
+**Classes** of codes : 
+1. *Nonsingular* : 
+	All codewords are distinct 
+2. *Uniquely decodable* :
+	Any encoded string must have a unique encoding
+3. *Instantaneous* :
+	No codeword is a *prefix* of any other codeword
+
+>[!example] Example
+
+| $X$ | Singular | Nonsingular, but not Uniquely Decodable | Uniquely Decodable but not Instantaneous | Instantaneous |
+| --- | :------: | :-------------------------------------: | :--------------------------------------: | :-----------: |
+| 1   |    0     |                    0                    |                    10                    |       0       |
+| 2   |    0     |                   010                   |                    00                    |      10       |
+| 3   |    0     |                   01                    |                    11                    |      110      |
+| 4   |    0     |                   10                    |                   110                    |      111      |
+
+>[!example] 
+>![[Pasted image 20251021122716.png]]
+
+>[!important] Theorem
+>Let $C$ be an *instantaneous* $D-$ary *code* for a *random variable* $X$ with *range* $\mathscr{X}$ and probability distribution $p(x)$. Then :
+>$$
+>L(C) \geq  H_D(X)
+>$$
+>
+>With *equality* $\iff p(x) = D^{-l(x)}$ for all $x \in \mathscr{X}$ 
+
+>[!important] Definition 
+>A *probability distribution* is called **D-adic** if each of the probabilities is equal to $D^{-n}$ for some $n$ 
+
+#### Huffman Coding 
+
+ 
