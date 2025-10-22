@@ -595,6 +595,7 @@ $$
 Where $C$ must be a *convex set* 
 
 >[!example] 
+>![[Pasted image 20251022165435.png]]
 
 $f$ can also be said **strictly convex** if the following *property* holds : 
 $$

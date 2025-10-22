@@ -30,3 +30,9 @@ We have two types of ciphers :
 	+ Some are : [[Vigenere Cipher]] , [[Hill Cipher]]
 
 Other types of *ciphers* are the [[Block ciphers]]
+# Perfect Cipher
+#todo 
+# Modern Ciphers
+
+## AES 
+
