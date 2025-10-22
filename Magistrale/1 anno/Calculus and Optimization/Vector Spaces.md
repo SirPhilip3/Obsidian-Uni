@@ -536,3 +536,67 @@ Geometrical rapresentation for $m=1$ :
 >
 >If we impose that $x \neq x^*$ and $f(x^*) > f(x)$ to the definition than we call $x^*$ a point of *unique global maximum*
 
+## Convexity 
+
+### Convexity for Sets
+
+>[!important] Definition
+>Give the *nonempty* set $C \subseteq \mathbb{R}^n$ we say that $C$ is a **convex set** if : 
+>$$
+>\forall \lambda x + (1-\lambda)y \in C, \quad \forall x,y \in C ,  \forall \lambda \in [0,1] 
+>$$
+
+>[!note] 
+>The point $\lambda x + (1-\lambda)y$ when $\lambda \in [0,1]$ is any point in the closed segment joining $x$ and $y$
+>
+
+>[!example] 
+>
+>![[convexSet.excalidraw.png]]
+>%%[[convexSet.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+Some *convex* sets are : 
++ $\mathbb{R}^n$
++ $\mathbb{R}$
++ *Singleton* ( set composed of only 1 element )
++ $\emptyset$
+>[!note] Empty set ( $\emptyset$ )
+>
+>We denote the *empty set* as a *convex set* for *convention* ( in fact we could not apply the definition of convex set since there are no point $x$ or $y$ )
++ Any *polyhadron*
+#### Intersection between Sets
+
+>[!important] Definition
+>We say that given the *convex sets* $C_1,\dots,C_m$ with $m\geq 1$ than the *intersection* $C = C_1 \cap \dots \cap C_m$ is a *convex set*
+
+**Proof** :
+
+If $C$ is *empty* or contains only one point ( *singleton* ) than the proof is self evident
+
+Instead where $C$ is composed of $2$ or more points than we can give the following proof : 
+
+Given than $x, y\in C$ we can say that , by definition of intersection , also $x,y \in C_i, i = 1, \dots,m$ 
+Than we can also say that $\lambda x+ (1-\lambda) y \in C_i, \forall \lambda \in [0,1]$ , since this belongs to all $C_i$ it must also belong to $C$ by definition of *intersection*
+
+>[!example] 
+>
+>![[Inersection.excalidraw.png]]
+>%%[[Inersection.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!example] 
+>Given a set of contraints on a problem we can rapresent them as theyr intersection and retain theyr convexity
+
+### Convexity for Functions
+
+Given the function $f : \mathbb{R}^n \to \mathbb{R}$ than it has the following *property* :
+$$
+f[\lambda x + (1-\lambda)y] \leq \lambda f(x) + (1-\lambda)f(y) , \quad \forall x,y \in C, \forall \lambda \in [0,1] 
+$$
+Where $C$ must be a *convex set* 
+
+>[!example] 
+
+$f$ can also be said **strictly convex** if the following *property* holds : 
+$$
+f[\lambda x + (1-\lambda)y] < \lambda f(x) + (1-\lambda)f(y) , \quad \forall x,y \in C, \forall \lambda \in ]0,1[ 
+$$
