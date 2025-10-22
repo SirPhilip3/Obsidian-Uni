@@ -383,8 +383,16 @@ Or the maximum *mutual information* over all the possible *sources*
 >$$
 >
 >Where the *rows* are the input and the *columns* the output
+>
+>The *Capacity* can be written as : 
+>$$
+>C = 1- H(p)
+>$$
+>
+>![[Pasted image 20251022124409.png]]
 
+#### Improving Channel Reliability
 
+We introduce the *repetition code* , this will lower the probability that an input , do to the *noise* , get's interpreted wrongly as output
 
-
-
+We repeat the provided information $n$ times before putting it throgh the *channel* 
