@@ -396,3 +396,41 @@ Or the maximum *mutual information* over all the possible *sources*
 We introduce the *repetition code* , this will lower the probability that an input , do to the *noise* , get's interpreted wrongly as output
 
 We repeat the provided information $n$ times before putting it throgh the *channel* 
+At the other end we decide which was the original message by *majority vote* 
+
+>[!example] 
+>![[RepInf.excalidraw.png]]
+>%%[[RepInf.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>
+>In this case the *majority* voting works as follows :
+>```
+>k = number of 1s recieved in the message
+>if k>= 2 then
+>	decode the message as "1"
+>else 
+>	decode the message as "0"
+>```
+>
+>This reduces the error from the original $p=10^2$
+>
+>To $3 \cdot 10^-4$ but also the transmission rate is reduced to $1/3$ of the original
+>
+
+>[!note] 
+>*Majority* voting works only for messages of *odd* lenght
+>
+
+>[!note] 
+>By increasing the number of repetition we can see that $$P_e \to 0$$ But also at the same time the transmission rate $R$ will approach $0$ 
+
+##### The Channel Coding Theorem
+
+>[!important] Definition
+>
+>Let $\mathscr{C}$ be a *channel* with capacity $C$ 
+>
+>Then if $R < C$ there exists a sequence of codes with transmission rate $R$ such that the *probability* of error approaches zero ( $P_e \to 0$ )
+>
+>>[!note] 
+>>If a sequence of codes transmitting at rate $R$ has probability of error approaching zero ($P_e \to 0$) then $R \leq C$ 
+>
