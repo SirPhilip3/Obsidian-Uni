@@ -86,14 +86,47 @@ So a *perfect cipher* is one where there is some key that maps any message to an
 >>Or a necessary condition for a perfect cipher is that the number of *keys* is at least the same as the number of *plaintexts*
 
 >[!check] Proof
->#todo
+>
+>Let's assume that the *cipher* is perfect than $p_P(x|y) =p_P(x)$ , that implies $p_C(y|x) = p_C(y)$ ( from the [[Legge di Bayes|Bayers Theroem]] ) 
+>
+>Assuming that $p_C(y) > 0$ than if we fix $x$ we obtain that for each $y$  $p_c(y|x) = p_c(y) >0$ 
+>
 
 >[!important] Theorem 2
 >Let $|P| = |C| = |K|$. A *cipher* is perfect $\iff$ : 
 >1. $P_K(k) = 1/|K|,  \quad \forall k \in K$
 >2. For each $x \in P$ and $y \in C$, there exists exactly one key $k$ such that $E_K(x) = y$  
+>>[!note] 
+>>Or for a *cipher* to be *perfect* ( given that the size of $P,K,C$ is the same ) keys should be picked at random for any *encryption* and each *plaintext* is mapped into each *ciphertext* throgh a unique key   
 
+>[!check] Proof
+>#todo
+
+## One Time Pad 
+
+The *one time pad* is a *pefect cipher* , its a *binary* variant of the [[Vigenere Cipher]] 
+
+Where we have that : 
++ $P = C = K = \mathbb{Z}_{2^d}$
++ $P_K(k) = 1/|K| = 1/ 2^d \quad \forall k \in K$
+
+$E_{k1, \dots,k_d}(x_1,\dots x_d) =  (x_1 \text{ xor } k_1, \dots, x_d \text{ xor } k_d)$
+
+>[!check] Proof
+>Using *Theorem 2* we see that the *hypotesis* of $|P| = |C| = |K|$ holds since $|K| = d, |P| = d, |C| = d$ 
+>Condition $1$ also hods by definition of the *one time pad*
+>
+>Condition $2$ : given $x \in P$ and $y \in C$ we than have that the *unique* key giving $y$ from $x$ can be computed as : $x \text{ xor } y$ 
+>
+>We can than conculated that the *cipher* is *perfect*
+
+>[!note] 
+>In general *perfect ciphers* require as many keys as the possible *plaintext* and *keys* must be picked at random for each *encryption*
 # Modern Ciphers
+
+## Cipher Composition
+
+
 
 ## AES 
 
