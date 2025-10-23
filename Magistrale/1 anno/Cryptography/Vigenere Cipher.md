@@ -110,7 +110,7 @@ print m
 >[!note] 
 >We are checking the *IC* on the *subciphers* composed of letter at distance $m$ from each other
 
-#### key recovery
+#### Key recovery
 
 1. Devide the text in blocks of lenght $m$ 
 2. Build new cripthograms such that one will have only the first letters of each group , the second letters from each group and so on 

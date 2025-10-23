@@ -31,6 +31,7 @@ We have two types of ciphers :
 
 Other types of *ciphers* are the [[Block ciphers]]
 # Perfect Cipher
+
 #todo 
 # Modern Ciphers
 
