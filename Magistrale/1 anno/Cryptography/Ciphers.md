@@ -178,3 +178,48 @@ In *modern ciphers* at least one operation must be **non** idempotent
 
 ## AES 
 
+*Advanced Encryption Standard* is a cipher that is composed of simple , linear , operation and one *non-linear component* in order to avoid known-plaintexts attacks
+
+The composed operations give a *non-idempotent cipher* that is iterated for a fized number of *rounds*
+
+**AES** works on *Galois Field* with $2^8$ elements ( $GF(2^8)$ ) 
+
+It's the set of all $8$-bit digits with *sum* and *multiplication* performed the bits as binary coefficents of polynomials 
+
+>[!example] 
+>`11010011` can be seen as : $x^7+x^6+x^4 + x +1$ 
+>`00111010` can be seen as : $x^5+x^4+x^3+x$ 
+### Sum
+
+It behaves like binary *xor*
+
+>[!example] 
+>$(x^7+x^6+x^4+x+1) + (x^5+x^4+x^3+x) =x^7 +x^6 +x^5+x^3+1$
+>
+>Rapresenting it as bits : 
+>$$\begin{align}& 11010011 & \oplus \\ & 00111010 & \\ = & 11101001 & \end{align}$$
+### Multiplication
+
+The multiplication is done normally summing each exponent modulus the *irriducible* polynomial ( it can't be written as the *product* of two other polynomials ) : $x^8+x^4+x^3+x+1$ 
+
+>[!example] 
+>$$\begin{aligned}
+(x^7+x^6+x^4+x+1)(x^5+x^4+x^3+x) 
+&= x^{12}+x^{11}+x^{10}+x^8+x^{11}+x^{10}+x^9+x^7 \\
+&\quad +x^9+x^8+x^7+x^5+x^6+x^5+x^4+x^2+x^5+x^4+x^3+x \\
+&= x^{12}+x^6+x^5+x^3+x^2+x
+\end{aligned}$$
+>>[!note] 
+>>The sum is done as before
+>
+>Now we need to *devide* by the *irreducible* polynomial and return the *remainder*
+#### Division
+
+The division is performed on the basis of the *xor* operation with the *irreducible* polynomial where the *remainder* will be the result
+
+Shift the *irreducible* polynomial to the left in order to align it with the original oplynomial than execute the *xor* operation , repeat until the resulting polynomial has maximum exponent $\le 8$
+
+$$
+\begin{array}{ccccccccccccc}1&0&0&0&0&0&1&1&0&1&1&1&0 \\ 1&0&0&0&1&1&0&1&1 \\\hline & & & &1&1&1&0&1&1&1&1&0\\ & & & &1&0&0&0&1&1&0&1&1 \\\hline & & & & &1&1&0&0&0&1&0&1 \end{array}
+$$
+### 
