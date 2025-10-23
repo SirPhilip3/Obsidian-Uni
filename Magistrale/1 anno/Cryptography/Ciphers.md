@@ -89,8 +89,14 @@ So a *perfect cipher* is one where there is some key that maps any message to an
 >
 >Let's assume that the *cipher* is perfect than $p_P(x|y) =p_P(x)$ , that implies $p_C(y|x) = p_C(y)$ ( from the [[Legge di Bayes|Bayers Theroem]] ) 
 >
->Assuming that $p_C(y) > 0$ than if we fix $x$ we obtain that for each $y$  $p_c(y|x) = p_c(y) >0$ 
+>Assuming that $p_C(y) > 0$ than if we fix $x$ we obtain that for each $y$  $p_c(y|x) = p_c(y) >0$ meaning that there exists *at least one key* $k$ such that $E_k(x)=y$
 >
+>All of this keys are different since $E_k$ is a function and given a unique $x$ this can't be mappet to two different *chipertexts* by the same key
+>
+>Thus : $|K| \geq |C|$
+>
+>Since any cipher injects the set of *plaintexts* into the set of *ciphertext* we also have $|C| \geq |P| \implies |K| \geq |C| \geq |P| \implies |K| \geq |P|$ 
+
 
 >[!important] Theorem 2
 >Let $|P| = |C| = |K|$. A *cipher* is perfect $\iff$ : 
@@ -126,7 +132,49 @@ $E_{k1, \dots,k_d}(x_1,\dots x_d) =  (x_1 \text{ xor } k_1, \dots, x_d \text{ xo
 
 ## Cipher Composition
 
+>[!note] 
+>*Combining* simple *ciphers* does not always improve security
 
+>[!example] 
+>Consider the combination of $2$ *shift* chipers :
+>
+>$$
+>\begin{matrix} X & \rightarrow & \fbox{Shift} & \rightarrow & \fbox{Shift} & \rightarrow & Y\\ & & \uparrow & & \uparrow \\ & & k1 & & k2 \end{matrix}
+>$$
+>
+>This equates to :
+>$$
+>\begin{matrix} X & \rightarrow &\fbox{Shift}& \rightarrow & Y\\ & & \uparrow \\ & & \begin{matrix}{k1+k2}\\{\mod 26}\end{matrix} \end{matrix}
+>$$
+
+>[!important] Definition
+>Consider two *ciphers* : $S^1 = (P^1,C^1,K_1,E^1,D^1)$ and $S^2 = (P^2,C^2,K_2,E^2,D^2)$ 
+>
+>We can say , whithout lusing generalization that $P^1 = C^1 = P^2 = C^2$
+>
+>We can now than define the composition as : 
+>$S^1 \times S^2 = (P,C,K_1 \times K_2, E,D)$
+>
+>Where :
+>+ $E_{k_1, k_2}(x) = E^2_{k_2}(E^1_{k_1}(x))$
+>+ $D_{k_1, k_2}(y) = D^1_{k_1}(E^2_{k_2}(y))$
+
+## Idempotent ciphers
+
+>[!important] Definition
+>A *cipher* is said to be *idempotent* when $S \times S = S$ 
+
+In *modern ciphers* at least one operation must be **non** idempotent 
+
+>[!important] Definition
+>
+>If we have two *idempotent* ciphers that **commute** ( $S^1 \times S^2 = S^2 \times S^1$ ) than their *composition* is also idempotent
+>
+>>[!check] Proof
+>>
+>>$$
+>>\begin{array}{ll}(S^1 \times S^2) \times (S^1 \times S^2)\\ = S^1 \times (S^2 \times S^1) \times S^2 &\mbox{ associative property}\\ = S^1 \times (S^1 \times S^2) \times S^2 &\mbox{ commutative property}\\= (S^1 \times S^1) \times (S^2 \times S^2) &\mbox{ associative property}\\ = S^1 \times S^2 &\mbox{ idempotence of the initial ciphers} \end{array}
+>>$$
 
 ## AES 
 
