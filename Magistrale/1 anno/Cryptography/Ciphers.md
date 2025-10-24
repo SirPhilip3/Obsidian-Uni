@@ -268,10 +268,36 @@ Each *round* is composed of the following operations :
 This operations is simply a *bitwise* *xor* with the *key*
 
 >[!example] 
->![[Pasted image 20251023153605.png]]
-
+>
+>![[AES-AddRoundKey.svg]]
 #### SubBytes
+
+It's a fixed *non-linear* **substitution** called *S-box* this get's applied to *each byte* of the block 
+
+Given the byte in exadecimal notation than the *first digit* is used to select the *row* and the *second* to select the *column* in the **fixed** reference matrix
+
+>[!example] 
+>`0x25` would be the third row and the sixth column giving `0x3f`
+
+![[AES-SubBytes.svg]]
+
+This is the *S-box* :
+
+![[512253718012_gf3.jpg]]
 
 #### ShiftRows
 
+The *rows* are shifted to the *left* by : $0,1,2,3$ respectively
+
+![[AES-ShiftRows.svg]]
+
 #### MixColumns
+
+Each *column* gets *xored* with the **fixed** matrix $c(x)$
+
+![[AES-MixColumns.svg]]
+
+Where $c(x)$ is the following *matrix* : 
+$$
+\begin{bmatrix}2&3&1&1\\1&2&3&1\\1&1&2&3\\3&1&1&2\end{bmatrix}
+$$
