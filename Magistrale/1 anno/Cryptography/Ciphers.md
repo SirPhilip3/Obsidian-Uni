@@ -178,7 +178,7 @@ In *modern ciphers* at least one operation must be **non** idempotent
 
 ## AES 
 
-*Advanced Encryption Standard* is a cipher that is composed of simple , linear , operation and one *non-linear component* in order to avoid known-plaintexts attacks
+*Advanced Encryption Standard* is a *symmetric* cipher that is composed of simple , linear , operation and one *non-linear component* in order to avoid known-plaintexts attacks
 
 The composed operations give a *non-idempotent cipher* that is iterated for a fized number of *rounds*
 
@@ -222,4 +222,56 @@ Shift the *irreducible* polynomial to the left in order to align it with the ori
 $$
 \begin{array}{ccccccccccccc}1&0&0&0&0&0&1&1&0&1&1&1&0 \\ 1&0&0&0&1&1&0&1&1 \\\hline & & & &1&1&1&0&1&1&1&1&0\\ & & & &1&0&0&0&1&1&0&1&1 \\\hline & & & & &1&1&0&0&0&1&0&1 \end{array}
 $$
-### 
+#### Multiplication optimization
+
+The following algorithm is an optimization for the *multiplication* operation in $GF(8)$ : 
+
+1. Given the two polynomials to multiply $a$ and $b$ ( written in binary form )
+2. Set $p$ to $0$
+3. Check the least significant bit of $b$ 
+4. If it's a $1$ 
+	1. Change $p$ to the result of $p \oplus a$ 
+	2. Append a $0$ to $a$ in it's least significant position
+	3. Remove the $1$ from $b$
+5. If it's a $0$ 
+	1. Append a $0$ to $a$ in it's least significant position
+	2. Remove the $1$ from $b$
+	3. Don't change $p$ 
+6. Repeat until $b$ is empty and *return* $p$
+
+>[!example] 
+>#todo
+
+### AES Schema
+
+**AES** operates on $4\times 4$ matrix of bytes and given the plaintext subdivided into *bytes* these get's distribuite in the following way : 
+$$
+\begin{bmatrix}b_1 & b_5 & b_9 & b_{13} \\ b2 & b_6 & b_{10} & b_{14} \\ b_3 & b_7 & b_{11} & b_{15}\\ b_4 & b_8 & b_{12} & b_{16}\end{bmatrix}
+$$
+
+*AES* can work with the following *key* and *round* lenght : 
+
+| Key lenght | Rounds |
+| ---------- | ------ |
+| 128 bit    | 10     |
+| 192 bit    | 12     |
+| 256 bit    | 14     |
+
+Each *round* is composed of the following operations : 
++ bitwise *xor*
++ fixed *non-linear* substitution
++ *shifting* of matrix rows
++ matrix column multiplications
+
+#### AddRoundKey
+
+This operations is simply a *bitwise* *xor* with the *key*
+
+>[!example] 
+>![[Pasted image 20251023153605.png]]
+
+#### SubBytes
+
+#### ShiftRows
+
+#### MixColumns
