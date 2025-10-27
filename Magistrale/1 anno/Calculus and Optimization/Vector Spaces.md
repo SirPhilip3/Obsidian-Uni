@@ -692,5 +692,32 @@ We can derive the following *theorems*
 
 >[!important] Theorem 1
 >
->Suppose we want $\min f(x)$ subject to $x \in C$
+>Suppose we want $\min f(x)$ ( $\mathcal{P}$ )
+>$f : \mathbb{R}^n \to \mathbb{R}, C \subseteq \mathbb{R}^n$ is a [[Vector Spaces#Convexity for Sets|Convex Set]]  
 >
+>$f$ **convex** on $C$ 
+>
+>If $x^* \in C$ is a [[Vector Spaces#Local Minimum|Local Minimum]] of $f(x) \Rightarrow x^*$ is a [[Vector Spaces#Global Minimum|Global Minimum]] 
+
+>[!important] Theorem 2
+>$f : \mathbb{R}^n \to \mathbb{R}, C \subseteq \mathbb{R}^n$ is a [[Vector Spaces#Convexity for Sets|Convex Set]]  
+>
+>$f$ **convex** on $C$ 
+>
+>Then the set of solutions of $\mathcal{P}$ is **Convex**
+
+## Level Set
+
+Given the function $f(x)$ with $f : \mathbb{R}^n \to \mathbb{R}$ , let $f(x)$ be **convex** on $\mathbb{R}^n$
+
+Then the **level set** ( possibly empty ) $\mathcal{L}_\gamma$ is *defined* as :
+$$
+\mathcal{L}_\gamma = \{x \in \mathbb{R}^n : f(x) \leq \gamma\}
+$$
+is **convex** $\forall \gamma \in \mathbb{R}$ 
+
+>[!example]
+>#todo
+>
+
+ 
