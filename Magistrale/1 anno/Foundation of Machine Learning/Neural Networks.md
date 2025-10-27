@@ -39,5 +39,12 @@ Some typical network topologies are :
 ## Problem Types
 
 We can separate *inference* problems in two different types : 
-+ **Classification Problems**
-+ ****
++ **Classification**
++ **Regression**
+
+#todo 
+### Digit Recognition
+
+### Face Detection 
+
+## Features Types 
