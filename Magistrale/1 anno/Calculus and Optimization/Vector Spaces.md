@@ -643,3 +643,54 @@ $$
 >
 >![[MinMaxEquivalence_ManimCE_v0.19.0.png]]
 
+## Penalty Methods
+
+Given the following *minimization problem* : 
+$$
+\min f(x)
+$$
+Where $f(x)$ is subject to the following **contraints** : 
+$$
+\mathcal{X} = \begin{cases}
+g_1(x) \le 0 \approx A_1 \\
+g_2(x) \le 0 \approx A_2 \\
+\dots \\
+g_n(x) \le 0 \approx A_n 
+\end{cases}
+$$
+Where $A_1, \dots, A_n$ are *subset* of the *vector space* identified by each contraint 
+Since we need to fullfill all the contraints at the same time : $$\mathcal{X} = A_1 \cap A_2 \cap \dots \cap A_n$$  
+>[!note] 
+>For the [[Vector Spaces#Intersection between Sets|Intersection Between Convex Set]] we can say that $\mathcal{X}$ will be *convex*
+
+We can rewrite the problem in the following *unconstrained* form : 
+$$\min = f(x) + \sum^{n}_{i=1} \rho_i \max\{0,g_i(x)\}, \quad \rho_i \ge 0$$
+#todo clarification on formula
+
+We can derive two *lemmas* from the previous formula : 
+
+Given that $g_1(x),\dots,g_n(x), \quad g_i : \mathbb{R}^n \to \mathbb{R}, i = 1, \dots , n$ are [[Vector Spaces#Convexity for Functions|Convex Functions]] on $\mathbb{R}^n$ and $\rho_i \ge 0, i=1,\dots,n$ 
+
+>[!important] Lemma 1
+>$$
+>\sum^{n}_{i=1} \rho_i g_i(x)
+>$$
+>
+>Is **convex** on $\mathbb{R}^n$ 
+>>[!note] 
+>>This equates to the [[Vector Spaces#Cone Combination|Cone Combiantion]]
+>
+>
+
+>[!important] Lemma 2
+>$$
+>\sum^{n}_{i=1} \max[0,g_i(x)]
+>$$
+>Is **convex** on $\mathbb{R}^n$
+
+We can derive the following *theorems*
+
+>[!important] Theorem 1
+>
+>Suppose we want $\min f(x)$ subject to $x \in C$
+>
