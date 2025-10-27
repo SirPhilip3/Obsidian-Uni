@@ -485,6 +485,11 @@ Geometrical rapresentation for $m=1$ :
 
 >[!note] *Strict local minimum*
 >If we impose that $x \neq x^*$ and $f(x^*) < f(x)$ to the definition than $x^*$ becomes a point of *strict local minimum* 
+
+In order to be a *local minimum* the following condition must be satisfied :
+$$
+f'(x) = 0
+$$
 ### Global Minimum
 
 >[!important] Definition
@@ -519,6 +524,11 @@ Geometrical rapresentation for $m=1$ :
 
 >[!note] *Strict local maximum*
 >If we impose that $x \neq x^*$ and $f(x^*) > f(x)$ to the definition than $x^*$ becomes a point of *strict local maximum* 
+
+In order to be a *local maximum* the following condition must be satisfied :
+$$
+f'(x) = 0
+$$
 ### Global Maximum
 
 >[!important] Definition
@@ -630,3 +640,6 @@ $$
 $$
 >[!example] 
 >So if $x^*$ is a global *mininum* for $f(x)$ than $x^*$ is a global *maximum* for $-f(x)$ 
+>
+>![[MinMaxEquivalence_ManimCE_v0.19.0.png]]
+
