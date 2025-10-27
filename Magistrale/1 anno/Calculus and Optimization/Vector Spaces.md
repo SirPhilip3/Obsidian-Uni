@@ -601,3 +601,32 @@ $f$ can also be said **strictly convex** if the following *property* holds :
 $$
 f[\lambda x + (1-\lambda)y] < \lambda f(x) + (1-\lambda)f(y) , \quad \forall x,y \in C, \forall \lambda \in ]0,1[ 
 $$
+
+### Concave Functions
+
+Give the function $f: \mathbb{R}^n \to \mathbb{R}$ and $f \in C^0(\mathbb{R}^n)$ than it has the following *property* : 
+$$
+f[\lambda x + (1-\lambda)y]\ge \lambda f(x) + (1-\lambda)f(x) \quad \forall x,y \in C, \forall\lambda \in [0,1]
+$$
+Where $C$ must be a *convex set*
+
+>[!example] 
+>![[Pasted image 20251027112448.png]]
+
+$f$ can also be said **strictly concave** if the following *property* holds : 
+$$
+f[\lambda x + (1-\lambda)y] > \lambda f(x) + (1-\lambda)f(y) , \quad \forall x,y \in C, \forall \lambda \in ]0,1[ 
+$$
+
+>[!caution] Linear and Affine functions
+>
+>*Linear* and *Affine* functions are by *definition* both **Convex** and **Concave** 
+
+## Min / Max equality
+
+Some solvers are able to solve only *maximality* problems but we can simply see that : 
+$$
+\min f(x) \equiv \max -f(x) ,\quad \forall x \in C
+$$
+>[!example] 
+>So if $x^*$ is a global *mininum* for $f(x)$ than $x^*$ is a global *maximum* for $-f(x)$ 
