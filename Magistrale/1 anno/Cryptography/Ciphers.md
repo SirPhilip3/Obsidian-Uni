@@ -204,7 +204,7 @@ The multiplication is done normally summing each exponent modulus the *irriducib
 
 >[!example] 
 >$$\begin{aligned}
-(x^7+x^6+x^4+x+1)(x^5+x^4+x^3+x) 
+(x^7+x^6+x^4+x+1)\cdot(x^5+x^4+x^3+x) 
 &= x^{12}+x^{11}+x^{10}+x^8+x^{11}+x^{10}+x^9+x^7 \\
 &\quad +x^9+x^8+x^7+x^5+x^6+x^5+x^4+x^2+x^5+x^4+x^3+x \\
 &= x^{12}+x^6+x^5+x^3+x^2+x
