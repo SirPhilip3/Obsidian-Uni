@@ -71,4 +71,7 @@ Let's consider the following vector :
 $$
 x = x_1e_1+ \dots + x_n e_n = \bar{x}_1 u_1 + \dots + \bar{x}_n u_n
 $$
-In order to change *basis* from $e_i$ to $u_i$ we need to find a *matrix* $C$ that lets us convert from $X =$
+In order to change *basis* from $e_i$ to $u_i$ we need to find a *matrix* $C$ that lets us pass from $X$ to $\bar X$ 
+
+Since $u_i$ can be expressed as a *linear combination* of the vectors $\{e_i\}$ we can write : 
+
