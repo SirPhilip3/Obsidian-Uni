@@ -153,7 +153,7 @@ The dimension of a vector space is given by the number of :
 >[!important] **Linearly Indipendent Vectors** 
 >A set of vectors that rapresents the whole vector space 
 >
->These are those *vectros* that satisfy the following criteria : 
+>These are those *vectors* that satisfy the following criteria : 
 >given $v_1, \dots , v_n \in V(K)$ and $\alpha_1, \dots, \alpha_n \in K$ than the *vectors* $\{v_1, \dots , v_n\}$ are *linearly indipendent* if : 
 >$$
 >\alpha_1 v_i + \dots + \alpha_n v_n = w \iff \alpha_1= \dots = \alpha_m = 0
