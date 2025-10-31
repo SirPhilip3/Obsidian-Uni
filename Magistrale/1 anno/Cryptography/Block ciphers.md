@@ -76,3 +76,4 @@ $D_{z_i}(y_i) = (y_i -z_i)\mod{26}$
 #### Attacks
 
 Since the whole *decryption* depends only on the first letter it is sufficient to bruteforce the first letter to break the cipher
+

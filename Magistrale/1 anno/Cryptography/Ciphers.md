@@ -242,7 +242,7 @@ The following algorithm is an optimization for the *multiplication* operation in
 >[!example] 
 >#todo
 
-### AES Schema
+### AES Encryption Schema
 
 **AES** operates on $4\times 4$ matrix of bytes and given the plaintext subdivided into *bytes* these get's distribuite in the following way : 
 $$
@@ -285,6 +285,10 @@ This is the *S-box* :
 
 ![[512253718012_gf3.jpg]]
 
+>[!note] 
+>This *S-box* has been obtained by taking for each *byte* its *mulitplicative inverse* in the finite field 
+>
+
 #### ShiftRows
 
 The *rows* are shifted to the *left* by : $0,1,2,3$ respectively
@@ -301,3 +305,12 @@ Where $c(x)$ is the following *matrix* :
 $$
 \begin{bmatrix}2&3&1&1\\1&2&3&1\\1&1&2&3\\3&1&1&2\end{bmatrix}
 $$
+
+#### Key Expansion
+
+#todo
+
+### AES Decryption Schema
+
+#todo 
+
