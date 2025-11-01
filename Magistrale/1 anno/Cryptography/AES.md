@@ -85,6 +85,9 @@ Each *round* is composed of the following operations :
 + *shifting* of matrix rows
 + matrix column multiplications
 
+The overall *schema* is the following with a $128$-bit key :
+
+![AES Encryption](https://binaryterms.com/wp-content/uploads/2020/05/AES-Encryption.jpg)
 #### AddRoundKey
 
 This operations is simply a *bitwise* *xor* with the *key*
@@ -108,7 +111,7 @@ This is the *S-box* :
 ![[512253718012_gf3.jpg]]
 
 >[!note] 
->This *S-box* has been obtained by taking for each *byte* its *mulitplicative inverse* in the finite field 
+>This *S-box* has been obtained by taking for each *byte* its *multiplicative inverse* in the finite field 
 >
 
 #### ShiftRows
@@ -130,9 +133,24 @@ $$
 
 #### Key Expansion
 
-#todo
+In [[AES#AddRoundKey|AddRoundKey]] the *key* used needs to be a different one for each *round* of the algorithm 
+
+We than need to expand the original *key* of $16$ bytes ($128$ bits) to a bigger array of size $4 \cdot (Nr + 1)$ where :
++ $Nr$ is the number of *rounds* 
 
 ### AES Decryption Schema
 
-#todo 
+The *decryption* is performed by applying the inverse operations :
++ **AddRoundKey** : is unchanged since *xor* is the inverse of itself
++ **InvShiftRows** : shift to the *right* inside that to the left 
++ **InvSubBytes** : uses the following *S-box* 
+![[Pasted image 20251101171744.png]]
++ **InvMixColumns** : uses a different matrix to which multiply each *column* 
+$$
+\begin{bmatrix}0e&0b&0d&09\\09&0e&0b&0d\\0d&09&0e&0b\\0b&0d&09&0e\end{bmatrix}
+$$
+
+>[!example] 
+>
+>![AES Decryption Algorithms](https://xilinx.github.io/Vitis_Libraries/security/2019.2/_images/original_decryption_flow.png)
 
