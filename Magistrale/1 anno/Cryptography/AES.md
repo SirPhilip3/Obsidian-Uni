@@ -154,3 +154,9 @@ $$
 >
 >![AES Decryption Algorithms](https://xilinx.github.io/Vitis_Libraries/security/2019.2/_images/original_decryption_flow.png)
 
+>[!note] 
+>The result does not change if we first apply the *byte-wise sobstitution* or we first *shift* the rows 
+>
+### Attacks 
+
+The best known attacks were found for *rounds* lower than $10$ 
