@@ -94,8 +94,15 @@ This mode mitigates the problems introduced by [[Block cipher modes#Output FeedB
 It use a *shift register* than is shifted to the *left* by the number of bits of the *previous* *ciphertext* , this get's than copied into the rightmost bits of the register 
 
 >[!example] Encryption
+>![[Pasted image 20251103113703.png]]
 
-$$
-\begin{array}{r@{}c@{~~~~~~~}cr@{}c@{~~~~~~~}c@{~~~~~}cr@{}cc} \multicolumn{3}{l}{\fbox{~~~~~~IV~~~~~~}} & \multicolumn{3}{l}{\stackrel{\longleftarrow}{\fbox{~~~~IV~~~~|y_1}}} &&\multicolumn{3}{l}{\stackrel{\longleftarrow}{\fbox{\ldots |y_{n-2}|y_{n-1}}}} \\&\downarrow&&&\downarrow&&&&\downarrow\\k\rightarrow&\fbox{E}&&k\rightarrow&\fbox{E}&\ldots&&k\rightarrow&\fbox{E}\\&\downarrow&&&\downarrow&&&&\downarrow\\&z_1&&&z_2&&&&z_n\\&\downarrow&&&\downarrow&&&&\downarrow\\x_1\rightarrow&\oplus &&x_2\rightarrow&\oplus&&&x_{n}\rightarrow&\oplus\\&\downarrow&&& \downarrow&&&&\downarrow\\& y_1 &&& y_2 & \ldots&&& y_n\end{array}
-$$
+The ***decryption*** simply works like for [[Block cipher modes#Output FeedBack mode (OFB)|OFB]] 
+
+
+| Pros                                                                                                                                                                                                                                                                                                                  | Cons                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| We have *higher* *integrity* in respect to [[Block cipher modes#Output FeedBack mode (OFB)\|OFB]] , when one *bit* of the *ciphertex* is modified the next $BSize / CSize$ *plaintexts* are corrupted (this number is equal to the number of left *shifts* necessary for a *ciphertext* to exit the *shift register*) | We can't parallelize any operations during the *encryption*                             |
+|                                                                                                                                                                                                                                                                                                                       | An error in the transmission of the data can be propagated to $BSize/CSize$ *plaintext* |
+
+
 
