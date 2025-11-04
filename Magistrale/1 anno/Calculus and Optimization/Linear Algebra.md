@@ -78,4 +78,3 @@ In order to change *basis* from $e_i$ to $u_i$ we need to find a *matrix* $C$ th
 
 Since $u_i$ can be expressed as a *linear combination* of the vectors $\{e_i\}$ we can write : 
 
-#todo 
