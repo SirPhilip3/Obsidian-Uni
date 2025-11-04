@@ -160,4 +160,21 @@ $$
 >[!note] For $\mathbb{R}^n$
 >$\lambda \in \mathbb{R}$ and $v \in \mathbb{R}^n - \{\emptyset\}$ 
 
-Than we call $(\lambda, v)$ an **eignepair** , where $\lambda$ is an *eigenvalue* and 
+Than we call $(\lambda, v)$ an **eignepair** , where $\lambda$ is an *eigenvalue* and $v$ is an *eigenvector*
+
+Let's now consider the *matrix* $A$ associated with the function $f(x)$ than we can write : 
+$$
+Av = \lambda v
+$$
+>[!example] 
+>#todo
+
+## Secular (Characteristic) Equation 
+
+$$
+\det(A) = 0
+$$
+## Special Cases
+
+For *diagonal* , *upper* and *lower* triangular matrices the **eigenvalues** are the values present in the *diagonal* 
+
