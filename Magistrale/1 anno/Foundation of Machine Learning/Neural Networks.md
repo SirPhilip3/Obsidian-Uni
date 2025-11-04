@@ -77,4 +77,77 @@ We can have two different types of *features* :
 + *Symbolic* : 
 	For example the level of redness of an apple 
 
-In order to rapresent an object in high dimensional space we need to l
+In order to rapresent an object in high dimensional space we need to be able to rapresent it as a *point* so we need to transform the *symbolic* variables into *numerical* ones
+
+One way to do this is *one hot encoding* :
+	Given a *feature* $f$ with $3$ *symbolic* possible values than we create $3$ columns than rapresent the presence of that *value* in the object at hand
+
+>[!example] 
+
+| Symbolic feature | ohe_1 | ohe_2 | ohe_3 |
+| ---------------- | ----- | ----- | ----- |
+| 1                | 1     | 0     | 0     |
+| 2                | 0     | 1     | 0     |
+| 3                | 0     | 0     | 1     |
+
+## Smoothness Assumption
+
+>[!important] 
+>Two objects rapresented by $2$ points in the *hyperspace* can be considered to be in the same *class* if they are sufficently *close* to each other
+# Neural Networks for Classification
+
+## Thresholds
+
+We can remove the *bias* ( or *threshold* ) as a parameter in the *activation function* by adding an additional input that is *permanently clamped* to $-1$ or $+1$ 
+
+The *net input* becomes than :
+$$
+\begin{align}
+& = \sum_{i=1}^n w_i x_i - T \\
+& = \sum_{i=1}^n w_i x_i - w_0 \cdot (-1) \\
+& = \sum_{i=1}^n w_i x_i + w_0 \cdot 1 \\
+& = \sum^{n}_{i=0} w_i x_i, \quad \text{where } x_0 = -1
+\end{align}
+$$
+
+>[!note] 
+>If we expand the formula with $n=2$ we get : 
+>$$
+>w_1 x_1 + w_2 x_2 + w_0
+>$$
+>
+>Where the *weights* create all the possible lineas separating 2 region of space $<0$ and $>0$  ( 2 *classes* )
+## Perceptron
+
+The *perceptron* is the simplest form of *neural network* consisting of *one* layer of *M&P* neurons connected in a *feedforward* way 
+### Perceptron Learning Algorithm
+
+Parameter and variables : 
++ $x(n)$ : the *inputs*
++ $w(n)$ : the *weights*
++ $b$ : the *bias*
++ $y(n)$ : **actual** response ( that given by the neural network )
++ $d(n)$ : **desired** response 
++ $\eta$ : the *learning rate* $>0, <1$
+
+1. Initialization 
+	Set $w(0) = 0$
+2. Activation
+	At time-step $n$ activate the *perceptron* by applying the continuos input vector $x(n)$ and get the *desired* response $d(n)$ 
+3. Actual Response 
+	Compute the *actual* response of the *perceptron* as : 
+$$
+y(n) = sgn[w^T(n)\cdot x(n)]
+$$
+4. Weight vector
+
+## Decision Regions
+
+### Linear Separability
+
+### Limitation of Perceptron
+
+## Perceptron Convergence Theorem
+
+# Back-Propagation Learning Algorithm
+
