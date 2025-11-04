@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # McCulloch and Pitts (MP) Model
 
 Each *McCulloch-Pitts (MP) Neuron* is modeled as a *binary* **threshold** unit 

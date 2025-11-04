@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Change of Basis in $\mathbb{R}^n$ 
 
 ## Notation

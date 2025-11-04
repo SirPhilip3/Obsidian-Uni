@@ -1,3 +1,6 @@
+---
+publish: true
+---
 *Data Encryption Standard* ( *DES* ) is a [[Ciphers#Symmetric Ciphers|Symmetric]] key algorithm 
 
 The *block size* is $64$ bits 
@@ -43,7 +46,6 @@ In order to be able to iterate the *DES* the cipher needs to be *non-idempotent*
 #todo 
 
 #### Meet-in-the-middle Attack
-
 
 
 ## 3DES
