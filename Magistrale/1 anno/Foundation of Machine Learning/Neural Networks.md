@@ -160,6 +160,7 @@ $$
 
 #todo 
 
+https://vinizinho.net/projects/perceptron-viz/
 ### Linear Separability
 
 ### Limitation of Perceptron
