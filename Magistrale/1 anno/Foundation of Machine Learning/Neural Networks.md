@@ -130,6 +130,8 @@ Parameter and variables :
 + $d(n)$ : **desired** response 
 + $\eta$ : the *learning rate* $>0, <1$
 
+>[!important] Learning Algorithm
+
 1. Initialization 
 	Set $w(0) = 0$
 2. Activation
@@ -139,9 +141,24 @@ Parameter and variables :
 $$
 y(n) = sgn[w^T(n)\cdot x(n)]
 $$
-4. Weight vector
+4. Weight vector adaptation
+	Update the *weight* vector of the *perceptron* in the following way :
+$$
+w(n+1) = w(n) + \eta [d(n)-y(n)]\cdot x(n)
+$$
+	Where 
+$$
+d(n) = \begin{cases}
++1 & \text{if } x(n) \text{ belongs to class } \mathscr{C}_1 \\
+-1 & \text{if } x(n) \text{ belongs to class } \mathscr{C}_2 \\
+\end{cases}
+$$
+5. Continuation
+	Increment the time step $n$ and go back to step $2$
 
 ## Decision Regions
+
+#todo 
 
 ### Linear Separability
 
