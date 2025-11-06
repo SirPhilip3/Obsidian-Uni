@@ -282,3 +282,56 @@ A solution is found when $T=0$
 
 ### The Cipher
 
+1. Start from a *super-increasing* problem $(s_1,\dots,s_n)$ 
+2. Choose a *prime* such that $p > \sum_{i=1}^n s_i$ 
+3. Choose a *random* number $a$ such that $1 < a < p$ 
+4. Transform the *super-increasing* problem $(s_1,\dots,s_n)$ in the following way : 
+	Create a new sequence $(\hat{s_1}, \dots , \hat{s_n})$ with $\hat{s_i} = s_i \cdot a \mod{p}$ 
+	This gives us a *non super-increasing* problem in general 
+
+>[!example] 
+>Consider the *super-increasing* sequence $(1,2,5,12)$ , $p=23$ and $a=6$ now $\hat{S}$ will be $((1 \cdot 6)\mod{23},(2 \cdot 6)\mod{23},(5 \cdot 6)\mod{23},(12 \cdot 6)\mod{23}) = (6,12,7,3)$ 
+
+The **trap-door** is composed of $(s_1,\dots,s_n)$ , $p$ and $a$ ( the *secret key* )
+
+The *public key* will be $\hat{S}$ 
+
+>[!important] Encryption
+>
+> The *encryption* is done by computing the **target** for the problem $(\hat{s_1},\dots, \hat{s_n})$ 
+> 
+>>[!note] 
+>>Since in general $\hat{S}$ is *not super-increasing* this is *infeasable* to reverse 
+>
+>>[!example] 
+>>$E_{PK}(x_1, \dots, x_n) = \sum_{i=1}^n x_i \hat{s_i}$
+>>
+>>Since the *encryption* only accepts *binary* strings we first need to transform an *ASCII* text into it's binary counterpart 
+>>
+>>*Plaintext* : $(1,0,0,1)$ and *sequence* $(6,12,7,3)$ than : $E_{PK}(1,0,0,1) = 1 \cdot 6 + 0\cdot 12+0 \cdot 7 + 1 \cdot 3 = 6 +3 = 9$
+>>
+>>$D_{SK}(y)$ is the solution of the *super-increasing* problem $(s_1,\dots,s_n)$ with *target* $T = a^{-1} y \mod{p}$
+>>
+>>$a^{-1} : k \cdot 4 \mod 23 = 1, \quad k = 4$
+>>
+>>Now given $y = 9$ compute the *target* $T = a^{-1} \cdot y \mod{p} = 4 \cdot 9 \mod{23} = 13$
+>>
+>>Now we can solve the *super-increasing problem* for $(1,2,5,12)$ with *target* $T=13$ : `subsetSum([1,2,5,12],13) = [1,0,0,1]`
+>>
+>>
+
+#### Correctness Proof
+
+$$
+\begin{align}
+E_{PK}(x_1,\dots, x_n) & = \sum_{i=1}^n x_i \hat{s_i} \\
+& = \sum_{i=1}^n a x_i s_i \mod{p} \\
+& = a \sum_{i=1}^n x_i s_i \mod{p}
+\end{align}
+$$
+If we than apply the *decryption* we can see the following :
+$$
+\begin{align}
+a^{-1} E_{PK}(x_1,\dots,x_n) \mod{p} & = a^{-1} a \sum_{i=1}^n x_i s_i \mod{p} \\ & = \sum_{i=1}^n x_i s_i \mod{p} \\ & = \sum_{i=1}^n x_i s_i  
+\end{align}
+$$
