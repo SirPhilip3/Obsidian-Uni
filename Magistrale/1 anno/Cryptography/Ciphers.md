@@ -234,6 +234,18 @@ This is an example of *asymmetric-key* cipher
 >[!warning] 
 >This cipher has been *broken*
 
-It's based on the following [[Strutture Dati#Classe $NP-completi$ ( o NPC )|NP-Complete]] problem : 
+It's based on the **subset-sum** [[Strutture Dati#Classe $NP-completi$ ( o NPC )|NP-Complete]] problem : 
 
+>[!important] Subset-sum
+>Let $s_1,\dots,s_n$ be *sizes* ( positive integers ) and $T$ be the *target* integer.
+>
+>A solution to the *subset-sum* problem is a subset of $s_1,\dots,s_n$ whose *sum* is exactly the *target* $T$
+>
+>Formally the solution will be a *binary* tuple $x_1,\dots,x_n$ such that $\sum_{i=1}^n x_i s_i = T$
 
+>[!example] 
+>If we have as *sizes* $(4,6,3,8,1)$ and $T=11$ than we have two solutions :
+>+ $(0,0,1,1,0)$ , $3 +8 = 11$ 
+>+ $(1,1,0,0,1)$ , $4+6+1 = 11$
+
+#todo 
