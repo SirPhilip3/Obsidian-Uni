@@ -64,15 +64,15 @@ Questo viene aggiunto al di sopra di [[18 TCP - UDP#Transmission Control Protoco
 Questo protocollo è utilizzato per negoziare *chiavi* e parametri di sicurezza 
 
 Quello che vogliamo negoziare : 
-+ Che funzioni cryptografiche usare ( [[RSA]] , **Curve Ellittiche** )
++ Che funzioni cryptografiche usare ( [[3 anno/Obbligatori/Reti di calcolatori/RSA]] , **Curve Ellittiche** )
 + Che [[Hash Functions]] usare ( **SHA-256** , **SHA-384** )
-+ Come negoziare la chiave simmetrica ( [[RSA]] , [[Diffie-Hellman Protocol]] )
++ Come negoziare la chiave simmetrica ( [[3 anno/Obbligatori/Reti di calcolatori/RSA]] , [[Diffie-Hellman Protocol]] )
 
 >[!important] 
 >Questa negoziazione delle chiavi è critica poichè avviene prima di qualsiasi cifratura , è soggetta quindi ad attacchi **MiTM** 
 
 L'*Handshake Protocol* garantisce le seguenti propietà : 
-+ L'identità del *peer* può essere verificata utilizzando **Asymmetric** cryptography o [[12 Public Key Encryption]] ( [[RSA]] , **DSA** ) 
++ L'identità del *peer* può essere verificata utilizzando **Asymmetric** cryptography o [[12 Public Key Encryption]] ( [[3 anno/Obbligatori/Reti di calcolatori/RSA]] , **DSA** ) 
 >[!important] 
 >Questa autenticazione può essere resa opzionale , ma generalmente richiesta per almeno uno dei *peer*
 + La negoziazione di un segreto condiviso tra i due *peer* è sicura ( non può avvenire un attacco **MiTM** )

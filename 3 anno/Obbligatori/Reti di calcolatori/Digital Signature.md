@@ -2,7 +2,7 @@
 creation: 2024-11-19T11:06:00
 publish: true
 ---
-In [[RSA]] le chiavi *pubbliche* e *private* possono essere invertite , ossia : 
+In [[3 anno/Obbligatori/Reti di calcolatori/RSA]] le chiavi *pubbliche* e *private* possono essere invertite , ossia : 
 + Ciò che cifriamo con una chiave *privata* possiamo decrifrare con una chiave *pubblica* e viceversa
 
 Quindi se **Alice** cifra un messaggio $M$ con la sua *private key* , tutti coloro che hanno la sua *public key* posso decifrarlo , in questo modo visto che solo **Alice** possiede la *public key* chiunque decifri il messaggio è sicuro che arrivi da **Alice**

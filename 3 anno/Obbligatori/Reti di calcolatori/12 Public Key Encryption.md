@@ -37,7 +37,7 @@ In pratica vogliamo una funzione $f: D \to R$ con un parametro aggiuntivo $t$ ch
 
 Gli algoritmi che la implementano sono : 
 + ![[Diffie-Hellman Protocol]]
-+ ![[RSA]]
++ ![[3 anno/Obbligatori/Reti di calcolatori/RSA]]
 + Elliptic curve encryption 
 
 ## Conclusion

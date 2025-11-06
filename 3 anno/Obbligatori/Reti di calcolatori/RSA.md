@@ -86,7 +86,7 @@ Notiamo che la che l'*encryption* è sempre più veloce della *decryption*
 >
 >Significa che se $e$ è piccolo $d$ deve essere grande , ma $d$ deve per forza essere **grande** poichè questo è un *segreto* e quindi deve essere difficile da indovinare 
 >
->Visto quindi che $e$ può essere piccolo generalmente le implementazioni di [[RSA]] scelgono un numero fisso $e=2^{16}+1 = 65537$ che è *primo* 
+>Visto quindi che $e$ può essere piccolo generalmente le implementazioni di [[3 anno/Obbligatori/Reti di calcolatori/RSA]] scelgono un numero fisso $e=2^{16}+1 = 65537$ che è *primo* 
 >
 >Visto che le operazioni di *encryption* e *decryption* sono delle esponenziazioni se usiamo un $e$ minore richiederanno meno tempo
 
