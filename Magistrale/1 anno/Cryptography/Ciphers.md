@@ -275,4 +275,10 @@ Start from the biggest element in the *sequence* , if $s_i$ fits into $T$ than w
 A solution is found when $T=0$
 
 >[!note] 
->It's important to start from the *biggest* element since by definition of *super-increasing* sequence if we don't take it all the other 
+>It's important to start from the *biggest* element since by definition of *super-increasing* sequence if we don't take it all the remainig values will be less than the number not taken
+
+>[!example] 
+>#todo
+
+### The Cipher
+
