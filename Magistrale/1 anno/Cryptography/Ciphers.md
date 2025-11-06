@@ -234,6 +234,8 @@ This is an example of *asymmetric-key* cipher
 >[!warning] 
 >This cipher has been *broken*
 
+### Subset-sum
+
 It's based on the **subset-sum** [[Strutture Dati#Classe $NP-completi$ ( o NPC )|NP-Complete]] problem : 
 
 >[!important] Subset-sum
@@ -248,4 +250,29 @@ It's based on the **subset-sum** [[Strutture Dati#Classe $NP-completi$ ( o NPC )
 >+ $(0,0,1,1,0)$ , $3 +8 = 11$ 
 >+ $(1,1,0,0,1)$ , $4+6+1 = 11$
 
-#todo 
+>[!note] 
+>We can see that we can define a function that computes the *target* from a given binary sequence quite easily : $f(x_1,\dots,x_n) = \sum_{i=1}^n x_i s_i$ 
+>
+>But the *inverse* ( starting from the *target* derive the binary sequence such that $\sum_{i=1}^n x_i s_i = T$ ) is instead **infeasable** for a big enough $n$ 
+
+#### Easy instance
+
+We can consider a special instance of the problem : 
+Let $S$ be a *super-increasing* sequence such that : 
+$$
+s_i > \sum_{j=1}^{i-1} s_j, \quad\forall i > 1
+$$
+>[!note] 
+>Or any $s_i$ must be bigger than the sum of all the previous $s_j$
+
+>[!example] 
+>$(1,3,5,10)$ is a *super-increasing* sequence
+
+Than we can device an algorithm that solves this instance of the problem 
+
+Start from the biggest element in the *sequence* , if $s_i$ fits into $T$ than we set $x_i=1$ and we reduce $T=T-s_i$ 
+
+A solution is found when $T=0$
+
+>[!note] 
+>It's important to start from the *biggest* element since by definition of *super-increasing* sequence if we don't take it all the other 
