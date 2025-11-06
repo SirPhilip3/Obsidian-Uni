@@ -181,7 +181,59 @@ In *modern ciphers* at least one operation must be **non** idempotent
 + [[AES]]
 + [[DES]]
 
-# Public Key Cryptography
+# Public Key Cryptography 
 
-#todo 
+The main problem of [[Ciphers#Symmetric Ciphers|Symmetric Ciphers]] is the need to have a different *shared key* between two users , this becomes impractical if we are in a connected network like the internet where having $n$ users we would need to exchange $n(n-1)/2$ or $O(n^2)$ keys
+
+>[!info] Idea
+>
+>Each user has one *encrypting* key and one *decrypting* key . They need to be different but related in such a way that knowledge of the *public* key does not give any information abount the *private* key
+>
+>The *encryption* key is made public but the *decrypting* key remains a secret
+
+Let :
++ $PK_A$ be the *public key* of A 
++ $SK_A$ be the *secret key* of A 
+
+B sends an *encrypted* message $E_{PK_A}(M)$ to A 
+A recieves it and *decrypts* it as $D_{SK_A}(E_{PK_A}(M))=M$
+
+>[!note] 
+>As before we need that *encryption* and *decryption* are such that $D_{SK_A}(E_{PK_A}(M))=M$  holds
+
+>[!important] Asymmetric-key cipher definition
+>An *Asymmetric-key cipher* is a quintuple $(P,C,K_S \times K_P, E,D)$ with :
+>+ $E : K_P \times P \to C$
+>+ $D : K_A \times C \to P$
+>  
+> Such that : 
+>+ It's computationally *easy* to generate a key-pair $(SK,PK) \in K_S \times K_P$
+>+ It's computationally *easy* to compute $y=E_{PK}(x)$
+>+ It's computationally *easy* to compute $x=D_{SK}(y)$
+>+ $D_{SK}(E_{PK}(x))=x$ needs to hold
+>+ It's [[Computationally Impossible|Computationally Infeasable]] to compute $SK$ from $PK$ and $y$
+>+ It's [[Computationally Impossible|Computationally Infeasable]] to compute $D_{SK}(y)$ knowing $PK$ and $y$ but *without* knowing $SK$ 
+
+>[!warning] 
+>Everybody could send a message to A saying the origin was B , *asymmetric-key ciphers* do not provide **Authentication** ( this was provided in *symmetric-key ciphers* since the two users needed to have the same *key* to communicate )
+
+## One-way trap-door functions
+
+>[!important] Definition
+>An *injective* , *invertible* family of functions $f_k$ is *one-way trap-door* , $\iff$ **given** $k$ : 
+>+ $y = f_k(x)$ is *easy* to compute 
+>+ $x = f_k^{-1}(y)$ is [[Computationally Impossible|Computationally Infeasable]] without knowing the *secret* **trap-door** $S(k)$ relative to $k$
+
+>[!note] 
+>Or we can compute it's *inverse* only if we know a certain information $k$
+
+## Merkle-Hellman knapsack system
+
+This is an example of *asymmetric-key* cipher
+
+>[!warning] 
+>This cipher has been *broken*
+
+It's based on the following [[Strutture Dati#Classe $NP-completi$ ( o NPC )|NP-Complete]] problem : 
+
 
