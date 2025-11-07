@@ -183,6 +183,20 @@ For *diagonal* , *upper* and *lower* triangular matrices the **eigenvalues** are
 We know that $Av = \lambda v$ where $(\lambda,v)$ *eigenpairs* 
 
 Than we can write the following : 
-$A(v_1\vdots)$
+$$
+A\cdot(v_1\ \vdots\ \dots\ \vdots \ v_n) =(v_1\ \vdots\ \dots\ \vdots \ v_n) \begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix}
+$$
+Than the matrix $A$ can be described in the following way 
 
-#todo 
+$$
+A = (v_1\ \vdots\ \dots\ \vdots \ v_n)\begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix} (v_1\ \vdots\ \dots\ \vdots \ v_n)^{-1}
+$$
+
+>[!note] Lemma
+>We can easly see that $A^n$ can be written in the following way :
+>$$
+>\begin{align}
+>A^2 = A \cdot A & = \Bigg[V \begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix} \cancel{V^{-1}}\Bigg] \cdot \Bigg[\cancel{V} \begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix} V^{-1}\Bigg] \\ & = \Bigg[V \begin{pmatrix} \lambda_1^2 & & \\ &  \ddots & \\ & &  \lambda_n^2 \end{pmatrix} V^{-1}\Bigg]
+>\end{align}
+>$$
+
