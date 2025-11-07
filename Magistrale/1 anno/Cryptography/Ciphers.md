@@ -335,3 +335,7 @@ $$
 a^{-1} E_{PK}(x_1,\dots,x_n) \mod{p} & = a^{-1} a \sum_{i=1}^n x_i s_i \mod{p} \\ & = \sum_{i=1}^n x_i s_i \mod{p} \\ & = \sum_{i=1}^n x_i s_i  
 \end{align}
 $$
+>[!note] 
+>We can remove the $\mod p$ at the last step since we have selected $p > \sum_{i=1}^n s_i$
+
+The transformed *targer* $T = a^{-1} y \mod{p}$ is the *target* fro the initial , *easy* problem
