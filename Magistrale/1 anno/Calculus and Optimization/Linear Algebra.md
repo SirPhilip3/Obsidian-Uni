@@ -178,3 +178,11 @@ $$
 
 For *diagonal* , *upper* and *lower* triangular matrices the **eigenvalues** are the values present in the *diagonal* 
 
+## Matrix Rapresentation through Eigenpairs
+
+We know that $Av = \lambda v$ where $(\lambda,v)$ *eigenpairs* 
+
+Than we can write the following : 
+$A(v_1\vdots)$
+
+#todo 
