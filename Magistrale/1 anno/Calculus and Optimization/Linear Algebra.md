@@ -192,11 +192,26 @@ $$
 A = (v_1\ \vdots\ \dots\ \vdots \ v_n)\begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix} (v_1\ \vdots\ \dots\ \vdots \ v_n)^{-1}
 $$
 
->[!note] Lemma
+>[!note] Proposition
 >We can easly see that $A^n$ can be written in the following way :
 >$$
 >\begin{align}
 >A^2 = A \cdot A & = \Bigg[V \begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix} \cancel{V^{-1}}\Bigg] \cdot \Bigg[\cancel{V} \begin{pmatrix} \lambda_1 & & \\ &  \ddots & \\ & &  \lambda_n \end{pmatrix} V^{-1}\Bigg] \\ & = \Bigg[V \begin{pmatrix} \lambda_1^2 & & \\ &  \ddots & \\ & &  \lambda_n^2 \end{pmatrix} V^{-1}\Bigg]
 >\end{align}
 >$$
+>
+>Than we can write the following : 
+>1. Let $(\lambda,v)$ be *eigenpairs* of $A$ $\implies$ $(\lambda^k,v)$ are *eigenpairs* of $A^k$
+>2. Let $(\lambda,v)$ be *eigenpairs* of $A$ $\implies$ $(\lambda^{-1},v)$ are *eigenpairs* of $A^{-1}$
+>
+>>[!important] 2nd proposition *proof*
+>>
+>>$$
+>>\begin{align}
+>>Av & = \lambda v \\ v & = \lambda A^{-1} v \\ \lambda^{-1} v & = A^{-1} v 
+>>\end{align}
+>>$$
+>>
+
+#todo 
 
