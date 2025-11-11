@@ -215,4 +215,63 @@ $$
 
 #todo 
 
+## Geometric and Algebraic multiplicity
 
+### Algebraic multiplicity
+
+Let $A \in \mathbb{R}^{n \times n}$ and let $\lambda$ be an *eigenvalue* of $A$ than we define *algebraic multiplicity* as : 
++ $am(\lambda)$ : the *multiplicity* of $\lambda$ as a *root* of the [[Linear Algebra#Secular (Characteristic) Equation|Secular Equation]] 
+
+>[!example] 
+>Given the following matrix $A$ :
+>
+>$$ 
+>A =
+>\begin{pmatrix}
+>4&0&1 \\ 2&3&2 \\ 1&0&4
+>\end{pmatrix}
+>$$
+>We determine the *eigenvalues* : 
+>$$
+>\det(A -\lambda I) = \det \begin{pmatrix}
+>4-\lambda &0&1 \\ 2&3 - \lambda &2 \\ 1&0&4 - \lambda
+>\end{pmatrix} = -(3-\lambda)[(4-\lambda)^2 -1]
+>$$
+>Which gives us the following *secular equation* : 
+>$$
+>-(3-\lambda)(3-\lambda)(5-\lambda) = 0
+>$$
+>So the final *eigenvalues* are $\lambda = 3$ and $\lambda = 5$ 
+>
+>$am(3) = 2$ and $am(5)=1$ 
+>>[!note] 
+>>Those are determined by simply counting the number of times the term $3-\lambda$ , for $\lambda = 3$ , and $5 -\lambda$  , for $\lambda = 5$ appear in the *secular equation*
+>
+
+>[!note] 
+>The sum of all $am(\lambda)$ for all $\lambda$ of the matrix $A$ will always give $n$ ( the size of the *squared* matrix ) 
+### Geometric multiplicity
+
+Let $A \in \mathbb{R}^{n \times n}$ and let $\lambda$ be an *eigenvalue* of $A$ than we define *geometric multiplicity* as : 
++ $gm(\lambda)$ : the *dimension* of the *vector subspace* $Ker(A -\lambda I)$ or the *null space* $N[A -\lambda I]$
+
+>[!example] 
+>#todo
+## Diagonalizable Matrix
+
+>[!important] Definition
+>Give the *square* matrix $A \in \mathbb{R}^{n \times n}$ we say that $A$ is **diagonalizable** in $\mathbb{R}$ if there *exists* a *non-singular* matrix $C \in \mathbb{R}^{n \times n}$ such that the matrix $C^{-1}A C$ has all *real* entries and is *diagonal*
+
+>[!important] Definition
+>The *square* martix $A \in \mathbb{R}^{n\times n}$ is **diagonalizable** $\iff$ : 
+>1. $A$ has only real *eigenvalues* 
+>2. $am(\lambda) = gm(\lambda)$ 
+
+## Trace of a Matrix
+
+$tr(A) = \sum_{i=1}^n \lambda_i$ 
+
+>[!note] 
+>So the *trace* of a *matrix* is the sum of it's *eigenvalues*
+
+## Symmetric 
