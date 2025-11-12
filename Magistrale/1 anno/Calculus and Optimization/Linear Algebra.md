@@ -256,7 +256,15 @@ Let $A \in \mathbb{R}^{n \times n}$ and let $\lambda$ be an *eigenvalue* of $A$ 
 + $gm(\lambda)$ : the *dimension* of the *vector subspace* $Ker(A -\lambda I)$ or the *null space* $N[A -\lambda I]$
 
 >[!example] 
->#todo
+> In practive the *geometric multiplicity* is the number of *eigenvectors* for each *eigenvalue*
+> #todo check
+> 
+> In our previous case :
+> 
+>For $\lambda = 3$ we have *eigenvectors* : $v_1 = (-1,0,1), v_2 = (0,1,0)$ so $gm(3) = 2$
+>
+>For $\lambda = 5$ we have *eigenvector* : $v_3 = (1,2,1)$ so $gm(5)=1$ 
+> 
 ## Diagonalizable Matrix
 
 >[!important] Definition
@@ -274,4 +282,16 @@ $tr(A) = \sum_{i=1}^n \lambda_i$
 >[!note] 
 >So the *trace* of a *matrix* is the sum of it's *eigenvalues*
 
-## Symmetric 
+## Symmetric Matrices
+
+Give the *square* matrix $A \in \mathbb{R}^{n\times n}$ such that its *symmetric* ( $A = A^T$ ) then : 
+1. All if its *eigenvalues* $\in \mathbb{R}$ ( sono *reali* )
+2. $A$ is **diagonalizable**
+3. $\exists n$ *eigenvectors* $v_1, \dots, v_n$ such that $V=(\frac{v_1}{||v_1||_2} \vdots \dots \vdots \frac{v_n}{||v_n||_2})$ is **non-singular** ( $\det(A) \neq 0$ )
+4. $V^{-1} = V^T$
+
+#todo check in the prov hand
+
+## Geometric Interpretation of Eigenvalues and Eigenvectors
+
+#todo 
