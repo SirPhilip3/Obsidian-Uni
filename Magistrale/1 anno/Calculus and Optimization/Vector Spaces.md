@@ -190,11 +190,11 @@ $s$ are all the *vectors* whos second extreme is on the *line* *between* the two
 ### Cone Combination
 
 >[!important] Definition
->Given the *set* of *vectors* : $v_1,\dots,v_n \in \mathbb{R}^n$
+>Given the *set* of *vectors* : $v_1,\dots,v_m \in \mathbb{R}^n$
 >
 >We say that the *vector* $z \in \mathbb{R}^n$ is a **cone combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
 >$$
->s = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \alpha_i \ge 0, i = 1, \dots, m
+>z = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \alpha_i \ge 0, i = 1, \dots, m
 >$$
 
 This the following *geometric* two dimensional interpretation of the **cone combination** 
