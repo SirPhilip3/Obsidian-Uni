@@ -41,7 +41,7 @@ $$
 $$
 \colorbox{green}{$\exists \bar x  \in V(K) : x + \bar x = w$}, \forall x \in V(K)
 $$
-	It exists $\bar x$ such that *summed* to the original $x$ it will produce the *null vector* ( for integers this will be $-1(x)$ ) , $\bar x$ is called **Inverse / Opposite vector**
+	It exists $\bar x$ such that *summed* to the original $x$ it will produce the *null vector* ( for integers this will be $-1\cdot x$ ) , $\bar x$ is called **Inverse / Opposite vector**
 
 4. 
 $$
@@ -60,7 +60,7 @@ $$
 $$
 \colorbox{green}{$\exists \sigma \in K : \sigma \bullet x = x$} , \forall x \in V(K)
 $$
-	$\sigma$ is a *unit* in the numerical set ( $1$ ) 
+	$\sigma$ is a *unit* in the numerical set ( $1$ for $\mathbb{R}$ ) 
 8. 
 $$
 \forall \alpha \in K : \colorbox{green}{$\alpha \bullet (x +y) = \alpha \bullet x + \alpha \bullet y$} ,\forall x, y \in V(K)
