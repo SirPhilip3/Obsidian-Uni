@@ -291,7 +291,6 @@ Give the *square* matrix $A \in \mathbb{R}^{n\times n}$ such that its *symmetric
 4. $V^{-1} = V^T$
 
 #todo check in the prov hand
-
 ## Geometric Interpretation of Eigenvalues and Eigenvectors
 
 #todo 
