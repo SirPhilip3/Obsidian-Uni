@@ -101,7 +101,6 @@ It use a *shift register* than is shifted to the *left* by the number of bits of
 
 The ***decryption*** simply works like for [[Block cipher modes#Output FeedBack mode (OFB)|OFB]] 
 
-
 | Pros                                                                                                                                                                                                                                                                                                                  | Cons                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | We have *higher* *integrity* in respect to [[Block cipher modes#Output FeedBack mode (OFB)\|OFB]] , when one *bit* of the *ciphertex* is modified the next $BSize / CSize$ *plaintexts* are corrupted (this number is equal to the number of left *shifts* necessary for a *ciphertext* to exit the *shift register*) | We can't parallelize any operations during the *encryption*                             |
