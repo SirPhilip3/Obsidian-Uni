@@ -143,7 +143,7 @@ We than need to expand the original *key* of $16$ bytes ($128$ bits) to a bigger
 
 The *decryption* is performed by applying the inverse operations :
 + **AddRoundKey** : is unchanged since *xor* is the inverse of itself
-+ **InvShiftRows** : shift to the *right* inside that to the left 
++ **InvShiftRows** : shift to the *right* instead than to the left 
 + **InvSubBytes** : uses the following *S-box* 
 ![[Pasted image 20251101171744.png]]
 + **InvMixColumns** : uses a different matrix to which multiply each *column* 
