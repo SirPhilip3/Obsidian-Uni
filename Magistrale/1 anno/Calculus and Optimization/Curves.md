@@ -37,6 +37,9 @@ In order to get the **tangent** line to $P$ we just need to move the point $Q$ t
 >[!note] 
 >The *secant* will exists only if we assume that the curve is *regular* 
 
+>[!example] 
+>#todo why divide by delta t ?
+
 We will just let $\Delta t \to 0^+$ which corresponds to : 
 $$
 l' : \lim_{\Delta t \to 0^+} \frac{x_1 -x_1(t)}{\frac{x_1(t+\Delta t)-x_1(t)}{\Delta t}} = \dots = \frac{x_n -x_n(t)}{\frac{x_n(t+\Delta t) -x_n(t)}{\Delta t}}
@@ -65,4 +68,8 @@ There is no determined *origin* so we can arbitrarily select $+$ ( $P \to Q$ ) o
 >[!note] 
 >$+$ if $t> t_0$ , $-$ otherwise
 
-The *derivative* is the 
+The *derivative* $s'(t)$ is : 
+$$
+s'(t)= \pm \sqrt{[x_1'(\tau)]^2 + \dots + [x_n'(\tau)]^2}
+$$
+
