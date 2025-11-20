@@ -428,7 +428,7 @@ $$
 >$$
 >
 
-Geometrical rapresentation for $m=1$ : 
+Geometrical rapresentation for $n=1$ : 
 
 ![[FirstOrderExpansion_ManimCE_v0.19.0.png]]
 
@@ -557,7 +557,7 @@ $$
 >$$
 
 >[!note] 
->The point $\lambda x + (1-\lambda)y$ when $\lambda \in [0,1]$ is any point in the closed segment joining $x$ and $y$
+>The point $\lambda x + (1-\lambda)y$ , when $\lambda \in [0,1]$ , is any point in the closed segment joining $x$ and $y$
 >
 
 >[!example] 
