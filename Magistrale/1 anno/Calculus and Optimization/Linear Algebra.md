@@ -296,6 +296,11 @@ v=\begin{pmatrix}
 $$
 Than the final *eigenvector* for $\lambda=5$ will be $\begin{pmatrix}3\\ 1\end{pmatrix}$ with $v_2 \in \mathbb{R} - \{0\}$
 
+>[!note] 
+>If a matrix is a *block diagonal matrix* than its determinant is the multiplication of the determinant of each block matrix in the diagonal
+
+>[!note] 
+>The *determinant* of a *square matrix* is the **product** of *all* of it's *eigenvalues*
 ## Secular (Characteristic) Equation 
 
 $$
@@ -339,8 +344,6 @@ $$
 >>\end{align}
 >>$$
 >>
-
-#todo 
 
 ## Geometric and Algebraic multiplicity
 
@@ -401,6 +404,10 @@ Let $A \in \mathbb{R}^{n \times n}$ and let $\lambda$ be an *eigenvalue* of $A$ 
 >The *square* martix $A \in \mathbb{R}^{n\times n}$ is **diagonalizable** $\iff$ : 
 >1. $A$ has only real *eigenvalues* 
 >2. $am(\lambda) = gm(\lambda)$ 
+
+### Example
+
+Diagonalize the following matrix
 
 ## Trace of a Matrix
 
