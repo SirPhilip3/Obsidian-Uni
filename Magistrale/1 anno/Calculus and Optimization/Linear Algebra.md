@@ -166,8 +166,135 @@ Let's now consider the *matrix* $A$ associated with the function $f(x)$ than we 
 $$
 Av = \lambda v
 $$
->[!example] 
->#todo
+## Example
+
+Compute the *eigenvalues* and *eigenvectors* for the matrix : 
+$$
+A=\begin{pmatrix}
+ 3 & 6 \\ 1 & 2
+\end{pmatrix}
+$$
+We than have to compute the following by definition : 
+$$
+\begin{pmatrix}
+3 & 6 \\ 1 & 2
+\end{pmatrix} \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \lambda  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix}
+$$
+Now we move the right side of the equation to the left :
+$$
+\begin{pmatrix}
+3 & 6 \\ 1 & 2
+\end{pmatrix} \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} - \lambda  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+$$
+Which than becomes 
+$$
+\bigg [\begin{pmatrix}
+3 & 6 \\ 1 & 2
+\end{pmatrix}- \lambda I\bigg ]  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix} \to \begin{pmatrix}
+3-\lambda & 6 \\ 1 & 2 - \lambda
+\end{pmatrix}  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+$$
+>[!note] 
+>In order to group by the *eigenvetors* we need to transform $\lambda$ in a $2\times 2$ matrix such that we can do the $-$ operation , mutiplying by the *identity* matrix will not change the $\lambda$ value but it will transform it into the correct form
+
+Now we can calculate the *secular eqation* to find the *eigenvalues* : 
+$$
+\det(A) = 0 \to (3-\lambda)(2-\lambda)-6 = 0
+$$
+$$
+\eqalign{6 -3\lambda -2\lambda + \lambda^2 -6& = 0 \\ \lambda^2 - 5\lambda & = 0 \\ \lambda(\lambda -5) & = 0}
+$$
+Which gives us $\lambda_1 = 0$ and $\lambda_2 = 5$ 
+
+>[!note] 
+>The determinant of a $2 \times 2$ matrix ( $A = \begin{pmatrix}a & b \\ c & d \end{pmatrix}$ ) is $ad - cb$
+
+Now let's calculate the *eigenvectors* relative to each $\lambda$ 
+
+We just need to substitute the *value* in the definition and solve the realive linear system
+
+$\lambda = 0$ : 
+$$
+\begin{pmatrix}
+3 & 6 \\ 1 & 2
+\end{pmatrix}  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+$$
+Which becomes the following linear system : 
+$$
+\begin{cases}
+3v_1 + 6v_2 = 0\\
+1v_1 + 2 v_2 = 0
+\end{cases}
+$$
+Now we can discard the *first* equation since it's just a multiple of the second one 
+$$
+v_1 = -2v_2
+$$
+Which in vector form becomes : 
+$$
+v=\begin{pmatrix}
+-2v_2 \\ v_2
+\end{pmatrix} = v_2 \begin{pmatrix}
+-2\\ 1
+\end{pmatrix}
+$$
+Than the final *eigenvector* for $\lambda = 0$ will be $\begin{pmatrix}-2\\ 1\end{pmatrix}$ with $v_2 \in \mathbb{R} - \{0\}$
+
+$\lambda=5$
+$$
+\begin{pmatrix}
+3-5 & 6 \\ 1 & 2-5
+\end{pmatrix}  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix} \to \begin{pmatrix}
+-2 & 6 \\ 1 & -3
+\end{pmatrix}  \begin{pmatrix}
+v_1 \\ v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix}  
+$$
+Solving the following linear system :
+$$
+\begin{cases}
+-2v_1 + 6v_2& = 0\\
+1v_1 -3 v_2 &= 0
+\end{cases}
+$$
+From both ones we get $v_1 = 3v_2$ 
+
+$$
+v=\begin{pmatrix}
+3v_2 \\ v_2
+\end{pmatrix} = v_2 \begin{pmatrix}
+3 \\ 1 
+\end{pmatrix}
+$$
+Than the final *eigenvector* for $\lambda=5$ will be $\begin{pmatrix}3\\ 1\end{pmatrix}$ with $v_2 \in \mathbb{R} - \{0\}$
 
 ## Secular (Characteristic) Equation 
 
