@@ -60,7 +60,7 @@ $$
 $$
 \colorbox{green}{$\exists \sigma \in K : \sigma \bullet x = x$} , \forall x \in V(K)
 $$
-	$\sigma$ is a *unit* in the numerical set ( $1$ for $\mathbb{R}$ ) 
+	$\sigma$ is a *unit* in the numerical set $K$ ( $1$ for $\mathbb{R}$ ) 
 8. 
 $$
 \forall \alpha \in K : \colorbox{green}{$\alpha \bullet (x +y) = \alpha \bullet x + \alpha \bullet y$} ,\forall x, y \in V(K)
@@ -165,7 +165,7 @@ The dimension of a vector space is given by the number of :
 >\alpha_1 \begin{pmatrix} 5 \\ 5 \end{pmatrix} + \alpha_2 \begin{pmatrix} 2 \\ 2 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 >$$
 >
->Since in order to get $w$ as a result we could have values of $\alpha$ that are not $0$ ( $ ) these are not *lineraly independent*
+>Since in order to get $w$ as a result we could have values of $\alpha$ that are not $0$ ( $\alpha_1 = 1/5, \alpha_2 = 0, \alpha_3 = -1$ ) these are not *lineraly independent*
 
 ## Vector Space Combinations
 
