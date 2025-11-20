@@ -74,7 +74,6 @@ $$
 >	$N[A] = \{0\}$ and given a value $\gamma$ there exists *only* *one* vector $\bar x$ such that $f(\bar x) = \gamma$ 
 >+ $f(x)$ is **onto** if $rk(A) = m$
 
-
 >[!important] Homomorphism
 >$f : \mathbb{R}^n \to \mathbb{R}^m$  if $n \neq m$ than we call $f$ an **homomorphism**
 
@@ -407,7 +406,19 @@ Let $A \in \mathbb{R}^{n \times n}$ and let $\lambda$ be an *eigenvalue* of $A$ 
 
 ### Example
 
-Diagonalize the following matrix
+In order to diagonalize a matrix we first need to find the *eigenvalues* and associated *eigenvectors* 
+
+>[!note] 
+>Verify that the previous condition hold ( for each *eigenvalue* check that $am(\lambda) = gm(\lambda)$ ) 
+
+Than we can write $A = CDC^{-1}$ where : 
+$$
+C= \begin{pmatrix}
+| & | & \vdots & | \\ v_1 & v_2 & \vdots & v_n \\ | & | & \vdots & |  
+\end{pmatrix} \quad D= \begin{pmatrix}
+\lambda_1 & 0 & \dots & 0 \\ 0 & \lambda_2 & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & \lambda_n
+\end{pmatrix}
+$$
 
 ## Trace of a Matrix
 
@@ -415,6 +426,8 @@ $tr(A) = \sum_{i=1}^n \lambda_i$
 
 >[!note] 
 >So the *trace* of a *matrix* is the sum of it's *eigenvalues*
+
+or also the sum of it's *diagonal entries* 
 
 ## Symmetric Matrices
 

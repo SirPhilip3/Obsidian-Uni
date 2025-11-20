@@ -165,7 +165,7 @@ The dimension of a vector space is given by the number of :
 >\alpha_1 \begin{pmatrix} 5 \\ 5 \end{pmatrix} + \alpha_2 \begin{pmatrix} 2 \\ 2 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 >$$
 >
->Since in order to get $w$ as a result we would need values of $\alpha$ that are not $0$ these are not *lineraly independent*
+>Since in order to get $w$ as a result we could have values of $\alpha$ that are not $0$ ( $ ) these are not *lineraly independent*
 
 ## Vector Space Combinations
 
@@ -705,7 +705,6 @@ We can derive the following *theorems*
 >$f$ **convex** on $C$ 
 >
 >Then the set of solutions of $\mathcal{P}$ is **Convex**
-
 ## Level Set
 
 Given the function $f(x)$ with $f : \mathbb{R}^n \to \mathbb{R}$ , let $f(x)$ be **convex** on $\mathbb{R}^n$
@@ -716,8 +715,10 @@ $$
 $$
 is **convex** $\forall \gamma \in \mathbb{R}$ 
 
->[!example]
->#todo
->
+Or all the possible real points $x$ that fullfillis $f(x) \leq \gamma$  ( where $\gamma$ is set at our will )
 
- 
+>[!example]
+>
+>![[levelsetex.excalidraw.png]]
+>%%[[levelsetex.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
