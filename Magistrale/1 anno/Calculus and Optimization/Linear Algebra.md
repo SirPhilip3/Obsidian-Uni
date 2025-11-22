@@ -52,7 +52,7 @@ The **range** of a matrix $A$ can be defined as :
 $$
 R[A] \triangleq \{Y \in \mathbb{R}^m | \exists X \in \mathbb{R}^n \text{ st } Y = AX \}
 $$
-Or the subset of all the *vectors* in $\mathbb{R}^m$ such that they can be obtained with a linear combiantion from $\mathbb{R}^n$ 
+Or the subset of all the *vectors* in $\mathbb{R}^m$ such that they can be obtained with a linear combination from $\mathbb{R}^n$ 
 
 >[!note] 
 >Since both *null space* and *range* are [[Vector Spaces]] than they can't be $\emptyset$ ( they at least contain the *null vector* )
@@ -79,7 +79,6 @@ $$
 
 >[!important] Endomorphism
 >$f : \mathbb{R}^n \to \mathbb{R}^m$ if $m=n$ than $f(x)$ is an *endomorphism* between [[Vector Spaces|Vector space]] $V^n(K)$ and $W^n(K)$
-
 
 >[!important] Automorphism
 >$f : \mathbb{R}^n \to \mathbb{R}^m$ if $m=n$ and $f(x)$ is both **injective** and **onto** than $f(x)$ is an *automorphism* between [[Vector Spaces|Vector space]] $V^n(K)$ and itself
@@ -285,7 +284,6 @@ $$
 \end{cases}
 $$
 From both ones we get $v_1 = 3v_2$ 
-
 $$
 v=\begin{pmatrix}
 3v_2 \\ v_2
