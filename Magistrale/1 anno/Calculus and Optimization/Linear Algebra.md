@@ -426,11 +426,10 @@ $tr(A) = \sum_{i=1}^n \lambda_i$
 >So the *trace* of a *matrix* is the sum of it's *eigenvalues*
 
 or also the sum of it's *diagonal entries* 
-
 ## Symmetric Matrices
 
 Give the *square* matrix $A \in \mathbb{R}^{n\times n}$ such that its *symmetric* ( $A = A^T$ ) then : 
-1. All if its *eigenvalues* $\in \mathbb{R}$ ( sono *reali* )
+1. All if its *eigenvalues* $\in \mathbb{R}$ ( they are *real* numbers )
 2. $A$ is **diagonalizable**
 3. $\exists n$ *eigenvectors* $v_1, \dots, v_n$ such that $V=(\frac{v_1}{||v_1||_2} \vdots \dots \vdots \frac{v_n}{||v_n||_2})$ is **non-singular** ( $\det(A) \neq 0$ )
 4. $V^{-1} = V^T$
