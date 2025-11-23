@@ -97,7 +97,6 @@ So a *perfect cipher* is one where there is some key that maps any message to an
 >
 >Since any cipher injects the set of *plaintexts* into the set of *ciphertext* we also have $|C| \geq |P| \implies |K| \geq |C| \geq |P| \implies |K| \geq |P|$ 
 
-
 >[!important] Theorem 2
 >Let $|P| = |C| = |K|$. A *cipher* is perfect $\iff$ : 
 >1. $P_K(k) = 1/|K|,  \quad \forall k \in K$
