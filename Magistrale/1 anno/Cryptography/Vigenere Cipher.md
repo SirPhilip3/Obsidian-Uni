@@ -109,7 +109,6 @@ print m
 
 >[!note] 
 >We are checking the *IC* on the *subciphers* composed of letter at distance $m$ from each other
-
 #### Key recovery
 
 1. Devide the text in blocks of lenght $m$ 
@@ -150,5 +149,5 @@ for i in range(0,m)
 	key.append(k)
 ```
 
-We repeat this process for each letter of the key and get a list of relatie shifts now we can just try all the possible $26$ first letters of the *key* 
+We repeat this process for each letter of the key and get a list of relative shifts now we can just try all the possible $26$ first letters of the *key* 
 
