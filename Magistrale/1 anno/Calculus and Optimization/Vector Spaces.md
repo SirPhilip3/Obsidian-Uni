@@ -553,7 +553,7 @@ $$
 >[!important] Definition
 >Give the *nonempty* set $C \subseteq \mathbb{R}^n$ we say that $C$ is a **convex set** if : 
 >$$
->\forall \lambda x + (1-\lambda)y \in C, \quad \forall x,y \in C ,  \forall \lambda \in [0,1] 
+>\lambda x + (1-\lambda)y \in C, \quad \forall x,y \in C ,  \forall \lambda \in [0,1] 
 >$$
 
 >[!note] 
