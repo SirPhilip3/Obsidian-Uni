@@ -58,7 +58,7 @@ The following algorithm is an optimization for the *multiplication* operation in
 	3. Remove the $1$ from $b$
 5. If it's a $0$ 
 	1. Append a $0$ to $a$ in it's least significant position
-	2. Remove the $1$ from $b$
+	2. Remove the $0$ from $b$
 	3. Don't change $p$ 
 6. Repeat until $b$ is empty and *return* $p$
 
