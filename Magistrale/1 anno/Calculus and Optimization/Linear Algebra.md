@@ -20,7 +20,6 @@ f(x) & = f[x_1 e_1 + \dots + x_n e_n] \\
 & = x_1f(e_1) + \dots + x_nf(e_n)
 \end{align}
 $$
-
 We define a new matrix containing the vectors $\{f(e_i)\}$ :
 $$
 A = \bigg [ f(e_1)\ \vdots\ \dots\ \vdots \ f(e_n)\bigg] \in \mathbb{R}^{n\times m}
@@ -301,7 +300,7 @@ Than the final *eigenvector* for $\lambda=5$ will be $\begin{pmatrix}3\\ 1\end{p
 ## Secular (Characteristic) Equation 
 
 $$
-\det(A) = 0
+\det(A-I\lambda) = 0
 $$
 ## Special Cases
 

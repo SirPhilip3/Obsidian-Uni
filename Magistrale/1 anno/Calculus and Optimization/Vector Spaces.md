@@ -617,7 +617,6 @@ $f$ can also be said **strictly convex** if the following *property* holds :
 $$
 f[\lambda x + (1-\lambda)y] < \lambda f(x) + (1-\lambda)f(y) , \quad \forall x,y \in C, \forall \lambda \in ]0,1[ 
 $$
-
 ### Concave Functions
 
 Give the function $f: \mathbb{R}^n \to \mathbb{R}$ and $f \in C^0(\mathbb{R}^n)$ than it has the following *property* : 
