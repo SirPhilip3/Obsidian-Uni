@@ -273,12 +273,18 @@ With the following *proprieties* :
 *Standard* norms : 
 
 + $||x||_1 = |x_1|+\dots+ |x_n|$
-+ $||x||_2 = (x^T x)^{1/2} = [x_1^2 +\dots + x_n^2]^{1/2}$
++ $||x||_2 = (x^T x)^{1/2} = [x_1^2 +\dots + x_n^2]^{1/2}$ ( *euclidean norm* )
 + $||x||_\infty = \max_{1\le i \le n}|x_i|$ 
 
 Geometrically we can rapresent them in the following way ( with only two *unknowns* ) : 
 
 ![[NormsScene_ManimCE_v0.19.0 1.png]]
+
+The *euclidean norm* can be written as the [[Vector Spaces#Inner Product ( Scalar )|Inner Product]] between vectors $x,y \in \mathbb{R}^n$ in the following way : 
+$$
+<x,y> = x^T y = \sum_{i=1}^n x_i y_i = ||x||_2\cdot ||y||_2 \cdot \cos(\widehat{xy})
+$$
+Where $\widehat{xy}$ is the *smallest angle* between vectors $x$ and $y$ of $\mathbb{R}^n$
 ## Linear Functions
 
 >[!important] Definition
