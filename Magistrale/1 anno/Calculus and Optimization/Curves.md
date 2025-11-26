@@ -18,7 +18,7 @@ This rapresents a **curve** in $\mathbb{R}^n$
 
 >[!important] *Regular* Curve Definition
 >
->Give the *curve* $x(t) \in \mathbb{R}^n$  , $\forall t \in [a,b] \subseteq \mathbb{R}$  we that it's **regular** if : 
+>Give the *curve* $x(t) \in \mathbb{R}^n$  , $\forall t \in [a,b] \subseteq \mathbb{R}$  we know that it's **regular** if : 
 >1. $x_i(t) \in C^1([a,b])$ , for any $i = 1,\dots,n$ and for any $t\in [a,b]$ ( so it must be continuosly differentiable on the interval $[a,b]$ , included the extremes )
 >2. $\sum_{i=1}^{n}[x_i'(t)]^2 \neq 0$ , for any $t \in [a,b]$ ( the *derivatives* of the functions $x_i(t),\dots,x_n(t)$ are not *simultaneously* $0$ )
 >3. given the values $t_1,t_2 \in [a,b]$ if $t_1 \neq t_2$ we have $x(t_1) \neq x(t_2)$ ( for two distinct values of $t$ we can not obtain the same point in $\mathbb{R}^n$ )
