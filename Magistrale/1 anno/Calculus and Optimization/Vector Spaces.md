@@ -549,7 +549,6 @@ $$
 >[!note] *Unique global maximum* 
 >
 >If we impose that $x \neq x^*$ and $f(x^*) > f(x)$ to the definition than we call $x^*$ a point of *unique global maximum*
-
 ## Convexity 
 
 ### Convexity for Sets
@@ -577,7 +576,7 @@ Some *convex* sets are :
 >[!note] Empty set ( $\emptyset$ )
 >
 >We denote the *empty set* as a *convex set* for *convention* ( in fact we could not apply the definition of convex set since there are no point $x$ or $y$ )
-+ Any *polyhadron*
++ Any *polyhedron*
 #### Intersection between Sets
 
 >[!important] Definition
