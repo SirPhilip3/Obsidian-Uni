@@ -203,7 +203,6 @@ $z$ are all the vectors that stay in the *area* between $v_1$ and $v_2$
 
 >[!example] 
 >![[ConeCombiantion_ManimCE_v0.19.0.png]]
-
 ### Convex Combination
 
 >[!important] Definition
@@ -353,7 +352,7 @@ $$
 >f(x) = \sum^{m}_{h=0} \frac{D^h f(\bar{x})}{h!}(x-\bar{x})^h + R_{m+1}(\bar x) , \quad \lim_{x\to \bar x} \frac{R_{m+1}(\bar x)}{||x - \bar x||^m} = 0
 >$$ 
 
-Where $h$ indicates the order of the *partial derivative* and $D^h f(\bar{x})$ indicares the *partial derivative* of order $h$ computed at point $\bar{x}$ 
+Where $h$ indicates the *order* of the *partial derivative* and $D^h f(\bar{x})$ indicates the *partial derivative* of order $h$ computed at point $\bar{x}$ 
 
 The *taylor series* allows us to approximate a function $f(x)$ on a point $\bar{x}$ because by $x$ approaching $\bar{x}$ we have that :
 $$
@@ -387,7 +386,6 @@ $$
 $$
 \dots + \frac{1}{2}(x-\bar{x})^T\nabla^2 f(\bar{x})(x-\bar{x})+ R_3(\bar{x})
 $$
-
 ## Directional Derivatives
 
 >[!important] Definition
@@ -464,7 +462,7 @@ Geometrical rapresentation for $n=1$ :
 >[!important] Definition
 >Give the function $f : \mathbb{R}^n \to \mathbb{R}$ be $f\in C^2(\mathbb{R}^n)$  on the open neighborhood $I(x,\rho) = \{y \in \mathbb{R}^n : ||y -x||< \rho\} \subseteq \mathbb{R}^n$ , with $x \in \mathbb{R}^n$ and $\rho > 0$
 >
->Ther *exists* a value $\theta \in [0,1]$ such that *for any* $y\in I(x,\rho)$ : 
+>There *exists* a value $\theta \in [0,1]$ such that *for any* $y\in I(x,\rho)$ : 
 >1. $f(y) = f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T \nabla^2 f[x+\theta (y-x)](y-x)$
 >2. $f(y) = f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T \nabla^2 f(x)(y-x) + o(||y-x||^2)$
 >
