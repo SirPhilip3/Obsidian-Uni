@@ -1,7 +1,6 @@
 ---
 publish: true
 ---
- 
 >[!important] Definition
 >Let : 
 >+ $V$ be a set of objects ( *vectors* )
@@ -18,31 +17,26 @@ We define the following operations :
 
 **Propieties** of a *Vector Space* : 
 0. 
-
 $$
 \colorbox{green}{$x+y\in V(K)$} \forall x, y \in V(K)
-$$ 
+$$
 ( **Closure propiety** )
 	Given $x,y$ being part of $V(K)$ than the result of the operation of *cross* $+$ must be part of $V(K)$
-
 1. 
 $$\colorbox{green}{(x + y) + z = x + (y + z)} , \forall x,y,z \in V(K)
 $$
 ( **Associative propiety** )
-
 2. 
 $$
 \colorbox{green}{$\exists w \in V(K) : x + w = x$} , \forall x \in V(K)
 $$
 ( **Neutral / Null vector** )
 	$w$ is the *null vector* ( for integers this will be $0$ )
-
 3. 
 $$
 \colorbox{green}{$\exists \bar x  \in V(K) : x + \bar x = w$}, \forall x \in V(K)
 $$
 	It exists $\bar x$ such that *summed* to the original $x$ it will produce the *null vector* ( for integers this will be $-1\cdot x$ ) , $\bar x$ is called **Inverse / Opposite vector**
-
 4. 
 $$
 \colorbox{green}{x+y = y +x}, \forall x,y \in V(K)
@@ -52,7 +46,7 @@ $$
 >[!note] 
 >An *Abelian group* is a *Vector space* such that only the first $5$ rules are satisfied ( it uses only one operand $+$ ) 
 
-6. 
+5. 
 $$
 \forall \alpha , \beta \in K , \forall x \in V(K) \implies \colorbox{green}{$\alpha \bullet x \in V(K) \implies \alpha \bullet (\beta \bullet x ) = (\alpha \cdot \beta)\bullet x$}
 $$
@@ -66,7 +60,6 @@ $$
 \forall \alpha \in K : \colorbox{green}{$\alpha \bullet (x +y) = \alpha \bullet x + \alpha \bullet y$} ,\forall x, y \in V(K)
 $$
 ( **Distributed propiety** 1 )
-
 9. 
 $$
 \forall x \in V(K), \forall \alpha, \beta \in K : \colorbox{green}{$ (\alpha \oplus \beta) \bullet x = \alpha \bullet x + \beta \bullet x$}
@@ -124,7 +117,7 @@ w = \begin{pmatrix}
 $$
 + $M_{m,n}(\mathbb{R})$ : where $M_{m,n}$ is a matrix of $m$ *rows* and $n$ *colums*
 
-+ $P_n(x) , x \in \mathbb{R}$ is teh *set* of all the possible *polynomials* of *degree* **at most** $n$ where $x$ is the only unknown variable in the *polynomial* 
++ $P_n(x) , x \in \mathbb{R}$ is the *set* of all the possible *polynomials* of *degree* **at most** $n$ where $x$ is the only unknown variable in the *polynomial* 
 
 >[!example] 
 >$p(x) = p_0 + p_1 x + p_2 x^2+ \dots + p_n x^n$
@@ -166,7 +159,6 @@ The dimension of a vector space is given by the number of :
 >$$
 >
 >Since in order to get $w$ as a result we could have values of $\alpha$ that are not $0$ ( $\alpha_1 = 1/5, \alpha_2 = 0, \alpha_3 = -1$ ) these are not *lineraly independent*
-
 ## Vector Space Combinations
 
 ### Affine Combiantion
@@ -186,7 +178,6 @@ $s$ are all the *vectors* whos second extreme is on the *line* *between* the two
 >[!example] 
 >
 >![[Tute1_ManimCE_v0.19.0.png]]
-
 ### Cone Combination
 
 >[!important] Definition
