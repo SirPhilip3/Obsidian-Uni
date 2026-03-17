@@ -46,3 +46,21 @@ $$
 $$
 #todo explain
 
+**Encoding** : 
+
+>[!info] Idea
+>Frequent characters are encoded in few bits , rare with many bits
+>
+>With no code as a *perfix* of another code ( [[Information Theory#Huffman Coding|Huffman encoding]] )
+
+>[!example] 
+>Given $S = abracadabra$, $n=11$, $\sigma = 5$ , so if we pack every char with *worst case entropy* we would need $n \lceil \log \sigma \rceil = 33$ bits
+>
+>Let's prove that $n H_0 = 22.444\dots$ bits
+>>[!note]- Calculation
+>>$$
+>>11 \cdot \bigg\{ \frac{5}{11}\log \frac{11}{5}+ 2\bigg( \frac{2}{11}\log \frac{11}{2} \bigg) + 2\bigg(\frac{1}{11}\log \frac{11}{1}\bigg) \bigg\} = 11 \cdot 2.040\dots = 22.444\dots
+>>$$
+>
+>Using **prefix-free** encoding we can have : $c \to 000, d \to 001, b \to 010, r \to 011, a \to 1$  , than the string takes $23$ bits
+
