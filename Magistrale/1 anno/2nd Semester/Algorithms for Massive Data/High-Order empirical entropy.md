@@ -26,4 +26,13 @@ $S_w$ is the concatenation of all the characters that are preceding the occuranc
 >H_k(S) = \sum_{w \in \Sigma^k} \frac{|S_w|}{n} H_0(S_w)
 >$$ 
 
-Choosing $k$ 
+**Property** : 
+$$
+\log_2 \sigma \geq H_0 \geq H_1 \geq H_2 \geq \dots
+$$
+>[!danger] 
+>We can't choose $k=n$ since any *entropy compressor* must pay an additonal term $\sigma^k$ , hence , to be viable $k < \log_{\sigma} n$ 
+
+Compressing [[Suffix trie-tree-array#Suffix Array]]
+---
+[[Suffix trie-tree-array#Suffix Array|Suffix Array]]
