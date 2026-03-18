@@ -91,3 +91,15 @@ Now implementing **access** in $O(1)$ :
 
 ## Building $T$
 
+Given $B=010\ 101\ 001\ 110\ 000\ 011\ 111$ so $n=21$ , $b = \lceil \frac{log_2 n}{2} \rceil = 3$  block size , $n/b = 7$ *blocks*
+
+>[!important] Class of a block
+>
+>The number of $1$'s in the block
+
+>[!example] 
+>$$
+>\begin{array}{lccccccc} B = & 010 & 101 & 001 & 110 & 000 & 011 & 111 \\ C = & 1 & 2 & 1 & 2 & 0 & 2 & 3 \end{array}
+>$$
+
+The array $C$ needs $\lceil \log_2(b+1) \rceil= \log_2( \frac{\log_2 n}{2} +1) = O(\log \log n)$ *bits* per integer
