@@ -41,5 +41,19 @@ $H_k$ can't capture repetitions longher than $k$
 >>
 >>#todo
 
+We can see in fact that if we repeat some pattern $T$ this keeps the relative character *frequencies* the same , we can show in fact that : 
+$$
+|TT| H_0(TT) = 2n H_0(T)
+$$
+>[!note]- Proof
+>Since $|T|=n$ we will have that $|TT|=2n$ and :
+>$$
+>H_0(TT) = \sum_{c \in \Sigma} \frac{2 n_c}{2n} \log_2 \bigg( \frac{2n}{2n_c} \bigg) = \sum_{c \in \Sigma} \frac{n_c}{n} \log_2 \bigg( \frac{n}{n_c} \bigg) = H_0(T)
+>$$
 
+Also since $TT$ is repetitive we can just *entropy-compress* one $T$ and than add the instruction to *repeat twice* , this will give us a space of $nH_0(T) +O(1)$ bits
+
+There are other *compressor* that can capture repetitiveness :
++ *Lempel-Ziv* '77
++ *Run-lenght Burrows-Wheeler transform*
 
