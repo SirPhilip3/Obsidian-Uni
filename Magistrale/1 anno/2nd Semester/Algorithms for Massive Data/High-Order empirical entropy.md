@@ -32,7 +32,3 @@ $$
 $$
 >[!danger] 
 >We can't choose $k=n$ since any *entropy compressor* must pay an additonal term $\sigma^k$ , hence , to be viable $k < \log_{\sigma} n$ 
-
-Compressing [[Suffix trie-tree-array#Suffix Array]]
----
-[[Suffix trie-tree-array#Suffix Array|Suffix Array]]

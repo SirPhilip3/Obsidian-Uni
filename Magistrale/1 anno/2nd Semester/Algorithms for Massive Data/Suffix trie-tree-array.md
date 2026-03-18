@@ -146,8 +146,6 @@ $$
 Than the total number of nodes is $I+L = n + n = 2n \approx O(n)$ 
 # Suffix Array
 
-^7e89f9
-
 Let's create a table table that associates *suffixes* **sorted** *lexicographically* with they'r leaf number : 
 
 If we read from root to leaf , from left to right we obtain the *suffixes* ordered lexicographically
