@@ -297,3 +297,4 @@ $$
 >
 >We than assign to the overlaps a safe upperbound of at most $O(\log n_i)$ each , so in total we have $O(t \log n)$
 >
+
