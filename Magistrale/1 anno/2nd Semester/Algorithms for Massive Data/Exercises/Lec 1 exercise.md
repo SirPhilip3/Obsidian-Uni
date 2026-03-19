@@ -41,9 +41,11 @@ Yes , *big O* ignores multiplication therms
 >[!question] 
 >Is it true that $n(\log \log n)^2/\log n \in o(n)$ ?
 
+^f4388e
+
 We use the definition of [[Notazione O grande#$o Big(g(n) Big)$|o(n)]] : 
 $$
-\lim_{\infty} \frac{n(\log \log n)^2}{\log n} \cdot \frac{1}{n} = \lim_{\infty} \frac{(\log \log n)^2}{\log n}
+\lim_{n \to \infty} \frac{n(\log \log n)^2}{\log n} \cdot \frac{1}{n} = \lim_{n \to \infty} \frac{(\log \log n)^2}{\log n}
 $$
 
 Since $\log n$ grows *faster* than $\log \log n$ than the limit approaches $0$ and therefore by definition $n(\log \log n)^2 / \log n \in o(n)$

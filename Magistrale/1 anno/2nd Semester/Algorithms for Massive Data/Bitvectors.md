@@ -102,4 +102,77 @@ Given $B=010\ 101\ 001\ 110\ 000\ 011\ 111$ so $n=21$ , $b = \lceil \frac{log_2 
 >\begin{array}{lccccccc} B = & 010 & 101 & 001 & 110 & 000 & 011 & 111 \\ C = & 1 & 2 & 1 & 2 & 0 & 2 & 3 \end{array}
 >$$
 
-The array $C$ needs $\lceil \log_2(b+1) \rceil= \log_2( \frac{\log_2 n}{2} +1) = O(\log \log n)$ *bits* per integer
+The array $C$ needs $\lceil \log_2(b+1) \rceil= \log_2( \frac{\log_2 n}{2} +1) = O(\log \log n)$ *bits* per integer , and in total in $C$ there are $n/b$ *bits* : 
+$$
+n/b \cdot \log(b+1) = n/\log n \cdot O(\log \log n) = n \frac{\log \log n}{\log n} = o(n)
+$$
+>[!note] 
+>As seen in the [[Lec 1 exercise#^f4388e|Exercises]]
+
+Now we build table $T$ , where the **classes** are on the row , each containing all the possible configuration of the *blocks* of that class, ordered from smallest to largest 
+
+>[!example] 
+>$$
+>\begin{array}{r|c|c|c|c|}  & & 0 & 1 & 2 \\  \mathscr{B}_{3,0} \rightarrow & 0 & 000 & & \\ \mathscr{B}_{3,1} \rightarrow & 1 & 001 & 010 & 100 \\ \mathscr{B}_{3,2} \rightarrow & 2 & 011 & 101 & 110 \\
+\mathscr{B}_{3,3} \rightarrow & 3 & 111 & & \\ \end{array}
+>$$
+
+We have $b+1$ *rows* , $\leq 2^b$ *columns* , each cell will take $b$ *bits* :
+$$
+O(b^2 \cdot 2^b) = O((\log n)^2 \cdot 2^{\log_2 n/2})= O((\log n)^2 \cdot \sqrt{2^{\log_2 n}}) = O((\log n)^2 \cdot \sqrt{n}) = o(n)
+$$
+
+>[!important] Offset of a block
+>
+>Is the *column* in $T$ where the *block* appears
+
+>[!example] 
+>$$
+>\begin{array}{lccccccc} B = & 010 & 101 & 001 & 110 & 000 & 011 & 111 \\ C = & 1 & 2 & 1 & 2 & 0 & 2 & 3 \\ O = & 1 & 1 & 0 & 2 & 0 & 0 & 0 \end{array}
+>$$
+
+>[!note] 
+>We can use a *variable encoding* to encode each *row* 
+
+>[!example] 
+>*Row* $1$ and $2$ in $T$ contains $3$ *nonempty columns* so we need enough *bits* to encode $3$ distinct values so we need $2$ bits to store them , while *row* $0$ and $3$ just needs to encode $1$ value so we need $0$ *bits* to store it
+
+$$
+\log |\mathscr{B}_{b,k}| = \log \binom{b}{k}
+$$
+Where $k$ is the *row number* ( or offset class )
+
+In total we have : 
+$$
+\sum_{j=1}^{n/b} \log_2 \binom{b}{C[j]}
+$$
+Let's show that this is $\leq n H_0$
+$$
+\sum^{n/b}_{j=1} \log\binom{b}{C[j]} = \log \prod^{n/b}_{j=1} \binom{b}{C[j]}
+$$
+>[!note] 
+>Knowing that 
+>$$
+>\binom{x}{y} \cdot \binom{z}{w} \leq \binom{x +z}{y+w}
+>$$
+>
+>>[!example] 
+>>![[binomsumlemult.excalidraw.png]]
+>>%%[[binomsumlemult.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+Summing $b$ for $n/b$ *blocks* than we have $\frac{n}{b} \cdot b = n$
+Summing all $C[j]$ we get the total number of $1's$ in $B$ or $m$ 
+
+We than get : 
+$$
+\log \prod^{n/b}_{j=1} \binom{b}{C[j]} \leq \log \binom{n}{m} 
+$$
+Using *Stirling* approximation ( [[Empirical Entropy ( Zero-order )#^328557|Stirling approximation]] ) we get : 
+$$
+\log \binom{n}{m} \leq nH_0
+$$
+>[!example] **Final encoding** ( using bit rapresentation )
+>$$
+>\begin{array}{lccccccc} B = & 010 & 101 & 001 & 110 & 000 & 011 & 111 \\ C = & 1 & 2 & 1 & 2 & 0 & 2 & 3 \\ encoded(C) = & 01 & 10 & 01 & 10 & 00 & 10 & 11 \\ O = & 1 & 1 & 0 & 2 & 0 & 0 & 0 \\ encoded(O) = & 01 & 01 & 00 & 10 &  & 00 &  \end{array}
+>$$
+
