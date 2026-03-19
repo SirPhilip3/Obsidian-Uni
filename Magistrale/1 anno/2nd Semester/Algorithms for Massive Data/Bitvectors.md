@@ -226,8 +226,74 @@ $$
 >[!note] Proof
 >#todo
 
-Since ther are a maximum of $b$ 
+Since each *macroblock* is a group of $b$ *blocks* , inside each *macroblock* we can have at most $b^2$ bits
 
+The starting positions of *macroblocks* take $O(\log n)$ *bits* each ( enough to indicate the integers $n$, lenght of $B$ ) 
+But we will need just $n/b^2$ of them 
+
+The *relative positions* are $n/b$ ( $B$ lenght and $b$ blocks ) , each one of them $\log b^2$
+
+The total space of the two arrays is $O(n \log \log n / \log n) = o(n)$ ( see [[Lec 1 exercise#^f4388e|log log n to o(n)]] )
+
+>[!info]- Proof
+>
+>$$
+>\frac{n}{b^2} \times \log n + \frac{n}{b} \times \log b^2
+>$$
+>Now knowing that $b= \frac{\log n }{2}$ 
+>$$
+>\frac{n}{(\frac{1}{2} \log n)^2} \times \log n + \frac{n}{\frac{1}{2}\log n} \times 2 \log (\frac{1}{2}\log n)
+>$$
+>$$
+>\frac{4 n \log n}{(\log n)^2} + \frac{4 n\cdot (\log \log n - \log 2)}{\log n} = O(\frac{n}{\log n}) + O(\frac{n \log \log n}{\log n}) 
+>$$
+>[!note] 
+>$O(f(n)) + O(g(n)) = O(\max(f(n), g(n)))$
+>
+>So we get 
+>$$O(\frac{n \log \log n}{\log n})$$
 ## Rank
 
+To support the *rank* operation we first build a $3D$ table with pre-computed *ranks* such that :
+$$
+\forall x \in \{0,1\}^b : R[C_j][O_j][i] = B_j.rank_1(i)
+$$
+
+>[!note] 
+>$i$ is the index relative to the block of size $b$
+>
+>$C$ , $O$ are the same as *access* 
+
+We than divide $B$ in $b$ blocks and compute the :
++ *absolute rank* **before** *macroblock* ( number of $1$'s before a given macroblock )
++ *relative rank* inside *macroblock* ( rank at the start of the single *block* )
+
+$$
+\begin{array}{rccc|ccc|c} & B_1 & B_2 & B_3 & B_4 & B_5 & B_6 & B_7 \\
+\text{blocks} & 010 & 101 & 001 & 110 & 000 & 0\textcolor{red}{1}1 & 111 \\  \text{absolute rank before macroblock} & 0 & & & \textcolor{red}{4} & & & 8 \\  \text{relative rank inside macroblock} & 0 & 1 & 3 & 0 & 2 & \textcolor{red}{2} & 0 \end{array}
+$$
+
+>[!example] 
+>$rank_1(17) = 4+2+R[2][0][2]= 4+2+1 =7$
 # Compressing Multiple bitvectors
+
+>[!note] 
+>The compression scheme is *local* , the encoding of a *block* does not depend on the encoding of other blocks
+>
+>This implies that the concatenation of multiple *bitvectors* then the space is bounded by *entropies* of each individual *bitvector*
+
+$$
+RRR(B_1B_2\dots B_t) \le \bigg(\sum_{i=1}^t n_i H_0(B_i) \bigg) + o(n) +O(t \log n)
+$$
+>[!info]- Proof
+>
+>$$
+>\sum_{i=1}^{t} (n_iH_0(B_i)+o(n_i)) = \sum_{i=1}^{t}( n_iH_0(B_i)) + o(n)
+>$$
+
+>[!note] 
+>
+>Note that by concatenating multiple *bitvectors* the border between them may be overlapping , in this case we may lose seom compressing ability 
+>
+>We than assign to the overlaps a safe upperbound of at most $O(\log n_i)$ each , so in total we have $O(t \log n)$
+>
