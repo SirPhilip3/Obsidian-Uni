@@ -176,3 +176,58 @@ $$
 >\begin{array}{lccccccc} B = & 010 & 101 & 001 & 110 & 000 & 011 & 111 \\ C = & 1 & 2 & 1 & 2 & 0 & 2 & 3 \\ encoded(C) = & 01 & 10 & 01 & 10 & 00 & 10 & 11 \\ O = & 1 & 1 & 0 & 2 & 0 & 0 & 0 \\ encoded(O) = & 01 & 01 & 00 & 10 &  & 00 &  \end{array}
 >$$
 
+>[!note] 
+>We can reconstruct the lenghts of the codes in $O$ with the values in $C$
+
+## Access 
+
+Assuming that we can access any element of $C,O,T$ in *constant time*, than $B[i]$ can be also accessed in *constant time* :
+1. Identifiy the block $t$ containing $B[i]$ : $t = \lfloor (i-1)/b \rfloor + 1$
+>[!note] 
+>The $+1$ it's only due to the indexing
+>
+
+>[!example] 
+>Accessing $B[8]$ , $t = \lfloor (8-1)/3 \rfloor +1 =\lfloor 2.33 \rfloor +1 = 2+ 1 = 3$
+>$$
+>\begin{array}{lccccccc} B = & 010 & 101 & 0\textcolor{red}{0}1 & 110 & 000 & 011 & 111 \\ C = & 1 & 2 & \textcolor{red}{1} & 2 & 0 & 2 & 3 \\ O = & 1 & 1 & \textcolor{red}{0} & 2 & 0 & 0 & 0 \end{array}
+>$$
+
+2. Now access $B_t = T[C[t],O[t]] = T[1,0] = 001$
+3. Extract $B[i]$ from $B_t$ , as seen in [[Bitvectors#Bit-packing|Bit-packing]]
+
+>[!note] 
+>Accessing $C$ and $T$ in $O(1)$ is *easy* , since they use *fixed-lenght encoding* we can just use [[Bitvectors#Bit-packing|Bit-packing]]  
+
+### Accessing $O[i]$ in $O(1)$ time using just $o(n)$ extra bits
+
+Divide $O$ in **macroblocks** , groups of $b$ blocks:
++ Store explicitly the starting position of every *macroblock* 
++ Store the starting position of every *offset* block, *relative to the beginning* of each *macroblock*
+
+>[!example] 
+>
+>$$
+>\begin{array}{rccc|ccc|c} & O_1 & O_2 & O_3 & O_4 & O_5 & O_6 & O_7 \\
+>\text{encoded offsets} & 01 & 10 & 00 & 10 & & 00 & \\  \text{starting position of macroblock} & 1 & & & 7 & & & 11 \\  \text{relative starting position of offset inside macroblock} & 1 & 3 & 5 & 1 & 3 & 3 & 1 \end{array}
+>$$
+
+Now to extract a code we just need to sum up the *starting position* of that *macroblock* and it's *relative starting* position
+
+>[!example] 
+>To extract $O_6$ we sum up $7$ and $3$ , so $7+3-1=9$ , the $-1$ is just becouse we use $0$ indexing
+
+#### Space analysis
+
+Each encoded offset takes at most : 
+$$
+\log \binom{b}{k} \le \log 2^b = b
+$$
+>[!note] Proof
+>#todo
+
+Since ther are a maximum of $b$ 
+
+## Rank
+
+# Compressing Multiple bitvectors
