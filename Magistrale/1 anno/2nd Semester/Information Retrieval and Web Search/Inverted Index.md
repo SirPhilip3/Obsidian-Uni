@@ -12,7 +12,6 @@ All the term toghether form the *dictionary*
 On *disk* : we just store a continuos data structure of *postings* adding indexes for the start of each list 
 
 On *memory* we can use *linked lists* or *variable-lenght* array 
-
 ## Construction
 
 The process of building an *inverted index* follows the following path : 
@@ -67,4 +66,53 @@ Now we sort them by *terms* and than by *docID* if the sorting algorithm is not 
 | $\dots$   | $\dots$ |
 
 Now we can just compress it in the *postings lists* ( also adding the document frequency for each term )
+
+>[!example] 
+>![[inverted_inde.excalidraw.png]]
+>%%[[inverted_inde.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+## Processing Queries
+
+### AND
+
+If we need to process the following query : `X AND Y` we do the following : 
+1. Locate `X` and `Y` in the *dictionary* and its corresponding *posting list* 
+2. **Merge** the two postings by intersecting the two sets
+
+The merge can be done by *walking* through the two postings simultaneously 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Intersect($p_1,p_2$)}
+	\begin{algorithmic}
+	\State $answer \leftarrow \langle \rangle$
+	\While{$p_1 \neq NIL$ and $p_2 \neq NIL$}
+		\If{$docID(p_1) = docID(p_2)$}
+			\State ADD(answer,docID($p_1$))
+			\State $p_1 \leftarrow next(p_1)$
+			\State $p_2 \leftarrow next(p_2)$
+        \Elif{$docID(p_1) < docID(p_2)$}
+        \Else 
+	        \State $p_2 \leftarrow next(p_2)$
+        \EndIf
+    \EndWhile
+    \Return $answer$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!note] 
+>The time complexity, in the worst case, is $O(x + y)$ with $x$ and $y$ the lenght of the two *posting list*
+
+The output size of the intersection in the *worst case* is $\min(x,y)$ 
+### AND with `nextGEQ`
+
+`nextGEQ(p1,p2[j])` returns the pointer to the *first docID* in the list `p1` which is ***G**reater than or **EQ**ual* to `p2[j]`
+
+This can be realized using **Binary Search** but in practice we use *skip pointers*
+
+#todo  pseuodocode
+
+## Postings with Skip pointers
+
 
