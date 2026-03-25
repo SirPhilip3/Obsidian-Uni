@@ -137,7 +137,7 @@ This can be realized using **Binary Search** but in practice we use *skip pointe
 >![[nextGEQ.excalidraw.png]]
 %%[[nextGEQ.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
-## Postings with Skip pointers
+#### Postings with Skip pointers
 
 We can add some pointers, at indexing time, in the *postings* in order to be able to skip blocks of *postings* that will surely noy contain the search result for an *AND* query 
 
@@ -150,11 +150,60 @@ We can add some pointers, at indexing time, in the *postings* in order to be abl
 >But since the *skip pointer* on the second list is still lower than $41$ ( $31$ ) we can directly skip to $31$ skipping the block $\{17,21,31\}$
 
 #todo pseudocode
-
-### Where to place the Skips
+##### Where to place the Skips
 
 In general we have the following *tradeoffs* : 
 + *More* skips means that if we take one we will skip *shorter spans* but we are also *more likely* to skip
 + *Fewer* skips means that we skip *longher spans* if we take it but also *less successfull* skips
 
+**Heuristic** : for *postings* of lenght $L$ we use $\sqrt{L}$ evenly spaced skip pointers 
+
+>[!note] 
+>+ This method ignores the distribution of the query terms
+>+ Easy for *static* indexes
+>
+
+### OR
+
+The result of *OR* is simply given by performing the set union of two postings lists
+
+```pseudo
+	\begin{algorithm}
+	\caption{Union($p_1,p_2$)}
+	\begin{algorithmic}
+	\State $answer \leftarrow \langle \rangle$
+	\While{$p_1 \neq NIL$ and $p_2 \neq NIL$}
+		\If{$docID(p_1) = docID(p_2)$}
+			\State ADD(answer,docID($p_1$))
+			\State $p_1 \leftarrow next(p_1)$
+			\State $p_2 \leftarrow next(p_2)$
+        \Elif{$docID(p_1) < docID(p_2)$}
+	        \State ADD(answer,docID($p_1$))
+	        \State $p_1 \leftarrow next(p_1)$
+        \Else 
+	        \State ADD(answer,docID($p_2$))
+	        \State $p_2 \leftarrow next(p_2)$
+        \EndIf
+    \EndWhile
+    \If{$p_1 = NIL \land p_2 \neq NIL$}
+	    \State EXTEND(answer,$p_2$)
+    \EndIf
+    \If{$p_2 = NIL \land p_1 \neq NIL$}
+	    \State EXTEND(answer,$p_1$)
+    \EndIf
+    \Return $answer$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!note] Space and Time complexity
+>Since we need to scan the two lists completely we will have a *time* complexity of $O(x+y)$
+>
+>The *space* complexity instead , in the worst case is $x+y$ (the two sets are fully disjointed)
+>
+
+>[!important] 
+>We can't use [[Inverted Index#AND with `nextGEQ`|nextGEQ]] or [[Inverted Index#Postings with Skip pointers|skip pointers]] in the *OR* operation
+
+## Query Optimization
 
