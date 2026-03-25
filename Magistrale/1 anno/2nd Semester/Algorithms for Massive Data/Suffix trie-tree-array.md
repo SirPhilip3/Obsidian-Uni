@@ -73,7 +73,7 @@ First list all the *suffixes* :
 Than we build the *tree* in the following way : 
 
  1. Starting from the smallest *suffix* we create a node for each different starting letter with the starting position of that *suffix* as a number inside the *leaf*  
-![[suffixtrie_1st.excalidraw.png]]
+![[suffixtrie_1st.excalidraw.png|346]]
 %%[[suffixtrie_1st.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 >[!note] 
