@@ -92,6 +92,7 @@ The merge can be done by *walking* through the two postings simultaneously
 			\State $p_1 \leftarrow next(p_1)$
 			\State $p_2 \leftarrow next(p_2)$
         \Elif{$docID(p_1) < docID(p_2)$}
+	        \State $p_1 \leftarrow next(p_1)$
         \Else 
 	        \State $p_2 \leftarrow next(p_2)$
         \EndIf
@@ -111,8 +112,49 @@ The output size of the intersection in the *worst case* is $\min(x,y)$
 
 This can be realized using **Binary Search** but in practice we use *skip pointers*
 
-#todo  pseuodocode
+```pseudo
+	\begin{algorithm}
+	\caption{Intersect($p_1,p_2$)}
+	\begin{algorithmic}
+	\State $answer \leftarrow \langle \rangle$
+	\While{$p_1 \neq NIL$ and $p_2 \neq NIL$}
+		\If{$docID(p_1) = docID(p_2)$}
+			\State ADD(answer,docID($p_1$))
+			\State $p_1 \leftarrow next(p_1)$
+			\State $p_2 \leftarrow next(p_2)$
+        \Elif{$docID(p_1) < docID(p_2)$}
+	        \State $p_1 \leftarrow \textcolor{orange}{nextGEQ}(p_1,p_2)$
+        \Else 
+	        \State $p_2 \leftarrow \textcolor{orange}{nextGEQ}(p_2,p_1)$
+        \EndIf
+    \EndWhile
+    \Return $answer$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!example] 
+>![[nextGEQ.excalidraw.png]]
+%%[[nextGEQ.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 ## Postings with Skip pointers
+
+We can add some pointers, at indexing time, in the *postings* in order to be able to skip blocks of *postings* that will surely noy contain the search result for an *AND* query 
+
+>[!example] 
+>![[skip_list.excalidraw.png]]
+%%[[skip_list.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>
+>Suppose that we have processed the two list until $8$, now advancing we have $41$ and $11$ and since $11$ is the smallest we advance the *second pointer* 
+>
+>But since the *skip pointer* on the second list is still lower than $41$ ( $31$ ) we can directly skip to $31$ skipping the block $\{17,21,31\}$
+
+#todo pseudocode
+
+### Where to place the Skips
+
+In general we have the following *tradeoffs* : 
++ *More* skips means that if we take one we will skip *shorter spans* but we are also *more likely* to skip
++ *Fewer* skips means that we skip *longher spans* if we take it but also *less successfull* skips
 
 
