@@ -67,7 +67,7 @@ Reduces words to their *roots*
 >[!example] 
 >+ automate(s), automatic, automation -> *automat*
 
-## Porter's algorithm
+### Porter's algorithm
 
 Rule-based reductions separated in *phases* each consisting of a set of commands 
 
@@ -86,3 +86,22 @@ The rule that we apply is decided based on the *longest matching suffix* to be *
 + pon*ies*   $\to$ pon*i*
 + care*ss*    $\to$ care*ss*
 + cat*s*       $\to$ cat
+
+We can also indicate the minimum prefix lenght in order to apply a rule 
+
+( $m>1$ ) *EMENT* $\to \emptyset$
++ replac*ement* $\to$ replac
++ c*ement* $\to$ cement ( we do not apply the rule since the prefix is of lenght $1$ )
+
+### Results of stemming
+
+In general it helps *recall* but harms *precision* 
+
+# Neural-IR
+
+Instead of using binary operators we use *Deep Neural Networks* to retrieve and *rank* search results ( **Transformers** ) 
+Text gets tokenized and trasfromed in low dimensional dense vectors ( *embeddings* ) before traversing the *DeepNN* 
+
+The *tokenizer* used is a **byte pair encoding** ( **BPE** ) 
+
+A *transfromer* commonly used for AI is **BERT** ( Bidirectional Encoder Resentations for Trasformers ) , this uses a *tokenization* method called *WordPiece tokenization*, this method further breaks down words into smaller *subwords* called *WordPieces* 
