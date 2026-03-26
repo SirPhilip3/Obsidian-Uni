@@ -207,3 +207,63 @@ The result of *OR* is simply given by performing the set union of two postings l
 
 ## Query Optimization
 
+We can optimize queries like : 
++ `X AND (NOT Y)`
++ `X OR (NOT Y)`
+### X AND (NOT Y)
+
+```pseudo
+	\begin{algorithm}
+	\caption{$Intersect_not_second(p_1, p_2)$}
+	\begin{algorithmic}
+	\State $answer \leftarrow \langle \rangle$
+	\While{$p_1 \neq NIL$ and $p_2 \neq NIL$}
+		\If{$docID(p_1) = docID(p_2)$}
+			\Comment{$p_1$ is also included in $p_2$, skip}
+			\State $p_1 \leftarrow next(p_1)$
+			\State $p_2 \leftarrow next(p_2)$
+        \Elif{$docID(p_1) < docID(p_2)$} 
+	        \Comment{$p_1$ is surely not in $p_2$, so we can append $p_1$}
+	        \State ADD(answer,docID($p_1$))
+	        \State $p_1 \leftarrow next(p_1)$
+        \Elif{$docID(p_2) < docID(p_1)$}
+	        \Comment{we need to advance $p_2$ to know if $p_1$ can be appended}
+	        \State $p_2 \leftarrow next(p_2)$
+        \EndIf
+    \EndWhile
+    \If{$p_1 \neq NIL$}
+	    \Comment{since $p_2$ is empty the rest of $p_1$ can be appended}
+	    \State EXTEND(answer,$p_1$)
+    \EndIf
+    \Return $answer$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+We add to the return list those that occur in the *first* ( `X` ) and not in the *second* ( `Y` ) , this will keep the time at $O(x+y)$
+### Multiple Binary operators
+
+>[!question] 
+>What is the best order to follow in doing query processing ? 
+
+#### AND
+
+With multiple *AND* process in order of **increasing** frequency, we start from the *smallest set* 
+
+>[!example] 
+>
+>Given the following query : `Calpurnia AND Brutus AND Caesar` 
+>
+>Where : 
+>+ `Calpurnia` contains $2$ *postings* 
+>+ `Brutus` contains $8$ *postings*
+>+ `Caesar` contains $7$ *postings*
+>
+>Since the output size of the query is given by the $\min(X,Y)$ we will first execute the query `Calpurina AND Brutus` since it will give us a lower output size
+>
+
+#### OR
+
+For *OR* queries we treat them as being always in the worst case scenario, so when `X` and `Y` are *disjointed* , giving us the size of an *OR* query as $x+y$ 
+
+So we estimate the lenght of each resulting query from the *document frequencies* and start from the **smallest** result
