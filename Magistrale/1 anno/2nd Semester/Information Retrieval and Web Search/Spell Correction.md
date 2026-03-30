@@ -51,7 +51,6 @@ In general we want , given a *lexicon* and a *query* `Q` return the words **clos
 + *Transposition* ( can be viewed as two *replace* , `ca->ac` )
 
 The solution is found by [[Strutture Dati#Programmazione Dinamica|Dynamic Programming]] in $O(|S_1| \times |S_2|)$ 
-
 #### Algorithm
 
 Given $X$ and $Y$ strings of lenght respectively $n$ and $m$ 
@@ -79,9 +78,13 @@ Define $D[i,j]$ as :
 	\end{algorithmic}
 	\end{algorithm}
 ```
-### Weighted Edit Distance
+#### Weighted Edit Distance
 
 Since some errors are more *probable* than other ( letter closer togheter in a keybpard ) we can add a *weight matrix* 
+#### Spell Checking 
+
+Given a *misspelled word*, enumerate all the *correct* words up to a preset distance 
+
 ### $n$-gram overlap
 
 #todo 
