@@ -85,6 +85,20 @@ Since some errors are more *probable* than other ( letter closer togheter in a k
 
 Given a *misspelled word*, enumerate all the *correct* words up to a preset distance 
 
+>[!example] 
+>Enumerate all the words at distance $1,\dots$ from the *misspelled* one
+
+We can then : 
++ Present alternatives to the user
++ Directly substitute with the most likely correction
+
+>[!warning] 
+>This means computing the distances from all the terms in the dictionary , very **expensive** 
+
+**Optimization** : 
++ Generate everything up to a small edit distance ( $k=1,2$ ) than *intersect* these with *terms* in the *index* lexicon 
+
+
 ### $n$-gram overlap
 
 #todo 

@@ -14,7 +14,7 @@ publish: true
 
 This can *equivalently* be seen in terms of *bitvectors* : 
 >[!important] Theorem
->Any [[Bitvectors]] $B \in \mathscr{B}_{n,m}$ can be compressed in : 
+>Any [[Bitvectors (RRR)]] $B \in \mathscr{B}_{n,m}$ can be compressed in : 
 >$$
 >\log \binom{n}{m} + O(m) \leq n H_0 +O(m)
 >$$
@@ -23,7 +23,6 @@ This can *equivalently* be seen in terms of *bitvectors* :
 **Queries** : 
 + $select_1$ can be solved in $O(1)$ time  
 + *rank*, *access* and $select_0$ can be solved in $O(\log m)$ time 
-
 # Assumptions
 
 + The smallest integer is $0$
@@ -72,7 +71,7 @@ Given $S=\{0,5,8,12,14,17,20,31\} \subseteq \{0,\dots, 31\}$ , $m=8, n=32$
 >|    20    |           101            |                00                 |
 >|    31    |           111            |                11                 |
 >
-4. Store the *suffixes* ( in a [[Bitvectors#Bit-packing|Bit-packed]] array ) in $m\log (n/m)$ *bits* of space
+4. Store the *suffixes* ( in a [[Bitvectors (RRR)#Bit-packing|Bit-packed]] array ) in $m\log (n/m)$ *bits* of space
 >[!note] 
 >The *prefixes* are *nondecreasing* numbers in the range $[0,m)$ 
 
@@ -130,7 +129,7 @@ $$
 EF_2.rank_0(EF_2.select_1(i))
 $$
 >[!note] 
->These operation are in $O(1)$ time since $EF_2$ uses $RRR$ ( [[Bitvectors#Compressing the bitvector to $nH_0+o(n)$ bits|RRR]] )
+>These operation are in $O(1)$ time since $EF_2$ uses $RRR$ ( [[Bitvectors (RRR)#Compressing the bitvector to $nH_0+o(n)$ bits|RRR]] )
 
 >[!example] 
 >Given $EF_1 = 00\ 01\ 00\ 00\ 10\ 01\ 00\ 11$ and $EF_2 = 1\ 01\ 01\ 01\ 1\ 01\ 01\ 001$

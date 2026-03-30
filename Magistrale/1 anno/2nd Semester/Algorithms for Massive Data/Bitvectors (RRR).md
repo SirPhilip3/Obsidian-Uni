@@ -197,10 +197,10 @@ Assuming that we can access any element of $C,O,T$ in *constant time*, than $B[i
 >$$
 
 2. Now access $B_t = T[C[t],O[t]] = T[1,0] = 001$
-3. Extract $B[i]$ from $B_t$ , as seen in [[Bitvectors#Bit-packing|Bit-packing]]
+3. Extract $B[i]$ from $B_t$ , as seen in [[Bitvectors (RRR)#Bit-packing|Bit-packing]]
 
 >[!note] 
->Accessing $C$ and $T$ in $O(1)$ is *easy* , since they use *fixed-lenght encoding* we can just use [[Bitvectors#Bit-packing|Bit-packing]]  
+>Accessing $C$ and $T$ in $O(1)$ is *easy* , since they use *fixed-lenght encoding* we can just use [[Bitvectors (RRR)#Bit-packing|Bit-packing]]  
 
 ### Accessing $O[i]$ in $O(1)$ time using just $o(n)$ extra bits
 

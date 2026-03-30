@@ -20,7 +20,7 @@ publish: true
 >> = \log n(n-1)(n-3) = \log n + \log (n-1) + \log (n-2) \approx 3 \log n \approx O(\log n) 
 >>$$
 
-**Information Theoretical Lower bound** has a fromal rule : 
+**Information Theoretical Lower bound** has a formal rule : 
 
 >[!important] Definition
 >Let $\mathscr{U}$ be the *universe* of objects that we encode. The *worst-case entropy* of $\mathscr{U}$ is : 
