@@ -1,3 +1,6 @@
+---
+publish: true
+---
 We can use **context**
 
 >[!example] 

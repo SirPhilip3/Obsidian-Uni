@@ -1,3 +1,6 @@
+---
+publish: true
+---
 **Entropy** can be a bad measure of *compressibility*
 
 The best measure of *compressibility* is **Kolmogorov** complexity $\kappa(S)$ , where $S$ is a string , is the lenght of the *shortest program generating* $S$ 

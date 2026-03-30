@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!important] Theorem 
 >Any $S \subseteq \{0,\dots, n-1\}$ of cardinality $m=|S| \leq n$  can be compressed in : 
 >$$

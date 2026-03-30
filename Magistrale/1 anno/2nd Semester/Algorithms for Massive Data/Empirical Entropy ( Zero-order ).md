@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!important] Definition
 >Let $S \in \Sigma^n$ be a *string*. The **zero-order empirical entropy** of $S$ is : 
 >$$

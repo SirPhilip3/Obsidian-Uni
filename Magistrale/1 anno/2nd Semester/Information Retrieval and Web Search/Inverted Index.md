@@ -1,3 +1,6 @@
+---
+publish: true
+---
 For each term *t* we store the list of all the documents ( *docID* ) that contain term *t* 
 
 >[!note] 

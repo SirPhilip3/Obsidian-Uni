@@ -1,3 +1,6 @@
+---
+publish: true
+---
 This model is based on the following binary operators : 
 + *AND*
 + *OR*

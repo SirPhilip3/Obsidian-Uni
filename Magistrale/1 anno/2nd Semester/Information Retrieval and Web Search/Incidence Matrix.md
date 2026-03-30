@@ -1,3 +1,6 @@
+---
+publish: true
+---
 In simple cases we can use **Term-document incidence matrix/tensor** where each document is divided using *word-based tokenization* and *ohe-hot encoding* for each word
 
 This will give us a *matrix* where : 

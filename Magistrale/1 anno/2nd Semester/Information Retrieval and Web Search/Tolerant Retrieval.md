@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Wild-card queries
 
 >[!example] 
@@ -97,6 +100,7 @@ To process `mo*n` we transform it into the following : `$mo*n$` and than do the 
 
 **Permuterm** is not *space efficent* , for each term of lenght $n$ we would store $(n+1)*(n+1)$ chars ( $+1$ because of the `$` )
 
-**2-grams**
+**2-grams** : we have a size per *term* equal to $(n+1) \cdot 2$ chars  
 
-**3-grams**
+**3-grams** : we have a size per *term* equal to $(n+1) \cdot 3$ chars  
+

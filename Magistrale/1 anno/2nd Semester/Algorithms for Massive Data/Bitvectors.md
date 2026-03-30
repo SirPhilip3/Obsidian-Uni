@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!important] Definition 
 >A *bitvector* is an element of $\{0,1\}^n$ ( string of $n$ bits )
 

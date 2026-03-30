@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!example] 
 >Consider a string of lenght $n$ over alphabet $\{A,C,G,T\}$ that cotains exactly one occurrence of $A, C, G$ with the remaining $n-3$ letters being equal to $T$
 >

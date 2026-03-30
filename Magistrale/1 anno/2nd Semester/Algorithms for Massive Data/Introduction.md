@@ -1,3 +1,6 @@
+---
+publish: true
+---
 In *massive data* we can't store the data on the disk and than build a data structure on it 
 
 **Massive Data Paradigm** : 

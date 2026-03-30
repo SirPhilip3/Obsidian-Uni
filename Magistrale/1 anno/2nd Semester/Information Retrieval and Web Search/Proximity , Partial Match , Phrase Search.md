@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!example] WestLaw system
 >
 >Has the following operators :

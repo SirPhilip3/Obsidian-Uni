@@ -1,3 +1,6 @@
+---
+publish: true
+---
 In order to *parse* a document we first need to determine : 
 + it's format (pdf, excel, html )
 + it's language 

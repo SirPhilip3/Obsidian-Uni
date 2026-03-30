@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!important] Definition 
 >
 >**Information Retrieval** ( *IR* ) is about finding material ( documents ) of an *unstructured* nature that satisfies an information need, from a large digital collection
