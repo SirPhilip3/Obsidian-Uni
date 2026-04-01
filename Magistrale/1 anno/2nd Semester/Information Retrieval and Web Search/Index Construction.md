@@ -1,3 +1,6 @@
+---
+publish: true
+---
 In general we would like to store the *index* in **DRAM** 
 
 Also the *indes* should be *block efficent* since both the **cache** and *disk* work in blocks
@@ -63,4 +66,34 @@ Using **binary merges** ( always merges two block togheter at the same level )
 
 >[!note] 
 >Merging two sorted *blocks* can be done in *linear* **time** and *linear* or *constant* **space**
+
+>[!example] 
+>![[bin_merge.excalidraw.png]]
+%%[[bin_merge.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!warning] 
+>Each time we merge two blocks the size dubles, this becomes very **expensive**
+
+#todo algorithm
+
+### Multi-way merge
+
+We keep in memory only small *chunks* ( [[Strutture Dati#min_heap|min heap]] ) that recieve as input data from the bigger in-memory chucks of the actual *index blocks*
+
+They than produce as ouput to an *output chuck* they'r minimum, this will than be flushed when full to the disk
+
+( see [multi-way merge](https://satyadeepmaheshwari.medium.com/sorting-large-datasets-with-limited-memory-the-chunked-merge-sort-approach-318275275c81) ) 
+
+# SPIMI : Single-pass in-memory indexing
+
+>[!warning] 
+>In all the previous solution we *assume* that the *dictionary* can be kept in memory 
+
+**Ideas** : 
+1. We can generate *separate dictionaries* for each *block*
+2. Accumulate postings in *postings list* as they occur
+
+Still using *blocks* we subdivide the documents into them and build *partial indexes* , these can be merged by simply appending each *postings list* in the blocks order
+
+#todo algorithm
 
