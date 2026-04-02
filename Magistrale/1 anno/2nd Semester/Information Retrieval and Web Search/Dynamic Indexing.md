@@ -25,6 +25,10 @@ In general
 >
 >>[!warning] Issues
 >>
+>>Merging the *auxiliary* index and the *main* index is **efficent** if we keep separate files for each postings list , since merging them is a simple append as in [[Index Construction#SPIMI Single-pass in-memory indexing|SPIMI]] 
+>>This is inefficient for the *OS*
 >>
+>>The final main index will be a *big single file*
 >>
 
+# Sharding 
