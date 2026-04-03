@@ -44,9 +44,67 @@ A string containing $400000$ *terms*, each of *average lenght* $8$ , will need $
 
 And since we need to resolve $3.2M$ pointers positions we will need $\log_2 3.2M=22$bits to store the *pointers* ( $3$ *Bytes* )  
 
-....
+So in total we will have :
++ $4$ bytes per *term frequency*
++ $4$ bytes per *pointer* to postings
++ $3$ bytes per *term pointer*
++ An *average* of $8$ bytes per term in the *string*
+
+$\sim 400000 \times 19$ Bytes = $7.6MB$
+
+>[!example] 
+>![[dict_string.excalidraw.png]]
+%%[[dict_string.excalidraw.md|🖋 Edit in Excalidraw]]%%
 ### Blocking
 
+Instead of storing pointer to all the words, store a *pointer* to the start of blocks of $k$ consecutive terms 
+
+We need to store an extra *Byte* before each word to indicate the lenght of the 
+
+>[!example] 
+>![[dic_string_blocking.excalidraw.png]]
+%%[[dic_string_blocking.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+Like this we save $3$ *pointers* ( $9$ bytes ) but we add $4$ bytes for *block* for the lenght integer
+
+We save $5$ *bytes* per block
+
+With $k=4$ we save :
+$$
+5B \cdot \frac{400000}{4} = 0.5 MB
+$$
+The dictionary becomes : $7.1MB$
+#### Perfomance
+
+>[!warning]
+>We save more with larger $k$ but at a *performance cost* in the **query**
+
+In fact doing *dictionary search* **without** *blocking*, assuming each term is *equally likey* to show up in a query, will take an average of $\log_2 n$ comparisons, since we perform **binary search** on the pointers ( $n$ is the number of *terms* )
+
+Instead in *dictionary search* **with** *blocking* we can only do **binary search** for $k$-term block and than we will need to do *linear search* for the rest
 ### Front coding
 
+Since the *dictionary string* is **sorted** blocks will have *long* **common** *prefix* , for each block we will than store the difference between them 
+
+>[!example] 
+>![[front_coding.excalidraw.png]]
+%%[[front_coding.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+Another possible *front coding* is always looking at prefixes of the previous term 
+
+| Input      | Common prefix | Compressed output |
+| ---------- | ------------- | ----------------- |
+| myxa       | ---           | `0 myxa`          |
+| myxophyta  | `myx`         | `3 ophyta`        |
+| myxopod    | `myxop`       | `5 od`            |
+| nab        | ---           | `0 nab`           |
+| nabbed     | `nab`         | `3 bed`           |
+| nabbing    | `nabb`        | `4 ing`           |
+| nabit      | `nab`         | `3 it`            |
+|            |               |                   |
+| *64 bytes* |               | *46 bytes*        |
+>[!note] 
+>In the *compressed output* we still need to store the lenght of the *suffixes*
 # Postings Compression
+
+#todo 
