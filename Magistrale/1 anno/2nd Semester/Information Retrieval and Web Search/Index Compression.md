@@ -12,8 +12,10 @@ Compressing :
 ![[Pasted image 20260402150601.png]]
 # Heap Law
 
+#todo 
 # Zipf Law
 
+#todo
 # Dictionary Compression
 
 ## Fixed Width array
