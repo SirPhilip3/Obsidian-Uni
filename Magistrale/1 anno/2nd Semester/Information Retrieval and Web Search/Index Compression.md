@@ -100,7 +100,13 @@ $$
 
 # Power Law
 
+In general $80\%$ of the *effect* comes from $20\%$ of the *terms*
+$$
+p(i) \approx k \cdot i^{-\alpha}
+$$
+Where $\alpha$ is the *slope* of the probability distribution
 
+#todo 
 # Dictionary Compression
 
 ## Fixed Width array
@@ -193,5 +199,9 @@ Another possible *front coding* is always looking at prefixes of the previous te
 >[!note] 
 >In the *compressed output* we still need to store the lenght of the *suffixes*
 # Postings Compression
+
+In the *postings* we can just store the **gaps** between `docID`'s , since most of the gaps can be encoded with less than the bit necessary to store the whole `docID`
+
+## Variable lenght encoding
 
 #todo 
