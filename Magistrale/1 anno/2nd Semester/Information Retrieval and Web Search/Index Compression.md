@@ -12,10 +12,95 @@ Compressing :
 ![[Pasted image 20260402150601.png]]
 # Heap Law
 
-#todo 
+Helps us determine the *vocabulary size* depending on the *collection size* :
+$$
+M = k T^b
+$$
+Where : 
++ $M$ : *vocabulary* size
++ $T$ : tokens in the *collection* 
+
+$k$ and $b$ are *free parameter* determined empirically 
+
+>[!note] 
+>If we use *log-log* space , where $X= \log M$ and $Y = \log T$ we get :
+>$$
+>\log M = \log k T^b
+>$$
+>$$
+>\log M = \log k + \log T^b
+>$$
+>$$
+>\log M = \log k + b \log T
+>$$
+>$$
+>Y = bX + \log k
+>$$
+>Than now $k$ is the *intercept* and $b$ the *slope*
+>
+
+#todo do graph
+
+For each *document corpus* we can than train it like a linear classifier
 # Zipf Law
 
-#todo
+*Zipf law* studies the relative frequencies of terms 
+
+>[!note] 
+>Assume that *terms* are *ranked* from most frequent to least 
+
+>[!note] Notation
+>+ $t_i$ : the *term* at rank $i$
+>+ $cf_i$ : *collection frequency* or the number of *occurences* of the term $t_i$ in the collection
+>$$
+>cf_i = \sum_{d \in D} tf_{i,d}
+>$$
+>+ $df_i$ : *document frequency* : the *total* number of documents that contain the term $t_i$  
+>$$
+>\sum_{d\in D} f(tf_{i,d})
+>$$
+>Where $f$ is :
+>$$
+>f(tf_{i,d}) = \begin{cases}
+>1 & \text{if } tf_{i,d} > 0 \\
+>0 & \text{otherwise}
+>\end{cases}
+>$$
+>+ $tf_{i,d}$ : *term frequency* : total numer of occurences of the term $t_i$ in the document $d$
+
+>[!important] Definition
+>The $i$-th *most frequent term* $t_i$ has a *collection frequency* $cf_i$ proportional to $\frac{1}{i}$
+
+There can be a normalization factor $K$ , so it becomes $\frac{K}{i}$ , generally $K=cf_1$
+
+>[!example] 
+>The *1st* most frequent term occurs $cf_1$ times , the *2nd* insted occurs $cf_1/2$ times
+
+We can than write the following formula : 
+$$
+cf_i = K/i = K \cdot i^{-1}
+$$
+>[!note] 
+>On *log-log* space we can write ( with $X= \log i$ and $Y = \log cf_i$ )
+>$$
+>\log cf_i = \log k \cdot i^{-1}
+>$$
+>$$
+>\log cf_i = \log k + \log i^{-1}
+>$$
+>$$
+>\log cf_i = \log k - \log i
+>$$
+>$$
+>Y = -X + \log k
+>$$
+>
+
+#todo do graph
+
+# Power Law
+
+
 # Dictionary Compression
 
 ## Fixed Width array
