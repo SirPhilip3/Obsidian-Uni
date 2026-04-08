@@ -163,7 +163,6 @@ If we read from root to leaf , from left to right we obtain the *suffixes* order
 The array of integers is called *Suffix Array* ( **SA** )
 
 Now just given the *text* and the **SA** we can solve *count* and *locate* efficently
-
 ## Query
 
 >[!note] 

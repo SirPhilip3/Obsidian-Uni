@@ -49,4 +49,59 @@ $$
  >[!important] 
  >The *assumption* is not true when the string is a permutation of $[n] \ (\sigma = n)$ , numbers from $1 \to n$
  
- 
+# Binary searching *without* [[Suffix trie-tree-array#Suffix Array|SA]] and text 
+
+To do this we would need to build a *black-box* that allows us to extract the $i$-th suffix
+
+## 1) string F
+
+We need to store at least the *first character* of every *suffix* in sorted order  
+
+>[!example] 
+>
+>| **i** | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+>| ----- | --- | --- | --- | --- | --- | --- | --- |
+>| **F** | *$*   | *A*   | *A*   | *A*   | *B*   | *N*   | *N*   |
+>|       |     | $   | N   | N   | A   | A   | A   |
+>|       |     |     | A   | A   | N   | $   | N   |
+>|       |     |     | $   | N   | A   |     | A   |
+>|       |     |     |     | A   | N   |     | $   |
+>|       |     |     |     | $   | A   |     |     |
+>|       |     |     |     |     | $   |     |     |
+
+In order to store **F** we mark in a [[Bitvectors (RRR)]] **FO** the *first occurrence* of every character , and store just *one* occurrence of every chatacter in a vector $\Sigma$ of size $\sigma$ 
+
+>[!example] 
+>| i            | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+>| ------------ | --- | --- | --- | --- | --- | --- | --- |
+>| F            | $   | A   | A   | A   | B   | N   | N   |
+>| **FO**       | *1* | *1* | *0* | *0* | *1* | *1* | *0* |
+>| **$\Sigma$** | *$*   | *A*   | *B*   | *N*   |     |     |     |
+
+This will have *Space* : 
+$$
+\leq n + o(n) + \sigma \log \sigma = O(n)
+$$
+*bits* 
+
+>[!note] 
+>Keeping in mind the *assumption* that $\sigma \leq \frac{n}{\log n}$
+### Queries
+
+With $F$ we can extract the *first character* of the $i$-th *suffix* by doing the following operation :
+1. $FO.rank_1(i)$
+2. Access the result in $\Sigma$
+
+## 2) $\psi$ function
+
+In order to extract the other *characters* of the $i$-th *suffix* we build the $\psi$ *mapping function*
+
+$\psi$ is build by noting that the second character of a *suffix* is the starting character of the same *suffix* without the first character
+
+>[!example] 
+>The second character of `ANA$` is the first character of the *suffix* `NA$` 
+>
+
+So $\psi$ is build in the following way : 
++ For each $i$ write down the *index* of the remaining *suffix*, build by removing the first character of the current *suffix*, taken from the *sorted suffixes*
+
