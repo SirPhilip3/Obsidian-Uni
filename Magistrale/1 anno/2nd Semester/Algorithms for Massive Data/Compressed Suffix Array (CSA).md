@@ -52,7 +52,6 @@ $$
 # Binary searching *without* [[Suffix trie-tree-array#Suffix Array|SA]] and text 
 
 To do this we would need to build a *black-box* that allows us to extract the $i$-th suffix
-
 ## 1) string F
 
 We need to store at least the *first character* of every *suffix* in sorted order  
@@ -105,3 +104,36 @@ $\psi$ is build by noting that the second character of a *suffix* is the startin
 So $\psi$ is build in the following way : 
 + For each $i$ write down the *index* of the remaining *suffix*, build by removing the first character of the current *suffix*, taken from the *sorted suffixes*
 
+>[!example] 
+>
+>![[CSA_psi_build.mp4]]
+
+Also formally we can say that : 
+$$
+\psi[i] = SA^{-1}[SA[i]+1]
+$$
+## Full query 
+
+Now getting the full $i$-th *suffix* is simply a matter of applying $\psi$ *recursively*
+
+>[!example] 
+>Extracting the $3$-rd *suffix* : 
+>1. $F[3] = A$
+>2. $F[\psi[3]=6]=N$
+>3. $F[\psi[6]=2]=A$
+>4. $F[\psi[2]=1]=\$$
+# Compressing $\psi$
+
+We would like to *compress* $\psi$ to $nH_0$ *bits* while maintaning the ability to compute $\psi[i]$ in $O(1)$ *time* 
+
+>[!note] Idea
+>We can notice that the *sub-array* of $\psi$'s corresponding to a group of *identical character* in $F$ are **sorted in increasing order**
+>
+>This must be true since the *suffixes* are sorted *lexicographically*
+
+A data structure that is efficent in storing *sorted list of integers* is [[Elias-Fano]] 
+
+We build one [[Elias-Fano]] data structure per each block of $\psi$'s relating to a single *character* in $F$ 
+
+>[!example] 
+>
