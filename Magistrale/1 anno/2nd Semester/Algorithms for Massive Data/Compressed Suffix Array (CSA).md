@@ -180,8 +180,17 @@ Since we don't want to store the [[Suffix trie-tree-array#Suffix Array|SA]] we n
 >[!note] Idea
 >
 >Instead of using the full [[Suffix trie-tree-array#Suffix Array|SA]] we only store a *subset* of it 
+
+We can use a *sample* of *SA* : [[Compressed Suffix Array (CSA)#Sampled Suffix Array (SSA)|Sampled Suffix Array]]
 #### Forward text Navigation with $\psi$
 
 If we are at $SA[i]$ applying $\psi[i]$ will jump to $SA[i]+1$ , or the *next text position*
 
+Formally we can write : $SA[\psi[i]]=SA[i]+1$
+
 >[!example] 
+>![[CSA_psi_next_pos.mp4]]
+# Sampled Suffix Array (SSA)
+
+#todo 
+
