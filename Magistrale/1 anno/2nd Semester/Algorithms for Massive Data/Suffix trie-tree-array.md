@@ -4,7 +4,6 @@ publish: true
 # Space Measure
 
 In order to not deal with *big-O* terms that *hide constants* we use **bits** $n$ and **words** ( fromed by $\Theta(\log n)$ *bits* where $n$ is the size of the input )
-
 # Full-Text indexing
 
 >[!important] Definition

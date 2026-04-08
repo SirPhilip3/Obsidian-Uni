@@ -42,7 +42,7 @@ $$
 
 This definition is equivalent also to the following one : 
 >[!important] Definition
->There exists a *data structure* over any *subset of size* $m$ of $[n]$ using $1log \binom{n}{m} + o(n)$ bits of space and supporting *constant-time* **membership** , **predecessor** and **successor** queries
+>There exists a *data structure* over any *subset of size* $m$ of $[n]$ using $\log \binom{n}{m} + o(n)$ bits of space and supporting *constant-time* **membership** , **predecessor** and **successor** queries
 >
 >>[!note] 
 >>The $o(n)$ could be $\gg \log \binom{n}{m}$ so this is *bad* for *sparse/dense sets*
