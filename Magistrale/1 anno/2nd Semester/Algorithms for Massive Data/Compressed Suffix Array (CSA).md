@@ -68,6 +68,8 @@ We need to store at least the *first character* of every *suffix* in sorted orde
 >|       |     |     |     | $   | A   |     |     |
 >|       |     |     |     |     | $   |     |     |
 
+^12b890
+
 In order to store **F** we mark in a [[Bitvectors (RRR)]] **FO** the *first occurrence* of every character , and store just *one* occurrence of every chatacter in a vector $\Sigma$ of size $\sigma$ 
 
 >[!example] 
@@ -136,4 +138,50 @@ A data structure that is efficent in storing *sorted list of integers* is [[Elia
 We build one [[Elias-Fano]] data structure per each block of $\psi$'s relating to a single *character* in $F$ 
 
 >[!example] 
+>For the string in the previous [[Compressed Suffix Array (CSA)#^12b890|example]] we can compute : 
+>+ $EF_A$ containing integers $(1,6,7)$
+>+ $EF_B$ containing integer $(4)$
+>+ $EF_C$ containing integers $(2,3)$
+
+In total the concatenation of all these [[Elias-Fano]] data structure will be rapresente in :
+$$
+nH_0 + \Theta(n)
+$$
+*bits*
+
+>[!note]- Proof
+>$$
+>\begin{align}
+>\sum_{c \in \Sigma} EF(\psi_c) \leq & \sum_{c \in \Sigma} \big((n_c \log (n/n_c)) +\Theta(n_c)\big) \\
+>= &\ \sum_{c \in \Sigma} (n_c \log (n/n_c)) +\Theta(n) \\
+>= &\ n \sum_{c \in \Sigma} ((n_c/n) \log (n/n_c)) +\Theta(n) \\
+>= &\ n H_0 +\Theta(n) 
+>\end{align}
+>$$
+
+## Queries
+
+We want to **extract** $\psi[i]$ :
+1. $c=F[i]$
+2. $j = FO.select_1(FO.rank_1(i))$ 
+3. $\psi[i] = \psi[i-j+1]$
+
+>[!example] 
+>Extract $\psi[4]$ :
+>+ $c=F[4]=A$ , do this as described in [[Compressed Suffix Array (CSA)#Queries|Queries]] 
+>+ $j=FO.select_1(FO.rank_1(4))=FO.select_1(2)=2$ , we use the operations defined in the [[Bitvectors (RRR)#Rank]]
+>+ $\psi[4]=\psi_A[4-2+1]=\psi_A[3]=7$ , using [[Elias-Fano#Queries]]
+
+This allows us to perform **count** queries in $O(m \log n)$ *time* by doing *binary search* on $\psi$
+### Locate
+
+Since we don't want to store the [[Suffix trie-tree-array#Suffix Array|SA]] we need another way to *compute it* 
+
+>[!note] Idea
 >
+>Instead of using the full [[Suffix trie-tree-array#Suffix Array|SA]] we only store a *subset* of it 
+#### Forward text Navigation with $\psi$
+
+If we are at $SA[i]$ applying $\psi[i]$ will jump to $SA[i]+1$ , or the *next text position*
+
+>[!example] 
