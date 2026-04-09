@@ -45,12 +45,37 @@ During the navigation we run *RSA* queries on *each node*'s [[Bitvectors (RRR)]]
 >
 >2. Write the codes vertically forming $3$ *levels*
 >
+>![[WT_build1.excalidraw.png]]
+>%%[[WT_build1.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >
+>3. Build the tree level by level 
+>
+>![[wt_BUILD2.excalidraw.png]]
+>%%[[wt_BUILD2.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
-```
-FACE BAKE CAFE
-10010001100011
-00100101001000
-11100010001110
-```
+# Complexity
 
+**Space** for the *nodes* : 
+	Each *level* will contain a total of $n$ *bits* , since there are $\log n$ *levels* we will have :
+	$$
+	n \log \sigma
+	$$
+**Space** for the *topology* of the tree : 
+$$
+O(\sigma \log n)
+$$
+**Space** for the *leaves* :
+$$
+\sigma \log \sigma \leq \sigma \log n
+$$
+So in total, using [[Bitvectors (RRR)]] : 
+$$
+n \log \sigma + O(\sigma \log n ) + O(\sigma \log n)
+$$
+# Queries 
+
+## Access
+
+## Rank
+
+# Final Result
