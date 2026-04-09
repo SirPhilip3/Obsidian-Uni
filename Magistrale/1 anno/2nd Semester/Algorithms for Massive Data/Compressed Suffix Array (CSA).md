@@ -220,30 +220,30 @@ Now retrieving $SA[i]$ :
 + *if sampled* : $SSA[M.rank_1(i)]$
 + *not sampled* :
 We use the $\psi$ function :
-
-**not correct !!!!!!!!!!!!!!!!!!!!!!!!** >>> <<> >
-
 ```pseudo
-	\begin{algorithm}
-	\caption{NotSampled}
-	\begin{algorithmic}
-	\State $psi\_applied = 0$
-	\While{$M[i]==0$}
-		\Comment{not sampled}
-		\State $i = SA[\psi[i]]$
-		\State $psi\_applied += 1$
-    \EndWhile
-    \Comment{we hit a sampled value}
-    \Return $SA[i]-psi\_applied$
-	\end{algorithmic}
-	\end{algorithm}
+\begin{algorithm}
+\caption{$RetrieveSAIndex(i, \psi, M, SA_{sampled})$}
+\begin{algorithmic}
+\State $steps = 0$
+\While{$M[i] == 0$} \Comment{Check if index $i$ is sampled}
+    \State $i = \psi[i]$ \Comment{Move to the next logical character in the text}
+    \State $steps = steps + 1$
+\EndWhile
+\Return $SA_{sampled}[i] - steps$ \Comment{Subtract steps to get the original position}
+\end{algorithmic}
+\end{algorithm}
 ```
 
 >[!example] 
->Computing $SA[3]$ 
->1. $\psi[3] = 6$
->2. $SA[6] = 5$ , not sampled $M[6] = 0$
->3. $\psi[6] = 2$ 
->4. $SA[2] = 6$ , sampled $M[2]=1$
+>Computing $SA[3]$
+>1. $M[3] = 0$, not sampled  
+>2. $\psi[3] = 6$
+>3. $M[6] = 0$, not sampled
+>4. $\psi[6] = 2$ 
+>5. $M[2]=1$, *sampled*
 >
->
+>So $SA[3] = SSA[2]-2 = 6-2 = 4$
+
+## Extract 
+
+#todo 
