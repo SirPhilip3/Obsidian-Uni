@@ -192,5 +192,58 @@ Formally we can write : $SA[\psi[i]]=SA[i]+1$
 >![[CSA_psi_next_pos.mp4]]
 # Sampled Suffix Array (SSA)
 
-#todo 
+>[!note] Idea 
+>Sample [[Suffix trie-tree-array#Suffix Array|SA]] every $\log n$ *text positions* , so that after $\leq \log n$ application of $\psi$ we will hit a sample
 
+Keep $SA[i]$ *if and only if* $SA[i]$ is **divisible** by $\lceil \log n \rceil$ of $SA[i]=n$
+
+>[!example] 
+>$SA[i]=(7,6,4,2,1,5,3)$ will have $\lceil \log 7 \rceil = \lceil 2.8 \rceil=3$ and so $SSA = (7,6,3)$
+
+We need a data structure that, given $i$, returns : 
++ $SA[i]$ if it's *sampled*
++ *not sampled* otherwise 
+
+We **mark** sampled $SA$ values in a [[Bitvectors (RRR)]] $M$ 
+
+>[!example] 
+>$$
+>\begin{array}{l | c c c c c c c}
+>i = &\ 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+>SA[i] = &\ 7 & 6 & 4& 2 &1& 5 & 3 \\
+>M[i] = &\ 1 & 1 & 0&0&0&0&1 \\
+>SSA[i] = &\ 7 & 6 & 3
+>\end{array}
+>$$
+
+Now retrieving $SA[i]$ : 
++ *if sampled* : $SSA[M.rank_1(i)]$
++ *not sampled* :
+We use the $\psi$ function :
+
+**not correct !!!!!!!!!!!!!!!!!!!!!!!!** >>> <<> >
+
+```pseudo
+	\begin{algorithm}
+	\caption{NotSampled}
+	\begin{algorithmic}
+	\State $psi\_applied = 0$
+	\While{$M[i]==0$}
+		\Comment{not sampled}
+		\State $i = SA[\psi[i]]$
+		\State $psi\_applied += 1$
+    \EndWhile
+    \Comment{we hit a sampled value}
+    \Return $SA[i]-psi\_applied$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!example] 
+>Computing $SA[3]$ 
+>1. $\psi[3] = 6$
+>2. $SA[6] = 5$ , not sampled $M[6] = 0$
+>3. $\psi[6] = 2$ 
+>4. $SA[2] = 6$ , sampled $M[2]=1$
+>
+>
