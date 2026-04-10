@@ -70,12 +70,59 @@ $$
 $$
 So in total, using [[Bitvectors (RRR)]] : 
 $$
-n \log \sigma + O(\sigma \log n ) + O(\sigma \log n)
+n \log \sigma + O( n \log \sigma ) + O(\sigma \log n)
 $$
+*Assuming* that $\sigma = o(n/\log n)$ the *space* becomes : 
+$$
+n \log \sigma + o(n \log \sigma)
+$$
+## [[Empirical Entropy ( Zero-order )|Zero-order]] compression 
+
+>[!note] Claim
+>
+>Using [[Bitvectors (RRR)]] the space is $nH_0(S) + o(n \log \sigma)$
+>
+>Or the compression of the [[Bitvectors (RRR)]] propagate to the whole *string*
+>
+### Proof
+
+We can prove this by **induction** on the height $h$ of the **Tree** 
+
++ **Base case** : $h=1$
+
+Since we have no leaf the *claim* is true since [[Bitvectors (RRR)]] achieves [[Empirical Entropy ( Zero-order )|Zero-order]] compression
+
++ **Inductive hypotesis** 
+
+The *claim* is true for height $h \ge 1$ ( strings $S_0, S_1$ over alphabets of size $\sigma \leq 2^h$ ) 
+
++ **Inductive step** 
+
+Prove the *claim* for height $h+1$
+
+>[!note] 
+>We are in this situation :
+>![[WB_t_proof.excalidraw.png]]
+>%%[[WB_t_proof.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+#todo 
 # Queries 
 
 ## Access
 
+>[!example] 
+>$access(6)$
+>![[WB_t_access.excalidraw.png]]
+>%%[[WB_t_access.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+**Time** : $O(\log \sigma)$ 
 ## Rank
 
+>[!example] 
+>![[WB_t_rank.excalidraw.png]]
+>%%[[WB_t_rank.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+**Time** : $O(\log \sigma)$
 # Final Result
+
+#todo 
