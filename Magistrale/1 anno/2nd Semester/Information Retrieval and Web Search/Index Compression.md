@@ -253,7 +253,7 @@ Instead of rapresenting the gaps in *binary* we can rapresent $G=n$ with $n$ $1$
 >$4 = 11110$ 
 >$40 = 11111111111111111111111111111111111111110$
 
-### (Elias) Gamma codes
+### (Elias) Gamma codes $\gamma$
 
 Gamma codes are *bit-level* codes 
 
@@ -286,7 +286,7 @@ The *Gamma codes* uses : $2 \lfloor \log_2 G \rfloor +1$ :
 >
 >*VB encoding* instead is a bit more efficent and simpler at a small space cost , also if gaps are larger *VB* is better than *Gamma*
 
-#### (Elias) Delta codes
+### (Elias) Delta codes $\delta$
 
 $\delta$-*codes* encode the *lenght* in $\gamma$-code instead of *unary* while the *offsets* are encoded in the same way as *gamma codes*
 
@@ -304,6 +304,11 @@ $$
 2 \cdot \lfloor \log L \rfloor +1
 $$
 Where $L = \lfloor \log G \rfloor$
+
+#### Elias Delta vs Elias Gamma
+
+
+
 ### Huffman encoding 
 
 The [[Information Theory#Huffman Coding|Huffman encoding]] is *efficent* if the symbol aphabet is *small* otherwise we must keep a *massive mapping tree* in memory

@@ -123,6 +123,23 @@ Prove the *claim* for height $h+1$
 >%%[[WB_t_rank.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 **Time** : $O(\log \sigma)$
-# Final Result
+
+## Select
+
+To answer $select_C(i)$ start in the *leaf* relative to the character $C$ and navigate up to the root 
 
 #todo 
+
+# Final Result
+
+Any string $S \in \Sigma^n$ can be stored in $nH_0 + o(n \log \sigma)+O(\sigma \log n)$ *bits* so that **access**, **rank** and **select** queries take $O(\log \sigma)$ *time* 
+
+>[!note]- 
+>$\sigma = |\Sigma|$
+>
+>If $\sigma = O(1)$ ( constant ) then the *space* simplifies to $nH_0 +o(n)$ and queries are solved in time $O(1)$
+
+## Wavelet Trees of *concatenation* of string
+
+#todo 
+
