@@ -389,4 +389,35 @@ Where the *escape symbol* is encoded as a string of $k$ $1$'s
 >*PForDelta* is faster than *bit-aligned* codes in *decoding* since it's *word* aligned add allows for use of *SIMD* operations in the *CPU* , but it's worse in *compression*
 ### Interpolative Coding
 
-Rapresents the 
+*Recursively* splits a sequence in two halves , for each *split* it encodes it's *middle elements* and recursively handles the two halves
+
+>[!note] 
+>We assume to know at each step the *min, max, len* of the sequence 
+
+The recursion stops when we have a sequence that goes from $n_1$ to $n_2$ and it's lenght is $n_2 - n_1$  , meaning that all gaps are equal to $1$
+
+>[!note] 
+>To save *bits* instead of encoding big numbers we encode *positions* in integer ranges 
+
+>[!note]
+>The midpoints are sorted in the implicit binary tree in *pre-order transversal* ( root than left than right )
+
+>[!example] 
+>
+>Encoding : `[3, 4, 7, 13, 14, 15, 21, 25, 36, 38, 54, 62]`
+>![[Pasted image 20260413103952.png]]
+>
+>At the end we store `[10,5,3,3,5,5,18,8,5,16,1]`
+>
+>Where : 
+>+ $n$ : lenght of the list
+>+ $m = \lfloor n/2 \rfloor$ : index of the middle point
+>+ $lo$, $hi$ : minimum and maximum value that we can find in that list , initialli $(0,\max)$
+>
+>We than store $S[m]-lo-m$ 
+>
+>And apply the same for the new halves : $S[0,m)$ and $S[m+1,n)$ with updated $lo$ and $hi$ values respectively as $(lo,S[m]-1)$ and $(S[m]+1,hi)$
+
+
+
+
