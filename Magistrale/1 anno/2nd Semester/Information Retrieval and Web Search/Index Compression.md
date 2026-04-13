@@ -305,10 +305,6 @@ $$
 $$
 Where $L = \lfloor \log G \rfloor$
 
-#### Elias Delta vs Elias Gamma
-
-
-
 ### Huffman encoding 
 
 The [[Information Theory#Huffman Coding|Huffman encoding]] is *efficent* if the symbol aphabet is *small* otherwise we must keep a *massive mapping tree* in memory
@@ -317,3 +313,80 @@ It's **too expensive** for the *postings list* since the alphabet is every possi
 ## Why not using $\lfloor \log_2 G \rfloor +1$ bits
 
 This would be simply *binary encoding* each gap and than appending it, this would not be **prefix free** , and this would imply that there are *multiple interprestations* for the same *binary string* 
+### Golomb-Rice coding
+
+>[!important] 
+>
+>*Golomb-Rice* is not *parameter-free* 
+
+We need to choose an integer $M=2^j$
+
+Split the integer $n$ to encode in two integer components : 
++ *quotient* : $q(n) : \lfloor \frac{n-1}{M} \rfloor$
++ *remainder* : $r(n) : (n-1)\mod{M}$
+
+>[!note] 
+>We encode $n-1$ instead of directly $n$
+
+We than write them in the following way : 
++ $q(n)$ in **unary**
++ $r(n)$ as **binary number** of $j$ *bits* 
+
+>[!note] 
+>We select $j$ such that $2^j$ is centered in the *mean* of the elements 
+
+>[!example] 
+>Let $M=2^7$ and $n=345$
+>+ $q(345) = \lfloor (345-1)/2^7 \rfloor = \lfloor 2.68 \rfloor = 2 = 110$
+>+ $r(345) = (345-1) \mod{2^7} = 88 = 1011000$
+>
+>$q,r = 110,1011000$
+>
+>*Decoding* : 
+>
+>$\begin{align} n=q(n)\cdot M + r(n)+1 = 2 \cdot 2^7 + 88 +1 = & 10 \cdot 2^7 + 1011000 +1 \\ = & 100000000 + 1011000 + 1 = 101011001 \\ = & 345 \end{align}$
+### PForDelta
+
+*PForDelta* ( *Pached Frame-of-Reference with Delta encoding* ) , aims at encoding an integer sequence efficently enough to use *SIMD* operations to enable parallel decompression 
+
+Split the sequence into **blocks** , in each of them we use the *same amount of bits* to rapresent all *gaps*
+
+Assume than that *most* of the *gaps* fall in the following $I$ *interval* : 
+$$
+[base, base +2^k -1]
+$$
+This get's translated in the following by subtracting $base$ :
+$$
+[0, 2^k -1]
+$$
+Each *gap* needs to be encoded in $k$ *bits* , but there can be larger *numbers* , **exceptions** : 
+	These are rapresented in a separate list using fixed size rapresentation of $1$ word $w$
+	In the original table we store an *escape symbol* 
+
+In order to encode the *escape symbol* we need to shrink the *interval* by $1$ :
+$$
+[0, 2^k -2]
+$$
+Where the *escape symbol* is encoded as a string of $k$ $1$'s
+
+>[!example] 
+>Gaps : $[3,4,7,21,9,12,2,17]$
+>+ $base = 2$ : the *minimum gap value*
+>+ $k=4$ : so the interval will be $[2,2+2^4-2] = [2,16]$
+>+ $\text{escape symbol}(*) = 2^k -1 = 1111_2 = 15_{10}$  
+>
+>Removing the $base$ and *exceptions* we get : 
+>$$
+>[1,2,5,*,7,10,2,*]
+>$$ 
+>
+>With *exception* list $w=[21-17]$
+>
+>Now we simply encode in *binary* : 
+>`0001 0010 0101 1111 0111 1010 0000 1111`
+
+>[!note] 
+>*PForDelta* is faster than *bit-aligned* codes in *decoding* since it's *word* aligned add allows for use of *SIMD* operations in the *CPU* , but it's worse in *compression*
+### Interpolative Coding
+
+Rapresents the 
