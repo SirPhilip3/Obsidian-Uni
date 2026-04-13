@@ -1,3 +1,6 @@
+---
+publish: true
+---
 The **BWT** is a string *permutation* that :
 + Given *RSA* ( *rank*, *select* and *access* ) queries on the **BWT** will enable **count** queries on the original string
 + **BWT** is *easier* to *compress* than the original string 
@@ -57,3 +60,4 @@ $S=banana\$$
 | *3*      | n   | a   | n   | a   | $   | b   | a   |
 
 #todo
+
