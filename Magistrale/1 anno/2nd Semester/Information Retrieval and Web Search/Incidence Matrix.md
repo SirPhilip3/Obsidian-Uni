@@ -8,8 +8,15 @@ This will give us a *matrix* where :
 + *rows* are the words in the *dictionary* of the *collection* of documents
 
 >[!example]
->#todo 
-
+>
+>|           | Antony and Cleopatra | Julius Caesar | The Tempest | Hamlet | Othello | Macbeth |
+>| :-------: | :------------------: | :-----------: | :---------: | :----: | :-----: | :-----: |
+>|  Antony   |          1           |       1       |      0      |   0    |    0    |    1    |
+>|  Brutus   |          1           |       1       |      0      |   1    |    0    |    0    |
+>|  Caesar   |          1           |       1       |      0      |   1    |    1    |    1    |
+>| Calpurnia |          0           |       1       |      0      |   0    |    0    |    0    |
+>| Cleopatra |          1           |       0       |      0      |   0    |    0    |    0    |
+>|   mercy   |          1           |       0       |      1      |   1    |    1    |    1    |
 ## Answering Queries
 
 In order to answer any query relative to some *terms* we take the *rows* for each term and we apply the *binary* operators between them 
