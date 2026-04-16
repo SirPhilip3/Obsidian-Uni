@@ -293,7 +293,7 @@ $\delta$-*codes* encode the *lenght* in $\gamma$-code instead of *unary* while t
 >[!example] 
 >$\delta$-code for $7$ is :
 >+ *offset* : $7 \to 111 \to 11$
->+ *lenght* : should be $2$ that in *gamma coding* is : 
+>+ *lenght* : $2$ in *gamma coding* is : 
 >	+ *offset* : $2 \to 10 \to 0$
 >	+ *lenght* : $1$ in *unary* $10$
 >	+ *total* : $10 + 0 \to 100$
@@ -418,6 +418,5 @@ The recursion stops when we have a sequence that goes from $n_1$ to $n_2$ and it
 >
 >And apply the same for the new halves : $S[0,m)$ and $S[m+1,n)$ with updated $lo$ and $hi$ values respectively as $(lo,S[m]-1)$ and $(S[m]+1,hi)$
 
-
-
+#todo add limit case 
 
