@@ -68,3 +68,73 @@ The final **score** for a *document-query* pair will be :
 $$
 Score_{qd} = \sum_{t \in q \cap d} (1 + \log tf_{t,d})
 $$
+#### $idf$ weight
+
+>[!important] 
+>**Rare terms** carry *more information* than frequent terms , in fact a document containing a rare term present in the query is very likely to be relevant to that query 
+
+To capture this we use $df_t$ :
++ globally *rare* terms will have *small* $df_t$
++ globally *frequent* terms will have *high* $df_t$ 
+
+This an the *inverse* measure of the *informativeness* of a term $t$ 
+
+Define $idf$ ( *Inverse Document Frequency* ) of $t$ as :
+$$
+idf_t = \log_{10} (N/df_t)
+$$
+Where $N$ is the number of documents in the collection 
+
+>[!note] 
+>The $idf$ value does not change for different documents since it depends only on the occurrences of term $t$ in the corpus  
+
+>[!example] 
+>
+>| term      | $df_t$  | $idf_t$ |
+>| --------- | ------- | ------- |
+>| calpurnia | 1       | 6       |
+>| animal    | 100     | 4       |
+>| under     | 100000  | 1       |
+>| the       | 1000000 | 0       |
+
+>[!warning] 
+>$idf$ *can't rank* *one-term queries* since all the documents retrieved will have the same score since it depends only on the occurences of that term in the corpus and not on the documents 
+>
+
+$idf$ can rank query with *at least two terms* only if some docs to be ranked do not contain all query terms , in this case the occurrences of rare terms contribute more to the final rankings in respecto to more common words
+
+#### $tf\textendash idf$ weighting
+
++ Terms that appear *often* in a document ( $tf$ ) should get *high weights* 
++ Terms that appear in *many* documents ( $df$ ) should get *low weights*
+
+The $tf\textendash idf$ ( or $wf\textendash idf$ ) *weight* is the product of its $tf$ weight ( normalized $wf$ ) and its $idf$ weight :
+$$
+wf\textendash idf_{t,d} = wf_{t,d} \times idf_t
+$$
+The *score* for a *document-query* pair will be :
+$$
+Score(q,d) = \sum_{t=q\cap d} wf\text{-}idf_{t,d}
+$$
+>[!note] 
+>There are variants based on the usage of *logarithmic* normalization , discretization etcc 
+>
+
+>[!example] 
+>#todo
+
+# Vector Retrieval Systems 
+
+Each document is now rapresented by a real-valued vector of $tf\text{-}idf$ *weights* $\in \mathbb{R}^{|V|}$ 
+
+>[!note] 
+>$V$ is the *vocabulary* of the collection 
+
+These *vectros* are **very sparse** and very **high dimesional** 
+## Queries
+
+1. Transform the *queries* in vectors
+2. Rank the documents according to their proximity to the query 
+### Proximity 
+
+
