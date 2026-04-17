@@ -25,8 +25,24 @@ In order to answer any query relative to some *terms* we take the *rows* for eac
 >To perform a *NOT* we simply do the *AND* with the complement of that *vector*
 
 >[!example] 
->#todo
-
+>*Query* : **Brutus** `AND` **Caesar** `BUT NOT` **Calpurnia** 
+>becomes : **Brutus** `AND` **Caesar** `AND (NOT` **Calpurnia** `)`
+>
+>Now getting the *bitvector* for each query term ( the rows ) :
+>+ *Brutus* : `110100`
+>+ *Caesar* : `110111`
+>+ `NOT` *Calpurnia* : `101111`
+>
+>We will have the following result : 
+>```
+>110100 AND
+>110111 AND
+>101111 =
+>100100
+>```
+>
+>Meaning that the results are *columns* $1$ and $4$ or *Antony and Cleopatra* and *Hamlet*
+>
 ## Restrictions
 
 For bigger collections the resulting *matrix* will be too big and sparse 
