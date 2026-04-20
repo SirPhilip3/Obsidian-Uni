@@ -27,5 +27,11 @@ The *goal* is to retrieve documents that are *relevant* to the user *information
 
 To determine the goodness of the retrieved we have the following measures : 
 + *Precision* : is the number of relevant documents in the pool of retrieved documents 
+$$
+Precision = \frac{|Relevant \cap Retrieved|}{|Retrieved|}
+$$
 + *Recall* : is the number of relevant documents in relation to all the relavant document in the index 
+$$
+Recall = \frac{|Relevant \cap Retrieved|}{|\text{All Relevant in Collection}|}
+$$
 
