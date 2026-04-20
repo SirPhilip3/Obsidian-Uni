@@ -135,7 +135,7 @@ We can then define a *jaccard* threshod where we declare a match ( $J \geq 0.8$ 
 *Initial* solution : 
 
 1. Retrieve the top $N$ closest terms ( considering the [[Spell Correction#Edit Distance|Edit Distance]] ) to each query term 
-2. Try all the possible resulting query build from keeping one word from the original query fixed ( since we don't know the one that is actually misspelled ) and change the other with the $N$ closest terms
+2. Try all the possible resulting query, build from keeping one word from the original query fixed ( since we don't know the one that is actually misspelled ) and change the other with the $N$ closest terms
 3. Suggest the phrase that has the most *hits* ( how many times they appear ) in the documents
 
 ---
