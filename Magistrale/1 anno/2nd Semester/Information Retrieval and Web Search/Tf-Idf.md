@@ -46,7 +46,7 @@ Each *column* ( eg. each *document* ) is a **count vector** ( *bag of words* )
 **Notation** : 
 + $t$ : generic *vocabulary term*
 + $cf_t$ : *collection frequency* , the number of occurrences of term $t$ in the *document collection*
-+ $df_t$ : *document frequency*, the total number fo documents that contain $t$ in the *corpus*
++ $df_t$ : *document frequency*, the total number of documents that contain $t$ in the *corpus*
 + $tf_{t,d}$ : *term frequency*, total number of occurrences of term $t$ in document $d$  
 
 We can't use raw $tf_{t,d}$ to compute *match* **scores** since a document with $10$ occurrences of a term is *more* *relevant* than one with $1$ but **not** $10$ times more relevant
