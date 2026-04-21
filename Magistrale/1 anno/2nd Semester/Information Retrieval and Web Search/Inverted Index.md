@@ -142,7 +142,7 @@ This can be realized using **Binary Search** but in practice we use *skip pointe
 
 #### Postings with Skip pointers
 
-We can add some pointers, at indexing time, in the *postings* in order to be able to skip blocks of *postings* that will surely noy contain the search result for an *AND* query 
+We can add some pointers, at indexing time, in the *postings* in order to be able to skip blocks of *postings* that will surely not contain the search result for an *AND* query 
 
 >[!example] 
 >![[skip_list.excalidraw.png]]
@@ -217,7 +217,7 @@ We can optimize queries like :
 
 ```pseudo
 	\begin{algorithm}
-	\caption{$Intersect_not_second(p_1, p_2)$}
+	\caption{$Intersect\_not\_second(p_1, p_2)$}
 	\begin{algorithmic}
 	\State $answer \leftarrow \langle \rangle$
 	\While{$p_1 \neq NIL$ and $p_2 \neq NIL$}
@@ -269,4 +269,4 @@ With multiple *AND* process in order of **increasing** frequency, we start from 
 
 For *OR* queries we treat them as being always in the worst case scenario, so when `X` and `Y` are *disjointed* , giving us the size of an *OR* query as $x+y$ 
 
-So we estimate the lenght of each resulting query from the *document frequencies* and start from the **smallest** result
+So we estimate the lenght of each resulting query from the *document frequencies* ( sum up the two ) and start from the **smallest** result
