@@ -70,7 +70,7 @@ $S=banana\$$
 
 ## LF property
 
-We don't want to store the whole matrix in memory, the *first* ( **F** ) and the *last* ( **L** or **BWT** )
+We don't want to store the whole matrix in memory, the *first* ( **F** ) and the *last* ( **L** or **BWT** ), in fact the *first* is simply the *last* but ordered lexicographically 
 
 | **F** |     |     |     |     |     | **L** |
 | ----- | --- | --- | --- | --- | --- | ----- |
@@ -81,3 +81,30 @@ We don't want to store the whole matrix in memory, the *first* ( **F** ) and the
 | *b*     | a   | n   | a   | n   | a   | *$*   |
 | *n*     | a   | $   | b   | a   | n   | *a*   |
 | *n*     | a   | n   | a   | $   | b   | *a*   |
+>[!note] 
+>We can actually recover *F* from *L* using the **LF** *property*
+
+>[!important] LF property
+>
+>The $i$-th occurrence of $c \in \Sigma$ in **L** is the same *text position* as the $i$-th occurrence of $c \in \Sigma$ in **F**
+
+>[!note] 
+>This works because the occurences of a character in both **L** and **F** are sorted according to the *suffix* that follows them
+
+#todo add animation 
+
+![[missi_test.excalidraw.png]]
+%%[[missi_test.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+We can see that **LF** moves us *backwards* in the original text , if we want to go *forward* we can just use $FL=LF^{-1}$ 
+## BWT Compression Boosting property
+
+Let $S \in \Sigma^n$ , Recall that [[Wavelet Trees (WT)]] uses $nH_0 + o(n \log \sigma)$ *bits* ( [[Empirical Entropy ( Zero-order )]] )
+
+>[!important] Claim
+>$WT(BWT(S))$ uses $nH_k+o(n \log \sigma)$ *bits* for a small ( logarithmic in $n$ ) context lenght $k$ 
+>
+>We can achieve [[High-Order empirical entropy]] 
+
+**Proof**
+
