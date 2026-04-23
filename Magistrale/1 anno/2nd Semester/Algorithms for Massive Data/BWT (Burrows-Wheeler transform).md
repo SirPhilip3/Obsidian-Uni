@@ -36,13 +36,13 @@ The **BWT** is a string *permutation* that :
 
 |     |     |     |     |     |     | **BWT** |
 | --- | --- | --- | --- | --- | --- | ------- |
-| $   | b   | a   | n   | a   | n   | *a*       |
-| a   | $   | b   | a   | n   | a   | *n*       |
-| a   | n   | a   | $   | b   | a   | *n*       |
-| a   | n   | a   | n   | a   | $   | *b*       |
-| b   | a   | n   | a   | n   | a   | *$*       |
-| n   | a   | $   | b   | a   | n   | *a*       |
-| n   | a   | n   | a   | $   | b   | *a*       |
+| $   | b   | a   | n   | a   | n   | *a*     |
+| a   | $   | b   | a   | n   | a   | *n*     |
+| a   | n   | a   | $   | b   | a   | *n*     |
+| a   | n   | a   | n   | a   | $   | *b*     |
+| b   | a   | n   | a   | n   | a   | *$*     |
+| n   | a   | $   | b   | a   | n   | *a*     |
+| n   | a   | n   | a   | $   | b   | *a*     |
 ## BWT and [[Suffix trie-tree-array#Suffix Array|SA]]
 
 The text position of the $i$-th matrix row is $SA[i]$
@@ -59,5 +59,25 @@ $S=banana\$$
 | *5*      | n   | a   | $   | b   | a   | n   | a   |
 | *3*      | n   | a   | n   | a   | $   | b   | a   |
 
-#todo
+>[!note] 
+>If we consider the string $S$ as being circular ( $S[0] = S[n]$ ), then :
+>$$
+>BWT[i] = S[SA[i]-1]
+>$$
+>
+>>[!important] 
+>>**BWT** can be computed via [[Suffix trie-tree-array#Suffix Array|SA]] and can be viewed as a *compressed* [[Suffix trie-tree-array#Suffix Array|SA]]
 
+## LF property
+
+We don't want to store the whole matrix in memory, the *first* ( **F** ) and the *last* ( **L** or **BWT** )
+
+| **F** |     |     |     |     |     | **L** |
+| ----- | --- | --- | --- | --- | --- | ----- |
+| *$*     | b   | a   | n   | a   | n   | *a*   |
+| *a*     | $   | b   | a   | n   | a   | *n*   |
+| *a*     | n   | a   | $   | b   | a   | *n*   |
+| *a*     | n   | a   | n   | a   | $   | *b*   |
+| *b*     | a   | n   | a   | n   | a   | *$*   |
+| *n*     | a   | $   | b   | a   | n   | *a*   |
+| *n*     | a   | n   | a   | $   | b   | *a*   |
