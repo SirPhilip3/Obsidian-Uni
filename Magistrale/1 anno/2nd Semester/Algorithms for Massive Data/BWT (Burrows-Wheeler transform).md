@@ -74,13 +74,13 @@ We don't want to store the whole matrix in memory, the *first* ( **F** ) and the
 
 | **F** |     |     |     |     |     | **L** |
 | ----- | --- | --- | --- | --- | --- | ----- |
-| *$*     | b   | a   | n   | a   | n   | *a*   |
-| *a*     | $   | b   | a   | n   | a   | *n*   |
-| *a*     | n   | a   | $   | b   | a   | *n*   |
-| *a*     | n   | a   | n   | a   | $   | *b*   |
-| *b*     | a   | n   | a   | n   | a   | *$*   |
-| *n*     | a   | $   | b   | a   | n   | *a*   |
-| *n*     | a   | n   | a   | $   | b   | *a*   |
+| *$*   | b   | a   | n   | a   | n   | *a*   |
+| *a*   | $   | b   | a   | n   | a   | *n*   |
+| *a*   | n   | a   | $   | b   | a   | *n*   |
+| *a*   | n   | a   | n   | a   | $   | *b*   |
+| *b*   | a   | n   | a   | n   | a   | *$*   |
+| *n*   | a   | $   | b   | a   | n   | *a*   |
+| *n*   | a   | n   | a   | $   | b   | *a*   |
 >[!note] 
 >We can actually recover *F* from *L* using the **LF** *property*
 
@@ -107,4 +107,38 @@ Let $S \in \Sigma^n$ , Recall that [[Wavelet Trees (WT)]] uses $nH_0 + o(n \log 
 >We can achieve [[High-Order empirical entropy]] 
 
 **Proof**
+
+The **BWT** clusters the characters of $S$ ( starting string ) according to the context of lenght $k$ following them 
+
+>[!example] 
+>$k=2$
+>
+>|     |     |     |     |     |     | **BWT** |
+>| --- | --- | --- | --- | --- | --- | ------- |
+>| $   | b   | a   | n   | a   | n   | *a*     |
+>| a   | $   | b   | a   | n   | a   | *n*     |
+>| *a* | *n* | a   | $   | b   | a   | *n*     |
+>| *a* | *n* | a   | n   | a   | $   | *b*     |
+>| b   | a   | n   | a   | n   | a   | *$*     |
+>| *n* | *a* | $   | b   | a   | n   | *a*     |
+>| *n* | *a* | n   | a   | $   | b   | *a*     |
+>
+>
+>>[!note] 
+>>Definition of [[High-Order empirical entropy]]
+>>$$
+>>H_k(S) = \sum_{w \in \Sigma^k} \frac{|S_w|}{n} H_0(S_w)
+>>$$
+>
+>In our case $S_{an} = nb$ , the character that follow "an" are "n" "b"
+>
+>So the $BWT$ is the concatenation of those $S_w$ strings 
+>$$
+>BWT(S)\begin{array}{r*{5}{r}} = & S_{$b} & S_{a$} & S_{an} & S_{ba} & S_{na} \\ = & a & n & nb & \$ & aa \\ \end{array}
+>$$
+>
+
+The distinct contexts of lenght $k$ that there can be are at most $t \leq \sigma^k$ 
+>[!note]-
+>$\sigma$ is the *alphabet* size 
 

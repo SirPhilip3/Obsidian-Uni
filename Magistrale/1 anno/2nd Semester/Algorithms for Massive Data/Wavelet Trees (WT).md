@@ -141,5 +141,14 @@ Any string $S \in \Sigma^n$ can be stored in $nH_0 + o(n \log \sigma)+O(\sigma \
 
 ## Wavelet Trees of *concatenation* of string
 
-#todo 
+We can prove that the **WT** of the concatenation of strings reaches the [[Empirical Entropy ( Zero-order )|Zero-order entropies]] of those strings  
+
+>[!important] Theorem
+>Let $WT\_size(S)$ be the bit-size of $WT(S)$ 
+>
+>Let $S_i \in \Sigma^{n_i}$ for $i=1,\dots,t$, be $t$ *strings* of total lenght $n = \sum_{i=1}^{t} n_i$. Then:
+>
+>$$
+>WT\_size(S_1S_2\dots S_t) \leq \bigg (  \sum_{i=1}^{t} n_i H_0(S_i) \bigg) + o(n \log \sigma) + O(t \sigma \log n)
+>$$
 
