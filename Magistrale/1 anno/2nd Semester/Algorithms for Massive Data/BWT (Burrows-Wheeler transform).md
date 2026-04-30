@@ -97,6 +97,8 @@ We don't want to store the whole matrix in memory, the *first* ( **F** ) and the
 %%[[missi_test.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 We can see that **LF** moves us *backwards* in the original text , if we want to go *forward* we can just use $FL=LF^{-1}$ 
+
+So $FL = \psi$ ( [[Compressed Suffix Array (CSA)#2) $ psi$ function|psi function]] )
 ## BWT Compression Boosting property
 
 Let $S \in \Sigma^n$ , Recall that [[Wavelet Trees (WT)]] uses $nH_0 + o(n \log \sigma)$ *bits* ( [[Empirical Entropy ( Zero-order )]] )
@@ -154,3 +156,31 @@ $$
 >$t \sigma \log n$ becomes $\sigma^{k+1} \log n$ becuase we know that $t \leq \sigma^k$ so $\sigma^k \sigma \log n = \sigma^{k+1} \log n$
 
 #### Removing $O(\sigma^{k+1}\log n)$
+
+We choose the largest $k$ such that $\sigma^{k+1} \log n = o(n)$ 
+
+$k$ than will be $\lfloor \max\{0, \alpha \log_{\sigma} n-1\}\rfloor = \Theta(\log_{\sigma} n)$ , for any constant $0< \alpha < 1$ 
+
+So finally we can say that **WT(BWT(S))** uses at most : 
+$$
+n H_k+o(n \log \sigma) + O(\sigma \log n)
+$$
+>[!note]-
+>$$
+>O(\sigma^{k+1}\log n) = O(\sigma^{\log_{\sigma}(n)+1} \log n) =O(n\sigma \log n)
+>$$
+
+Which on constant alphabets ( ASCII, UNICODE ecc. ) simplifies to : 
+$$
+n H_k +o(n)
+$$
+*bits*
+
+# Searching
+
+Since the **BWT** allows us to compute $\psi$ in $O( \log \sigma)$ *time* we can solve **count** queries via *binary search* in : 
++ $O(m \log n \cdot \log \sigma)$ *time*
++ $n H_k+o(n \log \sigma) + O(\sigma \log n)$ *space*
+
+>[!warning]
+>*Time* is worse than in [[Compressed Suffix Array (CSA)]] but *Space* is better 
