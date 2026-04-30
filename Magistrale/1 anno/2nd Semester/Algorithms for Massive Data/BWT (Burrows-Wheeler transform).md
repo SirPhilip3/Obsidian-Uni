@@ -106,7 +106,7 @@ Let $S \in \Sigma^n$ , Recall that [[Wavelet Trees (WT)]] uses $nH_0 + o(n \log 
 >
 >We can achieve [[High-Order empirical entropy]] 
 
-**Proof**
+### Proof
 
 The **BWT** clusters the characters of $S$ ( starting string ) according to the context of lenght $k$ following them 
 
@@ -142,3 +142,15 @@ The distinct contexts of lenght $k$ that there can be are at most $t \leq \sigma
 >[!note]-
 >$\sigma$ is the *alphabet* size 
 
+Remembering the following theorem from [[Wavelet Trees (WT)#Wavelet Trees of *concatenation* of string|Wavelet Trees Concatenation]] : we just replace $S_1S_2\dots S_t$ with $BWT(S)$ :
+$$
+WT\_size(BWT(S)) \leq \bigg( \sum_{w\in \Sigma^k} |S_w| H_0(S_w) \bigg) + o(n \log \sigma) + O(t \sigma \log n)
+$$
+Reusing the definition of [[High-Order empirical entropy]] we get : 
+$$
+nH_k + o(n \log \sigma) +O(\sigma^{k+1}\log n)
+$$
+>[!note] 
+>$t \sigma \log n$ becomes $\sigma^{k+1} \log n$ becuase we know that $t \leq \sigma^k$ so $\sigma^k \sigma \log n = \sigma^{k+1} \log n$
+
+#### Removing $O(\sigma^{k+1}\log n)$
