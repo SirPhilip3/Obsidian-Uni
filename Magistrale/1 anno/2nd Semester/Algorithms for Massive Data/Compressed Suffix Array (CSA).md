@@ -246,4 +246,6 @@ We use the $\psi$ function :
 
 ## Extract 
 
+We can support *extract* quereis in time $O( \log n + l)$ using just $O(n)$ bits of extra space 
+
 #todo 

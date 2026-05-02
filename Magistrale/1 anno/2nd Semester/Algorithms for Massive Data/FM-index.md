@@ -49,5 +49,36 @@ Given a range $[i,j]$, the **ranks** of the *first* and *last* letter will be :
 Since we are simply doing operations on [[Bitvectors (RRR)]] this will take $O(\log \sigma)$ *time*
 #### 2)
 
-Memorize a separate $C$ array containing the *positions* of the first occurrence of every $c\in \Sigma$ 
- 
+Memorize a separate $C$ array containing the *positions* of the first occurrence of every $c\in \Sigma$ minus $1$ ( since we need to also keep \$ in memory that has position $0$ )
+
+>[!example] 
+>The the 2-nd $a$ in the *BWT* will be in position $F[C[a]+2] = 3$
+>![[Pasted image 20260502171417.png]]
+
+This takes : 
++ $O(1)$ *time*
++ $\Theta(\sigma \log n)$ *bits* of space for $C$
+
+#### Count algorithm
+
+```pseudo
+	\begin{algorithm}
+	\caption{Count(P)}
+	\begin{algorithmic}
+	\State $m \to |P|$
+	\State $l \to 1$
+	\State $r \to |S|$
+	\For{$i = m$ down to $1$}
+		\State $c \to P[i]$
+		\State $l \to C[c] + BWT.rank_c(l-1)+1$
+		\State $r \to C[c] + BWT.rank_c(r)$
+    \EndFor
+    \Return r - l + 1 
+	\end{algorithmic}
+	\end{algorithm}
+```
+This takes $O(m \log \sigma)$ *time*
+
+# FM-Index
+
+[[Compressed Suffix Array (CSA)#2) $ psi$ function|psi function]]  
