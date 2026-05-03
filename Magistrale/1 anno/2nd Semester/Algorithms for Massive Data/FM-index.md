@@ -81,4 +81,48 @@ This takes $O(m \log \sigma)$ *time*
 
 # FM-Index
 
-[[Compressed Suffix Array (CSA)#2) $ psi$ function|psi function]]  
+We have shown that computing $\psi[i]$ ( which in our case is the *locate* function, finding the rank in the *BWT* ) takes $O(\log \sigma)$ *time* ( [[FM-index#1)|Time complexity]] ) 
+
+>[!note] 
+>The $\psi$ function for the [[Compressed Suffix Array (CSA)]] is faster ( $O(1)$ )
+
+Being able to compute $\psi$ let's us build a [[Compressed Suffix Array (CSA)#Sampled Suffix Array (SSA)|Sampled Suffix Array]] by doing *sampling* 
+>[!warning] 
+>In this case we need to sample more values since the $\psi$ function takes more time and so we can't afford to skip more values
+
+**Sampling** : 
+$$
+T = \frac{(\log n)^{1 +\epsilon}}{\log \sigma}
+$$
+values of the [[Suffix trie-tree-array#Suffix Array|Suffix Array]]
+
+We obtain that : 
++ *sampling* takes $o(n \log \sigma)$ *bits* of **space**
++ $T$ application of $\psi$ take $O((\log n)^{1 +\epsilon})$ *time*
+
+>[!important] Theorem
+>Choosen any constants $\epsilon > 0$ ( *as small as possible* ) and $\alpha < 1$ ( *as large as possible* ) 
+>
+>Let $k = \lfloor \max\{0, \alpha \log_{\sigma} n - 1 \} \rfloor$
+>
+>Than the **FM-index** uses 
+>$$
+>nH_k + o(n \log \sigma) +\Theta(\sigma \log n)
+>$$ 
+>*bits* of space and supports 
+>
+>+ *count(P)* queries in time $O(m \log \sigma)$
+>+ *locate(P)* queries in time $O(m \log \sigma + occ \cdot (\log n)^{1+\epsilon})$
+>+ *extract(i,l)* queries in time $O((\log n)^{1+\epsilon}+ l \log \sigma)$
+
+>[!note] *Constant* sized *alphabets*  
+>
+>The *FM-index* uses 
+>$$
+>n H_k +o(n)
+>$$ 
+>*bits* of space and supports
+>+ *count(P)* queries in time $O(m)$
+>+ *locate(P)* queries in time $O(m + occ \cdot (\log n)^{1+\epsilon})$
+>+ *extract(i,l)* queries in time $O((\log n)^{1+\epsilon}+ l)$
+
