@@ -101,6 +101,22 @@ For any $k\geq 0$ it holds :
 $$
 \mathbb{P}(|X -E[X]|\geq k) \leq Var[X] / k^2
 $$
+**Proof** :
+$$
+\begin{align}
+&\ \mathbb{P}(|X -E[X]| \geq k) \\
+= &\ \mathbb{P}((X -E[X])^2 \geq k^2) 
+\end{align}
+$$
+By than applying [[Concentration Bounds#Markov ( linear )|Markov]] on the non-negative *random variable* $(X-E[x])^2$ :
+$$
+\begin{align}
+\leq & \ \mathbb{E}[(X - E[x])^2]/k^2 \\
+= & \ Var[X]/k^2
+\end{align}
+$$
+### Example
+
 
 ### Boosted Chebyshev
 
