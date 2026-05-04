@@ -117,9 +117,118 @@ $$
 $$
 ### Example
 
+Flip $100$ *coins*. 
++ Let $X_i=0$ if $i$-th coin is *tail* 
++ $X_i=1$ if *head*
 
+Let $X=\sum_{i=1}^{100} X_i$ be the number of *heads*
+
+Then $E[X]=50$
+
+But we need to know the *variance* , and since each $X_i$ is *fully indipendent* from each other we will have : 
+$$
+Var[X]=\sum_{i=1}^{100} Var[X_i]
+$$
+And since every $X_i$ is a [[Statistica e Probabilità#Distribuzione di Bernuolli|Bernulli]] *distribution* that has $Var[X]=p(1-p)$ , where $p$ is the probability of success :
+$$
+=\sum_{i=1}^{100} Var[X_i] = \sum_{i=1}^{100} 0.5(1-0.5) = 25
+$$
+
+Than applying **Chebyshev** what is $\mathbb{P}(X \geq 80)$
+
+Since *chebyshev* calculates the probability that a given random variable deviates from the the mean by at least $k$ we will have that :
+$$
+\mathbb{P}(|X - 50| \geq 30) = \mathbb{P}(X \ge 80) + \mathbb{P}(X \le 20)
+$$
+>[!note] 
+>Since we are intrested only in the bound for $\mathbb{P}(X \ge 80)$ we must multiply $\mathbb{P}(|X - 50| \geq 30)$ by $0.5$ 
+
+$$
+\begin{align}
+\frac{1}{2} \cdot \mathbb{P}(|X-50|\ge 30) & \le \frac{1}{2} \cdot \frac{Var[X]}{30^2} \\
+& \le \frac{1}{2} \cdot \frac{25}{30^2} = 0.01389
+\end{align}
+$$
 ### Boosted Chebyshev
 
+Instead of sampling $X$ only *1* time we sample *multiple times* and take the **average**
+
+Fix $k > 0$ and an integer $s\ge 1$
+
+Let $X_1,\dots,X_s$ *pairwise independent* random variables distributed as $X$ 
+
+Let $\hat{X} = \frac{1}{s}\sum_{i=1}^s X_i$, then : 
+$$
+\mathbb{P}(|\hat{X}-E[X]|\ge k) \le \frac{Var[X]}{s \cdot k^2}
+$$
+#### Example
+
+Flip $100$ coins for *10* times and take the **average** number of heads you see in the *10* rounds
+
+The $\mathbb{P}(X \ge 80)$ will be $1/10$ the previous *Chebyshev* probability :
+$$
+\approx 0.01389 / 10 = 0.001389
+$$
 ## Chernoff-Hoeffding ( exponential )
 
+>[!important] Assumption
+>My random variable $Y = \sum_{i=1}^n Y_i$ is the sum of $n$ *independent and identically distributed* [[Statistica e Probabilità#Distribuzione di Bernuolli|Bernullian]] random variables $Y_i$
+
+Then for any $t \ge 0$ :
++ $\mathbb{P}(Y \ge E[Y] +t) \le e^{\frac{-t^2}{2n}}$ , right sided
++ $\mathbb{P}(Y \le E[Y]-t) \le e^{\frac{-t^2}{2n}}$ , left sided
++ $\mathbb{P}(|Y-E[Y]|\ge t) \le 2e^{\frac{-t^2}{2n}}$ , double sided
+
+### Example
+
+Flip $100$ *coins*. 
++ Let $X_i=0$ if $i$-th coin is *tail* 
++ $X_i=1$ if *head*
+
+Let $X=\sum_{i=1}^{100} X_i$ be the number of *heads*
+
+Then $E[X]=50$
+
+Applying *Chernoff-Hoeffding* ( right side ) : 
+$$
+\mathbb{P}(X \ge 80) = \mathbb{P}(X \ge E[X] + 30) \le e^{\frac{-30^2}{2 \cdot 100}} \approx 0.0111
+$$
+
 ## Mean+Median trick
+
+Our goal is to estimate $E[X]$ 
+
+>[!important] Assumption
+>$$
+>Var[X] = O(E[X]^2)
+>$$
+>
+>Or the variance must not be too large
+
+Choose prameters : 
++ $\epsilon > 0$ , *error rate*
++ $\delta > 0$ , *failure probability*
+
+Let then : 
++ $t = \Theta(\log(1/\delta))$
++ $s = \Theta(\epsilon^{-2})$
+
+Draw $st = \Theta(\epsilon^{-2} \log(1/\delta))$ *iid* realizations $X_{i,j}$ of $X$ , building the following *matrix* : 
+
+$$
+\begin{matrix}
+X_{1,1} & X_{1,2} & \dots & X_{1,t} \\
+X_{2,1} & \dots & \dots & \dots\\ 
+\dots & \dots & \dots & \dots\\
+X_{s,1} & \dots & \dots & X_{s,t}
+\end{matrix}
+$$
+
+Let :
++ $\hat{X}_j = \frac{1}{s}\sum_{i,j}$ be the **mean** of the $j-$th column  
++ $Y = median(\hat{X}_1, \dots, \hat{X}_t)$ be the **median** of those means 
+
+Then :
+$$
+\mathbb{P}(|Y-E[X]| \ge \epsilon \cdot E[X]) \le \delta
+$$
