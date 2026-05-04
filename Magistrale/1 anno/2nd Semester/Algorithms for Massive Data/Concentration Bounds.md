@@ -232,3 +232,40 @@ Then :
 $$
 \mathbb{P}(|Y-E[X]| \ge \epsilon \cdot E[X]) \le \delta
 $$
+>[!note] 
+>We can have *arbitrary* **precision** $\epsilon$ and *failure* **probability** $\delta$ , the price to pay is to repeat $st$ *times* the randomized algorithm
+
+### Mean trick
+
+Let $c$ be the *smallest constant* such that $Var[X] \le c \cdot E[X]^2$ 
+
+Begin by choosing enough rows such that the following holds :
+$$
+\mathbb{P}(|\hat{X}_j - E[X]| \ge \epsilon \cdot E[X]) \le 1/3
+$$
+The probability that the *mean* of any column **exceeds** *relative error* $\epsilon$ with constant probability $1/3$ 
+
+We can use [[Concentration Bounds#Boosted Chebyshev|Chebyshev]] as *concentration bound* with $k = \epsilon \cdot E[X]$ :
+$$
+\mathbb{P}(|\hat{X}_j -E[X]| \ge k) \le \frac{Var[X]}{s \cdot k^2}
+$$
+$$
+\le \frac{c \cdot E[X]^2}{s \cdot (\epsilon \cdot E[X])^2} = c s^{-1} \epsilon^{-2}
+$$
+Since we want to know how many *sampling* we need to do we solve for $s$
+
+$$
+\begin{align}
+cs^{-1}\epsilon^{-2} & = 1/3 \\
+3 \cdot cs^{-1}\epsilon^{-2}& = \frac{1}{\cancel{3}} \cdot \cancel{3} \\
+\cancel{s} \cdot3 \cdot \frac{c}{\cancel{s} \cdot \epsilon^2} & = 1 \cdot s \\
+s & = 3 c\epsilon^{-2} = \Theta(\epsilon^{-2})
+\end{align}
+$$
+
+### Median trick
+
+So if out matrix has $s = \Theta(\epsilon^{-2})$ *rows* we know that **mean** $\hat{X}_j$ of each column exceeds the *relative error* $\epsilon$ with *probability* $1/3$ 
+
+Now we want to show that the **mendian** of the $\hat{X}_j$ exceeds *relative error* $\epsilon$ with probability at most $\delta$ if we have $t = \Theta(\log(1/\delta))$ *columns*
+
