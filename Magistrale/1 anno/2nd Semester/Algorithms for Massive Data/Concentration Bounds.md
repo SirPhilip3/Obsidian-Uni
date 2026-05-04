@@ -262,7 +262,6 @@ cs^{-1}\epsilon^{-2} & = 1/3 \\
 s & = 3 c\epsilon^{-2} = \Theta(\epsilon^{-2})
 \end{align}
 $$
-
 ### Median trick
 
 So if out matrix has $s = \Theta(\epsilon^{-2})$ *rows* we know that **mean** $\hat{X}_j$ of each column exceeds the *relative error* $\epsilon$ with *probability* $1/3$ 
