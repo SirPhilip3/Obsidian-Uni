@@ -268,3 +268,31 @@ So if out matrix has $s = \Theta(\epsilon^{-2})$ *rows* we know that **mean** $\
 
 Now we want to show that the **mendian** of the $\hat{X}_j$ exceeds *relative error* $\epsilon$ with probability at most $\delta$ if we have $t = \Theta(\log(1/\delta))$ *columns*
 
+>[!note] Intuition
+>For the *median* to be wrong ( exceeds the relative error $\epsilon$ ) at least *half* of the *mean* variable need to be wrong and exceed the relative error $\epsilon$
+
+>[!important] Claim
+>Let $Y=median(\hat{X}_1,\dots,\hat{X_t})$ be the *median* of $t=72\ln(1/\delta)$ *iid* random variables $\hat{X}_j$ such that :
+>$$
+>\mathbb{P}(|\hat{X}_j-E[X]| \ge \epsilon \cdot E[X]) \le 1/3
+>$$
+>Then we have that : 
+>$$
+>\mathbb{P}(|Y-E[X]| \ge \epsilon \cdot E[X]) \le \delta
+>$$
+
+**Proof**
+
+Let $Y=median(\hat{X}_1,\dots,\hat{X}_t)=\hat{X}_q$
+
+We can assume , without loss of generality that : $\hat{X}_1< \dots< \hat{X}_q<\dots < \hat{X}_t$ 
+
+>[!note]-
+>Here we are simply saying that the median is the element $\hat{X}_q$ that is inside the ordered list of random variables
+
+If $Y = \hat{X}_q$ *fails* because it's too *large* that means that all the subsequent *random variables* ( $\ge t/2$ ) will also *fail* 
+
+>[!note]-
+>This thinking can also be done simmetrically with too small
+
+#todo 
