@@ -72,5 +72,93 @@ There is a **tradeoff** between *space* efficency and *randomness* , in fact the
 
 ### Uniform Hash Family
 
-#todo 
+>[!important] Definition
+>
+>Let $U=\{x_1,\dots,x_n\}$ be our universe ( $n=|U|$ ). We say that $\mathcal{H}$ is *uniform* if and only if, for any $y_1,\dots,y_n$ ( not necessarily distinct ) :
+>$$
+>\mathbb{P}\bigg( (h(x_1,\dots,h(x_n))=(y_1,\dots,y_n)) \bigg) = \frac{1}{M^n}
+>$$ 
 
+We can prove that $\mathcal{H}=[0,M)^U$ is the *only possible* *uniform family* of hash functions 
+
+**Proof**
+
+Let $\mathcal{H}' \neq \mathcal{H}$ then : 
++ $|\mathcal{H}'| < |\mathcal{H}|$ since $\mathcal{H}$ has all the possible function and so to be different $\mathcal{H}'$ needs to have at least one less function
+
+Let $h$ be that function that's $\in \mathcal{H}$ but not $\mathcal{H}'$
+
+Let $y_i = h(x_i)$ , $\forall x_i \in U$ , than it must be that for any $h' \in \mathcal{H}'$ we will have that :
+$$
+(h'(x_1),\dots,h'(x_n)) \neq (y_1,\dots,y_n)
+$$
+Hence :
+$$
+\mathbb{P}\bigg( (h'(x_1),\dots,h'(x_n)) = (y_1,\dots,y_n) \bigg) = 0 \neq \frac{1}{M^{|U|}}
+$$
+This implies that $\mathcal{H}'$ is **not** *uniform*
+
+#### Space
+
+To store a function $h$ from $\mathcal{H}$ we need :
+$$
+\log_2 |\mathcal{H}| = \log_2 M^{|U|} = |U|\log_2 M
+$$
+*bits*
+
+>[!example] 
+>Let the $U$ the space of IPv4 addresses $|U|=2^{32}$ 
+>Let $M=2$ 
+>
+>So a function *unifromly-chosed* $h \in \mathcal{H}$ maps an IPv4 address $x$ to a uniform bit $h(x)$
+>
+>Storing $h$ requires $2^{32} = 512MiB$ of *space*
+
+### k-wise independent Hasing
+
+>[!info] Idea
+>
+>We dont care that *all* $h(x_1),\dots,h(x_n)$ are *iid uniform numbers* since our input will rarely be that large 
+
+We fix a maximum $k$ for which $(h(x_1),\dots,h(x_k))$ is *uniform* in $[0,M)^k$
+
+>[!important] Definition
+>
+>$\mathcal{H}$ is *k-wise independent* iff , for a uniform choice of $h \in \mathcal{H}$ : 
+>+ for any distinct $x_1,\dots,x_k\in U$
+>+ for any ( not necessary distinct ) $y_1,\dots,y_k\in [0,M)$ 
+>  
+>$$
+>\mathbb{P}\big( (h(x_1),\dots,h(x_k)) \neq (y_1,\dots,y_k) \big) = \frac{1}{M^k}
+>$$
+
+For $k=2$ we call it *pairwise-independent hasing*
+
+>[!example] 
+>Let $U = [n]$ then:
+>
+>$\mathcal{H} = \{ax + b\mod{M} : a,b \in [0,M)\}$ is *pairwise-independent* if $M \ge n$ is the *power* of a *prime* number
+
+
+**Proof** : 
+
+Choose *uniformly* :
++ $h \in \mathcal{H}$ and 
++ $a,b \in [0,M)$
+
+Choosing any *distinct* $x_1,x_2 \in [n]$ and any $y_1,y_2 \in [0,M)$ we need to *prove* that :
+$$
+\mathbb{P}\big( h(x_1) = y_1 \land h(x_2) = y_2 \big) = \frac{1}{M^2}
+$$
+Now by *definition* of $h$ we get : 
+$$
+\mathbb{P}(ax_1+b \equiv_M y_1 \land ax_2+b \equiv_M y_2)
+$$
+Solving for $a$ and $b$ we get : 
+$$
+\mathbb{P} \bigg( a \equiv_M \frac{y_2 - y_1}{x_2-x_1} \land b \equiv_M y_1 - x_1 \cdot \frac{y_2 - y_1}{x_2-x_1}\bigg )
+$$
+Since $a$ and $b$ are *independent* we get : 
+$$
+\mathbb{P}\bigg( a \equiv_M \frac{y_2 - y_1}{x_2-x_1} \bigg)\cdot \mathbb{P}\bigg( b \equiv_M y_1 - x_1 \cdot \frac{y_2 - y_1}{x_2-x_1} \bigg)
+$$
