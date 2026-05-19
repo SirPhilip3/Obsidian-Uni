@@ -139,8 +139,7 @@ For $k=2$ we call it *pairwise-independent hasing*
 >
 >$\mathcal{H} = \{ax + b\mod{M} : a,b \in [0,M)\}$ is *pairwise-independent* if $M \ge n$ is the *power* of a *prime* number
 
-
-**Proof** : 
+#### Proof
 
 Choose *uniformly* :
 + $h \in \mathcal{H}$ and 
@@ -161,4 +160,76 @@ $$
 Since $a$ and $b$ are *independent* we get : 
 $$
 \mathbb{P}\bigg( a \equiv_M \frac{y_2 - y_1}{x_2-x_1} \bigg)\cdot \mathbb{P}\bigg( b \equiv_M y_1 - x_1 \cdot \frac{y_2 - y_1}{x_2-x_1} \bigg)
+$$
+ 
+Since we have chosen distinct $x_1,x_2 \in [n]$ then $x_1 \neq x_2$ 
+
+Also since $M \ge n$ then $x_2-x_1 \not\equiv_M 0$
+
+Now since $M$ is the power of a *prime number*, $(x_2-x_1)^{-1} \mod{M}$ *exists* since $\mathbb{Z}_M$ is a *field*
+
+Sice everything is defined and $\mod{M}$ each of the right sides will be a number between $[0,M)$
+
+Let's call them $z_1, z_2$ 
+$$
+\mathbb{P}\big( a \equiv_M z_1 \big)\cdot \mathbb{P}\big( b \equiv_M z_2 \big)
+$$
+Now the probability that $a$ or $b$ are a particular number from $[0,M)$ is $1/M$ , than we can write the following : 
+$$
+\mathbb{P}\big( a \equiv_M z_1 \big)\cdot \mathbb{P}\big( b \equiv_M z_2 \big) = 1/M \cdot 1/M = M^{-2}
+$$
+Now generalizing the proof to a general $k$ we get : 
+
+>[!important] Theorem
+>Let $U = [n]$ and $k \leq n$. Then : 
+>$$
+>\mathcal{H} = \Bigg\{ \sum_{i=0}^{k-1} a_i x^i \mod{M}\ :\ a_0, \dots, a_{k-1} \in [0,M) \Bigg\}
+>$$
+>Is *k-wise independent* if $M \ge n$ is the *power of a prime number*
+>
+>or : *random polynomials of degree $k-1$ over the field $\mathbb{Z}_M$* are *k-wise independent*
+
+#### Example
+
+$$h(x) = \sum_{i=0}^{k-1} a_ix^i \mod{M}$$
+Is a *k-wise independent hash familty*
+
+To encode a function $h$ of this family we will need $k\log M$ *bits* , where : 
++ $k$ is the total lenght of the *polynomial*
++ $\log M$ is the bit size necessary to encode each integer $a_i$ 
+
+The time complexity to compute $h(x)$ is $O(k)$ ( using [Horner method](https://en.wikipedia.org/wiki/Horner%27s_method) )
+
+This is small for $k$ small and since in most application $k \in O(1)$ its *good enough*
+
+### Universal Hashing
+
+*Universal Hashing* is a **weaker** version of $k$-wise independence 
+
+>[!important] Defintion
+>$\mathcal{H} \subseteq [0,M)^U$ is a *universal* hash family $\iff$  for a unifrom choice of $h \in \mathcal{H}$ and any two distinct $x_1,x_2 \in U$ :
+>$$
+>\mathbb{P}(h(x_1) = h(x_2)) \leq 1/M
+>$$
+
+Universal hasing *guarantees* that the *probability of collision* between two elements is at most $1/M$ , or the probability that we would obtain from a completely uniform hash function 
+
+#### Proof 
+
+>[!important] Theorem
+>If $\mathcal{H}$ is *pairwise independent* then $\mathcal{H}$ is *universal*
+
+$$
+\mathbb{P}\big(h(x_1) = h(x_2)\big) =
+$$
+By [law of total probabibility](https://en.wikipedia.org/wiki/Law_of_total_probability) we get that : 
+$$
+\begin{align}
+\sum_{y \in [0,M)}\mathbb{P}\big( h(x_1) = h(x_2) \land h(x_2) = y\big) & = \\
+\sum_{y \in [0,M)} \mathbb{P} \big( h(x_1) = y \land h(x_2) = y \big) & = \\
+\end{align}
+$$
+Now by *pairwise independence* we will have : 
+$$
+\sum_{y \in [0,M)} M^{-2} = 1/M
 $$
