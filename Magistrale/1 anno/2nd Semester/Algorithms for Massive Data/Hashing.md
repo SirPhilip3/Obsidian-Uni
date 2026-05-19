@@ -259,5 +259,76 @@ Since the set $A$ is not known beforehand we will be happy of having the guarant
 
 >[!important] Theorem
 >
->If a family $\mathcal{H}$ of hash functions $h : [1,n] \to [0,M)$ is *universal* and $M \ge n^{c+1}$
+>If : 
+>+ A family $\mathcal{H}$ of hash functions $h : [1,n] \to [0,M)$ is *universal* and 
+>+ $M \ge n^{c+1}$ for any constant $c$ of our choice
+> 
+>Then a uniformly-chosen $h \in \mathcal{H}$ is *perfect* on any set $A \subseteq [1,n]$ *with high probability* with respect to $n$
+
+This means that given a *universal hashing* family, this must have $M \ge n^{c+1}$ to be able to be considered *perfect* ( the codomain needs to be big enough ) 
+
+### Polynomial Hashing ( Rabin hashing )
+
+>[!important] Definition
+>+ Fix a prime number $q$
+>+ Choose uniformly $z \in [0,q)$
+>+ Let $x \in \Sigma^n$ be a string of lenght $n$, where $\Sigma$ is a set of integers 
 >
+>*Rabin* *hash function* $\kappa_{q,z}(x)$ is defined as : 
+>$$
+>\kappa_{q,z}(x) = \Bigg( \sum_{i=1}^{n} x[i] \cdot z^{n-i} \Bigg) \mod{q}
+>$$
+>
+
+In other words $\kappa_{q,z}(x)$ is a *polynomial* on $\mathbb{Z}_q$ having as *coefficents* the *character of the string* $x$ and *evaluated in a random point $z\in[0,q)$*
+
+>[!example] 
+>Choose : 
+>+ $q=7$
+>+ randomly $z=4$
+>+ $x = hello = 104 \ 101\ 108\ 108\ 111$
+>
+>$$
+>\begin{align}
+>\kappa_{q,z}(x) & = 104 z^4 +101z^3 +108z^2+108z+111 \mod{7} \\
+>& = 104\cdot4^4 +101\cdot4^3 +108\cdot 4^2+108\cdot4+111 \mod{7} = 2
+>\end{align}
+>$$ 
+
+**Properties** :
+
+Let $x,y \in \Sigma^+$ and $c \in \Sigma$ , denote $x \cdot c$ the concatenation of $x$ with $c$
+>[!note] 
+>$x$ and $y$ are words while $c$ is just a single character
++ Computing $\kappa_{q,z}(x \cdot c)$ without using $x$ and $y$ :
+$$
+\kappa_{q,z}(x \cdot c) = \kappa_{q,z}(x)\cdot z + c \mod q 
+$$
++ Computing $\kappa_{q,z}(x \cdot y)$ without using $x$ and $y$ :
+$$
+\kappa_{q,z}(x \cdot y) = \kappa_{q,z}(x)\cdot z^{|y|} + \kappa_{q,z}(y) \mod q 
+$$
+
+>[!important] Theorem
+>Let $x,y\in \Sigma^n$ with $x \neq y$ then :
+>$$
+>\mathbb{P}(\kappa_{q,z}(x)=\kappa_{q,z}(y)) \leq n/q
+>$$
+
+**Proof** : 
+$$
+\begin{align}
+\mathbb{P}(\kappa_{q,z}(x)=\kappa_{q,z}(y)) & = \\
+\mathbb{P}(\kappa_{q,z}(x)-\kappa_{q,z}(y)\equiv_q 0) & = \\
+\mathbb{P}\bigg( \sum_{i=1}^n x[i] \cdot  z^{n-i} - \sum_{i=1}^n y[i] \cdot  z^{n-i} \equiv_q 0 \bigg) & = \\
+\mathbb{P}\bigg( \sum_{i=1}^n (x[i]-y[i]) \cdot  z^{n-i}\equiv_q 0 \bigg) &  \\
+\end{align}
+$$
+The resulting *polynomial* of degree $n-1$ ( in the field $\mathbb{Z}_q$ ) is **non zero** since $x \neq y$ per hypotesis and has at most $n-1$ *roots* 
+
+Remembering that $z$ is chosen at random in $[0,q)$ the probability of chosing a root is $n/q$ so : 
+$$
+\mathbb{P}\bigg( \sum_{i=1}^n (x[i]-y[i]) \cdot  z^{n-i}\equiv_q 0 \bigg) \leq n/q
+$$
+#todo exercises 
+
