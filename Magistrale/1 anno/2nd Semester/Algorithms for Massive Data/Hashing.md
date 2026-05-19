@@ -231,5 +231,33 @@ $$
 $$
 Now by *pairwise independence* we will have : 
 $$
-\sum_{y \in [0,M)} M^{-2} = 1/M
+\sum_{y \in [0,M)} M^{-2} = M \cdot M^{-2} = 1/M
 $$
+### Perfect Hasing 
+
+In perfect hashing we dont want any collision at all 
+
+>[!important] Definition
+>$h : U \to [O,M)$ is a *perfect* hash function on a given set $A \subseteq[n] \iff$ *for any* two distinct $x_1,x_2 \in A$ it holds that $h(x_1) \neq h(x_2)$
+
+>[!note] 
+>If the set $A$ is given beforehand then it is possible to build a perfecct hash function on $A$ that can be evaluated in *constant time* and takes just $O(\log|A|)$ *bits of space*
+>
+>>[!warning] 
+>>In most applications $A$ arrives as a stream unknown beforehand
+
+Since the set $A$ is not known beforehand we will be happy of having the guarantee that *with high probability* there wont be any collision 
+
+>[!important] Definition 
+>An *event* *holds* **with high probability** if , in respect to some quantity $n$ , its probability is at least $1-n^{-c}$ for an *arbitrarily* large constant $c$ of our choice 
+>
+
+>[!example] 
+>Consider the set of IPv4 addesses , $n=10^6$ , choosing a constant $c=3$. Then a function that is perfect *with high probability* on $A$ will generate a collision with probability $\le 10^{-18}$
+
+#### Perfect Hashing via Universal Hashing 
+
+>[!important] Theorem
+>
+>If a family $\mathcal{H}$ of hash functions $h : [1,n] \to [0,M)$ is *universal* and $M \ge n^{c+1}$
+>
