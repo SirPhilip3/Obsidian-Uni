@@ -149,5 +149,12 @@ The probability that $h_{3}(x_{j})\ne 13$ is :
 $$
 1 -(\text{size of third part})^{-1} = 1 - \frac{k}{M}
 $$
+Hence in total we will have that :
+$$
+\mathbb{P}(BF[13]=0) = \mathbb{P}(\land_{i=1}^m h_{3}(x_{j})\ne 0) = \left( 1-\frac{k}{M} \right)^m
+$$
+
+
+
 #todo https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives
 
