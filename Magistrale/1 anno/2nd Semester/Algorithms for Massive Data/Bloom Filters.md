@@ -151,7 +151,7 @@ $$
 $$
 Hence in total we will have that :
 $$
-\mathbb{P}(BF[13]=0) = \mathbb{P}(\land_{i=1}^m h_{3}(x_{j})\ne 0) = \left( 1-\frac{k}{M} \right)^m
+\mathbb{P}(BF[13]=0) = \mathbb{P}(\land_{j=1}^m h_{3}(x_{j})\ne 0) = \left( 1-\frac{k}{M} \right)^m
 $$
 
 
