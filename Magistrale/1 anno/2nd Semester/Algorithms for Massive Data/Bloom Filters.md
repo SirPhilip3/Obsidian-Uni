@@ -135,7 +135,10 @@ In other words the $i$-th hash function outputs indices inside the $i$-th part o
 
 ## $\mathbb{P}$ of False Positives
 
-We need to compute the following probability : $\mathbb{P}(FP)=\mathbb{P}(membership(x)=true|x \notin S)$
+We need to compute the following probability ( [Wikipedia][https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives] ) : $\mathbb{P}(FP)=\mathbb{P}(membership(x)=true|x \notin S)$
+
+>[!important] 
+>The analysis wil be *asymptotic* : $\frac{M}{K}\to \infty$
 
 First we need to compute $\mathbb{P}(BF[i]=1)$ for any position $i$
 
@@ -153,8 +156,65 @@ Hence in total we will have that :
 $$
 \mathbb{P}(BF[13]=0) = \mathbb{P}(\land_{j=1}^m h_{3}(x_{j})\ne 0) = \left( 1-\frac{k}{M} \right)^m
 $$
+This probability can be rewritten as :
+$$
+\left( \left( 1-\frac{1}{M/k} \right)^{M/k} \right)^{mk/M}
+$$
+>[!note]-
+>Notice that this doesn't change the original formula since : 
+>+ $M/k ^{mk/M} = \cancel{M/k} \cdot m\cancel{k/M} = m$  
+>+ $\frac{1}{\frac{M}{k}} = \frac{k}{M}$
+>
 
+Now noticing that using $x=\frac{M}{k}$ we get the following *known limit* :
+$$
+\lim_{ x \to \infty } \left( 1-\frac{1}{x} \right)^x = e^{-1} 
+$$
+We can then rewrite the rewritten probability as : 
+$$
+(e^{-1})^{mk/M} =  e^{-mk/M}
+$$
+So now we can write : 
+$$
+\begin{align}
+\mathbb{P}(BF[i]=1) & = \\
+1-\mathbb{P}(BF[i]=0) & =  \\
+1-e^{-mk/M}
+\end{align}
+$$
+Finally $x \neq S$ is a *False Positive* if and only if $BF[h_{j}(x)]=1$ *for all* $k$ hash functions $h_{j}$ so : 
+$$
+\mathbb{P}(FP)=(1-e^{-mk/M})^{k}
+$$
+It can be shown that this probability is minimized for $k=\left( \frac{M}{m} \right) \ln 2$ , replacing it in the above probability we get : 
+$$
+\mathbb{P}(FP) = \left( \frac{1}{2} \right)^{(M/m)\ln 2}
+$$
+Concluding we set $\mathbb{P}(FP)=\delta$ , our desired *FP probability* and obtain : 
+$$
+k = \log_{2}(1/\delta)
+$$
+$$
+\begin{align}
+M & = m \cdot \log_{2}e \cdot k \\
+& = m \cdot \log_{2}e \cdot \log_{2}(1/\delta) \\
+& = O\left( m \log\left( \frac{1}{\delta} \right) \right)
+\end{align}
+$$
+>[!note]
+>Both the *number* of hash functions ( *query time* ) and *space* are proportional to $\log(1/\delta)$
 
+## Final Result
 
-#todo https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives
+We want to maintain a dynamic set ( were only *inserts* operations are allowed ) of at most $m$ elements from *any universe*
++ Choose a *desired* **False Positive** probability $0< \delta < 1$ 
++ Pick $k = \log_{2}(1/\delta)$ *independent* and **fully-uniform** hash functions that can be evaluated in $O(1)$ *time* ( not realistic )
 
+Then the resulting **Bloom Filer** : 
++ Uses $O(m \log(1/\delta))$ bits of *space*
++ Supports *insertions* in $O(\log(1/\delta))$ *time*
++ Supports *membership* queries in $O(\log(1/\delta))$ *time* with *False Positive probability* $\le \delta$ and **no False Negative**
+
+# Counting Bloom Filters (CBF)
+
+#todo 
