@@ -21,13 +21,16 @@ A raccomender system should recommend not only *popular* stuff but also niches c
 Recommend the songs most similar to the user profile ( *similarity based* )
 
 A user is the set of songs listened 
-
 ### Definitions
 
 We need to define : 
 + The *song* ( $I$ ) *rapresentation*
 >[!note] 
 >This can be the lyrics
+
+>[!warning] 
+>This causes problems if there are synonyms etcc
+
 +  The *user* ( $U$ ) *profile* 
 >[!note] 
 >Aggregate descriptions of listened songs ( sum \ avg )
@@ -59,12 +62,55 @@ $$
 1. *Building the model*
 
 Easy processing for the corpus
-Cheap 
+Cheap mode for the user #todo 
 
-#todo 
+2. *Generating suggestion*
 
+Nearest Neighbor seach is not cheap among all the collection of documents 
+
+3. *Serendipity*
+
+Small , tied to text similarity 
+
+4. *Cold-start problem*
+
+>[!warning] 
+>This approach will not work if the user has never listened to any song 
 
 ## User Based Collaborative Filtering 
 
+An additional information is the *Rating* provided by the user 
+
+>[!note] 
+>The *rating* can be not only *explicit* but also *implicit* ( time listened etcc )
+
+We can add a **rating matrix** $|U| \times |I|$ where each entry $R[u,i]$ stores the user feedback
+
+Also instead of finding similar *items* , find **similar users** 
+
+```pseudo
+	\begin{algorithm}
+	\caption{Algorithm sketch}
+	\begin{algorithmic}
+	\State Find a set of neighbors $N(u)$ of users simialr to $u$
+	\State Exploit the rating of users $N(u)$ to build recommendations for $u$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+**User** $u$ : is a vector of size $|I|$ where : 
++ $u[i]=r$ if the user $u$ gave a rating $r$ to the item $i$
++ $u$ is the roe $R[u, :]$ of the *rating matrix*
+
+### Similarity Measure 
+
+We use **Pearson Correlation** , this is : 
++ *large* if both $u$ and $v$ increase / decrease similarly above / below their *mean* $\bar{u}$ and $\bar{v}$
+
+$$
+p(u,v) = \frac{cov(u,v)}{\sigma_{u} \sigma_{v}} = \frac{\sum_{i}(u[i]-\bar{u})(v[i]-\bar{v})}{\sqrt{\sum_{i}(u[i]-\bar{u})^2}\sqrt{\sum_{i}(v[i]-\bar{v})^2}}
+$$
+>[!example] 
+[![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Correlation_examples2.svg/500px-Correlation_examples2.svg.png)](https://en.wikipedia.org/wiki/File:Correlation_examples2.svg)
 
 ## Item Based Collaborative Filtering
