@@ -100,7 +100,7 @@ Also instead of finding similar *items* , find **similar users**
 
 **User** $u$ : is a vector of size $|I|$ where : 
 + $u[i]=r$ if the user $u$ gave a rating $r$ to the item $i$
-+ $u$ is the roe $R[u, :]$ of the *rating matrix*
++ $u$ is the row $R[u, :]$ of the *rating matrix*
 
 ### Similarity Measure 
 
@@ -112,5 +112,21 @@ p(u,v) = \frac{cov(u,v)}{\sigma_{u} \sigma_{v}} = \frac{\sum_{i}(u[i]-\bar{u})(v
 $$
 >[!example] 
 [![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Correlation_examples2.svg/500px-Correlation_examples2.svg.png)](https://en.wikipedia.org/wiki/File:Correlation_examples2.svg)
+
+>[!warning] 
+>We can't use *cosine similarity* since it doesnt account for scale changes 
+>
+>So users that have different songs rating but with similar deltas they would result simililar when doing *cosine*  
+>
+>>[!example] 
+>>![[SIM.excalidraw.png]]
+>>%%[[SIM.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>>
+>>+ $\cos(P,Q) =0.92$ : high similarity but it's not correct
+>>+ $p(P,Q)=0.0$ : correct result
+
+### Raccomendation System
+
+#todo 
 
 ## Item Based Collaborative Filtering
