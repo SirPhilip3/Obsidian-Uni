@@ -380,7 +380,7 @@ Where the *escape symbol* is encoded as a string of $k$ $1$'s
 >[1,2,5,*,7,10,2,*]
 >$$ 
 >
->With *exception* list $w=[21-17]$
+>With *exception* list $w=[21,17]$
 >
 >Now we simply encode in *binary* : 
 >`0001 0010 0101 1111 0111 1010 0000 1111`

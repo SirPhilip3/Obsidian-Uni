@@ -62,7 +62,7 @@ $$
 1. *Building the model*
 
 Easy processing for the corpus
-Cheap mode for the user #todo 
+Cheap model for the user #todo 
 
 2. *Generating suggestion*
 
@@ -130,3 +130,5 @@ $$
 #todo 
 
 ## Item Based Collaborative Filtering
+
+#todo 
