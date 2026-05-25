@@ -403,6 +403,7 @@ The recursion stops when we have a sequence that goes from $n_1$ to $n_2$ and it
 >The midpoints are sorted in the implicit binary tree in *pre-order transversal* ( root than left than right )
 
 
+
 !!!! SBAGLIATO 
 
 >[!example] 

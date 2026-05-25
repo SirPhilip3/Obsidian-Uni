@@ -108,7 +108,7 @@ We use **Pearson Correlation** , this is :
 + *large* if both $u$ and $v$ increase / decrease similarly above / below their *mean* $\bar{u}$ and $\bar{v}$
 
 $$
-p(u,v) = \frac{cov(u,v)}{\sigma_{u} \sigma_{v}} = \frac{\sum_{i}(u[i]-\bar{u})(v[i]-\bar{v})}{\sqrt{\sum_{i}(u[i]-\bar{u})^2}\sqrt{\sum_{i}(v[i]-\bar{v})^2}}
+\rho(u,v) = \frac{cov(u,v)}{\sigma_{u} \sigma_{v}} = \frac{\sum_{i}(u[i]-\bar{u})(v[i]-\bar{v})}{\sqrt{\sum_{i}(u[i]-\bar{u})^2}\sqrt{\sum_{i}(v[i]-\bar{v})^2}}
 $$
 >[!example] 
 [![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Correlation_examples2.svg/500px-Correlation_examples2.svg.png)](https://en.wikipedia.org/wiki/File:Correlation_examples2.svg)
@@ -123,9 +123,22 @@ $$
 >>%%[[SIM.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >>
 >>+ $\cos(P,Q) =0.92$ : high similarity but it's not correct
->>+ $p(P,Q)=0.0$ : correct result
+>>+ $\rho(P,Q)=0.0$ : correct result
 
 ### Raccomendation System
+
+In order to recommend an *item* to $u$ we want to **predict** what would it's *ranking* score $s_{u,i}$ be :
+
+1. For each *item* $i \in I$ :
+	1. Consider the *ratings* of users in $N(u)$
+	2. **Weight** the *ratings* by the users similarity with $u$ :
+
+$$
+s_{u,i} = \frac{\sum_{v \in N(u)}(v[i]-\bar{v}) \cdot \rho(u,v)}{\sum_{v \in N(u)}| \rho (u,v)|} 
+$$
+2. Use $s_{u,i}$ to rank every item in $I$ and select the top-$k$ 
+
+### Efficency considerations
 
 #todo 
 
