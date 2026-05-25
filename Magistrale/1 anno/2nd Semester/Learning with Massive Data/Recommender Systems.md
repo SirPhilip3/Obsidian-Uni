@@ -62,7 +62,7 @@ $$
 1. *Building the model*
 
 Easy processing for the corpus
-Cheap model for the user #todo 
+Cheap model for the user since it's rapresentation vector is *cheap* to keep and use for reccomendation
 
 2. *Generating suggestion*
 
@@ -136,12 +136,70 @@ In order to recommend an *item* to $u$ we want to **predict** what would it's *r
 $$
 s_{u,i} = \frac{\sum_{v \in N(u)}(v[i]-\bar{v}) \cdot \rho(u,v)}{\sum_{v \in N(u)}| \rho (u,v)|} 
 $$
+
+Where : 
++ $v[i]$ is the *actual rating* neighbor $v$ has given to *item* $i$
++ $\bar{v}$ is the *average rating* $v$ gives to all items that they have rated
+
+We divide by the sum of all the weights ( $\rho(u,v)$ ) to normilize the sum on the nominator 
+
 2. Use $s_{u,i}$ to rank every item in $I$ and select the top-$k$ 
 
+To predict the rating that could be given by the user $u$ we can use the following formula 
+$$
+r_{u,i} = \bar{u}+ s_{u,i}
+$$
+>[!note] 
+>$\bar{u}$ is summed in order to consider the average user rating since $s_{u,i}$ rapresents the deviation in respect to theyr own *average*
 ### Efficency considerations
 
-#todo 
+1. *Building the model*
+
+User similarity is expensive : $O(|U|^2)$
+Very expensive even if done off-line
+
+>[!important] 
+>For every new rating by a user *similarities* should be recomputed 
+
+2. *Generating Suggestions*
+
+Nearest neighbor search is not needed if pre-computed off-line
+
+3. *Serendipity*
+
+Great
+
+4. *Cold-start problem*
+
+>[!warning] 
+>We need a sufficently large set of ratings for a new *user* / *item*
 
 ## Item Based Collaborative Filtering
 
+This can be viewed as the *symmetric* approact to [[Recommender Systems#User Based Collaborative Filtering|User Based Collaborative Filtering]] 
+
++ An *item* is represented by a vector of size $|U|$ 
++ $i[u]=r$ if the *user* $u$ gave a *rating* of $r$ to the item $i$ 
+
+**Algorithm** : 
+1. Find a set $N(i)$ of other *items* **rated** by $u$ and *similar* to $i$
+2. Exploit them to compute a *score* for $i$
+
 #todo 
+### Similarity Measure 
+
+#todo 
+
+**Adjusted Cosine Similarity** :
+$$
+a\_\cos(i,j) = \frac{\sum_{u}(i[u]-\bar{u})(j[u]-\bar{u})}{\sqrt{\sum_{u}(i[u]-\bar{u})^2} \cdot \sqrt{\sum_{u}(j[u]-\bar{u})^2}}
+$$
+**Rating $r_{u,i}$ computation** : 
+$$
+r_{u,i} = \frac{\sum_{j \in N(i)} R[u,j] \cdot a\_\cos(i,j) }{\sum_{j \in N(i)} |a\_\cos(i,j)| }
+$$
+
+>[!note] 
+>$R[u,j]$ is the rating given by $u$ to the neighboring *item* $j$
+
+
