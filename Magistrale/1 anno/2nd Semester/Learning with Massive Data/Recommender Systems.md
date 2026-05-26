@@ -185,10 +185,10 @@ This can be viewed as the *symmetric* approact to [[Recommender Systems#User Bas
 1. Find a set $N(i)$ of other *items* **rated** by $u$ and *similar* to $i$
 2. Exploit them to compute a *score* for $i$
 
-#todo 
 ### Similarity Measure 
 
-#todo 
+>[!note] 
+>In this case we don't us *Pearson Correlation* since it's more important capturing how the user behaves across items than they'r universal popularity in order to increase personalization
 
 **Adjusted Cosine Similarity** :
 $$
@@ -202,4 +202,26 @@ $$
 >[!note] 
 >$R[u,j]$ is the rating given by $u$ to the neighboring *item* $j$
 
+### Efficency consideration
+
+1. *Building the model*
+
+Since in general $|I|$ is smaller than $|U|$ the computation is **cheaper** than *user-based* and **offline**
+
+2. *Generating suggestion*
+
+We dont need *Nearest neighbor search* if we pre-compute off-line
+
+3. *Serendipity*
+
+Less than *user-based* since the final ranking depends on *rating* only by the **current user**
+
+4. *Cold-Start*
+
+>[!warning] 
+>We need a sufficently large set of ratings for a new *user* / *item
+
+## Cold Start in Item-Based Collaborative Filtering
+
+Ask users to rate a small number of *items*
 
