@@ -37,7 +37,7 @@ The filter must be initialized with a maximum capacity $m$ and a desired *False 
 
 We want to rapresent set $S \subseteq [n]$ of cardinality at most $m$ 
 
-Given the paramaters $M=15$ and $k=3$ ( see [[]] for theyr derivation ) 
+Given the paramaters $M=15$ and $k=3$ ( see [[#Final Result|Final Result]] for theyr derivation ) 
 
 Than the *bloom filter* is a *bitvector* of lenght $M$ initialized to $0$ :
 ![[BloomFilter.excalidraw.png]]
