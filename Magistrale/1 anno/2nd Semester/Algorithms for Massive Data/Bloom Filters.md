@@ -214,8 +214,3 @@ Then the resulting **Bloom Filer** :
 + Uses $O(m \log(1/\delta))$ bits of *space*
 + Supports *insertions* in $O(\log(1/\delta))$ *time*
 + Supports *membership* queries in $O(\log(1/\delta))$ *time* with *False Positive probability* $\le \delta$ and **no False Negative**
-
-# Counting Bloom Filters (CBF)
-
-#todo 
-
