@@ -225,3 +225,11 @@ Less than *user-based* since the final ranking depends on *rating* only by the *
 
 Ask users to rate a small number of *items*
 
+Note that this set of *items* are equal for every user , therefore some user may not be able to provide a rating for *items* that he never encountered 
+
+Some *techniques* to select that small number of *items* to present to the user are : 
++ **Popularity** : Propose the *most* rated items ( we have more probability that a user has seen those movies and so can give a rating )
++ **Contention** : Proposes items that are *polarizing* , so rating that are split between lowest and highest, this gives much more information regarding the user preferences
++ **Coverage** :  Proposes items that have a high numbers of *co-ratings* ( same use has rate two similar items similar ratings )
++ **GreedyExtend** : Proposes items that giving them a rating would maximaze the performance on the training set 
+
