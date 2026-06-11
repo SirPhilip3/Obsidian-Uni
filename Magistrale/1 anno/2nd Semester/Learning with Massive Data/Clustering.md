@@ -149,15 +149,45 @@ To improve efficency *Mini-Batch K-Means* uses only a small sample at each itera
 	\State $v_i \leftarrow 0$ for every cluster centroid $c_i$
 	\While{centroids keep changing or for max $t$ iterations}
 		\State $M \leftarrow$ sample of $b$ objects from $\mathcal{D}$
-		\For{}
-		
+		\For{$x \in M$}
+			\Comment{find closest centroid}
+			\State $f(x) = \arg \min_i d(x,c_i)$
         \EndFor
-        \For{}
-        
+        \For{$x \in M$}
+	        \Comment{update centroids}
+	        \State $v_{f(x)} = v_{f(x)}+1$
+	        \State $\eta = 1/v_{f(x)}$
+	        \State $c_{f(x)} = (1-\eta)c_{f(x)}+\eta x$
         \EndFor
     \EndWhile
+    \For{$i=1$ to $k$}
+	    \Comment{Assign data to final clusters}
+	    \State $C_i =\{x \in \mathcal{D} | d(x,c_i) \leq d(x,c_j) \forall j \neq i\}$
+    \EndFor
 	\end{algorithmic}
 	\end{algorithm}
 ```
+>[!example] 
+>![Understanding K-Means Clustering: Hands-on Visual Approach | by Ruslan  Brilenkov | Artificial Intelligence in Plain English](https://miro.medium.com/v2/resize:fit:1400/1*b2sO2f--yfZiJazc5rYSpg.gif)
 
-# CURE
+$v_{i}$ is a counter for each cluster that increases by $1$ for each point in that cluster $i$  
+
+In the first *for* we store for each point it's closest centroid in $f(x)$
+
+In the second *for* we : 
+1. Increase the *counter* for the cluster assigned to that point $x$
+2. Set the *learning rate* $\eta$ to the inverse of that *counter*
+3. Move that centroid closer to the new point seen each time, note that initially when not a lot of point have been seen it will move more and than slow down until convergence
+
+The final *for* simply assignes all the points of the original dataset to the closest centroid found 
+
+This solves the *complexity* problem since its complexity is $O(b \cdot k \cdot i)$ where $i$ is the number of *iterations*
+
+>[!note] 
+>Note that since $b \ll |\mathcal{D}|$ *Mini-Batch K-Means* is much faster than *K-Means*, also it's *decreasing learning rate* $\eta$ ensures **convergence**
+
+>[!important] 
+>The larger the $b$ is the better the quality of the clustering but longer execution time, but even small $b$ values are sufficent to obtain high quality clustering
+# CURE (Clustering Using REpresentatives)
+
+#todo 
