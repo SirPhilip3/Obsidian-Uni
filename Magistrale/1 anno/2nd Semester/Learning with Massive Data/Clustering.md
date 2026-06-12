@@ -239,11 +239,22 @@ If the sample $m$ is too large in terms of memory or clustering cost ( empirical
 >Generally we select $c=10$ rapresentative points  
 >
 
-Each *rapresentative point* is shrunk towards the center of the cluster by a factor $\alpha \in[0,1]$
+Each *rapresentative point* is shrunk towards the center of the cluster by a factor $\alpha \in[0,1]$ : 
++ this limits the effects of outliers by limiting false merges 
++ larger shirinking factors lead to centroid-based clustering leading to more spherical clusters
 
 ## Merging partial clusters and outlier removal 
 
+After each *partition* has been merged we execute the same algorithm between all the parital clusters 
+
+Notice that since *outliers* are far away from real cluster centers the most likely contain few data points , ad so clusters containing $\leq 2$ points are considered *outliers* and removed in $2$ phases : 
+1. When the number of clusters is $\frac{1}{3}$ of the number of data points
+2. During the final steps when the number of cluster is close to $k$
 
 ## Assigning remaining data points to clusters 
+
+Given the final $k$ clusters rapresented by $c$ *representatives* we scan the remainig data points and for each : 
+1. Find the *nearest* representative point
+2. Assign it to the corresponding cluster
 
 ## Algorithm
