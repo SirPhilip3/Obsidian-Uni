@@ -190,4 +190,60 @@ This solves the *complexity* problem since its complexity is $O(b \cdot k \cdot 
 >The larger the $b$ is the better the quality of the clustering but longer execution time, but even small $b$ values are sufficent to obtain high quality clustering
 # CURE (Clustering Using REpresentatives)
 
-#todo 
+**CURE** is a two-phase hierarchical clustering algorithm :
+
+Given a dataset $\mathcal{D}$ and the desired number of clusters $k$ :
+1. Cluster of a *random* *sample* of the dataset
+2. Assign all the remaining data points to the nearest cluster
+
+>[!important] 
+>**CURE** defines the correct sampling size $m$ for a given dataset 
+>
+>In determining the sampling size we need to take into account that we want :
+>+ small sample size to speed up the clustering
+>+ large sample size to capture correclty all the clusters
+
+## Sample Partitioning
+
+If the sample $m$ is too large in terms of memory or clustering cost ( empirical testing )
+
+1. *Partition* the sample in $p$ *groups* of size $\frac{m}{p}$ 
+
+>[!note] 
+>Since $p$ is a *user defined* parameter we want that $\frac{m}{p}$ objects fit in main memory and also that each *group* contains enugh points to corectly rapresent each cluster
+
+2. *Cluster* each group independently so that each group has $\frac{m}{pq}$ *clusters* and the total number of clusters is $\frac{m}{q}$
+
+>[!note]
+>$q$ is a *user defined* parameter, it can be cosidered the *average cluster size*
+>
+>We want $\frac{m}{q}$ to be sufficently larger than the desired number of clusters $k$ also $q$ should be small enough to ensure that partitions of different clusters are not merged togheter
+>
+
+## Partition Clustering
+
+**CURE** uses a *higherarchical bottom-up* algorithm to cluster the partitions 
+
+1. Each data point is initially considered a cluster
+2. At each step the two clusters that are closest to each other are merged 
+	1. Each cluster is rapresented by a set of $c$ *rapresentative points*
+	2. The *distance* between two clusters is defined as the *minimum distance* between any two rapresentative points 
+3. Merging is repeated unitl we have the desired number of clusters 
+
+>[!important] 
+>**Rapresentative points** are chosen to be *well scattered* 
+>
+>1. The *first* point is the point farthest from the cluster center
+>2. Remaining points are chosen to be furthest from all previously chosen points
+>
+>Generally we select $c=10$ rapresentative points  
+>
+
+Each *rapresentative point* is shrunk towards the center of the cluster by a factor $\alpha \in[0,1]$
+
+## Merging partial clusters and outlier removal 
+
+
+## Assigning remaining data points to clusters 
+
+## Algorithm
