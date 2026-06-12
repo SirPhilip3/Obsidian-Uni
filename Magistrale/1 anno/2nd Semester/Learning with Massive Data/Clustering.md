@@ -258,3 +258,31 @@ Given the final $k$ clusters rapresented by $c$ *representatives* we scan the re
 2. Assign it to the corresponding cluster
 
 ## Algorithm
+
+```pseudo
+	\begin{algorithm}
+	\caption{CURE Algorithm}
+	\begin{algorithmic}
+	\Input Dataset $\mathcal{D}$, number of clusters $k$
+	\State Draw a random sample of the dataset $\mathcal{D}$ of size $m$
+	\If{sample size is too large}
+		\State Partition the sample in $p$ equisized partition
+		\State Cluster each partition in $m/q$ partial clusters
+    \EndIf
+    \State Merge the $m$ points or the $m/q$ partial clusters into the final $k$ clusters
+    \State Assign all remaining data points to the nearest cluster
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+The complexity is $O(m^2 \log m)$, where $m$ is the dataset / sample size; this is **expensive** , large value of $p$ and $q$ reduce the cost 
+
+>[!note] 
+>$\frac{m}{pq}$ should be sufficiently larger than $k$
+
+**Properties** :
+
++ CURE is able to find clusters of *arbitrary shapes* and it is *robust to outliers*
++ The larger the $c$ the more *expensive* but better ability to find arbitrary shapes
++ With $\alpha=0$ clusters are rapresented by their center ( becomes nearly equivalent to [[#K-Means]] )
++ With $\alpha=1$ clusters rapresentative do not change , the algorithm can find clusters of rabitrary shape
