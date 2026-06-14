@@ -156,7 +156,32 @@ Given a *query* $y\in \mathbb{R}^D$ :
 
 ## Hierarchical K-Means (HKM)
 
-#todo 
+### Indexing
+
+Define the following hyperparameters : 
++ $k$ : branching factor
++ $L_{\max}$ : max depth of the tree
++ $N_{\min}$ : minimum number of points in a leaf 
+
+The algorithm : 
+1. If the dataset is $\le N_{\min}$ or we reached the $L_{\max}$ depth create a *Leaf* containing all the dataset remaining
+2. Else run [[Clustering#K-Means|K-Means]] on the dataset creating $k$ clusters
+3. Recursively run the algorithm on each of the created *clusters* 
+4. Return a *Node* with the *centroid* and a pointer to the *Nodes* or *Leafs* created 
+
+>[!example] 
+>![[Pasted image 20260614215512.png]]
+
+### Search
+
+1. If we are in a *Leaf* 
+	1. Return the $id$ of the closest datapoint : $id \leftarrow \arg \min_{j=1}^M ||q-x_{j}||^2_{2}$
+2. Else 
+	1. Find the *nearest* centroid : $id \leftarrow \arg \min_{i=1}^M ||q-c_{i}||^2_{2}$
+	2. Move to the children of that centroid and recursively run tha algorithm 
+
+>[!example] 
+>![[Pasted image 20260614215537.png]]
 
 ## Hierarchical Navigale Small World (HNSW)
 
@@ -171,10 +196,43 @@ It's goal is to build a *multi-layer graph* where :
 
 **Layer Assignment** : a new data point $q$ is randomly assigned a *maximum layer* $l$ : 
 $$
-l =  \lfloor \frac{-\ln(uniform(0,1))}{\ln M} \rfloor
+l =  \bigg\lfloor \frac{-\ln(uniform(0,1))}{\ln M} \bigg\rfloor
 $$
 Where $M$ is the parameter that controls the number of *neighbours*
 
 The expected number of layers is $O(\log_{M}N)$
-### Traversal
+
+**Greedy Traversal** : starting from an entry point at the highest level, search the one nearest neighbour up to layer $l+1$ 
+
+At each layer : 
+1. Greedy search the *one nearest neighbour* of $q$ in layer $l$ 
+	1. evaluate the neighbours of the current node
+	2. select the closest to $q$
+	3. repeat until no more improvements
+2. Use the cosest node found as entry point for layer $l-1$ 
+
+**Insert into Layers** : insert $q$ in all layer from $l$ down to $0$ and set edges with other nodes in each layer 
+
+At each layer down to $0$:
+1. **Beam Search** : 
+	1. Keep a queue $W$ of the *best nearest neighbours* found so far
+	2. Evaluate neighbours of nodes in $W$ and add them to $W$ if they are closer to $q$ 
+	3. Repeat until no more improvments
+2. Ass bi-directional edges between $q$ and the selected neighbours
+3. If any of the selected neighbour has more then $M_{\max}$ edges remove the least useful ones
+4. $W$ becomes the entry point for the next layer
+
+>[!note] 
+>If $q$ was inserted in a new higher layer it becomes the entry point of the *HNSW*
+
+### Search
+
+Given a query point $q$ run a *greedy search* from the entry point at top layer down to $0$ :
+
+1. For each layer from $L$ down to $1$ :
+	1. *Greedy Search* as in **Traversal**
+	2. Use the closest node as entry point for layer $l-1$
+2. At layer $0$ :
+	1. **Beam search** as in **Insertion**
+	2. Return the one or $k$ nearest neighbours
 
