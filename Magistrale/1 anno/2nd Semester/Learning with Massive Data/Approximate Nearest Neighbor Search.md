@@ -123,10 +123,58 @@ Computing $N$ distances gives a total cost of :
 $$
 O(DK+NM)
 $$
+>[!note] 
+>In general the time is dominated by $NM$ *lookups*
 
+## Inverted File Index (IVFADC)
 
-## Inverted File Index
+[[#Asymmetric Distance Computation (ADC)|ADC]] performs a *full scan* of the dataset which is too expensive for large datasets
 
-## Hierarchical K-Means
+**Inverted File Index** instead uses a **Divide and Conquer** approach : 
 
-## Hierarchical Naviavle Small World
+### Indexing
+
+1. Partition the dataset into $J$ buckets and let $\mu_{j} \in \mathbb{R}^D$ be the *representative vector* of the $j$-th bucket
+2. The *Inverted File* index has $J$ initially *empty* postings lists one per bucket
+3. For each $x_{n} \in X$ :
+	1. Find the *closest* *representative* vector $\mu_{j}$
+	2. Store the [[#Product Quantization (PQ)|PQ]] of the residual $x_{n}-\mu_{j}$ in the postings list of the $j^{th}$ bucket
+
+>[!note] 
+>*Partitioning* is [[Clustering#K-Means|K-means]] , we chose residual since they provide more precision than the orginal vector
+
+### Searching
+
+Given a *query* $y\in \mathbb{R}^D$ :
+1. *Coarse quantization* : find the closest representative vector $\mu_{j}$
+2. *Distance estimation* : use [[#Asymmetric Distance Computation (ADC)|ADC]] between the residual $y-\mu_{j}$ and all the [[#Product Quantization (PQ)|PQ codes]] in the $j^{th}$ bucket
+
+>[!note] 
+>$J$ is typically $\sqrt{N}$
+>Search considering returning more than one bucket to search in 
+>
+
+## Hierarchical K-Means (HKM)
+
+#todo 
+
+## Hierarchical Navigale Small World (HNSW)
+
+It's goal is to build a *multi-layer graph* where :
++ Every node is a data point
++ Edges *smartly* connect close data points 
++ The dataset is searched by traversing the graph
++ The *top layer* is the sparsest ( fewest edges )
++ The *bottom layer* constains all the data points
+
+### Insertion
+
+**Layer Assignment** : a new data point $q$ is randomly assigned a *maximum layer* $l$ : 
+$$
+l =  \lfloor \frac{-\ln(uniform(0,1))}{\ln M} \rfloor
+$$
+Where $M$ is the parameter that controls the number of *neighbours*
+
+The expected number of layers is $O(\log_{M}N)$
+### Traversal
+
