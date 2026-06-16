@@ -193,8 +193,152 @@ While smaller $k$ forces the model to compress information and capture patters
 # Classification
 
 >[!important] Binary Classification Problem
->Given a set of data points $S=\{(x_{i},y_{i})\}_{i=1}^n$ where $x_{i} \in \mathbb{R}^d$ and $y_{i} \in \{-1,1\}$ , we want to find a function $g: \mathbb{R}^d \to \{-1,1\}$
+>Given a set of data points $S=\{(x_{i},y_{i})\}_{i=1}^n$ where $x_{i} \in \mathbb{R}^d$ and $y_{i} \in \{-1,1\}$ , we want to find a function $g: \mathbb{R}^d \to \{-1,1\}$ that minimizes the number of missclassifications
 
+## Linear Classifier
 
+A linear classifier is a function of the form : 
+$$
+g(x;w,b) = sign(w \cdot x+ b)
+$$
+Where $w \in \mathbb{R}^d$ and $b \in \mathbb{R}$
+
+**Question** :
++ What is the best line $w \cdot x + b = 0$ that separates the data
+
+## Support Vector Machine (SVM) 
+
+An **SVM** is a linear classifier that maximizes the margin between the data points and the decision boundary
+
++ **margin** $\gamma$ the distance between the decision boundary and the *closest* data points
++ **support vectors** the data points at distance $\gamma$ from the decision boundary
+
+>[!info] Idea
+>The larger the margin the smaller the missclassification risck on unseen data
+
+We want to solve the following optimization problem :
+$$
+\begin{align}
+\max &\ \gamma \\
+s.t. &\ y_{i}(w \cdot x_{i} + b) \ge \gamma
+\end{align}
+$$
+>[!warning] 
+>This is not well formulated since if $y_{i}(w\cdot x_{i}+b) \ge \gamma$ then $y_{i}(2w\cdot x_{i}+2b) = 2 y_{i}(w \cdot x_{i} +b)\ge 2 \gamma$ , so with $2w$ and $2b$ we found a solution with twice the marging so there is no unique solution  
+
+>[!important] 
+>Normalize $w$ and $b$ such that the margin is $1$ 
+
+Given the two support vectors $x_{1}, x_{2}$ :
+$$
+\begin{align}
+w \cdot x_{1}+ b &= 1 \\
+w \cdot x_{2}+ b & = -1 
+\end{align}
+$$
+By definition their distances from the decision boundary are :
+$$
+d_{1} = \frac{|w \cdot x_{1} + b|}{||w||_{2}}= \frac{1}{||w||_{2}}
+$$
+$$
+d_{2} = \frac{|w \cdot x_{2} + b|}{||w||_{2}}= \frac{1}{||w||_{2}}
+$$
+We can change the optimization problem as : 
+$$
+\begin{align}
+\max &\ \frac{1}{||w||_{2}} \\
+s.t. &\ y_{i}(w \cdot x_{i} + b) \ge \gamma
+\end{align}
+$$
+
+>[!info] 
+>Maximizing the margin is equivalent to minimizing the norm of $w$ , or finding the *smallest* $w$ / *simplest* model $g$ 
+
+### Approximate Separators
+
+>[!important]
+>It's not always possible to find a clean linear separator
+>
+>We intorduce a *penalty* depending on their distance from the margin:
+>+ $0$ if $y_{i}(w \cdot x_{i} + b) \ge 1$
+>+ $1-y_{i}(w \cdot x_{i} + b)$ otherwise
+
+We aim at **minimizing** the *penalties* : 
+
+$$
+\min \frac{1}{2} ||w||_{2}^2 + C \sum_{i} \max(0,1-y_{i}(w \cdot x_{i} + b))
+$$
+>[!note] 
+>+ $C$ is an hyperparmeter that controls the trade-off between *margin maximization* and *missclassification penalty* 
+
+>[!warning] 
+>An analytical solution exists but it cost $O(n^3)$
 # Gradient Descent
 
+**Idea** : 
++ Do *small steps* in the direction of the *negative* gradient
++ Repeat until convergence
+
+**Algorithm** :
+1. Start from a random parameter set $\Theta$
+2. Repeat until convergence : 
+	1. Compute the gradient $\Delta L(\Theta)$
+	2. Update the parameters : $\Theta \leftarrow \Theta - \eta \Delta L(\Theta)$
+
+>[!note] 
+>$\eta$ is the *learning rate*
+
+## Gradient Descent for SVM
+
+The loss to be *minimized* is :
+$$
+\frac{1}{2} ||w||_{2}^2 + C \sum_{i} \max(0,1-y_{i}(w \cdot x_{i} + b))
+$$
+**First Term** :
+$$
+\frac{\partial}{\partial w_{j}} \frac{1}{2} ||w||_{2}^2 = \frac{1}{2} \frac{\partial}{\partial w_{j}} \sum_{k} w_{k}^2 = \frac{1}{2} 2 \cdot w_{j} = w_{j}
+$$
+**Second Term** : 
+$$\frac{\partial}{\partial w}  C \sum_{i} \max\left( 0,1-y_{i}\left( \sum_{j} w_{j} \cdot x_{ij} + b \right) \right) = C \sum_{i} \begin{cases}
+-y_{i} x_{ij} & if\ y_{i}(w \cdot x_{i} + b) < 1  \\
+0 & \text{altrimenti} \end{cases}$$
+
+>[!warning] 
+>Updates are computed for all $w_{j}$ and $b$ and then applied at once 
+
+## Batch Gradient Descent
+
+The gradient is compute over the *whole dataset* and only after we updaate the parameter and repeat
+
+>[!warning] 
+>This is slow for large datasets
+## Stocastinc Gradient Descent
+
+The gradient is computed over a single data point chosen uniformly at random , after computing the gradient we update the parameters and repeat
+
+>[!note] 
+>Some instances may never be chosen
+
+>[!warning] 
+>This provides noisy convergence but it's fast for massive datasets
+## Mini-batch Gradient Descent
+
+Data is randomly partitioned in *mini-batches* of a limited size, the gradient is computed over that mini-batch, after this we update the paramers and repeat
+
+>[!note] 
+>Provide smooth and fast convergence
+
+>[!example] 
+>![[Pasted image 20260616135148.png]]
+
+## Alternative to learning rate $\eta$
+
+We can use :
++ *second derivaties* 
++ *momentum* 
++ *adaptive learning rate* 
+
+In **Collaborative Filtering** we can :
++ use gradient descent
++ include regularization
++ add other terms to the loss function ( biases )
