@@ -87,6 +87,8 @@ We search for the parameters $\theta ^ *$ where the gradient of $L$ is $0$
 >[!warning] 
 >This may be a *local minimum*
 
+### UV-Decomposition Optimization
+
 In [[Recommender Systems#User Based Collaborative Filtering|Collaborative Filtering]] we can start from a *random* $U,V$ and iteratively improve them.
 
 Let's consider $U, V$ filled with $1$'s find the best value for $u_{11}$ :
@@ -113,8 +115,86 @@ u_{11} +1 & u_{11} +1 & u_{11}+1  \\
 \end{bmatrix}
 $$
 
+The *derivative* with respect to $u_{11}$ of $L$ ( considering the previous example rating matrix ) is : 
+$$
+\frac{\partial  L}{\partial u_{11}} = \frac{\partial \left( (5-(u_{11}+1))^2 + (2-(u_{11}+1))^2 + (4-(u_{11}+1))^2 \right)}{\partial u_{11}} = \frac{\partial(3 u_{11}^2 - 16 u_{11} + 26)}{\partial u_{11}} = 6u_{11} -16
+$$
+Valued to $0$ we have : 
+$$
+6u_{11}-16 = 0 \to u_{11} = \frac{6}{16} =0.375
+$$
 
+We can now update the matrix :
+$$
+\begin{bmatrix}
+0.375 & 1 \\
+1 & 1 \\
+1 & 1
+\end{bmatrix} \cdot
+\begin{bmatrix}
+1 & 1 & 1  \\
+1 & 1 & 1
+\end{bmatrix} = 
+\begin{bmatrix}
+1.375 & 1.375 & 1.375  \\
+1 & 1 & 1  \\
+1 & 1 & 1
+\end{bmatrix} \approx 
+\begin{bmatrix}
+5 & 2 & 4  \\
+3 & 1 & 2 \\
+2 & & 3
+\end{bmatrix}
+$$
+
+Now we can see that the dot product better "approximates" $R$ 
+
+We can repeat the process for all entries of $U$ and $V$ 
+
+For a generic $u_{rs}$ to be optimized we have :
+$$
+\begin{align}
+
+\frac{\partial L}{\partial u_{rs}} &= \frac{\partial}{\partial u_{rs}} \sum_{j} (R_{rj} - U_{r:} \cdot V_{:j})^2 \\
+&= \frac{\partial}{\partial u_{rs}} \sum_{j} (R_{rj} - \sum_{k} u_{rk} v_{kj})^2 \\ & = \frac{\partial}{\partial u_{rs}} \sum_{j} (R_{rj} - \sum_{k \neq s} u_{rk} v_{kj} - u_{rs} v_{sj})^2 \\
+&= \sum_{j} 2(R_{rj} - \sum_{k \neq s} u_{rk} v_{kj} - u_{rs} v_{sj}) \cdot (-v_{sj}) \\ &= -2 \sum_{j} (R_{rj} - \sum_{k \neq s} u_{rk} v_{kj} - u_{rs} v_{sj}) v_{sj} \\
+&= -2 \sum_{j} (R_{rj} - \sum_{k \neq s} u_{rk} v_{kj}) v_{sj} + 2u_{rs} \sum_{j} v_{sj}^2
+\end{align}
+$$
+This is $0$ when : 
+$$
+u_{rs} = \frac{\sum_{j}\left( R_{rj}-\sum_{k\neq s} u_{rk}v_{kj} \right) v_{sj}}{\sum_{j}v^2_{sj}}
+$$
+For a generic $v_{rs}$ instead : 
+$$
+u_{rs} = \frac{\sum_{i}\left( R_{is}-\sum_{k\neq s} u_{ik}v_{ks} \right) v_{ir}}{\sum_{i}v^2_{ir}}
+$$
+### Algorithm
+
+1. Initialize $U$ and $V$ with random values
+2. Repeat until convergence:
+	1. For each $u_{rs}$ :
+		+ set $u_{rs}$ such that $\partial L / \partial u_{rs} = 0$ by using the previous rule
+	2. For each $v_{rs}$ :
+		+ set $v_{rs}$ such that $\partial L / \partial v_{rs} = 0$ by using the previous rule
+
+>[!important] 
+>+ we do *not consider unknown ratings* when computing gradients 
+>+ the *update* of a rating is **not final**
+>+ the procedure converges to a local minimum
+>+ an exact algorithm exists but it requires $|U|\times |I|$ *space* and $O(|U|\times|I|\times k)$ *time* , unfeasable for massive datasets
+
+>[!note] 
+>$k$ is the number of *hidden features*
+
+The larger the $k$ the smaller the error, since we will track all the possible intrest subject ( ??? ), but in contrast the error on unseen data increases causing *overfitting*
+
+While smaller $k$ forces the model to compress information and capture patters
 # Classification
+
+>[!important] Binary Classification Problem
+>Given a set of data points $S=\{(x_{i},y_{i})\}_{i=1}^n$ where $x_{i} \in \mathbb{R}^d$ and $y_{i} \in \{-1,1\}$ , we want to find a function $g: \mathbb{R}^d \to \{-1,1\}$
+
 
 # Gradient Descent
 
