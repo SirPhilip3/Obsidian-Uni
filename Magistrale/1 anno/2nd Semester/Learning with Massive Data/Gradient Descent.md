@@ -37,8 +37,84 @@ We assume that the *true rating* $R_{ui}$ can be approximated by the dot product
 + An *item vector* $v \in \mathbb{R}^k$
 
 Where $k$ is the *latent dimesion* of the model 
-#todo
+
+*Users* and *items* can be described by the intensity of $k$ *topics* / *hidden factor* 
+
+>[!example] 
+>+ A *user* is intrested in a given genre, actor, director etcc 
+>+ An *item* has a given genre, actor, director etcc
+
+The *dot product* measures the **agreement** between the user intrest and the items characteristics
+
+The **rating** matrix $R \in \mathbb{R}^{|U|\times |I|}$ is approximated by the product of two matrices : 
+$$
+R\approx UV
+$$
+Where $U \in \mathbb{R}^{|U| \times k}$ and $V \in \mathbb{R}^{k \times |I|}$ 
+
+>[!example] 
+>$$
+>\begin{bmatrix}
+>u_{11} & u_{12}  \\
+>u_{21} & u_{22}  \\
+>u_{31} & u_{32}
+>\end{bmatrix} \cdot
+>\begin{bmatrix}
+>v_{11} & v_{12} & v_{13}  \\
+>v_{21} & v_{22} & v_{23}
+>\end{bmatrix}
+>$$
+
+**Goal** : Find $U$ and $V$ that minimize **RMSE** or **Sum of Squared Errors** ( *SSE* ) : 
+$$
+U,V = \arg \min_{U,V} \sqrt{\frac{1}{|S|} \sum_{(u,i)\in S}(R_{ui}-U_{u:} \cdot V_{:i})^2} = \arg \min_{U,V} \sum_{(u,i)\in S} (R_{ui} - U_{u:}\cdot V_{:i})^2
+$$
+>[!note] 
+>$R_{ui}$ is the real *rating matrix* not approximated
+
+## Minimum of the loss function
+
+The minimum is where the *gradient* is $0$ :
+$$
+\partial L / \partial\theta = 0
+$$
+We search for the parameters $\theta ^ *$ where the gradient of $L$ is $0$ 
+
+>[!example] 
+>![[GradDesc.excalidraw.png]]
+>%%[[GradDesc.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!warning] 
+>This may be a *local minimum*
+
+In [[Recommender Systems#User Based Collaborative Filtering|Collaborative Filtering]] we can start from a *random* $U,V$ and iteratively improve them.
+
+Let's consider $U, V$ filled with $1$'s find the best value for $u_{11}$ :
+
+$$
+\begin{bmatrix}
+u_{11} & 1 \\
+1 & 1 \\
+1 & 1
+\end{bmatrix} \cdot
+\begin{bmatrix}
+1 & 1 & 1  \\
+1 & 1 & 1
+\end{bmatrix} = 
+\begin{bmatrix}
+u_{11} +1 & u_{11} +1 & u_{11}+1  \\
+1 & 1 & 1  \\
+1 & 1 & 1
+\end{bmatrix} \approx 
+\begin{bmatrix}
+5 & 2 & 4  \\
+3 & 1 & 2 \\
+2 & & 3
+\end{bmatrix}
+$$
+
 
 # Classification
 
 # Gradient Descent
+
