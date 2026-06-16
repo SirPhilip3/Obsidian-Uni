@@ -80,4 +80,38 @@ For values of $\beta$ :
 Calculate *Precision* and *Recall* while varying $k$ ( number of retrieved documents )
 
 >[!example] 
+>![[Precision-recall-plot.excalidraw.png]]
+%%[[Precision-recall-plot.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
+>[!note] 
+>In order to have a *Precision* value for each possible *Recall* value we need to build an **interpolated precision** function defined as the *highest precision* found for *any recall level* $r' \ge r$ :
+>$$
+>p_{interp}(r) = \max_{r' \ge r} p(r')
+>$$ 
+
+We can get the *averaged precision-recall curve* by averaging the *interpolated precision* across multiple queries 
+
+#### MAP ( Mean Average Precision )
+
+*AP* ( *average precision* ) is : 
+$$
+\frac{1}{G} \sum_{k=1}^n P(k) \times rel(k)
+$$
+Where : 
++ $G$ : the total number of actual relevant documents
++ $n$ : total number of retrieved documenst
++ $P(k)$ : the *precision* *at rank* $k$ 
++ $rel(k)$ : is a binary indicator that is : 
+	+ $1$ if the document at rank $k$ is *relevant*
+	+ $0$ otherwise
+
+>[!example] 
+>Having the relevant documents as in the previous example we get *AP* : 
+>
+>$$
+>\frac{1}{3}\left( \frac{1}{1} + \frac{2}{3} + \frac{3}{5} \right) \approx 0.76
+>$$
+
+**Mean Average Precision** is the *mean AP* across multiple queries
+
+#todo 
