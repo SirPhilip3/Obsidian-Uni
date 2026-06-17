@@ -116,4 +116,15 @@ A thesaurus based on *term-term* similairities can be computed starting from the
 
 Keep the *context* of a given word $w$ ( the words thata appear nearby within a fixed-size window )
 
-For each word $w$ we can than create
+For each word $w$ we can than create a vector based on the *context* of that word $w$ ( **emebeddings** ) , we can compute similarity as the *dot product* between words
+
+### Word2Vec for Query Expansion
+
+Related terms to a query are obtained by the *K-nearest-neighbour* with respect to the *term-vector similarity* 
+
+>[!example] 
+>+ *Query* : $q=\{t_{1},\dots,t_{m}\}$ 
+>+ Candidate terms : $C=\cup_{t\in q} kNN(t)$
+>+ Calculate similarities with respect to the query : $AvgSim(t,q)= \frac{1}{|q|}\sum_{t_{i}\in q} \cos ine(t,t_{i})$
+>+ We select the top $K$ candidate terms as expansion terms
+
