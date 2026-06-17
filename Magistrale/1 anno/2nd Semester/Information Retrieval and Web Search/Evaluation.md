@@ -44,10 +44,17 @@ The **test queries** :
 $$
 P = \frac{\text{retrieved and relevant docs}}{(\text{retrieved and relevant docs} + \text{retrieved but not relevant docs})}
 $$
+>[!note] 
+>$P@k$ is *precision* limited to the first $k$ documents retrieved
+
 **Recall** : fraction of relevant docs that are retrieved ( $\mathbb{P}(\text{relevant retrieved}|\text{relevant})$ )
 $$
 R = \frac{\text{retrieved and relevant docs}}{(\text{retrieved and relevant docs} + \text{relevant but not retrieved docs})}
 $$
+
+>[!note] 
+>$R@k$ is *recall* limited to the first $k$ documents retrieved
+
 #### F-Measure or F-Score
 
 The **F-Measure** is the *harmonic mean* of [[#Precision and Recall]] : 
@@ -91,7 +98,7 @@ Calculate *Precision* and *Recall* while varying $k$ ( number of retrieved docum
 
 We can get the *averaged precision-recall curve* by averaging the *interpolated precision* across multiple queries 
 
-#### MAP ( Mean Average Precision )
+#### Mean Average Precision (MAP)
 
 *AP* ( *average precision* ) is : 
 $$
@@ -114,4 +121,103 @@ Where :
 
 **Mean Average Precision** is the *mean AP* across multiple queries
 
-#todo 
+Let $R_{j} = \{d_{1}, \dots, d_{mj}\}$ be the set of *relevant* documents for a *query* $q_{j} \in Q$
+Let $R_{jk}$ be the set of results from the top until document $d_{k}$ 
+
+Then *MAP* over the query set $Q$ : 
+$$
+MAP(Q) = \frac{1}{|Q|} \sum_{j=1}^{|Q|} \frac{1}{m_{j}} \sum^{m_{j}}_{k=1} Precision(R_{jk}) = \frac{1}{|Q|} \sum_{j=1}^{|Q|} AP(q_{j})
+$$
+>[!note] 
+>Each *query* counts equally 
+>
+>$MAP@k$ is *MAP* but evaluated until the *cut-off rank* $k$ arbitrarily chosen
+
+#### Mean Reciprocal Rank (MRR)
+
+Suppose that there is only one *Relevant Document* 
+
+Search durantion for a user is linked to the rank of the correct answer :
++ The higher the rank the faster the search is 
++ The lower the rank the slower the search gets 
+
+*MRR* measure the *user effort* to find a result
+
+Consider rank position $rank_{i}$ of the first relevant foc return for query $q_{i} \in Q$ 
+
+Than the *Reciprocal Rank* ( *RR* ) score is : 
+$$\frac{1}{rank_{i}}$$
+*Mean Reciprocal Ranks* is the *mean* of *RR* across multiple queries :
+$$
+MRR = \frac{1}{|Q|} \sum^{|Q|}_{i=1} \frac{1}{rank_{i}}
+$$
+### Beyond Binary Relevance
+
+#### Discounted Comulative Gain
+
+Relevance is no more binary but we can have *high* and *low* *relevance* documents
+
+>[!note] 
+>The lower the ranked position of a relevant document is the less useful it is to the user since it most likely will not be examined by the user
+
+Uses *graded relevance* or **gain** as a measure of usefulness 
+
+**Gain** is accumulated starting from the top of the ranking and may be reduced or *discounted* at *lower ranks* 
+
+Typical discount is $\frac{1}{\log(rank)}$ 
+
+>[!note] 
+>We can use different bases for the *log*
+
+The *Comulative Gain* ( *CG* ) at rank $n$ is :
+$$
+CG = r_{1} + r_{2} + \dots + r_{n}
+$$
+Where $r_{1}, r_{2},\dots,r_{n}$ are the *relevance* judgements of each document 
+
+**Discounted Comulative Gain** ( *DCG* ) at rank $n$ :
+$$
+DCG_{p} = r_{1} +\frac{r_{2}}{\log_{2} 2}  +\frac{r_{3}}{\log_{2} 3} + \dots +\frac{r_{n}}{\log_{2} n} = rel_{1} + \sum_{i=2}^p \frac{rel_{i}}{\log_{2}i}
+$$
+>[!note] 
+>The gain is discounted only for relevant documents at ranks $>1$
+
+Alternative formulation where high relevance judgments become more important :
+$$
+DCG_{p} = \sum_{i=1}^p \frac{2^{rel_{i}} -1}{\log(1+i)}
+$$
+>[!note] 
+>This work best with non binary relevance
+
+>[!example] 
+>#todo
+
+#### Normalized Discounted Comulative Gain (NDCG)
+
+*Normalize DCG* at rank $n$ by the *DCG* value at that rank of the *ideal ranking*
+
+Where *ideal ranking* is the ranking that would return first documents with the highest relevance level going lower and lower
+
+>[!note] 
+>Normalizing is useful for contrasting queries with varying numbers of relevant results
+
+
+>[!example] 
+>*Perfect ranking* : $3,3,3,2,2,2,1,0,0,0$
+>*ideal* DCG values : $3,6,7.89,8.89,9.75,10.52,10.88,10.88,10.88,10.88$ 
+>
+>*Actual ranks* : $3,2,3,0,0,1,2,2,3,0$
+>*actual* DCG : $3,5,6.89,6.89,6.89,7.28,7.99,8.66,9.61,9.61$
+>
+>*NDCG* values ( divide *actual* DCG by the *ideal* DCG ) :
+>$$
+>1,0.83,0.87,0.76,0.71,0.69,0.73,0.8,0.88,0.88
+>$$
+
+>[!note] 
+>*NDCG* $\le 1$ at any rank position
+
+### User clicks
+
+Human judgments are expensive and inconsisten ( also a lot may be bots )
+
