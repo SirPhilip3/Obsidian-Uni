@@ -118,4 +118,19 @@ Two separate queue :
 + refershing queue
 	+ increases the *freshness* of the repository
 
->[!warning] 
+>[!warning]
+>Chaching a page means that the client must periodically poll a page in order to get the changes
+
++ We must keep the *number* of fresh pages as high as possible 
++ Keeping the *age* as low as possible 
+
+When should we update the cache : 
++ *uniform* : regardless of rate of changes
++ *proportional* : more often if pages change frequenlty
+
+>[!note] 
+>We can have more than one refreshing queue depending on the frequency of the refreshes
+
+For *unlinked* pages we forcefully need a repository of known URL's
+
+For *dynamic* pages the crawler can submit domain specific queries 
