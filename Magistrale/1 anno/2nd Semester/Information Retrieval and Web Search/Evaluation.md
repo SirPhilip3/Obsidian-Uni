@@ -219,5 +219,37 @@ Where *ideal ranking* is the ranking that would return first documents with the 
 
 ### User clicks
 
-Human judgments are expensive and inconsisten ( also a lot may be bots )
+Human judgments are expensive and inconsistent ( also a lot may be bots )
+
+Given a set of *pairwise refrences* $P$ ( ground truth , *baseline* ranking ) 
+
+We want to confront two rankings $A$ and $B$ , we define a *proximity* measure betweem $A,B$ and $P$ , declaring the winner as the *ranking* with *better proximity* 
+#### Kendall's Tau $\tau$
+
+Let :
++ $X$ be the number of *agreements* between a ranking and $P$ 
++ $Y$ be the number of *disagreements* between a ranking and $P$
+
+*Kendall tau* between $A$ and $P$ will be : 
+$$
+\tau = \frac{X-Y}{X+Y}
+$$
+$-1\le \tau \le 1$ : 
++ $1$ : is *perfect agreement*
++ $-1$ : is perfect *disagreement*
++ $0$ : $X$ and $Y$ are *independent*
+
+>[!example] 
+>#todo
+#### A/B testing
+
+Given two rankings $A$ and $B$ :
+1. *interlieve* them ( the start ranking doesnt matter ) 
+2. *remove duplicates* 
+3. Count user clicks per rank by presenting interlieved *ranking* ( randomly start from $A$ and than $B$ )
+
+The better ranking should get more average clicks
+
+>[!example] 
+>#todo
 
