@@ -2113,7 +2113,6 @@ Avendo l'indice $i$ ricaviamo innanzitutto i figli destri e sinistri di $i$ , se
 
 Il tempo di esecuzione è $T(n)=O(h)$ dove $h$ è l'altezza del nodo su cui chiamiamo la procedura , $O(\log n)$ se chiamiamo la procedura sulla radice , $1$ se la chiamiamo su una foglia 
 
-
 ##### Costruzione di un max_heap
 
 Dato un vettore disordinato trasformarlo in un *max_heap*

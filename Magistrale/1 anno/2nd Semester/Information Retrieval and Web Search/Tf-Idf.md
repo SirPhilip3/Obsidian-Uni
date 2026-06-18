@@ -183,32 +183,8 @@ $$
 \cos(\vec{q},\vec{d}) = \frac{\vec{q}\cdot \vec{d}}{|\vec{q}||\vec{d}|} = \frac{\vec{q}}{|\vec{q}|} \cdot \frac{\vec{d}}{|\vec{d}|} = \frac{\sum^{|V|}_{i=1} q_i d_i}{\sqrt{\sum^{|V|}_{i=1} q_i^2} \sqrt{\sum^{|V|}_{i=1} d_i^2}}
 $$
 Where $q_i$ and $d_i$ are the $tf\text{-}idf$ *weight* of the term $i$ in the *query* and *documents*
-##### Term-at-a-time ( TAAT )
 
-Computing the *cosine scores* :
-
-```pseudo
-	\begin{algorithm}
-	\caption{CosineScore(q)}
-	\begin{algorithmic}
-	\State float Scores[N] = 0
-	\State float Lenght[N]
-	\ForAll{query term $t$}
-		\State Calculate $w_{t,q}$
-		\State Fetch postings list for $t$
-		\ForAll{$pair(d,tf_{t,d})$ in postings list}
-			\State Scores[d] += $w_{t,d}\times w_{t,q}$
-        \EndFor
-        \State Read the array Length
-    \EndFor
-    \ForAll{d}
-	    \State Scores[d] = Scores[d] / Length[d]
-    \EndFor
-    \Return Top K components of Scores[]
-	\end{algorithmic}
-	\end{algorithm}
-```
-
+The *cosine scores* can be computed with [[Vector Space Ranking#TAAD|TAAD]]
 ## Weighting notation
 
 Since we have various form of *weighting* in the formulation of the *rank* we use **SMART** notation to rapresent what types of *formula* we use :

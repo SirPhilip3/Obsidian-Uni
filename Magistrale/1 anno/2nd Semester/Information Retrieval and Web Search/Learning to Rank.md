@@ -161,4 +161,39 @@ Use the similarity of the word vectors for $c$ and $o$ to calculate the *probabi
 >[!example] 
 >![[Pasted image 20260618101430.png]]
 
-**Word2vec** trains a neural network to predict context terms given the center word 
+**Word2vec** trains a neural network to predict context terms given the center word, it returns the *probability* for every word in our vocabulary of being a *nearby word*  
+
+>[!note] 
+>**Word2vec** is not used for inference but to learn the *word vectors* ( *embeddings* )
+
+The goal is to *maximize* for all possible $T$ windows of size $m$ in the training set :
+$$
+\arg \max_{\theta} \prod_{t=1}^T \prod_{-m\le j\le m} \mathbb{P}(w_{t+j}|w_{t}; \theta)
+$$
+The *objective function* will be :
+$$
+J(\theta) = -\frac{1}{T} \sum_{t=1}^T \sum_{-m\le j \le m} \log (\mathbb{P}(w_{t+j}|w_{t}; \theta))
+$$
+With $j\neq 0$ since a context window of $0$ does not exist
+
+In this case we can use [[Gradient Descent#Stocastinc Gradient Descent|Stocastic Gradient Descent]] to adjust the parameters $\theta$ to *minimize* $J$
+##### Calculating $\mathbb{P}(w_{t+j}|w_{t}; \theta)$ 
+
+We use the following *softmax* function : 
+$$
+P(o|c) = \frac{\exp(u_{o}^T v_{c})}{\sum_{w \in V}\exp(u_{w}^T v_{c})}
+$$
+Where : 
++ $v_{c}$ : the vector for the central word
++ $u_{w}$ : the vector of a context word
++ $V$ : the total vocabulary size 
+
+##### Neural network structure
+
+We give in 
++ **input** a *one-hot encoded* vector of lenght $|L|$ where $L$ is the is the whole vocabulary rapresenting the *center* word in input 
++ **output** a *one-hot encoded* vector of lenght $|L|$ rapresenting the probability for every word in the vocabulary to be a *nearby* word 
+
+>[!example] 
+>![[LtRword2vect.excalidraw.png]]
+>%%[[LtRword2vect.excalidraw.md|🖋 Edit in Excalidraw]]%%
