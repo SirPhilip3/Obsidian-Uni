@@ -100,5 +100,65 @@ Training instances are *query/set of results*
 Learn a model $h$ that assigns scores to documents in $D$ according to their relevance : 
 + *Results* : $sort\{h(d_{1}),h(d_{2}),\dots\}$ 
 
-#todo 
+>[!note] 
+>Where $h$ is *BM25F*  with a proper parameter set $\theta$
 
+>[!warning] 
+>We can't directly apply *gradient descent* since **sort** is not a continuos and derivable function
+
+>[!error] 
+>*NDCG@K* cannot be optimized directly 
+>
+>We need to optimize a *pairwise proxy measure* ( called **RankNet** ) the *pairwise cross-entropy loss*
+
+>[!note] Approximating the NDCG@K Gradient 
+>*Lambda-MART* uses a loss for which it's possible to approximate a *NDCG* gradients
+>
+>Where *MART* is a *Gradient Boosted Regression Tree* 
+
+With the *pairwise* approach we *minimize* the *number* of incorrectly classified pairs but we want to give *more importance* to missclassifing *top result* pairs
+
+# From BOW to NIR rankings 
+
+**BOW** ( *Bag of Words* ) infers the relevance of a document to a query exploting partially hand-crafted  functions like [[Tf-Idf#BM25 (Best Match 25)|BM25]] using *term frequency* ( *TF* ) of a query term in each document and the term popularity in the whole collection with *inverse document frequency* ( *IDF* )
+
+**Learning To Rank** instead uses relevant signals about a query term gathered from the usage and structure of the web , this are used by *Machine Learning* methods like *linear regressors* , *boosted trees ensambles* etcc 
+## Neural Information Retrieval 
+
+Aims at learning *rich abstract rapresentations* of documents and queries leaving behind the pure presence / absence or frequency of a given term in documents 
+### Language Models
+
+A *language model* is a *machine learning* model that predicts upcoming words by giving a probability distribution over possible next words 
+$$
+\mathbb{P}(w_{1:n}) = \mathbb{P}(w_{1})\mathbb{P}(w_{2}|w_{1})\mathbb{P}(w_{3}|w_{1:2})\dots\mathbb{P}(w_{n}|w_{1:n-1}) \approx \prod_{k=1}^n \mathbb{P}(w_{k}|w_{1:k-1})
+$$
+#### N-gram Language Models
+
+In general we cant compute the probability of a word given its entire history but we approximate it with just the last few words 
+
+In the *bigram* model we approximate it with the preceding word ( this can be generalized for *N-grams* ) 
+
+In order to move away from strict presence / absence rapresentation of words we can use [[Relevance Feedback and Query Expansion#Distributional semantics|Distributional Semantics]] 
+
+We create *low dimensional word embedding* to rapresent words , this embeddings are learned by the *Neural Networks* 
+
+>[!note] 
+>Similar word embedding ( measured with dot product ) must also rapresent similar words 
+
+#### Skip-Gram Model ( Word2vec )
+
+*Word2vec* is a framework to learn word embeddings 
+
+Go through each position $t$ in the text which has : 
++ a *center word* $c=w_{t}$ 
++ various *context words* $o$ 
+
+Use the similarity of the word vectors for $c$ and $o$ to calculate the *probability* of $o$ given $c$ : $\mathbb{P}(o|c)$ 
+
+>[!note] 
+>The *Continuos Bag of Words Model* does the opposite $\mathbb{P}(c|o)$
+
+>[!example] 
+>![[Pasted image 20260618101430.png]]
+
+**Word2vec** trains a neural network to predict context terms given the center word 
