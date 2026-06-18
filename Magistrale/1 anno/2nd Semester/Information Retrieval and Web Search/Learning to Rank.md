@@ -99,4 +99,6 @@ Training instances are *query/set of results*
 
 Learn a model $h$ that assigns scores to documents in $D$ according to their relevance : 
 + *Results* : $sort\{h(d_{1}),h(d_{2}),\dots\}$ 
-+  
+
+#todo 
+
