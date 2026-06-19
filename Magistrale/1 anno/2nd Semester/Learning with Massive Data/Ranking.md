@@ -115,7 +115,7 @@ The features of an instance are evaluated one by one at every node of the *tree*
 
 Decision trees have *high* *accuracy* and are train-efficient
 
-### Gradient Boosted Decision Trees
+### Gradient Boosted Decision Trees (GBDTs)
 
 Each $f_{i}$ is regarded as a step in the *best optimization direction* 
 
@@ -152,3 +152,80 @@ Algorithm :
 	\end{algorithm}
 ```
 
+This works great for *regression* but ranking : 
+
+### GBDTs for ranking: The LambdaMart algorithm 
+
+The *LambdaMart* pushes the Metric into the *RankNet Cost* gradient. Let the gradient of the RankNet Cost for a pair of documents $(i,j)$ be :
+$$
+\frac{\partial \log\big(1+ e^{-(f_{i}-f_{j})}\big)}{\partial f} = \dots = -\frac{1}{1+e^{-(f_{i}-f_{j})}}
+$$
+Let $\lambda_{ij}$ be the Lambda gradient for a pair of documents $(i,j)$ : 
+$$
+\lambda_{ij} = -\frac{1}{1+e^{-(f_{i}-f_{j})}} |\Delta NDCG| 
+$$
+Where $\Delta NDCG$ is the *metric* change when swapping documents $i$ and $j$ in the ranked list
+
+Then for a single document we sum up pairs contributions to estimate the documents gradient :
+$$
+g_{i} = \lambda_{i} = \sum_{y_{i} > y_{j}} \lambda_{ij} - \sum_{y_{i} < y_{j}} \lambda_{ij}
+$$
+>[!note] 
+>This is used for training a *Tree* in **GBDT** for ranking.
+
+>[!important] 
+>We defined the *gradient* without defining the loss
+>+ The metric is not differentiable but
+>+ The gradient is in **agreement** with *NDCG*
+
+We are ptimizing an approximation of the ranking metric 
+### Efficient Scoring Functions 
+
+*Scroring* documents with decision trees can be *expensive* because of poor memory layout 
+
+Instead of *Decision Trees* we use **Decision Tables** 
+
+**Decision Tables** : 
++ Have *level-wise decision* predicates , in each level we evaluate one single decision
+>[!warning] 
+>Potentially *less expressive* but *less prone* to *overfitting*
+
++ Built *level-wise* 
+>[!note] 
+>With a single dataset scan we add one level to the tree
+
++ More *compact* 
+	+ Stores only $n$ predicates instead of $2^n$ nodes
+
++ More efficient at *scoring time* 
+	+ Performs the same tests for every instance
+	+ The true / false outcome result can be mapped in a $0/ 1$ string indicating as the location of the final prediction 
+#### BackFitting
+
+*Revise greedy* choices 
+
++ **Cyclic** backfitting
+	+ Go back to the first cut and re-optimize all cuts in sequential *cyclic* order
++ **Random** backfitting
+	+ Randomly select a cut to backfit
++ **Greedy** backfitting
+	+ Test all possible cuts and then select the cut that gives the largest reduction of error
+
+```pseudo
+	\begin{algorithm}
+	\caption{BackFitting Algorithm}
+	\begin{algorithmic}
+	\For{$pass= 1 \to n$}
+		\For{$t = 0 \to d-1$}
+			\State $k \leftarrow$ next() 
+			\Comment{Pick the $k$-th cut to optimize}
+			\State remove the $k$-th cut from 'dt'
+			\State $(x_j,c) \leftarrow \arg \max_{x_j,c} Gain(x_j,c)$ 
+			\State dt.features[k] $\leftarrow j$
+			\State dt.cuts[k] $\leftarrow c$
+        \EndFor
+        \State Update dt.predictions
+    \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
