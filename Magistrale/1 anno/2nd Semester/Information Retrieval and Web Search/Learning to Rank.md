@@ -197,3 +197,5 @@ We give in
 >[!example] 
 >![[LtRword2vect.excalidraw.png]]
 >%%[[LtRword2vect.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+#todo 

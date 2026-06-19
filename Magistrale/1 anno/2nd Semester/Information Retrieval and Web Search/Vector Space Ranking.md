@@ -241,7 +241,87 @@ We now use this *net-score* to filter the top-$K$ documents
 
 ### Top-$K$ by net-score
 
-#todo 
+1. Order all postings by $g(d)$ by *remapping* the docID
+	1. Smallest docID for the largerst $g(d)$
+	2. Largest docID for the smallest $g(d)$
 
-1. Order all postings by $g(d)$ 
+This makes it easier to do *Postings Intersection* , apply [[#DAAT ( Document-At-A-Time )]] , [[#WAND Scoring]] etcc
 
+By ordering with $g(d)$ *top-scoring* docs appear early in the *postings traversal* 
+
+We can combine ***champion lists*** with $g(d)$-ordering
+Maintain for each term a *champion list* of the $r$ docs with highest $g(d)+\text{tf-idf}_{t,d}$ , seek top-$k$ results from only the docs in these *champion lists*
+
+## High and low lists
+
+For each term maintain two posting lists called *high* and *low* 
+
+When traversing postings on a query only traverse *high* lists first , if we get more than $K$ docs than stop otherwise proceed and get docs from the *low* list  
+
+### Tiered indexes
+
+Break the postings up into a hierarchy of lists :
++ *most* important
++ $\dots$
++ *least* important
+
+At query time only use the top tier unless it fails to yield $K$ docs
+
+# Document Clustering and Index Pruning via Collection Selection 
+
+Document clustering using different similarity metrics : 
++ similarity between documents
++ co-click likelihood
+
+Build a separate *smaller* [[Inverted Index]] for each document cluster
+
+To select the correct cluster we must elect a rapresentative of each cluster to confront with the query in order to move in the correct [[Inverted Index]] 
+
+## Impact-ordered postings 
+
+Since we only want to compute scores for docs which have $wf_{t,d}$ high enough we sort each postings list by $wf_{t,d}$
+
+>[!warning] 
+>We can't do [[#DAAT ( Document-At-A-Time )]] since the lists are not ordered by docID
+
+Compute scores without computing all the scores ( **UNSAFE** ) : 
+### 1) Early Termination
+
+When traversing $t$'s postings *stop early* after : 
++ fixed number of $r$ docs
++ $wf_{t,d}$ drops below some threshold 
+
+Take the union of the resulting sets of docs and compute theyr scores  
+
+### 2) $idf$-ordered terms 
+
+When considering the postings of query terms look at them in order of *decreasing* $idf$ 
+
+>[!note] 
+>High $idf$ means that they likely contribute more to the final score
+
+Stop if a document scores become unchanged by looking at the query terms 
+
+# Putting it all togheter
+
+![[Pasted image 20260619092815.png]]
+
+## Parametric and zone indexes 
+
+Documents can have parts and metadata associated to them : 
++ Author
++ Title
++ Date of publication
++ etcc
+
+Sometimes we want to search in this *metadata* , so we build a posting list for each *field* values  
+
+There could also be **zone**s in indeces , or regions of unstructured data containing an arbitrary amount of text ( Title , abstracts , references etcc )
+
+Build inverted index also on this zones to permit querying them 
+
+## Positional Indexes
+
+Users prefer documents in which the query terms are in close proximity to each other , define $w$ as the smalles window in a doc that contains all the query terms 
+
+The *scoring* takes this proximity into account introducing $w$ as another *feaature* in the final scoring function 
