@@ -93,5 +93,62 @@ We use a *proxy loss* function that is differentiable and has similar behaviour 
 
 Given a set of ranking examples $\Psi = \{ (q_{j},d_{j},Y_{j}) \}^N_{j=1}$ , the *RankNet Loss* is :
 $$
-\mathcal{L}(f) = \frac{1}{N} \sum_{(q,d,y) \in \Psi} \sum_{i,j \text{ s.t. } y_{i} > y_{j}} \log  
+\mathcal{L}(f) = \frac{1}{N} \sum_{(q,d,y) \in \Psi} \sum_{i,j \text{ s.t. } y_{i} > y_{j}} \log (1+e^{-(f_{i} -f_{j})}) 
 $$
+Where $f_{i} = f(d_{i})$ 
+
+The *loss decreases* as $f_{i}$ gets larger than $f_{j}$ when the best document gets a *larger score* 
+
+>[!note] 
+>This is *differentiable* and can be optimized with [[Gradient Descent]]
+
+>[!warning] 
+>*RankNet* is **not** nicely correlated with *NDCG*
+
+## Decision Trees 
+
+A *regression tree* is a piecewise linear function. 
+
+The features of an instance are evaluated one by one at every node of the *tree* , depending on the outcoome of the test we proceed to a lower node 
+
+*Leaves* contain the final prediction of the model
+
+Decision trees have *high* *accuracy* and are train-efficient
+
+### Gradient Boosted Decision Trees
+
+Each $f_{i}$ is regarded as a step in the *best optimization direction* 
+
+$$
+f_{i}(d) = -g_{i}(d)
+$$
+With 
+$$
+g_{i}(d) = \bigg[  \frac{\partial l(f(d),y)}{\partial f(d)} \bigg]_{f=\sum_{j<i}f_{i}}
+$$
+Let the loss function be $\frac{1}{2} \times \text{Sum of Squared Error}$ :
+$$
+-g_{i}(d) = - \frac{\partial \frac{1}{2} SSE(f(d),y)}{\partial f(d)} = -\frac{\partial \frac{1}{2} \sum(f(d)-y)^2 }{\partial f(d)} = y-f(d)
+$$
+>[!note] 
+>Gradient $g_{i}$ is approximated by a *Regression Tree* $t_{i}$ 
+>
+
+![[Pasted image 20260619134758.png|169]]
+
+Algorithm : 
+```pseudo
+	\begin{algorithm}
+	\caption{Gradient Boosting}
+	\begin{algorithmic}
+	\State $F \leftarrow 0$
+	\For{$m = 1 \to M$}
+		\State $r_i \leftarrow$ current (pseudo) residual for $i \in [N]$
+		\State $\mathcal{R} \leftarrow \{(x_i,r_i)\}^N_1$
+		\State $T_m \leftarrow$ a regression model trained on $\mathcal{R}$
+		\State $F \leftarrow F+ vT_m$ 
+    \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
+
