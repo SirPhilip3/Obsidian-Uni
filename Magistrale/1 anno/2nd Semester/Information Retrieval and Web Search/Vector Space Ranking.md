@@ -122,7 +122,7 @@ In **DAAT** we use a *MIN-heap* of $k$ elements :
 >[!example] 
 >#todo
 
-## WAND Scroing
+## WAND Scoring
 
 1. We maintain a running *threshold* score :
 	The $K^{th}$ highest score computed so far ( them minimum score in the min-heap )
@@ -146,4 +146,102 @@ We have pointers at some docID in the posting lists of each query term
 **Invariant** :
 + All docIDs lower than any finger have already been processed ( pruned or computed the similarities )
 
-At 
+Each *posting list* for term $t$ we maintain an **upper bound** $UB_{t}$ on the score contribution of any documents in the list 
+
+Where $UB_{t} = idf_{t} \cdot M$ , with $M = \max w_{t,d}$ for all $d$ in the posting list of $t$
+
+>[!note] 
+>$UB$ rapresents the maximum score that a term can reach 
+
+The **threshold** $\tau$ is set to the *minimum score* of the heap , when a document enters the *min-heap* the **threshold** grows
+
+#### Pivoting
+
+The **pivot** is the the *minimum cursor* ( practically the minimum docID ) for which the comulative sum of the **Upper Bounds** of the lower docIDs is lower than the current *threshold*  
+
+>[!note] 
+>The docIDs must be ordered 
+
+>[!example] 
+>![[Pivoting.excalidraw.png]]
+>%%[[Pivoting.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>
+>We than move the pointer to the first docID that is *Greather Than Equal* to $589$ ( *nextGEQ* implemented as in [[Inverted Index#AND with `nextGEQ`|Boolean Retrieval Model]]
+>
+>**If** $589$ is present in all the three postings :
+>+ Compute its actual cosine score ( it may be a *false positive* )
+
+>[!note] 
+>*WAND* is a *safe ranking* since it keeps also false positives
+
+## Block-Max
+
+In *WAND* we use the maximum *impact score* to filter the posting lists leading to lots of *false positive* 
+For *Block-Max* we use an augmented *inverted index* ( *block-max index* ) , this stores the *maximum* "*impact score*" for each **block** of a compressed inverted list in uncompressed form 
+
+1. Split the inverted lists into blocks of $64,128$ docID's
+2. Store for each compressed block :
+	1. The *maximum* and *minimum* docID
+	2. *Maximum impact value* for each **block** 
+	3. The *block size*
+
+>[!note] 
+>*nextGEQ* needs to be implemented to avoid decompressing blocks 
+
+# Unsafe Ranking
+
+The result *approximates* the true top-$K$ , possibbly containig *false positieves*
+
+>[!note] 
+>Acceptable since the ranking functions are already proxies for user happiness
+
+## Unsafe DAAT
+
+Uses a more *aggressive* *pruning*, uses threshold $\tau' = F \cdot \tau$ where $F \ge 1$ is a *tunable parameter*
+
+Only consider :
++ docs containinig *at least one query term* 
++ **high-idf** query terms ( remove semi-stopwords )
+	+ removing *low-idf* terms have long postings list meaning that removing it will decrease the overall complexity of the algorithm
++ docs containing **many** query terms 
+
+## Champion Lists
+
+*Precompute* for each dictionary term $t$ the $r$ *docs* of *highest weight* in $t$'s postings ( *champion list* )
+
+At query time only compute scores for docs that are in the *champions list* of some query term and pick the top-$K$ document scores from these
+
+>[!note] 
+>$r$ must be chosen at *index building time* , also this can be different for various terms , for *rare* terms $r$ cuold include most of its posting list
+
+# Static quality scores
+
+We want top-ranking documents to be both *relevant* and **authoritative** 
+
+*Authority* is a *query-independent* property of a document 
+
+>[!example] Example of Authority signals 
+>1. Wikipedia
+>2. Newspapers
+>3. A scientific paper with many citations
+>4. [[PageRank]]
+
+Assigned as $g(d)$ $[0,1]$ to each document $d$ 
+
+## Net Score
+
+We combine *cosine relevance* and *authority* in :
+$$
+\text{net-score}(q,d) = g(d)+cosine(q,d)
+$$
+>[!note] 
+>We can use some other linear combination
+
+We now use this *net-score* to filter the top-$K$ documents
+
+### Top-$K$ by net-score
+
+#todo 
+
+1. Order all postings by $g(d)$ 
+
