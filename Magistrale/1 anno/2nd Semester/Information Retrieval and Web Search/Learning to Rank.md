@@ -6,14 +6,12 @@ publish: true
 *Query* and *Documents* are represented as sparse *BOW* vectors
 
 We ditch the *query-document* features 
-
 ## Pipeline
 
 ![[Learning _to_rank_pipe.excalidraw.png]]
 %%[[Learning _to_rank_pipe.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 *Learning to Rank* ( *LtR* ) is applied only to the second stage 
-
 ## Features
 
 The feature to be used during training of the *Learning To Rank* algorithm can be : 
