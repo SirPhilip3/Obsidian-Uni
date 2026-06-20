@@ -158,5 +158,56 @@ We get *fault tolerance* for *free*
 
 #### Problems hard to implement in MapReduce
 
-**All Pairs Similarity Search** Problem : 
-+ Given a collection of documents find any pairs of documents with similarity larger than $
+**All Pairs Similarity Search** problem : 
++ Given a collection of documents find any pairs of documents with similarity larger than $\tau$ 
++ With $N$ documents we have $N^2$ candidates ( $60MB$ documents generate $40GB$ of intermediate data )
+
+**Graph mining** problems : 
++ Find communities, find leaders, [[PageRank]]
++ We need to share the adjacency matrix between every node 
+
+## MapReduce by Spark 
+
+*Spark* supports massive parallel computations based on **RDD** ( *Resilient Distributed Dataset* ) 
+
+An *RDD* can be seen as a list of data stored on several machines where each machine can access and process part of it 
+
+Spark allows to work on *RDD* with **transformations** and **actions** :
++ *transformations* create a *new* *RDD* from an input *RDD* 
++ *actions* return a list of values to the driver program or to be writte to the file system
+
+>[!important] 
+>*Spark* uses lazy evaluation for *transformations* , they are not applied immediatly , they are accumulates until an *action occurs*
+
+#todo 
+
+*Transformations* are : 
++ `Map`
++ `FlatMap`
++ `Filter`
++ `Sample`
++ `Distinct`
++ `Union`
++ `Intersection`
++ `Subtraction`
++ `Cartesian`
+
+*Actions* are : 
++ `Collect`
++ `Count`
++ `CountByValue`
++ `Take`
++ `Top`
++ `Reduce`
++ `Aggregate`
++ `ForEach`
+
+>[!example] Word Count
+
+### Persistence
+
+### Shared Values
+
+#### Accumulators
+
+#### Broadcast
