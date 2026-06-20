@@ -180,5 +180,17 @@ while( len(L_{k-1}) > 0 ):
 ```python
 L_{k-1} = sc.parallelize( L_{k-1} )
 prefix_last = L_{k-1}.map( lambda itemset: (itemset[:-1], itemset[-1]))
-prefix_extensions = prefix_last
+prefix_extensions = prefix_last.reduceByKey(concat)
+C_k = prefix_extensions.flatMap( append_extension_pairs() )
+C_K = sc.broadcast(C_k.collect())
 ```
+#### Counting Pairs 
+
+#todo 
+
+### PCY ( Park-Chen-Yu ) Algorithm
+
+### SON  ( Savasere, Omiecinski and Navathe ) Algorithm
+
+### Toivonen Algorithm 
+
