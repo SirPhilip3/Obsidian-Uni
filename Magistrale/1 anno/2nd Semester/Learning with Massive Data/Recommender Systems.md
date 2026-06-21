@@ -66,7 +66,7 @@ Cheap model for the user since it's rapresentation vector is *cheap* to keep and
 
 2. *Generating suggestion*
 
-Nearest Neighbor seach is not cheap among all the collection of documents 
+Nearest Neighbor search is not cheap among all the collection of documents 
 
 3. *Serendipity*
 
