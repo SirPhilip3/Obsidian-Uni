@@ -227,4 +227,23 @@ New evaluation scheme based on word analogies as vector space equations
 
 ### Pre-BERT
 
-#todo 
+**Representation-based models** :
+	Focuses on indepently learning dense vector representation of queries and documents 
+	These get then compared with metrics like *inner product* , *cosine similarity*
+
+Good for *approximate kNN* search ( in first stage retrieval )
+
+**Interatction-based models** : 
+	Compare the representation of terms in the query with terms in a document to produce a *similarity matrix* that captures term interactions
+	Used to produce *relevance scores* 
+
+Both use only the embeddings of the query and documents terms as *input*
+
+>[!note] 
+>Additional hand craftes features are not used 
+
+They are genearally used as *second stage re-rankers* 
+
+>[!note] 
+>Cant be precomputed offline
+

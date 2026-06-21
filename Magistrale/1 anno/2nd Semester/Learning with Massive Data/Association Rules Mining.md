@@ -224,6 +224,7 @@ We use the output of the first pass as a filter
 	+ $i$ and $j$ are both *frequent*
 	+ $\{i,j\}$ hashes to a frequent bucket
 
+#todo 
 ### SON  ( Savasere, Omiecinski and Navathe ) Algorithm
 
 ### Toivonen Algorithm 
