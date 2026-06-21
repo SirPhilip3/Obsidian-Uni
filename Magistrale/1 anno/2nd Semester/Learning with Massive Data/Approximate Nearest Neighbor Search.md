@@ -218,7 +218,7 @@ At each layer down to $0$:
 	1. Keep a queue $W$ of the *best nearest neighbours* found so far
 	2. Evaluate neighbours of nodes in $W$ and add them to $W$ if they are closer to $q$ 
 	3. Repeat until no more improvments
-2. Ass bi-directional edges between $q$ and the selected neighbours
+2. Add bi-directional edges between $q$ and the selected neighbours
 3. If any of the selected neighbour has more then $M_{\max}$ edges remove the least useful ones
 4. $W$ becomes the entry point for the next layer
 
