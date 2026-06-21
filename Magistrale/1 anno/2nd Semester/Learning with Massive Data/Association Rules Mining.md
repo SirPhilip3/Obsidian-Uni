@@ -184,11 +184,45 @@ prefix_extensions = prefix_last.reduceByKey(concat)
 C_k = prefix_extensions.flatMap( append_extension_pairs() )
 C_K = sc.broadcast(C_k.collect())
 ```
+
+>[!note] 
+>+ Re-oder items by descending counts helping reducing the number of candidates
+>+ Remove from the dataset items not in $L_{1}$ and remap item *ids* from $0$ to $|L_{1}|-1$
+>+ Itemset of lenght $k=2$ significantly impact performance
 #### Counting Pairs 
 
-#todo 
+Counting pairs with less memory : 
++ **Matrix Approach** : keep counts in a *triangular* matrix 
+	+ for each transaction and for each pair in the transaction incremente the matrix entry by $1$ 
+	+ Memory demanding 
++ **Triples Approach** : keep $[i,j,c]$ where $\{i,j\}$ is a candidate pair and $c$ is its count :
+	+ Does not store pairs with $0$ count
+	+ Use *hash* table where $\{i,j\}$ is the key and $c$ is the value
+	+ Migh require more memory than matrix 
 
 ### PCY ( Park-Chen-Yu ) Algorithm
+
+>[!note] 
+>In pass $1$ of [[#Apriori Algorithm]] most of the memory is idle
+
+**1st Pass**
+
+In addition to item counts maintain an *hash table* with as many buckets at they fit in memory
+
+Keep a count for each bucket into which pairs of items are hashed 
+
+For each bucket just keep the count not the actual pairs 
+
+**2nd Pass**
+
+We use the output of the first pass as a filter
+
+1. Replace the buckets with a *bit-vector*
+	+ $1$ = frequent , $0$ = infrequent buckets 
+
+2. Count support of pair $\{i,j\}$ if and only if :
+	+ $i$ and $j$ are both *frequent*
+	+ $\{i,j\}$ hashes to a frequent bucket
 
 ### SON  ( Savasere, Omiecinski and Navathe ) Algorithm
 

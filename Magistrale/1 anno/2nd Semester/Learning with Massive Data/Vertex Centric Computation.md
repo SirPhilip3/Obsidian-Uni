@@ -131,4 +131,3 @@ def count_triangles(graph G):
 	return triangles
 ```
 
-#todo 

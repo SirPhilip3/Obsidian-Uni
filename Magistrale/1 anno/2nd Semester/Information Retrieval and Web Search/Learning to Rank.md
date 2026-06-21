@@ -193,7 +193,38 @@ We give in
 + **output** a *one-hot encoded* vector of lenght $|L|$ rapresenting the probability for every word in the vocabulary to be a *nearby* word 
 
 >[!example] 
+>#todo
 >![[LtRword2vect.excalidraw.png]]
 >%%[[LtRword2vect.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+#todo 
+##### Gradient Descent
+
+The update equation is :
+$$
+\theta^{new} = \theta^{old} - \alpha \nabla_{\theta} J(\theta)
+$$
+
+But since the corpus can be huge this may take a long time to update the weights 
+
+We update the parameters after each window $t$ of the corpus ( *Stocastic Gradient Descent* ( *SGD* ) ) :
+$$
+\theta^{new} = \theta^{old} - \alpha \nabla_{\theta} J_{t}(\theta)
+$$
+>[!note] 
+>To reduce the size of the neural network we *subsample frequent words* to decreasee the number of training examples
+
+**Negative sampling** : each trainig sample updates a small percentage of models weights
+
+##### Word Analogies
+
+New evaluation scheme based on word analogies as vector space equations
+
+>[!example] 
+>$(\vec{king}- \vec{queen}) \approx (\vec{man} - \vec{woman})$
+>
+>$(\vec{king}-\vec{man} + \vec{woman}) \approx \vec{queen}$
+
+### Pre-BERT
 
 #todo 
