@@ -177,7 +177,7 @@ In the first *for* we store for each point it's closest centroid in $f(x)$
 In the second *for* we : 
 1. Increase the *counter* for the cluster assigned to that point $x$
 2. Set the *learning rate* $\eta$ to the inverse of that *counter*
-3. Move that centroid closer to the new point seen each time, note that initially when not a lot of point have been seen it will move more and than slow down until convergence
+3. Move that centroid closer to the new point seen each time, note that initially when not a lot of point have been seen it will move more and than slow down until convergence ( initially it trusts more new point than the centroid )
 
 The final *for* simply assignes all the points of the original dataset to the closest centroid found 
 

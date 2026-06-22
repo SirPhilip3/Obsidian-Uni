@@ -89,7 +89,7 @@ reduce(t, docs: list[[doc_id, document]]):
 Since each reducer recieves the two full documents it knows what are the terms in common 
 
 We *compute* the actual similarity *only* if the reducer has the *key* *equal* to the *largest common term* 
-
+9
 ```python
 map(doc_id, document):
 	for each term t in sorted(document):
