@@ -216,7 +216,7 @@ Less than *user-based* since the final ranking depends on *rating* only by the *
 4. *Cold-Start*
 
 >[!warning] 
->We need a sufficently large set of ratings for a new *user* / *item
+>We need a sufficently large set of ratings for a new *user* / *item*
 
 ## Cold Start in Item-Based Collaborative Filtering
 

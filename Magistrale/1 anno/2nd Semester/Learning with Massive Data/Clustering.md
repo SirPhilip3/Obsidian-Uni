@@ -14,10 +14,9 @@ publish: true
 
 The quality of a clustering algorithm depends on : 
 + ability to handle clusters of *arbitrary shapes, sizes* and *densities*
-+ ability to handlw *noise* and *outliers*
++ ability to handle *noise* and *outliers*
 + *computational complexity*
 + *scalability* to large dataset
-
 ## Cluster Quality
 
 **High quality clusters** have : 
