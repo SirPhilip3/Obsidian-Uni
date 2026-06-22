@@ -12,7 +12,6 @@ A raccomender system should recommend not only *popular* stuff but also niches c
 	+ If recommendation novel and intresting 
 4. **Cold-start** problem
 	+ When we know a little about the user how do we recommend ? 
-
 ## Content Based Recommender system
 
 >[!note] 
@@ -44,7 +43,7 @@ Each **song** is modeled by theyr lyrics modeling it using the *vector-space mod
 	+ $tf(t,x)$ : is the frequency of term $t$ in item $x$ 
 	+ $idf(t)$ : is the inverse document frequency across all the *corpus* 
 
-The **user** $u \in U$ is rapresented as the averge ot it's *items* $I_{u}$ : 
+The **user** $u \in U$ is rapresented as the averge of it's *items* $I_{u}$ : 
 $$
 u = \frac{1}{|I_{u}|} \sum_{x \in I_{u}} x
 $$
@@ -92,7 +91,7 @@ Also instead of finding similar *items* , find **similar users**
 	\begin{algorithm}
 	\caption{Algorithm sketch}
 	\begin{algorithmic}
-	\State Find a set of neighbors $N(u)$ of users simialr to $u$
+	\State Find a set of neighbors $N(u)$ of users similar to $u$
 	\State Exploit the rating of users $N(u)$ to build recommendations for $u$
 	\end{algorithmic}
 	\end{algorithm}
@@ -101,7 +100,6 @@ Also instead of finding similar *items* , find **similar users**
 **User** $u$ : is a vector of size $|I|$ where : 
 + $u[i]=r$ if the user $u$ gave a rating $r$ to the item $i$
 + $u$ is the row $R[u, :]$ of the *rating matrix*
-
 ### Similarity Measure 
 
 We use **Pearson Correlation** , this is : 
@@ -184,7 +182,6 @@ This can be viewed as the *symmetric* approact to [[Recommender Systems#User Bas
 **Algorithm** : 
 1. Find a set $N(i)$ of other *items* **rated** by $u$ and *similar* to $i$
 2. Exploit them to compute a *score* for $i$
-
 ### Similarity Measure 
 
 >[!note] 
