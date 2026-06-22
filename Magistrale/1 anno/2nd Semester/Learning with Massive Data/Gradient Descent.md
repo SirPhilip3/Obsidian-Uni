@@ -259,7 +259,7 @@ $$
 >[!important]
 >It's not always possible to find a clean linear separator
 >
->We intorduce a *penalty* depending on their distance from the margin:
+>We introduce a *penalty* depending on their distance from the margin:
 >+ $0$ if $y_{i}(w \cdot x_{i} + b) \ge 1$
 >+ $1-y_{i}(w \cdot x_{i} + b)$ otherwise
 
@@ -308,7 +308,7 @@ $$\frac{\partial}{\partial w}  C \sum_{i} \max\left( 0,1-y_{i}\left( \sum_{j} w_
 
 ## Batch Gradient Descent
 
-The gradient is compute over the *whole dataset* and only after we updaate the parameter and repeat
+The gradient is computed over the *whole dataset* and only after we update the parameters and repeat
 
 >[!warning] 
 >This is slow for large datasets

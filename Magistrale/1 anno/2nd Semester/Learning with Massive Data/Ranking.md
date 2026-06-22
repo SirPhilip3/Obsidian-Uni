@@ -29,7 +29,6 @@ Describe a document *mathematically* asuuming that there exists a *function* $\p
 2. Returns a *vector* in $\mathbb{R}^n$ as its representation
 
 [[Tf-Idf]] is an example of this *function* for text , we also may include other signals like [[PageRank]] , number of clicks , time spent on page etcc 
-
 ## Ranking with Linear Regression
 
 We can predict the **relevance label** $y \in \mathcal{Y}$ of a document $x \in \mathbb{R}^n$ using a linear function : 
@@ -64,7 +63,7 @@ $$
 \tau = \frac{2}{n(n-1)} \sum_{i<j} sign(y_{i}-y_{j})\cdot sign(f_{i}-f_{j})
 $$
 >[!warning] 
->Kendall's $\tau$ is not sensitive to the position in the ranking , swapping two position at the tpo has the same weight as swapping at the bottom 
+>Kendall's $\tau$ is not sensitive to the position in the ranking , swapping two position at the top has the same weight as swapping at the bottom 
 
 ---
 

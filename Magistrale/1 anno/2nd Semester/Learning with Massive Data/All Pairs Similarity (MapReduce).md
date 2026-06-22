@@ -47,7 +47,7 @@ reduce(t, docs: list[[doc_id, document]]):
 *Sort* terms by **decreasing frequency** ( or score ) in the corpus
 
 >[!example] 
->$d[0]$ correspond to the most frequent term in the corpus
+>$d[0]$ corresponds to the most frequent term in the corpus
 
 Create the *maximum document* $d^*$ :
 $$
