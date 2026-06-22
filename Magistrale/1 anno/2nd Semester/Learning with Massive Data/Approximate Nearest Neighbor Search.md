@@ -73,10 +73,10 @@ $$
 
 A *sub-encoder* is implemented as a *linear scan* across all the $K$ centroids
 
-+ The **computatioinal cost** of a sub-encoder is $O(KD/M)$
++ The **computational cost** of a sub-encoder is $O(KD/M)$
 + To encode all the $M$ sub-vectors it takes $O(DK)$
 
-The *space cost* depends on the nunmber of *sub-vectors* $M$ and the number of *sub-codewords* $K$ :
+The *space cost* depends on the number of *sub-vectors* $M$ and the number of *sub-codewords* $K$ :
 + The *space cost* of the encoding is $M \log_{2}K$ bits
 
 >[!note] 
@@ -104,11 +104,11 @@ Since we store the full dataset as a set of *PQ codes* we can approximate the *d
 >[!warning] 
 >The *time complexity* is still large $O(DN)$
 
-We can compute the distance without materializing the reconstructed vectors $\tilde{x}_{n}$
+We can compute the distance without materializing the reconstructed vectors $\tilde{x}_{n}$ 
 ### Asymmetric Distance Computation (ADC)
 
 For a given query $y \in \mathbb{R}^D$ and the *PQ code* $i(x_{n})$ :
-1. For each *sub-vector* $y^m$ compute the distance between $y$ and all the $K$ *centriods* in all the $M$ sub-codebooks , resulting in a matrix $A \in \mathbb{R}^{M \times K}$ where $A(m,k) = ||y^m -c^m_{k}||_{2}^2$ 
+1. For each *sub-vector* $y^m$ compute the distance between $y$ and all the $K$ *centroids* in all the $M$ sub-codebooks , resulting in a matrix $A \in \mathbb{R}^{M \times K}$ where $A(m,k) = ||y^m -c^m_{k}||_{2}^2$ 
 2. Given the *PQ code* $i(x_{n})=[i^1,i^2,\dots, i^M]$ the approximate distance between $y$ and $x_{n}$ is given by :
 $$
 ||y-x_{n}||_{2}^2 \approx \sum_{m=1}^M || y^m-c^m_{i^m} ||_{2}^2 = \sum_{m=1}^M A(m,i^m)
@@ -142,7 +142,6 @@ $$
 
 >[!note] 
 >*Partitioning* is [[Clustering#K-Means|K-means]] , we chose residual since they provide more precision than the orginal vector
-
 ### Searching
 
 Given a *query* $y\in \mathbb{R}^D$ :

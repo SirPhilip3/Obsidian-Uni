@@ -64,7 +64,6 @@ Approach :
 
 >[!note] 
 >The *assigning* of the clusters and the *update* of the centroid minimize the *Sum of Squared Distances*
-
 ## Properties
 
 + Initializing the centroid at random has **problems** 
@@ -210,30 +209,30 @@ If the sample $m$ is too large in terms of memory or clustering cost ( empirical
 1. *Partition* the sample in $p$ *groups* of size $\frac{m}{p}$ 
 
 >[!note] 
->Since $p$ is a *user defined* parameter we want that $\frac{m}{p}$ objects fit in main memory and also that each *group* contains enugh points to corectly rapresent each cluster
+>Since $p$ is a *user defined* parameter we want that $\frac{m}{p}$ objects fit in main memory and also that each *group* contains enugh points to correctly represent each cluster
 
 2. *Cluster* each group independently so that each group has $\frac{m}{pq}$ *clusters* and the total number of clusters is $\frac{m}{q}$
 
 >[!note]
->$q$ is a *user defined* parameter, it can be cosidered the *average cluster size*
+>$q$ is a *user defined* parameter, it can be considered the *average cluster size*
 >
 >We want $\frac{m}{q}$ to be sufficently larger than the desired number of clusters $k$ also $q$ should be small enough to ensure that partitions of different clusters are not merged togheter
 >
 
 ## Partition Clustering
 
-**CURE** uses a *higherarchical bottom-up* algorithm to cluster the partitions 
+**CURE** uses a *hierarchical bottom-up* algorithm to cluster the partitions 
 
 1. Each data point is initially considered a cluster
 2. At each step the two clusters that are closest to each other are merged 
 	1. Each cluster is rapresented by a set of $c$ *rapresentative points*
 	2. The *distance* between two clusters is defined as the *minimum distance* between any two rapresentative points 
-3. Merging is repeated unitl we have the desired number of clusters 
+3. Merging is repeated until we have the desired number of clusters 
 
 >[!important] 
 >**Rapresentative points** are chosen to be *well scattered* 
 >
->1. The *first* point is the point farthest from the cluster center
+>1. The *first* point is the point furthest from the cluster center
 >2. Remaining points are chosen to be furthest from all previously chosen points
 >
 >Generally we select $c=10$ rapresentative points  
@@ -241,13 +240,13 @@ If the sample $m$ is too large in terms of memory or clustering cost ( empirical
 
 Each *rapresentative point* is shrunk towards the center of the cluster by a factor $\alpha \in[0,1]$ : 
 + this limits the effects of outliers by limiting false merges 
-+ larger shirinking factors lead to centroid-based clustering leading to more spherical clusters
++ larger shrinking factors lead to centroid-based clustering leading to more spherical clusters
 
 ## Merging partial clusters and outlier removal 
 
 After each *partition* has been merged we execute the same algorithm between all the parital clusters 
 
-Notice that since *outliers* are far away from real cluster centers the most likely contain few data points , ad so clusters containing $\leq 2$ points are considered *outliers* and removed in $2$ phases : 
+Notice that since *outliers* are far away from real cluster centers they most likely contain few data points , ad so clusters containing $\leq 2$ points are considered *outliers* and removed in $2$ phases : 
 1. When the number of clusters is $\frac{1}{3}$ of the number of data points
 2. During the final steps when the number of cluster is close to $k$
 
@@ -275,7 +274,7 @@ Given the final $k$ clusters rapresented by $c$ *representatives* we scan the re
 	\end{algorithm}
 ```
 
-The complexity is $O(m^2 \log m)$, where $m$ is the dataset / sample size; this is **expensive** , large value of $p$ and $q$ reduce the cost 
+The **complexity** is $O(m^2 \log m)$, where $m$ is the dataset / sample size; this is **expensive** , large value of $p$ and $q$ reduce the cost 
 
 >[!note] 
 >$\frac{m}{pq}$ should be sufficiently larger than $k$
@@ -284,5 +283,5 @@ The complexity is $O(m^2 \log m)$, where $m$ is the dataset / sample size; this 
 
 + CURE is able to find clusters of *arbitrary shapes* and it is *robust to outliers*
 + The larger the $c$ the more *expensive* but better ability to find arbitrary shapes
-+ With $\alpha=0$ clusters are rapresented by their center ( becomes nearly equivalent to [[#K-Means]] )
-+ With $\alpha=1$ clusters rapresentative do not change , the algorithm can find clusters of rabitrary shape
++ With $\alpha=0$ clusters are represented by their center ( becomes nearly equivalent to [[#K-Means]] )
++ With $\alpha=1$ clusters rapresentative do not change , the algorithm can find clusters of arbitrary shape

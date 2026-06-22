@@ -54,13 +54,12 @@ In this case we follow :
 + $M$ with probability $\beta$
 + jump to a random node ( *teleportation* ) with probability $1-\beta$
 
-Also we *remove* dead ends by linking them to every other nodes 
+Also we *remove* dead ends by linking them to every other node
 >[!note] 
 >This is done by setting $M[i,j]$ to $\frac{1}{n}$ when the *out-degree* ( $o(j)$ ) is $0$ 
 
 >[!note] 
 >This reaches stability ( $\pi^{t+1} = \pi^t$ ) in around $50$ *iterations*
-
 ### Cost 
 
 Each iteration takes $N^2$ *multiplications* and $N^2$ *addition* so $O(N^2)$
