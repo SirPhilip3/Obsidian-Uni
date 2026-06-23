@@ -131,7 +131,6 @@ $$
 [[#Asymmetric Distance Computation (ADC)|ADC]] performs a *full scan* of the dataset which is too expensive for large datasets
 
 **Inverted File Index** instead uses a **Divide and Conquer** approach : 
-
 ### Indexing
 
 1. Partition the dataset into $J$ buckets and let $\mu_{j} \in \mathbb{R}^D$ be the *representative vector* of the $j$-th bucket

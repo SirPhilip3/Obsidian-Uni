@@ -133,7 +133,7 @@ With this *initialization* we can say that
 >For any dataset $\mathcal{D}$, K-means++ *guarantees* that the expected $SSD$ is at most $8(\ln k +2)$ **times** the *optimal* $SSD$ 
 
 >[!warning] 
->This algorithm is very *inefficent*. The complexity is $O(|\mathcal{D}|\cdot k \cdot i)$ where $i$ is the number of *iterations*
+>This algorithm is very *efficent*. The complexity is $O(|\mathcal{D}|\cdot k \cdot i)$ where $i$ is the number of *iterations*
 
 # Mini-Batch K-Means
 
