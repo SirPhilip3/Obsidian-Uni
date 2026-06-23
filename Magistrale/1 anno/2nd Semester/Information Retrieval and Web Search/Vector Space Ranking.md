@@ -133,7 +133,6 @@ In **DAAT** we use a *MIN-heap* of $k$ elements :
 
 >[!warning] 
 >In the first pruning we can't remove false negatives 
-
 ### Implementation
 
 The *postings* must be ordered by docID
@@ -154,7 +153,6 @@ Where $UB_{t} = idf_{t} \cdot M$ , with $M = \max w_{t,d}$ for all $d$ in the po
 >$UB$ rapresents the maximum score that a term can reach 
 
 The **threshold** $\tau$ is set to the *minimum score* of the heap , when a document enters the *min-heap* the **threshold** grows
-
 #### Pivoting
 
 The **pivot** is the the *minimum cursor* ( practically the minimum docID ) for which the comulative sum of the **Upper Bounds** of the lower docIDs is lower than the current *threshold*  
