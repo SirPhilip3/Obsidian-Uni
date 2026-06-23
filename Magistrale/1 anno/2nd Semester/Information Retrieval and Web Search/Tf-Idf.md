@@ -229,7 +229,7 @@ $$
 + $L$ : *average* document *lenght* in the collection
 + $b$ : determines the importance of $l_d$
 
-$b > 0$ : means that we penalize long documents because they have a better probaboloty to match query terms  
+$b > 0$ : means that we penalize long documents because they have a better probabiloty to match query terms  
 
 $$
 \tau (F_t) = \frac{F_t}{k +F_t}

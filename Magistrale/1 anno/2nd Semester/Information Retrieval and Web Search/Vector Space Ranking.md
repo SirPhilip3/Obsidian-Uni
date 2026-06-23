@@ -1,7 +1,7 @@
 ---
 publish: true
 ---
-# TAAD ( Term-At-A-Time )
+# TAAT ( Term-At-A-Time )
 
 The documents scores are computed one *query term* at a time by accumulating the *per-term* $tf-idf$ weights in *per-doc* accumulators
 
@@ -29,7 +29,7 @@ The documents scores are computed one *query term* at a time by accumulating the
 ```
 
 It requires more *space* since it needs to keep in memory all the intermediate scores for all the documents until the end of the algorithm 
-## Efficent TAAD
+## Efficient TAAT
 
 We can remove the *weighting* on the query terms by doing the following **assumption** : 
 + each query term occurs only once ( $tf_{t,q}=1$ ) , with this we can see that the [[Tf-Idf#Log-frequency weighting|Log-frequency weighting]] goes to $1= 1 + \log_{10}tf_{t,q}=1+0$ 
@@ -190,7 +190,7 @@ For *Block-Max* we use an augmented *inverted index* ( *block-max index* ) , thi
 
 # Unsafe Ranking
 
-The result *approximates* the true top-$K$ , possibbly containig *false positieves*
+The result *approximates* the true top-$K$ , possibbly containig *false positives*
 
 >[!note] 
 >Acceptable since the ranking functions are already proxies for user happiness
