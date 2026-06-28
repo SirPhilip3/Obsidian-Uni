@@ -50,17 +50,17 @@ $$
 $$
 \forall \alpha , \beta \in K , \forall x \in V(K) \implies \colorbox{green}{$\alpha \bullet x \in V(K) \implies \alpha \bullet (\beta \bullet x ) = (\alpha \cdot \beta)\bullet x$}
 $$
-7. 
+6. 
 $$
 \colorbox{green}{$\exists \sigma \in K : \sigma \bullet x = x$} , \forall x \in V(K)
 $$
 	$\sigma$ is a *unit* in the numerical set $K$ ( $1$ for $\mathbb{R}$ ) 
-8. 
+7. 
 $$
 \forall \alpha \in K : \colorbox{green}{$\alpha \bullet (x +y) = \alpha \bullet x + \alpha \bullet y$} ,\forall x, y \in V(K)
 $$
 ( **Distributed propiety** 1 )
-9. 
+8. 
 $$
 \forall x \in V(K), \forall \alpha, \beta \in K : \colorbox{green}{$ (\alpha \oplus \beta) \bullet x = \alpha \bullet x + \beta \bullet x$}
 $$
@@ -135,10 +135,10 @@ The *null vector* is a *polynomial* with all coefficients that are at $0$
 $\sigma  = 1$ 
 
 >[!warning] 
->The set of polynomials that are the exact degree $n$ is **not** a *vector space* 
+>The set of polynomials that are the *exact degree* $n$ is **not** a *vector space* 
 >
 >The *closure* propiety does not hold : 
->given $p(x) = x^4$ and $q(x) = -x^4$ than $p(x)+q(x) = 0$ , but $0$ is not in the *vector space* since we define the degree of a polynomial as the *largest* non null degree , so in this case the degree qould would be $0$
+>given $p(x) = x^4$ and $q(x) = -x^4$ than $p(x)+q(x) = 0$ , but $0$ is not in the *vector space* since we define the degree of a polynomial as the *largest* non null degree , so in this case the degree would be $0$
 
 ## Dimensions of a Vector Space 
 
@@ -149,7 +149,7 @@ The dimension of a vector space is given by the number of :
 >These are those *vectors* that satisfy the following criteria : 
 >given $v_1, \dots , v_n \in V(K)$ and $\alpha_1, \dots, \alpha_n \in K$ than the *vectors* $\{v_1, \dots , v_n\}$ are *linearly indipendent* if : 
 >$$
->\alpha_1 v_i + \dots + \alpha_n v_n = w \iff \alpha_1= \dots = \alpha_m = 0
+>\alpha_1 v_1 + \dots + \alpha_n v_n = w \iff \alpha_1= \dots = \alpha_n = 0
 >$$
 >
 
@@ -183,7 +183,7 @@ $s$ are all the *vectors* whos second extreme is on the *line* *between* the two
 >[!important] Definition
 >Given the *set* of *vectors* : $v_1,\dots,v_m \in \mathbb{R}^n$
 >
->We say that the *vector* $z \in \mathbb{R}^n$ is a **cone combination** of *vectors* $\{v_i,\dots,v_m\}$ on $\mathbb{R}$ if :
+>We say that the *vector* $z \in \mathbb{R}^n$ is a **cone combination** of *vectors* $\{v_1,\dots,v_m\}$ on $\mathbb{R}$ if :
 >$$
 >z = \alpha_1v_1 + \dots + \alpha_m v_m\qquad \text{with} \quad \alpha_i \ge 0, i = 1, \dots, m
 >$$
