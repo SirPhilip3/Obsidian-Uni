@@ -437,3 +437,4 @@ Give the *square* matrix $A \in \mathbb{R}^{n\times n}$ such that its *symmetric
 ## Geometric Interpretation of Eigenvalues and Eigenvectors
 
 #todo 
+
