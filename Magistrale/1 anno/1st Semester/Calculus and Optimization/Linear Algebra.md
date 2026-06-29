@@ -91,7 +91,7 @@ In order to change *basis* from $e_i$ to $u_i$ we need to find a *matrix* $C$ th
 
 Since $u_i$ can be expressed as a *linear combination* of the vectors $\{e_i\}$ we can write : 
 $$
-u_i = c_{1i}e_1 + \dots+ x_{ni}e_n, \quad i=1,\dots,n
+u_i = c_{1i}e_1 + \dots+ c_{ni}e_n, \quad i=1,\dots,n
 $$
 We than can substitute this in definition of $x$ with *base* $u$ : 
 $$

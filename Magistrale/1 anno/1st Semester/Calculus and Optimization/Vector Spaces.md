@@ -708,7 +708,7 @@ $$
 $$
 is **convex** $\forall \gamma \in \mathbb{R}$ 
 
-Or all the possible real points $x$ that fullfillis $f(x) \leq \gamma$  ( where $\gamma$ is set at our will )
+Or all the possible real points $x$ that fullfills $f(x) \leq \gamma$  ( where $\gamma$ is set at our will )
 
 >[!example]
 >
