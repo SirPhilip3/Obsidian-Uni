@@ -282,6 +282,11 @@ Where $\widehat{xy}$ is the *smallest angle* between vectors $x$ and $y$ of $\ma
 >Given the function $f : \mathbb{R}^n \to \mathbb{R}^m$ we say that $f(x)$ is *linear* in $\mathbb{R}^n$ if it satisfies the following *relations* : 
 >1. $f(x+y) = f(x)+f(y), \quad \forall x,y \in \mathbb{R}^n$
 >2. $f(\alpha x) = \alpha f(x), \quad \forall x \in \mathbb{R}^n, \forall \alpha \in \mathbb{R}$
+>
+>Or unified :
+>$$
+>f[\alpha x + \beta y] = \alpha f(x) + \beta f(y), \quad \forall x,y \in \mathbb{R}^n, \ \forall \alpha, \beta \in \mathbb{R}
+>$$
 
 >[!example] 
 >$f(x,y) = 3xy$
