@@ -64,7 +64,7 @@ Where :
 >+ It's *expensive* since it creates *long* modified queries, more expensive to process
 >+ Users are *reluctant* to provide explicit feedback
 
-### Psuedo-relevance feedback
+### Pseudo-relevance feedback
 
 1. Retrieve a ranked list of hits from a user query
 2. Assume that the top-$k$ documents are *relevant* 
