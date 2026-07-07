@@ -38,7 +38,7 @@ The **test queries** :
 
 ### Unranked Measures 
 
-#### Precision and Recall 
+	#### Precision and Recall 
 
 **Precision** : fraction of retrieved docs that are relevant ( $\mathbb{P}(\text{relevant retrieved}|\text{retrieved})$ )
 $$

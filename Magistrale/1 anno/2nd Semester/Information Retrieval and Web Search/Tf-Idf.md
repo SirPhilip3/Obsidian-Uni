@@ -214,7 +214,7 @@ Where each of them declares a mode to use for each different measure ( $d$ for d
 **BM25** is a *probabilistic* ranking function better than *cosine*
 
 It uses the **term independence** assumption : 
-	Every word in a document is idipendent from one another
+	Every word in a document is indipendent from one another
 To approximate the document probability of being relevant 
 
 $$
@@ -229,7 +229,7 @@ $$
 + $L$ : *average* document *lenght* in the collection
 + $b$ : determines the importance of $l_d$
 
-$b > 0$ : means that we penalize long documents because they have a better probabiloty to match query terms  
+$b > 0$ : means that we penalize long documents because they have a better probability to match query terms 
 
 $$
 \tau (F_t) = \frac{F_t}{k +F_t}
