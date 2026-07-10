@@ -92,7 +92,6 @@ Let also $t=2$ then every $CBF[i]$ can hold numbers in $[0,2^2) = [0,4)$
 >>[!warning] 
 >>+ `Membership(1)` : All $k$ integers are $>0$ so *True*, but $1$ is not in $S$ so this is a **False Positive**
 >>
-
 ### Delete
 
 ```pseudo
@@ -110,4 +109,17 @@ Let also $t=2$ then every $CBF[i]$ can hold numbers in $[0,2^2) = [0,4)$
 >$\max$ is needed to handle *underflows* 
 
 >[!example] 
+>![[CBF_del.excalidraw.png]]
+%%[[CBF_del.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
+>[!warning] 
+>Now asking for `Membership(5)` we get that not all $k$ integers are $>0$ ( $CBF[5]=0$ ) so *False* but $5$ is still in $S$ so we introduced a **False Negative**
+>
+>This happend because during the *insertion* we had an **overflow** at $5$ 
+
+## Computing $\mathbb{P}(FP)$
+
+>[!note] 
+>With the way we handle *underflows* and *overflows* , **insert** and **membership** behave exactly like [[Bloom Filters]]
+
+#todo 
