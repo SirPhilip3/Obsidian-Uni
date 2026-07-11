@@ -122,4 +122,38 @@ Let also $t=2$ then every $CBF[i]$ can hold numbers in $[0,2^2) = [0,4)$
 >[!note] 
 >With the way we handle *underflows* and *overflows* , **insert** and **membership** behave exactly like [[Bloom Filters]]
 
-#todo 
+Looking at *insert* and *memebership* the behavious of $CBF[i]$ is the same as applying [[Bloom Filters]]  
+
+So looking the probability is the one already calculated in [[Bloom Filters#$ mathbb{P}$ of False Positives|Bloom Filters]] , choosing $\delta > 0$ then we have : 
+$$
+\mathbb{P}(FP) = \left( \frac{1}{2} \right)^{(M/m) \ln 2} = \delta
+$$
+So : 
++ $k = \log_{2}\left( \frac{1}{\delta} \right)$
++ $M = mk \log_{2} e = O\left( m \log\left( \frac{1}{\delta} \right) \right)$
+
+>[!note]-
+>$M$ is the size of the *bloom filter* and $k$ is the maximum integer that can be stored 
+>
+
+## Computing $\mathbb{P}(FN)$
+
+Let $x \in S$ , what is the probability that $x$ is a *False Negative* ( an element is present in the $CBF$ but the `Membership` query says the is *not present* )
+
+>[!important] 
+>If **no overflow** happens on any $CBF[h_{j}(x)]$ then $x$ **can not be a False Negative** 
+
+Therefore the probability can be bound in the following way : 
+$$
+\mathbb{P}(x \in FN) \le \mathbb{P}(\exists j : CBF[h_{j}(x)] \text{ overflows} )
+$$
+Now we calculate the following: 
+	Fix any $i$, what is $\mathbb{P}(CBF[i] \text{ overflows})$ ?
+
+This means that while inserting some numbers in the filter $CBF[i]$ gets incremented at least $2^t$ times
+
+Since $i$ is *fixed* then only *one hash* function has *effect* on $CBF[i]$ :
+$$
+h_{j} = h_{\lfloor i/k \rfloor +1}
+$$
+
