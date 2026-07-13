@@ -156,4 +156,76 @@ Since $i$ is *fixed* then only *one hash* function has *effect* on $CBF[i]$ :
 $$
 h_{j} = h_{\lfloor i/k \rfloor +1}
 $$
+Now for each of the positions touched by $h_{j}$ while inserting $x_{1},\dots,x_{m}$ we have :
+$$
+i_{1}=h_{j}(x_{1}),\ i_{2} = h_{j}(x_{2}), \dots,\ i_{m}=h_{j}(x_{m})
+$$
 
+>[!important] 
+>All the *random variables* $i_{1},\dots,i_{m}$ are **iid** *uniform values* in the slot of size $M/k$ containing position $i$
+
+Noticing also that for any $p \in [m]$ we have that $\mathbb{P}(i_{p}=i) = k/M$
+
+This means that we can write :
+$$
+\mathbb{P}(CBF[i]\text{\ overflows}) \leq \mathbb{P}(\exists\ j_{1}<\dots < j_{T} : i_{j_{1}}=\dots = i_{j_{T}}=i )
+$$
+>[!note]-
+>This means that the probability that $CBF[i]$ overflows is given by the probability that for $T$ execution of $h_{j}$ ( $i_{j_{1}}$ ) the resulting hash value is $i$
+
+The $\mathbb{P}(i_{j_{1}}= \dots = i_{j_{T}}=i)$ can be rewritten as :
+$$
+\prod_{p=1}^T \mathbb{P}(i_{j_{P}}=i) = \left( \frac{k}{M} \right)^T
+$$
+Now we need the probability that we find a group of $T$ executions of $j$ that causes an *overflow* 
+
+One specific cobination is :
+$$ 
+\binom{m}{T}
+$$
+>[!note]-
+>Where $m$ is the size of the elements that can be put in the *Counting Bloom Filter*
+
+By **union** we find :
+$$
+\mathbb{P}(\exists\ j_{1}<\dots < j_{T}: i_{j_{1}} = \dots = i_{j_{T}}=i) \leq \binom{m}{T} \cdot \left( \frac{k}{M} \right)^T
+$$
+Or :
+$$
+\mathbb{P}(CBF[i]\ \text{overflows}) \le  \binom{m}{T} \cdot \left( \frac{k}{M} \right)^T
+$$
+Now bounding the *binomial coefficent* as :
+$$
+\binom{m}{T} \leq \left( \frac{em}{T} \right)^T
+$$
+So :
+$$
+\mathbb{P}(CBF[i]\ \text{overflows}) \le \left( \frac{emk}{TM} \right)^T
+$$
+Now remembering that $M=mk \log_{2} e$ we have :
+$$
+\left( \frac{e \ln 2}{T} \right)^T
+$$
+Assuming that $2^t =T \ge 4$ since surely $t\ge 2$ ( since otherwise we would have a simple [[Bloom Filters]] )
+
+But then we can say the following :
+$$
+\left( \frac{e \ln 2}{T} \right)^T \le \left( \frac{1}{2} \right)^T
+$$
+
+The **result** that we got is that a particular $CBF[i]$ *overflows* is :
+$$
+\left( \frac{1}{2} \right)^{2^t}
+$$
+Now the probability that $x$ is a **False Negative** is :
+$$
+\mathbb{P}(x \text{ is FN}) \le \mathbb{P}(\exists j : CBF[h_{j}(x)]\text{ overflows}) \le k \cdot \left( \frac{1}{2} \right)^{2^t}
+$$
+Since $j \in [k]$
+
+>[!example] 
+>#todo
+
+## Space as a function of $\mathbb{P}(FP)$ and $\mathbb{P}(FN)$
+
+#todo 
