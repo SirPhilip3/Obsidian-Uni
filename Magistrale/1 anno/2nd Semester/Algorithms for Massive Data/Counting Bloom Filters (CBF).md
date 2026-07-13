@@ -228,4 +228,18 @@ Since $j \in [k]$
 
 ## Space as a function of $\mathbb{P}(FP)$ and $\mathbb{P}(FN)$
 
+Selecting a desired *False Negative* probability $\gamma$ , and setting :
+$$
+\mathbb{P}(FN) \leq k \cdot \left( \frac{1}{2} \right)^{2^t} = \gamma
+$$
+Recalling that $k = \log_{2}\left( \frac{1}{\delta} \right)$ , we derive $t$ as a function of $\delta$ and $\gamma$ we obtain :
+$$
+t = \log \log \left( \frac{\log \left( \frac{1}{\delta} \right)}{\gamma} \right)
+$$
+The number of *bits* per integer decreases :
++ **Triple-exponentially** with respect to $\frac{1}{\delta}$
++ **Doubly-exponentially** with respect to $\frac{1}{\gamma}$
+
+# Result
+
 #todo 
