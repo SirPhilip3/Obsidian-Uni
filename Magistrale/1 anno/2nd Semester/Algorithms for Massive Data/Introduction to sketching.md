@@ -142,3 +142,88 @@ $$
 0 & \text{otherwise} 
 \end{cases}
 $$
+Then we need to prove that :
+$$
+E[\hat{J}(A,B)] = J(A,B)
+$$
+Or in other words $\hat{J}(A,B)$ is an *unbiased estimator* for $J(A,B)$
+
+Now since $J$ are *Bernullian* random variable we can apply **repetition** and [[Concentration Bounds#Chernoff-Hoeffding ( exponential )|Chernoff-Hoeffding]] in order to obtain an absolute $\epsilon$-approximation with *probability* $1-\delta$ 
+
+---
+Let $|A \cup B| = N$ 
+
+For $i \in A \cup B$ let **smallest(i)** being *true* if and only if $h(i) = \hat{h}(A \cup B)$
+
+>[!note] 
+>$smallest(i)=true$ if and only if $i$ is the element of $A \cup B$ having the smallest hash $h(i)$ in $A \cup B$
+>
+>Also since $h$ is a *permutation*, $smallest(i) = true$ for exactly one $i\in A \cup B$ 
+>
+>Then we will have also that : 
+>$$
+>\mathbb{P}(smallest(i)) = \frac{1}{N}, \quad \forall i \in A \cup B 
+>$$
+
+ Since $\{smallest(i)\}_{i\in A \cup B}$ is a *partition*, of cardinality $N=|A \cup B|$, of the *event space* ( since it will always be one element of $A \cup B$ ) we can use the [law of total expectation](https://en.wikipedia.org/wiki/Law_of_total_expectation) :
+$$
+\begin{align} E[\hat{J}(A,B)] & =
+\sum_{i\in A \cup B} \mathbb{P}(smallest(i)) \cdot E[\hat{J}(A,B)| smallest(i)] \\ 
+& = \frac{1}{N} \sum_{i \in (A \cup B) } E[\hat{J}(A,B)| smallest(i)]  \\
+& = \frac{1}{N} \sum_{i \in (A \cap B) } E[\hat{J}(A,B)| smallest(i)] + \frac{1}{N} \sum_{i \in (A \cup B) - (A \cap B) } E[\hat{J}(A,B)| smallest(i)]
+\end{align} 
+$$
+
+If we know that the element $i$ getting the *smallest hash* $h(i)$ belongs to $A \cap B$ than we need to have that $\hat{h}(A)=\hat{h}(B)=h(i)$ 
+
+>[!note]- 
+>Needs to be the minimum of both 
+
+This means that $\hat{J}(A,B)=1$ and therefore the terms in the *first* *summation* will be $=1$ :
+$$
+E[\hat{J}(A,B)]  =\frac{1}{N} \sum_{i \in (A \cap B) } 1 + \frac{1}{N} \sum_{i \in (A \cup B) - (A \cap B) } E[\hat{J}(A,B)| smallest(i)]
+$$
+
+If we know that the element $i$ getting the *smallest hash* $h(i)$ belongs to $A \cup B - A \cap B$ then we can say that $\hat{h}(A) \neq \hat{h}(B)$ 
+
+Therefore we will have that $\hat{J}(A,B)=0$ , this also means that terms in the *second summation* will be $=0$ 
+$$
+\begin{align}
+E[\hat{J}(A,B)] & =\frac{1}{N} \sum_{i \in (A \cap B) } 1 + \frac{1}{N} \sum_{i \in (A \cup B) - (A \cap B) } 0  \\
+& = \frac{1}{N} \sum_{i \in (A \cap B) } 1  \\
+& = \frac{1}{N} |A \cap B|  \\
+& = \frac{|A \cap B|}{|A \cup B|} = J(A,B)
+\end{align}
+$$
+
+### Reducing the variance 
+
+We notice that $\hat{J}(A,B)$ is a *Bernoullian* *Random Variable* that it's either $0$ or $1$ , while the actual $J(A,B)$ is a *fraction* between $0$ and $1$ 
+
+We can use [[Concentration Bounds#Chernoff-Hoeffding ( exponential )|Chernoff-Hoeffding]] to reduce the *variance* :
+
+1. Draw $k$ *iid* uniform permutations $h_{1}, \dots , h_{k}$ 
+2. Call $\hat{J}_{h_{i}}(A,B)$ the *estimator* computed using permutation $h_{i}$ 
+3. We build the new estimator in the following way :
+$$
+J^+(A,B) = \frac{1}{k} \sum_{i=1}^k \hat{J}_{h_{i}}(A,B)
+$$
+4. Applying *Chernoff-Hoeffding* :
+$$
+\mathbb{P}(|J^+(A,B)-J(A,B)| \ge \epsilon) \le 2 e^{-e^2 k/2}
+$$
+5. Set this probability $2e^{-e^2k/2} = \delta$ and solve as a function of $k$
+
+This give us : $k=\frac{2\ln\left( \frac{2}{\delta} \right)}{\epsilon^2} = O\left( \epsilon^{-2}\log\left( \frac{1}{\delta} \right) \right)$ 
+
+**Theorem**
++ Fix any desired *absolute error* $0< \epsilon \le 1$ and *failure probability* $0 < \delta \le 1$ 
++ The *MinHash* sketch uses $O\left( \epsilon^{-2} \log \left( \frac{1}{\delta} \right) \right)$ words of space 
+
+>[!warning] 
+>This space excludes the *permutations*
+
++ The sketch allows computing in $O\left( \epsilon^{-2} \log\left( \frac{1}{\delta} \right) \right)$ *time* an estimator $J^+(A,B)$ such that : 
+$$
+\mathbb{P}(|J^+(A,B) - J(A,B)| \ge \epsilon) \le \delta
+$$
