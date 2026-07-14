@@ -78,7 +78,7 @@ We will devise sketches that possess property $4$ ( *similarity preserving* ) un
 >[!note]- 
 >Sketches exists for most metrics 
 
->[!important] Definition
+>[!important] *Metric* Definition
 >A **metric** is a *non-negative* binary function $d(x,y) \ge 0$ satisfying : 
 >+ Identity : $d(x,x)=0$
 >+ Symmetry : $d(x,y)=d(y,x)$
@@ -88,8 +88,57 @@ We will devise sketches that possess property $4$ ( *similarity preserving* ) un
 
 **MinHash** is a sketching technique used to estimate the *Jaccard similarity* of sets.
 
->[!note] Jaccard Similarity
+>[!important] Jaccard *Similarity*
+>
+>$$
+>J(A,B) = \frac{|A \cap B|}{|A \cap B|}
+>$$
+>
+>+ $0 \le J(A,B) \le 1$
+>+ $J(A,B)=0$ if and only if $A \cap B = \emptyset$ ( *minimized* )
+>+ $J(A,B)=1$ if and only if $A = B$ ( *maximized* )
 
+>[!important] Jaccard *Distance*
+>
+>$$
+>d_{J}(A,B) = 1-J(A,B) = 1 -\frac{|A \cap B|}{|A \cap B|}
+>$$
+>
+>It can be shown that $d_{J}(A,B)$ is a *metric*
+
+Let $h: [n] \to [n]$ be a *uniform permutation* of $[n]$, and let $A \subseteq [n]$.
+
+The **MinHash** *function* $\hat{h}(A)$ of $A$ defined as :
 $$
-J(A,B) = \frac{|A \c|}{#}
+\hat{h}(A) = \min h(A) = \min \{h(x) : x \in A\}
+$$
+In other words, $\hat{h}(A)$ is the *minimum hash value* of elements in $A$ 
+
+>[!example] 
+>Let $n=6$ and $h$ be the following permutation :
+>
+>|  $x$   |   1 |   2 |   3 |   4 |   5 |   6 |
+>| :----: | --: | --: | --: | --: | --: | --: |
+>| $h(x)$ |   5 |   3 |   1 |   2 |   4 |   6 |
+>
+>Set $A=\{4,2,6,1\}$
+>
+>Then $h(A) = \{h(4),h(2),h(6),h(1)\} = \{2,3,6,5\}$
+>
+>$\hat{h}(A) = \min h(A) = \min \{2,3,6,5\} = 2$
+>>[!note] 
+>>A set ($|A|\le n$) is squeezed into just one integer $\hat{h}(A)$ of $\log n$ bits ( *exponential compression* )
+
+We can use $\hat{h}$ to *estimate* the *Jaccard* similarity of two sets $A$ and $B$ by remembering that $\hat{h}(A)$ is a *Random Variable* since $h$ is a *uniform permutation* 
+
+It can be proven that $\hat{h}(A) = \hat{h}(B)$ with *probability* $J(A,B)$ , this will allow us to derive an *unbiased estimator* for $J(A,B)$ 
+
+### Proof
+
+Define the following *Bernoullian indicator* : 
+$$
+\hat{J}(A,B) = \begin{cases}
+1 & \text{if } \hat{h}(A) = \hat{h}(B) \\
+0 & \text{otherwise} 
+\end{cases}
 $$
