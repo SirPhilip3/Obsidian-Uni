@@ -244,7 +244,6 @@ Than the full *postings list* will be stored as the *byte concatenation* of all 
 
 >[!note] 
 >*VB codes* are *uniquely prefix-decodable* , we don't need to look ahead or before to decode a number
-
 ## Unary code
 
 Instead of rapresenting the gaps in *binary* we can rapresent $G=n$ with $n$ $1$'s with a final $0$
