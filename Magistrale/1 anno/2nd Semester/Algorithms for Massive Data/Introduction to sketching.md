@@ -227,3 +227,65 @@ This give us : $k=\frac{2\ln\left( \frac{2}{\delta} \right)}{\epsilon^2} = O\lef
 $$
 \mathbb{P}(|J^+(A,B) - J(A,B)| \ge \epsilon) \le \delta
 $$
+
+### Reducing the hash functions size
+
+Since the *hash* functions $h_{i}$ are uniform permutatios on $\lfloor n \rfloor$ 
+
+The *worst-space complexity* of each of those functions $h_{i}$ is :
+$$
+\log_{2}(\text{number of permutations of [n]}) = \log_{2} (n!) = O(n \log n)
+$$
+*bits*
+
+#### Min-Wise independent permutations
+
+When proving $E[\hat{J}(A,B)]=J(A,B)$ we *don't* need that $h$ is a *uniform permutation*. 
+
+The following property is sufficient:
+
+>[!important] Definition ( Min-wise independent hashing )
+>
+>+ Let $h: [1,n] \to [0,M)$ be a function from the family $\mathscr{H}$
+>+ For any subset $A \subseteq [1,n]$ and $i \in A$, let $smallest_{h}(A,i)=true$ if and only if $h(i)< h(j)$ for each $j \in A$ such that $j \neq i$
+>+ Then, $\mathscr{H}$ is said to be *min-wise independent* if, for a uniform $h \in \mathscr{H}$ and for any $A \subseteq [1,n]$ and $i \in A$ :
+>$$
+>\mathbb{P}(smallest_{h}(A,i)) = \frac{1}{|A|}
+>$$
+
+Or :
+$\mathscr{H}$ is *min-wise independent* if , for any subset $A$ of the domain, any element is *equally likely* to be the *minimum* through a uniform $h\in \mathscr{H}$ 
+
+##### Worst-case space complexity
+
+To find out the *space* complexity we study what the *cardinality* of $\mathscr{H}$ should be
+
+>[!example] 
+>Having $|A|=4$ and $|\mathscr{H}|=5$ , can $\mathscr{H}$ be a *min-wise* independent on $A$ ?
+>
+>An example of mapping of $h$ is the following :
+>
+>![[min-wise_indeèendent.excalidraw.png]]
+>%%[[min-wise_indeèendent.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>
+>In this case element $6$ has probability $\frac{2}{5}$ instead the other have probability $\frac{1}{5}$ making this $h$ not *min-wise* independent
+>
+>We notice that since we have that $|\mathscr{H}|$ is larger than $|A|$ and is not a multiple of $|A|$ , then there are no possible configuration to make $h$ *min-wise independent*
+>
+
+In general $|\mathscr{H}|$ **must be a multiple of** $|A|$ , but this should work for every $A \subseteq [n]$. Hence :
+
+>[!important] 
+>$|\mathscr{H}|$ **must be a multiple** of $x$ , for every $x \in [n]$
+>
+>In other words, $|\mathscr{H}|$ must be $\ge$ than the *least common multiple* of $1,2,3,\dots,n$
+>
+>For the prime number theorem we have $|\mathscr{H}| \ge lcm(1,2,3,\dots,n)=e^{n-o(n)}$
+>
+>Or $\log_{2}|\mathscr{H}| = \Omega(n)$
+
+So we can say that *any min-wise independent* hash **requires** $\Omega(n)$ *bits* to be stored
+
+>[!warning] 
+>This still needs lots of space ( for IPv4 we have $n=2^{32}$ )
+
