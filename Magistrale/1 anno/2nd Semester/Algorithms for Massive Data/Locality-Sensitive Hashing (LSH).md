@@ -53,5 +53,93 @@ We just store what happends in *two points* on the curve close to the step
 
 1. Start from a *simple function* ( straight line )
 2. Apply *two transformations* to the function, making it resemble a step function
-	1. Achieved by *combining* several *distance-sensitive hash* functions , one is the [[Introduction to sketching#Jaccard Similarity and MinHash|Jaccard distance]] between sets ( $MinHash(\hat{h})$ is the hash function with *collision probability* related to the *Jaccard distance* )  
+	1. Achieved by *combining* several *distance-sensitive hash* functions
+
+One is the [[Introduction to sketching#Jaccard Similarity and MinHash|Jaccard distance]] between sets ( $MinHash(\hat{h})$ is the hash function with *collision probability* related to the *Jaccard distance* )  
+
+![[Pasted image 20260717145924.png]]
+
+This is a **bad** *approximation* of a step function 
+
+To compose *hash* functions we need to define the **AND** and **OR** operation between them
+### AND construction
+
+>[!important] Definition
+Let $\mathscr{H}$ be a $(d_{1},d_{2},p_{1},p_{2})$-sensitive family.
+>
+>Choose uniformly $r$ independent hash functions $h_{1},\dots,h_{r} \in \mathscr{H}$ and define :
+>$$
+>h^{AND}(x) = (h_{1}(x),\dots,h_{r}(x))
+>$$
+
+If $\mathbb{P}(h(x)=h(y)) = p$ for a uniform $h \in \mathscr{H}$, then :
+$$
+\mathbb{P}(h^{AND}(x)=h^{AND}(y)) = p^r
+$$
+Hence $h^{AND}$ is a $(d_{1},d_{2},p_{1}^r,p_{2}^r)$-sensitive hash function
+
+In case of **Jaccard distance** we have :
+$$
+\mathbb{P}(\hat{h}(A)=\hat{h}(B)) = 1-d_{J}(A,B)
+$$
+$$
+\mathbb{P}(\hat{h}^{AND}(A)=\hat{h}^{AND}(B)) = \Big(1-d_{J}(A,B)\Big)^r
+$$
+The associated *plot* is the following :
+
+```functionplot
+---
+title: Collision Probability vs Distance
+xLabel: distance
+yLabel: collision probability
+bounds: [-0.05,1,-0.05,1]
+disableZoom: true
+grid: true
+---
+f(y)=(1-x)^1
+g(y)=(1-x)^2
+z(y)=(1-x)^4
+h(y)=(1-x)^8
+```
+>[!warning] 
+>This is not a *step function* yet
+
+### OR construction
+
+>[!important] OR definition
+>Let $\mathscr{H}$ be a $(d_{1},d_{2},p_{1},p_{2})$-sensitive family.
+>
+>Choose uniformly $b$ independent hash functions $h_{1},\dots,h_{r} \in \mathscr{H}$ 
+>
+>We say that $x$ and $y$ collide, denoted with $h^{OR}(x) \equiv h^{OR}(y)$, if and only if $h_{i}(x)=h_{i}(y)$ for *at least one* $i \in [b]$
+
+>[!example] 
+>
+>Suppose we have $m$ data points $x_{1},\dots, x_{m}$ , we want to quickly find all the $x_{i}$ such that $h^{OR}(x_{i})\equiv h^{OR}(y)$ , for a new incoming point $y$
+>
+>We build $b$ *hash tables* $H_{1},\dots,H_{b}$ and insert $x$ in bucket $H_{i}[h_{i}(x)]$ for each $i \in [b]$.
+>
+>Two elements *collide* if and only if they and up in the *same bucket* in *at least one hash table* 
+
+If $\mathbb{P}(h(x)=h(y)) = p$ for a uniform $h \in \mathscr{H}$, then :
+$$
+\mathbb{P}(h^{OR}(x)=h^{OR}(y)) = 1-(1-p)^b
+$$
+
+Hence $h^{OR}$ is a $(d_{1},d_{2},1-(1-p_{1})^b,1-(1-p_{2})^b)$-sensitive hash function
+#### Proof
+
+For a fixed $i$ we have that $\mathbb{P}(h_{i}(x)\neq h_{i}(y)) = 1 -p$ , subsequently the probability that *all hashes* **do not collide** is :
+$$
+\mathbb{P}(\land_{i=1}^b h_{i}(x)\neq h_{i}(y)) = (1-p)^b
+$$
+The probability that *at least* **one hash collides** is :
+$$
+\begin{align}
+\mathbb{P}(\lor_{i=1}^b h_{i}(x)=h_{i}(y)) & = \\
+& = 1- \mathbb{P}(\land_{i=1}^b h_{i}(x) \neq h_{i}(y)) \\
+& = 1 - (1-p)^b
+\end{align}
+$$
+### AND+OR construction
 
