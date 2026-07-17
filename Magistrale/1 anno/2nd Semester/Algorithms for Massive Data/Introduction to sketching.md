@@ -289,3 +289,10 @@ So we can say that *any min-wise independent* hash **requires** $\Omega(n)$ *bit
 >[!warning] 
 >This still needs lots of space ( for IPv4 we have $n=2^{32}$ )
 
+#### Approximate min-wise independent hashin
+
+Other research has showed that **approximate** *min-wise independent hashing* is achievable in $O\left( \log\left( \frac{1}{\epsilon} \right) \right)$ words of space :
+$$
+\mathbb{P}(smallest_{h}(A,i)) = \frac{1\pm \epsilon}{|A|} \text{ for any } A \subseteq [n] \text{ and any desired } \epsilon > 0
+$$
+This is sufficent to compute an $\epsilon$-approximation of $J(A,B)$ using a *small space* that includes also the hash functions
