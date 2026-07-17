@@ -143,3 +143,57 @@ $$
 $$
 ### AND+OR construction
 
+Combining the two constructions : 
+$$
+h^{AND+OR}(x)=h^{OR}(h^{AND}(x))
+$$
+If $\mathbb{P}(h(x)=h(y))=p$ for a uniform $h \in \mathscr{H}$ , then :
+$$
+\mathbb{P}(h^{AND+OR}(x) \equiv h^{AND+OR}(y)) = 1-(1-p^r)^b
+$$
+
+Hence $h^{AND+OR}$ is a $(d_{1},d_{2},1-(1-p_{1}^r)^b,1-(1-p_{2}^r)^b)$-sensitive hash function
+
+In case of **Jaccard Distance** we have :
+$$
+\mathbb{P}(\hat{h}(A)=\hat{h}(B)) = 1-d_{J}(A,B)
+$$
+$$
+\mathbb{P}(\hat{h}^{AND+OR}(A)\equiv\hat{h}^{AND+OR}(B)) =1- \bigg(1-\Big(1-d_{J}(A,B)\Big)^r\bigg)^b
+$$
+>[!example] 
+>![[Pasted image 20260717172218.png]]
+>
+>The $r$ parameter determines the *position of the step* ( the threshold $t$ )
+>
+>![[Pasted image 20260717172333.png]]
+>
+>The $b$ parameter determines the *steepness* of the step , to be as close as possible to the perfect step function this needs to be as large as possible 
+>
+>Also it slightly effect the position of the step but this can be corrected by first choosing $b$ and then $r$
+
+## Parameters $b$ and $r$ for Jaccard
+
+>[!warning] 
+>$b$ should be as large as possible but it effects the *space* of the final data structure since we will need to keep $b$ hash tables
+
+1. *Choose* a large $b$, keeping in mind its space cost
+2. The threshold is in the middle of the step ( $x=t$ ) , so $y=\frac{1}{2}$ ( this is true since the curve is symmetric around the step )
+3. *Invert* $1-(1-(1-t)^r)^b = \frac{1}{2}$ as a function of $r$ :
+$$
+r = \bigg\lfloor \frac{\ln(1-2^{-1/b})}{\ln(1-t)} \bigg\rfloor
+$$
+>[!example] 
+>#todo
+### Optimizations
+
+To implement *nearest neighbours search* we would need to insert in each hash table $H_{i}$ the values $h^{AND}(x_{i})=(\hat{h}_{1}(x_{i}), \dots,\hat{h}_{r}(x_{i}))$ 
+
+Then for $b$ hash tables we would use $O(b \cdot r \cdot m)$ words of space
+
+Instead we can insert $h'(h^{AND}(x_{i}))$ for some *collision-free hash* $h'$ 
+
+Then the hash tables will just use $O(b \cdot m)$ *space*
+
+Also we can throw away the original data if we dont need to access it, keeping just the *MinHashes* 
+

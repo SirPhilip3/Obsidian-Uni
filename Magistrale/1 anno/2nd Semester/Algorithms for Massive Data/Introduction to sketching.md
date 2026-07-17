@@ -84,6 +84,8 @@ We will devise sketches that possess property $4$ ( *similarity preserving* ) un
 >+ Symmetry : $d(x,y)=d(y,x)$
 >+ Triangle inequality : $d(x,z) \le d(x,y) + d(y,z)$
 
+^c22ae4
+
 ## Jaccard Similarity and MinHash
 
 **MinHash** is a sketching technique used to estimate the *Jaccard similarity* of sets.
@@ -108,11 +110,12 @@ We will devise sketches that possess property $4$ ( *similarity preserving* ) un
 
 Let $h: [n] \to [n]$ be a *uniform permutation* of $[n]$, and let $A \subseteq [n]$.
 
-The **MinHash** *function* $\hat{h}(A)$ of $A$ defined as :
-$$
-\hat{h}(A) = \min h(A) = \min \{h(x) : x \in A\}
-$$
-In other words, $\hat{h}(A)$ is the *minimum hash value* of elements in $A$ 
+>[!important] MinHash Definition
+>The **MinHash** *function* $\hat{h}(A)$ of $A$ defined as :
+>$$
+>\hat{h}(A) = \min h(A) = \min \{h(x) : x \in A\}
+>$$
+>In other words, $\hat{h}(A)$ is the *minimum hash value* of elements in $A$ 
 
 >[!example] 
 >Let $n=6$ and $h$ be the following permutation :
