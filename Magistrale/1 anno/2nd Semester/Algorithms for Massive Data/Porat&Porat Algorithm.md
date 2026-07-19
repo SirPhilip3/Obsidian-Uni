@@ -105,3 +105,62 @@ Also the set $W_{\log n} = W_{4}$ will tell us if the *full pattern* occurs as a
 
 ## Updates
 
+How do we update the *data structure* when the next text character $x_{i+1}$ arrives 
+
+>[!note] 
+>The updates should be done without accessing previous text characters
+
+Suppose next character arrives ( $x_{i+1}=x_{17}=b$ )
+
+1. Right-shift all the windows of the sets $W_{i}$ 
+2. Set $W_{i}$ behave in the following ways :
+	1. The *occurrences* stay inside the windows. Then we *won't delete* anything from the $W_{i}$
+	2. If the new text character is an occurrence of $y_{1}$ : insert $17$ in $W_0$
+	3. Check if first-cell occurences can be *promoted* to the next level ( in this case no )
+
+![[P&P_update1.excalidraw.png]]
+%%[[P&P_update1.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+New character arrives ( $x_{18}=a$ )
+
+1. Right-shift all the windows of the sets $W_{i}$ 
+2. Set $W_{i}$ behave in the following ways :
+	1. Two *occurrences* **exit** the windows. **Delete** them from their relative sets $W_{i}$
+	2. Since $a$ is not an occurence of $y_{1}$ we do not insert it into $W_{0}$
+	3. Check if first-cell occurences can be *promoted* to the next level 
+		1. $17$ is also an *occurrence* of $ba$ so it is promoted into $W_{1}$
+		2. $11$ is *not* an occurrence of $baabbaab$ ( $y_{4}$ ) so is *not* promoted
+		3. $3$ is an *occurrence* of the **full pattern** 
+
+![[P&P_pass2.excalidraw.png]]
+%%[[P&P_pass2.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+```pseudo
+	\begin{algorithm}
+	\caption{new_stream_character($x_j$)}
+	\begin{algorithmic}
+	\If{ $x_j == y_1$ }
+		\State $W_0 \leftarrow W_0 \cup \{j\}$ 
+    \EndIf
+    \ForAll{level $i=0,\dots, e-1$}
+	    \State $W_i \leftarrow W_i - \{j-2^{i+1}\}$
+	    \Comment{delete occurrences exiting the window}
+	    \If{$j-2^{i+1}+1 \in W_i$}
+		    \If{$\kappa_{q,z}(y[1,2^{i+1}]) == \kappa_{q,z}(x[j-2^{i+1}+1,j])$}
+			    \If{$i== e-1$}
+					\Return $j-2^e+1$
+					\Comment{pattern occurrence found}
+	            \Else
+		            \State $W_{i+1}\leftarrow W_{i+1} \cup \{j-2^{i+1}+1\}$
+		            \Comment{promote position to next level}
+	            \EndIf
+            \EndIf
+        \EndIf
+    \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
+### Rapresenting $W_{i}$ in constant space
+
+
+### Compute the hash of the text window
