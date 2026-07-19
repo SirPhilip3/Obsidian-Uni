@@ -75,25 +75,33 @@ This will give us :
 + $O(\log n)$ *update* time
 + *Correctness* with *high* *probability*
 
->[!example] 
->
->Consider the following pattern of lenght $n=16$ 
->
->We compute the *hashes* of its $\log n +1$ *prefixes* of length $2^j$
->
->![[P&P_init.excalidraw.png]]
->%%[[P&P_init.excalidraw.md|🖋 Edit in Excalidraw]]%%
->
->Then the *text* arrives 
->
->We also keep $\log n$ *sets* : $W_{0}, \dots , W_{\log n -1}$
->
->Each set $W_{i}$ stores the occurences of the *pattern* *prefix* *of lenght* $2^i$ in the last $2^{i+1}$ text's characters 
->
->![[P&P_state.excalidraw.png]]
->%%[[P&P_state.excalidraw.md|🖋 Edit in Excalidraw]]%%
->
->>[!note] 
->>$W_{0}$ has the starting postions for the pattern identifying $b$, $W_{1}$ has the starting postions for the pattern identifying $ba$ and so on
->
+---
+
+## Data Structures
+
+Consider the following pattern of lenght $n=16$ 
+
+We compute the *hashes* of its $\log n +1$ *prefixes* of length $2^j$
+
+![[P&P_init.excalidraw.png]]
+%%[[P&P_init.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+Then the *text* arrives 
+
+We also keep $\log n$ *sets* : $W_{0}, \dots , W_{\log n -1}$
+
+Each set $W_{i}$ stores the occurences of the *pattern* *prefix* *of lenght* $2^i$ in the last $2^{i+1}$ text's characters 
+
+![[P&P_state.excalidraw.png]]
+%%[[P&P_state.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!note] 
+>$W_{0}$ has the starting postions for the pattern identifying $b$, $W_{1}$ has the starting postions for the pattern identifying $ba$ and so on
+
+>[!warning] 
+>Each $W_{i}$ could contain up to $2^i+1$ *integers* , this can be shown to be stored in $O(1)$ space since they are periodic 
+
+Also the set $W_{\log n} = W_{4}$ will tell us if the *full pattern* occurs as a *suffix*
+
+## Updates
 
