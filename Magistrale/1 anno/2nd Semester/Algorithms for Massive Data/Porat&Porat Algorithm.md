@@ -162,5 +162,46 @@ New character arrives ( $x_{18}=a$ )
 ```
 ### Rapresenting $W_{i}$ in constant space
 
+Each $W_{i}$ contains *occurrences* of a string $A$ of lenght $2^i$ inside another string $B$ of length $2^{i+1}$ 
 
+If there are $\ge 3$ occurrences of $A$ inside $B$ then $B$ must be *periodic* and so the numbers inside $W_{i}$ are *regularly-spaced*
+
+>[!example] 
+>$i=2$, hence $|A|=2^2=4$ and $|B|=2^{2+1}=8$
+>
+>![[P&P_Wregul.excalidraw.png]]
+%%[[P&P_Wregul.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!important] 
+>There is no way you can have occurences that are not regularly spaced
+
+Then we can rapresent the following in *constant space* :
+$$
+W_{i}=\{r_{1},r_{2},\dots,r_{t}\} = \{r_{1},r_{1}+p,r_{1}+2p,\dots\}
+$$
+by storing only $(r_{1},t,p)$ 
+
+Now we can also **update** this in *constant time* 
+
+>[!example] 
+>Let $(r_{1},t,p)$ be the representation of $\{r_{1},r_{2},\dots,r_{t}\}$. 
+>
+>The representation of $\{r_{2},\dots,r_{t}\}$ is :
+>$$
+>(r_{1}+p,t-1,p)
+>$$
+>
+>The representation of $\{r_{2},\dots,r_{t},r_{t+1}\}$ is :
+>$$
+>(r_{i},t+1,p)
+>$$
+
+So in total the sets $W_{i}$ use $O(\log n)$ words of *space* and support updates in *constant time*
 ### Compute the hash of the text window
+
+In order to do the **promotion** we need the *hash* of the corresponding text window in order to compare it to the *pattern*
+
+We maintain the following $O(\log n)$ text hashes :
+1. The *hash* of the *whole stream* , this is easy to update when new characters arrive
+2. For each $|W_{i}| \ge 2$, the *hash* of the text between *first occurence* ( included ) and *second occurence* ( excluded )
+3. For each $|W_{i}| > 0$, the *hash* from the *beginning* of the *stream* *to* the *first occurence* ( excluded )
