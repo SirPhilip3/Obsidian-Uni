@@ -205,3 +205,30 @@ We maintain the following $O(\log n)$ text hashes :
 1. The *hash* of the *whole stream* , this is easy to update when new characters arrive
 2. For each $|W_{i}| \ge 2$, the *hash* of the text between *first occurence* ( included ) and *second occurence* ( excluded )
 3. For each $|W_{i}| > 0$, the *hash* from the *beginning* of the *stream* *to* the *first occurence* ( excluded )
+
+>[!example]
+>![[hashes_P&P.excalidraw.png]]
+%%[[hashes_P&P.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!note] 
+>The $2$ hashes are needed only to update the $3$ hashes when the leftmost occurrence disappears
+
+>[!important] 
+>We need the *hash* of the text window only when there is an occurrence in the *leftmost position* of the window
+
+Then given :
++ $A=\kappa(x_{1},\dots,x_{18})$ : *hash* of the full *stream*
++ $C=\kappa(x_{1},\dots,x_{10})$ : *hash* of the remainder *from* the *start* of the stream *to* *leftmost occurrence* 
+
+We get the hash of the current window as :
+$$
+\kappa(x_{11},\dots,x_{18}) = \kappa(x_{1},\dots,x_{18}) - \kappa(x_{1},\dots,x_{10}) \cdot z^8 \mod{q}
+$$
+>[!example]
+>![[P&P_finalcal.excalidraw.png]]
+%%[[P&P_finalcal.excalidraw.md|🖋 Edit in Excalidraw]]%% 
+
+All the hashes can be updates in $O(\log n)$ and allow us to compute the hash of the text window when needed in $O(1)$
+# Conclusion
+
+#todo 
