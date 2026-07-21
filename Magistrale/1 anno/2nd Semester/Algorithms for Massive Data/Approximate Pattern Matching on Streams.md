@@ -130,3 +130,48 @@ While the streamed text $x$ arrives :
 + Run [[Porat&Porat Algorithm|Porat&Porat]] on each sub-stream and each $y_{i,d}$
 
 >[!example] 
+>+ $x=abracadabra$
+>+ $y=abba$
+>+ $n=4$
+>+ $P=\{2,3\}$
+>
+>![[Screenshot 2026-07-21 162000.png]]
+>
+>In this case even if we have $13$ parallel instances of [[Porat&Porat Algorithm|P&P]] we check the results of only $5$ instances , the ones corresponding to the relative partition that we want to check
+>
+>When a new character arrives the patitioning remains the same, every block is switched to the next "index" ( the next coloring )
+>
+>![[Screenshot 2026-07-21 163607.png]]
+
+>[!note] 
+>Only $\log n$ really change so we need to recheck their hashes
+
+Since [[Porat&Porat Algorithm|Porat&Porat]] has $O(\log n)$ *delay* here we will have $O((\log n)^2)$ 
+
+In terms of *space* we have :
++ $O(\log n)$ stream copies 
++ $O(\log n \log \log n)$ *sub-stream* , since we have to store each prime number partition
++ For each sub-stream: at most $O(\log n \log \log n)$ [[Porat&Porat Algorithm|P&P]] instances , each of those takes $O(\log n)$ *space*
+
+So in *total* :
+$$
+O((\log n)^4(\log \log n)^2)
+$$
+---
+>[!important] Theorem
+>Given a stream :
+>$$
+>y_{1},\dots,y_{n}\ , \ x_{1},\dots,x_{m}
+>$$
+>
+>after receiving every $x_{j}$ ( $j \geq n$ ) we can report which of the following occurs :
+>+ $HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j})=0$
+>+ $HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j})=1$
+>+ $HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j})>1$
+>
+>With a streaming algorithm running in $O((\log n)^4(\log \log n)^2)$ words of *space* and $O((\log n)^2)$ *delay* 
+>
+>The algorithm returns the correct answer *with high probability*
+
+## Generalization to $k \ge 1$
+
