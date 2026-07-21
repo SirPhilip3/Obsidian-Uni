@@ -68,4 +68,65 @@ $$
 >>
 >>This happends because $d=2$ divides the mismatches by distances so all mismatches that are pair will go in the same partition
 
-#todo 
++ If $HD(A,B)=0$ then for every $i \in [d]$ : $\kappa(A_{i,d})=\kappa(B_{i,d})$ 
++ If $HD(A,B)=1$ then there exists *only one* $i \in [d]$ such that $\kappa(A_{i,d}) \neq \kappa(B_{i,d})$ 
++ If $HD(A,B)>1$ and $d$ does *not divide* the *distance* $|j-i|$ between at least two mismatches $i,j$ then there *exist* *at* *least* *two* $i \in [d]$ such that $\kappa(A_{i,d})\neq \kappa(B_{i,d})$ 
+
+>[!error] 
+>We can't know the distances between mismatches since $A$ and $B$ must be built *independently*
+
+We know that the distance $|j-i|$ between two mismatches is a number in $[n]$ ( size of the two patterns )
+
+We also know that the number of *distinct **prime** divisors* that $|j-i|$ can have are no more than $\log_{2} n$ 
+
+We then *try* all $d \in P = \{2,3,5,7,11,\dots,(\log_{2} n)-\text{th prime number}\}$ 
+
+Then for sure *for every pair* $(i,j)$ of mismatches *at least one* $d \in P$ will *not divide* $|j-i|$ 
+
+```pseudo
+	\begin{algorithm}
+	\caption{}
+	\begin{algorithmic}
+	\Input The sketches of $A$ and $B$
+	\Output $HD(A,B)$ if $HD(A,B) \leq 1$, otherwise return "$HD(A,B)>1$"
+	\ForAll{$d \in P$}
+		\State compute number $c_d$ of integers $i \in [d]$ such that $\kappa(A_{i,d}) \neq \kappa(B_{i,d})$
+    \EndFor
+    \State $c \leftarrow \max\{c_d : d \in P \}$
+    \If{$c \leq 1$}
+	    \Return $c$
+    \Else
+	    \Return "$HD(A,B)>1$"
+    \EndIf
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+The sketch will be : 
+$$
+sketch(A)=\big( \kappa(A_{1,d}),\dots,\kappa(A_{d,d}) \big)_{d \in P}
+$$
+The size of the sketch is :
+$$
+O((\log n)^2\log \log n) \text{ words}
+$$
+>[!note]-
+>$$
+>\text{Total Size} = \underbrace{O(\log n)}_{\text{Levels } d \in P} \times \underbrace{O(\log n)}_{\text{Components per level}} \times \underbrace{O(\log \log n)}_{\text{Words per sketch } \kappa} = \mathbf{O((\log n)^2 \log \log n) \text{ words}}
+>$$
+
+The with $k=1$ we have :
++ If $HD(A,B)=0$ then for *every* $d \in P$ and *every* $i \in [d]$ : $\kappa(A_{i,d})=\kappa(B_{i,d})$ 
++ If $HD(A,B)=1$ then for *every* $d \in P$ there exists *only one* $i \in [d]$ such that $\kappa(A_{i,d}) \neq \kappa(B_{i,d})$ 
++ If $HD(A,B)>1$ then there *exists* $d\in P$ and $i \neq j \in [d]$ such that $\kappa(A_{i,d})\neq \kappa(B_{i,d})$ and $\kappa(A_{j,d}) \neq \kappa(B_{j,d})$ 
+
+All of the above cases can be *distinguished with high probability* using our sketch
+
+## Streaming Algorithm
+
+While the streamed text $x$ arrives :
++ *Copy* every stream character $|P|= \log n$ *times* , creating $\log n$ parallel streams of $x^1,\dots,x^{|P|}$
++ Stream $x^d$ is *divided* into $d$ sub-streams : $x_{i,d}^d$ for each $i \in [d]$
++ Run [[Porat&Porat Algorithm|Porat&Porat]] on each sub-stream and each $y_{i,d}$
+
+>[!example] 
