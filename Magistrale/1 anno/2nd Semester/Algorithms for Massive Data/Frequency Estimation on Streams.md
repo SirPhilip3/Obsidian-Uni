@@ -103,6 +103,62 @@ $$
 >The estimate will be *bad* if $f_{y}$ is very *small* compared to $m$
 
 >[!example] 
->#todo
+>
+>The sample size for a stream of lenght $m=10^{12}$ if we want $\epsilon = 0.01$ and $\delta = 0.0001$ is :
+>$$
+>q = \lceil 2 \cdot 0.01^{-2}\ln(2/0.0001) \rceil \approx 2 \cdot 10^5
+>$$
+>
+>The addittive error is $\epsilon \cdot m = 10^{10}$ which is *huge*
+>
+>The sketch size is proportional to $\epsilon^{-2}$ so we must choose $\epsilon \ge 1/\sqrt{m}$ otherwise $\epsilon^{-2}>m$ and the sketch is as large as the stream
+>
+>This implies that the *addittive error* *cannot* be *smaller* than $\epsilon \cdot m \ge \sqrt{ m }$ 
 
 ## Count-Min sketch
+
+**Count-Min** has the following characteristics :
++ $O(\epsilon^{-1} \log(1/\delta))$ *space*
++ *One-sided error* : always true that $\tilde{f}_{y} \ge f_{y}$
+
+*Algorithm* :
++ Initialize a $t \times s$ matrix of integers *CM*
++ Each row is associated with a i.i.d. [[Hashing#Universal Hashing|Universal hash]] function
++ All entries are initialized to $0$
+
+>[!example] 
+>
+>![[Init_countmin.excalidraw.png]]
+>%%[[Init_countmin.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+### Insert
+
+```pseudo
+	\begin{algorithm}
+	\caption{Insert(x):}
+	\begin{algorithmic}
+	\ForAll{$i=1,\dots,t$}
+		\State $CM[i,h_i(x)]\leftarrow CM[i,h_i(x)]+1$
+    \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
+>[!note] 
+>This is a [[Counting Bloom Filters (CBF)|Counting Bloom Filter]] without the *overflow* check
+
+>[!example] 
+>Processing the stream : $1,3,4,3,3,1,5,1,5,8,8,8,1,2$ we get :
+>
+>![[Full_CM.excalidraw.png]]
+%%[[Full_CM.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+### Frequency estimation
+
+```pseudo
+	\begin{algorithm}
+	\caption{estimate_frequency(x):}
+	\begin{algorithmic}
+	\Return $\min\{CM[i,h_i(x)]: i \in [t]\}$
+	\end{algorithmic}
+	\end{algorithm}
+```
