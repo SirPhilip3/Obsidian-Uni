@@ -175,3 +175,57 @@ $$
 
 ## Generalization to $k \ge 1$
 
+We want to solve the following *problem* :
+
+Given the stream : $y_{1},\dots,y_{n}\ ,\ x_{1},\dots,x_{m}$ 
+After receiving every $x_{j}$ ( $j \ge n$ ), *report* $HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j})$ if its values is $\le k$ , *otherwise* report "$HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j}) > k$" 
+
+### Genealizing the sketch
+
+$d$ must *not divide* the *distance* between *any pair* of *mismatches* so that every mismatch goes in a different subsequence 
+
+In general if we have $k$ mismatches than the pairs of mismatches will be $t\leq k^2$ 
+
+Let $z_{1},\dots,z_{t}$ be the *distances* *between* **pairs** of mismatches ( $z_{i} \le n$ ).
+
+>[!important] 
+A *prime* $d$ does *not divide any* of $z_{1},\dots,z_{t}$ *if* and only if it *does not divide* their *product* :
+>$$
+>\prod_{i=1}^t z_{i} \le n^{k^2}
+>$$
+
+The number of *prime divisors* that it can have is : 
+$$
+\log_{2} \prod_{i=1}^t z_{i} \le k^2 \log n
+$$
+We can than use the same streaming algorithm as before except that we try all possible :
+$$
+d \in P = \{2,3,5,7,11,\dots,(k^2 \log n)-\text{th prime number}\} \cap [n]
+$$
+>[!note] 
+>This increases the complexity but remains *polynomial* in $k \log n$
+
+---
+>[!important] Theorem
+>Given a parameter $k$ and a stream :
+>$$
+>y_{1},\dots,y_{n}\ , \ x_{1},\dots,x_{m}
+>$$
+>
+>after receiving every $x_{j}$ ( for all $j \geq n$ ) we can either :
+>+ compute $HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j})$ if it is $\leq k$ or
+>+ report $HD(y_{1},\dots,y_{n},x_{j-n+1},\dots,x_{j})>k$
+>
+>With a streaming algorithm running in $\tilde{O}(k^6)$ words of *space* and $\tilde{O}(k^2)$ *delay* 
+>
+>The algorithm returns the correct answer *with high probability
+>>[!note]-
+>>The notation $\tilde{O}$ hides $poly\log(n)$ factors 
+
+# Improvments
+
+The **optimal** solution to the problem is $\tilde{O}(k)$ *space* and $\tilde{O}(\sqrt{k})$ *time* up to $poly\log(n)$ factors
+
+# Edit Distance
+
+#todo 206
