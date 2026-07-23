@@ -14,7 +14,7 @@ publish: true
 >
 >Or the **frequency** ( number of occurrences ) of $y$ in the stream 
 
-## Sampling
+# Sampling
 
 We can *randomly sample* a subset of the stream and we return the frequency in the sample **scaled** opportunely
 
@@ -42,7 +42,7 @@ $$
 >$f_{4}=4$ 
 >$\tilde{f}_{4}=\frac{14}{5}\cdot {1} = 2.8$
 
-### Precision
+## Precision
 
 We denote as $(x=y)$ the *binary indicator* taking value $1$ if and only if $x=y$ 
 
@@ -115,7 +115,7 @@ $$
 >
 >This implies that the *addittive error* *cannot* be *smaller* than $\epsilon \cdot m \ge \sqrt{ m }$ 
 
-## Count-Min sketch
+# Count-Min sketch
 
 **Count-Min** has the following characteristics :
 + $O(\epsilon^{-1} \log(1/\delta))$ *space*
@@ -252,4 +252,60 @@ This *optimization* improves the error rate
 
 When inserting $x$, *increment* *only* the *smallest* *cell* $CM[i][h_{i}(x)]$ 
 
->[!warning] This
+>[!warning] 
+>This introduces dependencies between *rows* , making it hard to formalize
+
+## Count-Min sketch for range queries 
+
+#todo end of pdf exercise 2
+
+# Misra-Gries sketch
+
+We *dynamically* keep a **sample** ( *MG* ) of the stream's elements 
+
+Where *MG* is a *hash table* associating an estimate $MG[x]=\tilde{f}_{x}$ to every $x \in MG$
+**Invariant** : $|MG| < s$
+
+>[!note] 
+>Initially $MG$ will be empty, also if $x \not\in MG$ then we will consider $\tilde{f}_{x}=0$
+
+### Insert
+
+```pseudo
+	\begin{algorithm}
+	\caption{insert(x)}
+	\begin{algorithmic}
+	\If{$(x \in MS)$}
+    \Comment{increment $\tilde{f}_x$ by $1$}
+		\State $MS[x] \leftarrow MS[x] + 1$
+    \Else
+	    \State $MS \leftarrow MS \cup \{(x,1)\}$
+    \EndIf
+    \If{$|MS|=s$}
+    \Comment{If the sample is too larger decrement all $\tilde{f}_y$ by $1$}
+	    \ForAll{$y \in MS$}
+		    \State $MS[y]\leftarrow MS[y]-1$
+        \EndFor
+    \EndIf
+    \ForAll{$y \in MS$ such that $MS[y]=0$}
+	    \State $MS \leftarrow MS \backslash \{(y,0)\} $
+    \EndFor
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+>[!example] 
+>
+>![[MG_example.excalidraw.png]]
+>%%[[MG_example.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>
+>estimate_frequency(17) = 2
+>estimate_frequency(5) = 1
+>estimate_frequency(81) = 0
+>estimate_frequency(42) = 0
+
+Since we *increment* $CM[x]$ only when we see an occurrence of $x$ then for sure :
+$$
+\tilde{f}_{y} \le f_{y}
+$$
+Also since we *decrement* $s$ values $\tilde{f}_{y}$ each time $|MS|=s$, also 
