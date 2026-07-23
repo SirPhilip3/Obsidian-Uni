@@ -162,3 +162,94 @@ $$
 	\end{algorithmic}
 	\end{algorithm}
 ```
+Returning the minimum is a good estimate since if :
++ no element $y \neq x$ is such that $h_{1}(y)=h_{1}(x)$ then $f_{x}=CM[h_{1}(x)]$ ( *no collisions* )
++ other elements *collide* with $x$ then $CM[h_{1}(x)] > f_{x}$ 
+
+Then if we take the *minimum* between the hash function we take the fow with lowest collision and then closest estimate to $f_{x}$
+
+>[!note] 
+>This implies a *one-sided* error since the estimate can only be $\ge f_{x}$
+
+---
+Let's calculate $E[CM[i,h_{i}(x)]]$ 
+
+>[!note] 
+>Let $h_{i}(x)=h_{i}(y)$ be the *bernullial random variable* indicating whether the two hashes collide
+
+Then :
+$$
+\begin{align}
+E[CM[i,h_{i}(x)]] & = E\left[ f_{x}+ \sum_{y\neq x} f_{y} \cdot (h_{i}(x)=h_{i}(y)) \right]  \\
+& = f_{x} + \sum_{y\neq x} f_{y} \cdot E[(h_{i}(x)=h_{i}(y))]
+\end{align}
+$$
+Now remembering that $h$ *universal* 
+$$
+\begin{align}
+& \le f_{x} + \sum_{y \neq x} f_{y} \cdot \frac{1}{s} \\
+& \le f_{x} + \frac{1}{s} \sum_{y \neq x} f_{y}  \\
+& \le f_{x} + \frac{m}{s}
+\end{align}
+$$
+>[!note] 
+>$s$ is the number of *columns* of $CM$ 
+>$m$ is the size of the stream 
+
+We than have that the *expected precision* is bounded in the following way :
+$$
+f_{x} \le E[CM[i,h_{i}(x)]] \le f_{x} + \frac{m}{s}
+$$
+How do we control $CM[i,h_{i}(x)]$ ? 
+
+We can notice that $E[CM[i,h_{i}(x)]-f_{x}]\le m/s$ and by applying [[Concentration Bounds#Markov ( linear )|Markov]] we get :
+$$
+\mathbb{P}(CM[i,h_{i}(x)]-f_{x} \ge \textcolor{orange}{2}\cdot m/s \le 1/\textcolor{orange}{2})
+$$
+So with *probability* $\geq 1/2$ :
+$$
+CM[i,h_{i}(x)]\le f_{x} + 2m/s
+$$
+>[!note] 
+>Thanks to [[Concentration Bounds#Markov ( linear )|Markov]] we turned a bound on the expectation to a bound on the random variable 
+
+>[!important] 
+>This happends *independently on each row* 
+>
+>In fact the probability that *all* $t$ *rows* exceed error $2 \cdot m/s$  is $\leq 2^{-t}$
+>
+>Then with probability $\geq 1-2^{-t}$ *at least one* row $i$ achieves $CM[i,h_{i}(x)]\le f_{x}+2m/s$
+
+---
+Finally since $\tilde{f}_{x} = \min\{CM[i,h_{i}(x)] : i \in [t]\}$ is the *row* with the *smallest error* , hence $\tilde{f}_{x}$ **exceeds error** $2 \cdot m/s$ with *probability* at most $2^{-t}$  
+
+Setting :
++ $2\cdot m/s = \epsilon \cdot m$
++ $2^{-t} = \delta$ 
+
+And solving for $s,t$ we get :
++ $s=2/\epsilon$
++ $t = \log(1/\delta)$
+
+We obtain the final result :
+>[!important] Theorem
+>Choose any desired *error rate* $\epsilon > 0$ and *failure probability* $\delta >0$ 
+>
+>The *CM* sketch uses $2\epsilon^{-1} \log(1/\delta)$ *words of space* and, for any $x \in [n]$ returns an *estimate* $\tilde{f}_{x}$ such that :
+>+ $\tilde{f}_{x} \ge f_{x}$
+>+ $\mathbb{P}(\tilde{f}_{x}\leq f_{x} + \epsilon \cdot m) \ge 1-\delta$
+>
+>Frequency estimation *queries* are supported in $O(\log(1/\delta))$ *time*
+>
+>The $CM$ sketch can be updates in $O(\log(1/\delta))$ *time*
+
+>[!important] 
+>If we allow $CM$ to use $O(m/k)$ *space* then the error is $k$ , for any $k \ge 1$
+
+## Count-Min sketch with conservative updates (CMS-CU)
+
+This *optimization* improves the error rate
+
+When inserting $x$, *increment* *only* the *smallest* *cell* $CM[i][h_{i}(x)]$ 
+
+>[!warning] This
