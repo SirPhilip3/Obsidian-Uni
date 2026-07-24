@@ -261,7 +261,69 @@ When inserting $x$, *increment* *only* the *smallest* *cell* $CM[i][h_{i}(x)]$
 
 ## Approximate counting
 
-#todo 98
+We can turn the *space* of **Count-Min sketch** to $O(\epsilon^{-1}\log(1/\delta))$ by using *approximate counting* , this allows us to use more columns with the same space budget giving us more precision
+
+**Idea** :
++ To store the integer $y=2^x$ ( normally $\log y$ bits ) we just store the *exponent* $x$ ( $\log \log y$ bits )
+
+>[!note] 
+>If $y$ is not a power of $2$ store $x=\lceil \log_{2} y \rceil$
+>
+>Then $2^x$ is a $2$-*approximation* of $y$ since $(1/2) \cdot 2^x \le y \le 2^x$
+
+If we use base $1+\epsilon$ instead of base $2$ :
++ The exponent $x=\lceil \log_{(1+\epsilon)}y \rceil$ takes just $\log \log y + O(\epsilon^{-1})$ *bits*
++ $(1+\epsilon)^x$ is a $(1+\epsilon)$-*approximation* of $y$
+
+>[!warning] 
+>This is not *dynamic*
+### Morris Algorithm
+
+```pseudo
+	\begin{algorithm}
+	\caption{Initialization()}
+	\begin{algorithmic}
+	\State $X \leftarrow 0$
+	\end{algorithmic}
+	\end{algorithm}
+	
+	\begin{algorithm}
+	\caption{Increment()}
+	\begin{algorithmic}
+	\State with probability $2^{-X}$ do: $X \leftarrow X + 1$
+	\end{algorithmic}
+	\end{algorithm}
+	
+	\begin{algorithm}
+	\caption{Estimate()}
+	\begin{algorithmic}
+	\Return $2^X-1$
+	\end{algorithmic}
+	\end{algorithm}
+```
+
+We *claim* that this will allow us to have :
++ $E[2^X-1]=m$ , where $m$ is the *total* number of calls to `increment()`
++ $Var[2^X-1]=O(E[2^X-1]^2)$
+
+#### Prooving $E[2^X-1]=m$
+
+Let $X_{i}$ be the register after $i$ calls to `increment()` , proof by *induction* on $i$ :
+
+**Base case** : 
+	$i=0$. 
+	Then $X_{0}=0$ and the estimate is $2^{X_{0}}-1=0=i$ , 
+
+**Induction hypothesis** :
+	$E[2^{X_{i}}-1]=i$ , or equivalently $E[2^{X_{i}}]=i+1$
+
+**Inductive step** :
+	We need to prove $E[2^{X_{i+1}}-1]=i+1$ , or equivalently $E[2^{X_{i+1}}]=i+2$
+
+$$
+E[2^{X_{i+1}}] = \sum_{j=0}^\infty
+$$
+
 # Misra-Gries sketch
 
 We *dynamically* keep a **sample** ( *MG* ) of the stream's elements 
