@@ -259,6 +259,9 @@ When inserting $x$, *increment* *only* the *smallest* *cell* $CM[i][h_{i}(x)]$
 
 #todo end of pdf exercise 2
 
+## Approximate counting
+
+#todo 98
 # Misra-Gries sketch
 
 We *dynamically* keep a **sample** ( *MG* ) of the stream's elements 
@@ -299,13 +302,48 @@ Where *MG* is a *hash table* associating an estimate $MG[x]=\tilde{f}_{x}$ to ev
 >![[MG_example.excalidraw.png]]
 >%%[[MG_example.excalidraw.md|🖋 Edit in Excalidraw]]%%
 >
->estimate_frequency(17) = 2
->estimate_frequency(5) = 1
->estimate_frequency(81) = 0
->estimate_frequency(42) = 0
+>`estimate_frequency(17) = 2`
+>`estimate_frequency(5) = 1`
+>`estimate_frequency(81) = 0`
+>`estimate_frequency(42) = 0`
 
 Since we *increment* $CM[x]$ only when we see an occurrence of $x$ then for sure :
 $$
 \tilde{f}_{y} \le f_{y}
 $$
-Also since we *decrement* $s$ values $\tilde{f}_{y}$ each time $|MS|=s$, also 
+Also since we *decrement* $s$ values $\tilde{f}_{y}$ each time $|MS|=s$, also this *can't happend* *more* than $m/s$ times , otherwise we would have delete more elements than seen in the stream 
+
+Hence every $\tilde{f}_{y}$ is *decremente* in total at most $m/s$ *times* , then we can say that :
+$$
+\tilde{f}_{y} \ge f_{y} - m/s
+$$
+#### Query time complexity
+
+We choose $s=\lceil \epsilon^{-1} \rceil$ and obtain that our estimate always satisfy:
+$$
+f_{x}-\epsilon \cdot m \le \tilde{f}_{x} \le f_{x}
+$$
+The *complexity* of **frequency estimation** is $O(1)$ *randomized* 
+
+Using a *fully-deterministic structure* ( a **self-balancing** **tree** ) then complexity becomes $O(\log \epsilon^{-1})$
+
+The *complexity* of **insert** is scanning naively $O(\epsilon^{-1})$
+
+Using **doubly-linked lists** and a **hash map** we can support updates in $O(1)$ *expected* time 
+
+---
+>[!important] Theorem
+>Choose $\epsilon > 0$ and let $m$ be the stream length
+>
+>The *Misra-Gries* sketch uses $O(\epsilon^{-1})$ words of *space* and , for any universe element $x$ , returns an estimate $\tilde{f}_{x}$ such that :
+>$$
+>f_{x}-\epsilon \cdot m \le \tilde{f}_{x} \le f_{x}
+>$$
+>
+>Both `insert(x)` and `estimate_frequency(x)` can be supported in $O(1)$ *expected time*
+
+## Drawbacks
+
++ We can't perform *linear* operation like in [[#Count-Min sketch]] 
++ *Not easy* to integrate in *hardware*
++ *Deletes* are **not** **supported**
