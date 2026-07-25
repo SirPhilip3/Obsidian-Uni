@@ -303,9 +303,13 @@ If we use base $1+\epsilon$ instead of base $2$ :
 ```
 
 We *claim* that this will allow us to have :
-+ $E[2^X-1]=m$ , where $m$ is the *total* number of calls to `increment()`
++ $E[2^X-1]=m$ 
 + $Var[2^X-1]=O(E[2^X-1]^2)$
 
+In order to apply the [[Concentration Bounds#Mean+Median trick|Mean+Median trick]]
+
+>[!important] 
+>$m$ is the *total* number of calls to `increment()`
 #### Prooving $E[2^X-1]=m$
 
 Let $X_{i}$ be the register after $i$ calls to `increment()` , proof by *induction* on $i$ :
@@ -319,10 +323,63 @@ Let $X_{i}$ be the register after $i$ calls to `increment()` , proof by *inducti
 
 **Inductive step** :
 	We need to prove $E[2^{X_{i+1}}-1]=i+1$ , or equivalently $E[2^{X_{i+1}}]=i+2$
+$$
+E[2^{X_{i+1}}] = \sum_{j=0}^\infty \mathbb{P}(X_{i}=j) \cdot E[2^{X_{i+1}}| X_{i}=j]
+$$
+>[!note] 
+>By the *law* of *total expectation* on the possible values of $X_{i}$
 
+If we know that $X_{i}=j$ than $X_{i+1}$ can take the following values :
++ $j$ with *probability* $2^{-j}$ if the algorithm didn't increment $X_{i}$
++ $j+1$ with *probability* $1-2^{-j}$ if $X_{i}$ was incremented
+
+Hence we can rewrite in the following way :
 $$
-E[2^{X_{i+1}}] = \sum_{j=0}^\infty
+\begin{align}
+E[2^{X_{i+1}}| X_{i}=j] & = 2^{-j}\cdot 2^{j+1} + (1-2^{-j}) \cdot 2^j  \\
+& = 2^j+1
+\end{align}
 $$
+Now we can write :
+$$
+\begin{align}
+E[2^{X_{i+1}}] & = \sum_{j=0}^\infty \mathbb{P}(X_{i}=j) \cdot (2^j+1) \\
+& = \sum_{j=0}^\infty \mathbb{P}(X_{i}=j) \cdot 2^j + \sum_{j=0}^\infty \mathbb{P}(X_{i}=j)  \\
+& = E[X_{i}] +1
+\end{align}
+$$
+And by *induction hypothesis* we have :
+$$
+E[X_{i}]+1 = i +1 +1 = i +2
+$$
+**CVD**
+
+#### Prooving $Var[2^X-1]=O(E[2^X-1]^2)$
+
+In order to apply the [[Concentration Bounds#Mean+Median trick|Mean+Median trick]] we need to have that :
+$$
+Var[2^X-1]\leq E[2^X-1]^2 = m^2
+$$
+
+We can proove that :
+$$
+Var[2^X-1]\le \frac{m^2}{2}
+$$
+### Final Result
+
+>[!important] Theorem
+>
+>For any desired relative *error* $\epsilon >0$ and *failure probability* $\delta>0$ by running $O(\epsilon^{-2} \log(1/\delta))$ *parallel* *independent* instances of Morris algorithm we use in total :
+>$$
+>O(\epsilon^{-2}\log(1/\delta)\log \log m)
+>$$
+>expected *bits* of space
+>
+>With probability at least $1-\delta$ we can count numbers up to $m$ with relative *error at most* $\epsilon$ or return a random value $\hat{Y}$ such that :
+>$$
+>\mathbb{P}(|\hat{Y}-m|\ge m \cdot \epsilon) \le \delta
+>$$
+>
 
 # Misra-Gries sketch
 
