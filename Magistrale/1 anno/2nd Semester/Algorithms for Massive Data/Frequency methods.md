@@ -96,4 +96,72 @@ E[1/y_{1}-1]\neq 1/E[y_{1}] -1
 $$
 We are dealing with a **biased estimator**
 
-#todo 99
+### FM Analysis
+
+**Lemma** : Let $y_{1}< y_{2}< \dots < y_{d}$ be the $d$ *distinct values* in $\{h(x_{1}),\dots,h(x_{m})\}$ then :
+$$
+E[y_{1}] = 1/(d+1)
+$$
+**Proof** :
+$$
+\begin{align}
+E[y_{1}] & = \\
+& = \int_{0}^1 \mathbb{P}(y_{1} \ge \lambda )\ d\lambda
+\end{align}
+$$
+>[!note]- 
+>Remembering that $y_{1} = \min_{i} h(x_{i})$ , or the smallest hash value among all distinct elements $x_{i}$
+
+$$
+=\int_{0}^1 \mathbb{P}(\forall x_{i} : h(x_{i}) \ge \lambda)\ d\lambda
+$$
+The probability $h(x_{i})\ge \lambda$, for a fixed $i \in [m]$ is $1-\lambda$ ( the total success region )
+
+Since we have $d$ distinct $h(x_{i})$ we get :
+$$
+\begin{align}
+& = \int_{0}^1 (1-\lambda)^d\ d\lambda \\
+& = - \frac{(1-\lambda)^{d+1}}{d+1} \Bigg|_{0}^1 \\
+& = 1/(d+1)
+\end{align}
+$$---
+**Lemma** : $Var[y_{1}]\le E[y_{1}]^2$ 
+
+Now since we have that $y_{1}$ is an **unbiased estimator** for $1/(d+1)$ and $Var[y_{1}]\le E[y_{1}]^2$ we can use the [[Concentration Bounds#Mean+Median trick|Mean+Median trick]] :
+
+For any desired *error* $\epsilon$ and *failure probability* $\delta$, if we build $O(\epsilon^{-2} \log(1/\delta))$ independent instances of the **FM** sketch then we can compute a *Random Variable* $y'$ such that :
+$$
+\mathbb{P}\left( \left| y' - \frac{1}{d+1} \right| > \frac{\epsilon}{d+1} \right) \le \delta
+$$
+The *estimate* of $d$ that we output is $\hat{d}=1/y'-1$
+
+So if $y'$ is a $(1 \pm \epsilon)$-approximation of $1/(d+1)$ then $\hat{d}=1/y'-1$ is a $(1 \pm 4 \epsilon)$-approximation of $d$
+
+To get an $(1 \pm \epsilon)$-approximation of $d$ we simply run the **MM-trick** with target *error* $\epsilon/4$ 
+
+---
+>[!important] Theorem
+>Choose any desired *error* $\epsilon$ and *failure probability* $\delta$. By running $O(\epsilon^{-2}\log(1/\delta))$ *independent* instances of the **FM** sketch, we can return an estimator $\hat{d}$ such that :
+>$$
+>\mathbb{P}(|\hat{d}-d|> \epsilon \cdot d)\le \delta
+>$$
+>
+>Where $d$ is the number of *distinct* elements in the stream
+
+### Practical Algorithm
+
+>[!warning] Issues
+>1. The hash should output *uniform real numbers* in $[0,1]$ but they are **infinite**
+>2. A *uniform hash* $h:[n]\to [0,1]$ require too much space to store
+
+**Solutions** :
+1. *Approximate* real numbers with fractions : $h(x) = h(x)'/q$ , where $h':[n]\to [q]$ 
+
+>[!note] 
+>For larger $q$ the approximation error is $\ll \epsilon \cdot d$
+
+2. *Bottom-k algorithm* , requires just [[Hashing#k-wise independent Hasing|pairwise independence]] 
+
+#### Bottom-k algorithm
+
+#todo 145
