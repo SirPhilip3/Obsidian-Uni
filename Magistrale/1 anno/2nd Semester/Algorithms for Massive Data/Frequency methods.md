@@ -95,3 +95,5 @@ $$
 E[1/y_{1}-1]\neq 1/E[y_{1}] -1
 $$
 We are dealing with a **biased estimator**
+
+#todo 99
