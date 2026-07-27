@@ -73,6 +73,8 @@ The following is the *idealized* algorithm
 	\end{algorithmic}
 	\end{algorithm}
 ```
+>[!example] 
+>#todo
 ### `estimate_distinct()` correctness
 
 The $d$ distinct values $\{y_{1}<\dots < y_{d}\}=\{h(x_{1},\dots,h_{x_{m}})\}$ are *uniformly spread* in $[0,1]$ 
@@ -164,4 +166,126 @@ To get an $(1 \pm \epsilon)$-approximation of $d$ we simply run the **MM-trick**
 
 #### Bottom-k algorithm
 
-#todo 145
+**Intuition** : the variance of $y_{k}/k$ ( for $k > 1$ ) is smaller than the variance of $y_{1}$ 
+
+This *because* $y_{k}$ can be expressed as $y_{k}=y_{1}+\sum_{i=2}^k(y_{i}-y_{i-1})$ 
+
+All terms in the summation are *random variables* of expected value $1/(d+1)$ 
+
+By applying [[Concentration Bounds#Boosted Chebyshev|Boosted Chebyshev]] , by averaging *random variables* we reduce its *variance* 
+
+```pseudo
+	\begin{algorithm}
+	\caption{initialization()}
+	\begin{algorithmic}
+	\State $h \leftarrow$ pairwise independent function from $[n]$ to the real in $[0,1]$
+	\State $k \leftarrow \lceil 24 \epsilon^{-2} \rceil$
+	\State $S \leftarrow \{\}$
+	\end{algorithmic}
+	\end{algorithm}
+	
+	\begin{algorithm}
+	\caption{new_stream_element(x)}
+	\begin{algorithmic}
+	\State insert $h(x)$ in $S$
+	\If{$|S| > k$}
+		\State remove $\max(S)$ from $S$
+		\Comment{$S$ contains the $k$ smallest hashes}
+    \EndIf
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+    \caption{estimate_distinct()}
+    \begin{algorithmic}
+    \If{$|S| < k$}
+	    \Return $|S|$
+	    \Comment{S = hashes of all distinct elements}
+    \Else
+		\Return $\max(S)/k$
+		\Comment{we take this iff $d\ge k$}
+    \EndIf
+    \end{algorithmic}
+    \end{algorithm}
+```
+
+>[!example] 
+>#todo
+
+>[!important] 
+>It can be shown that the *Bottom-k* algorithm returns a $(1 \pm \epsilon)$-approximation of $d$ *with probability* $2/3$
+
+Applying the [[Concentration Bounds#Median trick|Median trick]] we obtain : 
+
+>[!important] Theorem
+>For any desired relative *error* $0<\epsilon<1/2$ and *failure probability* $\delta >0$ we can aggregate $O(\log(1/\delta))$ *independent instances* of the *Bottom-k* algorithm into a sketch of *size* :
+>$$
+>O(\epsilon^{-2} \log(1/\delta))
+>$$
+>
+>Which allows us computing an estimator $\hat{d}$ such that :
+>$$
+>\mathbb{P}(|\hat{d}-d|>\epsilon \cdot d) \le \delta
+>$$
+
+## LogLog algorithm
+
+```pseudo
+	\begin{algorithm}
+	\caption{Initialization()}
+	\begin{algorithmic}
+	\State $h \leftarrow$ pairwise independent function from $[n]$ to 64-bits integers
+	\State $L \leftarrow 0$
+	\end{algorithmic}
+	\end{algorithm}
+	
+	\begin{algorithm}
+	\caption{new_stream_element(x)}
+	\begin{algorithmic}
+	\State $L \leftarrow \max\{L,leading\_zeros(h(x))\}$
+	\Comment{leading_zeros(0010...)=2}
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+    \caption{estimate_distinct()}
+    \begin{algorithmic}
+    \Return $0.783 \cdot 2^L$
+    \end{algorithmic}
+    \end{algorithm}
+```
+
+>[!example] 
+>#todo
+
+This works because in a stream of *random binary* hash values we have that :
++ $1/2$ of the values will start in $0$ 
++ $1/4$ of the values will start in $00$ 
++ and so on
+
+Therefore if the *rarest* event we see is a hash starting in $L$ zeros, its statistically likely that you have seen approximately $2^L$ *distinct elements*
+
+>[!note] 
+>$0.783$ is a correction factor 
+
+### Analysis
+
+In order to simulate a number in $[0,1]$ we can draw *integers* in $[0,2^N)$ and *divide* them by $2^N$ 
+
+Then $y = h(x_{i})/2^N$ , where $h(x_{i}) \in [0,2^N)$ is the *smallest hash we have seen* and :
+$$
+1/y-1 \approx 1/y = 2^N/h(x_{i})
+$$
+Hence our estimate is :
+$$
+2^N/h(x_{i})\approx 2^N/2^{N-L} = 2^L
+$$
+#### Space
+
+The algorithm needs to only keep track of $L$ ( largest number of trailing zeros )
+
+Taking $\log \log d$ *space*
+
+#### Pairwise independence
+
+For *LogLog* it's **sufficent** to have **pairwise independence** for the hashes 
