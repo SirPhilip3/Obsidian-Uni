@@ -187,5 +187,60 @@ With $F_{2}$ we can create a *linear operator* $M$ ( a matrix ) such that, with 
 This is useful because with $\mathbb{R}^n$ the time that we need to compute each distance is $O(n)$ , while with *dimensionality reduction* we get *time* : $O(\epsilon^{-2})$ 
 
 Also the set gets compressed to just $O(\epsilon^{-2})$ *words* per vector
-
 ### $\mathbb{R}^n$ to $\mathbb{R}^1$ 
+
+We want to *preserve* $l_{2}^2$ on **expectation** :
+$$
+E[||M\cdot x - M \cdot y||_{2}^2] = ||x-y||_{2}^2
+$$
+>[!note] 
+>The distance $||x'-y'||_{2}$ between $x'$ and $y'$ is the same as the *distance* $||x||_{2}$ from the *origin* of $x=x'-y'$ 
+
+We can do this for $E$ since our map $M$ is *linear* : 
+$$
+||M \cdot x' - M \cdot y'||_{2} = ||M \cdot (x'-y')||_{2}
+$$
+>[!note] 
+>The analysis done for [[#Tug-of-war sketch (ToW)]] still works if the frequencies $f_{x}$ are *real numbers*  
+
+Considering the *vector* $[f_{1},\dots,f_{n}] \in \mathbb{R}^n$ of *frequencies* , now ignore it's interpretation and call it $x=[x_{1},\dots,x_{n}]\in \mathbb{R}^n$
+
+Then **ToW** computes the following :
+$$
+z=\sum_{i\in[n]} x_{i}\cdot h(i)
+$$
+This operation can be rewritten as a *scalar product* between a vector of uniform $\{-1,+1\}$ and $x$
+
+>[!example] 
+>$n=3$, $h=[-1,+1,-1]$, $x=[3.14,2.71,1.61]$
+>
+>$$
+>z= [-1,+1,-1] \cdot \begin{bmatrix} 3.14 \\ 2.71 \\ 1.61\end{bmatrix} = -2.04
+>$$
+
+>[!note] 
+>$h$ is our matrix $M$
+
+---
+
+>[!important] Theorem
+>If $M$ is *uniform* in $\{-1,+1\}^{1 \times n}$ then it preserves $l_{2}^2$ on *expectation*
+
+**Proof** 
+
+Let $x \in \mathbb{R}^n$
+
+$$
+E[||M \cdot x||_{2}^2] = E[(M\cdot x)^2]
+$$
+Calling $z=M\cdot x$ then $z^2$ is the output of *ToW* on the vector $x$
+$$
+=F_{2}=\sum_{i=1}^n x_{i}^2 =||x||_{2}^2 = l_{2}^2
+$$
+>[!warning] 
+>This is not a good approximation, to improve we need to build $M$ with *more* $s$ *rows*
+
+>[!important] 
+$M$ must be uniformly drawn from $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s \times n}$
+
+#todo 150
