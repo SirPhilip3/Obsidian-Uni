@@ -243,4 +243,41 @@ $$
 >[!important] 
 $M$ must be uniformly drawn from $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s \times n}$
 
-#todo 150
+>[!example] 
+>$n=3$ , $s=2$
+>
+>$$
+>M = \frac{1}{\sqrt{ 2 }} \begin{bmatrix}
+>-1,+1,-1  \\
+>+1,-1,-1
+>\end{bmatrix}
+>$$
+>
+>$x=[3.14,2.71,1.61]$
+>
+>$$
+>M \cdot x = \frac{1}{\sqrt{ 2 }} \begin{bmatrix}
+>-1,+1,-1  \\
+>+1,-1,-1
+>\end{bmatrix} \cdot \begin{bmatrix}
+> 3.14 \\ 2.71 \\ 1.61
+>\end{bmatrix} \approx \begin{bmatrix}
+> -1.44 \\ 3
+>\end{bmatrix}
+>$$
+>
+>$$||M\cdot x||_{2}^2 =(-1.44)^2 + 3^2 \approx 11.07$$
+>$$||x||_{2}^2 = 3.14^2+2.71^2+1.61^2 \approx 19.79$$
+
+This is *better* 
+
+---
+>[!important] Theorem
+>If $M$ is *uniform* in $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s \times n}$ and $s=\lceil 9 \epsilon^{-2}\r\lceil  \rceil$ , then with *probability* $2/3$ :
+>
+>$$
+>||M \cdot x||_{2}^2 = (1 \pm \epsilon) \cdot ||x||_{2}^2
+>$$
+
+**Proof**
+
