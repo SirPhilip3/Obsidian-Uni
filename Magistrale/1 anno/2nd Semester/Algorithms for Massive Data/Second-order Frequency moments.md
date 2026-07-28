@@ -273,7 +273,7 @@ This is *better*
 
 ---
 >[!important] Theorem
->If $M$ is *uniform* in $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s \times n}$ and $s=\lceil 9 \epsilon^{-2}\r\lceil  \rceil$ , then with *probability* $2/3$ :
+>If $M$ is *uniform* in $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s \times n}$ and $s=\lceil 9 \epsilon^{-2}\rceil$ , then with *probability* $2/3$ :
 >
 >$$
 >||M \cdot x||_{2}^2 = (1 \pm \epsilon) \cdot ||x||_{2}^2
@@ -281,3 +281,92 @@ This is *better*
 
 **Proof**
 
+Each component of $M \cdot x$ is the *counter computed* by a *i.i.d.* **ToW** instance scaled by $1/\sqrt{ s }$ 
+
+Let's call $z_{i}$ the counter of the $i$-th **ToW** . Then the $i$-th component of $M \cdot x$ is $\frac{1}{\sqrt{ s }}\cdot z_{i}$ 
+
+Then we have that :
+$$
+||M \cdot x||_{2}^2=\frac{1}{s}\cdot \sum_{i=1}^s z_{i}^2
+$$
+is the *average of the outputs* of $s$ *independent* **ToW**
+
+Each of those **ToW** instance returns $||x||_{2}^2$ on *expectation*
+
+Using [[Concentration Bounds#Boosted Chebyshev|Boosted Chebyshev]] :
+$$
+||M \cdot x||_{2}^2 =(1 \pm \epsilon)\cdot ||x||_{2}^2
+$$
+With *probability* :
+$$
+1 -\frac{Var[z_{1}]}{E[z_{i}]^2\epsilon^2 \cdot s}
+$$
+Remembering that $Var[z_1]\le 3E[z_{i}]^2$ and setting this probability to be $2/3$ :
+$$
+\ge 1 - \frac{3E[z_{1}]^2}{E[z_{1}]^2\epsilon^2\cdot s}=2/3
+$$
+Solving for $s$ we obtain : $s=9 \epsilon^{-2}$
+
+---
+We can do also the following observation :
+$$
+||M \cdot x||_{2}^2 = (1 \pm \epsilon) \cdot ||x||_{2}^2
+$$
+Implies also :
+$$
+||M \cdot x||_{2} = \sqrt{  1 \pm \epsilon} \cdot ||x||_{2}
+$$
+And since $[\sqrt{ 1-\epsilon }, \sqrt{ 1+\epsilon }] \subseteq [1-\epsilon,1+\epsilon]$ this implies :
+$$
+||M \cdot x||_{2} =(1 \pm \epsilon) \cdot ||x||_{2}
+$$
+>[!important] Theorem
+>Let $x,y \in \mathbb{R}^n$. Let $s=\lceil 9 \epsilon^{-2} \rceil$ for any desired error rate $\epsilon > 0$
+>
+>Let $M \in \mathbb{R}^{s\times n}$ be a matrix drawn uniformly from $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s\times n}$
+>
+>Then with probability at least $2/3$ :
+>$$
+>||M \cdot x - M \cdot y||_{2} =(1 \pm \epsilon)\cdot ||x-y||_{2}
+>$$
+>
+>In other words $M: \mathbb{R}^n \to \mathbb{R}^{\Theta(\epsilon^{-2})}$ is a *linear map* that preserves the *Euclidean distance* $l_{2}$ up to relativve error $\epsilon$ with probability at least $2/3$
+
+#### Success probability to $1-\delta$ 
+
+Solutions :
+1. Using the [[Concentration Bounds#Median trick|Median trick]] with $O(\log(1/\delta))$ *instances* , this makes the operator *not* *linear*
+2. Multiply the number of *rows* by $\Theta(\log(1/\delta))$. This suffices by [[Concentration Bounds]] and gives a *linear operator*
+
+# Achliopas transform
+
+>[!important] Theorem
+>Let $x,y \in \mathbb{R}^n$. Choose $\epsilon,\delta > 0$ 
+>
+>There there exists $s \in O(\epsilon^{-2}\log(1/\delta))$ such that if $M \in \mathbb{R}^{s \times n}$ is a matrix drawn uniformly from $\{-1/\sqrt{ s }, +1/\sqrt{ s }\}^{s \times n}$
+>
+>Then with *probability* at least $1-\delta$ :
+>$$
+>||M\cdot x - M \cdot y||_{2} =(1\pm \epsilon) \cdot||x- y||_{2}
+>$$
+>
+>In other words: $M: \mathbb{R}^m \to \mathbb{R}^{\Theta(\epsilon^{-2}\log(1/\delta))}$ is a *linear map* that preserves the *Euclidean distance* $l_{2}$ up to relative error $\epsilon$ with probability at least $1-\delta$
+
+# Johnson-Lindenstrauss (JL) transform
+
+Requires *Gaussian* random variables while *Achlioptas* only requires $\pm 1$ *uniform* random variables 
+
+# Further notes
+
+$M$ is a matrix of size $O(n \cdot \epsilon^{-2}\log(1/\delta))$ which is *big*
+
+>[!note] 
+>This is also the running time needed for computing $M \cdot x$
+
+We can use a *compressible matrix* $M$ and compute $M \cdot x$ in time *proportional* to the compressed size of $M$
+
+1. **Sparsity** : if $M$ contains only $z$ non-zero entries, then we compute $M \cdot x$ in time $\tilde{O}(z+n)$
+
+This can achieve approximately $z=O(n \cdot \epsilon^{-1} \log(1/\delta))$ , *faster* by a factor $\epsilon^{-1}$
+
+2. **Fast JL transform** : use $a$ *dense* $M$, but with a very regular recursive structure that allows speeding up multiplication $M \cdot x$ to just $O(n \log n)$ *time*
