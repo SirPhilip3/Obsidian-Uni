@@ -12,10 +12,15 @@ Data arrives as a stream ( we will not store it ) , we then can use two solution
 >[!note] 
 >**lossy** *sketch* can have *exponential compression* but will return *approximate answers* ( wrong with *small* probability )
 
+We will process the following *data types* :
++ *Sets* of *integers* : $\{56,12,34,3,2\}$
++ *Strings* : `abracadabra`
++ *Vectors* over $\mathbb{R}^n$
++ *Relational algebra*
 # Notation
 
 Set of integers $S = \{ 3,5,6,7 \}$ 
-	$m=4$  ( number of inegers in the set $S$ ) 
+	$m=4$  ( number of integers in the set $S$ ) 
 	$n=8$   ( $[8] = \{1,2,\dots,8\}$ from the *universe* of the numbers from $1$ to $n$ )
 
 We denote $\{a,b,c,d\}^n$ , where $\{...\}$ is the universe and $n$ is lenght of the sets

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 >[!important] Goal
 >In general the goal will be to read a stream of *integers* $x_{1}, \dots, x_{m} \in [n]$ and create *on-the-fly* ( *online* ) a **data sketch** of the stream
 
