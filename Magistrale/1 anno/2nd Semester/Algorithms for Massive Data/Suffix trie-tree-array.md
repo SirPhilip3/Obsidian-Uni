@@ -8,24 +8,24 @@ In order to not deal with *big-O* terms that *hide constants* we use **bits** $n
 
 >[!important] Definition
 >
->Given a text (string) $T \in \sum^n$ ( text of lengh $n$ over *alphabet* $\sum$ ) , an **Index** is a *data structure* $\mathscr{I}(T)$ that can solve the following *queries* : 
+>Given a text (string) $T \in \sum^n$ ( text of length $n$ over *alphabet* $\sum$ ) , an **Index** is a *data structure* $\mathscr{I}(T)$ that can solve the following *queries* : 
 >+ $locate(P)$ : 
->	+ Given $P \in \sum^m$ ( a *pattern* ) return the starting positions in $T$ where $P$ occurs
+>	+ Given $P \in \sum^m$ ( a *pattern* ) return the starting *positions* in $T$ where $P$ occurs
 >	+ $locate(P) = \{i : T[i,i+m-1] = P\}$
 >+ $count(P)$ :
->	+ Given $P \in \sum^m$ , return how many times $P$ occurs in $T$ 
+>	+ Given $P \in \sum^m$ , return how many *times* $P$ occurs in $T$ 
 >	+ $count(P) = |locate(P)|= occ$
 >+ $extract(i,\textit{l})$ : 
 >	+ Return $T[i,\dots,i+\textit{l}-1]$ or the text that start at position $i$ and is of lenght $\textit{l}$
 
 >[!example] 
 >$T$ = abaab$
->+ count(ab) = 2
->+ locate(ab) = {1,4}
->+ count(a) = 3
->+ locate(a) = {1,3,4}
->+ extract(2,3) = baa
->+ extract(4,2) = ab
+>+ `count(ab) = 2`
+>+ `locate(ab) = {1,4}`
+>+ `count(a) = 3`
+>+ `locate(a) = {1,3,4}`
+>+ `extract(2,3) = baa`
+>+ `extract(4,2) = ab`
 
 ## Query times
 
@@ -40,15 +40,17 @@ $m$ = query lenght
 
 ## Space 
 
-**IT** lowerbound for the text is :
+[[Magistrale/1 anno/2nd Semester/Algorithms for Massive Data/Introduction#^d4d051|Information Theoretical lower bound]] for the text is :
 $$
 \log \sum^n = n \log |\sum|
 $$
 ## Streaming
 
 1. $T$ arrives as a stream. Build a *compressed* $\mathscr{I}(T)$ on the fly , never storing $T$  (dynamic compressed indexes)
-2. Arrives patterns $P_1,P_2, \dots,P_k$ as a stream. Search on $\mathscr{I}(T)$ on the fly 
+2. After that patterns $P_1,P_2, \dots,P_k$ arrive as a stream. Search them on $\mathscr{I}(T)$ on the fly 
 
+At any time, the space in *RAM* is at most the *bit-size* of $\mathscr{I}(T)$
+ 
 # Suffix trie
 
 >[!important] 
@@ -86,12 +88,12 @@ Than we build the *tree* in the following way :
 %%[[suffix_trie_full.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 3. For each *leaf* node we add a **pointer** to the next *leaf* 
-![[suffitree_withpoint.excalidraw.png]]
+![[suffitree_withpoint.excalidraw.png|392]]
 %%[[suffitree_withpoint.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 4. Every node stores a *pointer* to it's *leftmost* and *rightmost* *leaf* below it
 
-![[suffixtree_leftright_point_lefsn.excalidraw.png]]
+![[suffixtree_leftright_point_lefsn.excalidraw.png|397]]
 %%[[suffixtree_leftright_point_lefsn.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
 ## Queries
@@ -127,7 +129,7 @@ The tree becomes the following :
 >[!note] 
 >We need a small space to remember the number mappings to letters
 
-+ *count(P)* : We walk the pattern in the tree , as before if we stop at a node we return the number present in that node , otherwise if the patterns end in the middle of a path we go down to the first node and return that number
++ *count(P)* : We walk the pattern in the tree, as before if we stop at a node we return the number present in that node , otherwise if the patterns end in the middle of a path we go down to the first node and return that number
 Complexity $O(m)$
 
 + *locate(P)* : We do as before walk the path of the pattern than follow the *leftmost* pointer and jump following the *leaf* pointers until you reach it's corresponding *rightmost* pointer , if the pattern stops in the middle of the path than we just move to the next node

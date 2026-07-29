@@ -61,6 +61,8 @@ We denote $\{a,b,c,d\}^n$ , where $\{...\}$ is the universe and $n$ is lenght of
 >
 >If i want to encode objects from a universe $U$, i cannot use less than $\log_2(|U|)$ *bits* from each of those objects
 
+^d4d051
+
 For sets of integers: 
 $$
 \log_2 \binom{n}{m} = m \log(n/m) + O(m)
