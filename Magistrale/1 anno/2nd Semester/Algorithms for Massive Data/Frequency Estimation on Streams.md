@@ -416,6 +416,19 @@ Where *MG* is a *hash table* associating an estimate $MG[x]=\tilde{f}_{x}$ to ev
 	\end{algorithm}
 ```
 
+```pseudo
+	\begin{algorithm}
+	\caption{estimate_frequency(x)}
+	\begin{algorithmic}
+	\If{$x \in MS$}
+		\Return $MS[x]$
+    \Else
+	    \Return $0$
+    \EndIf
+	\end{algorithmic}
+	\end{algorithm}
+```
+
 >[!example] 
 >
 >![[MG_example.excalidraw.png]]
@@ -460,7 +473,6 @@ Using **doubly-linked lists** and a **hash map** we can support updates in $O(1)
 >$$
 >
 >Both `insert(x)` and `estimate_frequency(x)` can be supported in $O(1)$ *expected time*
-
 ## Drawbacks
 
 + We can't perform *linear* operation like in [[#Count-Min sketch]] 
