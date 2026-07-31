@@ -40,7 +40,7 @@ $$
 >[!important] Definition
 >There exists a *data structure* over any **bitvector** $B \in \mathscr{B}_{n,m}$ using $\log \binom{n}{m} + o(n) \leq n H_0 + o(n)$ *bits* o space, and **supports** *constant-time* **access, rank , select** queries
 
-This definition is equivalent also to the following one : 
+This definition is *equivalent* also to the following one : 
 >[!important] Definition
 >There exists a *data structure* over any *subset of size* $m$ of $[n]$ using $\log \binom{n}{m} + o(n)$ bits of space and supporting *constant-time* **membership** , **predecessor** and **successor** queries
 >

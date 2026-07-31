@@ -99,10 +99,10 @@ Than we build the *tree* in the following way :
 ## Queries
 
 + *count(P)* : simply walks the path of the pattern and return the number stored in the node where we stop 
-Complexity : $O(m)$ , since we simply walk the pattern
+*Complexity* : $O(m)$ , since we simply walk the pattern
 
 + *locate(P)* : walk the path of the pattern than follow the *leftmost* pointer and jump following the *leaf* pointers until you reach it's corresponding *rightmost* pointer
-Complexity : $O(m +occ)$ , since we walk the pattern and than we count its occurancies
+*Complexity* : $O(m +occ)$ , since we walk the pattern and than we count its occurancies
 >[!note] 
 >The numbers on the *leaf* in this case are the starting position of the patter $P$ in the text $T$
 
@@ -130,10 +130,10 @@ The tree becomes the following :
 >We need a small space to remember the number mappings to letters
 
 + *count(P)* : We walk the pattern in the tree, as before if we stop at a node we return the number present in that node , otherwise if the patterns end in the middle of a path we go down to the first node and return that number
-Complexity $O(m)$
+*Complexity* : $O(m)$
 
 + *locate(P)* : We do as before walk the path of the pattern than follow the *leftmost* pointer and jump following the *leaf* pointers until you reach it's corresponding *rightmost* pointer , if the pattern stops in the middle of the path than we just move to the next node
-Complexity $O(m +occ)$
+*Complexity* : $O(m +occ)$
 
 ## Space Complexity
 
@@ -148,9 +148,14 @@ $$
 I \le n
 $$
 Than the total number of nodes is $I+L = n + n = 2n \approx O(n)$ 
+
+>[!example] In Practice
+>In practice if we take the *Human Genome* $\approx 760 MiB$ , and we store it using a good suffix tree implementation that uses $\approx 8n$ words 
+>
+>We get $8\cdot 3.2 \cdot 10^9$ words $\approx 95 GiB$, using $4$ bytes per word
 # Suffix Array
 
-Let's create a table table that associates *suffixes* **sorted** *lexicographically* with they'r leaf number : 
+Let's create a table table that associates *suffixes* **sorted** *lexicographically* with theyr leaf number : 
 
 If we read from root to leaf , from left to right we obtain the *suffixes* ordered lexicographically
 
@@ -183,3 +188,13 @@ G --> B
 
 + *count(P)* : First we jump in the middle of the **SA** and start comparing the text with the pattern $P$ if it's larger search on the right otherwise on the left , we repeat recursively until we find the range that starts with our interval , than will be the indexes to count
 + *locate(P)* : Same as *count* but the indexes remaining are the starting indexes of the pattern 
+
+>[!important] Theorem
+>**SA+text** use in total $n \log n + n \log| \Sigma |$  *bits* and answer queries with running times :
+>+ *Count* : $O(m \log n)$
+>+ *Locate* : $O(m \log n + occ)$
+>+ *Extract* : $O(l)$
+
+>[!example] In practice 
+>In practice having as before the *human genome* the *suffix array* takes : $3.2 \cdot 10^9$ words, $\approx 12GiB$
+

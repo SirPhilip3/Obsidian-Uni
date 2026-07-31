@@ -7,7 +7,7 @@ publish: true
 >H_0(S) = \sum_{c \in \Sigma} \frac{n_c}{n} \log_2 \bigg( \frac{n}{n_c} \bigg)
 >$$
 >
->Where $n_c = |\{i\ :\ S[i] = c \}|$ is the number of occurences of character $c$ in $S$
+>Where $n_c = |\{i\ :\ S[i] = c \}|$ is the number of occurences of character $c$ in $S$ , and $n$ is the number of unique character in $S$
 
 >[!example] 
 >$H_0(aaaabbcd)$ , $n_a =4$ , $n_b=2$ , $n_c=n_d=1$ , $n=8$
@@ -22,9 +22,9 @@ publish: true
 Consider the set $\mathscr{S}(n_1, \dots, n_{\sigma}) \subseteq [\sigma]^n$ , strings of lenght $n$ over the alphabet $[\sigma]$ such that each $s \in \mathscr{S}$ contains $n_c$ occurences of each character $c \in [\sigma]$
 
 >[!example] 
->$12122132 \in \mathscr{S}(3,4,1)$ , or it contains $3$ $1$'s , $4$ $2$'s and $1$ $3$
+>$12122132 \in \mathscr{S}(3,4,1)$ , or it contains three $1$'s , four $2$'s and one $3$
 
-**Worst-case entropy** : 
+**[[Worst-case Entropy]]** : 
 
 The first character can be positioned in $n_1$ positions inside the full string of lenght $n$ so : $$
 \binom{n}{n_1}
@@ -48,7 +48,7 @@ Applying *Stirling* approximation to the factorial we can prove that :
 $$
 \mathscr{H}_{wc}(\mathscr{S}(n_1, \dots, n_{\sigma})) = n H_0 -O(\sigma \log n)
 $$
-#todo explain
+#todo explain 67
 
 **Encoding** : 
 

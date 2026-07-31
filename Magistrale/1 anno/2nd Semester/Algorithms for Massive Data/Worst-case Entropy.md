@@ -33,5 +33,29 @@ So any *decodable* encoding of objects from $\mathscr{U}$ must use at least $\ma
 In the real word we can expect to use also a small *negligible* amount of extra space : 
 $$\mathscr{H}_{wc}(\mathscr{U}) \cdot (1 +o(1))$$ 
 >[!example] 
->#todo
+>If $\mathscr{U}=\Sigma^n$ ( all strings of lenght $n$ ), then this is $n \log |\Sigma|\cdot (1+o(1))$
+
+---
+>[!example] 
+>Let $\mathscr{B}_{n,m}$ ( $00100110 \in \mathscr{B}_{n,m}$ ) be the set of all *bitvectors* of lenght $n$ containing exactly $m \leq n$ *bits* equal to $1$
+>
+>Then its *worst-case entropy* will be :
+>$$
+>\mathscr{H}_{wc}(\mathscr{B}_{n,m}) = \log_{2} |\mathscr{B}_{n,m}| = \log_{2} \binom{n}{m} = m \log\left( \frac{n}{m} \right) + O(m)
+>$$
+
+>[!example] 
+>Let $\mathscr{T}_n$ be the set of all *ordinal trees* ( a tree where the order of the children matters ) with $n$ nodes. 
+>
+>Then :
+>$$
+>|\mathscr{T}_{n}| = \frac{1}{n}\binom{2n-2}{n-1}
+>$$
+>
+>And therefore :
+>$$
+>\mathscr{H}_{wc}(\mathscr{T}_{n}) = \log_{2}\left(\frac{1}{n}\binom{2n-2}{n-1} \right) = 2n -\Theta(\log n)
+>$$
+
+
 
