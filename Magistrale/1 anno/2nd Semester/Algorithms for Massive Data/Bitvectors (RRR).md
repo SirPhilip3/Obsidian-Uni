@@ -140,12 +140,13 @@ $$
 >[!example] 
 >*Row* $1$ and $2$ in $T$ contains $3$ *nonempty columns* so we need enough *bits* to encode $3$ distinct values so we need $2$ bits to store them , while *row* $0$ and $3$ just needs to encode $1$ value so we need $0$ *bits* to store it
 
+Then the number of *bits* that we need to *encode* an *offset* of *class* ( *row* number ) $k$ is :
 $$
 \log |\mathscr{B}_{b,k}| = \log \binom{b}{k}
 $$
 Where $k$ is the *row number* ( or offset class )
 
-In total we have : 
+In total we have ( sum for all offsets ) : 
 $$
 \sum_{j=1}^{n/b} \log_2 \binom{b}{C[j]}
 $$
@@ -185,7 +186,7 @@ $$
 ## Access 
 
 Assuming that we can access any element of $C,O,T$ in *constant time*, than $B[i]$ can be also accessed in *constant time* :
-1. Identifiy the block $t$ containing $B[i]$ : $t = \lfloor (i-1)/b \rfloor + 1$
+1. Identify the block $t$ containing $B[i]$ : $t = \lfloor (i-1)/b \rfloor + 1$
 >[!note] 
 >The $+1$ it's only due to the indexing
 >
@@ -227,12 +228,11 @@ $$
 \log \binom{b}{k} \le \log 2^b = b
 $$
 >[!note] Proof
->#todo
+>This is true since we know that $\sum^{b}_{k=0} \binom{b}{k}=2^b$ , then we know that for a single $\binom{b}{k}$ we have that it will be $\le 2^b$
 
 Since each *macroblock* is a group of $b$ *blocks* , inside each *macroblock* we can have at most $b^2$ bits
 
-The starting positions of *macroblocks* take $O(\log n)$ *bits* each ( enough to indicate the integers $n$, lenght of $B$ ) 
-But we will need just $n/b^2$ of them 
+The starting positions of *macroblocks* take $O(\log n)$ *bits* each ( enough to indicate the integers $n$, lenght of $B$ ), but we need just $n/b^2$ of them 
 
 The *relative positions* are $n/b$ ( $B$ lenght and $b$ blocks ) , each one of them $\log b^2$
 
@@ -250,14 +250,15 @@ The total space of the two arrays is $O(n \log \log n / \log n) = o(n)$ ( see [[
 >$$
 >\frac{4 n \log n}{(\log n)^2} + \frac{4 n\cdot (\log \log n - \log 2)}{\log n} = O(\frac{n}{\log n}) + O(\frac{n \log \log n}{\log n}) 
 >$$
->[!note] 
->$O(f(n)) + O(g(n)) = O(\max(f(n), g(n)))$
+>>[!note] 
+>>$O(f(n)) + O(g(n)) = O(\max(f(n), g(n)))$
+>
 >
 >So we get 
 >$$O(\frac{n \log \log n}{\log n})$$
 ## Rank
 
-To support the *rank* operation we first build a $3D$ table with pre-computed *ranks* such that :
+To support the *rank* operation we first *build* a $3D$ table with *pre-computed* *ranks* such that :
 $$
 \forall x \in \{0,1\}^b : R[C_j][O_j][i] = B_j.rank_1(i)
 $$
@@ -278,6 +279,22 @@ $$
 
 >[!example] 
 >$rank_1(17) = 4+2+R[2][0][2]= 4+2+1 =7$
+
+## Final Result
+
+>[!important] Theorem ( **RRR** bitvector )
+>There exists a data structure over any *bitvector* $B \in \mathscr{B}_{n,m}$ using :
+>$$
+>\log \binom{n}{m} + o(n) \le n H_{0} + o(n)
+>$$
+>
+>*bits* of space 
+>
+>Supporting *constant-time* **access** , **ranks** and **select** queries
+>
+>>[!note] 
+>>Since we can write *memebrship* , *predecessor* and *successor* queries with the ones above, also these will be *constant-time* queries
+
 # Compressing Multiple bitvectors
 
 >[!note] 
@@ -296,7 +313,7 @@ $$
 
 >[!note] 
 >
->Note that by concatenating multiple *bitvectors* the border between them may be overlapping , in this case we may lose seom compressing ability 
+>Note that by concatenating multiple *bitvectors* the border between them may be overlapping , in this case we may lose some compressing ability 
 >
 >We than assign to the overlaps a safe upperbound of at most $O(\log n_i)$ each , so in total we have $O(t \log n)$
 >

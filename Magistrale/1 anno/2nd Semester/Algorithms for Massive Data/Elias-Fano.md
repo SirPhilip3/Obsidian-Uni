@@ -81,7 +81,7 @@ $$
 5. Keep the *first* number
 6. Keep the *differences* between consecutive numbers
 >[!example] 
->| $x\in S$ | $\text{prefix } \to \text{diffrences}$ | $EF_1 = \text{ suffix of } (x)_2$ |
+>| $x\in S$ | $\text{prefix } \to \text{differences}$ | $EF_1 = \text{ suffix of } (x)_2$ |
 >| :------: | :------------------------------------: | :-------------------------------: |
 >|    0     |               $0 \to 0$                |                00                 |
 >|    5     |               $1 \to 1$                |                01                 |
@@ -138,4 +138,18 @@ $$
 >
 >The result is $011\ 10 = (14)_2$
 
+>[!note] 
+>Since the integers are sorted and we access tem in $O(1)$ *time* then all other queries can be solved by *binary search* in $O(\log m)$ *time*
+## Final Result
+
+>[!important] Theorem
+>Any $S \subseteq \{0,\dots,n-1\}$ of cardinality $m=|S|\leq n$ can be compressed in :
+>$$
+>m \log(n/m) + 2m + o(m) = \log \binom{n}{m} + O(m)
+>$$
+>*bits*
+>
+>So that :
+>+ **Access** ( retrieving the $i$-th smallest integers from $S$ ) costs $O(1)$ *time*
+>+ **Membership** , **predecessor** and **successor** queries cost $O(\log m)$ *time*
 
