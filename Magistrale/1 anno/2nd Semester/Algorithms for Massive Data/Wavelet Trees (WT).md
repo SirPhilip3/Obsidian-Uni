@@ -121,6 +121,54 @@ Let's partition the alphabet $\Sigma$ of $S$ as $\Sigma = \Sigma_{0}\cup \Sigma_
 >+ The *subtrees* $S_{0}$ and $S_{1}$ are over the alphabets $\Sigma_{0}$ and $\Sigma_{1}$ respectively
 >+ Both $S$ and $S_0$ have $n_c$ occurences of character $c$ ( same for $S_1$ )
 
+Then $S_{0}$ is compressed in the following *space* :
+$$
+N_{0} \cdot \left( \sum_{c\in \Sigma_{0}} \frac{n_{c}}{N_{0}} \log \frac{N_{0}}{n_c} \right) + o(h \cdot N_{0})
+$$
+
+We can notice that 
+$$
+\sum_{c\in \Sigma_{0}} \frac{n_{c}}{N_{0}} \log \frac{N_{0}}{n_c}  = H_{0}(S_{0})
+$$
+The *root* instead takes the following *space* :
+$$
+n\cdot \left( \sum_{b\in \{0,1\}} \frac{N_{b}}{n} \log \frac{n}{N_{b}} \right) + o(n)
+$$
+In total we have :
+$$
+\begin{align}
+S_{0}+S_{1}+Root = \\  \\
+\cancel{N_{0}} \cdot \left( \sum_{c\in \Sigma_{0}} \frac{n_{c}}{\cancel{N_{0}}} \log \frac{N_{0}}{n_c} \right) + o(h \cdot N_{0})\ & +  \\
+\cancel{N_{1}} \cdot \left( \sum_{c\in \Sigma_{1}} \frac{n_{c}}{\cancel{N_{1}}} \log \frac{N_{1}}{n_c} \right) + o(h \cdot N_{1})\ & + \\
+\cancel{n}\cdot \left( \sum_{b\in \{0,1\}} \frac{N_{b}}{\cancel{n}} \log \frac{n}{N_{b}} \right) + o(n)
+\end{align}
+$$
+The small o's becomes : $o(n \cdot (h+1))=o(n \log \sigma)$
+
+So we have :
+$$
+\sum_{c \in \Sigma_{0}} n_{c} \log \frac{N_{0}}{n_{c}} + \sum_{c \in \Sigma_{1}} n_{c} \log \frac{N_{1}}{n_{c}} + N_{0} \log \frac{n}{N_{0}} + N_{1} \log \frac{n}{N_{1}}
+$$
+>[!note] 
+>+ $N_0 = \sum_{c \in \Sigma_0} n_c$
+>+ $N_1 = \sum_{c \in \Sigma_1} n_c$
+
+Summing the *first* and *third* and the *second* and *fourth* we get :
+$$
+\begin{align}
+\sum_{c \in \Sigma_{0}} n_{c}\log \left( \frac{N_{0}}{n_{c}} \cdot \frac{n}{N_{0}} \right) + \sum_{c \in \Sigma_{1}} n_{c}\log \left( \frac{N_{1}}{n_{c}} \cdot \frac{n}{N_{1}} \right)& =  \\
+\sum_{c \in \Sigma_{0}} n_{c}\log \frac{n}{n_{c}} + \sum_{c \in \Sigma_{1}} n_{c}\log \frac{n}{n_{c}} & = \\
+\sum_{c \in \Sigma} n_{c} \log \frac{n}{n_{c}}& = n H_{0}
+\end{align}
+$$
+>[!important] Theorem
+>The *Wavelet Tree* of string $S \in \Sigma^n$ stored using *RRR bitvectors* in the nodes uses :
+>$$
+>n H_{0}(S) + o(n \log \sigma)
+>$$
+>bits of space
+>>[!note] 
+>>Assuming $\sigma = |\Sigma|=o(n/\log n)$
 # Queries 
 
 ## Access
