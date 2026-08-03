@@ -2,7 +2,7 @@
 publish: true
 ---
 **Wavelet Trees** are data structure that : 
-+ Achieve *zero-order compressed space*
++ Achieve *zero-order compressed space* 
 + **rank**, **select**, **access** ( *RSA* ) queries are solved in $O(\log \sigma)$ time 
 
 This for any *string*
@@ -13,7 +13,7 @@ This for any *string*
 The tree is 
 + **binary** 
 + with $\sigma$ *leaves* , one for each distinct character 
-+ the *tree* is **balances** , has $O(\log \sigma)$ as *height*
++ the *tree* is **balanced** with *height* equal to $O(\log \sigma)$
 + each *nodes* is a [[Bitvectors (RRR)]] 
 
 The *RSA* queries are solved by navigating the *tree* from root to a leaf or the other way around 
@@ -105,7 +105,22 @@ Prove the *claim* for height $h+1$
 >![[WB_t_proof.excalidraw.png]]
 >%%[[WB_t_proof.excalidraw.md|🖋 Edit in Excalidraw]]%%
 
-#todo 
+*Let* :
++ $S\in \Sigma$ be the *string*, of lenght $n$, represented in the *Wavelet Tree* above of *height* $h+1$ 
++ $\sigma = |\Sigma|$ 
++ $N_0$ , $N_1$ be the *number* of $0$ and $1$ in the *root* ( $n=N_0 + N_1$ )
+
+>[!note] 
+>$|S_0|=N_0$ and $|S_1|=N_1$
+
+Let's partition the alphabet $\Sigma$ of $S$ as $\Sigma = \Sigma_{0}\cup \Sigma_{1}$ : 
++ Character in $\Sigma_{0}$ are the one that start with $0$ 
++ Character in $\Sigma_{1}$ are the one that start with $1$ 
+
+>[!note] 
+>+ The *subtrees* $S_{0}$ and $S_{1}$ are over the alphabets $\Sigma_{0}$ and $\Sigma_{1}$ respectively
+>+ Both $S$ and $S_0$ have $n_c$ occurences of character $c$ ( same for $S_1$ )
+
 # Queries 
 
 ## Access

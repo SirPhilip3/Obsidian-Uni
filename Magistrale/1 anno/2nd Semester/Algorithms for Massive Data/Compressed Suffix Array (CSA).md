@@ -5,7 +5,7 @@ Using [[Suffix trie-tree-array#Suffix Array|SA]] , [[Bitvectors (RRR)|RRR]] and 
 
 >[!important] Theorem
 >
->The * **S**uffix **A**rray * + text can be compressed to $nH_0 +O(n)$ *bits* while retaining the following ability : 
+>The * **S**uffix **A**rray * + *text* can be compressed to $nH_0 +O(n)$ *bits* while retaining the following ability : 
 >+ *Count* queries in $O(m \log n)$
 >+ *Locate* queries in $O((m + occ) \cdot \log n)$
 >+ *Extract* queries in $O(\log n + \textit{l})$
@@ -33,7 +33,7 @@ $$
 \log \sigma \leq & \ \log n - \log(\log n)
 \end{align}
 $$
-Noting that $\log n$ is surely $\leq \log n - \log(\log n)$ we get : 
+Noticing that $\log n$ is surely $\leq \log n - \log(\log n)$ we get : 
 $$
 \log \sigma \leq \log n
 $$
@@ -97,7 +97,7 @@ With $F$ we can extract the *first character* of the $i$-th *suffix* by doing th
 
 In order to extract the other *characters* of the $i$-th *suffix* we build the $\psi$ *mapping function*
 
-$\psi$ is build by noting that the second character of a *suffix* is the starting character of the same *suffix* without the first character
+$\psi$ is build by noticing that the second character of a *suffix* is the starting character of the same *suffix* without the first character
 
 >[!example] 
 >The second character of `ANA$` is the first character of the *suffix* `NA$` 
@@ -249,3 +249,7 @@ We use the $\psi$ function :
 We can support *extract* quereis in time $O( \log n + l)$ using just $O(n)$ bits of extra space 
 
 #todo 
+
+>[!note] 
+>Is the same technique as *locate* but we sample $SA^{-1}$ rather than $SA$
+
