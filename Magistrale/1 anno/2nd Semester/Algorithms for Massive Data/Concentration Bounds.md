@@ -172,7 +172,7 @@ $$
 ## Chernoff-Hoeffding ( exponential )
 
 >[!important] Assumption
->My random variable $Y = \sum_{i=1}^n Y_i$ is the sum of $n$ *independent and identically distributed* [[Statistica e Probabilità#Distribuzione di Bernuolli|Bernullian]] random variables $Y_i$
+>The random variable $Y = \sum_{i=1}^n Y_i$ is the sum of $n$ *independent and identically distributed* [[Statistica e Probabilità#Distribuzione di Bernuolli|Bernullian]] random variables $Y_i$
 
 Then for any $t \ge 0$ :
 + $\mathbb{P}(Y \ge E[Y] +t) \le e^{\frac{-t^2}{2n}}$ , right sided
