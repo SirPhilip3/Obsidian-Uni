@@ -51,13 +51,13 @@ $S=banana\$$
 
 | **SA** |     |     |     |     |     |     |     |
 | ------ | --- | --- | --- | --- | --- | --- | --- |
-| *7*      | $   | b   | a   | n   | a   | n   | a   |
-| *6*      | a   | $   | b   | a   | n   | a   | n   |
-| *4*      | a   | n   | a   | $   | b   | a   | n   |
-| *2*      | a   | n   | a   | n   | a   | $   | b   |
-| *1*      | b   | a   | n   | a   | n   | a   | $   |
-| *5*      | n   | a   | $   | b   | a   | n   | a   |
-| *3*      | n   | a   | n   | a   | $   | b   | a   |
+| *7*    | $   | b   | a   | n   | a   | n   | a   |
+| *6*    | a   | $   | b   | a   | n   | a   | n   |
+| *4*    | a   | n   | a   | $   | b   | a   | n   |
+| *2*    | a   | n   | a   | n   | a   | $   | b   |
+| *1*    | b   | a   | n   | a   | n   | a   | $   |
+| *5*    | n   | a   | $   | b   | a   | n   | a   |
+| *3*    | n   | a   | n   | a   | $   | b   | a   |
 
 >[!note] 
 >If we consider the string $S$ as being circular ( $S[0] = S[n]$ ), then :
@@ -95,6 +95,12 @@ We don't want to store the whole matrix in memory, the *first* ( **F** ) and the
 
 ![[missi_test.excalidraw.png]]
 %%[[missi_test.excalidraw.md|🖋 Edit in Excalidraw]]%%
+
+>[!example] 
+>The $3$-rd `s` in $L$ is also the $3$-rd `s` in $F$
+>The $2$-nd `i` in $L$ is also the $2$-nd `i` in $F$
+>The $2$-nd `p` in $L$ is also the $2$-nd `p` in $F$
+>
 
 We can see that **LF** moves us *backwards* in the original text , if we want to go *forward* we can just use $FL=LF^{-1}$ 
 

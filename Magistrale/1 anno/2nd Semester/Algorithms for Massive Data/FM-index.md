@@ -16,20 +16,37 @@ Since the **BWT** stores the next character in the string if we want to find the
 
 ![[Pasted image 20260430141413.png]]
 
-
 >[!note]
 >To identify the range we simply need to perform $\psi$ only on the *first* and *last* ( from top to bottom )
 ## Algorithm
 
 1. Start from the range of the empty string 
-2. Search the character of out pattern P from *right* to *left*
+2. Search the character of our pattern P from *right* to *left*
 3. At the end we will have the range $[l,r]$ of the full pattern 
 4. *count(P)* will simply be $r-l+1$
 5. *locate(P)* = $SA[l, \dots, r]$
 
->[!example] 
->#todo
+>[!example]- 
+>We want to find $P=baba$
+>
+>We start by searching $a$ in the $BWT[1,18]$ and apply *LF* to them
+>![[Pasted image 20260804113330.png]]
+>
+>We found the range of $a$ as $[2,9]$
+>
+>We apply *LF* to the $b$ in this $BWT$ range
+>
+>![[Pasted image 20260804113512.png]]
+>
+>We repeat this until we have finishes the pattern , giving us the range where $P$ appears
+>![[Pasted image 20260804113649.png]]
+>
+>Now we have also :
+>+ $count(P)=13-12+1=2$
+>+ $locate(P) = SA[12,13]=14,5$
 
+>[!note] 
+>Instead of applying *LF* to all the instances of the character of the pattern in the *BWT* range we just need to apply *LF* to the *first* and *last* instance of it , since we only need to know the range 
 ### Time Complexity
 
 We can show that this take in total $O(m \log \sigma)$ *time* 
