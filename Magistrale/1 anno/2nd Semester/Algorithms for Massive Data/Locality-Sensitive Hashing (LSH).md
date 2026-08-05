@@ -9,7 +9,7 @@ With *locality-sensitive hashing* we want that if $x$ and $y$ are *similar* unde
 >
 >A distance-preserving sketch speeds up the computation of $d(x,y)$ but we still need to compute $O(|A|^2)$ distances
 >
->To solve this issue we could use an *hash function* $h$ suche that $\mathbb{P}(h(x)=h(y))$ *increases* as $d(x,y)$ *decreses*
+>To solve this issue we could use an *hash function* $h$ such that $\mathbb{P}(h(x)=h(y))$ *increases* as $d(x,y)$ *decreses*
 >
 >We then put in the same *bucket* all objects with the same hash and check $d(x,y)$ only inside buckets
 
@@ -26,7 +26,6 @@ We start by fixing a distance threshold $t$, such that $h(x)=h(y)$ if and only i
 >![[Pasted image 20260716180659.png]]
 >
 >
-
 
 The *most* *informative* description of an *LSH* is the *plot* of collision probability vs distance, however we want a more **compact** description :
 
