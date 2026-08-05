@@ -241,7 +241,7 @@ In perfect hashing we dont want any collision at all
 >$h : U \to [O,M)$ is a *perfect* hash function on a given set $A \subseteq[n] \iff$ *for any* two distinct $x_1,x_2 \in A$ it holds that $h(x_1) \neq h(x_2)$
 
 >[!note] 
->If the set $A$ is given beforehand then it is possible to build a perfecct hash function on $A$ that can be evaluated in *constant time* and takes just $O(\log|A|)$ *bits of space*
+>If the set $A$ is given beforehand then it is possible to build a perfect hash function on $A$ that can be evaluated in *constant time* and takes just $O(\log|A|)$ *bits of space*
 >
 >>[!warning] 
 >>In most applications $A$ arrives as a stream unknown beforehand

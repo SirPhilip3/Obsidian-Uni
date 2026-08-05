@@ -18,7 +18,7 @@ A *filter* is a *randomized* data structure encoding a set of cardinality $m$ ov
 
 >[!example] Usage example 
 >
->Bloom filters are generally used as an interface to a much slower and exact data structure , in fact since in bloom filters there are no *false negative* if it respond no to our query than we can exclude a lookup on the disk
+>Bloom filters are generally used as an interface to a much slower and exact data structure , in fact since in bloom filters there are no *false negative* if it responds "no" to our query than we can exclude a lookup on the disk
 
 # Bloom Filters
 
@@ -37,7 +37,7 @@ The filter must be initialized with a maximum capacity $m$ and a desired *False 
 
 We want to rapresent set $S \subseteq [n]$ of cardinality at most $m$ 
 
-Given the paramaters $M=15$ and $k=3$ ( see [[#Final Result|Final Result]] for theyr derivation ) 
+Given the paramaters $M=15$ and $k=3$ ( see [[#Final Result|Final Result]] for they'r derivation ) 
 
 Than the *bloom filter* is a *bitvector* of lenght $M$ initialized to $0$ :
 ![[BloomFilter.excalidraw.png]]
@@ -64,7 +64,6 @@ In other words the $i$-th hash function outputs indices inside the $i$-th part o
 >| *$h_3(x)$* | 12  | 13  | 10  | 11  | 11  | 10  |
 
 ^39c7e2
-
 ### Insert
 
 ```pseudo
