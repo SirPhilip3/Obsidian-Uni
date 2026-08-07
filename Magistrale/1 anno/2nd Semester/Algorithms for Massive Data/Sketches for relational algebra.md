@@ -109,7 +109,7 @@ $$
 >$x=12345$
 
 >[!note] 
->The *sketch* depends on the *structure* of the quer not on the *input value* $x$
+>The *sketch* depends on the *structure* of the query not on the *input value* $x$
 
 >[!important] Theorem
 >$Q_{1}(R)\cdot h(x)$ is *unbiased*
