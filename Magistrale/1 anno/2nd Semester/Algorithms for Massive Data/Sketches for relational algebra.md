@@ -5,6 +5,8 @@ publish: true
 
 This problem is important since *DBMS* may use different join algorithm depending on the approximated *join* size
 
+sad
+
 >[!example] 
 >```SQL
 >SELECT *
