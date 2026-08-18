@@ -81,10 +81,44 @@ To avoid the problem of *sniffing* a secret and reusing it we use *One Time Pass
 
 >[!important] 
 >The tocken and computer system must be kept *synchronized* so that the computer knows the *OTP* that is usable in this instant
-##### Implementation
+##### Lamport hash-based OTP
 
+Given a *secret* $s$ and a [[Introduction to Cryptography#One-way hash function|One-way hash function]] $h$ we compute :
+$$
+h^t(s)
+$$
+which is :
+$$
+h(h(\dots h(s) \dots))
+$$
+$t$ times
 
+The *Claimant* and *Verifier* share $h^t(s)$ 
+
+1. The *Claimant* uses the list of passwords : $h^{t-1}(s), h^{t-2}(s), \dots , h(s),s$ 
+2. The *Verifier* computes $h(pwd)$ and checks if it's equal to $h^t(s)$ ( expanded becomes : $h(h^{t-1}(s))==h(s)$ )
+
+>[!note] 
+>At every auth request the chain reduces by $1$ hash value and the *new stored hash* will be $h^{t-1}(s)$ , the *claimant* will send $h^{t-2}(s)$
+
+>[!warning] 
+>This can provide authentication for only $t$ times
 ##### Case Studies
 
+**RSA SecurID Breach** : the seeds $s$ for the *OTP* codes were stored insecurely and leeked
 
+**Java Keystores**  #todo (21 4th pdf)
 #### Biometrics
+
+Biometric authentications checks for something inheret to the user like a fingerprint
+
+It has $2$ phases :
+1. *Enrollment* : features are extracted from the user and stored in a database
+2. *Verification* : features are extracted and compared with the stored ones 
+
+These system must have *no false positives* ( or there shouldn't be any possiblity for *impersonation* ) and also the correct user should be identified most of the times 
+
+>[!warning] 
+>A breach in the *biometric database* has high impact since this data is unique and belongs to the user and cannot be changed if leaked
+
+This system is vulnerable to *adversarial machine learning attacks*
