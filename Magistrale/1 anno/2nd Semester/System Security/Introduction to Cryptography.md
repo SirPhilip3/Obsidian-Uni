@@ -79,8 +79,18 @@ In [[Block cipher modes#Counter mode (CTR)|CTR]] mode for block ciphers we need 
 
 >[!note] 
 >Same *nounce* means same key $K$
+>
+>$\oplus$ is the *xor* operation
 
-$P_{1}\oplus K = C_{1}$ and $P_{2}$
+$P_{1}\oplus K = C_{1}$ and $P_{2} \oplus K = C_{2}$
+
+We can get :
+$$
+\begin{align}
+P_{1}\oplus P_{2} = C_{1} \oplus C_{2} \\
+P_{2} = P_{1} \oplus C_{1} \oplus C_{2}
+\end{align}
+$$
 
 + **Cryptanalysis** : Improvements in technology and cryptanalysis require better crypto
 
