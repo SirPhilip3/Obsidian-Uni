@@ -251,7 +251,25 @@ Roles might be *mutually exclusive* to enforce *separation of duties*
 >**Separation of duties** : if one task requires two users to be performed
 ## Attribute-Based Access Control (ABAC)
 
-Access regulated through attributes 
+Access regulated through *attributes* , there are :
++ **Subject attributes** : name, title, age, ... ( $SA_{1}, \dots, SA_{K}$ ) 
++ **Object attributes** : author, category, ... ( $OA_{1},\dots, OA_{M}$ )
++ **Environment attributes** : date, settings, connection, ... ( $EA_{1},\dots,EA_{N}$ )
 
 >[!example] 
+>Access to online streaming
 >
+>```
+>can_access(s,o,e) =
+>	(
+>		(Membership(s) == Premium) 
+>		OR
+>		(Membership(s) == Regular AND 
+>		 Type(o) == OldRelease)  
+>	)
+>	AND
+>	(
+>		ExpireDate(s) >= Time(e)
+>	)
+>```
+
