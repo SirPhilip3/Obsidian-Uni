@@ -94,7 +94,6 @@ This is done by exploiting bugs that *crash* the application
 >Excessively complex queries to a database
 
 ![[Pasted image 20260820161119.png]]
-
 ### Attacks
 
 The attacker *floods an application protocol* 
@@ -108,11 +107,68 @@ The attacker *floods an application protocol*
 
 This creates many *HTTP* requests without completing them and keeping them alive by sending useless data periodically , by creating lot's of requests *all* the *available* web server *connections* will be *consumed* 
 
+To *mitigate* this attack we can check for **human interaction** ( eg use captchas )
 # DoS techniques
 
 ## Reflection attack
 
+The attacker sends packet to an *intermediary* with a *spoofed source* address of the **target** 
 
+The *intermediary* responds to the actual **target** 
+
+>[!note] 
+>If the response is *larger* than request the attack will also be amplified 
+
+>[!example] 
+>*DNS* , *SNMP* and *ISAKMP* has been exploited with reflection since they can generate large responses
+
+When *echo* service on port $7$ is enabeled than **refelection loops** are possible 
+
+>[!example] 
+>The attacker sends a packet `1.2.3.4` port $7$ with spoofed source address `5.6.7.8` port $7$
+>
+>![[Pasted image 20260820174051.png]]
+>
+>Blocking or limiting combinations of ports can *mitigate* this attack
 ## Amplification attack
 
+An amplification attack is aimed at *generating multiple response* packets with a single request
+
+>[!example] 
+>Send a packet to the *broadcast* address of a network with spoofed address , then *all hosts* with broadcast enabeled will *respond* to the target
+>
+>![[Pasted image 20260820174255.png]]
+>
+>A *defense* in this case is to simply block *broadcast*
 # Defenses
+
+>[!important] 
+>*DoS* **cannot** be fully **prevented** because legitimate incidental traffic can also cause the same behaviour 
+
+## Preventing spoofed source addresses
+
++ **Filtering** spoofed source address as close as possible to the originating host
+>[!example] 
+>Where the organization connects to the internet
+
++ Ensure that the **path back** to the claimed source address is the one used by the current packet 
+>[!note] 
+>This solution is *too strict* when the two path A->B and B->A *differ*
+
+## Preventing SYN spoofing
+
+The solution is to make the protocol *stateless* by encoding the state information directly into the *SYN-ACK* message by adding the sequence number $y$ , this does not need a *TCP table* on the server
+
+## Mitigations 
+
+*ICMP* and *UDP* flooding to diagnostic services ( ping ) can be mitigate by imposing *limits* on packet rates 
+
+*SYN spoofing* can also be mitigated by *limiting* the connection rate to a certaine service 
+
+Also *table overflow* in *TCP* can be mitigated by *dropping* random connections
+>[!warning] 
+>This can drop legitimate connections also
+
+# Detenction
+
+To *detect* this types of attack we need to capture and analyze packet flow , after this we can activate proper *filters* , solve *bugs* , create *backups* etcc 
