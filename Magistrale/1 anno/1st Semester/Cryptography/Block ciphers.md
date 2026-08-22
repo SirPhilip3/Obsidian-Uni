@@ -23,7 +23,7 @@ $$
 z_i = f_i(k, x_1, \dots , x_{i-1})
 $$
 ### Periodic stream ciphers
-A *stream cipher* id *periodic* if it's key stream has the following form : 
+A *stream cipher* is *periodic* if it's key stream has the following form : 
 $$
 z_1,z_2,\dots, z_d, z_1,z_2,\dots,z_d,z_1,\dots
 $$
@@ -35,7 +35,6 @@ The [[Vigenere Cipher]] is an example of *periodic ciphers* where the blocks are
 A stream cipher is *synchronous* if it's key stream does not depend on the plaintexts : $z_i = f_i(k) , \forall i$
 
 An example can be the [[Vigenere Cipher]]
-
 ### Asynchronous stream cipher
 
 We are in the general case where $z_i = f_i(k,x_1,\dots,x_{i-1})$ and we need to decrypt and compute the *keys stream* at the same time since a key depends on the previous *plaintexts*
