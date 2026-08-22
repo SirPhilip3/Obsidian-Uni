@@ -59,18 +59,90 @@ Or given a *ciphertext* $y$ we look for all the *keys* that can give $y$ from so
 
 >[!example] 
 >
+>Let's consider the following *toy-cipher* with $P=\{a,b\},\ K=\{k_{1},k_{2}\},\ C=\{1,2,3\}$
+>
+>The *encryption* is defined by the following table :
+>
+>|         | a   | b   |
+>| ------- | --- | --- |
+>| $k_{1}$ | 1   | 2   |
+>| $k_{2}$ | 2   | 3   |
+>
+>Now let :
+>+ $P_{p}(a)=\frac{3}{4}$ , $P_{p}(b)=\frac{1}{4}$
+>+ $P_{k}(k_{1})=P_{k}(k_{2})=\frac{1}{2}$
+>
+>We can then compute $P_{C}(1)$ using the previous formula :
+>$$
+>P_{C}(1) = P_{k}(k_{1})\cdot P_{p}(D_{k}(1)) = \frac{1}{2} \cdot \frac{3}{4} = \frac{3}{8}
+>$$
+>
+>Where $k_{1}$ is the only key giving ciphertext $1$
 
 **Conditional Probability** :
 	The *conditional probability* of *ciphertext* $y$ given *plaintext* $x$ computes how likely is that we observe a certain *ciphertext* given an input *plaintext*
 $$
 P_{C}(y|x) = \sum_{k \in K , E_k(x)=y} P_K(k)
 $$
-Or simply the sum of the *probability* of all keys giving $y$ from $x$
+Or simply the *sum* of the *probability* of all keys giving $y$ from $x$
 
 Knowing the [[Legge di Bayes|Bayers Theroem]] we can rewrite the *conditional probability* of a *plaintext* $x$ with respect to a *chipertext* $y$ as : 
 $$
 P_p(x|y) = \frac{P_p(x)P_C(y|x)}{P_C(y)}
 $$
+
+>[!example] 
+>Referencing the previous example setup we can calculate the following :
+>$$
+>P_{C}(1|a) = \sum_{k \in K , E_k(x)=y} P_K(k) = P_{K}(k_{1}) = \frac{1}{2}
+>$$
+>
+>$$
+>P_{C}(1|b) = \sum_{k \in K , E_k(x)=y} P_K(k) = 0
+>$$
+>This is true since $1$ can never be obtained from $b$
+
+>[!example]-
+>Lets compute the followings :
+>
+>$P_{C}(3) = P_{k}(k_{2})\cdot P_{p}(D_{k}(3)) = \frac{1}{2} \cdot \frac{1}{4} = \frac{1}{8}$
+>
+>$P_{C}(3|a) = 0$
+>Since $3$ can never be obtained from $a$
+>
+>$P_{C}(3|b) = P_{K}(k_{2}) = \frac{1}{2}$
+
+>[!example] 
+>Compute the probabilities of $a$ and $b$ with respect to ciphertext $1$
+>
+>Having the previous probabilities but also $P_{C}(1)=\frac{3}{8}$ , $P_{C}(1|a) \frac{1}{2}$ and $P_{C}(1|b)=0$ we get :
+>
+>$$
+>P_{p}(a|1) = \frac{P_{p}(a)P_{C}(1|a)}{P_{C}(1)} = \frac{3/4 \times 1/2}{3/8} = 1
+>$$
+>
+>$$
+>P_{p}(b|1) = \frac{1/4 \times 0}{3/8} = 0
+>$$
+>
+>Thus when observing $1$ we are sure it is plaintext $a$ meaning that this cipher is **insecure**
+
+>[!example]-
+>Let's compute also the following :
+>
+>$P_{P}(a|3) = \frac{3/4 \times 0}{1/8} = 0$
+>
+>$P_{P}(b|3) = \frac{1/4 \times 1/2}{1/8} = 1$
+>
+>$P_{C}(2) =P_{k}(k_{1})\cdot P_{P}(D_{k_{1}}(2)) +P_{k}(k_{2})\cdot P_{P}(D_{k_{2}}(2)) =\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{2}\cdot \frac{1}{4} =\frac{1}{2}$
+>
+>$P_{C}(2|a) = \frac{1}{2}$
+>
+>$P_{C}(2|b) = \frac{1}{2}$
+>
+>$$P_{P}(a|2) = \frac{P_{P}(a)P_{C}(2|a)}{P_{C}(2)} = \frac{3/4 \times 1/2}{1/2}= \frac{3}{4}$$
+>
+>$$P_{P}(b|2)= \frac{P_{P}(b)P_{C}(2|b)}{P_{C}(2)} = \frac{1/4 \times 1/2}{1/2}=\frac{1}{4}$$
 
 >[!important] Perfect Cipher Definition
 >A *cipher* is **perfect** $\iff P_p(x|y) = P_p(x), \quad \forall x \in P \land \forall y \in C$  
@@ -91,7 +163,7 @@ So a *perfect cipher* is one where there is some key that maps any message to an
 >
 >Assuming that $p_C(y) > 0$ than if we fix $x$ we obtain that for each $y$  $p_c(y|x) = p_c(y) >0$ meaning that there exists *at least one key* $k$ such that $E_k(x)=y$
 >
->All of this keys are different since $E_k$ is a function and given a unique $x$ this can't be mappet to two different *chipertexts* by the same key
+>All of this keys are different since $E_k$ is a function and given a unique $x$ this can't be mapped to two different *chipertexts* by the same key
 >
 >Thus : $|K| \geq |C|$
 >
@@ -107,6 +179,8 @@ So a *perfect cipher* is one where there is some key that maps any message to an
 >[!check] Proof
 >#todo
 
+>[!example] 
+>Proof page 18 L6 #todo 
 ## One Time Pad 
 
 The *one time pad* is a *pefect cipher* , its a *binary* variant of the [[Vigenere Cipher]] 
@@ -149,7 +223,7 @@ $E_{k1, \dots,k_d}(x_1,\dots x_d) =  (x_1 \text{ xor } k_1, \dots, x_d \text{ xo
 >[!important] Definition
 >Consider two *ciphers* : $S^1 = (P^1,C^1,K_1,E^1,D^1)$ and $S^2 = (P^2,C^2,K_2,E^2,D^2)$ 
 >
->We can say , whithout lusing generalization that $P^1 = C^1 = P^2 = C^2$
+>We let $P^1 = C^1 = P^2 = C^2$ that we summarazie as $P$ and $C$ 
 >
 >We can now than define the composition as : 
 >$S^1 \times S^2 = (P,C,K_1 \times K_2, E,D)$
@@ -158,6 +232,8 @@ $E_{k1, \dots,k_d}(x_1,\dots x_d) =  (x_1 \text{ xor } k_1, \dots, x_d \text{ xo
 >+ $E_{k_1, k_2}(x) = E^2_{k_2}(E^1_{k_1}(x))$
 >+ $D_{k_1, k_2}(y) = D^1_{k_1}(E^2_{k_2}(y))$
 
+>[!example] Examples
+>#todo 32 L7
 ## Idempotent ciphers
 
 >[!important] Definition

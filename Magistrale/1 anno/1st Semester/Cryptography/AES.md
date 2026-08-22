@@ -3,7 +3,7 @@ publish: true
 ---
 *Advanced Encryption Standard* is a *symmetric* cipher that is composed of simple , linear , operation and one *non-linear component* in order to avoid known-plaintexts attacks
 
-The composed operations give a *non-idempotent cipher* that is iterated for a fized number of *rounds*
+The composed operations give a *non-idempotent cipher* that is iterated for a fixed number of *rounds*
 
 **AES** works on *Galois Field* with $2^8$ elements ( $GF(2^8)$ ) 
 
@@ -35,7 +35,7 @@ The multiplication is done normally summing each exponent modulus the *irriducib
 >>[!note] 
 >>The sum is done as before
 >
->Now we need to *devide* by the *irreducible* polynomial and return the *remainder*
+>Now we need to *divide* by the *irreducible* polynomial and return the *remainder*
 #### Division
 
 The division is performed on the basis of the *xor* operation with the *irreducible* polynomial where the *remainder* will be the result
@@ -63,11 +63,21 @@ The following algorithm is an optimization for the *multiplication* operation in
 6. Repeat until $b$ is empty and *return* $p$
 
 >[!example] 
->#todo
+>Given $a=11$ and $b=1011$
+>
+>| a     | b      | p                          |
+| ----- | ------ | -------------------------- |
+| 11    | 101*1* | $00 \oplus 11 = 11$        |
+| 110   | 10*1*  | $11\oplus 110 = 101$       |
+| 1100  | 10     |                            |
+| 11000 | *1*    | $101 \oplus 11000 = 11101$ |
 
+>[!note] 
+>The correcteness derives from the invariant maintained after each loop 
+>#todo 26 L7
 ### AES Encryption Schema
 
-**AES** operates on $4\times 4$ matrix of bytes and given the plaintext subdivided into *bytes* these get's distribuite in the following way : 
+**AES** operates on $4\times 4$ matrix of bytes and given the plaintext subdivided into *bytes*, these get's distribuite in the following way : 
 $$
 \begin{bmatrix}b_1 & b_5 & b_9 & b_{13} \\ b2 & b_6 & b_{10} & b_{14} \\ b_3 & b_7 & b_{11} & b_{15}\\ b_4 & b_8 & b_{12} & b_{16}\end{bmatrix}
 $$
