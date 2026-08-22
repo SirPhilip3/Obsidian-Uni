@@ -92,8 +92,99 @@ it's also a requirement to meet legal and operational requirements
 
 ## Linux / Unix
 
+In linux the systems can be easily maintained up to date with tools like `apt`
+
+The configuration of the system is in the `/etc` folder
+
+*Permissions* use [[Magistrale/1 anno/2nd Semester/System Security/Access Control#Access Control List ( ACL )|ACL]]s 
+
+Authentication is available through the *PAM* ( *pluggable authentication module* )
+
+Linux offers *remote access* through a *tcp* wrapper that enforces hostname-based *access control* using `/etc/hosts.allow` and `/etc/hosts.deny` 
+
+`netfilter` allows for host-based *firewalling*
+
+*Logging* is provided through `syslogd` 
+
+We can use `chroot` to set the root directory of a service so that the rest of the filesystem is not accessible
+
+Uses [[Magistrale/1 anno/2nd Semester/System Security/Access Control#Mandatory Access Control (MAC)|MAC]] that allows for centralized policies that can't be changed by root
+
+*SELinux* have implementation of **MAC** that have restrictions for crucial system processes and than uses standard [[Magistrale/1 anno/2nd Semester/System Security/Access Control#Discretionary Access Control (DAC)|DAC]] this is more *usable* 
 ## Windows
 
+Application configuration are centralized in the *Registry* as a database of keys and values
+
+**Permissions** : [[Magistrale/1 anno/2nd Semester/System Security/Access Control#Access Control List ( ACL )|ACL]]s grant access to *SID* ( *Security ID*'s ) that refers to a user or group
+
+**User accounts** : *SAM* ( *Security Account Manager* ) manages the accounts centralized through *Active Directory* based on *LDAP* ( *Lightweight Directory Access Protocol* ) 
+
+Windows can have *System wide privileges* in general used to perform backups and system configurations, they shuold be granted with care
+
+The administrative rights are only used when required through *User Account Control*
+
+*Low Privilege Service Accounts* are used for long-lived service processes
+
+Windows has the possiblity to use *Encryption* on the *File System* ( *EFS* ) to protect against phisical access 
 # Virtualization
 
+>[!important] Definition
+>**Hypervisor** is the software that stays between the hardware and the *Virtual Machines* and acts as a resource broker
+>
+>It provides *abstraction* of all physical resources and enables for multiple *VM* to be run on the same physical host
+
+## Type 1 hypervisor
+
+A *type 1 hypervisor* is loaded as a software layer directly onto a physical server
+
+It's called **native virtualization** since the hypervisor can directly control the physical resources of the host
+
+![[Pasted image 20260821213453.png]]
+
+This *performs better* than type 2 hypervisors
+
+>[!note] 
+>This is generally more secure than a type 2 hypervisor , since it has fewer layers to protect 
+## Type 2 hypervisor
+
+A *type 2 hypervisor* is loaded as a software layer on a host *OS* installed on the physical server
+
+This is called **hosted virtualization** where the *hypervisor* relies on the host *OS* to access physical resources
+
+![[Pasted image 20260821213624.png]]
+
+>[!note] 
+>Host based virtualization does not require to dedicate the full machine to *VM*'s
+## Containers
+
+Virtualization containers provide an *isolated environment* for application that can *share* the same *OS kernel*
+
+This is loaded as a software layer on a host OS
+
+![[Pasted image 20260821214159.png]]
+## Security
+
+**VM escape** is a vulnerability in the *hypervisor* that might allow *VM*s and virtualized applications to *access* :
++ The hypervisor
++ other VMs
++ the host OS
+
+Or in the contrary a *Host OS attack* is a vulnerability in the host OS that allows to access the guest OS images
+
+>[!warning] 
+>This kind of vulnerabilities might allow for taking full control over the physical server or the host OS
+
+---
+A *VM* is secured in a similar way to an *OS* 
+
+Traffic from a *VM* should be ideally separated using *different* *physical interfaces* , *VLAN*'s or *Software Defined Networks* ( *SDN*s )
+
+---
+*VM*s can have *virtual firewall*
+
+**VM Bastion Host** : it separates *VM* by running Bastion Host services ( *firewalls* , *IDS* etcc ) to monitor the virtual network interfaces used by *VM*s
+
+**VM host-based firewall** : Guest OS can use *host-based protection* as if it were running on physical hardware 
+
+**Hypervisor firewall** : a firewall supported directly inside the hypervisor , this is more efficent than *VM Bastion Host* since it doesn't compete for resources with other *VM*'s , this is more secure in principle since it's invisible by other *VM*'s but adds complexity to the hypervisor 
 
