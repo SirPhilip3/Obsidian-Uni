@@ -56,8 +56,19 @@ If a key is `sensitive` it should *never* be *accessible* as *plaintext* outside
 >2. The attacker extracts `sensitive` keys
 >3. The attacker *clones the device*
 
-#todo 
+Some key may have the `wrap` and `unwrap` properties such that they can be used to export keys encrypted under the *WrapKey* and also import a previously exported key ( *UnwrapKey* )
+
+>[!warning] Wrap-then-decrypt attack
+>
+>The attacker wraps the key that he wants to extract with an *WrapKey* that also have the `decrypt` value set to true , it can then aks to decrypt the wrapped key to get the plaintext of the key even if it's tagged `sensitive`
+>
+>The fix is to simply not allow key wrapping in production
+>
+
 ### Cloud HSM
 
+Let's us use the *HSM* hardware as a service in the cloud , this allows for a vulnerability in a service on the cloud expose the full *PKCS#11* API
+
+#todo 
 #### Formal verified configuration
 
