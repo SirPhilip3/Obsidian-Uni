@@ -67,4 +67,16 @@ Now we define :
 >
 >While *decryption* will be $D_{SK}(y)=18^{23} \mod{55} = 2$ 
 
+### Implementation
 
+*RSA* requires a big modulus $n$ of at least $1024$ bits making the cipher secure
+
+>[!warning] 
+>With this size implementation becomes an issue , in fact *linear complexity* $O(n)$ is prohibitive as it could require $2^{1024}$ steps
+
++ **Sum** can be performed in $O(k)$ 
++ **Multiplication** can be performed in $O(k^2)$
++ **Division** can be performed in $O(k^2)$ 
+
+>[!warning] 
+>A important problem is the **Exponentiation** , we cannot implement exponentiation to the power of $b$ as $b$ multiplications since it would require $k^{2 \cdot 2^k}$

@@ -279,7 +279,7 @@ A recieves it and *decrypts* it as $D_{SK_A}(E_{PK_A}(M))=M$
 >[!important] Asymmetric-key cipher definition
 >An *Asymmetric-key cipher* is a quintuple $(P,C,K_S \times K_P, E,D)$ with :
 >+ $E : K_P \times P \to C$
->+ $D : K_A \times C \to P$
+>+ $D : K_S \times C \to P$
 >  
 > Such that : 
 >+ It's computationally *easy* to generate a key-pair $(SK,PK) \in K_S \times K_P$
@@ -353,7 +353,9 @@ A solution is found when $T=0$
 >It's important to start from the *biggest* element since by definition of *super-increasing* sequence if we don't take it all the remainig values will be less than the number not taken
 
 >[!example] 
->#todo
+>Starting from $S=(1,3,5,10)$ and $T=11$
+>
+>We get that we get $10$ and $T$ becomes $1$ we than skip $5$ and $5$ and we get $1$ giving us $T=0$ , then the solution is $(1,0,0,1)$
 
 ### The Cipher
 

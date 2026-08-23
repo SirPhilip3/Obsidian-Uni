@@ -92,9 +92,9 @@ This is a variation of [[Block cipher modes#Output FeedBack mode (OFB)|OFB]] whe
 ![[CTR_encryption_2.jpg]]
 ## Cipher FeedBack mode (CFB)
 
-This mode mitigates the problems introduced by [[Block cipher modes#Output FeedBack mode (OFB)|OFB]] by making the *key stream* dependent on the previos encrypted element  
+This mode mitigates the problems introduced by [[Block cipher modes#Output FeedBack mode (OFB)|OFB]] by making the *key stream* dependent on the previous encrypted element  
 
-It use a *shift register* than is shifted to the *left* by the number of bits of the *previous* *ciphertext* , this get's than copied into the rightmost bits of the register 
+It uses a *shift register* than is shifted to the *left* by the number of bits of the *previous* *ciphertext* , this get's than copied into the rightmost bits of the register 
 
 >[!example] Encryption
 >![[Pasted image 20251103113703.png]]

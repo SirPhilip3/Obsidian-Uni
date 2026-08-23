@@ -4,7 +4,7 @@ publish: true
 *Data Encryption Standard* ( *DES* ) is a [[Ciphers#Symmetric Ciphers|Symmetric]] key algorithm 
 
 The *block size* is $64$ bits 
-The *key* is of $64$ bits but $8$ are used for *error correction* ( so in reality the key is only of $56$ bits )
+The *key* is of $56$ bits but $8$ are used for *error correction* ( so in reality the key is only of $56$ bits )
 ## Encryption
 
 The *encryption scheme* is constituted of $16$ identical *rounds* of a **Feistel function** ( $F$ ) opened and closed by , respectively : 
@@ -54,9 +54,9 @@ Thus a key corresponds to a *permutation* of all the possible *plaintext* blocks
 We can than say that the *key* $k$ is selecting a random subset of $2^{56}$ permutations from the $2^{64}!$ possible ones 
 
 >[!note] 
->We suppose that the way these permutation are selected is *complex* enugh , otherwise *DES* would be a *weak cipher* 
+>We suppose that the way these permutation are selected is *complex* enough , otherwise *DES* would be a *weak cipher* 
 
-The probability of getting of the composition of two permutation being still in the same subset of keys is :
+The probability thet the composition of two permutation being still in the same subset of keys is :
 $$
 \frac{2^{56}}{2^{64}!}
 $$
