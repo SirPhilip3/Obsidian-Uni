@@ -69,7 +69,54 @@ Now we define :
 
 ### Correctness
 
-#todo 
+We need to show that *decrypting* under the private key a plaintext $x$ encrypted under the public key gives $x$
+
+Or check :
+$$
+D_{SK}(E_{PK}(x))=x
+$$
+First we need to *prove* the **Euler Theorem** :
+Let $a$ and $n$ be *coprime* ( $gcd(a,n)=1$ ) then $a^{\phi(n)} \mod{n}=1$
+
+*Proof* :
+	Let $S=(s_{1},\dots,s_{\phi(n)})$ be the $\phi(n)$ *numbers* less than $n$ and coprime with $n$
+
+We consider $R=(a\cdot s_{1} \mod{n}, \dots, a \cdot s_{\phi(n)}\mod{n})$ and we *show* that $S=R$ 
+
+>[!important] Lemma 1
+>Let $x,y$ be *coprime* to $n$. Then $x \cdot y$ is coprime to $n$
+>
+>*Proof* :
+>	All the divisors of $x\cdot y$ are products of the divisors of $x$ and / or $y$ thus a common divisor of $x\cdot y$ and $n$ must also divide $x$ and / or $y$. Thus $\gcd(x\cdot y,n)>1$ would imply that the $\gcd(x,n)>1$ and / or $\gcd(y,n)$ giving a *contradiction*
+
+>[!important] Lemma 2
+>Let $x$ be coprime to $n$. Then $x \mod{n}$ is coprime to $n$
+>
+>*Proof* :
+>	Since $x \mod{n} = x - k \cdot n$ we have that any common divisor $d$ of $x \mod{n}$ and $n$ must divide $x$
+
+>[!important] Lemma 3
+>Let $a\cdot x \mod{n} = a \cdot y \mod{n}$ with $\gcd(a,n)=1$ . Then $x \mod{n}=y \mod{n}$ 
+>
+>*Proof* :
+>	We have that $a\cdot x - k \cdot n = a \cdot x \mod{n} = a \cdot y \mod{n} = a \cdot y - j \cdot n$ . Thus we will have that $a \cdot x - a \cdot y =k \cdot n - j \cdot n$ , we can also write $w=k-j$ 
+>	We then imply $x-y = w \cdot n/a$ 
+>	Since $\gcd(a,n)=1$ we have that $a$ must divide $w$ and so $x-y =t \cdot n$ 
+>>[!note] 
+>>$w=t \cdot a$ , substituting $t = \frac{w}{a}$ 
+>
+>Then applying the $\mod{n}$ we get : $(x-y)\mod{n} = t \cdot n \mod n$ ,
+>$$
+>\begin{align}
+>(x-y) \mod{n}& = 0  \\
+>x \mod{n}& = y \mod{n}
+>\end{align}
+>$$
+
+Now using the *previous lemmas* :
+By *lemma 1* and *2* we have that all numbers in set $R=(a \cdot s_{1} \mod{n}, \dots, a \cdot s_{\phi(n)}\mod{n})$ are *coprime* to $n$ and smaller than $n$
+
+
 ### Implementation
 
 *RSA* requires a big modulus $n$ of at least $1024$ bits making the cipher secure
