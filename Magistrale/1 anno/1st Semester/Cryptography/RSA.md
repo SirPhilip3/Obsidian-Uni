@@ -76,6 +76,9 @@ $$
 D_{SK}(E_{PK}(x))=x
 $$
 First we need to *prove* the **Euler Theorem** :
+
+#### Euler Theorem Proof
+
 Let $a$ and $n$ be *coprime* ( $gcd(a,n)=1$ ) then $a^{\phi(n)} \mod{n}=1$
 
 *Proof* :
@@ -116,6 +119,94 @@ We consider $R=(a\cdot s_{1} \mod{n}, \dots, a \cdot s_{\phi(n)}\mod{n})$ and we
 Now using the *previous lemmas* :
 By *lemma 1* and *2* we have that all numbers in set $R=(a \cdot s_{1} \mod{n}, \dots, a \cdot s_{\phi(n)}\mod{n})$ are *coprime* to $n$ and smaller than $n$
 
+Since $S$ is the set of all numbers coprime to $n$ and smaller than $n$ we obtain $R \subseteq S$ 
+
+Now considering $a \cdot s_{i}\mod{n}$ and $a\cdot s_{j}\mod n$ in $R$.
+
+Since $a$ is *coprime* to $n$ by *lemma 3* we can say that $a \cdot s_{i}\mod{n} = a \cdot s_{j}\mod{n}$ this implies $s_{i} \mod{n} = s_{j} \mod{n}$ which gives a *contradiction* since in $s_{i}$ would be equal to $s_{j}$ which are two different number taken from $R$
+
+We have that then $a \cdot s_{i} \mod{n} \neq a \cdot s_{j} \mod{n}$ proving that $R=S$ 
+
+>[!note] 
+>This is because we have proven that $\forall i,j$ we have that $a \cdot s_{i} \mod{n} \neq a \cdot s_{j} \mod{n}$ meaning that no element can be a duplicate and since $R$ is a subset of $S$ then $R$ and $S$ must contain the same elements 
+
+Now since $S=R$ we have :
+$$
+\prod_{i=1}^{\phi(n)} s_{i} = \prod_{i=1}^{\phi(n)} a s_{i} \mod{n} = a^{\phi(n)} \prod_{i=1}^{\phi(n)} s_{i} \mod n 
+$$
+Now using $P=\prod_{i=1}^{\phi(n)} s_{i}$ we get :
+$$
+\begin{align}
+P & = a^{\phi(n)} P \mod n \\
+\frac{P}{P} & = a^{\phi(n)} \frac{P}{P} \mod{n} \\
+1 &= a^{\phi(n)} \mod{n}
+\end{align} 
+$$
+
+#### RSA Correctness
+
+>[!note] 
+>$a\cdot b \mod{\phi(n)}=1$ implies $a \cdot b = k \cdot \phi(n)+1$ for some $k$
+
+We have that :
+$$
+\begin{align}
+D_{SK}(E_{PK}(x))& = (x^b \mod{n})^a \mod n \\
+&= (x^b)^a \mod n = x^{a\cdot b} \mod{n}
+\end{align}
+$$
+We need to prove that $x^{a\cdot b} \mod{n} = x$
+
+We notice now that : 
+$$
+\begin{align}
+x^{a\cdot b} \mod{n} & = x^{k \cdot \phi(n)+1} \mod{n} \\
+& = (x^{\phi(n)})^k \cdot x \mod{n}
+\end{align}
+$$
+Thus to finish the proof it's enough to show that :
+$$
+(x^{\phi(n)})^k \cdot x \mod{n} = x
+$$
+The proof is split into *two cases* :
+1. $\gcd(x,n)=1$
+
+In this case we know that the *Euler theorem* holds and directly have that : $x^{\phi(n)} \mod{n} = 1$ which implies $(x^{\phi(n)})^k \mod{n} = 1$
+
+2. $\gcd(x,n)>1$
+
+In this case since $x<n$ we have that either :
++ $\gcd(x,n)=p$
++ $\gcd(x,n)=q$
+
+The two proofs are identical 
+
+We now have $x=j \cdot p$ for some $j$ and $\gcd(x,q)=1$ ( as $x<n$ ) which for *Euler theorem* gives $x^{\phi(q)} \mod{q}=1$ 
+
+This implies that $x^{\phi(q) \phi(p)} \mod{q}=x^{\phi(n)} \mod{q}=1$ 
+
+This implies that $(x^{\phi(n)})^k \mod{q}=1$
+
+We also have 
+$$
+(x^{\phi(n)})^k = w \cdot q +1
+$$
+For some $w$ by definition of modulus
+
+Then we have the following :
+$$
+\begin{align}
+(x^{\phi(n)})^k \cdot x \mod{n} & =  \\
+(w \cdot q + 1) \cdot x \mod{n} & =  \\
+(w \cdot q + 1) \cdot (j \cdot p) \mod{n} &=  \\
+(w\cdot q \cdot j \cdot p + j \cdot p) \mod{n} &=  \\
+(w\cdot j \cdot n + x) \mod n & = \\
+\end{align}
+$$
+Since $b \cdot x \mod x = 0$ we have
+$$
+(0+x) \mod{n} =x
+$$
 
 ### Implementation
 
