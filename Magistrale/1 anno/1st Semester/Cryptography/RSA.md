@@ -226,4 +226,118 @@ $$
 
 #### Square-and-Multiply algorithm
 
-#todo 
+>[!note] Idea
+>When we rise a number $x$ to a power of $2$ ( like $8$ ) we can compute $((x^2)^2)^2$ instead of doing $7$ mutliplication we do only $3$
+
+If the exponent is not a power of $2$ we can just perform some additional multiplication :
++ If the exponent is *even* we divide by $2$ and we *square*
++ If the esponent is *odd* we get one out and then divide the rest by $2$ and *square* 
+
+In *binary* operations we get
+
+Starting from the most significant bit. At each step we *square* and only when we have a $1$ we *multiply* by $x$
+
+>[!example] 
+>Compute $2^{10}$ , where $10=1010$ and $x=2$
+>
+>1. $r=1$ , $r=1\cdot 1$ + since the bit is $1$ we do $r = r\cdot x = 1 \cdot 2 =2$ 
+>2. $r=2 \cdot 2 = 4$ , the remaining most significant bit is $0$ so no multiplication
+>3. $r = 4 \cdot 4=16$ , $r=r \cdot x = 16 \cdot 2 = 32$
+>4. $r=32 \cdot 32 = 1024$
+
+The number of steps in the *worst case* is $O(k^2)$ for the two multiplications , iterated $k$ times we get $O(k^3)$ 
+
+>[!note] 
+>Where $k$ is the number of bits of the exponent
+
+For $1024$ bits we expect $1b$ steps which is still somewhat *efficent* in modern machines
+#### Inverse modulo
+
+To compute the private exponent from the public one we require that :
+$$
+a \cdot b \mod{\phi(n)} = 1
+$$
+To find $a$ and $b$ :
+1. choose $b$ 
+2. compute it's ***multiplicative*** ***inverse** modulo* $\phi(n)$ 
+
+>[!note] 
+>This is guaranteed to exist by the *Euler theorem* when $\gcd(b, \phi(n))=1$
+>
+
+The algorithm to compute it is based on [[Inverse of an Integer#Euclidian Algorithm|Euclidian Algorithm]] for computing $\gcd$
+#### Generating RSA exponents
+
+The above algorithm works if $b$ and $\phi(n)$ are *coprime* , this happends with probability $\approx 0.6$ , iterating this $2-3$ times should give suitable pairs of public and private exponents
+
+In *practice* $b$ is a fixed *constant* typically the prime number $2^{16}+1=65537$
+
+>[!note] 
+>Using a low exponent improves the performance of encryption , this is because each $1$ in the exponent requires an extra multiplication
+
+*RSA security* is based on the infeasability of factoring the modulu $n$ ( $3072$ bits )
+
+Knowing $\phi(n)$ makes it very simple to compute the private exponent $a$ 
+
+If we compute $\phi(n)$ we can easily factor $n$ since we have the following system of equations :
+$$
+\begin{cases}
+n = pq \\
+\phi(n) = (p-1)(q-1)
+\end{cases}
+$$
+By solving it we can find $p$ and $q$ , we thus have that finding $\phi(n)$ is *at least* *as difficult as factoring* 
+
+#### Primality test
+
+To *generate* *two* *big prime* numbers the oldest algorithm is *Eratosthenes* :
+1. Pick all number from $2$ to $N$
+2. Start from the *smallest prime* (2, initially) call it $p$ and update the list by removing all the multiples of $p$ 
+3. Iterate until we finish all the prime numbers on the list, primes are the $p$'s picked
+
+>[!example] 
+>$N=10$
+>Numbers from $2$ to $N$ : $\{2,3,4,5,6,7,8,9,10\}$
+>
+>1. Start from $2$, remove $2,4,6,8,10$ , we get $\{3,5,7,9\}$
+>2. Take $3$ and remove $3,9$ , we get $\{5,7\}$
+>3. Take $5$ and remove $5$
+>4. Take $7$ and remove $7$
+>
+>Primes are $2,3,5,7$
+
+The algorithm can be optimized by removing multiples starting from $p^2$ 
+
+In fact any smaller $x \cdot p$ with $x<p$ would have been removed at a prevoious step
+
+We can also stop when $p$ is the *square root* of $N$
+
+>[!warning] 
+>This algorithm takes at least $N$ steps meaning that it takes too much 
+
+Instead of generating all the primes we *pick* them at *random* and *test* their *primality*
+
+There are many *efficent* *probabilistic* algorithm that do *primality test* , deterministic algorithms are much slower $O(k^6)$ 
+##### Miller-Rabin test
+
+This is a *NO-biased Montecarlo* , this means it is *always correct* for the *NO* answer 
+
+>[!note] 
+>The probability of being wrong is $\le \epsilon = \frac{1}{4}$
+
+With this we can iterate the test until the error is small enough
+
+By running it $r$ times the probability that it says *Yes* and that the number is not prime is less than $\epsilon^r = \frac{1}{4}^r$
+
+The complexity is $O(\log^3 n)$ *steps* ( $O(\log n)$ multiplication each multiplication costs $O(\log^2n)$ steps )
+
+```pseudo
+	\begin{algorithm}
+	\caption{Prime(n)}
+	\begin{algorithmic}
+	\State write $n-1 = 2^k \cdot m$
+	\State pick a random $a$ such that $1<a<n$
+	\State
+	\end{algorithmic}
+	\end{algorithm}
+```
