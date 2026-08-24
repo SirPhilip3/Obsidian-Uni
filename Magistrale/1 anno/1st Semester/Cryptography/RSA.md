@@ -478,4 +478,36 @@ Consider a small $m$ encrypted with exponent $3$, we have $y= m^3 \mod{n}$ and i
 Padding prevents this attack by making it *unlikely* that $m^3$ is $\le n$
 #### Attack 3 : Partial information
 
-It could be possible that an attacker
+It could be possible that an attacker is able to partially recover the plaintext.
+
+Let $y= E_{PK}(x)$ 
+
+Then we may have some partial information for $y$ like :
++ *parity(y)* that returns the parity of the plaintext
++ *half(y)* tell us if the plaintext is less then half of the modulus $n$ 
+
+We can prove also that $half(y)=parity(E_{PK}(2) y \mod{n})$ , we have two cases : 
++ $half(y)=0$ 
+By definition we have that $0< x < n/2$ which implies $0< 2 x < n$, thus $2x \mod{n} = 2x$ which is *certainly even* 
+
+Then $parity(E_{PK}(2) y \mod{n}) = parity(E_{PK}(2 x \mod{n}))=0$ 
+
++ $half(y)=1$ , by definition we have that $n/2 < x < n$ 
+By definition we have that $n \le 2x < 2n$ thus $2 x \mod{n} = 2 x -n$ which is certainly *odd* since $2x$ is *even* and $n$ is *odd* ( since it cannot be a multiple of $2$ )
+
+Then $parity(E_{PK}(2) y \mod{n}) = parity(E_{PK}(2 x \mod{n}))=1$
+
+>[!important] Theorem
+>Given an algorithm that computes $half(y)$ or $parity(y)$ it is possible to compute the whole plaintext $x$
+
+**Proof**
+
+Since $half(y)$ can be defined in terms of $parity(y)$ it is sufficient to prove that having $half(y)$ we can compute $x$ 
+
+It's enough to do a *binary search* each time multiplying the ciphertext by $E_{PK}(2)$ and getting the left / right interval depending on the value of $half$ 
+
+#todo last 2 L18
+
+#### Attack 4 : Chosen ciphertext attack
+
+#todo 
