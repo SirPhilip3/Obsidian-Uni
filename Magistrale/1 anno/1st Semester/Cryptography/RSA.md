@@ -337,7 +337,45 @@ The complexity is $O(\log^3 n)$ *steps* ( $O(\log n)$ multiplication each multip
 	\begin{algorithmic}
 	\State write $n-1 = 2^k \cdot m$
 	\State pick a random $a$ such that $1<a<n$
-	\State
+	\State $b= a^m \mod{n}$
+	\If{$b==1$}
+		\Return True
+    \EndIf
+    \For{$i$ in $range(0,k)$}
+	    \If{$b==n-1$}
+		    \Return True
+        \EndIf
+        \State $b=b \cdot b \mod{n}$
+    \EndFor
+    \Return False
 	\end{algorithmic}
 	\end{algorithm}
 ```
+
+>[!example] 
+>`Prime(7)`
+>1. $6=2^1 \cdot 3$
+>2. $a=2$ ( $1<2<7$ )
+>3. $b=2^3 \mod{7} = 1$
+>4. $b=1$ return *True*
+
+>[!important] Theorem
+>
+>The above algorithm is always correct on *False* answers
+
+**Proof** : 
+
+Assume by contradiction that the algorithm returns *False* but the number $n$ is *prime* 
+
+*False* is only returned at the last step so we have that : 
+1. $a^m \mod{n} \neq 1$ 
+2. for $k$ cycles we must have that $b \neq n-1$ after computing $b=b\cdot b \mod{n}$
+
+By the assumption that $n$ is *prime* and by **Euler theorem** we know that :
+$$
+a^{\phi(n)} \mod{n} = a^{n-1} \mod{n} = a^{m 2^k} \mod{n} =1
+$$
+>[!note] 
+>$n-1=m2^k$ as in line $9$ 
+
+#todo 
