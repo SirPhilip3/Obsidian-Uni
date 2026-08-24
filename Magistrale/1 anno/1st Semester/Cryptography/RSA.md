@@ -378,4 +378,104 @@ $$
 >[!note] 
 >$n-1=m2^k$ as in line $9$ 
 
-#todo 
+It's easy to show that if $n$ is prime then the only square roots of $1$ modulo $n$ are $n-1$ and $1$ 
+
+#todo 20 L17
+
+#### Generating RSA primes
+
+We can now simply generate the *primes* at random and test their *primality*. 
+
+This takes about $\ln n$ *steps* where $n$ is the upper bound of the interval we choose from 
+
+It can be proven that $1$ out of $\ln n$ numbers less than $n$ are *prime* 
+
+### RSA Security
+
+#### Computing $\phi(n)$
+
+Computing $\phi(n)$ is at least as difficult as factoring $n$
+
+In fact given an algorithm that computes $\phi(n)$ , to compute $p$ and $q$ it's enough to solve the system : 
+$$
+\begin{cases}
+n = pq \\
+\phi(n) = (p-1)(q-1)
+\end{cases}
+$$
+#### Computing the private exponent ( $a$ )
+
+It could be possible to compute the *private* exponent without necessarily computing $\phi(n)$ 
+
+It can be proven that this would allow to factorize $n$ ( if we know the *private* exponent )
+
+>[!important] Theorem
+>
+>Given an algorithm that computes the exponent $a$ we can write a probabilistic *Las Vegas* algorithm that factorizes $n$ with probability at least $1/2$
+
+So if a *private key* leaks then the modulus is no more secure.
+
+This implies that $n$ should *never* be *reused* for *different key pairs*
+#### Attack 1 : Small encryption exponents
+
+If we choose an excessively small *exponent* RSA can be attacked
+
+Suppose the same message $m$ is sent encrypted under at least three different public keys $(3,n_{1}),(3,n_{2}),(3,n_{3})$ giving the three ciphertexts $c_{1},c_{2},c_{3}$ such that :
+$$
+c_{i} = m^3 \mod{n_{i}}
+$$
+>[!note] 
+>
+>The moduli $n_{1},n_{2},n_{3}$ are very likely to be *coprime* as they will not share their prime factors
+>
+
+The *Chinese Remainder Theorem* applies and proves that there exists a unique $x < n_{1}\cdot n_{2}\cdot n_{3}$ such that $x \mod{n_i}=c_{i}$ with an efficient way to compute it
+
+>[!important] Chinese Remainder Theorem
+>Let $n_{1},\dots,n_{k}$ be integers $>1$ and $N=n_{1}\cdot n_{2}\cdot \dots \cdot n_{k}$. If the $n_{i}$ are *pairwise coprime* and if $a_{1},\dots,a_{k}$ are integers such that $0\le a_{i}<n_{i}$ for every $i$ then there is one and only one integer $x$ such that $0\le x < N$ and $x \mod{n_{i}}=a_{i}$ for every $i$
+
+Notice now that $m < n_i$ which implies $m^3 < n_{1}\cdot n_{2}\cdot n_{3}$
+
+By definition of $c_{i}$ we also have $c_i=m^3 \mod{n_{i}}$
+
+Thus the unique $x$ given by the *Chinese Remainder Theorem* must be equal to $m^3$ 
+
+>[!example] 
+>$m=2$, $n_{1}=3, n_{2}=5, n_{3}=7$
+>
+>$m^3 = 8 < n_{1} \cdot n_{2} \cdot n_{3}=105$
+>$c_{1} = 8 \mod{3} =2$
+>$c_{2} = 8 \mod{5} = 3$
+>$c_{3}= 8 \mod{7}=1$ 
+>
+>Since all are between $0$ and $7$ we can use the previous theorem
+>
+>There is one and only one integer $x$ such that $0\le x <105$ and :
+>$x \mod{3}=2$
+>$x \mod{5}=3$
+>$x \mod{7}=1$
+>
+>This number is $8$
+
+In general $b$ encryptions of the same message $m$ under different keys are enough to recover $m$ 
+
+Picking a big $b$ makes it *unilikely* 
+
+This attack can also be prevented by a randomized padding scheme such as *PKCS1* which transforms message $m$ into a $k$-bits long message in the following form : 
+$$
+0x00\ ||\ 0x02\ ||\ PS\ ||\ 0x00\ ||\ m
+$$
+Where *PS* is a sequence of random bytes different from $0$ 
+
+>[!note] 
+>*PKCS1* allows for *padding-oracle attacks* and it's new version is *Optimal Asymmetric Encryption Padding* ( *OAEP* )
+#### Attack 2 : Small messages
+
+If the *message* is very *small* and encrypted under small exponents 
+
+Consider a small $m$ encrypted with exponent $3$, we have $y= m^3 \mod{n}$ and it might be the case that $m^3\le n$ meaning that $y=m^{3} \mod{n} = m^3$ , to decrypt is then enough to compute $\sqrt{y}^3$
+
+Padding prevents this attack by making it *unlikely* that $m^3$ is $\le n$
+#### Attack 3 : Partial information
+
+It could be possible that an attacker
