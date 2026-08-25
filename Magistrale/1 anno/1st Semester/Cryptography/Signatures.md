@@ -77,6 +77,131 @@ Another problem is that the size of the signature is at least the same as the si
 
 If we use *RSA* if the message is bigger than the *modulus* it should be split into blocks , this can violate *authenticity* 
 
+## Cryptographic hash functions
+
 We use **cryptographic hash functions** 
 
-#todo 
+>[!note] 
+>An *hash function* $h: X \to Z$ is a function taking an arbitrarily long message $x$ and returning a *digest* $z$ of fixed lenght
+
+We can modify the functions in the following way :
+$$
+Sig_{SK}^h(x)=D_{SK}(x)
+$$
+To sign $x$ we *decrypt* it's *hash* under the *private key*
+$$
+Ver_{PK}^h(x,y)= \begin{cases}
+true & \text{if } E_{PK}(y)=x \\
+false & otherwise
+\end{cases}
+$$
+To check the signature we *encrypt* the signature under the *public key* we recompute the *hash* on $x$ and we cmopare the two results
+
+>[!note] 
+>The fact that the *hash* is of fixed lenght removes the problem of the need of  encryption modes and also the size problem
+
+>[!warning] 
+>In the first attack [[#Forgin a random signature]] then if we are able to find $x$ such that $h(x)=E_{PK}(y)$ we will have that $Ver^h_{PK}(x,y)=true$ 
+
+These functions to be *cryptographic* needs to have some special **properties** :
+### Preimage resistance
+
+>[!important] Definition
+>A hash function $h$ is *preimage resistant* ( or *one-way* ) if given $z$ it is infeasible to compute $x$ such that $h(x)=z$
+
+Also prevents forging based on *RSA* *multiplicative property*
+
+If we have two signed messages $x_{1},x_{2}$ with signatures $y_{1}$ and $y_{2}$ , then $y_{1} \cdot y_{2} \mod{n}$ is the signature $y$ of a message $x$ whose hash is the same as $z=h(x_{1})\cdot h(x_{2}) \mod{n}$ ( or $h(x)=z$ )
+
+Finding such a message $x$ means that we can compute a preimage $x$ of $h$ such that $h(x)=z$ but this is *ruled* out by preimage resistance
+### Second-Preimage resistance
+
+>[!important] Definition
+>A hash function is *second-preimage resistant* if *given* $x_{1}$ it is *infeasible* to *compute* $x_{2}$ such that $h(x_{1})=h(x_{2})$
+
+This is necessary because if we can calculate another $x_{2}$ from $x_{1}$ that has $h(x_{1})=h(x_{2})$ then the signature $y_{1}$ is valid for both $x_{1}$and $x_{2}$ 
+
+### Collision resistance
+
+>[!important] Definition
+>
+>A hash function is collision resistant if it is infeasible to compute different $x_{1}$ and $x_{2}$ such that $h(x_{1})=h(x_{2})$
+
+>[!note] 
+>If a hash is collision resistant it is also second-preimage resistant and preimage resistant
+
+This *holds* under the *assumption* that the number of *messages* we can hash is at least twice the number of digest 
+
+>[!important] Theorem 1
+>
+>Let $h: X \to Z$ be a collision resistant hash function such that $|X|\ge 2 |Z|$. Then $h$ is also *preimage resistant*
+
+To *prove* this theorem we can prove the following equivalent fact :
++ If $h$ is *not preimage resistant* then $h$ is *not collision resistant* 
+
+We can sse that given an algorithm $Invert(z)$ for inverting $h$ ( this breaks *preimage resistance* ) we can write a *Las Vegas* probabilistic algorithm that finds a collision
+
+The algorithm is the following : 
+1. We pick a random message
+2. compute it's hash
+3. invert it using $Invert(z)$
+4. If we find a different message we are done otherwise we *FAIL* 
+
+We now show that failure happens with probability at most $1/2$ 
+
+Since we have $|Z|$ possible *digest* we have that $Invert(z)$ returns exactly $|Z|$ preimages , these are the cases where messages remap to themselves
+
+The good cases are $|X|-|Z|$ and the probability of success is :
+$$
+\frac{|X|-|Z|}{|X|} \ge \frac{|X|-\frac{1}{2}|X|}{|X|} =\frac{\frac{1}{2}|X|}{|X|} = \frac{1}{2} 
+$$
+Given that $|X| \ge 2 |Z|$ or $|Z|\le |X|/2$. As a consequence we fail with probability $\leq \frac{1}{2}$
+
+This algorithm can be iterated as needed giving us the prob of failure of $\le \frac{1}{2}^r$
+
+### Common Hash Functions
+
+#### MD5
+
+*MD5* is a $128$-bit hash function 
+
+>[!warning] 
+>It has been shown to be **not** *collision resistant* and vulnerable to *Birthday attacks*
+
+#### SHA ( Secure Hash Algorithm )
+
+This is also been shown to be *non-collision resistant* vulnerable to *Birthday attacks* 
+
+*SHA-2* has a variable digest size from $224$ to $512$ bits 
+
+*SHA-3* is it's successor
+### Birthday Attack
+
+Brute forcing a *crypto* hash function is made easier by the *Birthday attack*
+
+>[!example] 
+>Within a group of $41$ people the probability to have at least two with the same birthday is $90\%$
+
+Birthday can be seen as a *hash function* from any person to a fixed size set of $365$ days of the year
+
+Two people with the same birthday represent a collision on the hash function 
+
+We assume people are being mapped to birthdays in a *uniform way* 
+
+We can than compute the *probability* that in a group of $k$ people none share the birthday
+$$
+\prod_{i=0}^{k-1} \frac{365-i}{365}
+$$
+Then the probability of collision is :
+$$
+1-\prod_{i=0}^{k-1} \frac{365-i}{365}
+$$
+Relating to *hash functions* the probability that we do NOT find a collision is :
+$$
+\prod_{i=0}^{k-1} \frac{n-i}{n} = \prod_{i=0}^{k-1}\left( 1- \frac{i}{n} \right)
+$$
+## Message Authentication codes
+
+### CBC-based MAC
+
+### Hash-based MAC
