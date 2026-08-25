@@ -221,7 +221,7 @@ $$
 For $e=\frac{1}{2}$ will give us $k \approx 1.17\sqrt{ n }$ 
 
 A *brute-force* attack on a hash function with $n$ digests finds a collision with probability $\frac{1}{2}$ after  about $\sqrt{ n }$ attempts
-## Message Authentication codes
+## Message Authentication codes (MAC)
 
 *Message Authentication Codes* ( *MAC*s ) are hash functions with a *simmetric key* 
 
@@ -231,6 +231,62 @@ They produce a *fixed-size* digest of a message whose value depends on the given
 + Without knowing the key $k$ it should be computationally *infeasible* to find a message $x$ and a *MAC* $y$ such that $MAC_{k}(x)=y$ ( such that $y$ is the *MAC* for $x$ under key $y$ )
 
 The *MAC* is checked by recomputing it and comparing with the received one
-### CBC-based MAC
+### [[Block cipher modes#Cipher Block Chaining mode (CBC)|CBC]]-based MAC
 
+We use $0$ as the *Initialization Vector* 
+
+We than define $MAC_{k}(x)=y_{n}$ , or we take the *last encrypted block* as the digest
+
+#### Chosen-text forgery :
+
+##### Example 1
+
+Suppose we have a $1$-block message $x$ and the relative $MAC_{k}(x)$ 
+
+We have that $MAC_{k}(MAC_{k}(x))=E_{k}(E_{k}(x)) = MAC_{k}(x||0)$
+
+If the attacker asks for the $MAC$ of $MAC_k(x)$ he obtains a $MAC$ for the two-blocks message $x||0$
+##### Example 2
+
+Consider *two* $1$-block message with their $MAC$s repectively : $MAC_{k}(x_{1})$ and $MAC_{k}(x_{2})$
+
+Let $H_{1}=MAC_{k}(x_{1})$ and $H_{2}=MAC_{k}(x_{2})$ then :
+$$
+\begin{align}
+MAC_{k}(x_{1}||z) & = E_{k}(H_{1} \oplus z) \\
+&= E_{k}(H_{1}\oplus H_{2} \oplus z \oplus H_{2}) \\
+&=MAC_{k}(x_{2}||H_{1}\oplus H_{2}\oplus z)
+\end{align}
+$$
+If the attacker wants to *extend* message $x_{1}$ with an arbitrary second block $z$ he can ask for the $MAC$ of $x_{2}||H_{1}\oplus H_{2}\oplus z$ 
+
+The obtained $MAC$ will be valid for message $x_{1}|| z$ 
+#### Preventing Chosen-test forgery
+
+We add *additional* *transformations* to the final encrypted $CBC$ block 
+
+>[!example] 
+>Given an additional key $k'$ we define $MAC_{k}(x)=E_{k}(D_{k'}(y_{n}))$
+
+Changing the last step is a way to avoid that $MAC$s can be forged from $MAC$s of shorter messages as done above
 ### Hash-based MAC
+
+Iterate a given hash function $h$ over blocks of $B$ bytes. We typically take $B$ as $64$ bytes 
+
+We let :
++ $ipad$ = the byte $0x36$ repeated $B$ times
++ $opad$ = the byte $0x5C$ repeated $B$ times
+
+$$
+HMAC_{k}(x)=h(k_{p}\oplus opad,h(k_{p} \oplus ipad, x))
+$$
+Where $k_{p}$ is obtained from $k$ by appending $0$ up to the byte lenght $B$.
+
+This provides *authentication* + *integrity* but not non-repudiation
+
+>[!warning] 
+>If an attacker is able to forge *HMAC* then he is also able to find collisions on the underlaying hash function
+
+## MAC vs Signatures
+
+*MAC*s never provide *non-repudiation* but it can be used to verify its *authenticity*
