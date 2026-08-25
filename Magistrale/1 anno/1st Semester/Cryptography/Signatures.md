@@ -200,8 +200,37 @@ Relating to *hash functions* the probability that we do NOT find a collision is 
 $$
 \prod_{i=0}^{k-1} \frac{n-i}{n} = \prod_{i=0}^{k-1}\left( 1- \frac{i}{n} \right)
 $$
+Knowing that for small $x$ , then $1+x \approx e^x$ 
+
+Then $1-\frac{1}{n} = e^{-1/n}$ 
+
+Thus the probability of finding a collison is :
+$$
+e \approx 1- \prod_{i=0}^{k-1} e^{-i/n} = 1 -e^{-\frac{(k-1)k}{2 \cdot n}}
+$$
+$$
+1- e \approx -e^{-\frac{(k-1)k}{2 \cdot n}}
+$$
+$$
+\ln(1-e) \approx -\frac{(k-1)k}{2 \cdot n}
+$$
+By further approx we get :
+$$
+k \approx \sqrt{ 2n \cdot \ln(1/(1-e)) }
+$$
+For $e=\frac{1}{2}$ will give us $k \approx 1.17\sqrt{ n }$ 
+
+A *brute-force* attack on a hash function with $n$ digests finds a collision with probability $\frac{1}{2}$ after  about $\sqrt{ n }$ attempts
 ## Message Authentication codes
 
+*Message Authentication Codes* ( *MAC*s ) are hash functions with a *simmetric key* 
+
+They produce a *fixed-size* digest of a message whose value depends on the given key
+
+**Properties** :
++ Without knowing the key $k$ it should be computationally *infeasible* to find a message $x$ and a *MAC* $y$ such that $MAC_{k}(x)=y$ ( such that $y$ is the *MAC* for $x$ under key $y$ )
+
+The *MAC* is checked by recomputing it and comparing with the received one
 ### CBC-based MAC
 
 ### Hash-based MAC
