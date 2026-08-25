@@ -137,10 +137,44 @@ The presence of the identifier mitigates this problem since $z$ once decrypted s
 
 If $A$ is $n$ bits long the probability that this happens is $\frac{1}{2^n}$
 
-*Adding redundancy* 
+*Adding redundancy* :
++ Enclose a *one-way hash* of the encrypted message called *witness* as in $h(seq_{A}), E_{k}(seq_{A})$
 
+The *hash* is a proof that the sender knows the content of the message
+
+When *Bob* decrypts he cheks if the hash of the decrypted message matches the received one
+
+The attacker coould send arbitrary $w,z$ but with a hash of $128$ bits the probability of passing the test would be $1/2^{128}$
+
+>[!note] 
+>Since the hash is one way this makes the technique applicable when it's important to *preserve* the *secrecy* of the sent message ( $seq_{a}$ replaced by $x$ )
 ### Reflection
 
+Consider the following protocol based on *timestamp* :
+$$
+A \to B : A, E_{k}(t_{A})
+$$
+Suppose *Bob* is allowed to run the same protocol to authenticate with *Alice* using the same shared key $K$ :
+$$
+B \to A: B, E_{k}(t_{B})
+$$
+The attacker can *pretend* to be Bob ( $E(B)$ ) as follows :
+$$
+\begin{align}
+A \to E(B) : A, E_{k}(t_{A}) \\
+E(B) \to A : B, E_{k}(t_{A})
+\end{align}
+$$
+The message from *Alice* trying to authenticate with *Bob* is sent back to *Alice* in a second session where the attacker pretends to be *Bob*
+
+If this is fast enough to be in $W$ , *Alice* accepts the identity of *Bob* who is the attacker
+
+>[!note] 
+>Alice has never received this timestamp before she generated it
+
+The symmetry of the key is dangerous if there is no information in the ciphertext about who are the intended sender and reciever
+
+It's enough to specify $A$ or $B$ as long as *Alice* and *Bob* agree on what they expect to see in the message ( protocol agreement )
 ## Countermeasure
 
 To avoid this we need to *randomize cryptography* 
@@ -161,4 +195,91 @@ $$
 >[!note] 
 >We will assume that this form of *randomization* is at the cryptographic level. When decrypting the random *cofaunder* will be ignored by $Bob$
 
-###
+## ISO/IEC 9798-2 protocols
+
++ **One-pass unilateral authentication**
+$$
+A \to B : E_{k}(ts_{A},B)
+$$
+Where $ts_{A}$ is a *timestamp* or a *sequence* number
+
++ **Two-pass unilateral authentication**
+$$
+\begin{align}
+B \to A : N_{B} \\
+A \to B : E_{k}(N_{B},B)
+\end{align}
+$$
++ **Two-pass mutual authentication**
+*Alice* and *Bob* authenticate each other
+$$ 
+\begin{align}
+A \to B : E_{k}(ts_{A},B) \\
+B \to A : E_{k}(ts_{B},A)
+\end{align}
+$$
+Where $ts_{A}$ and $ts_{B}$ are either *timestamp* or a *sequence* number
+
++ **Three-pass mutual authentication**
+$$
+\begin{align}
+B \to A &: N_{B} \\
+A \to B &: E_{k}(N_{A},N_{B},B) \\
+B \to A &: E_{k}(N_{B},N_{A})
+\end{align}
+$$
+>[!note] 
+>This is the composition of two two-pass unilateral authentications
+
+Including the *nonce* $N_{A}$ in the encryption of the second message makes the two unilateral autentication tied in a unique mutual authentication session
+
+Same holds for adding $N_{B}$ in the third message
+
+Also the fact that the *intended reciever* is specified in the second message togheter with challenge $N_{A}$ makes it possible to remove $A$ from the last message as it is enogh to prevent reflections 
+
+## Key exchange
+
+*Strong-authentication* becomes useless if we then send messages in the clear , since an attacker can simply be in the middle and change messages 
+
+This is solved by *exchanging* a new *session key* *while identifiying* , one technique is to *enclose* the new *key* inside the *ciphertext*
+
+### ISO/IEC 11770-2 protocols
+
++ **One-pass unilateral key-establishment**
+$$
+A \to B : E_{k}(ts_{A},B,k_{s})
+$$
+Where $ts_{A}$ is a *timestamp* or a *sequence* number
+
++ **Two-pass unilateral key-establishment**
+$$
+\begin{align}
+B \to A &: N_{B} \\
+A \to B &: E_{K}(N_{B},B,k_{s})
+\end{align}
+$$
++ **Two-pass mutual key-establishment**
+$$
+\begin{align}
+A \to B &: E_{K}(ts_{A},B,k_{s}^A) \\
+B \to A &: E_{K}(ts_{B},A,k_{s}^B)
+\end{align}
+$$
+Where $ts_{A}$ and $ts_{B}$ are either *timestamp* or a *sequence* number
+
+The session key is then computed as a *function* of the two subkeys $k_{s}=f(k_{s}^A,k_{s}^B)$
+
++ **Three-pass mutual key-establishment**
+$$
+\begin{align}
+B \to A&: N_{B} \\
+A \to B&: E_{K}(N_{A},N_{B},B,k_{s}^A) \\
+B \to A&: E_{K}(N_{B},N_{A},k_{s}^B)
+\end{align}
+$$
+The session key is computed a before
+
+### [[Diffie-Hellman Protocol|Diffie-Hellman]] key agreement
+
+*Diffie-Hellman* allows for establishing a fresh secret between *Alice* and *Bob* without the need of pre-shared keys or secrets
+
