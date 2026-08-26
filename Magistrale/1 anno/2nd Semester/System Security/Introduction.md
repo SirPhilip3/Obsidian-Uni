@@ -59,7 +59,6 @@ Low :
 >If a patient allergy information system fails / is hacked it may cause *severe harm* or *death* to patients this gives us a **high** requirement for *integrity*
 >
 >If a university website goes down may cause truble to students and professors but not catastrophic, we will need **medium** requirement for *availability*
-
 # Terminology
 
 **System Resource** ( *Asset* ) :

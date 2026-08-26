@@ -58,7 +58,7 @@ If we use [[AES]] with *ECB* mode to split a long message there is a weekness wh
 >Simply substituting some blocks we can get the following 
 >![[Pasted image 20260817161257.png]]
 
-1. swapping encrypted blocks also swaps plaintext blocks breaks *integrity*
+2. swapping encrypted blocks also swaps plaintext blocks breaks *integrity*
 >[!example] 
 >
 >We can switch some blocks around so that we forge new messages

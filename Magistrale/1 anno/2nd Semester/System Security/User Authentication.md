@@ -80,7 +80,7 @@ They can provide the following *protocols* :
 To avoid the problem of *sniffing* a secret and reusing it we use *One Time Passwords* that are **never reused** 
 
 >[!important] 
->The tocken and computer system must be kept *synchronized* so that the computer knows the *OTP* that is usable in this instant
+>The token and computer system must be kept *synchronized* so that the computer knows the *OTP* that is usable in this instant
 ##### Lamport hash-based OTP
 
 Given a *secret* $s$ and a [[Introduction to Cryptography#One-way hash function|One-way hash function]] $h$ we compute :
