@@ -56,5 +56,141 @@ This protocol can be extended using the *Needham-Schroeder public-key protocol* 
 
 # Signature-based authentication
 
-*Encryption* is to protect key confidentiality while *signature* gives authentication
+*Encryption* is to protect key *confidentiality* while *signature* gives *authentication*
 
+Starting from the *flawed* unilateral protocol :
+$$
+A \to B : E_{PKB}(A,t_{A},k_{S})
+$$
+We add a *signature* from *Alice* to prove her identity , this replaces *Alice* identifier
+>[!note] 
+>The *timestamp* can be sent in the clear
+
+We also add *Bob* identifier to the signature to specify the intendended reciever
+$$
+A \to B: t_{A}, E_{PKB}(k_{S}, sign_{A}(B,t_{A},k_{S}))
+$$
+>[!warning] 
+>The message to encrypt will be typically bigger than the size of one block ( since the signature is already the size of the modulus itself )
+
+We would need some block encryption mode with strong integrity guarantees
+
+A solution would be to *separate* the encryption and signature :
+$$
+A \to B: t_{A}, E_{PKB}(k_{S}),sign_{A}(B,t_{A},k_{S})
+$$
+A *symmetric key* $k_{S}$ is typically much smaller than one encryption block 
+
+>[!example] 
+>We might have $1024$ bits [[Magistrale/1 anno/1st Semester/Cryptography/RSA|RSA]] modulus and a $128$ or $256$ bits [[AES]] *symmetic key*
+
+>[!warning] 
+>This protocol can be adopted only *when* the *signature* scheme *prevents* the *computation* of the signed *message* 
+
+A general solution is thus to first *encrypt* and then *sign*
+$$
+A \to B: t_{A},E_{PKB}(k_{S},A),sign_{A}(B,t_{A},E_{PKB}(k_{S},A))
+$$
+>[!note] 
+>Since signatures can be implemented with *hashes* we do not have lenght issues with this protocol
+
+Having *A* in the encrypted message prevents the attacker to intercept the message sign the key himself
+
+The reciever will verify that the identifier in the signature os the same as the one in the encrypted message
+
+## X.509 strong authentication protocols
+
+$$
+\begin{align}
+A \to B&: t_{A},E_{PKB}(k_{S}^A,A),sign_{A}(B,t_{A},E_{PKB}(k_{S},A)) \\
+B \to A&: t_{B},E_{PKA}(k_{S}^B,B),sign_{B}(A,t_{B},E_{PKA}(k_{S}^B,B))
+\end{align}
+$$
+*Alice* and *Bob* compute a session key as $k_{S}=f(k^A_{S},k^B_{S})$
+
+>[!note] 
+>This can be achieved based on *nonces* as follows
+>$$
+>\begin{align} 
+>B \to A &: N_{B} \\
+>A \to B&: N_{A},E_{PKB}(k_{S}^A,A),sign_{A}(B,N_{A},N_{B},E_{PKB}(k_{S},A)) \\
+>B \to A&: E_{PKA}(k_{S}^B,B),sign_{B}(A,N_{A},N_{B},E_{PKA}(k_{S}^B,B))
+>\end{align}
+>$$
+
+# Symmetric Key managment
+
+In practice authentication protocols based on symmetic keys requier the presence of a centralized trusted party that sahres one long-term key with each possible user 
+
+The *trusted party* possesses a master key $k_{M}$ that it only knows
+
+When a new user $U$ is register the respective long-term key $k_{U}$ is *generated* and is *encrypted* *under* the *master* key together with the identifier and additional information such as the key lifetime
+$$
+SCert_{U} = E_{kM}(U,k_{U},L)
+$$
+These **certificates** can be distributed to users together with their keys 
+
+The *trusted party* can *forget* about the *keys* and *ask* for *certificates* instead
+
+# Asymmetric Key certificates
+
+If *Alice* and *Bob* want to comunicate they need a way to check that the public key is the one truly associated with the opposite party 
+
+>[!warning] 
+>It's insecure for *Bob* to send his *public key* to *Alice* since the attacker can replace $PK_{B}$ with it's own key
+
+We introduce **Public Key certificates** , they contain the same infromation as the symmetric key certificates
+
+They, instead of being encryped under a *symmetric master key* they are ***signed*** by a **Certification Authority (CA)** , a trusted entity that certifies the authentifity of a user public key
+$$
+Cert_{B} = B, PK_{B},L, sign_{CA}(B,PK_{B},L)
+$$
+If *Alice* knows the *public key* of the **CA** and *Bob* sends this certificate then *Alice* can check the validity of the key that is associated with *Bob*
+$$
+\begin{align}
+B \to A &: Cert_{B}  \\
+A \to B &: E_{PKB}(M)
+\end{align}
+$$
+The attacker can't change the *public key* as he is not able to forge a signature from the **CA**
+
+`openSSL` is an implementation of all this
+
+>[!note] 
+>The *CSR* ( *Certificate Signing Request* ) is what we send to the *CA* to be signed it contains the *public key* but not the private key
+
+#todo openSSL code ? 37 L23
+
+# Transport Layer Security protocol ( SSL/TLS )
+
+When a user connects to a website using `https` , the *SSL/TLS* protocol establishes a secure , encrypted session
+
+The association of the identity and the public key of the *Web Server* is checked using *certificates* 
+
+The *asymmetric key* of the Web server is used to establish a new session key 
+
+>[!warning] 
+>Websites can still generate their own certificates , in this case *man-in-the-middle* attacks are possible where a fake site uses a self signed certificate and can subsequently intecept / modifying all the messages
+
+**CA**s are distributed in hierarchical level
+
+The *root* **CA** cerifies the next *CA* in the hierarchy and so on all the way to the end user 
+
+>[!example] 
+>![[CAchain.excalidraw.png]]
+>%%[[CAchain.excalidraw.md|🖋 Edit in Excalidraw]]%%
+>
+>If *Carol* wants to communicate with *Dave* she needs to send *Dave* the **certificate chain** from the root *CA* to *herself* :
+>+ $CA_{1}$ certificate signed by $CA_{root}$
+>+ $CA_{3}$ certificate signed by $CA_{1}$
+>+ *Carol* certificate signed by $CA_{3}$
+
+# Pretty Good Privacy ( PGP )
+
+*PGP* does not require a centralized authority
+
+It's a web of trust : any user can trust other users 
+
+If *Alice* trusts *Bob* any other user that is cerified by *Bob* is trusted by *Alice*
+
+If we trust the starting user then we can successfully verify the identity and public key of the final user in the path
