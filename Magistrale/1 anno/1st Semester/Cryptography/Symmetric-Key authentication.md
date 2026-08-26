@@ -283,3 +283,69 @@ The session key is computed a before
 
 *Diffie-Hellman* allows for establishing a fresh secret between *Alice* and *Bob* without the need of pre-shared keys or secrets
 
+The scheme is based on the [[Discrete Logarithm Problem]] 
+
+We choose a *prime* number $p$ and a *generator* $a$ of $\{1,\dots,p-1\}$
+
+>[!note] 
+>A generator $a$ is a number such that :
+>$$
+>\{a^1 \mod{p}, \dots, a^{p-1} \mod{p}\} = {1,\dots,p-1}
+>$$
+>
+>If we rise $a$ to all the powers $1,\dots,p-1$ modulo $n$ we obtain all such numbers
+>
+>>[!example] 
+>>$a = 5$ and $p=23$
+>>1. $5^1 \mod{23} = 5$
+>>2. $5^2 \mod{23} = 2$
+>>3. $5^3 \mod{23} = 10$
+>>4. $\dots$
+>>5. $5^{20} \mod{23} = 12$
+>>6. $5^{21} \mod{23} = 14$
+>>7. $5^{22} \mod{23}=1$
+
+It can be proven that for *any prime* $p$ there *always exists* at *least* *one* generator $a$ 
+
+We can define the *discrete logarithm modulo* $p$ of any number $1 \le b \le p-1$ as follows : 
+$$\log_{a}^b$$ is the power $i$ such that :
+$$
+a^i \mod{p} = b
+$$
+>[!example] 
+>$b=2$ , $5^2 \mod{23}=2$
+
+Computing the *discrete logarithm modulo* $p$ is **infeasible** for a *big prime* $p$ such that $p-1$ has at least a big prime factor
+
+*Diffie-Hellman* protocol picks one of such big primes $p$ and a generator $a$ of $\{1,\dots,p-1\}$ 
+
+>[!note] 
+>prime $p$ and the generator $a$ are public
+
+*Alice* and *Bob* generate two secrets $SA$ and $SB$ and run the following protocol :
+$$
+\begin{align}
+A \to B &: a^{SA} \mod{p} \\
+B \to A &: a^{SB} \mod{p}
+\end{align}
+$$
+*Alice* and *Bob* compute the new key respectively as :
+1. $(a^{SB})^{SA} \mod{p}$
+2. $(a^{SA})^{SB} \mod{p}$
+
+Computing the secrets from the exchanged messages amounts to computing the *discrete logarithm* that is assumed to be **infeasible**
+
+>[!example] 
+>Given $p=23$ and $a=5$ are public. Alice chooses $SA=6$, Bob chooses $SB=15$ :
+>+ $A \to B : a^{SA} \mod{p}=5^6 \mod{23} = 8$
+>+ $B \to A : a^{SB} \mod{p} = 5^{15} \mod{23}=19$
+>  
+>The new computed key is : 
+>+ $(a^{SB})^{SA} \mod{p}= 19^{6} \mod{23} = 2$
+>+ $(a^{SA})^{SB} \mod{p}= 8^{15} \mod{23} = 2$
+
+>[!warning] 
+>An *active attacker* can still do a *man-in-the-middle* attack where he is able to impersonate *Alice* with *Bob* and *Bob* with *Alice*
+>
+>He will negotiate a key with both of them so that he can be in the middle on the next sessions
+

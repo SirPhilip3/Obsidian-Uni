@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Euclidian Algorithm
 
 It calculates the *greates common divisor* ( *GCD* ) of two integers ( $a,b$ )
