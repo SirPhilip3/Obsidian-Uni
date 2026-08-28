@@ -21,7 +21,7 @@ PIN\_V(EPB, vdata,len,dectab,offset)
 $$
 >[!note] 
 >Where :
->+ `vdata` is usually derived from the customer Primary Account Nnumber to validate the data
+>+ `vdata` is usually derived from the customer Primary Account Number to validate the data
 >+ `len` lenght of the pin
 >+ `dectab` is *decimalization table* a 16 character string used to translate the hexadecimal output of the encryption to decimal numbers
 >+ `offset` 
