@@ -52,7 +52,7 @@ $$
 
 ### Forgin a random signature
 
-We pick an arbitrary signature $y$ and we compute the corresponding *signed message* as $E_{PK}(y)$ this will give use true at the *verify* function by definition 
+We pick an arbitrary signature $y$ and we compute the corresponding *signed message* as $E_{PK}(y)$ this will give us true at the *verify* function by definition 
 
 This is still a valid forged signature with a meaningless message 
 
