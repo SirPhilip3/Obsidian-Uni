@@ -448,7 +448,7 @@ Thus the unique $x$ given by the *Chinese Remainder Theorem* must be equal to $m
 >$c_{2} = 8 \mod{5} = 3$
 >$c_{3}= 8 \mod{7}=1$ 
 >
->Since all are between $0$ and $7$ we can use the previous theorem
+>Since all are between $0$ and their respective $n_{i}$ we can use the previous theorem
 >
 >There is one and only one integer $x$ such that $0\le x <105$ and :
 >$x \mod{3}=2$
@@ -459,7 +459,7 @@ Thus the unique $x$ given by the *Chinese Remainder Theorem* must be equal to $m
 
 In general $b$ encryptions of the same message $m$ under different keys are enough to recover $m$ 
 
-Picking a big $b$ makes it *unilikely* 
+Picking a big $b$ makes it *unlikely* 
 
 This attack can also be prevented by a randomized padding scheme such as *PKCS1* which transforms message $m$ into a $k$-bits long message in the following form : 
 $$
