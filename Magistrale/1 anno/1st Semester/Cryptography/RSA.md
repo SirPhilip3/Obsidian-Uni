@@ -510,4 +510,31 @@ It's enough to do a *binary search* each time multiplying the ciphertext by $E_{
 
 #### Attack 4 : Chosen ciphertext attack
 
-#todo 
+An attacker can choose the ciphertext to decrypt , he wants to decrypt a ciphertext $y'$ by asking for the decryptions of different ciphertexts $y_{1},\dots,y_{n}$ 
+
+The attacker pick a random $r$ such that $1< r < n$ and *is invertible* modulo $n$
+
+The attacker asks for the decryption of $y_{1}=y' E_{PK}(r)\mod{n}$ 
+
+She obtains the plaintext $x_{1}=x' r \mod{n}$ where $x'$ is the decryption of $y'$ 
+
+We can simply multiply this number by $r^{-1} \mod n$ not get $x'$
+
+>[!example] 
+>$n=pq=3 \cdot 7 = 21$ , the public key will be $(17,21)$ , $y_{1}=1, x_{1}=1$
+>
+>The secret key is given by : $a \cdot b \mod{21}=1$ , $a \cdot 17 \mod{12}=1$ means that $a=5$ , the secret key is $(5,21)$
+>
+>The attacker chooses $r=11$ 
+>We know that it's inverse mod 
+>
+>We have that $E_{PK}(r)=E_{PK}(11)=11^{17} \mod{21}=2$
+>
+>We want to find $x'=4$ , we then have $y'=4^{17} \mod{21}= 16$
+>
+>Then $y_{1}= 16 \cdot E_{PK}(r) \mod{n} = 16 \cdot 2 \mod{21} = 11$
+>
+>Then the decryption under the public key is the following $11^5 \mod{21} = 2$
+>
+>Then the final result will be $x' = x_{1} \cdot r^{-1} \mod 21 = 2 \cdot 2 \mod{21}=4$
+
