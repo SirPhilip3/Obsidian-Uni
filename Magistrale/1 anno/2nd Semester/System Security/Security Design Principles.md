@@ -64,7 +64,7 @@ Each *node* can be *OR* ( is possible if one child is possible ) or *AND* ( is p
 >[!example] 
 >![[Pasted image 20260817114004.png]]
 >
->The dotted lines rapresent possible attaks , not that this can change depending on other requirements , for example that the cost of the attack must be less than some value
+>The dotted lines rapresent possible attaks , note that this can change depending on other requirements , for example that the cost of the attack must be less than some value
 >
 >![[Pasted image 20260817114331.png]]
 
