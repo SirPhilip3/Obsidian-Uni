@@ -125,7 +125,7 @@ $$
 O(b^2 \cdot 2^b) = O((\log n)^2 \cdot 2^{\log_2 n/2})= O((\log n)^2 \cdot \sqrt{2^{\log_2 n}}) = O((\log n)^2 \cdot \sqrt{n}) = o(n)
 $$
 
->[!important] Offset of a block
+>[!important] Offset ( $O$ ) of a block
 >
 >Is the *column* in $T$ where the *block* appears
 
