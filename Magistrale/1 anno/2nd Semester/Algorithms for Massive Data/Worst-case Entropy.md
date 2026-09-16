@@ -2,7 +2,7 @@
 publish: true
 ---
 >[!example] 
->Consider a string of lenght $n$ over alphabet $\{A,C,G,T\}$ that cotains exactly one occurrence of $A, C, G$ with the remaining $n-3$ letters being equal to $T$
+>Consider a string of lenght $n$ over alphabet $\{A,C,G,T\}$ that contains exactly one occurrence of $A, C, G$ with the remaining $n-3$ letters being equal to $T$
 >
 >1. The way that we can order $A,C,G$ is $3!$ 
 >2. In the string of lenght $n$ we need to choose $3$ places to put them so $\binom{n}{3}$

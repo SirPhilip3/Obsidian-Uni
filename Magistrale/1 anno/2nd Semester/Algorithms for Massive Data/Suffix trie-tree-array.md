@@ -102,7 +102,7 @@ Than we build the *tree* in the following way :
 *Complexity* : $O(m)$ , since we simply walk the pattern
 
 + *locate(P)* : walk the path of the pattern than follow the *leftmost* pointer and jump following the *leaf* pointers until you reach it's corresponding *rightmost* pointer
-*Complexity* : $O(m +occ)$ , since we walk the pattern and than we count its occurancies
+*Complexity* : $O(m +occ)$ , since we walk the pattern and than we count its occurencies
 >[!note] 
 >The numbers on the *leaf* in this case are the starting position of the patter $P$ in the text $T$
 
@@ -155,7 +155,7 @@ Than the total number of nodes is $I+L = n + n = 2n \approx O(n)$
 >We get $8\cdot 3.2 \cdot 10^9$ words $\approx 95 GiB$, using $4$ bytes per word
 # Suffix Array
 
-Let's create a table table that associates *suffixes* **sorted** *lexicographically* with theyr leaf number : 
+Let's create a table that associates *suffixes* **sorted** *lexicographically* with theyr leaf number : 
 
 If we read from root to leaf , from left to right we obtain the *suffixes* ordered lexicographically
 

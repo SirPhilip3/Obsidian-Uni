@@ -43,7 +43,7 @@ So :
 $$
 \mathscr{H}_{wc}(\mathscr{S}(n_1, \dots, n_{\sigma})) = \log \binom{n}{n_1, \dots,n_\sigma}
 $$
-Applying *Stirling* approximation to the factorial we can prove that : 
+Applying *Stirling* approximation of the factorial we can prove that : 
 ^328557
 $$
 \mathscr{H}_{wc}(\mathscr{S}(n_1, \dots, n_{\sigma})) = n H_0 -O(\sigma \log n)
