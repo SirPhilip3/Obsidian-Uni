@@ -300,7 +300,7 @@ In other words $\kappa_{q,z}(x)$ is a *polynomial* on $\mathbb{Z}_q$ having as *
 Let $x,y \in \Sigma^+$ and $c \in \Sigma$ , denote $x \cdot c$ the concatenation of $x$ with $c$
 >[!note] 
 >$x$ and $y$ are words while $c$ is just a single character
-+ Computing $\kappa_{q,z}(x \cdot c)$ without using $x$ and $y$ :
++ Computing $\kappa_{q,z}(x \cdot c)$ without using $x$ :
 $$
 \kappa_{q,z}(x \cdot c) = \kappa_{q,z}(x)\cdot z + c \mod q 
 $$
