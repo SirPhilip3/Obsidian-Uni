@@ -22,7 +22,7 @@ We can *randomly sample* a subset of the stream and we return the frequency in t
 >This works because the *expected* *frequency* in the sample is the same as in the original stream
 
 **Algorithm** :
-1. Sample uniformlyat random $q$ elements $x_{1}',\dots,x_{q}'$ from the stream
+1. Sample uniformly at random $q$ elements $x_{1}',\dots,x_{q}'$ from the stream
 
 >[!note] 
 >+ $q$ will be determined by the *error* and *sucess probability* that we want 

@@ -114,7 +114,7 @@ Suppose next character arrives ( $x_{i+1}=x_{17}=b$ )
 
 1. Right-shift all the windows of the sets $W_{i}$ 
 2. Set $W_{i}$ behave in the following ways :
-	1. The *occurrences* stay inside the windows. Then we *won't delete* anything from the $W_{i}$
+	1. If the *occurrences* stay inside the windows. Then we *won't delete* anything from the $W_{i}$
 	2. If the new text character is an occurrence of $y_{1}$ : insert $17$ in $W_0$
 	3. Check if first-cell occurences can be *promoted* to the next level ( in this case no )
 
