@@ -478,3 +478,4 @@ Using **doubly-linked lists** and a **hash map** we can support updates in $O(1)
 + We can't perform *linear* operation like in [[#Count-Min sketch]] 
 + *Not easy* to integrate in *hardware*
 + *Deletes* are **not** **supported**
+
