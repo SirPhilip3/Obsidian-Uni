@@ -445,7 +445,7 @@ $$
 $$
 Also since we *decrement* $s$ values $\tilde{f}_{y}$ each time $|MS|=s$, also this *can't happend* *more* than $m/s$ times , otherwise we would have delete more elements than seen in the stream 
 
-Hence every $\tilde{f}_{y}$ is *decremente* in total at most $m/s$ *times* , then we can say that :
+Hence every $\tilde{f}_{y}$ is *decremented* in total at most $m/s$ *times* , then we can say that :
 $$
 \tilde{f}_{y} \ge f_{y} - m/s
 $$
