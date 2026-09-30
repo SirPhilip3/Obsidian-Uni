@@ -8,11 +8,11 @@ publish: true
 
 Let $h:[n]\to \{-1,+1\}$ be a [[Hashing#k-wise independent Hasing|pairwise independent hash]] 
 
-Then : 
+Then :  
 $$
 E[h(x)] = (1/2) \cdot (1) + (1/2) \cdot (-1)=0
 $$
-Also :
+Also : 
 $$
 E[h(x)\cdot h(y)] = \cases{E[h(x)^2] = E[1]=1 & \text{if $x=y$} \\ E[h(x)] \cdot E[h(y)]= 0 & \text{if $x \neq y$}} 
 $$
