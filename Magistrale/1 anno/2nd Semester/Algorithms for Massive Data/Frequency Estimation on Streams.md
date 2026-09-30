@@ -204,7 +204,7 @@ How do we control $CM[i,h_{i}(x)]$ ?
 
 We can notice that $E[CM[i,h_{i}(x)]-f_{x}]\le m/s$ and by applying [[Concentration Bounds#Markov ( linear )|Markov]] we get :
 $$
-\mathbb{P}(CM[i,h_{i}(x)]-f_{x} \ge \textcolor{orange}{2}\cdot m/s \le 1/\textcolor{orange}{2})
+\mathbb{P}(CM[i,h_{i}(x)]-f_{x} \ge \textcolor{orange}{2}\cdot m/s ) \le 1/\textcolor{orange}{2}
 $$
 So with *probability* $\geq 1/2$ :
 $$
