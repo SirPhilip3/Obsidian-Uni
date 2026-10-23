@@ -97,7 +97,7 @@ We than can substitute this in definition of $x$ with *base* $u$ :
 $$
 \begin{align}
 x & = \bar{x}_1 u_1 + \dots + \bar{x}_n u_n\\
-& = \bar{x}_1(c_{11}e_1 + \dots+ x_{n1}e_n) + \dots + \bar{x}_n(c_{1n}e_1 + \dots+ x_{nn}e_n) \\
+& = \bar{x}_1(c_{11}e_1 + \dots+ c_{n1}e_n) + \dots + \bar{x}_n(c_{1n}e_1 + \dots+ c_{nn}e_n) \\
 & = (e_1\ \vdots\ \dots\ \vdots\ e_n) \begin{bmatrix}
 c_{11} & \dots & c_{1n} \\
 \vdots & \ddots & \vdots \\
