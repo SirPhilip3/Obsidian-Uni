@@ -57,5 +57,3 @@ $$\mathscr{H}_{wc}(\mathscr{U}) \cdot (1 +o(1))$$
 >\mathscr{H}_{wc}(\mathscr{T}_{n}) = \log_{2}\left(\frac{1}{n}\binom{2n-2}{n-1} \right) = 2n -\Theta(\log n)
 >$$
 
-
-
