@@ -37,7 +37,7 @@ The filter must be initialized with a maximum capacity $m$ and a desired *False 
 
 We want to rapresent set $S \subseteq [n]$ of cardinality at most $m$ 
 
-Given the paramaters $M=15$ and $k=3$ ( see [[#Final Result|Final Result]] for they'r derivation ) 
+Given the paramaters $M=15$ and $k=3$ ( see [[#Final Result|Final Result]] for their derivation ) 
 
 Than the *bloom filter* is a *bitvector* of lenght $M$ initialized to $0$ :
 ![[BloomFilter.excalidraw.png]]
@@ -137,7 +137,7 @@ In other words the $i$-th hash function outputs indices inside the $i$-th part o
 We need to compute the following probability ( [Wikipedia][https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives] ) : $\mathbb{P}(FP)=\mathbb{P}(membership(x)=true|x \notin S)$
 
 >[!important] 
->The analysis wil be *asymptotic* : $\frac{M}{K}\to \infty$
+>The analysis will be *asymptotic* : $\frac{M}{K}\to \infty$
 
 First we need to compute $\mathbb{P}(BF[i]=1)$ for any position $i$
 
